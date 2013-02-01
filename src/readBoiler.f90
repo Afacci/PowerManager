@@ -1,0 +1,212 @@
+!---------------------------------------------------------------------------
+!  
+!   PowerManager.  
+!
+!---------------------------------------------------------------------------
+!License
+!    This file is part of PowerManager.
+!
+!    PowerManager is free software; you can redistribute it and/or modify it
+!    under the terms of the GNU General Public License as published by the
+!    Free Software Foundation; either version 2 of the License, or (at your
+!    option) any later version.
+!
+!    PowerManager is distributed in the hope that it will be useful, but WITHOUT
+!    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+!    FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+!    for more details.
+!
+!    You should have received a copy of the GNU General Public License
+!    along with PowerManager; if not, write to the Free Software Foundation,
+!    Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+!
+!>\file readBoiler.f90
+!>\brief Reads Boiler.inp file
+!>\author 
+!>     Andrea Facci.
+!
+!---------------------------------------------------------------------------
+
+!>\brief Reads Boiler.inp file
+!>\details 
+!> This subroutine reads the file "Boilers.inp". The procedure looks for each specific entry
+!> in the "keyword field", and associates the value in the "value" field, to the
+!> corresponding variable. If the desired entry is not present returns an error
+!> message and aborts the execution. The structure of the input file is
+!> clarified in the following example along with the meaning of "keyword" and
+!> "value" field.\n
+!> \verbatim
+!> A Lot of usless stuff because only text between begin and end is read.
+!>    begin 
+!>       !Commented line
+!>       KeywordField  | ValueField | !Comment two
+!>
+!>       KeywordField  | ValueField |
+!>       ScalarValue   | 1          |
+!>       Vector        | 1 2 n      |
+!>       VectorSeries  |(a b c ) (d e f)|
+!>       Matrix        |(11 12 13  |
+!>                     | 21 22 23  |
+!>                     | 31 32 33) |
+!>    end
+!> A lof really usless text
+!>\endverbatim
+!> Note that only the text between "begin" and "end" is read. Blank lines are
+!> automatically discarded, while any unrecognized entry is discarded returning
+!> a warning code. Line beginning with "!" are considered comments and
+!> discarded.
+!>\author 
+!>     Andrea Facci.
+
+subroutine readBoiler
+
+!---Declare Unit usage---
+use inputVar
+use fileTools
+use interfaces
+use cmdVar
+
+implicit none
+
+!---Declare Local Variables---
+integer              :: genUnit = 107
+character(len=50)    :: inputFile = './Input/Boilers.inp'
+logical              :: filePresent
+character(len=100)   :: buffer, keyword, value,vector,elements,value_
+integer              :: firstLine, line, i, nInp, nRow, n1, n2, x, j, il, nl
+logical,dimension(15)  :: isPresent = .false.
+integer,dimension(100) :: dummy
+integer              :: error
+
+!---Check File Presence---
+inquire(file = inputFile, exist = filePresent)
+if(.not.filePresent) then
+   call abortExecution(1,3)
+else
+   open(unit = genUnit, file = inputFile)
+endif
+
+!---Skip all the lines befor the keyword "begin".
+firstLine = 0;
+do 
+    read(genUnit,100) buffer
+    buffer = adjustl(buffer)
+    firstLine = firstLine + 1
+    if(buffer(1:5).eq.'begin') exit
+enddo
+
+!---Look for the the "Number" entry that is neede for most of the other entries---
+buffer = 'Number'
+call iFindEntry(buffer,1,genUnit,.true.,dummy(1),isPresent(1))
+nBoi = dummy(1)
+if(nBoi.eq.0) return
+if(.not.isPresent(1)) call abortExecution(5,1)
+call allocateVar(7)
+
+line = firstLine
+!---read the input list---
+do 
+    call readKeyword(genUnit,.false., keyword,value,error, nl)
+    if (error.eq.1) call abortExecution(0,3)
+    line = line + nl
+    select case(keyword)
+       case('end')
+          exit
+       case('Power')
+          read(value,*) (pMaxB(i), i=1,nBoi)
+          isPresent(2) = .true.
+       case('DegradationRate')
+          read(value,*) (degRateB(i), i=1,nBoi)
+          isPresent(3) = .true.
+       case('FuelCost')
+          read(value,*) (fuelCostB(i), i=1,nBoi)
+          isPresent(4) = .true.
+       case('FuelLHV')
+          read(value,*) (fuelLHVB(i), i=1,nBoi)
+          isPresent(5) = .true.
+       case('Investment')
+          read(value,*) (invB(i), i=1,nBoi)
+          isPresent(6) = .true.
+       case('Lifetime')
+          read(value,*) (lifeB(i), i=1,nBoi)
+          isPresent(7) = .true.
+       case('OnOffCost')
+          read(value,*) (fireCostB(i), i=1,nBoi)
+          isPresent(8) = .true.
+       case('OeMCost')
+          read(value,*) (maintCostB(i), i=1,nBoi)
+          isPresent(9) = .true.
+       case('SetPoint')
+          isPresent(10) = .true.
+          value_ = value
+          do i=1,nBoi
+              nSpB(i) = hCount(value_)
+              n2 = index(value_,')') + 1
+              value_ =  value_(n2 + 2:)
+          enddo
+          call allocateVar(8)
+          do i = 1, nBoi
+             n1 = index(value,'(') + 1
+             n2 = index(value,')') - 1
+             vector = trim(value(n1:n2))
+             read(vector,*) (spB(j,i), j=1,nSpB(i))
+             value =  value(n2 + 2:)
+          enddo
+       case('Size')
+           value_ = value
+           isPresent(11) = .true.
+           do i=1,nBoi
+               nSizeB(i) = hCount(value_)
+               n2 = index(value_,')') - 1
+               value_ =  value_(n2 + 2:)
+           enddo
+           call allocateVar(9)
+           do i = 1, nBoi
+              n1 = index(value,'(') + 1
+              n2 = index(value,')') - 1
+              vector = trim(value(n1:n2))
+              read(vector,*) (kSizeB(i,j), j=1,nSizeB(i))
+              value =  value(n2 + 2:)
+           enddo
+       case('ThermalEfficiency')
+              isPresent(12) = .true.
+              backspace(genUnit)
+              line = line - 1
+              do i = 1,nBoi
+                  nEtaB(i) = vCount(genUnit,.false.)
+              enddo
+              j = sum(nEtaB)
+              call allocateVar(10)
+              call rewUnit(genUnit,j)
+              do i = 1, nBoi
+                 etaB(:,:,i) =  dmatrixRead(genUnit,nEtaB(i),2)
+              enddo
+              line = line + j
+       case('Number')
+             continue
+       case('Technology')
+             isPresent(13) = .true.
+             read(value,*) (tecB(i), i=1,nBoi)
+       case('MinUpTime')
+             isPresent(14) = .true.
+             read(value,*) (minUpTimeB(i), i=1,nBoi)
+       case('MinDownTime')
+             isPresent(15) = .true.
+             read(value,*) (minDownTimeB(i), i=1,nBoi)
+       case(' ') 
+            if(verb) call warning(4,3,line=line)
+       case default
+              call warning(1,3,line=line,word=keyword)
+    end select
+enddo
+
+!---check if all the variablea were read---
+nInp = size(isPresent)
+do i = 1,nInp
+    if(.not.isPresent(i)) call abortExecution(5,i)
+enddo
+
+close(genUnit)
+100 format(A100)
+
+end subroutine readBoiler

@@ -1,0 +1,264 @@
+\hypertarget{classeconomy}{\section{economy Module Reference}
+\label{classeconomy}\index{economy@{economy}}
+}
+
+
+Collaboration diagram for economy\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{classeconomy__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+real(kind(1.d0)) function \hyperlink{classeconomy_a4ce4c9a69167d8912d6f6bcb6ec5b53d}{elrev} (c, t)
+\begin{DoxyCompactList}\small\item\em Electric energy revenues. \end{DoxyCompactList}\item 
+real(kind(1.d0)) function \hyperlink{classeconomy_a89bad0bc0b64f4480938f31adfa3ec33}{threv} (t)
+\begin{DoxyCompactList}\small\item\em thermal energy revenues. \end{DoxyCompactList}\item 
+real(kind(1.d0)) function \hyperlink{classeconomy_ae4b1f9fc807735c83f9b8afedd25593f}{chrev} (t)
+\begin{DoxyCompactList}\small\item\em Chilling energy revenues. \end{DoxyCompactList}\item 
+real(kind(1.d0)) function \hyperlink{classeconomy_a6037f7db113255ec913f030454cfebbd}{fuelcost} (c, t)
+\begin{DoxyCompactList}\small\item\em Calculates the costs to buy the fuel. \end{DoxyCompactList}\item 
+real(kind(1.d0)) function \hyperlink{classeconomy_a5dac453402a93bcbfc5c4f5a0a9c296e}{maintenancecost} (c, t)
+\begin{DoxyCompactList}\small\item\em Calculates the mintenance costs. \end{DoxyCompactList}\item 
+real(kind(1.d0)) function \hyperlink{classeconomy_a94cd41a52844693de595358d30d4d78f}{currcost} (c, t)
+\begin{DoxyCompactList}\small\item\em Calculates the profit during a time step. \end{DoxyCompactList}\item 
+real(kind(1.d0)) function \hyperlink{classeconomy_a7fc5b61af90717efa0515636fc74c732}{firecost} (c\-New, c\-Old)
+\begin{DoxyCompactList}\small\item\em Calculates the lighting cost. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+
+\end{DoxyAuthor}
+This module contains the definition of all the procedures that perform economic calculations for a give set-\/point and time-\/step, that are, fuel costs, O\&M costs, and the revenues from thermal, electric, and chilling, energy selling. \begin{DoxyAuthor}{Author}
+
+\end{DoxyAuthor}
+
+
+Definition at line 44 of file economy.\-f90.
+
+
+
+\subsection{Member Function/\-Subroutine Documentation}
+\hypertarget{classeconomy_ae4b1f9fc807735c83f9b8afedd25593f}{\index{economy@{economy}!chrev@{chrev}}
+\index{chrev@{chrev}!economy@{economy}}
+\subsubsection[{chrev}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function economy\-::chrev (
+\begin{DoxyParamCaption}
+\item[{integer, intent(in)}]{t}
+\end{DoxyParamCaption}
+)}}\label{classeconomy_ae4b1f9fc807735c83f9b8afedd25593f}
+Calculates the revenues (in euro or any other currency according to the one used in the input) from chilling energy selling to the various clients. \[ R_{ch} = \sum_{clients} U_{ch}(i)c_{ch}(i)dt \] where $ U_{ch}(i)$ is the power demand (in k\-W) of the $i$'th client, $c_{ch}(i)$ is the price in euro/k\-J of electric energy for each client and $ dt$ is the time-\/step duration.\par
+ 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time step index. Note t=x meas the x'th time step from the simulation start. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 185 of file economy.\-f90.
+
+
+
+Referenced by currcost().
+
+\hypertarget{classeconomy_a94cd41a52844693de595358d30d4d78f}{\index{economy@{economy}!currcost@{currcost}}
+\index{currcost@{currcost}!economy@{economy}}
+\subsubsection[{currcost}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function economy\-::currcost (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(nm), intent(in)}]{c, }
+\item[{integer, intent(in)}]{t}
+\end{DoxyParamCaption}
+)}}\label{classeconomy_a94cd41a52844693de595358d30d4d78f}
+Calculates the profit of a time-\/step(in euro or any other currency according to the one used in the input) for a given set-\/point, all the costs, except for the costs associated to equipment ignition. \[ G = R_{el} + R_{th} + R_{ch} + C_{f} + C_{m} \] where \par
+
+\begin{DoxyItemize}
+\item $R_{el}$ are the electrical revenues;
+\item $R_{th}$ are the thermal revenues;
+\item $R_{ch}$ are the chilling revenues
+\item $C_{f}$ are the fuel costs;
+\item $C_{m}$ are the maintenance costs;
+\item $ dt$ is the time-\/step duration.\par
+ Having discarded lighting costs, this profit depends only on the state of the plant at a determined time-\/step and not on the state at pre previous or subsequent time-\/step and will be associated to a vertex of the graph. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time step index. Note t=x meas the x'th time step from the simulation start. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+\end{DoxyItemize}
+
+Definition at line 317 of file economy.\-f90.
+
+
+
+References chrev(), elrev(), fuelcost(), maintenancecost(), and threv().
+
+
+
+Referenced by objfunction().
+
+\hypertarget{classeconomy_a4ce4c9a69167d8912d6f6bcb6ec5b53d}{\index{economy@{economy}!elrev@{elrev}}
+\index{elrev@{elrev}!economy@{economy}}
+\subsubsection[{elrev}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function economy\-::elrev (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(nm), intent(in)}]{c, }
+\item[{integer, intent(in)}]{t}
+\end{DoxyParamCaption}
+)}}\label{classeconomy_a4ce4c9a69167d8912d6f6bcb6ec5b53d}
+Calculates the revenues (in euro or any other currency according to the one used in the input) from electric energy selling to the various clients and to the grid. Electric energy revenues are calculated in a different way for each kind of grid connection. Specifically\-:\par
+
+\begin{DoxyItemize}
+\item Stand Alone\-: \[ R_{el} = \sum_{clients} U_{el}(i)c_{el}(i)dt \] where $ U_{el}(i)$ is the power demand (in k\-W) of the $i$'th client, $c_{el}(i)$ is the price in euro/k\-J of electric energy for each client and $ dt$ is the time-\/step duration.\par
+
+\item Grid connected with net metering\-: \[ R_{el} = \sum_{clients} U_{el}(i)c_{el}(i)dt + P_{el}c_{s_{grid}} - U_{el}^{t}c_{b_{grid}} \] where $P_{el}$ is the total electric power produced by the power plant, $c_{s_{grid}}$ is the selling price to the grid, $U_{el}^{t} = \sum_{clients} U_{el}(i) + U_{el}^{self} $ is the total electric demand, including the power plant self-\/consumption $U_{el}^{self}$\par
+
+\item Grid Connected without net metering\-: \[ R_{el} = \sum_{clients} U_{el}(i)c_{el}(i)dt + (P_{el} - U_{el}^{t}) c_{grid} \] where $ c_{grid} = c_{s_{grid}}$ if $P_{el} \ge U_{el}^{t}$ and $ c_{grid} = c_{b_{grid}}$ otherwise 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time step index. Note t=x meas the x'th time step from the simulation start. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+\end{DoxyItemize}
+
+Definition at line 80 of file economy.\-f90.
+
+
+
+References energy\-::elprod(), and energy\-::elselfcons().
+
+
+
+Referenced by currcost().
+
+\hypertarget{classeconomy_a7fc5b61af90717efa0515636fc74c732}{\index{economy@{economy}!firecost@{firecost}}
+\index{firecost@{firecost}!economy@{economy}}
+\subsubsection[{firecost}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function economy\-::firecost (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(nm), intent(in)}]{c\-New, }
+\item[{integer, dimension(nm), intent(in)}]{c\-Old}
+\end{DoxyParamCaption}
+)}}\label{classeconomy_a7fc5b61af90717efa0515636fc74c732}
+Calculates the cost associated to each lighting of a machinery. \[ C_{l} > 0 \qquad \mbox{if} \qquad sp(t,i) > 0 \;\mbox{and}\; sp(t-1,i) = 0 \] this cost will be added to the operative profit to for the arc profit/cost. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time step index. Note t=x meas the x'th time step from the simulation start. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 349 of file economy.\-f90.
+
+
+
+Referenced by graphtools\-::grapharcs().
+
+\hypertarget{classeconomy_a6037f7db113255ec913f030454cfebbd}{\index{economy@{economy}!fuelcost@{fuelcost}}
+\index{fuelcost@{fuelcost}!economy@{economy}}
+\subsubsection[{fuelcost}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function economy\-::fuelcost (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(nm), intent(in)}]{c, }
+\item[{integer, intent(in)}]{t}
+\end{DoxyParamCaption}
+)}}\label{classeconomy_a6037f7db113255ec913f030454cfebbd}
+Calculates the costs to buy the fuel (in euro or any other currency according to the one used in the input) \[ C_{f} = \sum_{Trig+Boi} \frac{E_{in}(i)c_{f}(i)}{H_i(i)}dt \] where $c_{f}(i)$ is the specific cost (per unit mass or volume) of the fuel for the $i$'th machine, $H_i(i)$ is the fuel L\-H\-V (k\-J per unit mass or volume), $E_{in}(i)$ is the primary energy input. $c_{ch}(i)$ is the price in euro/k\-J of electric energy for each client and $ dt$ is the time-\/step duration.\par
+ Note that even though international units are strongly suggested, any units of mass and/or volume is valid for $c_{f}$ and $H_i$ provided that coherence between the units of these two variables is respected. Moreover prices and L\-V\-Ss may may be expressend in different units for differend machines. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time step index. Note t=x meas the x'th time step from the simulation start. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 230 of file economy.\-f90.
+
+
+
+References energy\-::fuelcons().
+
+
+
+Referenced by currcost().
+
+\hypertarget{classeconomy_a5dac453402a93bcbfc5c4f5a0a9c296e}{\index{economy@{economy}!maintenancecost@{maintenancecost}}
+\index{maintenancecost@{maintenancecost}!economy@{economy}}
+\subsubsection[{maintenancecost}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function economy\-::maintenancecost (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(nm), intent(in)}]{c, }
+\item[{integer, intent(in)}]{t}
+\end{DoxyParamCaption}
+)}}\label{classeconomy_a5dac453402a93bcbfc5c4f5a0a9c296e}
+Calculates the maintenance costs (in euro or any other currency according to the one used in the input) \[ C_{m} = \sum c_{m}(i)dt \qquad \mbox{if}\qquad sp(i) > 0 \] where $c_{m}(i)$ is the maintenance cost per unit time and $ dt$ is the time-\/step duration.\par
+ 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time step index. Note t=x meas the x'th time step from the simulation start. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 272 of file economy.\-f90.
+
+
+
+Referenced by currcost().
+
+\hypertarget{classeconomy_a89bad0bc0b64f4480938f31adfa3ec33}{\index{economy@{economy}!threv@{threv}}
+\index{threv@{threv}!economy@{economy}}
+\subsubsection[{threv}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function economy\-::threv (
+\begin{DoxyParamCaption}
+\item[{integer, intent(in)}]{t}
+\end{DoxyParamCaption}
+)}}\label{classeconomy_a89bad0bc0b64f4480938f31adfa3ec33}
+Calculates the revenues (in euro or any other currency according to the one used in the input) from thermal energy selling to the various clients. \[ R_{th} = \sum_{clients} U_{th}(i)c_{th}(i)dt \] where $ U_{th}(i)$ is the power demand (in k\-W) of the $i$'th client, $c_{th}(i)$ is the price in euro/k\-J of electric energy for each client and $ dt$ is the time-\/step duration.\par
+ 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time step index. Note t=x meas the x'th time step from the simulation start. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 146 of file economy.\-f90.
+
+
+
+Referenced by currcost().
+
+
+
+The documentation for this module was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/\hyperlink{economy_8f90}{economy.\-f90}\end{DoxyCompactItemize}

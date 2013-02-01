@@ -1,0 +1,112 @@
+\hypertarget{find_entry_8f90}{\section{/home/\-Codici/\-Blink/\-Fortran\-Code/src/find\-Entry.f90 File Reference}
+\label{find_entry_8f90}\index{/home/\-Codici/\-Blink/\-Fortran\-Code/src/find\-Entry.\-f90@{/home/\-Codici/\-Blink/\-Fortran\-Code/src/find\-Entry.\-f90}}
+}
+\subsection*{Functions/\-Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \hyperlink{find_entry_8f90_a708156401460d527e8e70817b460bf8d}{ifindentry} (entry, n, the\-Unit, rew, valore, is\-Present, n\-Row)
+\item 
+subroutine \hyperlink{find_entry_8f90_ab66eb6763b6ded668652e5783b3a5e80}{dfindentry} (entry, n, the\-Unit, rew, valore, is\-Present, n\-Row)
+\item 
+subroutine \hyperlink{find_entry_8f90_a82fb26aa686ac91d56422f8405ba79fb}{cfindentry} (entry, n, the\-Unit, rew, valore, is\-Present, n\-Row)
+\item 
+subroutine \hyperlink{find_entry_8f90_a5588807ee16232625f0911c02c0a7af9}{findentry} (entry, the\-Unit, rew, valore, is\-Present, n\-Row)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function/\-Subroutine Documentation}
+\hypertarget{find_entry_8f90_a82fb26aa686ac91d56422f8405ba79fb}{\index{find\-Entry.\-f90@{find\-Entry.\-f90}!cfindentry@{cfindentry}}
+\index{cfindentry@{cfindentry}!findEntry.f90@{find\-Entry.\-f90}}
+\subsubsection[{cfindentry}]{\setlength{\rightskip}{0pt plus 5cm}subroutine cfindentry (
+\begin{DoxyParamCaption}
+\item[{character(len=100), intent(in)}]{entry, }
+\item[{integer, intent(in)}]{n, }
+\item[{integer, intent(in)}]{the\-Unit, }
+\item[{logical, intent(in), optional}]{rew, }
+\item[{character(len=100), dimension(n), intent(out), optional}]{valore, }
+\item[{logical, intent(out), optional}]{is\-Present, }
+\item[{integer, intent(out), optional}]{n\-Row}
+\end{DoxyParamCaption}
+)}}\label{find_entry_8f90_a82fb26aa686ac91d56422f8405ba79fb}
+
+
+Definition at line 143 of file find\-Entry.\-f90.
+
+
+
+References rewunit().
+
+
+
+Referenced by readchillers().
+
+\hypertarget{find_entry_8f90_ab66eb6763b6ded668652e5783b3a5e80}{\index{find\-Entry.\-f90@{find\-Entry.\-f90}!dfindentry@{dfindentry}}
+\index{dfindentry@{dfindentry}!findEntry.f90@{find\-Entry.\-f90}}
+\subsubsection[{dfindentry}]{\setlength{\rightskip}{0pt plus 5cm}subroutine dfindentry (
+\begin{DoxyParamCaption}
+\item[{character(len=100), intent(in)}]{entry, }
+\item[{integer, intent(in)}]{n, }
+\item[{integer, intent(in)}]{the\-Unit, }
+\item[{logical, intent(in), optional}]{rew, }
+\item[{real(kind(1.d0)), dimension(n), intent(out), optional}]{valore, }
+\item[{logical, intent(out), optional}]{is\-Present, }
+\item[{integer, intent(out), optional}]{n\-Row}
+\end{DoxyParamCaption}
+)}}\label{find_entry_8f90_ab66eb6763b6ded668652e5783b3a5e80}
+
+
+Definition at line 88 of file find\-Entry.\-f90.
+
+
+
+References rewunit().
+
+\hypertarget{find_entry_8f90_a5588807ee16232625f0911c02c0a7af9}{\index{find\-Entry.\-f90@{find\-Entry.\-f90}!findentry@{findentry}}
+\index{findentry@{findentry}!findEntry.f90@{find\-Entry.\-f90}}
+\subsubsection[{findentry}]{\setlength{\rightskip}{0pt plus 5cm}subroutine findentry (
+\begin{DoxyParamCaption}
+\item[{character(len=100), intent(in)}]{entry, }
+\item[{integer, intent(in)}]{the\-Unit, }
+\item[{logical, intent(in), optional}]{rew, }
+\item[{character(len=100), intent(out), optional}]{valore, }
+\item[{logical, intent(out), optional}]{is\-Present, }
+\item[{integer, intent(out), optional}]{n\-Row}
+\end{DoxyParamCaption}
+)}}\label{find_entry_8f90_a5588807ee16232625f0911c02c0a7af9}
+
+
+Definition at line 198 of file find\-Entry.\-f90.
+
+
+
+References rewunit().
+
+
+
+Referenced by cfindentry(), dfindentry(), ifindentry(), and readloads().
+
+\hypertarget{find_entry_8f90_a708156401460d527e8e70817b460bf8d}{\index{find\-Entry.\-f90@{find\-Entry.\-f90}!ifindentry@{ifindentry}}
+\index{ifindentry@{ifindentry}!findEntry.f90@{find\-Entry.\-f90}}
+\subsubsection[{ifindentry}]{\setlength{\rightskip}{0pt plus 5cm}subroutine ifindentry (
+\begin{DoxyParamCaption}
+\item[{character(len=100), intent(in)}]{entry, }
+\item[{integer, intent(in)}]{n, }
+\item[{integer, intent(in)}]{the\-Unit, }
+\item[{logical, intent(in), optional}]{rew, }
+\item[{integer, dimension(n), intent(out), optional}]{valore, }
+\item[{logical, intent(out), optional}]{is\-Present, }
+\item[{integer, intent(out), optional}]{n\-Row}
+\end{DoxyParamCaption}
+)}}\label{find_entry_8f90_a708156401460d527e8e70817b460bf8d}
+
+
+Definition at line 33 of file find\-Entry.\-f90.
+
+
+
+References rewunit().
+
+
+
+Referenced by readboiler(), readchillers(), and readtrigen().
+

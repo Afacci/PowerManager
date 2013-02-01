@@ -1,0 +1,64 @@
+\hypertarget{read_general_8f90}{\section{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/read\-General.f90 File Reference}
+\label{read_general_8f90}\index{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/read\-General.\-f90@{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/read\-General.\-f90}}
+}
+
+
+Reads General.\-inp file.  
+
+
+\subsection*{Functions/\-Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \hyperlink{read_general_8f90_a7f63c840fdfc061f2289fb0106adc2d0}{readgeneral}
+\begin{DoxyCompactList}\small\item\em Reads Genearl.\-inp file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition in file \hyperlink{read_general_8f90_source}{read\-General.\-f90}.
+
+
+
+\subsection{Function/\-Subroutine Documentation}
+\hypertarget{read_general_8f90_a7f63c840fdfc061f2289fb0106adc2d0}{\index{read\-General.\-f90@{read\-General.\-f90}!readgeneral@{readgeneral}}
+\index{readgeneral@{readgeneral}!readGeneral.f90@{read\-General.\-f90}}
+\subsubsection[{readgeneral}]{\setlength{\rightskip}{0pt plus 5cm}subroutine readgeneral (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{read_general_8f90_a7f63c840fdfc061f2289fb0106adc2d0}
+This subroutine reads the file \char`\"{}\-General.\-inp\char`\"{}. The procedure looks for each specific entry in the \char`\"{}keyword field\char`\"{}, and associates the value in the \char`\"{}value\char`\"{} field, to the corresponding variable. If the desired entry is not present returns an error message and aborts the execution. The structure of the input file is clarified in the following example along with the meaning of \char`\"{}keyword\char`\"{} and \char`\"{}value\char`\"{} field.\par
+ \begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
+    begin 
+       !Commented line
+       KeywordField  | ValueField | !Comment two
+
+       KeywordField  | ValueField |
+       ScalarValue   | 1          |
+       Vector        | 1 2 n      |
+       VectorSeries  |(a b c ) (d e f)|
+       Matrix        |(11 12 13  |
+                     | 21 22 23  |
+                     | 31 32 33) |
+    end
+ A lof really usless text
+\end{DoxyVerb}
+ Note that only the text between \char`\"{}begin\char`\"{} and \char`\"{}end\char`\"{} is read. Blank lines are automatically discarded, while any unrecognized entry is discarded returning a warning code. Line beginning with \char`\"{}!\char`\"{} are considered comments and discarded. \begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition at line 60 of file read\-General.\-f90.
+
+
+
+References abortexecution(), allocatevar(), hcount(), and readkeyword().
+
+
+
+Referenced by main().
+

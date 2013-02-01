@@ -1,0 +1,82 @@
+\hypertarget{v_count_8f90}{\section{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/v\-Count.f90 File Reference}
+\label{v_count_8f90}\index{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/v\-Count.\-f90@{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/v\-Count.\-f90}}
+}
+
+
+Counts the lines of a text matrix.  
+
+
+\subsection*{Functions/\-Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+integer function \hyperlink{v_count_8f90_a64dfa04178ad3ed3519dbac3c8540a81}{vcount} (the\-Unit, rew\-\_\-, first\-\_\-, last\-\_\-)
+\begin{DoxyCompactList}\small\item\em Counts the lines of a text matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+
+\end{DoxyAuthor}
+
+
+Definition in file \hyperlink{v_count_8f90_source}{v\-Count.\-f90}.
+
+
+
+\subsection{Function/\-Subroutine Documentation}
+\hypertarget{v_count_8f90_a64dfa04178ad3ed3519dbac3c8540a81}{\index{v\-Count.\-f90@{v\-Count.\-f90}!vcount@{vcount}}
+\index{vcount@{vcount}!vCount.f90@{v\-Count.\-f90}}
+\subsubsection[{vcount}]{\setlength{\rightskip}{0pt plus 5cm}integer function vcount (
+\begin{DoxyParamCaption}
+\item[{integer, intent(in)}]{the\-Unit, }
+\item[{logical, optional}]{rew\-\_\-, }
+\item[{character(len=1), intent(in), optional}]{first\-\_\-, }
+\item[{character(len=1), intent(in), optional}]{last\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{v_count_8f90_a64dfa04178ad3ed3519dbac3c8540a81}
+This subroutine determines the number of lines between the two array delimiters. The unit must be already opened and associated to the desired file. All the values to read must be written in \char`\"{}value\char`\"{} field of the text file that is between the two \char`\"{}$|$\char`\"{} (see the following box for an example of input text) and delimited by appropriate opening and closure delimiters. \begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
+    begin 
+       !Commented line
+       KeywordField  | ValueField | !Comment two
+    end
+\end{DoxyVerb}
+ Moreover the cursor needs to be before the first line of the array to be read. The procedure atomatically skeeps all the lines until the opening character. Opening and closing character may be specified as single character input, or left to the defult values that are \char`\"{}(\char`\"{} ande \char`\"{})\char`\"{}, respectively. Avoid blank or commented lines inside the text array.\par
+ The correct file syntax to read the 2x2 array \char`\"{}ex\-Arr\char`\"{}\-: \[ exArr = \left[ \begin{array}{c c} 1.1 & 1.2 \\ 2.1 & 2.2 \end{array} \right] \] is\-:\par
+ \begin{DoxyVerb}    begin
+       !Comment one
+       exArr  | (1.1 1.2 | !Comment two
+              |  2.1 2.2)|
+    end
+\end{DoxyVerb}
+ or equivalently\-: \par
+ \begin{DoxyVerb}    begin
+       !Comment one
+       exArr  |        | !Comment two
+              | (1.1 1.2 |
+              |  2.1 2.2)|
+    end
+\end{DoxyVerb}
+ so that each line in the text represnts a row of the vector output and coluns are space separated. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em the\-Unit} & The unit associated to the file to be read \\
+\hline
+\mbox{\tt in}  & {\em rew\-\_\-} & Weather to rewind or not the unit at the end. Default is false. \\
+\hline
+\mbox{\tt in}  & {\em first\-\_\-,last\-\_\-} & Opening and closing characters of the array. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+
+\end{DoxyAuthor}
+
+
+Definition at line 80 of file v\-Count.\-f90.
+
+
+
+References rewunit().
+
+
+
+Referenced by readboiler(), readchillers(), readloads(), and readtrigen().
+

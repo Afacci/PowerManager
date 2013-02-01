@@ -1,0 +1,69 @@
+\form#0:\[ arcCost(i,j) = pointCost(c(i)) + fireCost(i,j) \]
+\form#1:\[ P_{el} = \sum_{Trig} sp(i)\cdot P_{max}(i) \]
+\form#2:$sp(i)$
+\form#3:$i$
+\form#4:$P_{max}(i)$
+\form#5:\[ P_{th} = \sum_{Trig} \frac{sp(i)\cdot P_{max}(i)}{eta_{el}(i,sp(i))}eta_{th}(i,sp(i)) + \sum_{Boi} sp(i)\cdot P_{max}(i) \]
+\form#6:$eta_{th}$
+\form#7:$eta_{el}$
+\form#8:\[ P_{th} = \sum_{Trig} \frac{sp(i)\cdot P_{max}(i)}{\eta_{el}(i,sp(i))}\eta_{th}(i,sp(i)) + \sum_{Boi} sp(i)\cdot P_{max}(i) \]
+\form#9:$\eta_{th}$
+\form#10:$\eta_{el}$
+\form#11:\[ P_{ch} = \sum_{Trig} \frac{sp(i)\cdot P_{max}(i)}{\eta_{el}(i,sp(i))}\eta_{ch}(i,sp(i)) + \sum_{Chi} sp(i)\cdot P_{max}(i) \]
+\form#12:$\eta_{ch}$
+\form#13:\[ Q_{slef} = \sum_{Abs} \frac{sp(i)\cdot P_{max}(i)}{eta_{ch}(i,sp(i)} \]
+\form#14:\[ Q_{self} = \sum_{Abs} \frac{sp(i)\cdot P_{max}(i)}{\eta_{ch}(i,sp(i))} \]
+\form#15:\[ U_{th}^{self} = \sum_{AbsChi} \frac{sp(i)\cdot P_{max}(i)}{\eta_{ch}(i,sp(i))} \]
+\form#16:\[ U_{el}^{self} = \sum_{MecChi} \frac{sp(i)\cdot P_{max}(i)}{\eta_{ch}(i,sp(i))} \]
+\form#17:\[ E_{in} = \sum_{Trig} \frac{sp(i)\cdot P_{max}(i)}{\eta_{el}(i,sp(i))} + \sum_{Boi} \frac{sp(i)\cdot P_{max}(i)}{\eta_{th}(i,sp(i))} \]
+\form#18:$sp(i) = c(c_(i))$
+\form#19:$sp(i) = sp(c\_(i))$
+\form#20:\[ R_{el} = \sum_{clients} U_{el}(i)c_{el}dt \]
+\form#21:\[ R_{el} = \sum_{clients} U_{el}(i)c_{el}(i)dt \]
+\form#22:$ U_{el}(i)$
+\form#23:$c_{el}(i)$
+\form#24:$ dt$
+\form#25:\[ R_{el} = \sum_{clients} U_{el}(i)c_{el}(i)dt + P_{el}cv_{grid} -U_{el}^{t}cb_{grid} \]
+\form#26:\[ R_{el} = \sum_{clients} U_{el}(i)c_{el}(i)dt + P_{el}c_{s_{grid}} -U_{el}^{t}c_{b_{grid}} \]
+\form#27:\[ R_{el} = \sum_{clients} U_{el}(i)c_{el}(i)dt + P_{el}c_{s_{grid}} - U_{el}^{t}c_{b_{grid}} \]
+\form#28:$P_{el}$
+\form#29:$c_{s_{grid}}$
+\form#30:$U_{el}^{t} = \sum_{clients} U_{el}(i) + U_{el}^{self} $
+\form#31:$U_{el}^{self}$
+\form#32:\[ R_{el} = \sum_{clients} U_{el}(i)c_{el}(i)dt + (P_{el} - U_{el}^{t}) c_{grid} \]
+\form#33:$ c_{grid} = c_{s_{grid}}$
+\form#34:$P_{el} \ge U_{el}^{t}$
+\form#35:$ c_{grid} = c_{b_{grid}}$
+\form#36:\[ R_{th} = \sum_{clients} U_{th}(i)c_{th}(i)dt \]
+\form#37:$ U_{th}(i)$
+\form#38:$c_{th}(i)$
+\form#39:\[ R_{ch} = \sum_{clients} U_{ch}(i)c_{ch}(i)dt \]
+\form#40:$ U_{ch}(i)$
+\form#41:$c_{ch}(i)$
+\form#42:\[ C_{f} = \sum_{Trig+Boi} \frac{E_{in}(i)c_{f}(i)}{H_i(i)}dt \]
+\form#43:$c_{f}(i)$
+\form#44:$H_i(i)$
+\form#45:$E_{in}(i)$
+\form#46:$c_{f}$
+\form#47:$H_i$
+\form#48:\[ E_{in}(i) = \frac{sp(i)\cdot P_{max}(i)}{\eta(i,sp(i))} \]
+\form#49:$\eta(i,sp(i)) = \eta_{el}(i,sp(i))$
+\form#50:$\eta(i,sp(i))=\eta_{th}(i,sp(i))$
+\form#51:\[ C_{m} = \sum c_{m}(i)dt \qquad \mbox{if}\qquad sp(i) > 0 \]
+\form#52:$c_{m}(i)$
+\form#53:\[ G = R_{el} + R_{th} + R_{ch} + C_{f} + C_{m} \]
+\form#54:$R_{el}$
+\form#55:$R_{th}$
+\form#56:$R_{ch}$
+\form#57:$C_{f}$
+\form#58:$C_{m}$
+\form#59:\[ C_{l} > 0 \qquad \mbox{if} \qquad sp(t,i) > 0 \;\mbox{and}\; sp(t-1,i) = 0 \]
+\form#60:$ \sum U_{th} + U_{th}^{self} \le \sum P_{th}$
+\form#61:$ \sum U_{ch} \le \sum P_{ch}$
+\form#62:$ \sum U_{el} + U_{el}^{self} \le \sum P_{el}$
+\form#63:\[ \begin{matrix} 11 & 12 \\ 21 & 22 \end{matrix} \]
+\form#64:\begin{matrix} 11 & 12 \\ 21 & 22 \end{matrix}
+\form#65:\[ exArr = \left[ x \right] \]
+\form#66:\[ exArr = \left[ \begin{array}{c c} 11 & 12 \\ 21 & 22 \end{array} \right] \]
+\form#67:\[ exArr = \left[ \begin{array}{c c} 1.1 & 1.2 \\ 2.1 & 2.2 \end{array} \right] \]
+\form#68:\[ exArr = \left[ \begin{array}{c c} Scrudge & DonaldDuck \\ Goofy & MickeyMouse \end{array} \right] \]

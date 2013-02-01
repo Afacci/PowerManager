@@ -1,0 +1,112 @@
+\hypertarget{matrix_read_8f90}{\section{/home/\-Codici/\-Blink/\-Fortran\-Code/src/matrix\-Read.f90 File Reference}
+\label{matrix_read_8f90}\index{/home/\-Codici/\-Blink/\-Fortran\-Code/src/matrix\-Read.\-f90@{/home/\-Codici/\-Blink/\-Fortran\-Code/src/matrix\-Read.\-f90}}
+}
+\subsection*{Functions/\-Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+real(kind(1.d0)) function, \\*
+dimension(nline, ncol) \hyperlink{matrix_read_8f90_a2a8cd6e54d2e10751ce52e8a50091191}{dmatrixread} (the\-Unit, nline, ncol, first\-\_\-, last\-\_\-)
+\item 
+integer function, dimension(nline, \\*
+ncol) \hyperlink{matrix_read_8f90_a9bbb90a3f70ad54afe3a0c51af1396d7}{imatrixread} (the\-Unit, nline, ncol, first\-\_\-, last\-\_\-)
+\item 
+character(len=100) function, \\*
+dimension(nline, ncol) \hyperlink{matrix_read_8f90_abf64de424b7c068365381697e8ec0207}{cmatrixread} (the\-Unit, nline, ncol, first\-\_\-, last\-\_\-)
+\item 
+character(len=100) function, \\*
+dimension(nline) \hyperlink{matrix_read_8f90_ab6e07303536c022a24a5c1d0caffc9e4}{matrixread} (the\-Unit, nline, first\-\_\-, last\-\_\-)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function/\-Subroutine Documentation}
+\hypertarget{matrix_read_8f90_abf64de424b7c068365381697e8ec0207}{\index{matrix\-Read.\-f90@{matrix\-Read.\-f90}!cmatrixread@{cmatrixread}}
+\index{cmatrixread@{cmatrixread}!matrixRead.f90@{matrix\-Read.\-f90}}
+\subsubsection[{cmatrixread}]{\setlength{\rightskip}{0pt plus 5cm}character(len=100) function, dimension(nline,ncol) cmatrixread (
+\begin{DoxyParamCaption}
+\item[{integer, intent(in)}]{the\-Unit, }
+\item[{integer, intent(in)}]{nline, }
+\item[{integer, intent(in)}]{ncol, }
+\item[{character(len=1), optional}]{first\-\_\-, }
+\item[{character(len=1), optional}]{last\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{matrix_read_8f90_abf64de424b7c068365381697e8ec0207}
+
+
+Definition at line 153 of file matrix\-Read.\-f90.
+
+
+
+References rewunit().
+
+
+
+Referenced by cmatrixread(), and readloads().
+
+\hypertarget{matrix_read_8f90_a2a8cd6e54d2e10751ce52e8a50091191}{\index{matrix\-Read.\-f90@{matrix\-Read.\-f90}!dmatrixread@{dmatrixread}}
+\index{dmatrixread@{dmatrixread}!matrixRead.f90@{matrix\-Read.\-f90}}
+\subsubsection[{dmatrixread}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function, dimension(nline,ncol) dmatrixread (
+\begin{DoxyParamCaption}
+\item[{integer, intent(in)}]{the\-Unit, }
+\item[{integer, intent(in)}]{nline, }
+\item[{integer, intent(in)}]{ncol, }
+\item[{character(len=1), optional}]{first\-\_\-, }
+\item[{character(len=1), optional}]{last\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{matrix_read_8f90_a2a8cd6e54d2e10751ce52e8a50091191}
+
+
+Definition at line 34 of file matrix\-Read.\-f90.
+
+
+
+References rewunit().
+
+
+
+Referenced by dmatrixread(), readboiler(), readchillers(), readloads(), and readtrigen().
+
+\hypertarget{matrix_read_8f90_a9bbb90a3f70ad54afe3a0c51af1396d7}{\index{matrix\-Read.\-f90@{matrix\-Read.\-f90}!imatrixread@{imatrixread}}
+\index{imatrixread@{imatrixread}!matrixRead.f90@{matrix\-Read.\-f90}}
+\subsubsection[{imatrixread}]{\setlength{\rightskip}{0pt plus 5cm}integer function, dimension(nline,ncol) imatrixread (
+\begin{DoxyParamCaption}
+\item[{integer, intent(in)}]{the\-Unit, }
+\item[{integer, intent(in)}]{nline, }
+\item[{integer, intent(in)}]{ncol, }
+\item[{character(len=1), optional}]{first\-\_\-, }
+\item[{character(len=1), optional}]{last\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{matrix_read_8f90_a9bbb90a3f70ad54afe3a0c51af1396d7}
+
+
+Definition at line 93 of file matrix\-Read.\-f90.
+
+
+
+References rewunit().
+
+
+
+Referenced by imatrixread().
+
+\hypertarget{matrix_read_8f90_ab6e07303536c022a24a5c1d0caffc9e4}{\index{matrix\-Read.\-f90@{matrix\-Read.\-f90}!matrixread@{matrixread}}
+\index{matrixread@{matrixread}!matrixRead.f90@{matrix\-Read.\-f90}}
+\subsubsection[{matrixread}]{\setlength{\rightskip}{0pt plus 5cm}character(len=100) function, dimension(nline) matrixread (
+\begin{DoxyParamCaption}
+\item[{integer, intent(in)}]{the\-Unit, }
+\item[{integer, intent(in)}]{nline, }
+\item[{character(len=1), optional}]{first\-\_\-, }
+\item[{character(len=1), optional}]{last\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{matrix_read_8f90_ab6e07303536c022a24a5c1d0caffc9e4}
+
+
+Definition at line 213 of file matrix\-Read.\-f90.
+
+
+
+References rewunit().
+
+
+
+Referenced by cmatrixread(), dmatrixread(), imatrixread(), matrixread(), and readloads().
+

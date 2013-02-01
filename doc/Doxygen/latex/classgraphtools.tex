@@ -1,0 +1,181 @@
+\hypertarget{classgraphtools}{\section{graphtools Module Reference}
+\label{classgraphtools}\index{graphtools@{graphtools}}
+}
+
+
+Collaboration diagram for graphtools\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{classgraphtools__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Data Types}
+\begin{DoxyCompactItemize}
+\item 
+interface \hyperlink{interfacegraphtools_1_1constraints}{constraints}
+\item 
+interface \hyperlink{interfacegraphtools_1_1obj_function}{obj\-Function}
+\item 
+interface \hyperlink{interfacegraphtools_1_1time_constr}{time\-Constr}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \hyperlink{classgraphtools_a4607d975b5dd57d2ca7fcdbab2b1ef56}{allcombin} (icm, dcm, imax, m, targ)
+\begin{DoxyCompactList}\small\item\em Generates all the combinations of the set points, staring from the set-\/point vectors that are stored in the columns of \char`\"{}cm\char`\"{}. \end{DoxyCompactList}\item 
+subroutine \hyperlink{classgraphtools_a94b8e6e5a3d3cc0c3bedbe00d57fc2f9}{graphpoints}
+\begin{DoxyCompactList}\small\item\em Generates the graph veteces, starting from the array of the set-\/point combinations. \end{DoxyCompactList}\item 
+subroutine \hyperlink{classgraphtools_a47c76f30f7f4917536f94c642ffca865}{grapharcs}
+\begin{DoxyCompactList}\small\item\em Generates the grapsh arcs. \end{DoxyCompactList}\item 
+subroutine \hyperlink{classgraphtools_ade3577b19aec190e8e056f041bc8afdf}{minpathtopofw} (ott\-Load, min\-Cost)
+\begin{DoxyCompactList}\small\item\em Miniumum path detemination. \end{DoxyCompactList}\item 
+subroutine \hyperlink{classgraphtools_abef4e47145f628bc6d3001d4f6bd9601}{minpathtopobw} (ott\-Load, min\-Cost, up\-Time, min\-Path)
+\begin{DoxyCompactList}\small\item\em Miniumum path detemination. \end{DoxyCompactList}\item 
+real(kind(1.d0)) function, \\*
+dimension(2 $\ast$nm) \hyperlink{classgraphtools_ac61c9cdfdbeb51411798714a7ba88c3e}{uptimecalc} (up\-T, c, t)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 34 of file graph\-Tools.\-f90.
+
+
+
+\subsection{Member Function/\-Subroutine Documentation}
+\hypertarget{classgraphtools_a4607d975b5dd57d2ca7fcdbab2b1ef56}{\index{graphtools@{graphtools}!allcombin@{allcombin}}
+\index{allcombin@{allcombin}!graphtools@{graphtools}}
+\subsubsection[{allcombin}]{\setlength{\rightskip}{0pt plus 5cm}subroutine graphtools\-::allcombin (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(maxval(imax),m), intent(in), optional}]{icm, }
+\item[{real(kind(1.d0)), dimension(maxval(imax),m), intent(in), optional}]{dcm, }
+\item[{integer, dimension(m), intent(in)}]{imax, }
+\item[{integer, intent(in)}]{m, }
+\item[{character(len=100), intent(in), optional}]{targ}
+\end{DoxyParamCaption}
+)}}\label{classgraphtools_a4607d975b5dd57d2ca7fcdbab2b1ef56}
+Generates all the combinations of the set points, staring from the set-\/point vectors that are stored in the columns of \char`\"{}cm\char`\"{}. Each row of the array \char`\"{}comb\char`\"{} represents a set-\/point of the plant. The total number of states of the plant is also returned in the variable \char`\"{}n\-Comb\char`\"{} \begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 97 of file graph\-Tools.\-f90.
+
+
+
+References abortexecution().
+
+
+
+Referenced by main().
+
+\hypertarget{classgraphtools_a47c76f30f7f4917536f94c642ffca865}{\index{graphtools@{graphtools}!grapharcs@{grapharcs}}
+\index{grapharcs@{grapharcs}!graphtools@{graphtools}}
+\subsubsection[{grapharcs}]{\setlength{\rightskip}{0pt plus 5cm}subroutine graphtools\-::grapharcs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgraphtools_a47c76f30f7f4917536f94c642ffca865}
+Generates the grapsh arcs. Note that only vertex relative to consecutive time-\/steps are connected and that arcs are oriented in the direction of increasing time. Arcs are stored in the form of a predecessor list \char`\"{}pred\-List\char`\"{}, that associates to each node all its predecessors. A weight is assiciated to each element of the predecessor list, equal to the weight of the predecessor vertex plus a cost connected to the variation of state between the actual and predecessor state. \[ arcCost(i,j) = pointCost(c(i)) + fireCost(i,j) \] The number of predecessors for each vertex is asle stored in the \char`\"{}n\-Pre(i)\char`\"{} array. 
+
+Definition at line 290 of file graph\-Tools.\-f90.
+
+
+
+References economy\-::firecost(), and myarithmetic\-::rnan().
+
+
+
+Referenced by main().
+
+\hypertarget{classgraphtools_a94b8e6e5a3d3cc0c3bedbe00d57fc2f9}{\index{graphtools@{graphtools}!graphpoints@{graphpoints}}
+\index{graphpoints@{graphpoints}!graphtools@{graphtools}}
+\subsubsection[{graphpoints}]{\setlength{\rightskip}{0pt plus 5cm}subroutine graphtools\-::graphpoints (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgraphtools_a94b8e6e5a3d3cc0c3bedbe00d57fc2f9}
+Generates the graph veteces, starting from the array of the set-\/point combinations. For each time-\/step determines which plant state respects the energy (staitc) constraints, and associates them to a graph vertex. A weight, that accounts for the costs/revenues of operating the power plant from time-\/step t to t+1 at the vertex state, is also calculated for each vertex. The time-\/step relative to each vertex and the number of verteces for each time step are associated to \char`\"{}point\-Time\char`\"{} and \char`\"{}nt\char`\"{} vectors respectively. Vertex 0 will be the starting point of the graph and vertex n\-Point + 1 the arriving point \begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition at line 199 of file graph\-Tools.\-f90.
+
+
+
+References abortexecution(), mathtools\-::locaterow(), and objfunction().
+
+
+
+Referenced by main().
+
+\hypertarget{classgraphtools_abef4e47145f628bc6d3001d4f6bd9601}{\index{graphtools@{graphtools}!minpathtopobw@{minpathtopobw}}
+\index{minpathtopobw@{minpathtopobw}!graphtools@{graphtools}}
+\subsubsection[{minpathtopobw}]{\setlength{\rightskip}{0pt plus 5cm}subroutine graphtools\-::minpathtopobw (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(0\-:ntime+1,nm), intent(out)}]{ott\-Load, }
+\item[{real(kind(1.d0)), intent(out)}]{min\-Cost, }
+\item[{real(kind(1.d0)), dimension(0\-:ntime+1,2$\ast$nm), intent(out)}]{up\-Time, }
+\item[{integer, dimension(0\-:ntime+1)}]{min\-Path}
+\end{DoxyParamCaption}
+)}}\label{classgraphtools_abef4e47145f628bc6d3001d4f6bd9601}
+This function determies the minumum path that connects the start point (0) to the arrival point of the graph (n\-Point + 1), using dynamic programming. Specifically the oprimizazion the algorithm is tailored to sort acyclic graphs with topolgical ordering. \begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition at line 452 of file graph\-Tools.\-f90.
+
+
+
+References mathtools\-::locaterow(), timeconstr(), and uptimecalc().
+
+
+
+Referenced by main().
+
+\hypertarget{classgraphtools_ade3577b19aec190e8e056f041bc8afdf}{\index{graphtools@{graphtools}!minpathtopofw@{minpathtopofw}}
+\index{minpathtopofw@{minpathtopofw}!graphtools@{graphtools}}
+\subsubsection[{minpathtopofw}]{\setlength{\rightskip}{0pt plus 5cm}subroutine graphtools\-::minpathtopofw (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(0\-:ntime+1,nm), intent(out)}]{ott\-Load, }
+\item[{real(kind(1.d0)), intent(out)}]{min\-Cost}
+\end{DoxyParamCaption}
+)}}\label{classgraphtools_ade3577b19aec190e8e056f041bc8afdf}
+This function determies the minumum path that connects the start point (0) to the arrival point of the graph (n\-Point + 1), using dynamic programming. Specifically the oprimizazion the algorithm is tailored to sort acyclic graphs with topolgical ordering. \begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition at line 394 of file graph\-Tools.\-f90.
+
+
+
+Referenced by main().
+
+\hypertarget{classgraphtools_ac61c9cdfdbeb51411798714a7ba88c3e}{\index{graphtools@{graphtools}!uptimecalc@{uptimecalc}}
+\index{uptimecalc@{uptimecalc}!graphtools@{graphtools}}
+\subsubsection[{uptimecalc}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function, dimension(2$\ast$nm) graphtools\-::uptimecalc (
+\begin{DoxyParamCaption}
+\item[{real(kind(1.d0)), dimension(2$\ast$nm)}]{up\-T, }
+\item[{integer, dimension(nm), intent(in)}]{c, }
+\item[{integer, intent(in)}]{t}
+\end{DoxyParamCaption}
+)}}\label{classgraphtools_ac61c9cdfdbeb51411798714a7ba88c3e}
+
+
+Definition at line 529 of file graph\-Tools.\-f90.
+
+
+
+Referenced by minpathtopobw().
+
+
+
+The documentation for this module was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/\hyperlink{graph_tools_8f90}{graph\-Tools.\-f90}\end{DoxyCompactItemize}

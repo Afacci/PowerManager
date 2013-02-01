@@ -1,0 +1,257 @@
+\hypertarget{matrix_read2_8f90}{\section{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/matrix\-Read2.f90 File Reference}
+\label{matrix_read2_8f90}\index{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/matrix\-Read2.\-f90@{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/matrix\-Read2.\-f90}}
+}
+
+
+reads 2\-D array of values from a file  
+
+
+\subsection*{Functions/\-Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+real(kind(1.d0)) function, \\*
+dimension(nline, ncol) \hyperlink{matrix_read2_8f90_a2a8cd6e54d2e10751ce52e8a50091191}{dmatrixread} (the\-Unit, nline, ncol, first\-\_\-, last\-\_\-)
+\begin{DoxyCompactList}\small\item\em reads 2\-D array of double precision values from a file. \end{DoxyCompactList}\item 
+integer function, dimension(nline, \\*
+ncol) \hyperlink{matrix_read2_8f90_a9bbb90a3f70ad54afe3a0c51af1396d7}{imatrixread} (the\-Unit, nline, ncol, first\-\_\-, last\-\_\-)
+\begin{DoxyCompactList}\small\item\em reads 2\-D array of integer values from a file. \end{DoxyCompactList}\item 
+character(len=100) function, \\*
+dimension(nline, ncol) \hyperlink{matrix_read2_8f90_abf64de424b7c068365381697e8ec0207}{cmatrixread} (the\-Unit, nline, ncol, first\-\_\-, last\-\_\-)
+\begin{DoxyCompactList}\small\item\em reads 2\-D array of character values from a file. \end{DoxyCompactList}\item 
+character(len=100) function, \\*
+dimension(nline) \hyperlink{matrix_read2_8f90_ab6e07303536c022a24a5c1d0caffc9e4}{matrixread} (the\-Unit, nline, first\-\_\-, last\-\_\-)
+\begin{DoxyCompactList}\small\item\em reads 2\-D array from a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Collection of procedures to read 2\-D arrays from files. Each function associates the values to a different data type (integer, double, character). the first letter of the function name indicates the data type. \begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition in file \hyperlink{matrix_read2_8f90_source}{matrix\-Read2.\-f90}.
+
+
+
+\subsection{Function/\-Subroutine Documentation}
+\hypertarget{matrix_read2_8f90_abf64de424b7c068365381697e8ec0207}{\index{matrix\-Read2.\-f90@{matrix\-Read2.\-f90}!cmatrixread@{cmatrixread}}
+\index{cmatrixread@{cmatrixread}!matrixRead2.f90@{matrix\-Read2.\-f90}}
+\subsubsection[{cmatrixread}]{\setlength{\rightskip}{0pt plus 5cm}character(len=100) function, dimension(nline,ncol) cmatrixread (
+\begin{DoxyParamCaption}
+\item[{integer, intent(in)}]{the\-Unit, }
+\item[{integer, intent(in)}]{nline, }
+\item[{integer, intent(in)}]{ncol, }
+\item[{character(len=1), optional}]{first\-\_\-, }
+\item[{character(len=1), optional}]{last\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{matrix_read2_8f90_abf64de424b7c068365381697e8ec0207}
+This subroutine reads a 2\-D array of character values directly from a specified unit. The unit must be already opened and associated to the desired file. All the values to read must be written in \char`\"{}value\char`\"{} field of the text file that is between the two \char`\"{}$|$\char`\"{} (see the following box for an example of input text) and delimited by appropriate opening and closure delimiters. \begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
+    begin 
+       !Commented line
+       KeywordField  | ValueField | !Comment two
+    end
+\end{DoxyVerb}
+ Moreover the cursor needs to be before the first line of the array to be read. The procedure atomatically skeeps all the lines until the opening character. Opening and closing character may be specified as single character input, or left to the defult values that are \char`\"{}(\char`\"{} ande \char`\"{})\char`\"{}, respectively. Avoid blank or commented lines inside the text array.\par
+ The correct file syntax to read the 2x2 array \char`\"{}ex\-Arr\char`\"{}\-: \[ exArr = \left[ \begin{array}{c c} Scrudge & DonaldDuck \\ Goofy & MickeyMouse \end{array} \right] \] is\-:\par
+ \begin{DoxyVerb}    begin
+       !Comment one
+       exArr  | (Scrudge DonadDuck | !Comment two
+              |  Goofy MikeyMouse) |
+    end
+\end{DoxyVerb}
+ or equivalently\-: \par
+ \begin{DoxyVerb}    begin
+       !Comment one
+       exArr  |        | !Comment two
+              | (Scrudge DonaldDuck |
+              |  Goofy   MickeyMouse)|
+    end
+\end{DoxyVerb}
+ so that each line in the text represnts a row of the vector output and coluns are space separated. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em The\-Unit} & the unit to be read. \\
+\hline
+\mbox{\tt in}  & {\em nline} & The number of rows of the 2\-D array \\
+\hline
+\mbox{\tt in}  & {\em ncol} & The number of columns of the 2\-D array \\
+\hline
+\mbox{\tt in}  & {\em first\-\_\-} & the opening delimiter of the array. Default is \char`\"{}(\char`\"{} \\
+\hline
+\mbox{\tt in}  & {\em last\-\_\-} & the closing delimiter of the array. Default is \char`\"{})\char`\"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition at line 286 of file matrix\-Read2.\-f90.
+
+
+
+References matrixread().
+
+
+
+Referenced by readloads().
+
+\hypertarget{matrix_read2_8f90_a2a8cd6e54d2e10751ce52e8a50091191}{\index{matrix\-Read2.\-f90@{matrix\-Read2.\-f90}!dmatrixread@{dmatrixread}}
+\index{dmatrixread@{dmatrixread}!matrixRead2.f90@{matrix\-Read2.\-f90}}
+\subsubsection[{dmatrixread}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function, dimension(nline,ncol) dmatrixread (
+\begin{DoxyParamCaption}
+\item[{integer, intent(in)}]{the\-Unit, }
+\item[{integer, intent(in)}]{nline, }
+\item[{integer, intent(in)}]{ncol, }
+\item[{character(len=1), optional}]{first\-\_\-, }
+\item[{character(len=1), optional}]{last\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{matrix_read2_8f90_a2a8cd6e54d2e10751ce52e8a50091191}
+This subroutine reads a 2\-D array of double precision values directly from a specified unit. The unit must be already opened and associated to the desired file. All the values to read must be written in \char`\"{}value\char`\"{} field of the text file that is between the two \char`\"{}$|$\char`\"{} (see the following box for an example of input text) and delimited by appropriate opening and closure delimiters. \begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
+    begin 
+       !Commented line
+       KeywordField  | ValueField | !Comment two
+    end
+\end{DoxyVerb}
+ Moreover the cursor needs to be before the first line of the array to be read. The procedure atomatically skeeps all the lines until the opening character. Opening and closing character may be specified as single character input, or left to the defult values that are \char`\"{}(\char`\"{} ande \char`\"{})\char`\"{}, respectively. Avoid blank or commented lines inside the text array.\par
+ The correct file syntax to read the 2x2 array \char`\"{}ex\-Arr\char`\"{}\-: \[ exArr = \left[ \begin{array}{c c} 1.1 & 1.2 \\ 2.1 & 2.2 \end{array} \right] \] is\-:\par
+ \begin{DoxyVerb}    begin
+       !Comment one
+       exArr  | (1.1 1.2 | !Comment two
+              |  2.1 2.2)|
+    end
+\end{DoxyVerb}
+ or equivalently\-: \par
+ \begin{DoxyVerb}    begin
+       !Comment one
+       exArr  |        | !Comment two
+              | (1.1 1.2 |
+              |  2.1 2.2)|
+    end
+\end{DoxyVerb}
+ so that each line in the text represnts a row of the vector output and coluns are space separated. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em The\-Unit} & the unit to be read. \\
+\hline
+\mbox{\tt in}  & {\em nline} & The number of rows of the 2\-D array \\
+\hline
+\mbox{\tt in}  & {\em ncol} & The number of columns of the 2\-D array \\
+\hline
+\mbox{\tt in}  & {\em first\-\_\-} & the opening delimiter of the array. Default is \char`\"{}(\char`\"{} \\
+\hline
+\mbox{\tt in}  & {\em last\-\_\-} & the closing delimiter of the array. Default is \char`\"{})\char`\"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition at line 86 of file matrix\-Read2.\-f90.
+
+
+
+References matrixread().
+
+
+
+Referenced by readboiler(), readchillers(), readloads(), and readtrigen().
+
+\hypertarget{matrix_read2_8f90_a9bbb90a3f70ad54afe3a0c51af1396d7}{\index{matrix\-Read2.\-f90@{matrix\-Read2.\-f90}!imatrixread@{imatrixread}}
+\index{imatrixread@{imatrixread}!matrixRead2.f90@{matrix\-Read2.\-f90}}
+\subsubsection[{imatrixread}]{\setlength{\rightskip}{0pt plus 5cm}integer function, dimension(nline,ncol) imatrixread (
+\begin{DoxyParamCaption}
+\item[{integer, intent(in)}]{the\-Unit, }
+\item[{integer, intent(in)}]{nline, }
+\item[{integer, intent(in)}]{ncol, }
+\item[{character(len=1), optional}]{first\-\_\-, }
+\item[{character(len=1), optional}]{last\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{matrix_read2_8f90_a9bbb90a3f70ad54afe3a0c51af1396d7}
+This subroutine reads a 2\-D array of integer values directly from a specified unit. The unit must be already opened and associated to the desired file. All the values to read must be written in \char`\"{}value\char`\"{} field of the text file that is between the two \char`\"{}$|$\char`\"{} (see the following box for an example of input text) and delimited by appropriate opening and closure delimiters. \begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
+    begin 
+       !Commented line
+       KeywordField  | ValueField | !Comment two
+    end
+\end{DoxyVerb}
+ Moreover the cursor needs to be before the first line of the array to be read. The procedure atomatically skeeps all the lines until the opening character. Opening and closing character may be specified as single character input, or left to the defult values that are \char`\"{}(\char`\"{} ande \char`\"{})\char`\"{}, respectively. Avoid blank or commented lines inside the text array.\par
+ The correct file syntax to read the 2x2 array \char`\"{}ex\-Arr\char`\"{}\-: \[ exArr = \left[ \begin{array}{c c} 11 & 12 \\ 21 & 22 \end{array} \right] \] is\-:\par
+ \begin{DoxyVerb}    begin
+       !Comment one
+       exArr  | (11 12 | !Comment two
+              |  21 22)|
+    end
+\end{DoxyVerb}
+ or equivalently\-: \par
+ \begin{DoxyVerb}    begin
+       !Comment one
+       exArr  |        | !Comment two
+              | (11 12 |
+              |  21 22)|
+    end
+\end{DoxyVerb}
+ so that each line in the text represnts a row of the vector output and coluns are space separated. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em The\-Unit} & the unit to be read. \\
+\hline
+\mbox{\tt in}  & {\em nline} & The number of rows of the 2\-D array \\
+\hline
+\mbox{\tt in}  & {\em ncol} & The number of columns of the 2\-D array \\
+\hline
+\mbox{\tt in}  & {\em first\-\_\-} & the opening delimiter of the array. Default is \char`\"{}(\char`\"{} \\
+\hline
+\mbox{\tt in}  & {\em last\-\_\-} & the closing delimiter of the array. Default is \char`\"{})\char`\"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition at line 187 of file matrix\-Read2.\-f90.
+
+
+
+References matrixread().
+
+\hypertarget{matrix_read2_8f90_ab6e07303536c022a24a5c1d0caffc9e4}{\index{matrix\-Read2.\-f90@{matrix\-Read2.\-f90}!matrixread@{matrixread}}
+\index{matrixread@{matrixread}!matrixRead2.f90@{matrix\-Read2.\-f90}}
+\subsubsection[{matrixread}]{\setlength{\rightskip}{0pt plus 5cm}character(len=100) function, dimension(nline) matrixread (
+\begin{DoxyParamCaption}
+\item[{integer, intent(in)}]{the\-Unit, }
+\item[{integer, intent(in)}]{nline, }
+\item[{character(len=1), optional}]{first\-\_\-, }
+\item[{character(len=1), optional}]{last\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{matrix_read2_8f90_ab6e07303536c022a24a5c1d0caffc9e4}
+This subroutine reads a 2\-D array of directly from a specified unit. This procedure does not associate the elements of the text array to any data type. On the contrary each line in the text array is associated to a row of a character type row vector, as it is. All the values to read must be written in \char`\"{}value\char`\"{} field of the text file that is between the two \char`\"{}$|$\char`\"{} (see the following box for an example of input text) and delimited by appropriate opening and closure delimiters. \begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
+    begin 
+       !Commented line
+       KeywordField  | ValueField | !Comment two
+    end
+\end{DoxyVerb}
+ The unit must be already opened and associated to the desired file. Moreover the cursor needs to be before the first line of the array to be read. The procedure atomatically skeeps all the lines until the opening character. Opening and closing character may be specified as single character input, or left to the defult values that are \char`\"{}(\char`\"{} and \char`\"{})\char`\"{}, respectively. Avoid blank or commented lines inside the text array. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em The\-Unit} & the unit to be read. \\
+\hline
+\mbox{\tt in}  & {\em nline} & The number of rows of the 2\-D array \\
+\hline
+\mbox{\tt in}  & {\em first\-\_\-} & the opening delimiter of the array. Default is \char`\"{}(\char`\"{} \\
+\hline
+\mbox{\tt in}  & {\em last\-\_\-} & the closing delimiter of the array. Default is \char`\"{})\char`\"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition at line 359 of file matrix\-Read2.\-f90.
+
+
+
+References rewunit().
+
+
+
+Referenced by cmatrixread(), dmatrixread(), imatrixread(), and readloads().
+

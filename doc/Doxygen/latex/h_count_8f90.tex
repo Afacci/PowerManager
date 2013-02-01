@@ -1,0 +1,53 @@
+\hypertarget{h_count_8f90}{\section{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/h\-Count.f90 File Reference}
+\label{h_count_8f90}\index{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/h\-Count.\-f90@{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/h\-Count.\-f90}}
+}
+
+
+Count the number of elements of a vector in a text file.  
+
+
+\subsection*{Functions/\-Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+integer function \hyperlink{h_count_8f90_aabd14fa726542746b1102412257a55c6}{hcount} (value\-\_\-, first\-\_\-, last\-\_\-)
+\begin{DoxyCompactList}\small\item\em Count the number of elements of a vector in a text file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition in file \hyperlink{h_count_8f90_source}{h\-Count.\-f90}.
+
+
+
+\subsection{Function/\-Subroutine Documentation}
+\hypertarget{h_count_8f90_aabd14fa726542746b1102412257a55c6}{\index{h\-Count.\-f90@{h\-Count.\-f90}!hcount@{hcount}}
+\index{hcount@{hcount}!hCount.f90@{h\-Count.\-f90}}
+\subsubsection[{hcount}]{\setlength{\rightskip}{0pt plus 5cm}integer function hcount (
+\begin{DoxyParamCaption}
+\item[{character(len=100), intent(in)}]{value\-\_\-, }
+\item[{character(len=1), optional}]{first\-\_\-, }
+\item[{character(len=1), optional}]{last\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{h_count_8f90_aabd14fa726542746b1102412257a55c6}
+Use This subroutine to determine the length of a vector, that is a series of values encloesd between two delimiters, when reading from text file. The vector must be specified as a single string input (max length=100), while delimiters may be specified as single character input or left to default that is \char`\"{}(\char`\"{} for opening and \char`\"{})\char`\"{} for closing. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value\-\_\-} & the string containing teh vector whose lenght is to be determined \\
+\hline
+\mbox{\tt in}  & {\em first\-\_\-,last\-\_\-} & sigle character delimiters of the vector (open and close respectively). If not provided \char`\"{}(\char`\"{} ad \char`\"{})\char`\"{} will be assumed as defaults \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition at line 43 of file h\-Count.\-f90.
+
+
+
+Referenced by readboiler(), readchillers(), readgeneral(), readloads(), and readtrigen().
+

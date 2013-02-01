@@ -1,0 +1,105 @@
+\hypertarget{classmyarithmetic}{\section{myarithmetic Module Reference}
+\label{classmyarithmetic}\index{myarithmetic@{myarithmetic}}
+}
+
+
+Creates and detects Na\-N.  
+
+
+
+
+Collaboration diagram for myarithmetic\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=152pt]{classmyarithmetic__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+real(kind(1.d0)) function \hyperlink{classmyarithmetic_a5bfa55e975e245be29b376c7b2b6214f}{rnan} (x)
+\begin{DoxyCompactList}\small\item\em Creates Na\-N. \end{DoxyCompactList}\item 
+integer function \hyperlink{classmyarithmetic_a13e401cc199f6d40533cae2c20fac922}{inan} (x)
+\begin{DoxyCompactList}\small\item\em Creates Na\-N. \end{DoxyCompactList}\item 
+logical function \hyperlink{classmyarithmetic_ac0dec559e69eb7ec762b2eee93884e0f}{isnan} (x)
+\begin{DoxyCompactList}\small\item\em Detects Na\-Ns. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This module collects some subroutine useful to create and detect Na\-Ns. It trys to imitate the I\-E\-E\-E\-\_\-\-A\-R\-I\-T\-H\-M\-E\-T\-I\-C module that unfortunately is still not available for the gfortran compiler. \begin{DoxyAuthor}{Author}
+
+\end{DoxyAuthor}
+
+
+Definition at line 36 of file my\-Arithmetic.\-f90.
+
+
+
+\subsection{Member Function/\-Subroutine Documentation}
+\hypertarget{classmyarithmetic_a13e401cc199f6d40533cae2c20fac922}{\index{myarithmetic@{myarithmetic}!inan@{inan}}
+\index{inan@{inan}!myarithmetic@{myarithmetic}}
+\subsubsection[{inan}]{\setlength{\rightskip}{0pt plus 5cm}integer function myarithmetic\-::inan (
+\begin{DoxyParamCaption}
+\item[{integer, intent(in)}]{x}
+\end{DoxyParamCaption}
+)}}\label{classmyarithmetic_a13e401cc199f6d40533cae2c20fac922}
+Creates a Na\-N to be associated to an integer, variable. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & random integer number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition at line 59 of file my\-Arithmetic.\-f90.
+
+\hypertarget{classmyarithmetic_ac0dec559e69eb7ec762b2eee93884e0f}{\index{myarithmetic@{myarithmetic}!isnan@{isnan}}
+\index{isnan@{isnan}!myarithmetic@{myarithmetic}}
+\subsubsection[{isnan}]{\setlength{\rightskip}{0pt plus 5cm}logical function myarithmetic\-::isnan (
+\begin{DoxyParamCaption}
+\item[{}]{x}
+\end{DoxyParamCaption}
+)}}\label{classmyarithmetic_ac0dec559e69eb7ec762b2eee93884e0f}
+This subroutine determine if a value is Na\-N. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & the value to be tested. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 70 of file my\-Arithmetic.\-f90.
+
+\hypertarget{classmyarithmetic_a5bfa55e975e245be29b376c7b2b6214f}{\index{myarithmetic@{myarithmetic}!rnan@{rnan}}
+\index{rnan@{rnan}!myarithmetic@{myarithmetic}}
+\subsubsection[{rnan}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function myarithmetic\-::rnan (
+\begin{DoxyParamCaption}
+\item[{real(kind(1.d0)), intent(in)}]{x}
+\end{DoxyParamCaption}
+)}}\label{classmyarithmetic_a5bfa55e975e245be29b376c7b2b6214f}
+Creates a Na\-N to be associated to a real, double precition variable. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & random double precision number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition at line 45 of file my\-Arithmetic.\-f90.
+
+
+
+Referenced by graphtools\-::grapharcs().
+
+
+
+The documentation for this module was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/\hyperlink{my_arithmetic_8f90}{my\-Arithmetic.\-f90}\end{DoxyCompactItemize}

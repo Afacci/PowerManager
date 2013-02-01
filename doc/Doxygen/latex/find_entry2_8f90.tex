@@ -1,0 +1,207 @@
+\hypertarget{find_entry2_8f90}{\section{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/find\-Entry2.f90 File Reference}
+\label{find_entry2_8f90}\index{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/find\-Entry2.\-f90@{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/find\-Entry2.\-f90}}
+}
+
+
+Collection of procetures to find a specific entry inside a file.  
+
+
+\subsection*{Functions/\-Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \hyperlink{find_entry2_8f90_a708156401460d527e8e70817b460bf8d}{ifindentry} (entry, n, the\-Unit, rew, valore, is\-Present, n\-Row)
+\begin{DoxyCompactList}\small\item\em Finds an entry with integer value. \end{DoxyCompactList}\item 
+subroutine \hyperlink{find_entry2_8f90_ab66eb6763b6ded668652e5783b3a5e80}{dfindentry} (entry, n, the\-Unit, rew, valore, is\-Present, n\-Row)
+\begin{DoxyCompactList}\small\item\em Finds an entry with double precision value. \end{DoxyCompactList}\item 
+subroutine \hyperlink{find_entry2_8f90_a82fb26aa686ac91d56422f8405ba79fb}{cfindentry} (entry, n, the\-Unit, rew, valore, is\-Present, n\-Row)
+\begin{DoxyCompactList}\small\item\em Finds an entry with character value. \end{DoxyCompactList}\item 
+subroutine \hyperlink{find_entry2_8f90_a5588807ee16232625f0911c02c0a7af9}{findentry} (entry, the\-Unit, rew, valore, is\-Present, n\-Row)
+\begin{DoxyCompactList}\small\item\em Finds an entry and returns the vaule as it is. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+
+\end{DoxyAuthor}
+
+
+Definition in file \hyperlink{find_entry2_8f90_source}{find\-Entry2.\-f90}.
+
+
+
+\subsection{Function/\-Subroutine Documentation}
+\hypertarget{find_entry2_8f90_a82fb26aa686ac91d56422f8405ba79fb}{\index{find\-Entry2.\-f90@{find\-Entry2.\-f90}!cfindentry@{cfindentry}}
+\index{cfindentry@{cfindentry}!findEntry2.f90@{find\-Entry2.\-f90}}
+\subsubsection[{cfindentry}]{\setlength{\rightskip}{0pt plus 5cm}subroutine cfindentry (
+\begin{DoxyParamCaption}
+\item[{character(len=100), intent(in)}]{entry, }
+\item[{integer, intent(in)}]{n, }
+\item[{integer, intent(in)}]{the\-Unit, }
+\item[{logical, intent(in), optional}]{rew, }
+\item[{character(len=100), dimension(n), intent(out), optional}]{valore, }
+\item[{logical, intent(out), optional}]{is\-Present, }
+\item[{integer, intent(out), optional}]{n\-Row}
+\end{DoxyParamCaption}
+)}}\label{find_entry2_8f90_a82fb26aa686ac91d56422f8405ba79fb}
+Use this subroutine to find a specific entry in a file, when an character value is expected. in the value field, that is between the two \char`\"{}$|$\char`\"{}. The string in the value field is associated to a character array of dimension \char`\"{}n\char`\"{} Optionally it returns also the number of lines from the current cursor position to locate the required entry, and a logical for the precence of the required field. Optionally it is also possible to rewind the file. Note that the maximum length of each element of the \char`\"{}value\char`\"{} vector is 100. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em entry} & the keyword to be located \\
+\hline
+\mbox{\tt in}  & {\em n} & the number of elements expected for the value field \\
+\hline
+\mbox{\tt in}  & {\em the\-Unit} & the unit corresponding to the file to be searched \\
+\hline
+\mbox{\tt in}  & {\em rew} & wether the unit is to be rewinded or not \\
+\hline
+\mbox{\tt out}  & {\em valore} & the vaule correspondind to keyword that is searched for \\
+\hline
+\mbox{\tt out}  & {\em is\-Present} & logical that tells if the entry is present or not \\
+\hline
+\mbox{\tt out}  & {\em n\-Row} & number of rows needed to located the entry. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 185 of file find\-Entry2.\-f90.
+
+
+
+References findentry().
+
+
+
+Referenced by readchillers().
+
+\hypertarget{find_entry2_8f90_ab66eb6763b6ded668652e5783b3a5e80}{\index{find\-Entry2.\-f90@{find\-Entry2.\-f90}!dfindentry@{dfindentry}}
+\index{dfindentry@{dfindentry}!findEntry2.f90@{find\-Entry2.\-f90}}
+\subsubsection[{dfindentry}]{\setlength{\rightskip}{0pt plus 5cm}subroutine dfindentry (
+\begin{DoxyParamCaption}
+\item[{character(len=100), intent(in)}]{entry, }
+\item[{integer, intent(in)}]{n, }
+\item[{integer, intent(in)}]{the\-Unit, }
+\item[{logical, intent(in), optional}]{rew, }
+\item[{real(kind(1.d0)), dimension(n), intent(out), optional}]{valore, }
+\item[{logical, intent(out), optional}]{is\-Present, }
+\item[{integer, intent(out), optional}]{n\-Row}
+\end{DoxyParamCaption}
+)}}\label{find_entry2_8f90_ab66eb6763b6ded668652e5783b3a5e80}
+Use this subroutine to find a specific entry in a file, when a double precision value is expected. in the value field, that is between the two \char`\"{}$|$\char`\"{}. The string in the value field is associated to double precision array of dimension \char`\"{}n\char`\"{} Optionally it returns also the number of lines from the current cursor position to locate the required entry, and a logical for the precence of the required field. Optionally it is also possible to rewind the file. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em entry} & the keyword to be located \\
+\hline
+\mbox{\tt in}  & {\em n} & the number of elements expected for the value field \\
+\hline
+\mbox{\tt in}  & {\em the\-Unit} & the unit corresponding to the file to be searched \\
+\hline
+\mbox{\tt in}  & {\em rew} & wether the unit is to be rewinded or not \\
+\hline
+\mbox{\tt out}  & {\em valore} & the vaule correspondind to keyword that is searched for \\
+\hline
+\mbox{\tt out}  & {\em is\-Present} & logical that tells if the entry is present or not \\
+\hline
+\mbox{\tt out}  & {\em n\-Row} & number of rows needed to located the entry. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 115 of file find\-Entry2.\-f90.
+
+
+
+References findentry().
+
+\hypertarget{find_entry2_8f90_a5588807ee16232625f0911c02c0a7af9}{\index{find\-Entry2.\-f90@{find\-Entry2.\-f90}!findentry@{findentry}}
+\index{findentry@{findentry}!findEntry2.f90@{find\-Entry2.\-f90}}
+\subsubsection[{findentry}]{\setlength{\rightskip}{0pt plus 5cm}subroutine findentry (
+\begin{DoxyParamCaption}
+\item[{character(len=100), intent(in)}]{entry, }
+\item[{integer, intent(in)}]{the\-Unit, }
+\item[{logical, intent(in), optional}]{rew, }
+\item[{character(len=100), intent(out), optional}]{valore, }
+\item[{logical, intent(out), optional}]{is\-Present, }
+\item[{integer, intent(out), optional}]{n\-Row}
+\end{DoxyParamCaption}
+)}}\label{find_entry2_8f90_a5588807ee16232625f0911c02c0a7af9}
+Use this subroutine to find a specific entry in a file. If given as parameter returns the \char`\"{}value\char`\"{} field, that is the value comprised between the two \char`\"{}$|$\char`\"{} in the input file. This subroutine does not associate the vaule fied to any array but returns a single strig axactly as it is in the input file. Optionally it returns also the number of lines from the current cursor position to locate the required entry, and a logical for the precence of the required field. Optionally it is also possible to rewind the file. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em entry} & the keyword to be located \\
+\hline
+\mbox{\tt in}  & {\em n} & the number of elements expected for the value field \\
+\hline
+\mbox{\tt in}  & {\em the\-Unit} & the unit corresponding to the file to be searched \\
+\hline
+\mbox{\tt in}  & {\em rew} & wether the unit is to be rewinded or not \\
+\hline
+\mbox{\tt out}  & {\em valore} & the vaule correspondind to keyword that is searched for \\
+\hline
+\mbox{\tt out}  & {\em is\-Present} & logical that tells if the entry is present or not \\
+\hline
+\mbox{\tt out}  & {\em n\-Row} & number of rows needed to located the entry. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 253 of file find\-Entry2.\-f90.
+
+
+
+References rewunit().
+
+
+
+Referenced by cfindentry(), dfindentry(), ifindentry(), and readloads().
+
+\hypertarget{find_entry2_8f90_a708156401460d527e8e70817b460bf8d}{\index{find\-Entry2.\-f90@{find\-Entry2.\-f90}!ifindentry@{ifindentry}}
+\index{ifindentry@{ifindentry}!findEntry2.f90@{find\-Entry2.\-f90}}
+\subsubsection[{ifindentry}]{\setlength{\rightskip}{0pt plus 5cm}subroutine ifindentry (
+\begin{DoxyParamCaption}
+\item[{character(len=100), intent(in)}]{entry, }
+\item[{integer, intent(in)}]{n, }
+\item[{integer, intent(in)}]{the\-Unit, }
+\item[{logical, intent(in), optional}]{rew, }
+\item[{integer, dimension(n), intent(out), optional}]{valore, }
+\item[{logical, intent(out), optional}]{is\-Present, }
+\item[{integer, intent(out), optional}]{n\-Row}
+\end{DoxyParamCaption}
+)}}\label{find_entry2_8f90_a708156401460d527e8e70817b460bf8d}
+Use this subroutine to find a specific entry in a file, when an integer value is expected in the value field, that is between the two \char`\"{}$|$\char`\"{}. The string in the value field is associated to an integer array of dimension \char`\"{}n\char`\"{} Optionally it returns also the number of lines from the current cursor position to locate the required entry, and a logical for the precence of the required field. Optionally it is also possible to rewind the file. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em entry} & the keyword to be located \\
+\hline
+\mbox{\tt in}  & {\em n} & the number of elements expected for the value field \\
+\hline
+\mbox{\tt in}  & {\em the\-Unit} & the unit corresponding to the file to be searched \\
+\hline
+\mbox{\tt in}  & {\em rew} & wether the unit is to be rewinded or not \\
+\hline
+\mbox{\tt out}  & {\em valore} & the vaule correspondind to keyword that is searched for \\
+\hline
+\mbox{\tt out}  & {\em is\-Present} & logical that tells if the entry is present or not \\
+\hline
+\mbox{\tt out}  & {\em n\-Row} & number of rows needed to located the entry. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 47 of file find\-Entry2.\-f90.
+
+
+
+References findentry().
+
+
+
+Referenced by readboiler(), readchillers(), and readtrigen().
+

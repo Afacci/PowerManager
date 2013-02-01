@@ -1,0 +1,82 @@
+\hypertarget{read_keyword_8f90}{\section{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/read\-Keyword.f90 File Reference}
+\label{read_keyword_8f90}\index{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/read\-Keyword.\-f90@{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/read\-Keyword.\-f90}}
+}
+
+
+Reads a line of a text file.  
+
+
+\subsection*{Functions/\-Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \hyperlink{read_keyword_8f90_a25147e00369196a9059879141682718f}{readkeyword} (the\-Unit, rew, keyword, value, error, n\-Row)
+\begin{DoxyCompactList}\small\item\em Reads a line of a text file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition in file \hyperlink{read_keyword_8f90_source}{read\-Keyword.\-f90}.
+
+
+
+\subsection{Function/\-Subroutine Documentation}
+\hypertarget{read_keyword_8f90_a25147e00369196a9059879141682718f}{\index{read\-Keyword.\-f90@{read\-Keyword.\-f90}!readkeyword@{readkeyword}}
+\index{readkeyword@{readkeyword}!readKeyword.f90@{read\-Keyword.\-f90}}
+\subsubsection[{readkeyword}]{\setlength{\rightskip}{0pt plus 5cm}subroutine readkeyword (
+\begin{DoxyParamCaption}
+\item[{integer, intent(in)}]{the\-Unit, }
+\item[{logical, intent(in), optional}]{rew, }
+\item[{character(len=100), intent(out)}]{keyword, }
+\item[{character(len=100), intent(out)}]{value, }
+\item[{integer, intent(out), optional}]{error, }
+\item[{integer, intent(out), optional}]{n\-Row}
+\end{DoxyParamCaption}
+)}}\label{read_keyword_8f90_a25147e00369196a9059879141682718f}
+This procedure reads a line of a unit and returns the \char`\"{}keyword\char`\"{} and \char`\"{}value\char`\"{} fileds as single value charaters of maximum lenght = 100. The Unit needs to be already opened and associated to the desired file. This subroutine reads the line corresponding to the actual position of te cursor. The structure expected for the input text file is clarified in the following example along with the meaning of \char`\"{}keyword\char`\"{} and \char`\"{}value\char`\"{} field.\par
+ \begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
+    begin 
+       !Commented line
+       KeywordField  | ValueField | !Comment two
+
+       KeywordField  | ValueField |
+       ScalarValue   | 1          |
+       Vector        | 1 2 n      |
+       VectorSeries  |(a b c ) (d e f)|
+       Matrix        |(11 12 13  |
+                     | 21 22 23  |
+                     | 31 32 33) |
+    end
+ A lof really usless text
+\end{DoxyVerb}
+ Note that only the text between \char`\"{}begin\char`\"{} and \char`\"{}end\char`\"{} is read. Blank lines are automatically discarded, as well as lines beginning with \char`\"{}!\char`\"{} that are considered comments. If only one delimiter \char`\"{}$|$\char`\"{} is present the line is considered mispelled, no value are is associated to keyword nor to value, and an optional error code is returned. The number of lines that were read before the first valid line can be returned with the optional argument \char`\"{}n\-Row\char`\"{}. If the optional argument \char`\"{}rew\char`\"{} is set to true the unit is rewinded exactly of n\-Row lines at the end of the procedure. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em Keyword,value} & keyword and value fields \\
+\hline
+\mbox{\tt out}  & {\em error} & Error code = 1 in case of mispelled lines \\
+\hline
+\mbox{\tt out}  & {\em n\-Row} & The number of lines that were read before the first valid line \\
+\hline
+\mbox{\tt in}  & {\em the\-Unit} & Unit number associated to the desired file. \\
+\hline
+\mbox{\tt in}  & {\em rew} & Wether to rewind or not the unit. Default is false. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition at line 71 of file read\-Keyword.\-f90.
+
+
+
+References rewunit().
+
+
+
+Referenced by readboiler(), readchillers(), readgeneral(), and readtrigen().
+

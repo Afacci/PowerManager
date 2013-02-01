@@ -1,0 +1,73 @@
+\hypertarget{constraints_8f90}{\section{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/constraints.f90 File Reference}
+\label{constraints_8f90}\index{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/constraints.\-f90@{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/constraints.\-f90}}
+}
+
+
+static constraints.  
+
+
+\subsection*{Functions/\-Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+logical function \hyperlink{constraints_8f90_ab2e5b797d9d58b0f4dc174388a547ea7}{constraints} (c, t)
+\begin{DoxyCompactList}\small\item\em static constraints \end{DoxyCompactList}\item 
+logical function \hyperlink{constraints_8f90_a44477590fd7aa8606f7ded26239c335d}{timeconstr} (cindex, t\-State)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains a subroutine that checks if the plant respects the energy constraints for a given set-\/point and time-\/step. 
+
+Definition in file \hyperlink{constraints_8f90_source}{constraints.\-f90}.
+
+
+
+\subsection{Function/\-Subroutine Documentation}
+\hypertarget{constraints_8f90_ab2e5b797d9d58b0f4dc174388a547ea7}{\index{constraints.\-f90@{constraints.\-f90}!constraints@{constraints}}
+\index{constraints@{constraints}!constraints.f90@{constraints.\-f90}}
+\subsubsection[{constraints}]{\setlength{\rightskip}{0pt plus 5cm}logical function constraints (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(nm), intent(in)}]{c, }
+\item[{integer, intent(in)}]{t}
+\end{DoxyParamCaption}
+)}}\label{constraints_8f90_ab2e5b797d9d58b0f4dc174388a547ea7}
+This function checks if the plant respects the energy constraints for a given set-\/point and time-\/step. The constraints are\-:\par
+
+\begin{DoxyItemize}
+\item Thermal Power\-: $ \sum U_{th} + U_{th}^{self} \le \sum P_{th}$
+\item Chilling Power\-: $ \sum U_{ch} \le \sum P_{ch}$
+\item Electrical Power \-: $ \sum U_{el} + U_{el}^{self} \le \sum P_{el}$ only if the pant is bnot grid connected 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time step index. Note t=x meas the x'th time step from the \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+\end{DoxyItemize}
+
+Definition at line 46 of file constraints.\-f90.
+
+
+
+References energy\-::chprod(), energy\-::thprod(), and energy\-::thselfcons().
+
+\hypertarget{constraints_8f90_a44477590fd7aa8606f7ded26239c335d}{\index{constraints.\-f90@{constraints.\-f90}!timeconstr@{timeconstr}}
+\index{timeconstr@{timeconstr}!constraints.f90@{constraints.\-f90}}
+\subsubsection[{timeconstr}]{\setlength{\rightskip}{0pt plus 5cm}logical function timeconstr (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(nm), intent(in)}]{cindex, }
+\item[{real(kind(1.d0)), dimension(2$\ast$nm), intent(in)}]{t\-State}
+\end{DoxyParamCaption}
+)}}\label{constraints_8f90_a44477590fd7aa8606f7ded26239c335d}
+
+
+Definition at line 73 of file constraints.\-f90.
+
+
+
+Referenced by graphtools\-::minpathtopobw().
+

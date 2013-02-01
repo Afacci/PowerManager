@@ -1,0 +1,64 @@
+\hypertarget{read_load_8f90}{\section{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/read\-Load.f90 File Reference}
+\label{read_load_8f90}\index{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/read\-Load.\-f90@{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/read\-Load.\-f90}}
+}
+
+
+Reads Load.\-inp file.  
+
+
+\subsection*{Functions/\-Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \hyperlink{read_load_8f90_a7cfc2afc3abd098872413af5bb794e4c}{readloads}
+\begin{DoxyCompactList}\small\item\em Reads Load.\-inp file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition in file \hyperlink{read_load_8f90_source}{read\-Load.\-f90}.
+
+
+
+\subsection{Function/\-Subroutine Documentation}
+\hypertarget{read_load_8f90_a7cfc2afc3abd098872413af5bb794e4c}{\index{read\-Load.\-f90@{read\-Load.\-f90}!readloads@{readloads}}
+\index{readloads@{readloads}!readLoad.f90@{read\-Load.\-f90}}
+\subsubsection[{readloads}]{\setlength{\rightskip}{0pt plus 5cm}subroutine readloads (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{read_load_8f90_a7cfc2afc3abd098872413af5bb794e4c}
+This subroutine reads the file \char`\"{}\-Load.\-inp\char`\"{}. The procedure looks for each specific entry in the \char`\"{}keyword field\char`\"{}, and associates the value in the \char`\"{}value\char`\"{} field, to the corresponding variable. If the desired entry is not present returns an error message and aborts the execution. The structure of the input file is clarified in the following example along with the meaning of \char`\"{}keyword\char`\"{} and \char`\"{}value\char`\"{} field.\par
+ \begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
+    begin 
+       !Commented line
+       KeywordField  | ValueField | !Comment two
+
+       KeywordField  | ValueField |
+       ScalarValue   | 1          |
+       Vector        | 1 2 n      |
+       VectorSeries  |(a b c ) (d e f)|
+       Matrix        |(11 12 13  |
+                     | 21 22 23  |
+                     | 31 32 33) |
+    end
+ A lof really usless text
+\end{DoxyVerb}
+ Note that only the text between \char`\"{}begin\char`\"{} and \char`\"{}end\char`\"{} is read. Blank lines are automatically discarded, while any unrecognized entry is discarded returning a warning code. Line beginning with \char`\"{}!\char`\"{} are considered comments and discarded. \begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition at line 61 of file read\-Load.\-f90.
+
+
+
+References abortexecution(), allocatevar(), cmatrixread(), dmatrixread(), findentry(), hcount(), matrixread(), openunit(), rewunit(), and vcount().
+
+
+
+Referenced by main().
+

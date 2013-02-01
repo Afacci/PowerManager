@@ -1,0 +1,59 @@
+\hypertarget{interpolation_8f90}{\section{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/interpolation.f90 File Reference}
+\label{interpolation_8f90}\index{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/interpolation.\-f90@{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/interpolation.\-f90}}
+}
+
+
+Remaps a discrete scalar field on a given 1d grid.  
+
+
+\subsection*{Functions/\-Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+real(kind(1.d0)) function, \\*
+dimension(m) \hyperlink{interpolation_8f90_abf4c9a66d390bb689405c6a16a088575}{interpolation} (x\-In, y\-In, n, x\-Out, m, warn)
+\begin{DoxyCompactList}\small\item\em Remaps a discrete scalar field on a given 1d grid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition in file \hyperlink{interpolation_8f90_source}{interpolation.\-f90}.
+
+
+
+\subsection{Function/\-Subroutine Documentation}
+\hypertarget{interpolation_8f90_abf4c9a66d390bb689405c6a16a088575}{\index{interpolation.\-f90@{interpolation.\-f90}!interpolation@{interpolation}}
+\index{interpolation@{interpolation}!interpolation.f90@{interpolation.\-f90}}
+\subsubsection[{interpolation}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function, dimension(m) interpolation (
+\begin{DoxyParamCaption}
+\item[{real(kind(1.d0)), dimension(n), intent(in)}]{x\-In, }
+\item[{real(kind(1.d0)), dimension(n), intent(in)}]{y\-In, }
+\item[{integer, intent(in)}]{n, }
+\item[{real(kind(1.d0)), dimension(m), intent(in)}]{x\-Out, }
+\item[{integer, intent(in)}]{m, }
+\item[{integer, dimension(2), intent(out), optional}]{warn}
+\end{DoxyParamCaption}
+)}}\label{interpolation_8f90_abf4c9a66d390bb689405c6a16a088575}
+This subroutine takes a discrete scalar field defined over a 1d grid and remaps it on another 1d mesh given as input. If any of the values in the new mesh is outside the range defined by the oiginal grid, values are extrapolated and an optional warning code is returned. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x\-In,y\-In} & grid and values of the 1d field to be mapped \\
+\hline
+\mbox{\tt in}  & {\em n} & number of elements of the discrete field (size(x\-In)) \\
+\hline
+\mbox{\tt in}  & {\em x\-Out} & 1d grid where the field is sampled \\
+\hline
+\mbox{\tt in}  & {\em m} & number of elements of the interpolation grid (x\-Out) \\
+\hline
+\mbox{\tt out}  & {\em warn} & warning code. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition at line 46 of file interpolation.\-f90.
+

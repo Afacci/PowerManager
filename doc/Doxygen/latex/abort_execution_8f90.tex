@@ -1,0 +1,60 @@
+\hypertarget{abort_execution_8f90}{\section{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/abort\-Execution.f90 File Reference}
+\label{abort_execution_8f90}\index{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/abort\-Execution.\-f90@{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/abort\-Execution.\-f90}}
+}
+
+
+terminates the execution in case of error.  
+
+
+\subsection*{Functions/\-Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \hyperlink{abort_execution_8f90_a77d76bae2ec6572915c5c3e0795bcb76}{abortexecution} (i, j, line, word, r1, r2)
+\begin{DoxyCompactList}\small\item\em abort the program execution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}aborts the program exectuion in case of error and print the error message
+according to the error code given as input.
+\end{DoxyVerb}
+ \begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition in file \hyperlink{abort_execution_8f90_source}{abort\-Execution.\-f90}.
+
+
+
+\subsection{Function/\-Subroutine Documentation}
+\hypertarget{abort_execution_8f90_a77d76bae2ec6572915c5c3e0795bcb76}{\index{abort\-Execution.\-f90@{abort\-Execution.\-f90}!abortexecution@{abortexecution}}
+\index{abortexecution@{abortexecution}!abortExecution.f90@{abort\-Execution.\-f90}}
+\subsubsection[{abortexecution}]{\setlength{\rightskip}{0pt plus 5cm}subroutine abortexecution (
+\begin{DoxyParamCaption}
+\item[{integer, intent(in), optional}]{i, }
+\item[{integer, intent(in), optional}]{j, }
+\item[{integer, intent(in), optional}]{line, }
+\item[{character(len=$\ast$), intent(in), optional}]{word, }
+\item[{real(kind(1.d0)), intent(in), optional}]{r1, }
+\item[{real(kind(1.d0)), intent(in), optional}]{r2}
+\end{DoxyParamCaption}
+)}}\label{abort_execution_8f90_a77d76bae2ec6572915c5c3e0795bcb76}
+aborts the program exectuion in case of error and print the error message according to the error code given as input. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em i,j} & integers that identify the error. \\
+\hline
+\mbox{\tt in}  & {\em line} & integer that identifies the line affected by the mistake in an input file \\
+\hline
+\mbox{\tt in}  & {\em word} & character input to report the mispelled or unexpected sentence \\
+\hline
+\mbox{\tt in}  & {\em r1,r2} & double precision reals. Useful to report incoherence between plant parameters \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 42 of file abort\-Execution.\-f90.
+
+
+
+Referenced by graphtools\-::allcombin(), checkplant(), graphtools\-::graphpoints(), readboiler(), readchillers(), readgeneral(), readloads(), and readtrigen().
+

@@ -1,0 +1,189 @@
+\hypertarget{classenergy}{\section{energy Module Reference}
+\label{classenergy}\index{energy@{energy}}
+}
+
+
+module for energy calculations.  
+
+
+
+
+Collaboration diagram for energy\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=156pt]{classenergy__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+real(kind(1.d0)) function \hyperlink{classenergy_a0c7a79d68b0fd7f46b1bf0930ba12e49}{elprod} (c\-\_\-)
+\begin{DoxyCompactList}\small\item\em Electrical production. \end{DoxyCompactList}\item 
+real(kind(1.d0)) function \hyperlink{classenergy_a65fb81fffe7a7a232c1633fd0efc734a}{thprod} (c\-\_\-)
+\begin{DoxyCompactList}\small\item\em Thermal production. \end{DoxyCompactList}\item 
+real(kind(1.d0)) function \hyperlink{classenergy_afe20a23049f6d8f45669c9976b4adf95}{chprod} (c\-\_\-)
+\begin{DoxyCompactList}\small\item\em Chilling production. \end{DoxyCompactList}\item 
+real(kind(1.d0)) function \hyperlink{classenergy_a8293f2861341c8b138b8040574c6b430}{thselfcons} (c\-\_\-)
+\begin{DoxyCompactList}\small\item\em Internal thermal consumption of the power plant. \end{DoxyCompactList}\item 
+real(kind(1.d0)) function \hyperlink{classenergy_a954e362be8eef1d3225b239a0b1a62eb}{elselfcons} (c\-\_\-)
+\begin{DoxyCompactList}\small\item\em Internal electrical consumption of the power plant. \end{DoxyCompactList}\item 
+real(kind(1.d0)) function, \\*
+dimension(nm) \hyperlink{classenergy_a9c457633e13afce0389b12b6758286b8}{fuelcons} (c\-\_\-)
+\begin{DoxyCompactList}\small\item\em Primary energy input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This module contains all procedures tu calculate the enrgy fluxes inside the power plant and bertween the power plant and the clients. \begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 38 of file energy.\-f90.
+
+
+
+\subsection{Member Function/\-Subroutine Documentation}
+\hypertarget{classenergy_afe20a23049f6d8f45669c9976b4adf95}{\index{energy@{energy}!chprod@{chprod}}
+\index{chprod@{chprod}!energy@{energy}}
+\subsubsection[{chprod}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function energy\-::chprod (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(nm), intent(in)}]{c\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{classenergy_afe20a23049f6d8f45669c9976b4adf95}
+Calculates the chilling production in k\-W of the whole power plant, for a given set-\/point Note that only trigeneration machines and Chillers produce chilling power so far. Thus chilling power is\-: \[ P_{ch} = \sum_{Trig} \frac{sp(i)\cdot P_{max}(i)}{\eta_{el}(i,sp(i))}\eta_{ch}(i,sp(i)) + \sum_{Chi} sp(i)\cdot P_{max}(i) \] where $sp(i)$ is the set point of the $i$'th machine, $\eta_{ch}$ and $\eta_{el}$ are the chilling and electrical efficiencies, respectively, and $P_{max}(i)$ is its rated power. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c\-\_\-} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 144 of file energy.\-f90.
+
+
+
+Referenced by constraints().
+
+\hypertarget{classenergy_a0c7a79d68b0fd7f46b1bf0930ba12e49}{\index{energy@{energy}!elprod@{elprod}}
+\index{elprod@{elprod}!energy@{energy}}
+\subsubsection[{elprod}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function energy\-::elprod (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(nm), intent(in)}]{c\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{classenergy_a0c7a79d68b0fd7f46b1bf0930ba12e49}
+Calculates the electrical production in k\-W of the whole power plant, for a given set-\/point Note that only trigeneration machines produce electrical power so far. Thus electrical power is\-: \[ P_{el} = \sum_{Trig} sp(i)\cdot P_{max}(i) \] where $sp(i)$ is the set point of the $i$'th trigenerative machine and $P_{max}(i)$ is its rated power. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c\-\_\-} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 55 of file energy.\-f90.
+
+
+
+Referenced by economy\-::elrev().
+
+\hypertarget{classenergy_a954e362be8eef1d3225b239a0b1a62eb}{\index{energy@{energy}!elselfcons@{elselfcons}}
+\index{elselfcons@{elselfcons}!energy@{energy}}
+\subsubsection[{elselfcons}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function energy\-::elselfcons (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(nm), intent(in)}]{c\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{classenergy_a954e362be8eef1d3225b239a0b1a62eb}
+Calculates the electrical self-\/consumption of the trigeneration plant, that is, the electrical power needed by the mechanical chillers, for a given set-\/point \[ U_{el}^{self} = \sum_{MecChi} \frac{sp(i)\cdot P_{max}(i)}{\eta_{ch}(i,sp(i))} \] where $sp(i)$ is the set point of the $i$'th machine, $\eta_{ch}$ is the chilling efficiency, and $P_{max}(i)$ is its rated power. The summation is extended over the nmber of mechanical chillers. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c\-\_\-} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 231 of file energy.\-f90.
+
+
+
+Referenced by economy\-::elrev().
+
+\hypertarget{classenergy_a9c457633e13afce0389b12b6758286b8}{\index{energy@{energy}!fuelcons@{fuelcons}}
+\index{fuelcons@{fuelcons}!energy@{energy}}
+\subsubsection[{fuelcons}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function, dimension(nm) energy\-::fuelcons (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(nm), intent(in)}]{c\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{classenergy_a9c457633e13afce0389b12b6758286b8}
+Calculates the eprimary energy input of the trigeneration plant, for a given set-\/point \[ E_{in}(i) = \frac{sp(i)\cdot P_{max}(i)}{\eta(i,sp(i))} \] where $sp(i)$ is the set point of the $i$'th machine, $\eta(i,sp(i)) = \eta_{el}(i,sp(i))$ for trigenerative equipment and $\eta(i,sp(i))=\eta_{th}(i,sp(i))$ for boilers and, and $P_{max}(i)$ is their rated power. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c\-\_\-} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 273 of file energy.\-f90.
+
+
+
+Referenced by economy\-::fuelcost().
+
+\hypertarget{classenergy_a65fb81fffe7a7a232c1633fd0efc734a}{\index{energy@{energy}!thprod@{thprod}}
+\index{thprod@{thprod}!energy@{energy}}
+\subsubsection[{thprod}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function energy\-::thprod (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(nm), intent(in)}]{c\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{classenergy_a65fb81fffe7a7a232c1633fd0efc734a}
+Calculates the Thermal production in k\-W of the whole power plant, for a given set-\/point Note that only trigeneration machines and Boilers produce thermal power so far. Thus Thermal power is\-: \[ P_{th} = \sum_{Trig} \frac{sp(i)\cdot P_{max}(i)}{\eta_{el}(i,sp(i))}\eta_{th}(i,sp(i)) + \sum_{Boi} sp(i)\cdot P_{max}(i) \] where $sp(i)$ is the set point of the $i$'th machine, $\eta_{th}$ and $\eta_{el}$ are the thermal and electrical efficiencies, respectively, and $P_{max}(i)$ is its rated power. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c\-\_\-} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 97 of file energy.\-f90.
+
+
+
+Referenced by constraints().
+
+\hypertarget{classenergy_a8293f2861341c8b138b8040574c6b430}{\index{energy@{energy}!thselfcons@{thselfcons}}
+\index{thselfcons@{thselfcons}!energy@{energy}}
+\subsubsection[{thselfcons}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function energy\-::thselfcons (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(nm), intent(in)}]{c\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{classenergy_a8293f2861341c8b138b8040574c6b430}
+Calculates the thermal self-\/consumption of the trigeneration plant, that is, hte thermal power needed by the absorbtion chillers. \[ U_{th}^{self} = \sum_{AbsChi} \frac{sp(i)\cdot P_{max}(i)}{\eta_{ch}(i,sp(i))} \] where $sp(i)$ is the set point of the $i$'th machine, $\eta_{ch}$ is the chilling efficiency, and $P_{max}(i)$ is its rated power. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c\-\_\-} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 188 of file energy.\-f90.
+
+
+
+Referenced by constraints().
+
+
+
+The documentation for this module was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/\hyperlink{energy_8f90}{energy.\-f90}\end{DoxyCompactItemize}
