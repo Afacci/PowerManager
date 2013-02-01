@@ -313,55 +313,57 @@ contains
    succList(:,:) = -1!inan(1)
    predCost(:,:) = rnan(1.d0)
    succCost(:,:) = rnan(1.d0)
-  
+   
+   select case(method)
+      case('Forward')
    !---detect the predecessors for each node---
-   n1 = 1
-   ni  = 0
-   do t=1,nTime+1
-      n2 = n1 + nt(t)   - 1
-      nf = ni + nt(t-1) - 1 
-      do i=n1,n2
-         nPre(i) = nt(t-1)
-         predList(i,1:nPre(i)) = (/ (k, k=ni,nf) /)
-      enddo
-      ni = nf + 1
-      n1 = n2 + 1
-   enddo
-  
-   !---detect the successors for each node---
-   n1 = 0
-   ni  = 1
-   do t=0,nTime
-      n2 = n1 + nt(t)   - 1
-      nf = ni + nt(t+1) - 1 
-      do i=n1,n2
-         nSuc(i) = nt(t+1)
-         succList(i,1:nSuc(i)) = (/ (k, k=ni,nf) /)
-      enddo
-      ni = nf + 1
-      n1 = n2 + 1
-   enddo
+         n1 = 1
+         ni  = 0
+         do t=1,nTime+1
+            n2 = n1 + nt(t)   - 1
+            nf = ni + nt(t-1) - 1 
+            do i=n1,n2
+               nPre(i) = nt(t-1)
+               predList(i,1:nPre(i)) = (/ (k, k=ni,nf) /)
+            enddo
+            ni = nf + 1
+            n1 = n2 + 1
+         enddo
+         !---associate the cost to each arc in the predecessor list---
+         allocate(cNew(nm), cOld(nm))
+         do i=1,nPoint+1
+            cNew = pointLoad(i,:)
+            do j=1,nPre(i)
+               k = predList(i,j)
+               cOld = pointLoad(k,:)
+               predCost(i,j) = pointCost(k) + fireCost(cNew,cOld)
+            enddo
+         enddo
 
-   !---associate the cost to each arc in the predecessor list---
-   allocate(cNew(nm), cOld(nm))
-   do i=1,nPoint+1
-      cNew = pointLoad(i,:)
-      do j=1,nPre(i)
-         k = predList(i,j)
-         cOld = pointLoad(k,:)
-         predCost(i,j) = pointCost(k) + fireCost(cNew,cOld)
-      enddo
-   enddo
-
-   !---associate the cost to each arc in the successor list---
-   do i=0,nPoint
-      cOld = pointLoad(i,:)
-      do j=1,nSuc(i)
-!         k = sucList(i,j)
-         cNew = pointLoad(k,:)
-         succCost(i,j) = pointCost(i) + fireCost(cNew,cOld)
-      enddo
-   enddo
+      case('Backward')
+         !---detect the successors for each node---
+         n1 = 0
+         ni  = 1
+         do t=0,nTime
+            n2 = n1 + nt(t)   - 1
+            nf = ni + nt(t+1) - 1 
+            do i=n1,n2
+               nSuc(i) = nt(t+1)
+               succList(i,1:nSuc(i)) = (/ (k, k=ni,nf) /)
+            enddo
+            ni = nf + 1
+            n1 = n2 + 1
+         enddo
+         !---associate the cost to each arc in the successor list---
+         do i=0,nPoint
+            cOld = pointLoad(i,:)
+            do j=1,nSuc(i)
+!               k = sucList(i,j)
+               cNew = pointLoad(k,:)
+               succCost(i,j) = pointCost(i) + fireCost(cNew,cOld)
+            enddo
+         enddo
+       end select
   
    deallocate(cNew,cOld)
 
@@ -371,7 +373,8 @@ contains
       print*, '              | Plant State number: ', nComb,   '|'
       print*, '              | Time-steps        : ', nTime,   '|'
       print*, '              | Verteces number   : ', nPoint,  '|'
-      print*, '              | Arcs number       : ', sum(nPre(:)), '|'
+      if(method.eq.'Forward') print*, '              | Arcs number       : ', sum(nPre(:)), '|'
+      if(method.eq.'Backward') print*, '              | Arcs number       : ', sum(nSuc(:)), '|'
       print*, '              ------------------------------------'
       print*
    endif

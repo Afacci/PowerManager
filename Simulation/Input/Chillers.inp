@@ -45,7 +45,7 @@ OeMCost            | 0.2d0      | !euro/h maintenance cost
 SetPoint           | (0  0.3 0.5 0.6 0.7 0.8 0.9 1.0) | !Possible set points
 Size               | (1)        |  !Scale the size of the equipmente     
 
-Efficiency         | (0.0 0.00      |
+Efficiency         | (0.0 0.03      |
                    |   0.3 0.90     |
                    |   0.5 1.00     |
                    |   1.0 1.20)    | 

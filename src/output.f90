@@ -43,12 +43,14 @@ subroutine output(setPoint)
   implicit none
 
   integer, dimension(nTime,nm), intent(in) :: setPoint
-  integer :: i, u,j,k
+  integer :: i, u,j,k,n
   real(kind(1.d0)), dimension(nTime,nm) :: c
   integer, dimension(nm) :: kk
   logical :: ex, oldRes
   character(len=100) :: folder
   real(kind(1.d0)), dimension(0:nTime) :: t
+  real(kind(1.d0)) :: g
+  real(kind(1.d0)),dimension(2) :: gGrid
   
   inquire(file='Results/.', exist=oldRes)
   if(oldRes) then
@@ -177,18 +179,79 @@ subroutine output(setPoint)
      write(u,*) '# electricRevenues.dat, contains the revenues from electric energy selling.'
      write(u,*) '#--------------------------------------------------------------------------#'
      write(u,*)
-     write(u,'(A8,2X,A16,2X,A16,2X,A16,2X,A16)') 'Time [h]', 'Electricity [kJ]', 'Thermal [kJ]', 'Chilling [kJ]', 'Input [kJ]'
+     n = size(uEl,2)
+     write(u,'(A8,7X)', advance='no') 'Time [h]'
+     do i=1,n
+        write(u,'(A6,1X,I3.3,7X)', advance='no') 'Client', i
+     enddo
+     write(u,'(A8,10X,A8,2X)') 'Grid Sell', 'Grid Buy'
+     write(u,*)
      do i=1,nTime
-        write(u,'(ES8.2E2,5X)', advance='no') t(i)
+        write(u,'(ES8.2E2,2X)', advance='no') t(i)
         kk = setPoint(i,:)
-        write(u,'(3ES15.3E2,3X,ES20.3E3)'), elProd(kk)*dt(i), thProd(kk)*dt(i), chProd(kk)*dt(i),sum(fuelCons(kk))*dt(i)
+        do j=1,n
+           g= uEl(i,j)*cEl(i,j)*dt(i)
+           write(u,'(ES15.3,2X)',advance='no') g
+        enddo
+        gGrid = gridEconomy(kk,i)
+        write(u,'(ES15.3,2X)',advance='no') gGrid(1)
+        write(u,'(ES15.3,2X)') gGrid(2)
+     enddo
+  endif
+
+  if(writeThermalRev) then
+     u = u + 1
+     call prepareFile(u,'thermalRevenues','Results')
+     write(u,*) '# thermalRevenues.dat, contains the revenues from thermal energy selling.'
+     write(u,*) '#--------------------------------------------------------------------------#'
+     write(u,*)
+     n = size(uTh,2)
+     write(u,'(A8,7X)', advance='no') 'Time [h]'
+     do i=1,n
+        write(u,'(A6,1X,I3.3,7X)', advance='no') 'Client', i
+     enddo
+     write(u,*)
+     write(u,*)
+     do i=1,nTime
+        write(u,'(ES8.2E2,2X)', advance='no') t(i)
+        kk = setPoint(i,:)
+        do j=1,n
+           g= uTh(i,j)*cTh(i,j)*dt(i)
+           write(u,'(ES15.3,2X)',advance='no') g
+        enddo
+        write(u,*)
+     enddo
+  endif
+  do i=500,u
+     close(i)
+  enddo
+
+  if(writeChillingRev) then
+     u = u + 1
+     call prepareFile(u,'chillingRevenues','Results')
+     write(u,*) '# chillingRevenues.dat, contains the revenues from thermal energy selling.'
+     write(u,*) '#--------------------------------------------------------------------------#'
+     write(u,*)
+     n = size(uCh,2)
+     write(u,'(A8,7X)', advance='no') 'Time [h]'
+     do i=1,n
+        write(u,'(A6,1X,I3.3,7X)', advance='no') 'Client', i
+     enddo
+     write(u,*)
+     write(u,*)
+     do i=1,nTime
+        write(u,'(ES8.2E2,2X)', advance='no') t(i)
+        do j=1,n
+           g= uCh(i,j)*cCh(i,j)*dt(i)
+           write(u,'(ES15.3,2X)',advance='no') g
+        enddo
+        write(u,*)
      enddo
   endif
 
   do i=500,u
      close(i)
   enddo
-
   100 format('Results_',I3.3)
 end subroutine output
 

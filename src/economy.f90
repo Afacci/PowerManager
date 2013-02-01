@@ -387,6 +387,7 @@ real(kind(1.d0)) :: p, u
 if(gridConnection.ne.'StandAlone') then
     p = elProd(c)
     u = 0
+    n = size(uEl,2)
     do i=1,n
        u = u + uEl(t,i)
     enddo

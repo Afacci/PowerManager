@@ -42,6 +42,9 @@ Algorithm      | Backward        |
 writePower     | .true.          |
 writeEnergy    | .true.          |
 writeEfficiency| .true.          |
+writeElectricRev| .true.          |
+writeThermalRev| .true.          |
+writeChillingRev| .true.          |
 
 end
 

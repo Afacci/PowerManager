@@ -165,11 +165,11 @@ do
              read(value,*), dummy
              if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=value)
              read(value,*), writeElectricRev
-        case('wirteThermalRev')
+        case('writeThermalRev')
              read(value,*), dummy
              if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=value)
              read(value,*), writeThermalRev
-        case('wirteChillingRev')
+        case('writeChillingRev')
              read(value,*), dummy
              if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=value)
              read(value,*), writeChillingRev
