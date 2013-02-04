@@ -45,6 +45,9 @@ writeEfficiency| .true.          |
 writeElectricRev| .true.          |
 writeThermalRev| .true.          |
 writeChillingRev| .true.          |
+writeDemand| .true.          |
+writeInput | .true.          |
+writeCosts | .true.          |
 
 end
 

@@ -240,7 +240,7 @@ implicit none
 integer,         dimension(nm), intent(in) :: c
 integer,                        intent(in) :: t
 integer                                    :: i, n
-real(kind(1.d0)),dimension(nm)             :: ein
+real(kind(1.d0)),dimension(nTrig+nBoi)     :: ein
 
 !---Function Body
 

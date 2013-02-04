@@ -22,13 +22,13 @@ DEB         = -fbacktrace -cpp -fbounds-check
 MODS = \
 ../obj/inputVar.o \
 ../obj/fileTools.o \
-../obj/mathTools.o \
+../obj/myArithmetic.o \
 ../obj/plantVar.o \
+../obj/mathTools.o \
 ../obj/interfaces.o \
 ../obj/cmdVar.o \
 ../obj/energy.o \
 ../obj/economy.o \
-../obj/myArithmetic.o \
 ../obj/graphTools.o \
 
 ################################################

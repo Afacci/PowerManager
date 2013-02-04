@@ -279,12 +279,14 @@ use inputVar
 implicit none
 
 !---Declare Local Variables---
-real(kind(1.d0)),dimension(nm)             :: fuelCons
+real(kind(1.d0)),dimension(nBoi+nTrig)     :: fuelCons
 integer         ,dimension(nm), intent(in) :: c_
 integer                                    :: i,j 
 real(kind(1.d0))              , parameter  :: vsmall = 1.0e-20
 
 !---Function Body
+
+fuelCons = 0.d0
 
 if(nTrig.gt.0) then
    do i=is(iT),ie(iT)
@@ -296,18 +298,66 @@ endif
 if(nBoi.gt.0) then
    do i=is(iB),ie(iB)
       j = c_(i)
-      fuelCons(i) = sp(j,i)*Pmax(i)/etaTh(j,i)
-      if(fuelCons(i).lt.vsmall) fuelCons(i) = 0.d0
+      if(pes(i).eq.'fuel') fuelCons(i) = sp(j,i)*Pmax(i)/etaTh(j,i)
    enddo
 endif
 
 end function fuelCons
 
-!real(kind(1.d0)) function efficiency(c_)
-!
-!   use plantVar
-!   use inputVar
-!
-!end function efficiency(c_)
+!===================================================================================
+
+!>\brief Primary energy input
+!>\details Calculates the eprimary energy input of the trigeneration plant,
+!>for a given set-point
+!>\f[ 
+!> E_{in}(i) = \frac{sp(i)\cdot P_{max}(i)}{\eta(i,sp(i))}
+!>\f]
+!>where \f$sp(i)\f$ is the set point of the \f$i\f$'th  machine,
+!>\f$\eta(i,sp(i)) = \eta_{el}(i,sp(i))\f$ for trigenerative equipment and 
+!>\f$\eta(i,sp(i))=\eta_{th}(i,sp(i))\f$ for boilers
+!>and, and \f$P_{max}(i)\f$ is their rated power.
+!>\param[in] c_  index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
+!>\author Andrea Facci
+
+function energyInput(c_)
+
+!--Declare Module usage---
+use plantVar
+use inputVar
+
+implicit none
+
+!---Declare Local Variables---
+real(kind(1.d0)),dimension(nm)             :: energyInput
+integer         ,dimension(nm), intent(in) :: c_
+integer                                    :: i,j 
+real(kind(1.d0))              , parameter  :: vsmall = 1.0e-20
+
+!---Function Body
+
+energyInput = 0.d0
+
+if(nTrig.gt.0) then
+   do i=is(iT),ie(iT)
+      j = c_(i)
+      energyInput(i) = sp(j,i)*Pmax(i)/etaEl(j,i)
+   enddo
+endif
+
+if(nBoi.gt.0) then
+   do i=is(iB),ie(iB)
+      j = c_(i)
+      energyInput(i) = sp(j,i)*Pmax(i)/etaTh(j,i)
+   enddo
+endif
+
+if(nChi.gt.0) then
+   do i=is(iC),ie(iC)
+      j = c_(i)
+      energyInput(i) = sp(j,i)*Pmax(i)/etaCh(j,i)
+   enddo
+endif
+
+end function energyInput
 
 end module energy

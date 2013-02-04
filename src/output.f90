@@ -42,13 +42,14 @@ subroutine output(setPoint)
 !---Declare Local Variables---
   implicit none
 
-  integer, dimension(nTime,nm), intent(in) :: setPoint
+  integer, dimension(0:nTime+1,nm), intent(in) :: setPoint
   integer :: i, u,j,k,n
   real(kind(1.d0)), dimension(nTime,nm) :: c
-  integer, dimension(nm) :: kk
+  integer, dimension(nm) :: kk, kko
   logical :: ex, oldRes
   character(len=100) :: folder
   real(kind(1.d0)), dimension(0:nTime) :: t
+  real(kind(1.d0)), dimension(nm) :: gg
   real(kind(1.d0)) :: g
   real(kind(1.d0)),dimension(2) :: gGrid
   
@@ -246,6 +247,67 @@ subroutine output(setPoint)
            write(u,'(ES15.3,2X)',advance='no') g
         enddo
         write(u,*)
+     enddo
+  endif
+
+  if(writeDemand) then
+     u = u + 1
+     call prepareFile(u,'energyDemand','Results')
+     write(u,*) '# energyDemand.dat, contains the energy demand for each vector           '
+     write(u,*) '#--------------------------------------------------------------------------#'
+     write(u,*)
+     write(u,'(A8,2X,A16,2X,A16,2X,A16,2X,A16)') 'Time [h]', 'Electricity [kW]', 'Thermal [kW]', 'Chilling [kW]'
+     write(u,*)
+     do i=1,nTime
+        write(u,'(ES8.2E2,2X)', advance='no') t(i)
+        write(u,'(3ES15.3E2,3X,ES20.3E3)'), sum(uEl(i,:)), sum(uTh(i,:)), sum(uCh(i,:))
+     enddo
+  endif
+
+  if(writeInput) then
+     u = u+1
+     call prepareFile(u,'inputEnergy','Results')
+     write(u,*) '# inpuEnergy.dat, contains the energy consumption for each '
+     write(u,*) '# equipment and time-step'
+     write(u,*) '#--------------------------------------------------------------------------#'
+     write(u,*)
+     write(u,'(A8,2X)', advance='no') 'Time [h]'
+     do i=1,nTrig
+        write(u,'(A5,2X,A4,2X)', advance='no') trim(tecT(i)), '[kW]'
+     enddo
+     do i=1,nBoi
+        write(u,'(A5,1X,A12,2X)', advance='no') trim(tecB(i)),'Boiler [kW]'
+     enddo
+     do i=1,nChi
+     write(u,'(A,1X,A,2X)', advance='no') trim(tecC(i)),'Chiller [kW]'
+     enddo
+     write(u,*)
+     write(u,*)
+     do i=1,nTime
+        write(u,'(ES8.2E2,2X)', advance='no') t(i)
+        kk = setPoint(i,:)
+        gg  = energyInput(kk)
+        do j=1,nm
+           write(u,'(ES8.2E2,10X)', advance='no') gg(j)
+        enddo
+        write(u,*)
+     enddo
+  endif
+
+  if(writeCosts) then
+     u = u + 1
+     call prepareFile(u,'costs','Results')
+     write(u,*) '# cost.dat, contains all the costs'
+     write(u,*) '# equipment and time-step'
+     write(u,*) '#--------------------------------------------------------------------------#'
+     write(u,*)
+     write(u,'(A8,2X,A16,2X,A16,2X,A16,2X,A16)') 'Time [h]', 'Fuel [€]', 'Maintenance [€]', 'OnOff [€]'
+     write(u,*)
+     do i=1,nTime
+        write(u,'(ES8.2E2,2X)', advance='no') t(i)
+        kk = setPoint(i,:)
+        kko = setPoint(i-1,:) 
+        write(u,'(3ES15.2E2)') fuelCost(kk,i),maintenanceCost(kk,i), fireCost(kk, kko)
      enddo
   endif
 

@@ -240,7 +240,7 @@ implicit none
 integer,         dimension(nm), intent(in) :: c
 integer,                        intent(in) :: t
 integer                                    :: i, n
-real(kind(1.d0)),dimension(nm)             :: ein
+real(kind(1.d0)),dimension(nTrig+nBoi)     :: ein
 
 !---Function Body
 
@@ -387,6 +387,7 @@ real(kind(1.d0)) :: p, u
 if(gridConnection.ne.'StandAlone') then
     p = elProd(c)
     u = 0
+    n = size(uEl,2)
     do i=1,n
        u = u + uEl(t,i)
     enddo
@@ -410,6 +411,6 @@ end select
 
 return
 
-end subroutine gridEconomy
+end function gridEconomy
 
 end module economy

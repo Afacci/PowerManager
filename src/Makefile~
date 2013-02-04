@@ -22,8 +22,8 @@ DEB         = -fbacktrace -cpp -fbounds-check
 MODS = \
 ../obj/inputVar.o \
 ../obj/fileTools.o \
-../obj/mathTools.o \
 ../obj/plantVar.o \
+../obj/mathTools.o \
 ../obj/interfaces.o \
 ../obj/cmdVar.o \
 ../obj/energy.o \
@@ -59,6 +59,7 @@ OBJS = \
 ../obj/constraints.o \
 ../obj/openUnit.o \
 ../obj/objFunction.o \
+../obj/output.o \
 #../obj/allCombin.o \
 #../obj/graphPoints.o \
 #../obj/graphArcs.o \
