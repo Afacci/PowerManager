@@ -189,6 +189,18 @@ do
              read(value,*), dummy
              if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=value)
              read(value,*), writeCosts
+        case('writeTrig')
+             read(value,*), dummy
+             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=value)
+             read(value,*), writeTrig
+        case('writeBoiler')
+             read(value,*), dummy
+             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=value)
+             read(value,*), writeBoi
+        case('writeChiller')
+             read(value,*), dummy
+             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=value)
+             read(value,*), writeChi
         case(' ')
           if(verb) call warning(4,1,line=line)
         case  default

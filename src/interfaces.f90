@@ -54,4 +54,16 @@ interface
     end subroutine warning
 end interface
 
+interface
+    subroutine performances(c, cOld, equip, num,t, pEl, pTh, pCh, eIn, mf, cfu,cm,cOn) 
+        use inputVar
+        use plantVar
+        implicit none
+        integer, intent(in) :: c, num, t
+        integer, intent(in), optional :: cOld
+        character(len=*), intent(in) :: equip
+        real(kind(1.d0)), intent(out), optional :: pEl, pTh, pCh, eIn, mf, cfu,cm,cOn
+    end subroutine performances
+end interface
+
 end module interfaces

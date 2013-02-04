@@ -43,15 +43,17 @@ subroutine output(setPoint)
   implicit none
 
   integer, dimension(0:nTime+1,nm), intent(in) :: setPoint
-  integer :: i, u,j,k,n
+  integer :: i, u,j,k,n,l, nO
   real(kind(1.d0)), dimension(nTime,nm) :: c
   integer, dimension(nm) :: kk, kko
   logical :: ex, oldRes
-  character(len=100) :: folder
+  character(len=100) :: folder, filename
   real(kind(1.d0)), dimension(0:nTime) :: t
   real(kind(1.d0)), dimension(nm) :: gg
   real(kind(1.d0)) :: g
   real(kind(1.d0)),dimension(2) :: gGrid
+  character(len=20), dimension(100) :: buffer20
+  real(kind(1.d0)), dimension(100) :: rbuffer
   
   inquire(file='Results/.', exist=oldRes)
   if(oldRes) then
@@ -301,7 +303,7 @@ subroutine output(setPoint)
      write(u,*) '# equipment and time-step'
      write(u,*) '#--------------------------------------------------------------------------#'
      write(u,*)
-     write(u,'(A8,2X,A16,2X,A16,2X,A16,2X,A16)') 'Time [h]', 'Fuel [€]', 'Maintenance [€]', 'OnOff [€]'
+     write(u,'(A8,2X,A16,2X,A17,2X,A16,2X,A16)') 'Time [h]', 'Fuel [€]', 'Maintenance [€]', 'OnOff [€]'
      write(u,*)
      do i=1,nTime
         write(u,'(ES8.2E2,2X)', advance='no') t(i)
@@ -309,6 +311,114 @@ subroutine output(setPoint)
         kko = setPoint(i-1,:) 
         write(u,'(3ES15.2E2)') fuelCost(kk,i),maintenanceCost(kk,i), fireCost(kk, kko)
      enddo
+  endif
+
+  if(writeTrig) then
+     call system("mkdir Results/Trigenerative")
+     k = is(iT)
+     do j=1,nTrig
+        u = u + 1
+        write(filename, '(A,I3.3)'),trim(tecT(j)),j
+        call prepareFile(u,filename,'Results/Trigenerative')
+        write(u,*) '# ', trim(filename),'.dat, contains detailed informations about trigenerative equipment'
+        write(u,*) '#--------------------------------------------------------------------------#'
+        write(u,*)
+        buffer20(1) = 'Time [h]            '
+        buffer20(2) = 'Set-point           '
+        buffer20(3) = 'Electrical P. [kW]  '
+        buffer20(4) = 'Thermal P.  [kW]    '
+        buffer20(5) = 'Chilling P. [kW]    '
+        buffer20(6) = 'eta El              '
+        buffer20(7) = 'eta Th              '
+        buffer20(8) = 'eta Ch              '
+        buffer20(9) = 'fuel cons. [kW]     '
+        buffer20(10)= 'fuel cons. [kg/s]   '
+        buffer20(11)= 'fuel cost [€]       '
+        buffer20(12)= 'maint. cost [€]     '
+        buffer20(13)= 'on-off cost [€]     '
+        write(u,'(13A)') (buffer20(i), i=1,13)
+        write(u,*)
+        do i=1,nTime
+           n  = setPoint(i,k)
+           nO = setPoint(i-1,k) 
+           rbuffer(1) = (t(i))
+           rbuffer(2) = sp(n,k)
+           call performances(n, nO,'Trigeneration', j,i, rbuffer(3), rbuffer(4), rbuffer(5), rbuffer(9), & 
+                rbuffer(10), rbuffer(11),rbuffer(12),rbuffer(13))
+           rbuffer(6) = etaEl(n,k)
+           rbuffer(7) = etaTh(n,k)
+           rbuffer(8) = etaCh(n,k)
+           write(u,'(13(ES9.2E2,11X))') (rbuffer(l), l=1,13)
+        enddo
+        k = k + 1
+     enddo
+  endif
+
+  if(writeBoi) then
+     call system("mkdir Results/Boilers")
+     k = is(iB)
+     do j=1,nBoi
+        u = u + 1
+        write(filename, '(A,I3.3)'),'Boiler',j
+        call prepareFile(u,filename,'Results/Boilers')
+        write(u,*) '# ', trim(filename),'.dat, contains detailed informations about Boilers'
+        write(u,*) '#--------------------------------------------------------------------------#'
+        write(u,*)
+        buffer20(1) = 'Time [h]            '
+        buffer20(2) = 'Set-point           '
+        buffer20(3) = 'Thermal P.  [kW]    '
+        buffer20(4) = 'eta Th              '
+        buffer20(5) = 'fuel cons. [kW]     '
+        buffer20(6) = 'fuel cons. [kg/s]   '
+        buffer20(7) = 'fuel cost [€]       '
+        buffer20(8) = 'maint. cost [€]     '
+        buffer20(9) = 'on-off cost [€]     '
+        write(u,'(13A)') (buffer20(i), i=1,9)
+        write(u,*)
+        do i=1,nTime
+           n  = setPoint(i,k)
+           nO = setPoint(i-1,k) 
+           rbuffer(1) = (t(i))
+           rbuffer(2) = sp(n,k)
+           call performances(n, nO,'Boilers', j,i, pTh = rbuffer(3), eIn = rbuffer(5), mf = rbuffer(6), & 
+                cfu = rbuffer(7),cm = rbuffer(8), cOn = rbuffer(9))
+           rbuffer(4) = etaTh(n,k)
+           write(u,'(13(ES9.2E2,11X))') (rbuffer(l), l=1,9)
+        enddo
+     enddo
+     k = k + 1
+  endif
+
+  if(writeChi) then
+     call system("mkdir Results/Chillers")
+     k = is(iC)
+     do j=1,nBoi
+        u = u + 1
+        write(filename, '(A,I3.3)'),'Chiller',j
+        call prepareFile(u,filename,'Results/Chillers')
+        write(u,*) '# ', trim(filename),'.dat, contains detailed informations about Boilers'
+        write(u,*) '#--------------------------------------------------------------------------#'
+        write(u,*)
+        buffer20(1) = 'Time [h]            '
+        buffer20(2) = 'Set-point           '
+        buffer20(3) = 'Chilling P. [kW]    '
+        buffer20(4) = 'eta Ch              '
+        buffer20(5) = 'input Energy[kW]    '
+        buffer20(6) = 'maint. cost [€]     '
+        buffer20(7) = 'on-off cost [€]     '
+        write(u,'(13A)') (buffer20(i), i=1,9)
+        write(u,*)
+        do i=1,nTime
+           n  = setPoint(i,k)
+           nO = setPoint(i-1,k) 
+           rbuffer(1) = (t(i))
+           rbuffer(2) = sp(n,k)
+           call performances(n, nO,'Chiller', j,i, pCh = rbuffer(3), eIn = rbuffer(5), cm = rbuffer(6), cOn = rbuffer(6))
+           rbuffer(4) = etaCh(n,k)
+           write(u,'(13(ES9.2E2,11X))') (rbuffer(l), l=1,9)
+        enddo
+     enddo
+     k = k + 1
   endif
 
   do i=500,u

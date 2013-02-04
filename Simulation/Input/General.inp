@@ -48,6 +48,9 @@ writeChillingRev| .true.          |
 writeDemand| .true.          |
 writeInput | .true.          |
 writeCosts | .true.          |
+writeTrig | .true.          |
+writeChiller | .true.          |
+writeBoiler | .true.          |
 
 end
 

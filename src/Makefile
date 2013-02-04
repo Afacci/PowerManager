@@ -60,6 +60,7 @@ OBJS = \
 ../obj/openUnit.o \
 ../obj/objFunction.o \
 ../obj/output.o \
+../obj/performances.o \
 #../obj/allCombin.o \
 #../obj/graphPoints.o \
 #../obj/graphArcs.o \

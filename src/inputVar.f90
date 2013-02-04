@@ -47,7 +47,7 @@ real(kind(1.d0)), allocatable, dimension(:) :: startPoint, upTime0, downTime0
 real(kind(1.d0))                            :: dt1
 character(len=100) :: obj, method
 logical :: writePower, writeEnergy, writeEfficiency, writeElectricRev,writeThermalRev,writeChillingRev &
-           ,writeFuelCost, writeDemand, writeInput, writeCosts
+           ,writeFuelCost, writeDemand, writeInput, writeCosts,writeTrig, writeBoi, writeChi
 
 !---Trigeneration.inp variables
 integer                                         :: nTrig
