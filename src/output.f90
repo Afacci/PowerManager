@@ -134,6 +134,7 @@ subroutine output(setPoint,postProcessing,path)
      write(u,'(5A)') (buffer20(i), i=1,5)
      write(u,*)
      do i=1,nTime
+        kk = setPoint(i,:)
         write(u,'(5(ES9.2E2,11X))') t(i), elProd(kk), thProd(kk), chProd(kk),sum(fuelCons(kk))
      enddo
   endif
@@ -153,6 +154,7 @@ subroutine output(setPoint,postProcessing,path)
      write(u,'(5A)') (buffer20(i), i=1,5)
      write(u,*)
      do i=1,nTime
+        kk = setPoint(i,:)
         write(u,'(5(ES9.2E2,11X))') t(i), elProd(kk)*dt(i), thProd(kk)*dt(i), chProd(kk)*dt(i),sum(fuelCons(kk))*dt(i)
      enddo
   endif
@@ -365,12 +367,12 @@ subroutine output(setPoint,postProcessing,path)
            nO = setPoint(i-1,k) 
            rbuffer(1) = (t(i))
            rbuffer(2) = sp(n,k)
-!           call performances(n, nO,'Trigeneration', j,i, rbuffer(3), rbuffer(4), rbuffer(5), rbuffer(9), & 
-!               rbuffer(10), rbuffer(11),rbuffer(12),rbuffer(13))
+           call performances(n, nO,'Trigeneration', j,i, rbuffer(3), rbuffer(4), rbuffer(5), rbuffer(9), & 
+                rbuffer(10), rbuffer(11),rbuffer(12),rbuffer(13))
            rbuffer(6) = etaEl(n,k)
            rbuffer(7) = etaTh(n,k)
            rbuffer(8) = etaCh(n,k)
-!           write(u,'(13(ES9.2E2,11X))') (rbuffer(l), l=1,13)
+           write(u,'(13(ES9.2E2,11X))') (rbuffer(l), l=1,13)
         enddo
         k = k + 1
      enddo
@@ -402,9 +404,9 @@ subroutine output(setPoint,postProcessing,path)
            nO = setPoint(i-1,k) 
            rbuffer(1) = (t(i))
            rbuffer(2) = sp(n,k)
-!           call performances(n, nO,'Boilers', j,i, pTh = rbuffer(3), eIn = rbuffer(5), mf = rbuffer(6), & 
-!                cfu = rbuffer(7),cm = rbuffer(8), cOn = rbuffer(9))
-!           rbuffer(4) = etaTh(n,k)
+           call performances(n, nO,'Boilers', j,i, pTh = rbuffer(3), eIn = rbuffer(5), mf = rbuffer(6), & 
+                             cfu = rbuffer(7),cm = rbuffer(8), cOn = rbuffer(9))
+           rbuffer(4) = etaTh(n,k)
            write(u,'(13(ES9.2E2,11X))') (rbuffer(l), l=1,9)
         enddo
      enddo
@@ -435,9 +437,9 @@ subroutine output(setPoint,postProcessing,path)
            nO = setPoint(i-1,k) 
            rbuffer(1) = (t(i))
            rbuffer(2) = sp(n,k)
-!           call performances(n, nO,'Chiller', j,i, pCh = rbuffer(3), eIn = rbuffer(5), cm = rbuffer(6), cOn = rbuffer(6))
-!           rbuffer(4) = etaCh(n,k)
-!           write(u,'(13(ES9.2E2,11X))') (rbuffer(l), l=1,9)
+           call performances(n, nO,'Chiller', j,i, pCh = rbuffer(3), eIn = rbuffer(5), cm = rbuffer(6), cOn = rbuffer(6))
+           rbuffer(4) = etaCh(n,k)
+           write(u,'(13(ES9.2E2,11X))') (rbuffer(l), l=1,9)
         enddo
      enddo
      k = k + 1

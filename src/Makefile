@@ -61,7 +61,7 @@ OBJS = \
 ../obj/objFunction.o \
 ../obj/output.o \
 ../obj/readEnv.o \
-#../obj/performances.o \
+../obj/performances.o \
 #../obj/readSteamPlant.o \
 
 ################################################
