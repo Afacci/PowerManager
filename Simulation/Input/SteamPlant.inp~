@@ -1,0 +1,84 @@
+!--------------------------------------------------------------------------
+!  
+!   PowerManager.  
+!
+!---------------------------------------------------------------------------
+!License
+!    This file is part of PowerManager.
+!
+!    PowerManager is free software; you can redistribute it and/or modify it
+!    under the terms of the GNU General Public License as published by the
+!    Free Software Foundation; either version 2 of the License, or (at your
+!    option) any later version.
+!
+!    PowerManager is distributed in the hope that it will be useful, but WITHOUT
+!    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+!    FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+!    for more details.
+!
+!    You should have received a copy of the GNU General Public License
+!    if not, write to the Free Software Foundation,
+!    Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+!
+!Application
+!    Trigeneration.inp
+!
+!Description
+!    Input file for the trigeneration equipments.
+!
+!---------------------------------------------------------------------------
+
+!Everything written before begin or after end is ignored as well as every line after a !
+
+begin
+
+Number             | 2       | !total number of trigenerative equipments
+Technology         | Steam   | !GT ICE CP
+Power              | 280 280 | !rated power
+DegradationRate    | 0.99d0 0.99d0  | 
+FuelCost           | 0.35d0  0.35d0 | !euro/Sm3
+FuelLHV            | 35.0e3  35.0e3 | !kJ/Sm3
+Investment         | 300.0e3 300.0e3| !euro
+Lifetime           | 25.d0   25.d0  | !years       
+OnOffCost          | 0.d0    0.d0   | !cost to turn on the power plant
+OeMCost            | 0.d0    0.d0   | !euro/h maintenance cost
+
+SetPoint           | (0  0.5 0.7 0.9 1.0) (0  0.5 0.7 0.9 1)| !Possible set points
+!SetPoint           | (0  0.5 1) | !Possible set points
+Size               | (1)  (1)      |  !Scale the size of the equipment
+
+ElettrEfficiency   | (0.0    0.15       |  !efficiencies tables. 
+                   |  0.3    0.25125    |
+                   |  0.3875 0.26439875 |
+                   |  0.475  0.27679375 |
+                   |  0.5625 0.28835125 |
+                   |  0.65   0.29923875 |
+                   |  0.7375 0.30928875 |
+                   |  0.825  0.31866875 |
+                   |  0.9125 0.32721125 |
+                   |  1.0    0.335)     |
+                   | (0.0    0.15       |  
+                   |  0.3    0.25125    |
+                   |  0.3875 0.26439875 |
+                   |  0.475  0.27679375 |
+                   |  0.5625 0.28835125 |
+                   |  0.65   0.29923875 |
+                   |  0.7375 0.30928875 |
+                   |  0.825  0.31866875 |
+                   |  0.9125 0.32721125 |
+                   |  1.0    0.335)     |
+                   
+ThermalEfficiency  | (0.0 0.54      |
+                   |   1.0 0.55)    | 
+                   | (0.0 0.54      |
+                   |   1.0 0.55)    | 
+                   
+ChillingEfficiency | (0.0 0.00      |
+                   |  1.0 0.00)     |
+                   | (0.0 0.00      |
+                   |  1.0 0.00)     |
+MinUpTime          | 3 0            |                   
+MinDownTime        | 3 0            |                   
+ 
+end
+    
