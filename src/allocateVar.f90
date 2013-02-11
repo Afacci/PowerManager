@@ -136,7 +136,7 @@ select case(what)
    case(18)
         nMax = maxval(nSp)
         allocate(sp(nMax,nm),cr(nMax,nm))
-        allocate(minUpTime(nm), minDownTime(nm))
+        allocate(minUpTime(nm), minDownTime(nm), eSource(nm))
         np   = nMax**nm 
         allocate(cRef(np,nm))
         allocate(etaEl(nMax,nm), etaCh(nMax,nm), etaTh(nMax,nm))
@@ -150,6 +150,8 @@ select case(what)
         nMax  = max(nMax1,nMax2)
         allocate(timeVinc(nMax,2*nm))
         allocate(nTv(2*nm))
+   case(22)
+        allocate(tAmb(nTime), pAmb(nTime))
 end select
 
 end subroutine 

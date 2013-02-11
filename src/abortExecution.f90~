@@ -39,15 +39,17 @@
 !>\param[in] word   character input to report the mispelled or unexpected sentence
 !>\param[in] r1, r2 double precision reals. Useful to report incoherence between plant parameters
 
-subroutine abortExecution(i,j,line,word,r1,r2)
+subroutine abortExecution(i,j,line,word,r1,r2,iVec)
 
 !---Declare Unit usage---
 use inputVar
+use plantVar, only : sp, nSp, nm
 
 implicit none
 
 !---Declare Local Variables---
 integer, intent(in), optional          :: i,j
+real(kind(1.d0)), intent(in), dimension(*), optional :: iVec
 integer, intent(in), optional          :: line
 character(len=*), intent(in), optional :: word
 real(kind(1.d0)), intent(in), optional :: r1, r2
@@ -55,10 +57,11 @@ character(len=18), dimension(8)        :: general
 character(len=18), dimension(17)       :: trigeneration
 character(len=18), dimension(15)       :: boilers
 character(len=18), dimension(13)       :: Chiller
-character(len=24), dimension(5)        :: files
+character(len=24), dimension(6)        :: files
 character(len=11), dimension(3)        :: eLoads 
 character(len=16), dimension(3)        :: gConn
 character(len=8),  dimension(2)        :: algo
+integer                                :: t
 
 print*
 print*, '!---------------FATAL ERROR-------------------!'
@@ -86,9 +89,10 @@ files         = (/'./Input/General.inp      ',             &
                   './Input/Trigeneratoin.inp',             &
                   './Input/Boliers.inp      ',             &
                   './Input/Chillers.inp     ',             &
-                  './Input/Loads.inp        '/)
+                  './Input/Loads.inp        ',             &
+                  './Input/Environment.inp  '/)
 eLoads        = (/'Electricity', 'Thermal    ', 'Chilling   '/)
-gConn         = (/'NetMetering     ','DedicatadRetire','StandAlone     '/)
+gConn         = (/'NetMetering    ','DedicatadRetire','StandAlone     '/)
 algo          = (/'Backward','Forward '/)
 select case(i)
     case(0)
@@ -106,17 +110,22 @@ select case(i)
                print*,'    Missing ./Input/Chillers.inp ' 
            case(5)
                print*,'    Missing ./Input/Loads.inp ' 
+           case(6)
+               print*,'    Missing  ', trim(word),'/setPoint.dat'  
+           case(7)
+               print*,'    Missing ./Input/Environment.dat'  
        end select
     case(2)
        print*,' Wrong or mispelled entry '
        select case(j)
            case(1)
                print*,' Expected one of, ', gConn, ' ,found  (',  word, ')'
-               print*,' in line', line, ' of file General.inp'
            case(2)
                print*,' Expected one of, ', algo, ' ,found  (',  word, ')'
-               print*,' in line', line, ' of file General.inp'
+           case(3)
+               print*,' Expected one of ".true." or ".false.", found ',  trim(word)
        end select
+           print*,' in line', line, ' of file General.inp'
     case(3:6)
         write(*,'(A)',advance='no'),'  Missing input entry: '
         select case(i)
@@ -143,7 +152,7 @@ select case(i)
                 print*, ' Mechanical chillers consumption is added to electric load'
         end select               
     case(8)
-        print*,'Time must be the first entry in the "Loads", "Prices", and GridPrice tables"'
+            print*,'Time must be the first entry in the "Loads", "Prices", and GridPrice, and Climate  tables"'
     case(9)
         print*,'Wrong number of entries for ', trim(eLoads(j)), ' load at time ', r1
     case(10)
@@ -160,6 +169,16 @@ select case(i)
         print*,'The initial state of the plant must be coherent with the feasible states defined for each equipment.'
     case(15)
         print*,'Incoherent initial state: ', trim(word), '(',j,') = ', r1, 'while the set point is', r2
+    case(16)
+        print*,'Cannot run postProcessing. Incoherent plant state at time ',j
+        print*,'The fesible states are: '
+        do t=1,maxval(nSp)
+           write(*,*) sp(t,:)
+        enddo
+        print*, 'found: ', ivec(1:nm)
+    case(17)
+        print*, 'Wrong number of entry for "Climate" entry in  Environment.inp:' 
+        print*, 'Need to insert the same number of time entry in Load.inp.'
     case default
         continue
 end select

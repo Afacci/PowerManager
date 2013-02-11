@@ -184,7 +184,7 @@ do
               line = line + j
        case('Number')
              continue
-       case('HeatSource')
+       case('Technology')
              isPresent(13) = .true.
              read(value,*) (tecB(i), i=1,nBoi)
        case('MinUpTime')

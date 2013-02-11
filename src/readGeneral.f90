@@ -71,10 +71,11 @@ implicit none
 integer              :: genUnit = 105
 character(len=20)    :: inputFile = './Input/General.inp'
 logical              :: filePresent
-character(len=100)   :: buffer, keyword, value, value_
+character(len=100)   :: buffer, keyword, val, val_
 integer              :: firstLine, i, nInp, line, n, n_
 logical,dimension(8) :: isPresent = .false.
-integer              :: error
+logical,dimension(12):: optEntry  = .false.
+integer              :: error, nOpt
 character(len=50)    :: dummy
 
 
@@ -98,14 +99,14 @@ enddo
 !---read the input list---
 line = firstLine
 do 
-    call readKeyword(genUnit,.false., keyword,value,error,n)
+    call readKeyword(genUnit,.false., keyword,val,error,n)
     line = line + n
     if (error.eq.1)  call abortExecution(0,1,line)
     select case(keyword)
        case('end')
           exit
        case('GridConnection')
-          read(value,*) gridConnection
+          read(val,*) gridConnection
           gridConnection = trim(gridConnection)
           isPresent(1) = .true.
           if(gridConnection.ne.'NetMetering'.and.gridConnection               &
@@ -113,98 +114,106 @@ do
               call abortExecution(2,1,line,gridConnection)
           endif
        case('Degradation')
-          read(value,*) iDeg
+          read(val,*) iDeg
           isPresent(2) = .true.
        case('objective')
-          read(value,*) obj
+          read(val,*) obj
           isPresent(3) = .true.
        case('StartPoint')
           isPresent(4) = .true.
           n = nTrig + nBoi + nChi
           call allocateVar(0,n)
-          value_ = '('//trim(value)//')'
-          n_ = hCount(value_)
+          val_ = '('//trim(val)//')'
+          n_ = hCount(val_)
           if(n_.ne.n) call abortExecution(13,n_,n,'StartPoint')
-          read(value,*) (startPoint(i), i=1,n)
+          read(val,*) (startPoint(i), i=1,n)
        case('FirstTimeStep')
           isPresent(5)  = .true.
-          read(value,*) dt1
+          read(val,*) dt1
        case('UpTime')
           isPresent(6) = .true.
           n = nTrig + nBoi + nChi
-          value_ = '('//trim(value)//')'
-          n_ = hCount(value_)
+          val_ = '('//trim(val)//')'
+          n_ = hCount(val_)
           if(n_.ne.n) call abortExecution(13,n_,n,'UpTime')
-          read(value,*) (upTime0(i) , i=1,n)
+          read(val,*) (upTime0(i) , i=1,n)
         case('DownTime')
           isPresent(7) = .true.
           n = nTrig + nBoi + nChi
-          value_ = '('//trim(value)//')'
-          n_ = hCount(value_)
+          val_ = '('//trim(val)//')'
+          n_ = hCount(val_)
           if(n_.ne.n) call abortExecution(13,n_,n,'DownTime')
-          read(value,*) (downTime0(i) , i=1,n)
+          read(val,*) (downTime0(i) , i=1,n)
         case('Algorithm')
              isPresent(8) = .true.
-             read(value,*) method
+             read(val,*) method
              if(method.ne.'Forward'.and.method.ne.'Backward') then
                 call abortExecution(2,2,line,method)
              endif
         case('writePower')
-             read(value,*), dummy
-             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=value)
-             read(value,*), writePower
+             optEntry(1) = .true.
+             read(val,*), dummy
+             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
+             read(val,*), writePower
         case('writeEnergy')
-             read(value,*), dummy
-             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=value)
-             read(value,*), writeEnergy
+             optEntry(2) = .true.
+             read(val,*), dummy
+             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
+             read(val,*), writeEnergy
         case('writeEfficiency')
-             read(value,*), dummy
-             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=value)
-             read(value,*), writeEfficiency
+             optEntry(3) = .true.
+             read(val,*), dummy
+             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
+             read(val,*), writeEfficiency
         case('writeElectricRev')
-             read(value,*), dummy
-             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=value)
-             read(value,*), writeElectricRev
+             optEntry(4) = .true.
+             read(val,*), dummy
+             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
+             read(val,*), writeElectricRev
         case('writeThermalRev')
-             read(value,*), dummy
-             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=value)
-             read(value,*), writeThermalRev
+             optEntry(5) = .true.
+             read(val,*), dummy
+             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
+             read(val,*), writeThermalRev
         case('writeChillingRev')
-             read(value,*), dummy
-             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=value)
-             read(value,*), writeChillingRev
-        case('writeFuelCost')
-             read(value,*), dummy
-             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=value)
-             read(value,*), writeFuelCost
+             optEntry(6) = .true.
+             read(val,*), dummy
+             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
+             read(val,*), writeChillingRev
         case('writeDemand')
-             read(value,*), dummy
-             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=value)
-             read(value,*), writeDemand
+             optEntry(7) = .true.
+             read(val,*), dummy
+             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
+             read(val,*), writeDemand
         case('writeInput')
-             read(value,*), dummy
-             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=value)
-             read(value,*), writeInput
+             optEntry(8) = .true.
+             read(val,*), dummy
+             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
+             read(val,*), writeInput
         case('writeCosts')
-             read(value,*), dummy
-             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=value)
-             read(value,*), writeCosts
+             optEntry(9) = .true.
+             read(val,*), dummy
+             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
+             read(val,*), writeCosts
         case('writeTrig')
-             read(value,*), dummy
-             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=value)
-             read(value,*), writeTrig
+             optEntry(10) = .true.
+             read(val,*), dummy
+             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
+             read(val,*), writeTrig
         case('writeBoiler')
-             read(value,*), dummy
-             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=value)
-             read(value,*), writeBoi
+             optEntry(11) = .true.
+             read(val,*), dummy
+             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
+             read(val,*), writeBoi
         case('writeChiller')
-             read(value,*), dummy
-             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=value)
-             read(value,*), writeChi
+             optEntry(12) = .true.
+             read(val,*), dummy
+             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
+             read(val,*), writeChi
         case(' ')
-          if(verb) call warning(4,1,line=line)
+             if(verb) call warning(4,1,line=line)
         case  default
-          call warning(1,1,line=line,word=keyword )
+             if(.not.silent) call warning(1,1,line=line,word=keyword )
     end select
 enddo
 
@@ -212,6 +221,10 @@ enddo
 nInp = size(isPresent)
 do i = 1,nInp
     if(.not.isPresent(i)) call abortExecution(3,i)
+enddo
+nOpt = size(optEntry)
+do i = 1,nOpt
+   if(.not.optEntry(i)) call warning(7,i)
 enddo
 
 close(genUnit)

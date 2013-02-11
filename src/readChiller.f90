@@ -194,7 +194,7 @@ do
        case(' ')
             if(verb) call warning(4,4,line=line)
        case default
-              call warning(1,4,line=line,word=keyword)
+            if(.not.silent)  call warning(1,4,line=line,word=keyword)
     end select
 enddo
 

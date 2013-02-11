@@ -42,7 +42,7 @@ real(kind(1.d0)), allocatable, dimension(:)   :: Pmax, dt, cf, lhv, onOffCost, O
 character(len=4), allocatable, dimension(:)   :: pes
 integer                                       :: nSpTot,nm, iT, iB, iC
 integer,                       dimension(3)   :: is,ie
-integer,          allocatable, dimension(:)   :: nSp, nTv
+integer,          allocatable, dimension(:)   :: nSp, nTv, eSource
 
 
 end module plantVar

@@ -79,6 +79,7 @@ call readBoiler
 call readChillers
 call readLoads
 call readGeneral
+call readEnv
 
 !---build the energy coonection inside the plant---
 print*, ' ---Checking Input Coherence---'
@@ -128,7 +129,7 @@ call etime(tVEc,tempo)
 print*, ' ---Elapsed Time: ', tempo, ' sec'
 
 !----write output files---
-call output(setPoint)
+call output(setPoint,.false.,'Results')
 
 !---end the execution----
 call endExecution

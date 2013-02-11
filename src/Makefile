@@ -60,10 +60,9 @@ OBJS = \
 ../obj/openUnit.o \
 ../obj/objFunction.o \
 ../obj/output.o \
-../obj/performances.o \
-#../obj/allCombin.o \
-#../obj/graphPoints.o \
-#../obj/graphArcs.o \
+../obj/readEnv.o \
+#../obj/performances.o \
+#../obj/readSteamPlant.o \
 
 ################################################
 #rule that creates the dependency of objects from modules

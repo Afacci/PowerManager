@@ -104,7 +104,8 @@ implicit none
 
 !---Declare Local Variables---
 integer,dimension(nm), intent(in) :: c_
-integer                                    :: i,j
+integer                           :: i,j,k,l
+real(kind(1.d0))                  :: calore,eDisp
 
 !---Function Body
 
@@ -118,7 +119,14 @@ endif
 if(nBoi.gt.0) then
    do i=is(iB),ie(iB)
       j = c_(i)
-      thProd = thProd + sp(j,i)*Pmax(i)
+      calore = sp(j,i)*Pmax(i)
+      if(pes(i).eq.'heat') then
+         k = eSource(i)
+         l = c_(k)
+         eDisp = sp(l,k)*Pmax(k)*(1.d0/etaEl(l,k) - 1.d0)
+         if(calore.gt.eDisp) calore = limitRecovery(i,eDisp)
+      endif
+      thProd = thProd + calore
    enddo
 endif
 return
@@ -359,5 +367,85 @@ if(nChi.gt.0) then
 endif
 
 end function energyInput
+
+!===========================================================================
+
+function energyExhaust(c_)
+
+!--Declare Module usage---
+use plantVar
+use inputVar
+
+implicit none
+
+!---Declare Local Variables---
+real(kind(1.d0)),dimension(nTrig+nBoi)             :: energyExhaust
+integer         ,dimension(nTrig+nBoi), intent(in) :: c_
+integer                                    :: i,j 
+real(kind(1.d0))              , parameter  :: vsmall = 1.0e-20
+
+!---Function Body
+
+energyExhaust = 0.d0
+
+if(nTrig.gt.0) then
+   do i=is(iT),ie(iT)
+      j = c_(i)
+      energyExhaust(i) = sp(j,i)*Pmax(i)*(1.d0/etaEl(j,i) - 1.d0)
+   enddo
+endif
+
+if(nBoi.gt.0) then
+   do i=is(iB),ie(iB)
+      j = c_(i)
+      energyExhaust(i) = sp(j,i)*Pmax(i)*(1.d0/etaTh(j,i) - 1.d0)
+   enddo
+endif
+
+end function energyExhaust
+
+!=====================================================================
+
+
+real(kind(1.d0)) function limitRecovery(i,valore)
+
+
+!--Declare Module usage---
+use plantVar
+use inputVar
+
+implicit none
+
+!---Declare Local Variables---
+real(kind(1.d0)), intent(in) :: valore
+integer         , intent(in) :: i
+real(kind(1.d0)), parameter  :: vsmall = 1.0e-20
+
+real(kind(1.d0)),allocatable, dimension(:) :: eIn, eOUt
+real(kind(1.d0))              :: c, a, b
+integer                       :: j,n,iBoi
+
+!---Function Body
+
+iBoi = i - is(iB) + 1
+n = nEtaB(iBoi)
+allocate(eIn(n), eOut(n))
+ 
+do j=1,n
+   c      = etaB(j,1,iBoi)
+   eIn(j) = Pmax(i)*c/etaB(j,2,iBoi)
+   eOut(j)= Pmax(i)*c
+   if(eIn(j).ge.valore) exit
+enddo
+
+a = (etaB(j,2,iBoi) - etaB(j-1,2,iBoi))/(eOut(j) - eOut(j-1))
+b = etaB(j-1,2,iBoi) - a*eOut(j-1)
+
+limitRecovery = -b*valore/(a*Valore - 1.d0)
+
+deallocate(eIn)
+
+end function limitRecovery
+
 
 end module energy

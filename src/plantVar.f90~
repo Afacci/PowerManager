@@ -1,3 +1,4 @@
+
 !---------------------------------------------------------------------------
 !  
 !   PowerManager.  
@@ -20,37 +21,29 @@
 !    along with OpenFOAM; if not, write to the Free Software Foundation,
 !    Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 !
-!Application
-!    General.inp
-!
-!Description
-!    Input file.
+!>\file plantVar.f90
+!>\brief collection of variables relative to the power plant structure.
+!>\author 
+!  Andrea Facci.
 !
 !---------------------------------------------------------------------------
 
-begin
+!>\brief collection of variables relative to the power plant structure.
+!>\details collection of variables relative to the power plant structure.
+!>\author 
+!  Andrea Facci.
+module plantVar
 
-GridConnection | DedicatedRetire | !NetMetering;GridConn;StandAlone
-Degradation    | False           | !True/False
-objective      | Economic        |
-!---------Initial Conditions------------------------------
-StartPoint      | 0.d0 0.d0 0.d0 0.d0 |         
-UpTime          | 0     0    0   0 |         
-DownTime        | 1     1    1   1 |         
-FirstTimeStep   | 1               |
-Algorithm       | Backward        |
-writeEnergy     | .true.          |
-writeEfficiency | .true.          |
-writeElectricRev| .true.          |
-writeThermalRev | .true.          |
-writeChillingRev| .true.          |
-writeDemand     | .true.          |
-writeInput      | .true.          |
-writePower      | .true.          |
-writeCosts      | .true.          |
-writeTrig       | .false.         |
-writeChiller    | .false.         |
-writeBoiler     | .false.         |
+real(kind(1.d0)), allocatable, dimension(:,:) :: etaElT_, etaThT_, etaChT_, etaB_, etaC_, &
+                                                 sp,cRef
+real(kind(1.d0)), allocatable, dimension(:,:) :: etaEl, etaTh, etaCh, timeVinc
+integer         , allocatable, dimension(:,:) :: cr
+real(kind(1.d0)), allocatable, dimension(:)   :: Pmax, dt, cf, lhv, onOffCost, OeMCost, minUpTime, minDownTime
+character(len=4), allocatable, dimension(:)   :: pes
+integer                                       :: nSpTot,nm, iT, iB, iC
+integer,                       dimension(3)   :: is,ie
+integer,          allocatable, dimension(:)   :: nSp, nTv
 
-end
+
+end module plantVar
 

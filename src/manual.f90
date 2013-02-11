@@ -24,17 +24,17 @@
 
 !>\mainpage PowerManager 
 !>\section Introduction 
-!>      PowerManager is a free software for optimization of energy
-!>      dispaching, with particular regards to distributed generation.
-!>      
-!>      PowerManager simulates the energy fluxes between the components
-!>      of the plant and between the pant and, energy loads and
-!>      eventually the electric grid. The optimal plant state is
-!>      determined using dynamic programming, in order to minimize the
-!>      total costs (or maximize the profits), including, fuel, maintenance, plant ignition,
-!>      and eventual energy purchase costs, and energy selling revenues.
-!>      Constraints on the minimum duration of the operation intervals
-!>      of the plant are also considered.
+!>    PowerManager is a free software for optimization of energy
+!>    dispaching, with particular regards to distributed generation.
+!>    
+!>    PowerManager simulates the energy fluxes between the components
+!>    of the plant and between the pant and, energy loads and
+!>    eventually the electric grid. The optimal plant state is
+!>    determined using dynamic programming, in order to minimize the
+!>    total costs (or maximize the profits), including, fuel, maintenance, plant ignition,
+!>    and eventual energy purchase costs, and energy selling revenues.
+!>    Constraints on the minimum duration of the operation intervals
+!>    of the plant are also considered.
 !>\section Licence
 !>    PowerManager is free software; you can redistribute it and/or modify it
 !>    under the terms of the GNU General Public License as published by the

@@ -107,7 +107,7 @@ interface
         integer, intent(out), optional :: valore(n)
         logical, intent(in), optional  :: rew
         logical, intent(out), optional :: isPresent
-        character(len=100), intent(in) :: entry
+        character(len=*), intent(in)   :: entry
     end subroutine iFindEntry
 end interface
 
@@ -120,7 +120,7 @@ interface
         real(kind(1.d0)), intent(out), optional :: valore(n)
         logical, intent(in), optional  :: rew
         logical, intent(out), optional :: isPresent
-        character(len=100), intent(in) :: entry
+        character(len=*), intent(in)   :: entry
     end subroutine dFindEntry
 end interface
 
@@ -133,7 +133,7 @@ interface
         character(len=100), intent(out), optional :: valore(n)
         logical, intent(in), optional  :: rew
         logical, intent(out), optional :: isPresent
-        character(len=100), intent(in) :: entry
+        character(len=*), intent(in)   :: entry
     end subroutine cFindEntry
 end interface
 
@@ -145,7 +145,7 @@ interface
         character(len=100), intent(out), optional :: valore
         logical, intent(in), optional  :: rew
         logical, intent(out), optional :: isPresent
-        character(len=100), intent(in) :: entry
+        character(len=*), intent(in)   :: entry
     end subroutine findEntry
 end interface
 

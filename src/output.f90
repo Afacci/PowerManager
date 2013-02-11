@@ -28,7 +28,7 @@
 !
 !---------------------------------------------------------------------------
 
-subroutine output(setPoint)
+subroutine output(setPoint,postProcessing,path)
 
 !---Declare Module usage---
   use inputvar
@@ -43,101 +43,123 @@ subroutine output(setPoint)
   implicit none
 
   integer, dimension(0:nTime+1,nm), intent(in) :: setPoint
-  integer :: i, u,j,k,n,l, nO
-  real(kind(1.d0)), dimension(nTime,nm) :: c
-  integer, dimension(nm) :: kk, kko
-  logical :: ex, oldRes
-  character(len=100) :: folder, filename
-  real(kind(1.d0)), dimension(0:nTime) :: t
-  real(kind(1.d0)), dimension(nm) :: gg
-  real(kind(1.d0)) :: g
-  real(kind(1.d0)),dimension(2) :: gGrid
-  character(len=20), dimension(100) :: buffer20
-  real(kind(1.d0)), dimension(100) :: rbuffer
+  logical                         , intent(in) :: postProcessing
+  character(len=*)                , intent(in) :: path
+  integer                                      :: i, u,j,k,n,l, nO
+  real(kind(1.d0)), dimension(nTime,nm)        :: c
+  integer,          dimension(nm)              :: kk, kko
+  logical                                      :: ex, oldRes
+  character(len=100)                           :: folder, filename
+  real(kind(1.d0)), dimension(0:nTime)         :: t
+  real(kind(1.d0)), dimension(nm)              :: gg
+  real(kind(1.d0))                             :: g
+  real(kind(1.d0)),dimension(2)                :: gGrid
+  character(len=20), dimension(100)            :: buffer20
+  real(kind(1.d0)), dimension(100)             :: rbuffer
+
+!---Function body---
   
   inquire(file='Results/.', exist=oldRes)
-  if(oldRes) then
-     select case(out)
-        case('Overwrite')
-           call warning(5)
-           call system('rm -rf Results')
-        case('Rename') 
-           i = 1
-           do 
-              write(folder,100) i
-              inquire(file=trim(folder)//'/.', exist=ex)
-              if(.not.ex) exit
-              i = i + 1
-           enddo
-           call warning(6,word=folder)
-           call system('mv Results '//folder)
+  if(.not.postProcessing) then
+     if(oldRes) then
+        select case(out)
+           case('Overwrite')
+              call warning(5)
+              call system('rm -rf Results')
+           case('Rename') 
+              i = 1
+              do 
+                 write(folder,100) i
+                 inquire(file=trim(folder)//'/.', exist=ex)
+                 if(.not.ex) exit
+                 i = i + 1
+              enddo
+              call warning(6,word=folder)
+              call system('mv Results '//folder)
         end select
      endif
+!     path = 'Results'
      call system('mkdir Results')
-  
-  u = 500
-  call prepareFile(u,'setPoint','Results')
-  write(u,*) '# setPoint.dat, contains the optimal set point for all the'
-  write(u,*) '# equipment and time-step'
-  write(u,*) '#--------------------------------------------------------------------------#'
-  write(u,*)
-  write(u,'(A8,2X)', advance='no') 'Time [h]'
-  do i=1,nTrig
-     write(u,'(A5,2X)', advance='no') trim(tecT(i))
-  enddo
-  do i=1,nBoi
-     write(u,'(A5,1X,A6,2X)', advance='no') trim(tecB(i)),'Boiler'
-  enddo
-  do i=1,nChi
-     write(u,'(A,1X,A,2X)', advance='no') trim(tecC(i)),'Chiller'
-  enddo
-  write(u,*)
-  write(u,*)
-  t(0) = 0.d0
+  endif
+
   do i=1,nTime
      t(i) = t(i-1) + dt(i-1)/3.6e3
-     write(u,'(ES8.2E2,5X)', advance='no') t(i)
      do j=1,nm
         k = setPoint(i,j)
         c(i,j) = sp(k,j)
-        write(u,'(F4.2,5X)', advance='no') c(i,j)
      enddo
-     write(u,*)
   enddo
+   
+  u = 500
+  if(.not.postProcessing) then
+    call prepareFile(u,'setPoint',path)
+    write(u,*) '# setPoint.dat, contains the optimal set point for all the'
+    write(u,*) '# equipment and time-step'
+    write(u,*) '#--------------------------------------------------------------------------#'
+    write(u,*)
+    write(u,'(A8,2X)', advance='no') 'Time [h]'
+    do i=1,nTrig
+       write(u,'(A5,2X)', advance='no') trim(tecT(i))
+    enddo
+    do i=1,nBoi
+       write(u,'(A5,1X,A6,2X)', advance='no') trim(tecB(i)),'Boiler'
+    enddo
+    do i=1,nChi
+       write(u,'(A,1X,A,2X)', advance='no') trim(tecC(i)),'Chiller'
+    enddo
+    write(u,*)
+    write(u,*)
+    t(0) = 0.d0
+    do i=1,nTime
+       write(u,'(ES8.2E2,5X)', advance='no') t(i)
+       do j=1,nm
+          write(u,'(F4.2,5X)', advance='no') c(i,j)
+       enddo
+       write(u,*)
+    enddo
+  endif
 
   if(writePower) then
      u = u + 1
-     call prepareFile(u,'powerProduction','Results')
+     call prepareFile(u,'powerProduction',path)
      write(u,*) '# powerProduction.dat, contains the power production for each'
      write(u,*) '# vector (electricity, thermal energy, and, chilling energy) and primary energy input'
      write(u,*) '#--------------------------------------------------------------------------#'
      write(u,*)
-     write(u,'(A8,2X,A16,2X,A16,2X,A16,2X,A16)') 'Time [h]', 'Electricity [kW]', 'Thermal [kW]', 'Chilling [kW]', 'Input [kW]'
+     buffer20(1) = 'Time [h]            '
+     buffer20(2) = 'Electricity [kwW]    '
+     buffer20(3) = 'Thermal  [kW]       '
+     buffer20(4) = 'Chilling [kW]       '
+     buffer20(5) = 'Input [kW]          '
+     write(u,'(5A)') (buffer20(i), i=1,5)
+     write(u,*)
      do i=1,nTime
-        write(u,'(ES8.2E2,5X)', advance='no') t(i)
-        kk = setPoint(i,:)
-        write(u,'(4ES15.3E2,3X)'), elProd(kk), thProd(kk), chProd(kk),sum(fuelCons(kk))
+        write(u,'(5(ES9.2E2,11X))') t(i), elProd(kk), thProd(kk), chProd(kk),sum(fuelCons(kk))
      enddo
   endif
 
   if(writeEnergy) then
      u = u + 1
-     call prepareFile(u,'energyProduction','Results')
+     call prepareFile(u,'energyProduction',path)
      write(u,*) '# energuProduction.dat, contains the energy production for each'
      write(u,*) '# vector (electricity, thermal energy, and, chilling energy) and primary energy input'
      write(u,*) '#--------------------------------------------------------------------------#'
      write(u,*)
-     write(u,'(A8,2X,A16,2X,A16,2X,A16,2X,A16)') 'Time [h]', 'Electricity [kJ]', 'Thermal [kJ]', 'Chilling [kJ]', 'Input [kJ]'
+     buffer20(1) = 'Time [h]            '
+     buffer20(2) = 'Electricity [kJ]    '
+     buffer20(3) = 'Thermal  [kJ]       '
+     buffer20(4) = 'Chilling [kJ]       '
+     buffer20(5) = 'Input [kJ]          '
+     write(u,'(5A)') (buffer20(i), i=1,5)
+     write(u,*)
      do i=1,nTime
-        write(u,'(ES8.2E2,5X)', advance='no') t(i)
-        kk = setPoint(i,:)
-        write(u,'(3ES15.3E2,3X,ES20.3E3)'), elProd(kk)*dt(i), thProd(kk)*dt(i), chProd(kk)*dt(i),sum(fuelCons(kk))*dt(i)
+        write(u,'(5(ES9.2E2,11X))') t(i), elProd(kk)*dt(i), thProd(kk)*dt(i), chProd(kk)*dt(i),sum(fuelCons(kk))*dt(i)
      enddo
   endif
 
   if(writeEfficiency) then
      u = u + 1
-     call prepareFile(u,'efficiency','Results')
+     call prepareFile(u,'efficiency',path)
      write(u,*) '# efficiency.dat, contains the efficincy at the optimal set-point for each'
      write(u,*) '# equipment and time-step.   '
      write(u,*) '#--------------------------------------------------------------------------#'
@@ -178,7 +200,7 @@ subroutine output(setPoint)
   
   if(writeElectricRev) then
      u = u + 1
-     call prepareFile(u,'electricRevenues','Results')
+     call prepareFile(u,'electricRevenues',path)
      write(u,*) '# electricRevenues.dat, contains the revenues from electric energy selling.'
      write(u,*) '#--------------------------------------------------------------------------#'
      write(u,*)
@@ -204,7 +226,7 @@ subroutine output(setPoint)
 
   if(writeThermalRev) then
      u = u + 1
-     call prepareFile(u,'thermalRevenues','Results')
+     call prepareFile(u,'thermalRevenues',path)
      write(u,*) '# thermalRevenues.dat, contains the revenues from thermal energy selling.'
      write(u,*) '#--------------------------------------------------------------------------#'
      write(u,*)
@@ -231,7 +253,7 @@ subroutine output(setPoint)
 
   if(writeChillingRev) then
      u = u + 1
-     call prepareFile(u,'chillingRevenues','Results')
+     call prepareFile(u,'chillingRevenues',path)
      write(u,*) '# chillingRevenues.dat, contains the revenues from thermal energy selling.'
      write(u,*) '#--------------------------------------------------------------------------#'
      write(u,*)
@@ -254,7 +276,7 @@ subroutine output(setPoint)
 
   if(writeDemand) then
      u = u + 1
-     call prepareFile(u,'energyDemand','Results')
+     call prepareFile(u,'energyDemand',path)
      write(u,*) '# energyDemand.dat, contains the energy demand for each vector           '
      write(u,*) '#--------------------------------------------------------------------------#'
      write(u,*)
@@ -268,7 +290,7 @@ subroutine output(setPoint)
 
   if(writeInput) then
      u = u+1
-     call prepareFile(u,'inputEnergy','Results')
+     call prepareFile(u,'inputEnergy',path)
      write(u,*) '# inpuEnergy.dat, contains the energy consumption for each '
      write(u,*) '# equipment and time-step'
      write(u,*) '#--------------------------------------------------------------------------#'
@@ -298,7 +320,7 @@ subroutine output(setPoint)
 
   if(writeCosts) then
      u = u + 1
-     call prepareFile(u,'costs','Results')
+     call prepareFile(u,'costs',path)
      write(u,*) '# cost.dat, contains all the costs'
      write(u,*) '# equipment and time-step'
      write(u,*) '#--------------------------------------------------------------------------#'
@@ -314,7 +336,7 @@ subroutine output(setPoint)
   endif
 
   if(writeTrig) then
-     call system("mkdir Results/Trigenerative")
+     call system("mkdir "//trim(path)//"/Trigenerative")
      k = is(iT)
      do j=1,nTrig
         u = u + 1
@@ -343,19 +365,19 @@ subroutine output(setPoint)
            nO = setPoint(i-1,k) 
            rbuffer(1) = (t(i))
            rbuffer(2) = sp(n,k)
-           call performances(n, nO,'Trigeneration', j,i, rbuffer(3), rbuffer(4), rbuffer(5), rbuffer(9), & 
-                rbuffer(10), rbuffer(11),rbuffer(12),rbuffer(13))
+!           call performances(n, nO,'Trigeneration', j,i, rbuffer(3), rbuffer(4), rbuffer(5), rbuffer(9), & 
+!               rbuffer(10), rbuffer(11),rbuffer(12),rbuffer(13))
            rbuffer(6) = etaEl(n,k)
            rbuffer(7) = etaTh(n,k)
            rbuffer(8) = etaCh(n,k)
-           write(u,'(13(ES9.2E2,11X))') (rbuffer(l), l=1,13)
+!           write(u,'(13(ES9.2E2,11X))') (rbuffer(l), l=1,13)
         enddo
         k = k + 1
      enddo
   endif
 
   if(writeBoi) then
-     call system("mkdir Results/Boilers")
+     call system("mkdir "//trim(path)//"/Boilers")
      k = is(iB)
      do j=1,nBoi
         u = u + 1
@@ -380,9 +402,9 @@ subroutine output(setPoint)
            nO = setPoint(i-1,k) 
            rbuffer(1) = (t(i))
            rbuffer(2) = sp(n,k)
-           call performances(n, nO,'Boilers', j,i, pTh = rbuffer(3), eIn = rbuffer(5), mf = rbuffer(6), & 
-                cfu = rbuffer(7),cm = rbuffer(8), cOn = rbuffer(9))
-           rbuffer(4) = etaTh(n,k)
+!           call performances(n, nO,'Boilers', j,i, pTh = rbuffer(3), eIn = rbuffer(5), mf = rbuffer(6), & 
+!                cfu = rbuffer(7),cm = rbuffer(8), cOn = rbuffer(9))
+!           rbuffer(4) = etaTh(n,k)
            write(u,'(13(ES9.2E2,11X))') (rbuffer(l), l=1,9)
         enddo
      enddo
@@ -390,7 +412,7 @@ subroutine output(setPoint)
   endif
 
   if(writeChi) then
-     call system("mkdir Results/Chillers")
+     call system("mkdir "//trim(path)//"/Chillers")
      k = is(iC)
      do j=1,nBoi
         u = u + 1
@@ -413,9 +435,9 @@ subroutine output(setPoint)
            nO = setPoint(i-1,k) 
            rbuffer(1) = (t(i))
            rbuffer(2) = sp(n,k)
-           call performances(n, nO,'Chiller', j,i, pCh = rbuffer(3), eIn = rbuffer(5), cm = rbuffer(6), cOn = rbuffer(6))
-           rbuffer(4) = etaCh(n,k)
-           write(u,'(13(ES9.2E2,11X))') (rbuffer(l), l=1,9)
+!           call performances(n, nO,'Chiller', j,i, pCh = rbuffer(3), eIn = rbuffer(5), cm = rbuffer(6), cOn = rbuffer(6))
+!           rbuffer(4) = etaCh(n,k)
+!           write(u,'(13(ES9.2E2,11X))') (rbuffer(l), l=1,9)
         enddo
      enddo
      k = k + 1

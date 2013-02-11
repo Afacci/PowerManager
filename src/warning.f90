@@ -47,19 +47,20 @@ integer, intent(in) ,optional          :: i,j,k
 integer, intent(in), optional          :: line
 character(len=*), intent(in), optional :: word
 real(kind(1.d0)), intent(in), optional :: r1,r2
-character(len=18), dimension(8)        :: general
+character(len=18), dimension(20)        :: general
 character(len=18), dimension(17)       :: trigeneration
 character(len=18), dimension(15)       :: boilers
 character(len=18), dimension(13)       :: Chiller
 character(len=24), dimension(5)        :: files
 character(len=13), dimension(3)        :: equip
+character(len=17), dimension(12)       :: output
 integer                                :: l
 
 print*
 print*,'!---------------------------Warning-------------------------------------------------!'
 print*
 
-general       = (/'GridConnection    ', 'Degradation       ', 'objective         ', 'StartPoint        '  &
+general(1:8)  = (/'GridConnection    ', 'Degradation       ', 'objective         ', 'StartPoint        '  &
                  ,'FirstTimeStep     ', 'UpTime0           ', 'DownTime0         ', 'Algorithm         '  /)
 
 trigeneration = (/'Number            ', 'Power             ', 'DegradationRate   ', 'FuelCost          '  &
@@ -85,6 +86,13 @@ files         = (/'./Input/General.inp      ',             &
                   './Input/Loads.inp        '/)
 equip         = (/'Trigenerator ', 'Boiler       ', 'Chiller      '/)
 
+output        = (/'writePower      ','writeEnergy     ','writeEfficiency ','writeElectricRev', &
+                  'writeThermalRev ','writeChillingRev','writeDemand     ','writeInput      ', &   
+                  'writeCosts      ','writeTrig       ','writeChiller    ','writeBoiler     '/)
+general(9:20) = output
+
+
+
 select case(i)
     case(0)
         continue
@@ -93,7 +101,7 @@ select case(i)
         print*, ' Found "', trim(word), '" recognized entry are: '
         select case(j)
             case(1)
-                write(*,'(5x,A18)')  (general(l), l=1,4)
+                write(*,'(5x,A18)')  (general(l), l=1,size(general,1))
             case(2)
                 write(*,'(5x,A18)')  (trigeneration(l),l=1,size(trigeneration,1))
             case(3)
@@ -120,6 +128,8 @@ select case(i)
        print*, 'All the old results will be lost forever.'
    case(6)
        print*, 'The existing "Results" folder will be moved to ', trim(word)
+   case(7)
+       print*, 'Cannot find "', trim(output(j)), '" in file "General.inp". Assuming "', trim(output(j)), '" = .false. '
 end select
 print*
 print*,'!-----------------------------------------------------------------------------------!'

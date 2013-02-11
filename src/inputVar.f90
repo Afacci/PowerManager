@@ -46,8 +46,18 @@ logical            :: iDeg
 real(kind(1.d0)), allocatable, dimension(:) :: startPoint, upTime0, downTime0
 real(kind(1.d0))                            :: dt1
 character(len=100) :: obj, method
-logical :: writePower, writeEnergy, writeEfficiency, writeElectricRev,writeThermalRev,writeChillingRev &
-           ,writeFuelCost, writeDemand, writeInput, writeCosts,writeTrig, writeBoi, writeChi
+logical :: writePower       = .false.
+logical :: writeEnergy      = .false.
+logical :: writeEfficiency  = .false.
+logical :: writeElectricRev = .false.
+logical :: writeThermalRev  = .false.
+logical :: writeChillingRev = .false. 
+logical :: writeDemand      = .false.
+logical :: writeInput       = .false.
+logical :: writeCosts       = .false.
+logical :: writeTrig        = .false.
+logical :: writeBoi         = .false.
+logical :: writeChi         = .false.
 
 !---Trigeneration.inp variables
 integer                                         :: nTrig
@@ -81,5 +91,8 @@ real(kind(1.d0)), allocatable, dimension(:,:) :: uEl, uTh, uCh, cEl, cTh, cCh
 real(kind(1.d0)), allocatable, dimension(:)   :: time, gridBuyCost, gridSellCost
 integer, allocatable, dimension(:)            :: nld, nlp
 
+!--environment.inp variables
+real(kind(1.d0)), allocatable, dimension(:) :: pAmb, tAmb
+real(kind(1.d0))                            :: Altitude
 
 end module inputVar

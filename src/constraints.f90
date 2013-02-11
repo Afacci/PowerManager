@@ -54,17 +54,36 @@ implicit none
 integer, dimension(nm), intent(in) :: c
 integer,                intent(in) :: t
 real(kind(1.d0))                   :: p,u
+integer                            :: i,j,kr,ks
 
 constraints = .true.
 !---Declare Local Variables---
 
+!---eliminate all the combination where the top plant is off and the bottom
+!on....
+do i=is(iB),ie(iB)
+   kr = c(i)
+   if(pes(i).ne.'fuel') then
+      j = eSource(i)
+      ks = c(j)
+      if(sp(ks,j).eq.0.d0.and.sp(kr,j).gt.0.d0) then 
+         constraints = .false.
+         return
+      endif
+   endif
+enddo
+
 p = chProd(c)
 u = sum(uCh(t,:))
-if(p.lt.u)               constraints = .false.
+if(p.lt.u)  then
+   constraints = .false.
+   return
+endif
 
 p = thProd(c) 
 u = sum(uTh(t,:)) + thSelfCons(c)
 if(p.lt.u) constraints = .false.
+
 
 end function constraints
 

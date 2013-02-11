@@ -34,19 +34,24 @@ GridConnection | DedicatedRetire | !NetMetering;GridConn;StandAlone
 Degradation    | False           | !True/False
 objective      | Economic        |
 !---------Initial Conditions------------------------------
-StartPoint     | 0.d0 0.d0 0.d0 0.d0 |         
-UpTime         | 0     0    0   0 |         
-DownTime       | 1     1    1   1 |         
-FirstTimeStep  | 1               |
-Algorithm      | Backward        |
-writePower     | .true.          |
-writeEnergy    | .true.          |
-writeEfficiency| .true.          |
+StartPoint      | 0.d0 0.d0 0.d0 0.d0 |         
+UpTime          | 0     0    0   0 |         
+DownTime        | 1     1    1   1 |         
+FirstTimeStep   | 1               |
+Algorithm       | Backward        |
+writeEnergy     | .true.          |
+writeEfficiency | .true.          |
 writeElectricRev| .true.          |
-writeThermalRev| .true.          |
+writeThermalRev | .true.          |
 writeChillingRev| .true.          |
-writeDemand| .true.          |
-writeFuel | .true.          |
+writeDemand     | .true.          |
+writeInput      | .true.          |
+writePower      | .true.          |
+writeCosts      | .true.          |
+writeTrig       | .false.         |
+writeChiller    | .false.         |
+writeBoiler     | .false.         |
+pippo	| |
 
 end
 

@@ -35,9 +35,10 @@
 module interfaces
 
 interface 
-    subroutine abortExecution(i,j,line,word,r1,r2)
+    subroutine abortExecution(i,j,line,word,r1,r2, iVec)
         implicit none
         integer, intent(in), optional          :: i,j
+        real(kind(1.d0)), intent(in), dimension(*), optional :: iVec
         integer, intent(in), optional          :: line
         character(len=*), intent(in), optional :: word
         real(kind(1.d0)), intent(in), optional :: r1, r2

@@ -1,3 +1,4 @@
+
 !---------------------------------------------------------------------------
 !  
 !   PowerManager.  
@@ -20,37 +21,24 @@
 !    along with OpenFOAM; if not, write to the Free Software Foundation,
 !    Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 !
-!Application
-!    General.inp
-!
-!Description
-!    Input file.
+!>\file cmdVar.f90
+!>\brief 
+!> Collects the variable read from command line.
+!>\details
+!> Collects the variable read from command line.
+!>\author
 !
 !---------------------------------------------------------------------------
 
-begin
+!>\brief 
+!> Collects the variable read from command line.
+!>\details
+!> Collects the variable read from command line.
+!>\author
+!> Andrea Facci
+module cmdVarWr
 
-GridConnection | DedicatedRetire | !NetMetering;GridConn;StandAlone
-Degradation    | False           | !True/False
-objective      | Economic        |
-!---------Initial Conditions------------------------------
-StartPoint      | 0.d0 0.d0 0.d0 0.d0 |         
-UpTime          | 0     0    0   0 |         
-DownTime        | 1     1    1   1 |         
-FirstTimeStep   | 1               |
-Algorithm       | Backward        |
-writeEnergy     | .true.          |
-writeEfficiency | .true.          |
-writeElectricRev| .true.          |
-writeThermalRev | .true.          |
-writeChillingRev| .true.          |
-writeDemand     | .true.          |
-writeInput      | .true.          |
-writePower      | .true.          |
-writeCosts      | .true.          |
-writeTrig       | .false.         |
-writeChiller    | .false.         |
-writeBoiler     | .false.         |
+!> Controls the input to the screen
+character(len=100)  :: folder
 
-end
-
+end module cmdVarWr

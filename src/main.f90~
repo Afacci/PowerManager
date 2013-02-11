@@ -106,25 +106,31 @@ select case(method)
       call minPathTopoFw(setPoint, cost)
    case('Backward')
       cDummy = 'time-constraints' 
-      allocate(setPointBw(0:nTime+1,nm), loadBw(0:nTime+1,nm))
       call allCombin(dcm=timeVinc,imax=nTv,m=2*nm,targ=cDummy) 
+!      allocate(setPointBw(0:nTime+1,nm), loadBw(0:nTime+1,nm))
+      allocate(setPoint(0:nTime+1,nm), load(0:nTime+1,nm))
       allocate(upTime(0:nTime+1,2*nm))
       allocate(minPathBw(0:nTime+1))
-      call minPathTopoBw(setPointBw, cost, upTime, minPathBw)
+      call minPathTopoBw(setPoint, cost, upTime, minPathBw)
 end select
+!---print some data to screen----
 if(verb) then
    do i=0,nTime+1
       select case(method)
          case('Forward')
            print*, i,'pointFW = ', setPoint(i,:)
          case('Backward')
-           print*, i,'pointBW = ', setPointBw(i,:), 'vertex = ', minPathBw(i)
+           print*, i,'pointBW = ', setPoint(i,:), 'vertex = ', minPathBw(i)
       end select
    enddo
 endif
 call etime(tVEc,tempo)
 print*, ' ---Elapsed Time: ', tempo, ' sec'
 
+!----write output files---
+call output(setPoint,.false.,'Results')
+
+!---end the execution----
 call endExecution
 
 end program main

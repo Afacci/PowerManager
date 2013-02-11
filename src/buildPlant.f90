@@ -46,12 +46,13 @@ use inputVar
 use plantVar
 use mathTools
 use interfaces
+use myArithmetic
 
 !---Declare Local Variables---
 implicit none
 integer :: i,j, maxsp, k, k1, k2
 integer, dimension(2)  :: ext1,ext2,ext3, ext
-character(len=100)     :: word
+character(len=100)     :: word, cdummy
 real(kind(1.d0))       :: kJ_kWh
 real(kind(1.d0)), allocatable, dimension(:,:) :: upTimeVinc, downTimeVinc
 integer,dimension(nm):: dtv, utv
@@ -131,6 +132,9 @@ enddo
 
 call allocateVar(18)
 
+sp(:,:) = rNan(1.d0)
+eSource(:) = -1
+
 j = 0
 do i=is(iT),ie(iT)
    j = j + 1 
@@ -153,21 +157,29 @@ enddo
 j=0
 do i=is(iB),ie(iB)
    j = j + 1 
-   sp(1:nSp(i),i) = spB(:,j)
-   Pmax(i) = PmaxB(j)
-   lhv(i)  = fuelLhvB(j)
-   cf(i)   = fuelCostB(j)
-   onOffCost(i) = fireCostB(j)
-   OeMCost(i)   = maintCostB(j)/3.6e3
+   sp(1:nSp(i),i)    = spB(:,j)
+   Pmax(i)           = PmaxB(j)
+   lhv(i)            = fuelLhvB(j)
+   cf(i)             = fuelCostB(j)
+   onOffCost(i)      = fireCostB(j)
+   OeMCost(i)        = maintCostB(j)/3.6e3
    etaEl(1:nSp(i),i) = -1
    etaTh(1:nSp(i),i) = etaB_(1:nSp(i),j)
    etaCh(1:nSp(i),i) = -1
-   pes(i)  = 'fuel'
-   minUpTime(i)   = minUpTimeB(j)*3.6e3
-   minDownTime(i) = minDownTimeB(j)*3.6e3
+   minUpTime(i)      = minUpTimeB(j)*3.6e3
+   minDownTime(i)    = minDownTimeB(j)*3.6e3
    do k=1,nSpB(j)
       cr(k,i) = k
    enddo
+   cdummy = adjustl(tecB(j))
+   k      = index(cdummy,'@')
+   if(cdummy(1:k-1).eq.'Trig') then
+      pes(i) = 'heat'
+      read(cdummy(k+1:),*) eSource(i) 
+   else
+      pes(i) = 'fuel'
+      eSource(i) = -1
+   endif
 enddo
 j=0
 do i=is(iC),ie(iC)
@@ -178,10 +190,10 @@ do i=is(iC),ie(iC)
    cf(i)   = -1
    etaEl(1:nSp(i),i) = -1
    etaTh(1:nSp(i),i) = -1
-   onOffCost(i) = fireCostC(j)
-   OeMCost(i)   = maintCostC(j)/3.6e3
-   minUpTime(i)   = minUpTimeC(j)*3.6e3
-   minDownTime(i) = minDownTimeC(j)*3.6e3
+   onOffCost(i)      = fireCostC(j)
+   OeMCost(i)        = maintCostC(j)/3.6e3
+   minUpTime(i)      = minUpTimeC(j)*3.6e3
+   minDownTime(i)    = minDownTimeC(j)*3.6e3
    etaCh(1:nSp(i),i) = etaC_(1:nSp(i),j)
    if(tecC(j).eq.'Absorption') pes(i) = 'heat'
    if(tecC(j).eq.'Mechanical') pes(i) = 'elec'

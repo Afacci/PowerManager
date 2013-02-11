@@ -30,7 +30,8 @@
 !>\brief Finds an entry with integer value.
 !>\details 
 !> Use this subroutine to find a specific entry in a file, when an integer value is
-!> expected in the value field, that is between the two "|". 
+!> expected in the value field, that is between the two "|". The string in the
+!> value field is associated to an integer array of dimension "n"
 !> Optionally it returns also the number of lines from the current
 !> cursor position to locate the required entry, and a logical for the precence
 !> of the required field. Optionally it is also possible to rewind the file.
@@ -56,7 +57,7 @@ interface
         character(len=100), intent(out), optional :: valore
         logical, intent(in), optional  :: rew
         logical, intent(out), optional :: isPresent
-        character(len=100), intent(in) :: entry
+        character(len=*), intent(in)   :: entry
     end subroutine findEntry
 end interface
 
@@ -68,7 +69,7 @@ integer, intent(out), optional :: valore(n)
 integer, intent(out), optional :: nRow
 logical, intent(in), optional  :: rew
 logical, intent(out), optional :: isPresent
-character(len=100), intent(in) :: entry
+character(len=*), intent(in)   :: entry
 logical :: isPresent_
 integer :: nRow_, i
 logical :: rew_
@@ -97,7 +98,9 @@ end subroutine iFindEntry
 !>\brief Finds an entry with double precision value.
 !>\details 
 !> Use this subroutine to find a specific entry in a file, when a double precision value is
-!> expected. in the value field, that is between the two "|". Optionally it returns also the number of lines from the current
+!> expected. in the value field, that is between the two "|". The string in the
+!> value field is associated to  double precision array of dimension "n"
+!> Optionally it returns also the number of lines from the current
 !> cursor position to locate the required entry, and a logical for the precence
 !> of the required field. Optionally it is also possible to rewind the file.
 !>\param[in]  entry     the keyword to be located
@@ -122,7 +125,7 @@ interface
         character(len=100), intent(out), optional :: valore
         logical, intent(in), optional  :: rew
         logical, intent(out), optional :: isPresent
-        character(len=100), intent(in) :: entry
+        character(len=*), intent(in)   :: entry
     end subroutine findEntry
 end interface
 
@@ -134,7 +137,7 @@ integer, intent(out), optional :: nRow
 real(kind(1.d0)), intent(out), optional  :: valore(n)
 logical, intent(in), optional  :: rew
 logical, intent(out), optional :: isPresent
-character(len=100), intent(in) :: entry
+character(len=*), intent(in)   :: entry
 logical :: isPresent_
 integer :: nRow_, i
 logical :: rew_
@@ -147,7 +150,6 @@ if(present(rew)) then
 else
     rew_ = .false.
 endif
-
 
 call findEntry(entry,theUnit,rew_,value,isPresent_,nRow_)
 if(present(isPresent)) isPresent = isPresent_
@@ -164,7 +166,9 @@ end subroutine dFindEntry
 !>\brief Finds an entry with character value.
 !>\details 
 !> Use this subroutine to find a specific entry in a file, when an character value is
-!> expected. in the value field, that is between the two "|". Optionally it returns also the number of lines from the current
+!> expected. in the value field, that is between the two "|". The string in the
+!> value field is associated to a character array of dimension "n"
+!> Optionally it returns also the number of lines from the current
 !> cursor position to locate the required entry, and a logical for the precence
 !> of the required field. Optionally it is also possible to rewind the file.
 !> Note that the maximum length of each element of the "value" vector is 100.
@@ -191,7 +195,7 @@ interface
         character(len=100), intent(out), optional :: valore
         logical, intent(in), optional  :: rew
         logical, intent(out), optional :: isPresent
-        character(len=100), intent(in) :: entry
+        character(len=*), intent(in) :: entry
     end subroutine findEntry
 end interface
 
@@ -203,7 +207,7 @@ integer, intent(out), optional :: nRow
 character(len=100), intent(out), optional :: valore(n)
 logical, intent(in), optional  :: rew
 logical, intent(out), optional :: isPresent
-character(len=100), intent(in) :: entry
+character(len=*), intent(in) :: entry
 logical :: isPresent_
 integer :: nRow_, i
 logical :: rew_
@@ -257,7 +261,7 @@ integer, intent(out), optional :: nRow
 character(len=100), intent(out), optional :: valore
 logical, intent(in), optional  :: rew
 logical, intent(out), optional :: isPresent
-character(len=100), intent(in) :: entry
+character(len=*), intent(in)   :: entry
 integer :: nRow_, i
 logical :: rew_
 

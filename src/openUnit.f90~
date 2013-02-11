@@ -20,37 +20,33 @@
 !    along with OpenFOAM; if not, write to the Free Software Foundation,
 !    Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 !
-!Application
-!    General.inp
-!
-!Description
-!    Input file.
+!>\file openUnit.f90
+!>\brief checks file presence and opens the unit.
+!>\author 
+!>  Andrea Facci.
 !
 !---------------------------------------------------------------------------
 
-begin
+!>\brief checks file presence and opens the unit.
+!>\details checks file presence and opens the unit.
+!>\param[in]  fl    The file name
+!>\param[in]  unt   The unit number
+!>\param[out] prsnt Logical for file presence.
+!>\author 
+!> Andrea Facci.
+subroutine openUnit(fl,unt,prsnt)
 
-GridConnection | DedicatedRetire | !NetMetering;GridConn;StandAlone
-Degradation    | False           | !True/False
-objective      | Economic        |
-!---------Initial Conditions------------------------------
-StartPoint      | 0.d0 0.d0 0.d0 0.d0 |         
-UpTime          | 0     0    0   0 |         
-DownTime        | 1     1    1   1 |         
-FirstTimeStep   | 1               |
-Algorithm       | Backward        |
-writeEnergy     | .true.          |
-writeEfficiency | .true.          |
-writeElectricRev| .true.          |
-writeThermalRev | .true.          |
-writeChillingRev| .true.          |
-writeDemand     | .true.          |
-writeInput      | .true.          |
-writePower      | .true.          |
-writeCosts      | .true.          |
-writeTrig       | .false.         |
-writeChiller    | .false.         |
-writeBoiler     | .false.         |
+!---Declare Module usage---
 
-end
+!---Declare Local Variables---
+implicit none
+character(len=*), intent(in) :: fl
+integer         , intent(in) :: unt
+logical         , intent(out):: prsnt
 
+print*, 'beh?',fl
+
+inquire(file = fl, exist = prsnt)
+if(prsnt) open(unit = unt, file = fl)
+
+end subroutine openUnit

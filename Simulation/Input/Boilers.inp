@@ -34,7 +34,7 @@ begin
 
 Number             | 1        | !total number of trigenerative equipments
 Power              | 800.d0   | !rated power
-Technology         | Fuel     |
+HeatSource         | Trig@2   |
 DegradationRate    | 0.0d0    | !degradation rate per each operationf hour
 FuelCost           | 0.35d0   | !euro/kg
 FuelLHV            | 35.0e3   | !kJ/kg
@@ -47,7 +47,7 @@ SetPoint           | (0 0.5 0.7 0.9 1) | !Possible set points
 !SetPoint           | (0  0.5 1) | !Possible set points
 Size               | (1)          |  !Scale the size of the equipmente     
 
-ThermalEfficiency  | (0.0 0.60     |
+ThermalEfficiency  | (0.0  0.60    |
                    |   0.3 0.70    |
                    |   0.5 0.8     |
                    |   1.0 0.9)    | 

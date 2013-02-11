@@ -17,19 +17,19 @@
 !    for more details.
 !
 !    You should have received a copy of the GNU General Public License
-!    along with PowerManager; if not, write to the Free Software Foundation,
+!    along with OpenFOAM; if not, write to the Free Software Foundation,
 !    Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 !
-!>\file readBoiler.f90
-!>\brief Reads Boiler.inp file
+!>\file readTrigen.f90
+!>\brief Reads Trigeneration.inp file
 !>\author 
 !>     Andrea Facci.
 !
 !---------------------------------------------------------------------------
 
-!>\brief Reads Boiler.inp file
+!>\brief Reads Trigeneration.inp file
 !>\details 
-!> This subroutine reads the file "Boilers.inp". The procedure looks for each specific entry
+!> This subroutine reads the file "Trigeneration.inp". The procedure looks for each specific entry
 !> in the "keyword field", and associates the value in the "value" field, to the
 !> corresponding variable. If the desired entry is not present returns an error
 !> message and aborts the execution. The structure of the input file is
@@ -58,30 +58,31 @@
 !>\author 
 !>     Andrea Facci.
 
-subroutine readBoiler
+
+subroutine readTrigen
 
 !---Declare Unit usage---
 use inputVar
 use fileTools
-use interfaces
 use cmdVar
+use interfaces
 
 implicit none
 
 !---Declare Local Variables---
-integer              :: genUnit = 107
-character(len=50)    :: inputFile = './Input/Boilers.inp'
+integer              :: genUnit = 106
+character(len=50)    :: inputFile = './Input/Trigeneration.inp'
 logical              :: filePresent
-character(len=100)   :: buffer, keyword, value,vector,elements,value_
-integer              :: firstLine, line, i, nInp, nRow, n1, n2, x, j, il, nl
-logical,dimension(15)  :: isPresent = .false.
-integer,dimension(100) :: dummy
+character(len=100)   :: buffer,keyword, value,vector,elements,value_
+integer              :: firstLine, i, nInp, line, nRow, n1, n2, x, j, il, nl
+logical,dimension(17) :: isPresent = .false.
+integer, dimension(100) :: dummy
 integer              :: error
 
 !---Check File Presence---
 inquire(file = inputFile, exist = filePresent)
 if(.not.filePresent) then
-   call abortExecution(1,3)
+   call abortExecution(1,2)
 else
    open(unit = genUnit, file = inputFile)
 endif
@@ -98,115 +99,142 @@ enddo
 !---Look for the the "Number" entry that is neede for most of the other entries---
 buffer = 'Number'
 call iFindEntry(buffer,1,genUnit,.true.,dummy(1),isPresent(1))
-nBoi = dummy(1)
-if(nBoi.eq.0) return
-if(.not.isPresent(1)) call abortExecution(5,1)
-call allocateVar(7)
+nTrig = dummy(1)
+if(.not.isPresent(1)) call abortExecution(3,5)
+call allocateVar(1)
 
-line = firstLine
 !---read the input list---
+line = firstLine
 do 
-    call readKeyword(genUnit,.false., keyword,value,error, nl)
-    if (error.eq.1) call abortExecution(0,3)
+    call readKeyword(genUnit,.false., keyword,value,error,nl)
     line = line + nl
+    if(error.eq.1) call abortExecution(0,2,nl)
     select case(keyword)
        case('end')
           exit
+       case('Technology')
+          read(value,*) (tecT(i), i=1,nTrig)
+          isPresent(15) = .true.
        case('Power')
-          read(value,*) (pMaxB(i), i=1,nBoi)
+          read(value,*) (pMaxT(i), i=1,nTrig)
           isPresent(2) = .true.
        case('DegradationRate')
-          read(value,*) (degRateB(i), i=1,nBoi)
+          read(value,*) (degRateT(i), i=1,nTrig)
           isPresent(3) = .true.
        case('FuelCost')
-          read(value,*) (fuelCostB(i), i=1,nBoi)
+          read(value,*) (fuelCostT(i), i=1,nTrig)
           isPresent(4) = .true.
        case('FuelLHV')
-          read(value,*) (fuelLHVB(i), i=1,nBoi)
+          read(value,*) (fuelLHVT(i), i=1,nTrig)
           isPresent(5) = .true.
        case('Investment')
-          read(value,*) (invB(i), i=1,nBoi)
+          read(value,*) (invT(i), i=1,nTrig)
           isPresent(6) = .true.
        case('Lifetime')
-          read(value,*) (lifeB(i), i=1,nBoi)
+          read(value,*) (lifeT(i), i=1,nTrig)
           isPresent(7) = .true.
        case('OnOffCost')
-          read(value,*) (fireCostB(i), i=1,nBoi)
+          read(value,*) (fireCostT(i), i=1,nTrig)
           isPresent(8) = .true.
        case('OeMCost')
-          read(value,*) (maintCostB(i), i=1,nBoi)
+          read(value,*) (maintCostT(i), i=1,nTrig)
           isPresent(9) = .true.
        case('SetPoint')
           isPresent(10) = .true.
           value_ = value
-          do i=1,nBoi
-              nSpB(i) = hCount(value_)
+          do i=1,nTrig
+              nSpT(i) = hCount(value_)
               n2 = index(value_,')') + 1
               value_ =  value_(n2 + 2:)
           enddo
-          call allocateVar(8)
-          do i = 1, nBoi
+          call allocateVar(2)
+          do i = 1, nTrig
              n1 = index(value,'(') + 1
              n2 = index(value,')') - 1
              vector = trim(value(n1:n2))
-             read(vector,*) (spB(j,i), j=1,nSpB(i))
+             read(vector,*) (spT(j,i), j=1,nSpT(i))
              value =  value(n2 + 2:)
           enddo
        case('Size')
            value_ = value
            isPresent(11) = .true.
-           do i=1,nBoi
-               nSizeB(i) = hCount(value_)
+           do i=1,nTrig
+               nSizeT(i) = hCount(value_)
                n2 = index(value_,')') - 1
                value_ =  value_(n2 + 2:)
            enddo
-           call allocateVar(9)
-           do i = 1, nBoi
+           call allocateVar(3)
+           do i = 1, nTrig
               n1 = index(value,'(') + 1
               n2 = index(value,')') - 1
               vector = trim(value(n1:n2))
-              read(vector,*) (kSizeB(i,j), j=1,nSizeB(i))
+              read(vector,*) (kSizeT(i,j), j=1,nSizeT(i))
               value =  value(n2 + 2:)
            enddo
-       case('ThermalEfficiency')
+       case('ElettrEfficiency')
               isPresent(12) = .true.
               backspace(genUnit)
               line = line - 1
-              do i = 1,nBoi
-                  nEtaB(i) = vCount(genUnit,.false.)
+              do i = 1,nTrig
+                  nEtaElT(i) = vCount(genUnit,.false.)
               enddo
-              j = sum(nEtaB)
-              call allocateVar(10)
+              j = sum(nEtaElT)
+              call allocateVar(4)
               call rewUnit(genUnit,j)
-              do i = 1, nBoi
-                 etaB(:,:,i) =  dmatrixRead(genUnit,nEtaB(i),2)
+              do i = 1, nTrig
+                 etaElT(:,:,i) =  dmatrixRead(genUnit,nEtaElT(i),2)
               enddo
               line = line + j
-       case('Number')
-             continue
-       case('HeatSource')
-             isPresent(13) = .true.
-             read(value,*) (tecB(i), i=1,nBoi)
+       case('ThermalEfficiency')
+              isPresent(13) = .true.
+              backspace(genUnit)
+              line = line - 1
+              do i = 1,nTrig
+                  nEtaThT(i) = vCount(genUnit,.false.)
+              enddo
+              j = sum(nEtaThT)
+              call allocateVar(5)
+              call rewUnit(genUnit,j)
+              do i = 1, nTrig
+                 etaThT(:,:,i) =  dmatrixRead(genUnit,nEtaThT(i),2)
+              enddo
+              line = line + j
+       case('ChillingEfficiency')
+              isPresent(14) = .true.
+              backspace(genUnit)
+              line = line - 1 
+              do i = 1,nTrig
+                  nEtaChT(i) = vCount(genUnit,.false.)
+              enddo
+              j = sum(nEtaChT)
+              call allocateVar(6)
+              call rewUnit(genUnit,j)
+              do i = 1, nTrig
+                 etaChT(:,:,i) =  dmatrixRead(genUnit,nEtaChT(i),2)
+              enddo
+              line = line + j
        case('MinUpTime')
-             isPresent(14) = .true.
-             read(value,*) (minUpTimeB(i), i=1,nBoi)
+              read(value,*) (minUpTimeT(i), i=1,nTrig)
+              isPresent(16) = .true.
        case('MinDownTime')
-             isPresent(15) = .true.
-             read(value,*) (minDownTimeB(i), i=1,nBoi)
-       case(' ') 
-            if(verb) call warning(4,3,line=line)
+              read(value,*) (minDownTimeT(i), i=1,nTrig)
+              isPresent(17) = .true.
+       case('Number')
+              continue
+       case(' ')
+            if(verb) call warning(4,2,line=line)
        case default
-            if(.not.silent) call warning(1,3,line=line,word=keyword)
+            call warning(1,2,line=line,word=keyword)
     end select
 enddo
 
 !---check if all the variablea were read---
 nInp = size(isPresent)
 do i = 1,nInp
-    if(.not.isPresent(i)) call abortExecution(5,i)
+    if(.not.isPresent(i)) call abortExecution(4,i)
 enddo
 
 close(genUnit)
 100 format(A100)
 
-end subroutine readBoiler
+end subroutine readTrigen

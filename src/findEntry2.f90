@@ -57,7 +57,7 @@ interface
         character(len=100), intent(out), optional :: valore
         logical, intent(in), optional  :: rew
         logical, intent(out), optional :: isPresent
-        character(len=100), intent(in) :: entry
+        character(len=*), intent(in)   :: entry
     end subroutine findEntry
 end interface
 
@@ -69,7 +69,7 @@ integer, intent(out), optional :: valore(n)
 integer, intent(out), optional :: nRow
 logical, intent(in), optional  :: rew
 logical, intent(out), optional :: isPresent
-character(len=100), intent(in) :: entry
+character(len=*), intent(in)   :: entry
 logical :: isPresent_
 integer :: nRow_, i
 logical :: rew_
@@ -125,7 +125,7 @@ interface
         character(len=100), intent(out), optional :: valore
         logical, intent(in), optional  :: rew
         logical, intent(out), optional :: isPresent
-        character(len=100), intent(in) :: entry
+        character(len=*), intent(in)   :: entry
     end subroutine findEntry
 end interface
 
@@ -137,7 +137,7 @@ integer, intent(out), optional :: nRow
 real(kind(1.d0)), intent(out), optional  :: valore(n)
 logical, intent(in), optional  :: rew
 logical, intent(out), optional :: isPresent
-character(len=100), intent(in) :: entry
+character(len=*), intent(in)   :: entry
 logical :: isPresent_
 integer :: nRow_, i
 logical :: rew_
@@ -150,7 +150,6 @@ if(present(rew)) then
 else
     rew_ = .false.
 endif
-
 
 call findEntry(entry,theUnit,rew_,value,isPresent_,nRow_)
 if(present(isPresent)) isPresent = isPresent_
@@ -196,7 +195,7 @@ interface
         character(len=100), intent(out), optional :: valore
         logical, intent(in), optional  :: rew
         logical, intent(out), optional :: isPresent
-        character(len=100), intent(in) :: entry
+        character(len=*), intent(in) :: entry
     end subroutine findEntry
 end interface
 
@@ -208,7 +207,7 @@ integer, intent(out), optional :: nRow
 character(len=100), intent(out), optional :: valore(n)
 logical, intent(in), optional  :: rew
 logical, intent(out), optional :: isPresent
-character(len=100), intent(in) :: entry
+character(len=*), intent(in) :: entry
 logical :: isPresent_
 integer :: nRow_, i
 logical :: rew_
@@ -262,7 +261,7 @@ integer, intent(out), optional :: nRow
 character(len=100), intent(out), optional :: valore
 logical, intent(in), optional  :: rew
 logical, intent(out), optional :: isPresent
-character(len=100), intent(in) :: entry
+character(len=*), intent(in)   :: entry
 integer :: nRow_, i
 logical :: rew_
 
