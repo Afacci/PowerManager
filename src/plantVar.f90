@@ -34,15 +34,16 @@
 !  Andrea Facci.
 module plantVar
 
-real(kind(1.d0)), allocatable, dimension(:,:) :: etaElT_, etaThT_, etaChT_, etaB_, etaC_, &
-                                                 sp,cRef
-real(kind(1.d0)), allocatable, dimension(:,:) :: etaEl, etaTh, etaCh, timeVinc
-integer         , allocatable, dimension(:,:) :: cr
-real(kind(1.d0)), allocatable, dimension(:)   :: Pmax, dt, cf, lhv, onOffCost, OeMCost, minUpTime, minDownTime
-character(len=4), allocatable, dimension(:)   :: pes
-integer                                       :: nSpTot,nm, iT, iB, iC
-integer,                       dimension(3)   :: is,ie
-integer,          allocatable, dimension(:)   :: nSp, nTv, eSource
+real(kind(1.d0)), allocatable, dimension(:,:)   :: etaElT_, etaThT_, etaChT_, etaB_, etaC_, &
+                                                   sp,cRef
+real(kind(1.d0)), allocatable, dimension(:,:,:) :: envCorr
+real(kind(1.d0)), allocatable, dimension(:,:)   :: etaEl, etaTh, etaCh, timeVinc
+integer         , allocatable, dimension(:,:)   :: cr
+real(kind(1.d0)), allocatable, dimension(:)     :: Pmax, dt, cf, lhv, onOffCost, OeMCost, minUpTime, minDownTime
+character(len=4), allocatable, dimension(:)     :: pes
+integer                                         :: nSpTot,nm, iT, iB, iC
+integer,                       dimension(3)     :: is,ie
+integer,          allocatable, dimension(:)     :: nSp, nTv, eSource
 
 
 end module plantVar

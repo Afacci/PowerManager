@@ -83,19 +83,27 @@ MinDownTime        | 3 0            |
 
 !---Correction parameters----
 
-ThermalEfficiency  | (0.0 0.54      |
-                   |   1.0 0.55)    | 
-                   | (0.0 0.54      |
-                   |   1.0 0.55)    | 
-PresCorrection     | (pres  eta Pmax )|
-                   |                  |
-                   |                  |
-TempCorrection     | (temp  eta Pmax )|
-                   |                  |
-                   |                  |
-AltCorrection      | (alt  eta Pmax ) | 
-                   |                  |
-                   |                  |
+PresCorrection     | pres  etaEl etaTh etaCh pmax     |
+                   | (0.99     1.0  1.0   1.0    1.0  |
+                   |  1.01     1.0  1.0   1.0    1.0  |
+                   |  1.02     1.0  1.0   1.0    1.0) |
+                   | ( 0.99    1.0  1.0   1.0    1.0  |
+                   |   1.01    1.0  1.0   1.0    1.0  |
+                   |   1.02    1.0  1.0   1.0    1.0) |
+TempCorrection     | temp  etaEl etaTh etaCh  pmax|
+                   | (10.0     1.0  1.5   1.0    1.0  |
+                   |  15.0     1.0  1.0   1.0    1.0  |
+                   |  20.0     1.0  0.5   0.5    0.5 )|
+                   | (10.0     1.0  1.0   1.0    1.0  |
+                   |  15.0     1.0  1.0   1.0    1.0  |
+                   |  25.0     1.0  1.0   1.0    1.0 ) |
+AltCorrection      |  alt  eta etaTh etaCh pmax   | 
+                   | (50.0     1.0  1.0   1.0    1.0  |
+                   |  100.0    1.0  1.0   1.0    1.0  |
+                   |  150.0    1.0  1.0   1.0    1.0 ) |
+                   | (50.0     1.0  1.0   1.0    1.0  |
+                   |  100.0    1.0  1.0   1.0    1.0  |
+                   |  150.0    1.0  1.0   1.0    1.0 ) |
 
 end
     

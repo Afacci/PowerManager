@@ -199,11 +199,11 @@ do
              read(value,*) (minDownTimeB(i), i=1,nBoi)
        case('TempCorrection')
             read(value,*) (param(i), i=1,3)
-            do i=1,5
+            do i=1,3
                select case(param(i))
                   case('temp')
                      nt = i
-                  case('etaTh')
+                  case('eta')
                      net = i
                   case('pmax')
                      np = i
@@ -230,7 +230,7 @@ do
                select case(param(i))
                   case('pres')
                      nt = i
-                  case('etaTh')
+                  case('eta')
                      net = i
                   case('pmax')
                      np = i
@@ -257,7 +257,7 @@ do
                select case(param(i))
                   case('alt')
                      nt = i
-                  case('etaTh')
+                  case('eta')
                      net = i
                   case('pmax')
                      np = i
@@ -272,7 +272,7 @@ do
             call rewUnit(genUnit,n)
             do i=1,nBoi
                matrix = rNaN(1.d0)
-               matrix = dmatrixRead(genUnit,nacB(i),5)
+               matrix = dmatrixRead(genUnit,nacB(i),3)
                altCorrB(:,1,i) = matrix(:,nt)
                altCorrB(:,2,i) = matrix(:,net)
                altCorrB(:,3,i) = matrix(:,np)

@@ -73,15 +73,15 @@ do i=is(iB),ie(iB)
    endif
 enddo
 
-p = chProd(c)
+p = chProd(c,t)
 u = sum(uCh(t,:))
 if(p.lt.u)  then
    constraints = .false.
    return
 endif
 
-p = thProd(c) 
-u = sum(uTh(t,:)) + thSelfCons(c)
+p = thProd(c,t) 
+u = sum(uTh(t,:)) + thSelfCons(c,t)
 if(p.lt.u) constraints = .false.
 
 

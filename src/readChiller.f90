@@ -65,6 +65,7 @@ use inputVar
 use fileTools
 use interfaces
 use cmdVar
+use myArithmetic
 
 implicit none
 
@@ -78,6 +79,10 @@ logical,dimension(13):: isPresent = .false.
 character(len=100)   :: chKind(2)
 integer, dimension(10) :: dummy
 integer              :: error
+character(len=20), dimension(3) :: param
+integer :: n, nt, nee, net, nec, np
+real(kind(1.d0)), allocatable, dimension(:,:) :: matrix
+
 
 !---Check File Presence---
 inquire(file = inputFile, exist = filePresent)
@@ -191,6 +196,87 @@ do
        case('MinDownTime')
              isPresent(13) = .true.
              read(value,*) (minDownTimeC(i), i=1,nChi)
+       case('TempCorrection')
+            read(value,*) (param(i), i=1,3)
+            do i=1,3
+               select case(param(i))
+                  case('temp')
+                     nt = i
+                  case('eta')
+                     net = i
+                  case('pmax')
+                     np = i
+               end select
+            enddo
+            do i=1,nCHi
+               ntcC(i) = vCount(genUnit,.false.)
+            enddo
+            call allocateVar(29,maxval(ntcC))
+            allocate(matrix(maxval(ntcC),3))
+            n = sum(ntcC)
+            call rewUnit(genUnit,n)
+            do i=1,nChi
+               matrix = rNaN(1.d0)
+               matrix = dmatrixRead(genUnit,ntcC(i),3)
+               tempCorrC(:,1,i) = matrix(:,nt)
+               tempCorrC(:,2,i) = matrix(:,net)
+               tempCorrC(:,3,i) = matrix(:,np)
+            enddo
+            deallocate(matrix)
+       case('PresCorrection')
+            read(value,*) (param(i), i=1,3)
+            do i=1,3
+               select case(param(i))
+                  case('pres')
+                     nt = i
+                  case('eta')
+                     net = i
+                  case('pmax')
+                     np = i
+               end select
+            enddo
+            do i=1,nCHi
+               npcC(i) = vCount(genUnit,.false.)
+            enddo
+            call allocateVar(30,maxval(npcC))
+            allocate(matrix(maxval(npcC),3))
+            n = sum(npcC)
+            call rewUnit(genUnit,n)
+            do i=1,nCHi
+               matrix = rNaN(1.d0)
+               matrix = dmatrixRead(genUnit,npcC(i),3)
+               presCorrC(:,1,i) = matrix(:,nt)
+               presCorrC(:,2,i) = matrix(:,net)
+               presCorrC(:,3,i) = matrix(:,np)
+            enddo
+            deallocate(matrix)
+       case('AltCorrection')
+            read(value,*) (param(i), i=1,3)
+            do i=1,3
+               select case(param(i))
+                  case('alt')
+                     nt = i
+                  case('eta')
+                     net = i
+                  case('pmax')
+                     np = i
+               end select
+            enddo
+            do i=1,nCHi
+               nacC(i) = vCount(genUnit,.false.)
+            enddo
+            call allocateVar(31,maxval(nacC))
+            allocate(matrix(maxval(nacC),3))
+            n = sum(nacB)
+            call rewUnit(genUnit,n)
+            do i=1,nCHi
+               matrix = rNaN(1.d0)
+               matrix = dmatrixRead(genUnit,nacC(i),3)
+               altCorrC(:,1,i) = matrix(:,nt)
+               altCorrC(:,2,i) = matrix(:,net)
+               altCorrC(:,3,i) = matrix(:,np)
+            enddo
+            deallocate(matrix)
        case(' ')
             if(verb) call warning(4,4,line=line)
        case default

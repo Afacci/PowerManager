@@ -34,7 +34,7 @@ begin
 
 Number             | 1          | !total number of trigenerative equipments
 Technology         | Mechanical | !Mechanical or absorption chiller?
-Power              | 520.d0     | !rated power
+Power              | 720.d0     | !rated power
 DegradationRate    | 0.0        | !degradation rate per each operationf hour
 Investment         | 300.0e3    | !euro
 Lifetime           | 25.d0      | !years       
@@ -53,5 +53,23 @@ Efficiency         | (0.0 0.03      |
 MinUpTime          |0               |                   
 MinDownTime        |0               |                   
 
-end
+!---Correction parameters----
+
+
+PresCorrection | pres eta  pmax |
+               | (0.99 0.9 0.9 |
+               |  1.01 1.0 1.0 |
+               |  1.02 1.1 1.1) |
+
+TempCorrection | temp eta  pmax|
+               | (10.0 1.1 1.1 |
+               |  15.0 1.0 1.0 |
+               |  25.0 1.0 0.9 ) |
+
+AltCorrection | alt eta  pmax |
+              | (50.0 1.1 1.1 |
+              | 100.0 1.0 1.0 |
+              | 150.0 0.9 0.9 ) |
+
+ end
     

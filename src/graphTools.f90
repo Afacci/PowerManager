@@ -241,6 +241,9 @@ contains
    enddo
    nt(nTime+1) = 1
    timePoint(nTime+1,1) = nPoint + 1 
+   do i=1,nTime
+      if(nt(i).eq.0) call abortExecution(18,i)
+   enddo
   
    allocate(pointCost(0:n+1),pointLoad(0:n+1,nm),pointTime(0:n+1))
    allocate(startLoad(nm))

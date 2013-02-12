@@ -179,6 +179,8 @@ select case(i)
     case(17)
         print*, 'Wrong number of entry for "Climate" entry in  Environment.inp:' 
         print*, 'Need to insert the same number of time entry in Load.inp.'
+    case(18)
+        print*, 'Zero feasible plant states for time-step number ', j 
     case default
         continue
 end select

@@ -59,13 +59,13 @@ select case(equip)
    case('Trigeneration')
      i = num + is(iT) - 1
      cc = sp(c, i)
-     pEl_ = pMax(i)*cc
+     pEl_ = pMax(i)*cc*envCorr(t,i,4)
      if(present(pTh).or.present(pCh).or.present(eIn).or.present(mf).or.present(cfu)) then
-        pIn_ = pEl_/etaEl(c,i)
+        pIn_ = pEl_/(etaEl(c,i)*envCorr(t,i,1))
      endif
      if(present(pEl)) pEl = pEl_
-     if(present(pTh)) pTh = pIn_*etaTh(c,i)
-     if(present(pCh)) pCh = pIn_*etaCh(c,i)
+     if(present(pTh)) pTh = pIn_*etaTh(c,i)*envCorr(t,i,2)
+     if(present(pCh)) pCh = pIn_*etaCh(c,i)*envCorr(t,i,3)
      if(present(eIn)) eIn = Pin_
      if(present(mf))  mf  = pIn_/lhv(i)
      if(present(cfu))  cfu  = pIn_*cf(i)/lhv(i)*dt(t)
@@ -99,9 +99,9 @@ select case(equip)
         stop
      endif
      cc = sp(c, i)
-     pTh_ = pMax(i)*cc
+     pTh_ = pMax(i)*cc*envCorr(t,i,4)
      if(present(eIn).or.present(mf).or.present(cfu)) then
-        pIn_ = pTh_/etaTh(c,i)
+        pIn_ = pTh_/(etaTh(c,i)*envCorr(t,i,2))
      endif
      if(present(mf).or.present(cfu))  then 
         if(pes(i).eq.'fuel') then
@@ -147,9 +147,9 @@ select case(equip)
         print*, 'Fatal Error in performaces call. Chillers does not support fuel mass flow'
         stop
      endif
-     pCh_ = pMax(i)*cc
+     pCh_ = pMax(i)*cc*envCorr(t,i,4)
      if(present(pCh)) pCh = pCh_
-     if(present(eIn)) eIn = pCh_/etaCh(c,i)
+     if(present(eIn)) eIn = pCh_/(etaCh(c,i)*envCorr(t,i,3))
      if(present(cm)) then
         if(cc.gt.0.d0) then
            cm = OeMcost(i)*dt(t)

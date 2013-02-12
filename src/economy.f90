@@ -95,12 +95,12 @@ real(kind(1.d0)) :: p, u, rVend
 n = size(uEl,2)
 
 if(gridConnection.ne.'StandAlone') then
-    p = elProd(c)
+    p = elProd(c,t)
     u = 0
     do i=1,n
        u = u + uEl(t,i)
     enddo
-    u = u + elSelfCons(c)
+    u = u + elSelfCons(c,t)
 endif
 rVend = 0.d0
 do i=1,n
@@ -244,7 +244,7 @@ real(kind(1.d0)),dimension(nTrig+nBoi)     :: ein
 
 !---Function Body
 
-ein  = fuelCons(c)
+ein  = fuelCons(c,t)
 fuelCost = 0.d0
 n = nTrig + nBoi
 do i=1,n
@@ -385,13 +385,13 @@ integer          :: n, i
 real(kind(1.d0)) :: p, u
 
 if(gridConnection.ne.'StandAlone') then
-    p = elProd(c)
+    p = elProd(c,t)
     u = 0
     n = size(uEl,2)
     do i=1,n
        u = u + uEl(t,i)
     enddo
-    u = u + elSelfCons(c)
+    u = u + elSelfCons(c,t)
 endif
 
 select case(gridConnection)

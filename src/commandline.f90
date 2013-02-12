@@ -74,14 +74,6 @@ do while(i.lt.numarg)
       print*,' use -help option for the known options                      '
       print*,'-------------------------------------------------------------'
    end select    
-!   if(.not.esiste) then
-!      print*,'============================================================='
-!      write(*,100)trim(riga)
-!      print*,'Digitare OneD -help per conoscere le opzioni possibili       '
-!      print*,'Per continuare ugualmente premere invio oppure q per abortire'
-!      print*,'============================================================='
-!      pause
-!   endif      
 enddo
 
 100 format(' Unknown option',2X,A,2X,' will be ignored')

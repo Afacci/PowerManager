@@ -93,6 +93,6 @@ integer, allocatable, dimension(:)            :: nld, nlp
 
 !--environment.inp variables
 real(kind(1.d0)), allocatable, dimension(:) :: pAmb, tAmb
-real(kind(1.d0))                            :: Altitude
+real(kind(1.d0)), dimension(1)              :: Altitude
 
 end module inputVar

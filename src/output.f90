@@ -135,7 +135,7 @@ subroutine output(setPoint,postProcessing,path)
      write(u,*)
      do i=1,nTime
         kk = setPoint(i,:)
-        write(u,'(5(ES9.2E2,11X))') t(i), elProd(kk), thProd(kk), chProd(kk),sum(fuelCons(kk))
+        write(u,'(5(ES9.2E2,11X))') t(i), elProd(kk,i), thProd(kk,i), chProd(kk,i),sum(fuelCons(kk,i))
      enddo
   endif
 
@@ -155,7 +155,7 @@ subroutine output(setPoint,postProcessing,path)
      write(u,*)
      do i=1,nTime
         kk = setPoint(i,:)
-        write(u,'(5(ES9.2E2,11X))') t(i), elProd(kk)*dt(i), thProd(kk)*dt(i), chProd(kk)*dt(i),sum(fuelCons(kk))*dt(i)
+        write(u,'(5(ES9.2E2,11X))') t(i), elProd(kk,i)*dt(i), thProd(kk,i)*dt(i), chProd(kk,i)*dt(i),sum(fuelCons(kk,i))*dt(i)
      enddo
   endif
 
@@ -312,7 +312,7 @@ subroutine output(setPoint,postProcessing,path)
      do i=1,nTime
         write(u,'(ES8.2E2,2X)', advance='no') t(i)
         kk = setPoint(i,:)
-        gg  = energyInput(kk)
+        gg  = energyInput(kk,i)
         do j=1,nm
            write(u,'(ES8.2E2,10X)', advance='no') gg(j)
         enddo
