@@ -146,7 +146,7 @@ do
           do i=1,nBoi
               nSpB(i) = hCount(value_)
               n2 = index(value_,')') + 1
-              value_ =  value_(n2 + 2:)
+              value_ =  value_(n2 + 1:)
           enddo
           call allocateVar(8)
           do i = 1, nBoi
@@ -161,8 +161,8 @@ do
            isPresent(11) = .true.
            do i=1,nBoi
                nSizeB(i) = hCount(value_)
-               n2 = index(value_,')') - 1
-               value_ =  value_(n2 + 2:)
+               n2 = index(value_,')') + 1
+               value_ =  value_(n2 + 1:)
            enddo
            call allocateVar(9)
            do i = 1, nBoi

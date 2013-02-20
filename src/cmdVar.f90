@@ -39,7 +39,7 @@
 module cmdVar
 
 !> Controls the input to the screen
-logical :: silent,vsilent,verb
+logical :: silent,vsilent,verb, debug
 character(len=100)  :: out
 
 end module cmdVar

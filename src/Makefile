@@ -2,7 +2,7 @@
 .SUFFIXES: .f90 .mod .o .f .i
 
 PROGRAM     = PowerManager
-DEST        = ../Simulation/
+DEST        = ~/bin/
 VERSION     = -1.0
 OBJDIR      = ../obj/
 #----------ifort compiler options-------------------------------------------------
@@ -11,7 +11,7 @@ OBJDIR      = ../obj/
 #DEB         = -check all -traceback -override-limits -fpp #-warn all -C -CV -CB 
 #----------gfortran compiler options----------------------------------------------
 FC          = gfortran
-OPT         = -O3 #-pg 
+OPT         = -O3 -mcmodel=large #-pg 
 DEB         = -fbacktrace -cpp -fbounds-check
 #---------------------------------------------------------------------------------
 #VPATH       = ./ 

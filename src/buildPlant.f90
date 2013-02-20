@@ -225,6 +225,7 @@ do j=is(iC),ie(iC)
    aCorr(j,4) = rdummy2(1)
 enddo
 
+envCorr = rNaN(1.d0)
 do i=1,nTime
    do j = 1,nm
       do k = 1,4 
@@ -284,7 +285,7 @@ j=0
 do i=is(iC),ie(iC)
    j = j + 1 
    sp(1:nSp(i),i) = spC(1:nSp(i),j)
-   Pmax = PmaxC(j)
+   Pmax(i) = PmaxC(j)
    lhv(i)  = -1
    cf(i)   = -1
    etaEl(1:nSp(i),i) = -1

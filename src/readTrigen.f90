@@ -149,7 +149,7 @@ do
           do i=1,nTrig
               nSpT(i) = hCount(value_)
               n2 = index(value_,')') + 1
-              value_ =  value_(n2 + 2:)
+              value_ =  value_(n2 + 1:)
           enddo
           call allocateVar(2)
           do i = 1, nTrig
@@ -164,8 +164,8 @@ do
            isPresent(11) = .true.
            do i=1,nTrig
                nSizeT(i) = hCount(value_)
-               n2 = index(value_,')') - 1
-               value_ =  value_(n2 + 2:)
+               n2 = index(value_,')') + 1
+               value_ =  value_(n2 + 1:)
            enddo
            call allocateVar(3)
            do i = 1, nTrig

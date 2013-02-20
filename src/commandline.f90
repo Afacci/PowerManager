@@ -48,6 +48,7 @@ silent  = .false.
 vsilent = .false.
 verb    = .false.
 out     = 'Rename'
+debug   = .false. 
 
 i=0
 do while(i.lt.numarg)
@@ -68,6 +69,8 @@ do while(i.lt.numarg)
          out = 'Overwrite'
       case('-rename')
          out = 'Rename'
+      case('-debug')
+         debug = .true.
       case default 
       print*,'-------------------------------------------------------------'
       write(*,100)trim(riga)

@@ -384,6 +384,8 @@ integer,                intent(in) :: t !> Current time-step index
 integer          :: n, i
 real(kind(1.d0)) :: p, u
 
+gridEconomy(:) = 0.d0
+
 if(gridConnection.ne.'StandAlone') then
     p = elProd(c,t)
     u = 0

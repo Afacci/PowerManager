@@ -75,11 +75,17 @@ call commandLine
 !----Read Input Files----
 print*, ' ---Reading Input Files---'
 call readTrigen
+print*,'     --> Trigeneration.inp read'
 call readBoiler
+print*,'     --> Boiler.inp read'
 call readChillers
+print*,'     --> Chillers.inp read'
 call readLoads
+print*,'     --> Loads.inp read'
 call readGeneral
+print*,'     --> General.inp read'
 call readEnv
+print*,'     --> Enivronment.inp read'
 
 !---build the energy coonection inside the plant---
 print*, ' ---Checking Input Coherence---'
@@ -93,7 +99,9 @@ cDummy = 'set-point'
 call allCombin(icm=cr,imax=nSp,m=nm,targ=cDummy) 
 cDummy = 'state'
 call allCombin(dcm=sp,imax=nSp,m=nm,targ=cDummy) 
+print*, '    --> Vertices'
 call graphPoints
+print*, '    --> Arcs'
 call graphArcs
 call etime(tVEc,tempo)
 print*, ' ---Elapsed Time: ', tempo, ' sec'

@@ -119,6 +119,7 @@ do
     call readKeyword(genUnit,.false., keyword,value,error,nl)
     if(error.eq.1) call abortExecution(0,4)
     line = line + nl
+    if(debug) print*,'file: Trigeneration.int; Keyword: ', trim(keyword)
     select case(keyword)
        case('end')
           exit
@@ -146,7 +147,7 @@ do
           do i=1,nChi
               nSpC(i) = hCount(value_)
               n2 = index(value_,')') + 1
-              value_ =  value_(n2 + 2:)
+              value_ =  value_(n2 + 1:)
           enddo
           call allocateVar(12)
           do i = 1, nChi
@@ -161,8 +162,8 @@ do
            isPresent(10) = .true.
            do i=1,nChi
                nSizeC(i) = hCount(value_)
-               n2 = index(value_,')') - 1
-               value_ =  value_(n2 + 2:)
+               n2 = index(value_,')') + 1
+               value_ =  value_(n2 + 1:)
            enddo
            call allocateVar(13)
            do i = 1, nChi
@@ -267,7 +268,7 @@ do
             enddo
             call allocateVar(31,maxval(nacC))
             allocate(matrix(maxval(nacC),3))
-            n = sum(nacB)
+            n = sum(nacC)
             call rewUnit(genUnit,n)
             do i=1,nCHi
                matrix = rNaN(1.d0)
