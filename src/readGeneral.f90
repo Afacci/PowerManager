@@ -75,7 +75,7 @@ logical              :: filePresent
 character(len=100)   :: buffer, keyword, val, val_
 integer              :: firstLine, i, nInp, line, n, n_
 logical,dimension(8) :: isPresent = .false.
-logical,dimension(12):: optEntry  = .false.
+logical,dimension(13):: optEntry  = .false.
 integer              :: error, nOpt
 character(len=50)    :: dummy
 
@@ -211,6 +211,11 @@ do
              read(val,*), dummy
              if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
              read(val,*), writeChi
+        case('global')
+             optEntry(13) = .true.
+             read(val,*), dummy
+             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
+             read(val,*), global
         case(' ')
              if(verb) call warning(4,1,line=line)
         case  default

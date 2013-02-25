@@ -313,18 +313,16 @@ contains
    integer :: i,j,t,n1,n2,ni,nf,k
    integer, allocatable, dimension(:) :: cNew, cOld
   
-   allocate(nPre(nPoint+1), predCost(nPoint+1,nComb))
-   allocate(nSuc(0:nPoint), succCost(0:nPoint,nComb))
-   allocate(predList(0:nPoint+1,nComb))
-   allocate(succList(0:nPoint+1,nComb))
-  
-   predList(:,:) = -1!inan(1)
-   succList(:,:) = -1!inan(1)
-   predCost(:,:) = rnan(rVal)
-   succCost(:,:) = rnan(rVal)
+   !predList(:,:) = -1!inan(1)
+   !succList(:,:) = -1!inan(1)
+   !predCost(:,:) = -1000! rnan(rVal)
+   !succCost(:,:) = -1000! rnan(rVal)
    
+   print*, 'all variables initialized'
    select case(method)
       case('Forward')
+         allocate(nPre(nPoint+1), predCost(nPoint+1,nComb))
+         allocate(predList(0:nPoint+1,nComb))
    !---detect the predecessors for each node---
          n1 = 1
          ni  = 0
@@ -350,10 +348,13 @@ contains
          enddo
 
       case('Backward')
+         allocate(nSuc(0:nPoint), succCost(0:nPoint,nComb))
+         allocate(succList(0:nPoint+1,nComb))
          !---detect the successors for each node---
          n1 = 0
          ni  = 1
          do t=0,nTime
+            print*, 'time', t
             n2 = n1 + nt(t)   - 1
             nf = ni + nt(t+1) - 1 
             do i=n1,n2
@@ -363,6 +364,7 @@ contains
             ni = nf + 1
             n1 = n2 + 1
          enddo
+         print*, 'archi', sum(nSuc(:)), nPoint
          !---associate the cost to each arc in the successor list---
          do i=0,nPoint
             cOld = pointLoad(i,:)

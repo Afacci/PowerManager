@@ -60,6 +60,7 @@ logical :: writeCosts       = .false.
 logical :: writeTrig        = .false.
 logical :: writeBoi         = .false.
 logical :: writeChi         = .false.
+logical :: global           = .false.
 
 !---Trigeneration.inp variables
 integer                                         :: nTrig

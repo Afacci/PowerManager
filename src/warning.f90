@@ -48,13 +48,13 @@ integer, intent(in) ,optional          :: i,j,k
 integer, intent(in), optional          :: line
 character(len=*), intent(in), optional :: word
 real(kind = prec), intent(in), optional :: r1,r2
-character(len=18), dimension(20)        :: general
+character(len=18), dimension(21)        :: general
 character(len=18), dimension(17)       :: trigeneration
 character(len=18), dimension(15)       :: boilers
 character(len=18), dimension(13)       :: Chiller
 character(len=24), dimension(5)        :: files
 character(len=13), dimension(3)        :: equip
-character(len=17), dimension(12)       :: output
+character(len=17), dimension(13)       :: output
 integer                                :: l
 
 print*
@@ -89,8 +89,9 @@ equip         = (/'Trigenerator ', 'Boiler       ', 'Chiller      '/)
 
 output        = (/'writePower      ','writeEnergy     ','writeEfficiency ','writeElectricRev', &
                   'writeThermalRev ','writeChillingRev','writeDemand     ','writeInput      ', &   
-                  'writeCosts      ','writeTrig       ','writeChiller    ','writeBoiler     '/)
-general(9:20) = output
+                  'writeCosts      ','writeTrig       ','writeChiller    ','writeBoiler     ', &
+                  'global          '/)
+general(9:21) = output
 
 
 

@@ -38,6 +38,7 @@ subroutine output(setPoint,postProcessing,path)
   use plantVar
   use energy
   use economy
+  use globalResults
 
 
 !---Declare Local Variables---
@@ -454,6 +455,29 @@ subroutine output(setPoint,postProcessing,path)
         enddo
      enddo
      k = k + 1
+  endif
+
+  if(global) then
+     u = u + 1
+     call prepareFile(u,'global','Results')
+     write(u,*) '# global.dat, contains global results '
+     write(u,*) '#--------------------------------------------------------------------------#'
+     write(u,*)
+     
+     write(u,*) '---------------Revenues---------------------------------'
+     write(u,*) 'Electric Revenues: ' , globElRev(setPoint),'€'
+     write(u,*) 'Thermal Revenues : ' , globThRev(setPoint),'€'
+     write(u,*) 'Chilling Revenues: ' , globChRev(setPoint),'€'
+     write(u,*) 'Total Revenues   : ' , globRevenues(setPoint),'€'
+
+     write(u,*) '---------------Costs---------------------------------'
+     write(u,*) 'Fuel Costs       : ' , globFuelCost(setPoint),'€'
+     write(u,*) 'Maintenace Costs : ' , globMaintCost(setPoint),'€'
+     write(u,*) 'On-Off Costs     : ' , globFireCost(setPoint),'€'
+     write(u,*) 'Totat Costs      : ' , globCost(SetPoint),'€'
+
+     write(u,*) '---------------Profits---------------------------------'
+     write(u,*) 'Profits          : ' , globProfit(setPoint),'€'
   endif
 
   do i=500,u
