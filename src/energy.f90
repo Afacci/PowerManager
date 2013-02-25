@@ -37,6 +37,8 @@
 
 module energy
 
+use shared
+
 contains
 
 !>\brief Electrical production
@@ -495,5 +497,67 @@ deallocate(eIn)
 
 end function limitRecovery
 
+!==============================================================================
+
+!>\brief Cogenerative Thermal production
+!>\details Calculates the cogenerative Thermal production in kW of the whole power plant, for
+!> a given set-point
+!> Note that only trigeneration machines and Boilers produce thermal power so far. Thus
+!> Thermal power is:
+!>\f[ 
+!> P_{th} = \sum_{Trig} \frac{sp(i)\cdot P_{max}(i)}{\eta_{el}(i,sp(i))}\eta_{th}(i,sp(i)) + \sum_{Boi} sp(i)\cdot P_{max}(i)
+!>\f]
+!>where \f$sp(i)\f$ is the set point of the \f$i\f$'th  machine,
+!>\f$\eta_{th}\f$ and \f$\eta_{el}\f$ are the thermal and electrical efficiencies,
+!>respectively, and \f$P_{max}(i)\f$ is its rated power.
+!>\param[in] c_  index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
+!>\author Andrea Facci
+
+real(kind = prec) function cogThProd(c_,t)
+
+!--Declare Module usage---
+use plantVar
+use inputVar
+
+implicit none
+
+!---Declare Local Variables---
+integer,dimension(nm), intent(in) :: c_
+integer              , intent(in) :: t
+integer                           :: i,j,k,l
+real(kind = prec)                 :: calore,eDisp,eEff,tEff,pow 
+
+!---Function Body
+
+cogthProd = zero
+if(nTrig.gt.0) then
+   do i=is(iT),ie(iT)
+      j = c_(i)
+      eEff = etaEl(j,i)*envCorr(t,i,1)
+      tEff = etaTh(j,i)*envCorr(t,i,2)
+      pow  = sp(j,i)*Pmax(i)*envCorr(t,i,4)
+      cogthProd = cogthProd + tEff*pow/eEff
+   enddo
+endif
+if(nBoi.gt.0) then
+   do i=is(iB),ie(iB)
+      if(pes(i).eq.'heat') then
+         j = c_(i)
+         calore = sp(j,i)*Pmax(i)*envCorr(t,i,2)
+         k     = eSource(i)
+         l     = c_(k)
+         pow   = sp(l,k)*Pmax(k)*envCorr(t,k,4)
+         eEff  = etaEl(l,k)*envCorr(t,k,1)
+         eDisp = pow*(1.d0/etaEl(l,k) - 1.d0)
+         if(calore.gt.eDisp) calore = limitRecovery(i,eDisp,t)
+         cogThProd = cogThProd + calore
+      endif
+   enddo
+endif
+return
+
+end function cogThProd
+
+!=======================================================================
 
 end module energy

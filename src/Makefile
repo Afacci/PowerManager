@@ -31,6 +31,7 @@ MODS = \
 ../obj/energy.o \
 ../obj/economy.o \
 ../obj/graphTools.o \
+../obj/euristics.o \
 
 ################################################
 #  list of the files to be compiled            #

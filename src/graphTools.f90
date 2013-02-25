@@ -211,6 +211,7 @@ contains
    use inputVar
    use plantVar
    use mathTools
+   use euristics
   
    !---Declare Local Variables---
    implicit none
@@ -220,7 +221,7 @@ contains
    integer         , allocatable, dimension(:)   :: startLoad 
    integer :: i,j,n, iStart
    integer , allocatable, dimension(:) :: load
-   logical :: v, error
+   logical :: v, error, e1
   
    allocate(load(nm),nt(0:nTime+1))
    n = nComb*nTime
@@ -236,7 +237,8 @@ contains
       do j=1,nComb
          load = comb(j,:)
          v    = constraints(load,i)
-         if(v) then
+         e1   = thRedundant(load,i)
+         if(v.and.(.not.e1)) then
             n        = n + 1
             time_(n) = i
             timePoint(i,j) = n
@@ -275,7 +277,7 @@ contains
    deallocate(load)
    deallocate(cost_,cl_,time_)
    deallocate(startLoad)
-  
+
    return
   
    end subroutine graphPoints
@@ -318,7 +320,6 @@ contains
    !predCost(:,:) = -1000! rnan(rVal)
    !succCost(:,:) = -1000! rnan(rVal)
    
-   print*, 'all variables initialized'
    select case(method)
       case('Forward')
          allocate(nPre(nPoint+1), predCost(nPoint+1,nComb))
@@ -354,7 +355,6 @@ contains
          n1 = 0
          ni  = 1
          do t=0,nTime
-            print*, 'time', t
             n2 = n1 + nt(t)   - 1
             nf = ni + nt(t+1) - 1 
             do i=n1,n2
@@ -364,7 +364,6 @@ contains
             ni = nf + 1
             n1 = n2 + 1
          enddo
-         print*, 'archi', sum(nSuc(:)), nPoint
          !---associate the cost to each arc in the successor list---
          do i=0,nPoint
             cOld = pointLoad(i,:)
