@@ -78,7 +78,7 @@ select case(what)
    !--readBoilers
    case(7)
         allocate(pMaxB(nBoi), fuelCostB(nBoi), fuelLHVB(nBoi), fireCostB(nBoi), maintCostB(nBoi), &
-                 nSpB(nBoi), minUpTimeB(nTrig), minDownTimeB(nTrig))
+                 nSpB(nBoi), minUpTimeB(nBoi), minDownTimeB(nBoi))
         allocate(ntcB(nBoi), npcB(nBoi), nacB(nBoi))
         nSpB(1:nBoi) = 0
 !        allocate(nSizeB(nBoi))
@@ -97,7 +97,7 @@ select case(what)
         allocate(etaB(nMax,2,nBoi))
         !---readChillers
    case(11)
-        allocate(pMaxC(nChi), fireCostC(nChi), maintCostC(nChi), nSpC(nChi), minUpTimeC(nChi),minDownTimeC(nTrig))
+        allocate(pMaxC(nChi), fireCostC(nChi), maintCostC(nChi), nSpC(nChi), minUpTimeC(nChi),minDownTimeC(nChi))
         nSpC(1:nChi) = 0
 !        allocate(nSizeC(nChi))
 !        nSizeC(1:nChi) = 0
