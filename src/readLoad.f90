@@ -61,6 +61,7 @@
 subroutine readLoads
 
 !---Declare Unit usage---
+use shared
 use inputVar
 use fileTools
 use interfaces
@@ -79,8 +80,8 @@ character(len=100)   :: line
 character(len=100), allocatable, dimension(:)     :: matrix
 character(len=100), allocatable, dimension(:,:)   :: theLoads, thePrices
 character(len=100),              dimension(1,3)   :: grids
-real(kind(1.d0)),   allocatable, dimension(:,:,:) :: loads_, prices_
-real(kind(1.d0)),   allocatable, dimension(:,:) :: gridPrices
+real(kind = prec),   allocatable, dimension(:,:,:) :: loads_, prices_
+real(kind = prec),   allocatable, dimension(:,:) :: gridPrices
 
 !---Check File Presence---
 call openUnit(inputFile,genUnit,filePresent)

@@ -80,6 +80,7 @@
 integer function vCount(theUnit,rew_,first_,last_)
 
 !---Declare Unit usage---
+use shared
 
 !---Declare Local Variables---
 implicit none

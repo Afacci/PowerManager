@@ -77,10 +77,11 @@ contains
 !> simulation start.
 !>\author Andrea Facci
 
-real(kind(1.d0)) function elRev(c,t)
+real(kind = prec) function elRev(c,t)
 
 !---Declare Module usage---
 
+use shared
 use inputVar, only : uEl, cEl, gridBuyCost, gridSellCost, gridConnection
 use plantVar, only : nm, dt
 use energy
@@ -90,7 +91,7 @@ implicit none
 integer, dimension(nm), intent(in) :: c !> Vector of set-point indexes
 integer,                intent(in) :: t !> Current time-step index
 integer          :: n, i
-real(kind(1.d0)) :: p, u, rVend
+real(kind = prec) :: p, u, rVend
 
 n = size(uEl,2)
 
@@ -102,12 +103,12 @@ if(gridConnection.ne.'StandAlone') then
     enddo
     u = u + elSelfCons(c,t)
 endif
-rVend = 0.d0
+rVend = zero
 do i=1,n
     rVend = rVend + uEl(t,i)*cEl(t,i)*dt(t)
 enddo
 
-elRev = 0.d0
+elRev = zero
 select case(gridConnection)
     case('StandAlone')
          elRev = rVend
@@ -143,10 +144,11 @@ end function elRev
 !>\author Andrea Facci
 
 
-real(kind(1.d0)) function thRev(t)
+real(kind = prec) function thRev(t)
 
 !---Declare Module usage---
 
+use shared
 use inputVar, only : uTh, cTh
 use plantVar, only : dt
 
@@ -182,10 +184,11 @@ end function thRev
 !> simulation start.
 !>\author Andrea Facci
 
-real(kind(1.d0)) function chRev(t)
+real(kind = prec) function chRev(t)
 
 !---Declare Module usage---
 
+use shared
 use inputVar, only : uCh, cCh
 use plantVar, only : dt
 
@@ -227,9 +230,10 @@ end function chRev
 !> simulation start.
 !>\author Andrea Facci
 
-real(kind(1.d0)) function fuelCost(c,t)
+real(kind = prec) function fuelCost(c,t)
 
 !--Declare Module usage---
+use shared
 use plantVar
 use inputVar
 use energy
@@ -240,12 +244,12 @@ implicit none
 integer,         dimension(nm), intent(in) :: c
 integer,                        intent(in) :: t
 integer                                    :: i, n
-real(kind(1.d0)),dimension(nTrig+nBoi)     :: ein
+real(kind = prec),dimension(nTrig+nBoi)     :: ein
 
 !---Function Body
 
 ein  = fuelCons(c,t)
-fuelCost = 0.d0
+fuelCost = zero
 n = nTrig + nBoi
 do i=1,n
    fuelCost = fuelCost + dt(t)*cf(i)*ein(i)/lhv(i)
@@ -269,8 +273,9 @@ end function fuelCost
 !> simulation start.
 !>\author Andrea Facci
 
-real(kind(1.d0)) function maintenanceCost(c,t)
+real(kind = prec) function maintenanceCost(c,t)
 
+use shared
 use plantVar
 use inputVar
 
@@ -280,7 +285,7 @@ integer, dimension(nm), intent(in) :: c
 integer,                intent(in) :: t
 integer                            :: i,j
 
-maintenanceCost = 0.d0
+maintenanceCost = zero
 do j=1,nm
    i = c(j)
    if(sp(i,j).gt.0) maintenanceCost = maintenanceCost + OeMCost(j)*dt(t)
@@ -314,10 +319,11 @@ end function maintenanceCost
 !> simulation start.
 !>\author Andrea Facci
 
-real(kind(1.d0)) function currCost(c,t)
+real(kind = prec) function currCost(c,t)
 
 !---Declare Module usage---
 
+use shared
 use plantVar
 use inputVar
 
@@ -346,8 +352,9 @@ end function currCost
 !>\param[in] t time step index. Note t=x meas the x'th time step from the
 !> simulation start.
 !>\author Andrea Facci
-real(kind(1.d0)) function fireCost(cNew, cOld)
+real(kind = prec) function fireCost(cNew, cOld)
 
+use shared
 use plantVar
 use inputVar
 
@@ -355,10 +362,10 @@ implicit none
 
 integer, intent (in), dimension(nm) :: cNew, cOld
 integer :: i,j,k
-real(kind(1.d0)), allocatable, dimension(:) :: spNew, spOld
+real(kind = prec), allocatable, dimension(:) :: spNew, spOld
 
 allocate(spNew(nm), spOld(nm))
-fireCost = 0.d0
+fireCost = zero
 do i=1,nm
    spNew = sp(cNew(i),i)
    spOld = sp(cOld(i),i)
@@ -372,19 +379,20 @@ end function fireCost
 
 function gridEconomy(c,t)
 
+use shared
 use inputVar, only : uEl, cEl, gridBuyCost, gridSellCost, gridConnection
 use plantVar, only : nm, dt
 use energy
 
 !---Declare Local Variables---
 implicit none
-real(kind(1.d0)), dimension(2) :: gridEconomy
+real(kind = prec), dimension(2) :: gridEconomy
 integer, dimension(nm), intent(in) :: c !> Vector of set-point indexes
 integer,                intent(in) :: t !> Current time-step index
 integer          :: n, i
-real(kind(1.d0)) :: p, u
+real(kind = prec) :: p, u
 
-gridEconomy(:) = 0.d0
+gridEconomy(:) = zero
 
 if(gridConnection.ne.'StandAlone') then
     p = elProd(c,t)
@@ -398,8 +406,8 @@ endif
 
 select case(gridConnection)
     case('StandAlone')
-         gridEconomy(1) = 0.d0        
-         gridEconomy(2) = 0.d0
+         gridEconomy(1) = zero        
+         gridEconomy(2) = zero
     case('NetMetering')
          if(p.gt.u) then
             gridEconomy(1) = (p - u)*gridSellCost(t)

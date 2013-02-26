@@ -35,13 +35,10 @@ begin
 Number             | 2       | !total number of trigenerative equipments
 Technology         | ICE ICE | !GT ICE CP
 Power              | 280 280 | !rated power
-DegradationRate    | 0.99d0 0.99d0  | 
-FuelCost           | 0.35d0  0.35d0 | !euro/Sm3
+FuelCost           | 0.35  0.35 | !euro/Sm3
 FuelLHV            | 35.0e3  35.0e3 | !kJ/Sm3
-Investment         | 300.0e3 300.0e3| !euro
-Lifetime           | 25.d0   25.d0  | !years       
-OnOffCost          | 0.d0    0.d0   | !cost to turn on the power plant
-OeMCost            | 0.d0    0.d0   | !euro/h maintenance cost
+OnOffCost          | 0.00    0.00   | !cost to turn on the power plant
+OeMCost            | 0.00    0.00   | !euro/h maintenance cost
 
 SetPoint           | (0  0.5 0.7 0.9 1.0) (0  0.5 0.7 0.9 1)| !Possible set points
 Size               | (1)  (1)      |  !Scale the size of the equipment
@@ -83,27 +80,52 @@ MinDownTime        | 3 0            |
 
 !---Correction parameters----
 
-PresCorrection     | pres  etaEl etaTh etaCh pmax     |
-                   | (0.99     1.0  1.0   1.0    1.0  |
-                   |  1.01     1.0  1.0   1.0    1.0  |
-                   |  1.02     1.0  1.0   1.0    1.0) |
-                   | ( 0.99    1.0  1.0   1.0    1.0  |
-                   |   1.01    1.0  1.0   1.0    1.0  |
-                   |   1.02    1.0  1.0   1.0    1.0) |
-TempCorrection     | temp  etaEl etaTh etaCh  pmax|
-                   | (10.0     1.0  1.5   1.0    1.0  |
-                   |  15.0     1.0  1.0   1.0    1.0  |
-                   |  20.0     1.0  0.5   0.5    0.5 )|
-                   | (10.0     1.0  1.0   1.0    1.0  |
-                   |  15.0     1.0  1.0   1.0    1.0  |
-                   |  25.0     1.0  1.0   1.0    1.0 ) |
-AltCorrection      |  alt  eta etaTh etaCh pmax   | 
-                   | (50.0     1.0  1.0   1.0    1.0  |
-                   |  100.0    1.0  1.0   1.0    1.0  |
-                   |  150.0    1.0  1.0   1.0    1.0 ) |
-                   | (50.0     1.0  1.0   1.0    1.0  |
-                   |  100.0    1.0  1.0   1.0    1.0  |
-                   |  150.0    1.0  1.0   1.0    1.0 ) |
+
+PresCorrection | pres etaEl etaTh etaCh pmax |
+               | (0.99 0.9   0.9   0.9   0.9 |
+               | 1.01  1.0   1.0   1.0   1.0 |
+               | 1.02  1.1   1.1   1.1   1.1)|
+               | (0.99 0.9   0.9   0.9   0.9 |
+               | 1.01  1.0   1.0   1.0   1.0 |
+               | 1.02  1.1   1.1   1.1   1.1)|
+
+TempCorrection | temp etaEl etaTh etaCh pmax|
+               | (10.0 1.1   1.1   1.1  1.1 |
+               |  15.0 1.0   1.0   1.0  1.0 |
+               |  20.0 0.9   0.9   0.9  0.9)|
+               | (10.0 1.1   1.1   1.1  1.1 |
+               |  15.0 1.0   1.0   1.0  1.0 |
+               |  25.0 0.9   0.9   0.9  0.9)|
+
+AltCorrection  | alt etaEl etaTh etaCh pmax |
+               | (50.0 1.1  1.1   1.1  1.1 |
+               | 100.0 1.0  1.0   1.0  1.0 |
+               | 150.0 0.9  0.9   0.9  0.9)|
+               | (50.0 1.1  1.1   1.1  1.1 |
+               | 100.0 1.0  1.0   1.0  1.0 |
+               | 150.0 0.9  0.9   0.9  0.9)|
+
+!PresCorrection     | pres  etaEl etaTh etaCh pmax |
+!                   | (0.99   1.0  1.0   1.0  1.0  |
+!                   |  1.01   1.0  1.0   1.0  1.0  |
+!                   |  1.02   1.0  1.0   1.0  1.0) |
+!                   | ( 0.99  1.0  1.0   1.0  1.0  |
+!                   |   1.01  1.0  1.0   1.0  1.0  |
+!                   |   1.02  1.0  1.0   1.0  1.0) |
+!TempCorrection     | temp  etaEl etaTh etaCh  pmax|
+!                   | (10.0   1.0  1.5   1.0  1.0  |
+!                   |  15.0   1.0  1.0   1.0  1.0  |
+!                   |  20.0   1.0  0.5   0.5  0.5 )|
+!                   | (10.0   1.0  1.0   1.0  1.0  |
+!                   |  15.0   1.0  1.0   1.0  1.0  |
+!                   |  25.0   1.0  1.0   1.0  1.0 )|
+!AltCorrection      |  alt  etaEl etaTh etaCh pmax | 
+!                   | (50.0   1.0  1.0   1.0  1.0  |
+!                   |  100.0  1.0  1.0   1.0  1.0  |
+!                   |  150.0  1.0  1.0   1.0  1.0 )|
+!                   | (50.0   1.0  1.0   1.0  1.0  |
+!                   |  100.0  1.0  1.0   1.0  1.0  |
+!                   |  150.0  1.0  1.0   1.0  1.0 )|
 
 end
     

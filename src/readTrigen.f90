@@ -62,6 +62,7 @@
 subroutine readTrigen
 
 !---Declare Unit usage---
+use shared
 use inputVar
 use fileTools
 use cmdVar
@@ -81,7 +82,7 @@ integer, dimension(100) :: dummy
 integer              :: error
 character(len=20), dimension(5) :: param
 integer :: n, nt, nee, net, nec, np
-real(kind(1.d0)), allocatable, dimension(:,:) :: matrix
+real(kind = prec), allocatable, dimension(:,:) :: matrix
 
 !---Check File Presence---
 inquire(file = inputFile, exist = filePresent)
@@ -107,6 +108,12 @@ nTrig = dummy(1)
 if(.not.isPresent(1)) call abortExecution(3,5)
 call allocateVar(1)
 
+!--added because some entries are deactivated.
+isPresent(3) = .true.
+isPresent(6) = .true.
+isPresent(7) = .true.
+isPresent(11) = .true.
+
 !---read the input list---
 line = firstLine
 do 
@@ -122,21 +129,21 @@ do
        case('Power')
           read(value,*) (pMaxT(i), i=1,nTrig)
           isPresent(2) = .true.
-       case('DegradationRate')
-          read(value,*) (degRateT(i), i=1,nTrig)
-          isPresent(3) = .true.
+!       case('DegradationRate')
+!          read(value,*) (degRateT(i), i=1,nTrig)
+!          isPresent(3) = .true.
        case('FuelCost')
           read(value,*) (fuelCostT(i), i=1,nTrig)
           isPresent(4) = .true.
        case('FuelLHV')
           read(value,*) (fuelLHVT(i), i=1,nTrig)
           isPresent(5) = .true.
-       case('Investment')
-          read(value,*) (invT(i), i=1,nTrig)
-          isPresent(6) = .true.
-       case('Lifetime')
-          read(value,*) (lifeT(i), i=1,nTrig)
-          isPresent(7) = .true.
+!       case('Investment')
+!          read(value,*) (invT(i), i=1,nTrig)
+!          isPresent(6) = .true.
+!       case('Lifetime')
+!          read(value,*) (lifeT(i), i=1,nTrig)
+!          isPresent(7) = .true.
        case('OnOffCost')
           read(value,*) (fireCostT(i), i=1,nTrig)
           isPresent(8) = .true.
@@ -159,22 +166,22 @@ do
              read(vector,*) (spT(j,i), j=1,nSpT(i))
              value =  value(n2 + 2:)
           enddo
-       case('Size')
-           value_ = value
-           isPresent(11) = .true.
-           do i=1,nTrig
-               nSizeT(i) = hCount(value_)
-               n2 = index(value_,')') + 1
-               value_ =  value_(n2 + 1:)
-           enddo
-           call allocateVar(3)
-           do i = 1, nTrig
-              n1 = index(value,'(') + 1
-              n2 = index(value,')') - 1
-              vector = trim(value(n1:n2))
-              read(vector,*) (kSizeT(i,j), j=1,nSizeT(i))
-              value =  value(n2 + 2:)
-           enddo
+!       case('Size')
+!           value_ = value
+!           isPresent(11) = .true.
+!           do i=1,nTrig
+!               nSizeT(i) = hCount(value_)
+!               n2 = index(value_,')') + 1
+!               value_ =  value_(n2 + 1:)
+!           enddo
+!           call allocateVar(3)
+!           do i = 1, nTrig
+!              n1 = index(value,'(') + 1
+!              n2 = index(value,')') - 1
+!              vector = trim(value(n1:n2))
+!              read(vector,*) (kSizeT(i,j), j=1,nSizeT(i))
+!              value =  value(n2 + 2:)
+!           enddo
        case('ElettrEfficiency')
               isPresent(12) = .true.
               backspace(genUnit)
@@ -251,7 +258,7 @@ do
             n = sum(ntcT)
             call rewUnit(genUnit,n)
             do i=1,nTrig
-               matrix = rNaN(1.d0)
+               matrix = rNaN(rVal)
                matrix = dmatrixRead(genUnit,ntcT(i),5)
                tempCorrT(:,1,i) = matrix(:,nt)
                tempCorrT(:,2,i) = matrix(:,nee)
@@ -284,7 +291,7 @@ do
             n = sum(npcT)
             call rewUnit(genUnit,n)
             do i=1,nTrig
-               matrix = rNaN(1.d0)
+               matrix = rNaN(rVal)
                matrix = dmatrixRead(genUnit,npcT(i),5)
                presCorrT(:,1,i) = matrix(:,nt)
                presCorrT(:,2,i) = matrix(:,nee)
@@ -317,7 +324,7 @@ do
             n = sum(nacT)
             call rewUnit(genUnit,n)
             do i=1,nTrig
-               matrix = rNaN(1.d0)
+               matrix = rNaN(rVal)
                matrix = dmatrixRead(genUnit,nacT(i),5)
                altCorrT(:,1,i) = matrix(:,nt)
                altCorrT(:,2,i) = matrix(:,nee)

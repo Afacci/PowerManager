@@ -36,10 +36,10 @@
 !>\param[in] c   index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
 !>\param[in] t   time step index. Note t=x meas the x'th time step from the
 
-real(kind(1.d0)) function objFunction(c,t,obj)
+real(kind = prec) function objFunction(c,t,obj)        
 
 !---Declare Module usage---
-
+use shared
 use plantVar, only : nm
 use economy
 

@@ -31,6 +31,7 @@
 subroutine output(setPoint,postProcessing,path)
 
 !---Declare Module usage---
+  use shared
   use inputvar
   use cmdVar , only : out
   use interfaces
@@ -46,16 +47,16 @@ subroutine output(setPoint,postProcessing,path)
   logical                         , intent(in) :: postProcessing
   character(len=*)                , intent(in) :: path
   integer                                      :: i, u,j,k,n,l, nO
-  real(kind(1.d0)), dimension(nTime,nm)        :: c
+  real(kind = prec ), dimension(nTime,nm)        :: c
   integer,          dimension(nm)              :: kk, kko
   logical                                      :: ex, oldRes
   character(len=100)                           :: folder, filename
-  real(kind(1.d0)), dimension(0:nTime)         :: t
-  real(kind(1.d0)), dimension(nm)              :: gg
-  real(kind(1.d0))                             :: g
-  real(kind(1.d0)),dimension(2)                :: gGrid
+  real(kind = prec ), dimension(0:nTime)         :: t
+  real(kind = prec), dimension(nm)              :: gg
+  real(kind = prec)                             :: g
+  real(kind = prec),dimension(2)                :: gGrid
   character(len=20), dimension(100)            :: buffer20
-  real(kind(1.d0)), dimension(100)             :: rbuffer
+  real(kind = prec), dimension(100)             :: rbuffer
 
 !---Function body---
   
@@ -82,6 +83,7 @@ subroutine output(setPoint,postProcessing,path)
      call system('mkdir Results')
   endif
 
+  t(0) = zero
   do i=1,nTime
      t(i) = t(i-1) + dt(i-1)/3.6e3
      do j=1,nm
@@ -89,7 +91,7 @@ subroutine output(setPoint,postProcessing,path)
         c(i,j) = sp(k,j)
      enddo
   enddo
-   
+
   u = 500
   if(.not.postProcessing) then
     call prepareFile(u,'setPoint',path)
@@ -99,13 +101,16 @@ subroutine output(setPoint,postProcessing,path)
     write(u,*)
     write(u,'(A8,2X)', advance='no') 'Time [h]'
     do i=1,nTrig
-       write(u,'(A5,2X)', advance='no') trim(tecT(i))
+       j = is(iT) + i - 1
+       write(u,'(A5,2X)', advance='no') trim(tec(j))
     enddo
     do i=1,nBoi
-       write(u,'(A5,1X,A6,2X)', advance='no') trim(tecB(i)),'Boiler'
+       j = is(iB) + i - 1
+       write(u,'(A5,1X,A6,2X)', advance='no') trim(tec(j)),'Boiler'
     enddo
     do i=1,nChi
-       write(u,'(A,1X,A,2X)', advance='no') trim(tecC(i)),'Chiller'
+       j = is(iC) + i - 1
+       write(u,'(A,1X,A,2X)', advance='no') trim(tec(j)),'Chiller'
     enddo
     write(u,*)
     write(u,*)
@@ -168,13 +173,16 @@ subroutine output(setPoint,postProcessing,path)
      write(u,*)
      write(u,'(A8,2X)', advance='no') 'Time [h]'
      do i=1,nTrig
-        write(u,'(13X,A5,15X)', advance='no') trim(tecT(i))
+        j = is(iT) + i - 1
+        write(u,'(13X,A5,15X)', advance='no') trim(tec(j))
      enddo
      do i=1,nBoi
-        write(u,'(A5,1X,A6,5X)', advance='no') trim(tecB(i)),'Boiler'
+        j = is(iB) + i - 1
+        write(u,'(A5,1X,A6,5X)', advance='no') trim(tec(j)),'Boiler'
      enddo
      do i=1,nChi
-        write(u,'(A,1X,A,5X)', advance='no') trim(tecC(i)),'Chiller'
+        j = is(iC) + i - 1
+        write(u,'(A,1X,A,5X)', advance='no') trim(tec(j)),'Chiller'
      enddo
      write(u,*)
      write(u,'(5X)',advance='no')
@@ -299,13 +307,16 @@ subroutine output(setPoint,postProcessing,path)
      write(u,*)
      write(u,'(A8,2X)', advance='no') 'Time [h]'
      do i=1,nTrig
-        write(u,'(A5,2X,A4,2X)', advance='no') trim(tecT(i)), '[kW]'
+        j = is(iT) + i - 1
+        write(u,'(A5,2X,A4,2X)', advance='no') trim(tec(j)), '[kW]'
      enddo
      do i=1,nBoi
-        write(u,'(A5,1X,A12,2X)', advance='no') trim(tecB(i)),'Boiler [kW]'
+        j = is(iB) + i - 1
+        write(u,'(A5,1X,A12,2X)', advance='no') trim(tec(j)),'Boiler [kW]'
      enddo
      do i=1,nChi
-     write(u,'(A,1X,A,2X)', advance='no') trim(tecC(i)),'Chiller [kW]'
+        j = is(iC) + i - 1
+        write(u,'(A,1X,A,2X)', advance='no') trim(tec(j)),'Chiller [kW]'
      enddo
      write(u,*)
      write(u,*)
@@ -342,7 +353,7 @@ subroutine output(setPoint,postProcessing,path)
      k = is(iT)
      do j=1,nTrig
         u = u + 1
-        write(filename, '(A,I3.3)'),trim(tecT(j)),j
+        write(filename, '(A,I3.3)'),trim(tec(j)),j
         call prepareFile(u,filename,'Results/Trigenerative')
         write(u,*) '# ', trim(filename),'.dat, contains detailed informations about trigenerative equipment'
         write(u,*) '#--------------------------------------------------------------------------#'

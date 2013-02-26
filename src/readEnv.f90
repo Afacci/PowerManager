@@ -61,6 +61,7 @@
 subroutine readEnv
 
 !---Declare Unit usage---
+use shared
 use inputVar
 use fileTools
 use interfaces
@@ -76,7 +77,7 @@ character(len=100)   :: buffer, keyword, value, cdummy
 integer              :: i, j, nl, error, line, n
 logical,dimension(2) :: isPresent = .false.
 character(len=100),dimension(1,3)   :: env
-real(kind(1.d0)), allocatable, dimension(:,:) :: matrix
+real(kind = prec), allocatable, dimension(:,:) :: matrix
 
 !---Check File Presence---
 call openUnit(inputFile,genUnit,filePresent)

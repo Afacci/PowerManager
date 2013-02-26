@@ -42,6 +42,7 @@
 subroutine abortExecution(i,j,line,word,r1,r2,iVec)
 
 !---Declare Unit usage---
+use shared
 use inputVar
 use plantVar, only : sp, nSp, nm
 
@@ -49,10 +50,10 @@ implicit none
 
 !---Declare Local Variables---
 integer, intent(in), optional          :: i,j
-real(kind(1.d0)), intent(in), dimension(*), optional :: iVec
+real(kind = prec), intent(in), dimension(*), optional :: iVec
 integer, intent(in), optional          :: line
 character(len=*), intent(in), optional :: word
-real(kind(1.d0)), intent(in), optional :: r1, r2
+real(kind = prec), intent(in), optional :: r1, r2
 character(len=18), dimension(8)        :: general
 character(len=18), dimension(17)       :: trigeneration
 character(len=18), dimension(15)       :: boilers
@@ -64,7 +65,7 @@ character(len=8),  dimension(2)        :: algo
 integer                                :: t
 
 print*
-print*, '!---------------FATAL ERROR-------------------!'
+print*, '!-----------------------------------FATAL ERROR-----------------------------------------!'
 print*
 
 general       = (/'GridConnection    ', 'Degradation       ', 'objective         ', 'StartPoint        '  &
@@ -188,7 +189,7 @@ if(i.le.6) print*, ' Note that the code is case-sensitive'
 
 
 print*
-print*, '!---------------RUN ABORTING------------------!'
+print*, '!-----------------------------------RUN ABORTING-----------------------------------------!'
 print*,
 
 stop

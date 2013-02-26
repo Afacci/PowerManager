@@ -38,6 +38,8 @@
 !!     Andrea Facci.
 subroutine aiuto
 
+use shared        
+
 print*
 print*,'+++++++++++++++++++++++++++++Help++++++++++++++++++++++++++++++'
 print*,' Program "PowerManager" optimization of distributed poly-generation'

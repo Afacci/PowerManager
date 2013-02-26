@@ -46,11 +46,13 @@
 
 subroutine iFindEntry(entry,n,theUnit,rew,valore,isPresent, nRow)
 
+use shared
 implicit none
 !---Declare Module usage---
 
 interface
     subroutine findEntry(entry,theUnit,rew,valore,isPresent,nRow)
+        use shared
         implicit none
         integer, intent(in)            :: theUnit
         integer, intent(out), optional :: nRow
@@ -115,6 +117,7 @@ end subroutine iFindEntry
 subroutine dFindEntry(entry,n,theUnit,rew,valore,isPresent,nRow)
 
 !---Declare Module usage---
+use shared
 implicit none
 
 interface
@@ -134,7 +137,7 @@ end interface
 integer, intent(in)            :: theUnit
 integer, intent(in)            :: n
 integer, intent(out), optional :: nRow
-real(kind(1.d0)), intent(out), optional  :: valore(n)
+real(kind = prec), intent(out), optional  :: valore(n)
 logical, intent(in), optional  :: rew
 logical, intent(out), optional :: isPresent
 character(len=*), intent(in)   :: entry
@@ -184,6 +187,7 @@ end subroutine dFindEntry
 subroutine cFindEntry(entry,n,theUnit,rew,valore,isPresent, nRow)
 
 !---Declare Module usage---
+use shared
 
 implicit none
 
@@ -253,6 +257,7 @@ subroutine findEntry(entry,theUnit,rew,valore,isPresent,nRow)
 
 !---Declare Module usage---
 
+use shared
 !---Declare local variables---
 implicit none
 

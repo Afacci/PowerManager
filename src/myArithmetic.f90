@@ -35,6 +35,8 @@
 !     Andrea Facci.
 module myArithmetic
 
+use shared
+
 contains
 
 !>\brief Creates NaN.
@@ -42,9 +44,9 @@ contains
 !>\param[in] x random double precision number.
 !>\author Andrea Facci.
 
-real(kind(1.d0)) function rnan(x)
+real(kind = prec) function rnan(x)
   !dir$ optimize:0
-  real(kind(1.d0)), intent(in) :: x
+  real(kind = prec), intent(in) :: x
 
   rnan = (x-x)/(x-x)
 end function rnan

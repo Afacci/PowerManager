@@ -34,7 +34,7 @@ GridConnection | DedicatedRetire | !NetMetering;GridConn;StandAlone
 Degradation    | False           | !True/False
 objective      | Economic        |
 !---------Initial Conditions------------------------------
-StartPoint      | 0.d0 0.d0 0.d0 0.d0 |         
+StartPoint      | 0.00 0.00 0.00 0.00 |         
 UpTime          | 0     0    0   0 |         
 DownTime        | 1     1    1   1 |         
 FirstTimeStep   | 1               |

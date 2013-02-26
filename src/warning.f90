@@ -39,6 +39,7 @@ subroutine warning(i,j,k,line,word,r1,r2)
 
 !---Declare Unit usage---
 use inputVar
+use shared
 
 implicit none
 
@@ -46,7 +47,7 @@ implicit none
 integer, intent(in) ,optional          :: i,j,k
 integer, intent(in), optional          :: line
 character(len=*), intent(in), optional :: word
-real(kind(1.d0)), intent(in), optional :: r1,r2
+real(kind = prec), intent(in), optional :: r1,r2
 character(len=18), dimension(20)        :: general
 character(len=18), dimension(17)       :: trigeneration
 character(len=18), dimension(15)       :: boilers

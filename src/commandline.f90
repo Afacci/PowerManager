@@ -35,6 +35,7 @@
 subroutine commandline
 
 use cmdVar
+use shared
 
 implicit none
 

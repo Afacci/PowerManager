@@ -36,34 +36,37 @@ module interfaces
 
 interface 
     subroutine abortExecution(i,j,line,word,r1,r2, iVec)
+        use shared
         implicit none
         integer, intent(in), optional          :: i,j
-        real(kind(1.d0)), intent(in), dimension(*), optional :: iVec
+        real(kind = prec), intent(in), dimension(*), optional :: iVec
         integer, intent(in), optional          :: line
         character(len=*), intent(in), optional :: word
-        real(kind(1.d0)), intent(in), optional :: r1, r2
+        real(kind = prec), intent(in), optional :: r1, r2
     end subroutine abortExecution
 end interface
 
 interface 
     subroutine warning(i,j,k,line,word,r1,r2)
+        use shared
         implicit none
         integer, intent(in), optional          :: i,j,k
         integer, intent(in), optional          :: line
         character(len=*), intent(in), optional :: word
-        real(kind(1.d0)), intent(in), optional :: r1, r2
+        real(kind = prec), intent(in), optional :: r1, r2
     end subroutine warning
 end interface
 
 interface
     subroutine performances(c, cOld, equip, num,t, pEl, pTh, pCh, eIn, mf, cfu,cm,cOn) 
+        use shared
         use inputVar
         use plantVar
         implicit none
         integer, intent(in) :: c, num, t
         integer, intent(in), optional :: cOld
         character(len=*), intent(in) :: equip
-        real(kind(1.d0)), intent(out), optional :: pEl, pTh, pCh, eIn, mf, cfu,cm,cOn
+        real(kind = prec), intent(out), optional :: pEl, pTh, pCh, eIn, mf, cfu,cm,cOn
     end subroutine performances
 end interface
 

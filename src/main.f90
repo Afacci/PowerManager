@@ -38,6 +38,7 @@ program main
 
 
 !---Declare Module usage---
+use shared
 use mathTools
 use inputVar
 use cmdVar
@@ -51,12 +52,12 @@ use economy
 
 implicit none
 
-real(kind(1.d0)) :: rdummy
+real(kind = prec) :: rdummy
 character(len=100) :: cDummy
 integer :: nComb, i, dummy(2),k,j, kBw, idummy(3)
-real(kind(1.d0)) :: cost
+real(kind = prec) :: cost
 integer,allocatable, dimension(:,:) :: setPoint,setPointBw
-real(kind(1.d0)),allocatable, dimension(:,:) :: load, loadBw, upTime
+real(kind = prec),allocatable, dimension(:,:) :: load, loadBw, upTime
 integer,allocatable, dimension(:) :: minPathBw
 real               :: tempo, t2
 real, dimension(2) :: tVec

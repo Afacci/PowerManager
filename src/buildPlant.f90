@@ -53,13 +53,12 @@ implicit none
 integer :: i,j, maxsp, k, k1, k2
 integer, dimension(2)  :: ext1,ext2,ext3, ext
 character(len=100)     :: word, cdummy
-real(kind(1.d0))       :: kJ_kWh
-real(kind(1.d0)), allocatable, dimension(:,:) :: upTimeVinc, downTimeVinc
+real(kind = prec)       :: kJ_kWh
+real(kind = prec), allocatable, dimension(:,:) :: upTimeVinc, downTimeVinc
 integer,dimension(nm):: dtv, utv
-real(kind(1.d0)), dimension(1) :: rdummy1, rdummy2
-real(kind(1.d0)), dimension(:,:,:), allocatable :: tCorr, pCorr
-real(kind(1.d0)), dimension(:,:), allocatable :: aCorr
-
+real(kind = prec), dimension(1) :: rdummy1, rdummy2
+real(kind = prec), dimension(:,:,:), allocatable :: tCorr, pCorr
+real(kind = prec), dimension(:,:), allocatable :: aCorr
 
 !--subroutine body-----
 
@@ -136,16 +135,16 @@ enddo
 
 call allocateVar(18)
 
-sp(:,:) = rNan(1.d0)
+sp(:,:) = rNan(rVal)
 eSource(:) = -1
 
 !---Estimate environmental condition corrections for each time-step---
 call allocateVar(32)
 
 allocate(pCorr(nTime,nm,4), tCorr(nTime,nm,4), aCorr(nm,4))
-pCorr = rNan(1.d0)
-tCorr = rNan(1.d0)
-aCorr = rNan(1.d0)
+pCorr = rNan(rVal)
+tCorr = rNan(rVal)
+aCorr = rNan(rVal)
 do i=1,nTime
    k = 0
    do j=is(iT),ie(iT)
@@ -225,7 +224,7 @@ do j=is(iC),ie(iC)
    aCorr(j,4) = rdummy2(1)
 enddo
 
-envCorr = rNaN(1.d0)
+envCorr = rNaN(rVal)
 do i=1,nTime
    do j = 1,nm
       do k = 1,4 
@@ -250,6 +249,7 @@ do i=is(iT),ie(iT)
    OeMCost(i)   = maintCostT(j)/3.6e3
    minUpTime(i)   = minUpTimeT(j)*3.6e3
    minDownTime(i) = minDownTimeT(j)*3.6e3
+   tec(i) = tecT(j)
    do k=1,nSpT(j)
       cr(k,i) = k
    enddo
@@ -275,10 +275,12 @@ do i=is(iB),ie(iB)
    k      = index(cdummy,'@')
    if(cdummy(1:k-1).eq.'Trig') then
       pes(i) = 'heat'
+      tec(i) = 'Recovery'
       read(cdummy(k+1:),*) eSource(i) 
    else
       pes(i) = 'fuel'
       eSource(i) = -1
+      tec(i) = 'Fuel'
    endif
 enddo
 j=0
@@ -300,6 +302,7 @@ do i=is(iC),ie(iC)
    do k=1,nSpC(j)
       cr(k,i) = k
    enddo
+   tec(i) = tecC(j)
 enddo
 
 !---time-dependent constraints---
@@ -307,7 +310,7 @@ call allocateVar(21)
 k1 = maxval(minUpTime)/3.6e3 + 1
 k2 = maxval(minDownTime)/3.6e3 + 1
 allocate(upTimeVinc(max(k1,k2),nm), downTimeVinc(max(k1,k2),nm))
-timeVinc(:,:) = 0.0d0
+timeVinc(:,:) = zero
 do i=1,nm
    nTv(i) = minUpTime(i)/3.6e3 + 1
    do j=1,ntv(i)
@@ -332,11 +335,13 @@ upTime0 = upTime0*3.6e3
 downTime0 = downTime0*3.6e3
 
 !--- convert all the prices in €/kJ---
-kJ_kWh = 1.d0/3.6e3
+kJ_kWh = 1.0/3.6e3
 gridBuyCost(:)  = gridBuyCost(:)*kJ_kWh
 gridSellCost(:) = gridSellCost(:)*kJ_kWh
 cEl(:,:)        = cEl(:,:)*kJ_kWh
 cTh(:,:)        = cTh(:,:)*kJ_kWh
 cCh(:,:)        = cCh(:,:)*kJ_kWh
+
+call deallocateVar(1)
 
 end subroutine buildPlant

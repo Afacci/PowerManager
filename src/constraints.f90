@@ -46,6 +46,8 @@
 logical function constraints(c,t)
 
 !---Declare Module usage---
+
+use shared
 use plantVar
 use inputVar
 use energy
@@ -53,7 +55,7 @@ use energy
 implicit none
 integer, dimension(nm), intent(in) :: c
 integer,                intent(in) :: t
-real(kind(1.d0))                   :: p,u
+real(kind = prec)                   :: p,u
 integer                            :: i,j,kr,ks
 
 constraints = .true.
@@ -66,7 +68,7 @@ do i=is(iB),ie(iB)
    if(pes(i).ne.'fuel') then
       j = eSource(i)
       ks = c(j)
-      if(sp(ks,j).eq.0.d0.and.sp(kr,j).gt.0.d0) then 
+      if(sp(ks,j).eq.zero.and.sp(kr,j).gt.zero) then 
          constraints = .false.
          return
       endif
@@ -91,27 +93,28 @@ end function constraints
 
 logical function timeConstr(cindex,tState)
 
+use shared
 use inputVar
 use plantVar
 
 implicit none
 integer, dimension(nm), intent(in) :: cindex
-real(kind(1.d0)), dimension(2*nm),intent(in) :: tState
+real(kind = prec), dimension(2*nm),intent(in) :: tState
 integer                            :: i,j
-real(kind(1.d0))                   :: cc
+real(kind = prec)                   :: cc
 
 timeConstr = .true. 
 
 do i=1,nm
    cc = sp(cindex(i),i)
-   if(cc.eq.0.d0.and.tState(i).gt.0.d0) then
+   if(cc.eq.zero.and.tState(i).gt.zero) then
       if(tState(i).lt.minUpTime(i)) then
          timeConstr = .false.
          exit
       endif
    endif
    j = nm + i
-   if(cc.gt.0d0.and.tState(j).gt.0.d0) then
+   if(cc.gt.zero.and.tState(j).gt.zero) then
       if(tState(j).lt.minDownTime(i)) then
          timeConstr = .false.
          exit

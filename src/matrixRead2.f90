@@ -86,12 +86,13 @@
 function dMatrixRead(theUnit,nline,ncol,first_,last_)
 
 !---Declare Module usage---
-
+use shared
 !---Declare Local Variables---
 implicit none
 
 interface
     function matrixRead(theUnit,nline, first_, last_)
+        use shared
         implicit none
         integer, intent(in) :: theUnit, nline
         character(len=1), optional:: first_, last_
@@ -100,7 +101,7 @@ interface
 end interface
 
 integer, intent(in) :: theUnit, nline, ncol
-real(kind(1.d0))    :: dMatrixRead(nline,ncol)
+real(kind = prec )    :: dMatrixRead(nline,ncol)
 character(len=1), optional :: first_,last_
 character(len=1)    :: first,last
 character(len=100)  :: buffer,value, lastChar, firstChar
@@ -186,11 +187,13 @@ end function dMatrixRead
 
 function iMatrixRead(theUnit,nline,ncol,first_,last_)
 
+use shared
 !---Declare Module usage---
 implicit none
 
 interface
     function matrixRead(theUnit,nline, first_, last_)
+        use shared
         implicit none
         integer, intent(in) :: theUnit, nline
         character(len=1), optional:: first_, last_
@@ -286,10 +289,12 @@ end function iMatrixRead
 function cMatrixRead(theUnit,nline,ncol, first_, last_)
 
 !---Declare Module usage---
+use shared
 
 implicit none
 interface
     function matrixRead(theUnit,nline, first_, last_)
+        use shared
         implicit none
         integer, intent(in) :: theUnit, nline
         character(len=1), optional:: first_, last_
@@ -359,6 +364,7 @@ end function cMatrixRead
 function matrixRead(theUnit,nline, first_, last_)
 
 !---Declare Module usage---
+use shared
 
 !---Declare Local Variables---
 implicit none

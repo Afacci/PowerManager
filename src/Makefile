@@ -20,6 +20,7 @@ DEB         = -fbacktrace -cpp -fbounds-check
 #  list of the modules to be compiled          #
 ################################################
 MODS = \
+../obj/shared.o \
 ../obj/inputVar.o \
 ../obj/fileTools.o \
 ../obj/myArithmetic.o \
@@ -62,6 +63,7 @@ OBJS = \
 ../obj/output.o \
 ../obj/readEnv.o \
 ../obj/performances.o \
+../obj/deallocateVar.o \
 #../obj/readSteamPlant.o \
 
 ################################################

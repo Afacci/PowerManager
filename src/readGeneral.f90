@@ -60,6 +60,7 @@
 subroutine readGeneral
 
 !---Declare Unit usage---
+use shared
 use inputVar
 use fileTools
 use interfaces

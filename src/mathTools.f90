@@ -35,14 +35,17 @@
 
 module mathTools
 
+use shared 
+
 interface
     function interpolation(xIn,yIn,n,xOut,m,warn) 
+        use shared 
         implicit none
         integer                       , intent(in)  :: n, m
-        real(kind(1.d0)), dimension(n), intent(in)  :: xIn, yIn
-        real(kind(1.d0)), dimension(m), intent(in)  :: xOut
+        real(kind = prec), dimension(n), intent(in)  :: xIn, yIn
+        real(kind = prec), dimension(m), intent(in)  :: xOut
         integer         , dimension(2), intent(in), optional :: warn
-        real(kind(1.d0)), dimension(m)              :: interpolation
+        real(kind = prec), dimension(m)              :: interpolation
     end function interpolation
 end interface
 
@@ -55,13 +58,13 @@ contains
 
      implicit none
 
-     real(kind(1.d0)), dimension(n), intent(in)   :: row
-     real(kind(1.d0)), dimension(m,n), intent(in) :: mat
+     real(kind = prec ), dimension(n), intent(in)   :: row
+     real(kind = prec), dimension(m,n), intent(in) :: mat
      integer, intent(in) :: n,m
      logical,                         intent(out), optional :: error
      integer :: i
-     real(kind(1.d0)),dimension(n)              :: test 
-     real(kind(1.d0)) ::vsmall = 1.0e-5
+     real(kind = prec),dimension(n)              :: test 
+     real(kind = prec) ::vsmall = 1.0e-5
     
      !---function body----
      

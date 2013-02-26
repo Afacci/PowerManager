@@ -70,7 +70,8 @@
 
 subroutine readKeyword (theUnit,rew, keyword, value, error,nRow)
 
-!---Declare Module usage---
+!---Declare Module usage--- 
+use shared
 
 !---Declare local variables---
 implicit none

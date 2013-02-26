@@ -36,6 +36,7 @@
 subroutine allocateVar(what,num)
 
 !---Declare Unit usage---
+use shared
 use inputVar
 use plantVar 
 
@@ -51,21 +52,20 @@ select case(what)
     case(0)
       allocate(startPoint(num), uptime0(num), downTime0(num))
     case(1)
-        allocate(pMaxT(nTrig), degRateT(nTrig), fuelCostT(nTrig), fuelLHVT(nTrig), invT(nTrig) &
-                ,lifeT(nTrig), fireCostT(nTrig), maintCostT(nTrig), nSpT(nTrig))
+        allocate(pMaxT(nTrig), fuelCostT(nTrig), fuelLHVT(nTrig), fireCostT(nTrig), maintCostT(nTrig), nSpT(nTrig))
         nSpT(1:nTrig) = 0
-        allocate(nSizeT(nTrig))
-        nSizeT(1:nTrig) = 0
+!        allocate(nSizeT(nTrig))
+!        nSizeT(1:nTrig) = 0
         allocate(nEtaElT(nTrig), nEtaThT(nTrig), nEtaChT(nTrig), tecT(nTrig), minUpTimeT(nTrig),minDownTimeT(nTrig))
         allocate(ntcT(nTrig), npcT(nTrig), nacT(nTrig))
    case(2)
         nMax = maxval(nSpT)
         allocate(spT(nMax,nTrig))
         spT(1:nmax,1:nTrig) = -1
-   case(3)
-        maxSize = maxval(nSizeT)
-        allocate(kSizeT(nTrig,maxSize))
-        kSizeT(1:nTrig,1:maxSize) = -1
+!   case(3)
+!        maxSize = maxval(nSizeT)
+!        allocate(kSizeT(nTrig,maxSize))
+!        kSizeT(1:nTrig,1:maxSize) = -1
    case(4) 
         nMax = maxval(nEtaElT)
         allocate(etaElT(nMax,2,nTrig))
@@ -77,41 +77,40 @@ select case(what)
         allocate(etaChT(nMax,2,nTrig))
    !--readBoilers
    case(7)
-        allocate(pMaxB(nBoi), degRateB(nBoi), fuelCostB(nBoi), fuelLHVB(nBoi), invB(nBoi), lifeB(nBoi), &
-                 fireCostB(nBoi), maintCostB(nBoi), nSpB(nBoi), minUpTimeB(nTrig), minDownTimeB(nTrig))
+        allocate(pMaxB(nBoi), fuelCostB(nBoi), fuelLHVB(nBoi), fireCostB(nBoi), maintCostB(nBoi), &
+                 nSpB(nBoi), minUpTimeB(nTrig), minDownTimeB(nTrig))
         allocate(ntcB(nBoi), npcB(nBoi), nacB(nBoi))
         nSpB(1:nBoi) = 0
-        allocate(nSizeB(nBoi))
-        nSizeB(1:nBoi) = 0
+!        allocate(nSizeB(nBoi))
+!        nSizeB(1:nBoi) = 0
         allocate(nEtaB(nBoi), tecB(nTrig))
    case(8)
         nMax = maxval(nSpB)
         allocate(spB(nMax,nBoi))
         spB(1:nMax,1:nBoi) = -1
-   case(9)   
-        maxSize = maxval(nSizeB)
-        allocate(kSizeB(nBoi,maxSize))
-        kSizeB(1:nBoi,1:maxSize) = -1
+!   case(9)   
+!        maxSize = maxval(nSizeB)
+!        allocate(kSizeB(nBoi,maxSize))
+!        kSizeB(1:nBoi,1:maxSize) = -1
    case(10) 
         nMax = maxval(nEtaB)
         allocate(etaB(nMax,2,nBoi))
         !---readChillers
    case(11)
-        allocate(pMaxC(nChi), degRateC(nChi), invC(nChi), lifeC(nChi), fireCostC(nChi), & 
-                 maintCostC(nChi), nSpC(nChi), minUpTimeC(nChi),minDownTimeC(nTrig))
+        allocate(pMaxC(nChi), fireCostC(nChi), maintCostC(nChi), nSpC(nChi), minUpTimeC(nChi),minDownTimeC(nTrig))
         nSpC(1:nChi) = 0
-        allocate(nSizeC(nChi))
-        nSizeC(1:nChi) = 0
+!        allocate(nSizeC(nChi))
+!        nSizeC(1:nChi) = 0
         allocate(nEtaC(nChi), tecC(nChi))        
         allocate(ntcC(nChi), npcC(nChi), nacC(nChi))
    case(12)
         nMax = maxval(nSpC)
         allocate(spC(nMax,nChi))
         spC(1:nMax,1:nChi) = -1
-   case(13)
-        maxSize = maxval(nSizeC)
-        allocate(kSizeC(nChi,maxSize))
-        kSizeC(1:nChi,1:maxSize) = -1
+!   case(13)
+!        maxSize = maxval(nSizeC)
+!        allocate(kSizeC(nChi,maxSize))
+!        kSizeC(1:nChi,1:maxSize) = -1
    case(14) 
         nMax = maxval(nEtaC)
         allocate(etaC(nMax,2,nChi))
@@ -143,7 +142,7 @@ select case(what)
         np   = nMax**nm 
         allocate(cRef(np,nm))
         allocate(etaEl(nMax,nm), etaCh(nMax,nm), etaTh(nMax,nm))
-        allocate(Pmax(nm),pes(nm),lhv(nm),cf(nm), onOffCost(nm), OeMCost(nm))
+        allocate(Pmax(nm),pes(nm),lhv(nm),cf(nm), onOffCost(nm), OeMCost(nm),tec(nm))
    case(20)
         allocate(cEl(nTime,nlp(iElp)), cTh(nTime,nlp(iThp)), cCh(nTime,nlp(iChp)))    
         allocate(gridBuyCost(nTime), gridSellCost(nTime)) 

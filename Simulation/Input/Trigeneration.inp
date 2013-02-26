@@ -35,16 +35,12 @@ begin
 Number             | 2       | !total number of trigenerative equipments
 Technology         | ICE ICE | !GT ICE CP
 Power              | 280 280 | !rated power
-DegradationRate    | 0.99d0 0.99d0  | 
-FuelCost           | 0.35d0  0.35d0 | !euro/Sm3
+FuelCost           | 0.35  0.35 | !euro/Sm3
 FuelLHV            | 35.0e3  35.0e3 | !kJ/Sm3
-Investment         | 300.0e3 300.0e3| !euro
-Lifetime           | 25.d0   25.d0  | !years       
-OnOffCost          | 0.d0    0.d0   | !cost to turn on the power plant
-OeMCost            | 0.d0    0.d0   | !euro/h maintenance cost
+OnOffCost          | 0.00    0.00   | !cost to turn on the power plant
+OeMCost            | 0.00    0.00   | !euro/h maintenance cost
 
 SetPoint           | (0  0.5 0.7 0.9 1.0) (0  0.5 0.7 0.9 1)| !Possible set points
-Size               | (1)  (1)      |  !Scale the size of the equipment
 
 !---efficiencies tables. 
 ElettrEfficiency   | (0.0    0.15       |  

@@ -52,7 +52,7 @@ contains
 !>\param[in] c_  index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
 !>\author Andrea Facci
 
-real(kind(1.d0)) function elProd(c_, t)
+real(kind = prec) function elProd(c_, t)
 
 !--Declare Module usage---
 use plantVar
@@ -95,7 +95,7 @@ end function elProd
 !>\param[in] c_  index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
 !>\author Andrea Facci
 
-real(kind(1.d0)) function thProd(c_,t)
+real(kind = prec) function thProd(c_,t)
 
 !--Declare Module usage---
 use plantVar
@@ -107,7 +107,7 @@ implicit none
 integer,dimension(nm), intent(in) :: c_
 integer              , intent(in) :: t
 integer                           :: i,j,k,l
-real(kind(1.d0))                  :: calore,eDisp,eEff,tEff,pow 
+real(kind = prec)                  :: calore,eDisp,eEff,tEff,pow 
 
 !---Function Body
 
@@ -156,7 +156,7 @@ end function thProd
 !>\param[in] c_  index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
 !>\author Andrea Facci
 
-real(kind(1.d0)) function chProd(c_,t)
+real(kind = prec) function chProd(c_,t)
 
 !--Declare Module usage---
 use plantVar
@@ -168,7 +168,7 @@ implicit none
 integer,dimension(nm), intent(in) :: c_
 integer              , intent(in) :: t
 integer                           :: i,j
-real(kind(1.d0))                  :: cEff, eEff, pow
+real(kind = prec)                  :: cEff, eEff, pow
 
 !---Function Body
 
@@ -205,7 +205,7 @@ end function chProd
 !>\param[in] c_  index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
 !>\author Andrea Facci
 
-real(kind(1.d0)) function thSelfCons(c_,t)
+real(kind = prec) function thSelfCons(c_,t)
 
 !--Declare Module usage---
 use plantVar
@@ -217,7 +217,7 @@ implicit none
 integer,dimension(nm), intent(in) :: c_
 integer,               intent(in) :: t
 integer                           :: i,j 
-real(kind(1.d0))                  :: pow, cEff
+real(kind = prec)                  :: pow, cEff
 
 !---Function Body
 
@@ -252,7 +252,7 @@ end function thSelfCons
 !>\param[in] c_  index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
 !>\author Andrea Facci
 
-real(kind(1.d0)) function elSelfCons(c_,t)
+real(kind = prec) function elSelfCons(c_,t)
 
 !--Declare Module usage---
 use plantVar
@@ -264,7 +264,7 @@ implicit none
 integer,dimension(nm), intent(in) :: c_
 integer                           :: t
 integer                           :: i,j 
-real(kind(1.d0))                  :: pow, cEff
+real(kind = prec)                  :: pow, cEff
 
 !---Function Body
 
@@ -307,12 +307,12 @@ use inputVar
 implicit none
 
 !---Declare Local Variables---
-real(kind(1.d0)),dimension(nBoi+nTrig)     :: fuelCons
+real(kind = prec),dimension(nBoi+nTrig)     :: fuelCons
 integer,                        intent(in) :: t
 integer         ,dimension(nm), intent(in) :: c_
 integer                                    :: i,j 
-real(kind(1.d0))              , parameter  :: vsmall = 1.0e-20
-real(kind(1.d0))                           :: pow, eff
+real(kind = prec)              , parameter  :: vsmall = 1.0e-20
+real(kind = prec)                           :: pow, eff
 
 !---Function Body
 
@@ -362,12 +362,12 @@ use inputVar
 implicit none
 
 !---Declare Local Variables---
-real(kind(1.d0)),dimension(nm)             :: energyInput
+real(kind = prec),dimension(nm)             :: energyInput
 integer,                        intent(in) :: t
 integer         ,dimension(nm), intent(in) :: c_
 integer                                    :: i,j 
-real(kind(1.d0))              , parameter  :: vsmall = 1.0e-20
-real(kind(1.d0))                           :: pow, eff
+real(kind = prec)              , parameter  :: vsmall = 1.0e-20
+real(kind = prec)                           :: pow, eff
 
 !---Function Body
 
@@ -413,12 +413,12 @@ use inputVar
 implicit none
 
 !---Declare Local Variables---
-real(kind(1.d0)),dimension(nTrig+nBoi)             :: energyExhaust
+real(kind = prec),dimension(nTrig+nBoi)             :: energyExhaust
 integer         ,dimension(nTrig+nBoi), intent(in) :: c_
 integer                               , intent(in) :: t
 integer                                    :: i,j 
-real(kind(1.d0))              , parameter  :: vsmall = 1.0e-20
-real(kind(1.d0))                           :: pow, eff
+real(kind = prec)              , parameter  :: vsmall = 1.0e-20
+real(kind = prec)                           :: pow, eff
 
 
 !---Function Body
@@ -448,7 +448,7 @@ end function energyExhaust
 !=====================================================================
 
 
-real(kind(1.d0)) function limitRecovery(i,valore,t)
+real(kind = prec) function limitRecovery(i,valore,t)
 
 
 !--Declare Module usage---
@@ -458,33 +458,38 @@ use inputVar
 implicit none
 
 !---Declare Local Variables---
-real(kind(1.d0)), intent(in) :: valore
+real(kind = prec), intent(in) :: valore
 integer         , intent(in) :: i,t
-real(kind(1.d0)), parameter  :: vsmall = 1.0e-20
+real(kind = prec), parameter  :: vsmall = 1.0e-20
 
-real(kind(1.d0)),allocatable, dimension(:) :: eIn, eOUt
-real(kind(1.d0))              :: c, a, b
+real(kind = prec),allocatable, dimension(:) :: eIn, eOUt
+real(kind = prec)              :: c, a, b
 integer                       :: j,n,iBoi
 
 !---Function Body
 
 iBoi = i - is(iB) + 1
-n = nEtaB(iBoi)
+!n = nEtaB(iBoi)
+n = nSp(i)
 allocate(eIn(n), eOut(n))
 eIn = 0.d0
 eOut = 0.d0
 
 do j=1,n
-   c      = etaB(j,1,iBoi)
+!   c      = etaB(j,1,iBoi)
+   c = sp(j,i)
    eOut(j)= Pmax(i)*c*envCorr(t,i,4)         
-   eIn(j) = eOut(j)/(etaB(j,2,iBoi)*envCorr(t,i,2))
+!   eIn(j) = eOut(j)/(etaB(j,2,iBoi)*envCorr(t,i,2))
+   eIn(j) = eOut(j)/(etaTh(j,i)*envCorr(t,i,2))
    if(eIn(j).ge.valore) exit
 enddo
 
-a = envCorr(t,i,2)*(etaB(j,2,iBoi) - etaB(j-1,2,iBoi))/(eOut(j) - eOut(j-1))
-b = envCorr(t,i,2)*etaB(j-1,2,iBoi) - a*eOut(j-1)
+!a = envCorr(t,i,2)*(etaB(j,2,iBoi) - etaB(j-1,2,iBoi))/(eOut(j) - eOut(j-1))
+!b = envCorr(t,i,2)*etaB(j-1,2,iBoi) - a*eOut(j-1)
 
-limitRecovery = -b*valore/(a*Valore - 1.d0)
+a = envCorr(t,i,2)*(etaTh(j,i) - etaTh(j-1,i))/(eOut(j) - eOut(j-1))
+b = envCorr(t,i,2)*etaTh(j-1,i) - a*eOut(j-1)
+limitRecovery = -b*valore/(a*Valore - 1.0)
 
 deallocate(eIn)
 

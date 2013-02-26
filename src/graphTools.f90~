@@ -33,19 +33,21 @@
 !---------------------------------------------------------------------------
 module graphTools
 
+use shared
+
 integer,                                       private :: nComb     !> number of combination of the given set point vectors
 integer,                                       private :: nTvComb   !> number of combination of the time-constraints vectors.
-real(kind(1.d0)), allocatable, dimension(:,:), private :: comb      !> array of all the possible set point indexes combinations (one combination per row)
-real(kind(1.d0)), allocatable, dimension(:,:), private :: spVal      !> array of all the possible set point valiues combinations (one combination per row)
-real(kind(1.d0)), allocatable, dimension(:,:), private :: tState    !> array of all the possible stime-constraints combinations (one combination per row)
+real(kind = prec), allocatable, dimension(:,:), private :: comb      !> array of all the possible set point indexes combinations (one combination per row)
+real(kind = prec), allocatable, dimension(:,:), private :: spVal      !> array of all the possible set point valiues combinations (one combination per row)
+real(kind = prec), allocatable, dimension(:,:), private :: tState    !> array of all the possible stime-constraints combinations (one combination per row)
 integer         , allocatable, dimension(:,:), private :: pointLoad !> set point of each vertex of the graph
-real(kind(1.d0)), allocatable, dimension(:)  , private :: pointCost !> weight associated to each vertex of the graph
+real(kind = prec), allocatable, dimension(:)  , private :: pointCost !> weight associated to each vertex of the graph
 integer         , allocatable, dimension(:)  , private :: nt        !> number of vertices for each time-step
-real(kind(1.d0)), allocatable, dimension(:)  , private :: pointTime !> time-step index of each vertex
+real(kind = prec), allocatable, dimension(:)  , private :: pointTime !> time-step index of each vertex
 integer,          allocatable, dimension(:,:), private :: predList  !> Predecessor List
 integer,          allocatable, dimension(:,:), private :: succList  !> Successor List
-real(kind(1.d0)), allocatable, dimension(:,:), private :: predCost  !> weight of each arc in the predecessor list 
-real(kind(1.d0)), allocatable, dimension(:,:), private :: succCost  !> weight of each arc in the successor list 
+real(kind = prec), allocatable, dimension(:,:), private :: predCost  !> weight of each arc in the predecessor list 
+real(kind = prec), allocatable, dimension(:,:), private :: succCost  !> weight of each arc in the successor list 
 integer,          allocatable, dimension(:)  , private :: nPre      !> number of predecessors for each graph vertex
 integer,          allocatable, dimension(:)  , private :: nSuc      !> number of successors for each graph vertex
 integer                                      , private :: nPoint    !> vertex number
@@ -54,7 +56,8 @@ integer,          allocatable, dimension(:,:), private :: timePoint !> vertexes 
 !===================================================================================================================
 
 interface
-    real(kind(1.d0)) function objFunction(c,t,obj)
+    real(kind = prec) function objFunction(c,t,obj)
+        use shared        
         use plantVar, only : nm
         implicit none
         integer, dimension(nm), intent(in)  :: c
@@ -65,6 +68,7 @@ end interface
 
 interface
     logical function constraints(c,t)
+        use shared        
         use plantVar
         use interfaces
         use inputVar
@@ -76,11 +80,12 @@ end interface
 
 interface 
     logical function timeConstr(cindex,tState)
+        use shared        
         use inputVar
         use plantVar
         implicit none
         integer, dimension(nm), intent(in) :: cindex
-        real(kind(1.d0)), dimension(nm), intent(in) :: tState
+        real(kind = prec), dimension(nm), intent(in) :: tState
     end function timeConstr
 end interface
 
@@ -102,14 +107,14 @@ contains
    integer,                            intent(in)                   :: m         !> number of vectors (input)
    integer,          dimension(m)             , intent(in)          :: imax      !> lenght of each set-point vector (input)
    integer,          dimension(maxval(imax),m), intent(in),optional :: icm       !> set-point vectors (input)
-   real(kind(1.d0)), dimension(maxval(imax),m), intent(in),optional :: dcm       !> set-point vectors (input)
+   real(kind = prec), dimension(maxval(imax),m), intent(in),optional :: dcm       !> set-point vectors (input)
    character(len=100),                          intent(in),optional :: targ
    integer,          dimension(m)                                   :: j
    integer                                                          :: k, i, h, n
    logical                                                          :: fine
    character(len=7)                                                 :: tipo
    integer,         dimension(:,:), allocatable                     :: iComb_
-   real(kind(1.d0)),dimension(:,:), allocatable                     :: dComb_
+   real(kind = prec),dimension(:,:), allocatable                     :: dComb_
 
    if(present(dcm).and.present(icm)) then
       print*, '----Fatal error in "allCombin" call----'
@@ -132,11 +137,11 @@ contains
    if(present(icm)) then 
       tipo = 'integer'
       allocate(icomb_(k,m))   
-      icomb_(:,:) = -1.d0
+      icomb_(:,:) = -1
    elseif(present(dcm)) then
       tipo = 'double '
       allocate(dcomb_(k,m))   
-      dcomb_(:,:) = -1.d0
+      dcomb_(:,:) = rNaN(rVal)
    endif
    !---generate the combinations.
    i = 0
@@ -208,8 +213,8 @@ contains
    !---Declare Local Variables---
    implicit none
   
-   real(kind(1.d0)), allocatable, dimension(:,:) :: cl_
-   real(kind(1.d0)), allocatable, dimension(:)   :: cost_, time_
+   real(kind = prec), allocatable, dimension(:,:) :: cl_
+   real(kind = prec), allocatable, dimension(:)   :: cost_, time_
    integer         , allocatable, dimension(:)   :: startLoad 
    integer :: i,j,n, iStart
    integer , allocatable, dimension(:) :: load
@@ -241,6 +246,9 @@ contains
    enddo
    nt(nTime+1) = 1
    timePoint(nTime+1,1) = nPoint + 1 
+   do i=1,nTime
+      if(nt(i).eq.0) call abortExecution(18,i)
+   enddo
   
    allocate(pointCost(0:n+1),pointLoad(0:n+1,nm),pointTime(0:n+1))
    allocate(startLoad(nm))
@@ -252,13 +260,13 @@ contains
      startLoad = comb(iStart,:)
    endif
    nPoint           = n
-   pointCost(0)     = 0.d0
+   pointCost(0)     = zero
    pointCost(1:n)   = cost_(1:n)
-   pointCost(n+1)   = 0.d0 
+   pointCost(n+1)   = zero 
    pointLoad(0,:)   = startLoad(:)
    pointLoad(1:n,:) = cl_(1:n,:)
    pointLoad(n+1,:) = startLoad(:)
-   pointTime(0)     = 0
+   pointTime(0)     = zero
    pointTime(1:n)   = time_(1:n)
    pointTime(n+1)   = nTime + 1
   
@@ -301,7 +309,6 @@ contains
    implicit none
   
    integer :: i,j,t,n1,n2,ni,nf,k
-   integer, parameter :: zero = 0.d0
    integer, allocatable, dimension(:) :: cNew, cOld
   
    allocate(nPre(nPoint+1), predCost(nPoint+1,nComb))
@@ -311,68 +318,71 @@ contains
   
    predList(:,:) = -1!inan(1)
    succList(:,:) = -1!inan(1)
-   predCost(:,:) = rnan(1.d0)
-   succCost(:,:) = rnan(1.d0)
-  
+   predCost(:,:) = rnan(rVal)
+   succCost(:,:) = rnan(rVal)
+   
+   select case(method)
+      case('Forward')
    !---detect the predecessors for each node---
-   n1 = 1
-   ni  = 0
-   do t=1,nTime+1
-      n2 = n1 + nt(t)   - 1
-      nf = ni + nt(t-1) - 1 
-      do i=n1,n2
-         nPre(i) = nt(t-1)
-         predList(i,1:nPre(i)) = (/ (k, k=ni,nf) /)
-      enddo
-      ni = nf + 1
-      n1 = n2 + 1
-   enddo
-  
-   !---detect the successors for each node---
-   n1 = 0
-   ni  = 1
-   do t=0,nTime
-      n2 = n1 + nt(t)   - 1
-      nf = ni + nt(t+1) - 1 
-      do i=n1,n2
-         nSuc(i) = nt(t+1)
-         succList(i,1:nSuc(i)) = (/ (k, k=ni,nf) /)
-      enddo
-      ni = nf + 1
-      n1 = n2 + 1
-   enddo
+         n1 = 1
+         ni  = 0
+         do t=1,nTime+1
+            n2 = n1 + nt(t)   - 1
+            nf = ni + nt(t-1) - 1 
+            do i=n1,n2
+               nPre(i) = nt(t-1)
+               predList(i,1:nPre(i)) = (/ (k, k=ni,nf) /)
+            enddo
+            ni = nf + 1
+            n1 = n2 + 1
+         enddo
+         !---associate the cost to each arc in the predecessor list---
+         allocate(cNew(nm), cOld(nm))
+         do i=1,nPoint+1
+            cNew = pointLoad(i,:)
+            do j=1,nPre(i)
+               k = predList(i,j)
+               cOld = pointLoad(k,:)
+               predCost(i,j) = pointCost(k) + fireCost(cNew,cOld)
+            enddo
+         enddo
 
-   !---associate the cost to each arc in the predecessor list---
-   allocate(cNew(nm), cOld(nm))
-   do i=1,nPoint+1
-      cNew = pointLoad(i,:)
-      do j=1,nPre(i)
-         k = predList(i,j)
-         cOld = pointLoad(k,:)
-         predCost(i,j) = pointCost(k) + fireCost(cNew,cOld)
-      enddo
-   enddo
-
-   !---associate the cost to each arc in the successor list---
-   do i=0,nPoint
-      cOld = pointLoad(i,:)
-      do j=1,nSuc(i)
-!         k = sucList(i,j)
-         cNew = pointLoad(k,:)
-         succCost(i,j) = pointCost(i) + fireCost(cNew,cOld)
-      enddo
-   enddo
+      case('Backward')
+         !---detect the successors for each node---
+         n1 = 0
+         ni  = 1
+         do t=0,nTime
+            n2 = n1 + nt(t)   - 1
+            nf = ni + nt(t+1) - 1 
+            do i=n1,n2
+               nSuc(i) = nt(t+1)
+               succList(i,1:nSuc(i)) = (/ (k, k=ni,nf) /)
+            enddo
+            ni = nf + 1
+            n1 = n2 + 1
+         enddo
+         !---associate the cost to each arc in the successor list---
+         do i=0,nPoint
+            cOld = pointLoad(i,:)
+            do j=1,nSuc(i)
+!               k = sucList(i,j)
+               cNew = pointLoad(k,:)
+               succCost(i,j) = pointCost(i) + fireCost(cNew,cOld)
+            enddo
+         enddo
+       end select
   
    deallocate(cNew,cOld)
 
    if(.not.silent) then
       print*
-      print*, '              ----Graph report-------------------'
+      print*, '              ------------Graph report------------'
       print*, '              | Plant State number: ', nComb,   '|'
       print*, '              | Time-steps        : ', nTime,   '|'
       print*, '              | Verteces number   : ', nPoint,  '|'
-      print*, '              | Arcs number       : ', sum(nPre(:)), '|'
-      print*, '              -----------------------------------'
+      if(method.eq.'Forward') print*, '              | Arcs number       : ', sum(nPre(:)), '|'
+      if(method.eq.'Backward') print*, '              | Arcs number       : ', sum(nSuc(:)), '|'
+      print*, '              ------------------------------------'
       print*
    endif
 
@@ -399,18 +409,18 @@ contains
    implicit none
     
    integer, dimension(0:nTime+1,nm), intent(out):: ottLoad
-   real(kind(1.d0)),              intent(out)   :: minCost
+   real(kind = prec),              intent(out)   :: minCost
    integer                                      :: orig, dest, i, j, p
-   real(kind(1.d0))                             :: ci
-   real(kind(1.d0)), allocatable, dimension(:)  :: pathCost
+   real(kind = prec)                             :: ci
+   real(kind = prec), allocatable, dimension(:)  :: pathCost
    integer         , allocatable, dimension(: ) :: minPred
    integer, dimension(0:nTime+1)                :: minPath
 
    orig = 0              
    dest = nPoint + 1
    allocate(pathCost(orig:dest), minPred(orig:dest))
-   pathCost(orig+1:dest) = huge(1.d0)
-   pathCost(orig)        = 0.d0
+   pathCost(orig+1:dest) = huge(rVal)
+   pathCost(orig)        = zero
    minPred(orig:dest)    = 0
 
    do i=1,dest
@@ -459,24 +469,24 @@ contains
    implicit none
     
    integer, dimension(0:nTime+1,nm), intent(out):: ottLoad
-   real(kind(1.d0)),              intent(out)   :: minCost
+   real(kind = prec),              intent(out)   :: minCost
    integer                                      :: orig, dest, i, j, p, suc,t,k,ki
-   real(kind(1.d0))                             :: ci
-   real(kind(1.d0)), allocatable, dimension(:,:)  :: pathCost
+   real(kind = prec)                             :: ci
+   real(kind = prec), allocatable, dimension(:,:)  :: pathCost
    integer         , allocatable, dimension(:,:)  :: minSucc
    integer, dimension(0:nTime+1)                :: minPath
    logical                                      :: tv
    integer, dimension(nm)                       :: cn, co
-   real(kind(1.d0)), dimension(0:nTime+1,2*nm), intent(out)       :: upTime 
-   real(kind(1.d0)), dimension(2*nm)              :: upTimeIn, upTimeOut
+   real(kind = prec), dimension(0:nTime+1,2*nm), intent(out)       :: upTime 
+   real(kind = prec), dimension(2*nm)              :: upTimeIn, upTimeOut
 
    !----------function body-----------------------------------------------------
 
    orig = 0              
    dest = nPoint + 1
    allocate(pathCost(orig:dest,nTvComb), minSucc(orig:dest,nTvComb))
-   pathCost(orig:dest,:)   = huge(1.d0)
-   pathCost(dest,:)        = 0.d0
+   pathCost(orig:dest,:)   = huge(rVal)
+   pathCost(dest,:)        = zero
    minSucc(orig:dest,:)    = 0
 
    do i=nPoint,0,-1
@@ -533,23 +543,23 @@ contains
 
      implicit none
 
-     real(kind(1.d0)), dimension(2*nm)    :: upTimeCalc
-     real(kind(1.d0)), dimension(2*nm)    :: upT
+     real(kind = prec), dimension(2*nm)    :: upTimeCalc
+     real(kind = prec), dimension(2*nm)    :: upT
      integer,                intent(in) :: t
      integer, dimension(nm), intent(in) :: c
      integer                            :: i,j,k
-     real(kind(1.d0))                   :: load
+     real(kind = prec)                   :: load
 
      !---function body----
      do i=1,nm
         j = c(i)
         k = i + nm
         load = sp(j,i)
-        if(load.gt.0.d0) then 
+        if(load.gt.zero) then 
            upTimeCalc(i) = upT(i) + dt(t)
-           upTimeCalc(k) = 0.d0
+           upTimeCalc(k) = zero
         else   
-           upTimeCalc(i) = 0.d0
+           upTimeCalc(i) = zero
            upTimeCalc(k) = upT(k) + dt(t)
         endif
         upTimeCalc(i) = min(upTimeCalc(i),minUpTime(i))       !limit the value of upTime

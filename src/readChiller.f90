@@ -61,6 +61,7 @@
 subroutine readChillers
 
 !---Declare Unit usage---
+use shared
 use inputVar
 use fileTools
 use interfaces
@@ -81,8 +82,7 @@ integer, dimension(10) :: dummy
 integer              :: error
 character(len=20), dimension(3) :: param
 integer :: n, nt, nee, net, nec, np
-real(kind(1.d0)), allocatable, dimension(:,:) :: matrix
-
+real(kind = prec), allocatable, dimension(:,:) :: matrix
 
 !---Check File Presence---
 inquire(file = inputFile, exist = filePresent)
@@ -91,6 +91,11 @@ if(.not.filePresent) then
 else
    open(unit = genUnit, file = inputFile)
 endif
+
+isPresent(4) = .true.
+isPresent(5) = .true.
+isPresent(6) = .true.
+isPresent(10) = .true.
 
 !---Skip all the lines before the keyword "begin".
 firstLine = 0;
@@ -126,15 +131,15 @@ do
        case('Power')
           read(value,*) (pMaxC(i), i=1,nChi)
           isPresent(3) = .true.
-       case('DegradationRate')
-          read(value,*) (degRateC(i), i=1,nChi)
-          isPresent(4) = .true.
-       case('Investment')
-          read(value,*) (invC(i), i=1,nChi)
-          isPresent(5) = .true.
-       case('Lifetime')
-          read(value,*) (lifeC(i), i=1,nChi)
-          isPresent(6) = .true.
+!       case('DegradationRate')
+!          read(value,*) (degRateC(i), i=1,nChi)
+!          isPresent(4) = .true.
+!       case('Investment')
+!          read(value,*) (invC(i), i=1,nChi)
+!          isPresent(5) = .true.
+!       case('Lifetime')
+!          read(value,*) (lifeC(i), i=1,nChi)
+!          isPresent(6) = .true.
        case('OnOffCost')
           read(value,*) (fireCostC(i), i=1,nChi)
           isPresent(7) = .true.
@@ -157,22 +162,22 @@ do
              read(vector,*) (spC(j,i), j=1,nSpC(i))
              value =  value(n2 + 2:)
           enddo
-       case('Size')
-           value_ = value
-           isPresent(10) = .true.
-           do i=1,nChi
-               nSizeC(i) = hCount(value_)
-               n2 = index(value_,')') + 1
-               value_ =  value_(n2 + 1:)
-           enddo
-           call allocateVar(13)
-           do i = 1, nChi
-              n1 = index(value,'(') + 1
-              n2 = index(value,')') - 1
-              vector = trim(value(n1:n2))
-              read(vector,*) (kSizeC(i,j), j=1,nSizeC(i))
-              value =  value(n2 + 2:)
-           enddo
+!       case('Size')
+!           value_ = value
+!           isPresent(10) = .true.
+!           do i=1,nChi
+!               nSizeC(i) = hCount(value_)
+!               n2 = index(value_,')') + 1
+!               value_ =  value_(n2 + 1:)
+!           enddo
+!           call allocateVar(13)
+!          do i = 1, nChi
+!             n1 = index(value,'(') + 1
+!             n2 = index(value,')') - 1
+!             vector = trim(value(n1:n2))
+!             read(vector,*) (kSizeC(i,j), j=1,nSizeC(i))
+!             value =  value(n2 + 2:)
+!           enddo
        case('Efficiency')
               isPresent(11) = .true.
               backspace(genUnit)
@@ -217,7 +222,7 @@ do
             n = sum(ntcC)
             call rewUnit(genUnit,n)
             do i=1,nChi
-               matrix = rNaN(1.d0)
+               matrix = rNaN(rVal)
                matrix = dmatrixRead(genUnit,ntcC(i),3)
                tempCorrC(:,1,i) = matrix(:,nt)
                tempCorrC(:,2,i) = matrix(:,net)
@@ -244,7 +249,7 @@ do
             n = sum(npcC)
             call rewUnit(genUnit,n)
             do i=1,nCHi
-               matrix = rNaN(1.d0)
+               matrix = rNaN(rVal)
                matrix = dmatrixRead(genUnit,npcC(i),3)
                presCorrC(:,1,i) = matrix(:,nt)
                presCorrC(:,2,i) = matrix(:,net)
@@ -271,7 +276,7 @@ do
             n = sum(nacC)
             call rewUnit(genUnit,n)
             do i=1,nCHi
-               matrix = rNaN(1.d0)
+               matrix = rNaN(rVal)
                matrix = dmatrixRead(genUnit,nacC(i),3)
                altCorrC(:,1,i) = matrix(:,nt)
                altCorrC(:,2,i) = matrix(:,net)

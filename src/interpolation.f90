@@ -46,17 +46,18 @@
 function interpolation(xIn,yIn,n,xOut,m,warn) 
 
 !---Declare Module usage---
+use shared
 
 !---Declare Local Variables---
 implicit none
 
 integer                       , intent(in)  :: n, m
-real(kind(1.d0)), dimension(n), intent(in)  :: xIn, yIn
-real(kind(1.d0)), dimension(m), intent(in)  :: xOut
+real(kind = prec), dimension(n), intent(in)  :: xIn, yIn
+real(kind = prec), dimension(m), intent(in)  :: xOut
 integer         , dimension(2), intent(out), optional :: warn
-real(kind(1.d0)), dimension(m)              :: interpolation
+real(kind = prec), dimension(m)              :: interpolation
 
-real(kind(1.d0)) :: x, xL, xU, yL, yU
+real(kind = prec) :: x, xL, xU, yL, yU
 integer          :: i,j
 
 !---procedure body----

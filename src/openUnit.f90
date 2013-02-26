@@ -37,6 +37,7 @@
 subroutine openUnit(fl,unt,prsnt)
 
 !---Declare Module usage---
+use shared
 
 !---Declare Local Variables---
 implicit none

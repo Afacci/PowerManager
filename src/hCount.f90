@@ -42,6 +42,8 @@
 
 integer function hCount(value_, first_,last_)
 
+use shared
+
 !---Declare Unit usage---
 
 !---Declare Local Variables---

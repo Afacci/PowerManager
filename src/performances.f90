@@ -32,6 +32,7 @@ subroutine performances(c, cOld, equip, num,t, pEl, pTh, pCh, eIn, mf, cfu,cm,cO
 
 !---Declare Module usage---
 
+use shared
 use inputVar
 use plantVar
 
@@ -41,11 +42,11 @@ implicit none
 integer, intent(in) :: c, num, t
 integer, intent(in), optional :: cOld
 character(len=*), intent(in) :: equip
-real(kind(1.d0)), intent(out), optional :: pEl, pTh, pCh, eIn, mf, cfu,cm,cOn
+real(kind = prec), intent(out), optional :: pEl, pTh, pCh, eIn, mf, cfu,cm,cOn
 
 integer :: i
-real(kind(1.d0)) :: pEl_, pIn_, mf_, pTh_, pCh_
-real(kind(1.d0)) :: cc, ccO
+real(kind = prec) :: pEl_, pIn_, mf_, pTh_, pCh_
+real(kind = prec) :: cc, ccO
 
 !--- function body
 
@@ -70,18 +71,18 @@ select case(equip)
      if(present(mf))  mf  = pIn_/lhv(i)
      if(present(cfu))  cfu  = pIn_*cf(i)/lhv(i)*dt(t)
      if(present(cm)) then
-        if(cc.gt.0.d0) then
+        if(cc.gt.zero) then
            cm = OeMcost(i)*dt(t)
         else
-           cm = 0.d0
+           cm = zero
         endif
       endif
       if(present(cOn)) then
          ccO = sp(cOld,i)
-         if(cc.gt.0.d0.and.ccO.eq.0.d0) then
+         if(cc.gt.zero.and.ccO.eq.zero) then
            cOn = onOffCost(i)
          else
-           cOn = 0.d0
+           cOn = zero
          endif
       endif
    case('Boiler')
@@ -107,7 +108,7 @@ select case(equip)
         if(pes(i).eq.'fuel') then
            mf_  = pIn_/lhv(i)
         else
-           mf_ = 0.d0
+           mf_ = zero
         endif
      endif
      if(present(pTh)) pTh = pTh
@@ -115,18 +116,18 @@ select case(equip)
      if(present(mf))  mf  = mf_
      if(present(cfu)) cfu = mf_*cf(i)*dt(i)
      if(present(cm)) then
-        if(cc.gt.0.d0) then
+        if(cc.gt.zero) then
            cm = OeMcost(i)*dt(t)
         else
-           cm = 0.d0
+           cm = zero
         endif
       endif
       if(present(cOn)) then
          ccO = sp(cOld,i)
-         if(cc.gt.0.d0.and.ccO.eq.0.d0) then
+         if(cc.gt.zero.and.ccO.eq.zero) then
            cOn = onOffCost(i)
          else
-           cOn = 0.d0
+           cOn = zero
          endif
       endif
    case('Chiller')
@@ -151,18 +152,18 @@ select case(equip)
      if(present(pCh)) pCh = pCh_
      if(present(eIn)) eIn = pCh_/(etaCh(c,i)*envCorr(t,i,3))
      if(present(cm)) then
-        if(cc.gt.0.d0) then
+        if(cc.gt.zero) then
            cm = OeMcost(i)*dt(t)
         else
-           cm = 0.d0
+           cm = zero
         endif
       endif
       if(present(cOn)) then
          ccO = sp(cOld,i)
-         if(cc.gt.0.d0.and.ccO.eq.0.d0) then
+         if(cc.gt.zero.and.ccO.eq.zero) then
            cOn = onOffCost(i)
          else
-           cOn = 0.d0
+           cOn = zero
          endif
       endif
 end select

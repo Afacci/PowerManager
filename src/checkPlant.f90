@@ -41,7 +41,7 @@
 subroutine checkPlant
 
 !---Declare Module usage---
-
+use shared
 use inputVar
 use plantVar
 use interfaces
@@ -49,9 +49,9 @@ use interfaces
 !---Declare Local Variables---
 implicit none
 
-real(kind(1.d0))  :: pEl, pCh, pTh, pThT, uEmax, uCmax, uTmax, &
+real(kind = prec)  :: pEl, pCh, pTh, pThT, uEmax, uCmax, uTmax, &
                      uTf, uEf, cMax, pIn
-real(kind(1.d0)), allocatable,dimension(:) :: uTht,uElt,uCht
+real(kind = prec), allocatable,dimension(:) :: uTht,uElt,uCht
 integer           :: n,  i
 
 !--subroutine body-----
@@ -59,21 +59,21 @@ integer           :: n,  i
 allocate(uTht(nTime),uElt(nTime),uCht(nTime))
 
 !-evaluation of maximum power for each energy vector.
-pEl = 0
+pEl = zero
 if(nTrig.gt.0) then
    do i=1,nTrig
       cMax = maxval(spT(:,i))
       pEl  = PmaxT(i)*cMax + pEl
    enddo
 endif
-pCh = 0
+pCh = zero
 if(nChi.gt.0) then
    do i=1,nChi
       cMax = maxval(spC(:,i))
       pCh  = pCh + PmaxC(i)*cMax
    enddo
 endif
-pThT = 0.d0
+pThT = zero
 if(nTrig.gt.0) then
    do i=1,nTrig
       n    = nSpT(i)
@@ -82,7 +82,7 @@ if(nTrig.gt.0) then
       pThT = pThT + pIn*etaThT_(n,i)
    enddo
 endif
-pTh = 0
+pTh = zero
 if(nBoi.gt.0) then
    do i=1,nBoi
       cMax = maxval(spB(:,i))
@@ -96,8 +96,8 @@ do i=1,Ntime
     uCht(i) = sum(uCh(i,:))
 enddo
 uCmax = maxval(uCht)
-uTf   = 0.d0
-uEf   = 0.d0
+uTf   = zero
+uEf   = zero
 if(nChi.gt.0) then
    do i=1,nChi
       n = nSpC(i)
@@ -118,10 +118,10 @@ if(uCmax.gt.pCh) call abortExecution(i=7,j=2,r1=pCh, r2=uCmax)
 if(uEmax.gt.pEl.and.gridConnection.eq.'StandAlone') call abortExecution(i=7,j=2,r1=pEl, r2=uEmax)
 
 do i=1,nTrig+nBoi+nChi
-   if(upTime0(i).eq.0.and.startPoint(i).gt.0.d0) call abortExecution(15,i,word='upTime',r1=upTime0(i),r2=startPoint(i))
-   if(upTime0(i).gt.0.and.startPoint(i).eq.0.d0) call abortExecution(15,i,word='upTime',r1=upTime0(i),r2=startPoint(i))
-   if(downTime0(i).eq.0.and.startPoint(i).eq.0.d0) call abortExecution(15,i,word='DownTime',r1=downTime0(i),r2=startPoint(i))
-   if(downTime0(i).gt.0.and.startPoint(i).gt.0.d0) call abortExecution(15,i,word='DownTime',r1=downTime0(i),r2=startPoint(i))
+   if(upTime0(i).eq.0.and.startPoint(i).gt.zero) call abortExecution(15,i,word='upTime',r1=upTime0(i),r2=startPoint(i))
+   if(upTime0(i).gt.0.and.startPoint(i).eq.zero) call abortExecution(15,i,word='upTime',r1=upTime0(i),r2=startPoint(i))
+   if(downTime0(i).eq.0.and.startPoint(i).eq.zero) call abortExecution(15,i,word='DownTime',r1=downTime0(i),r2=startPoint(i))
+   if(downTime0(i).gt.0.and.startPoint(i).gt.zero) call abortExecution(15,i,word='DownTime',r1=downTime0(i),r2=startPoint(i))
 enddo
 
 deallocate(uTht,uElt,uCht)

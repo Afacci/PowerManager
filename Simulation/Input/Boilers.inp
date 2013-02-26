@@ -33,19 +33,15 @@ Everything written before begin or after end is ignore as well as every line aft
 begin
 
 Number             | 1        | !total number of trigenerative equipments
-Power              | 800.d0   | !rated power
-HeatSource         | Trig@2   |
-DegradationRate    | 0.0d0    | !degradation rate per each operationf hour
-FuelCost           | 0.35d0   | !euro/kg
+Power              | 800.00   | !rated power
+HeatSource         | fuel Trig@2   |
+FuelCost           | 0.3500   | !euro/kg
 FuelLHV            | 35.0e3   | !kJ/kg
-Investment         | 300.0e3  | !euro
-Lifetime           | 25.d0    | !years       
-OnOffCost          | 0.d0     | !cost to turn on the power plant
-OeMCost            | 0.d0     | !euro/h maintenance cost 
+OnOffCost          | 0.00     | !cost to turn on the power plant
+OeMCost            | 0.00     | !euro/h maintenance cost 
 
 SetPoint           | (0 0.5 0.7 0.9 1) | !Possible set points
 !SetPoint           | (0  0.5 1) | !Possible set points
-Size               | (1)          |  !Scale the size of the equipmente     
 
 ThermalEfficiency  | (0.0  0.60    |
                    |   0.3 0.70    |

@@ -38,8 +38,11 @@
 
 module fileTools
 
+use shared
+
 interface 
     subroutine rewUnit(theUnit,n)
+        use shared
         implicit none
         integer, intent(in) :: theUnit, n
     end subroutine rewUnit
@@ -47,6 +50,7 @@ end interface
 
 interface
     integer function vCount(theUnit,rew_, first_,last_)
+        use shared
         implicit none
         integer, intent(in) :: theUnit
         logical , optional  :: rew_ 
@@ -56,6 +60,7 @@ end interface
 
 interface
     integer function hCount(value_, first_, last_)
+        use shared
         implicit none
         character(len=100), intent(in) :: value_
         character(len=1) , optional    :: first_,last_
@@ -64,24 +69,27 @@ end interface
 
 interface
     function dMatrixRead(theUnit,nline,ncol, first_, last_)
+         use shared
          implicit none
          integer, intent(in)        :: theUnit, nline, ncol
          character(len=1), optional :: first_, last_
-         real(kind(1.d0))           :: dMatrixRead(nline,ncol)
+         real(kind = prec)           :: dMatrixRead(nline,ncol)
     end function dMatrixRead
 end interface
 
 interface
     function iMatrixRead(theUnit,nline,ncol, first_, last_)
+         use shared
          implicit none
          integer, intent(in)        :: theUnit, nline, ncol
          character(len=1), optional :: first_, last_
-         real(kind(1.d0))           :: iMatrixRead(nline,ncol)
+         real(kind = prec)           :: iMatrixRead(nline,ncol)
     end function iMatrixRead
 end interface
 
 interface
     function cMatrixRead(theUnit,nline,ncol, first_, last_)
+         use shared
          implicit none
          integer, intent(in)        :: theUnit, nline, ncol
          character(len=1), optional :: first_, last_
@@ -91,6 +99,7 @@ end interface
 
 interface
     function matrixRead(theUnit,nline, first_, last_)
+         use shared
          implicit none
          integer, intent(in)        :: theUnit, nline
          character(len=1), optional :: first_, last_
@@ -100,6 +109,7 @@ end interface
 
 interface
     subroutine iFindEntry(entry,n,theUnit,rew,valore,isPresent,nRow)
+        use shared
         implicit none
         integer, intent(in)            :: theUnit
         integer, intent(in)            :: n
@@ -113,11 +123,12 @@ end interface
 
 interface
     subroutine dFindEntry(entry,n,theUnit,rew,valore,isPresent,nRow)
+        use shared
         implicit none
         integer, intent(in)            :: theUnit
         integer, intent(in)            :: n
         integer, intent(out), optional :: nRow
-        real(kind(1.d0)), intent(out), optional :: valore(n)
+        real(kind = prec), intent(out), optional :: valore(n)
         logical, intent(in), optional  :: rew
         logical, intent(out), optional :: isPresent
         character(len=*), intent(in)   :: entry
@@ -126,6 +137,7 @@ end interface
 
 interface
     subroutine cFindEntry(entry,n,theUnit,rew,valore,isPresent,nRow)
+        use shared
         implicit none
         integer, intent(in)            :: theUnit
         integer, intent(in)            :: n
@@ -139,6 +151,7 @@ end interface
 
 interface
     subroutine findEntry(entry,theUnit,rew,valore,isPresent,nRow)
+        use shared
         implicit none
         integer, intent(in)            :: theUnit
         integer, intent(out), optional :: nRow
@@ -151,6 +164,7 @@ end interface
 
 interface
     subroutine readKeyword (theUnit,rew,keyword,value,error,nRow)
+        use shared
         implicit none
         character(len=100), intent(out):: Keyword, value
         integer, intent(out), optional :: error

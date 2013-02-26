@@ -39,12 +39,14 @@
 
 module inputVar
 
+use shared
+
 !---General input variables---
 character(len=20)  :: gridConnection 
 integer            :: nTimes
 logical            :: iDeg 
-real(kind(1.d0)), allocatable, dimension(:) :: startPoint, upTime0, downTime0
-real(kind(1.d0))                            :: dt1
+real(kind = prec), allocatable, dimension(:) :: startPoint, upTime0, downTime0
+real(kind = prec)                            :: dt1
 character(len=100) :: obj, method
 logical :: writePower       = .false.
 logical :: writeEnergy      = .false.
@@ -61,38 +63,38 @@ logical :: writeChi         = .false.
 
 !---Trigeneration.inp variables
 integer                                         :: nTrig
-integer, allocatable, dimension(:)              :: nSpT, nSizeT, nEtaElT, nEtaThT, nEtaChT, ntcT, npcT, nacT
-real(kind(1.d0)),allocatable, dimension(:)      :: pMaxT , degRateT, fuelCostT, fuelLHVT, invT, lifeT, &
+integer, allocatable, dimension(:)              :: nSpT, nEtaElT, nEtaThT, nEtaChT, ntcT, npcT, nacT
+real(kind= prec),allocatable, dimension(:)      :: pMaxT, fuelCostT, fuelLHVT, lifeT, &
                                                    fireCostT, maintCostT,minUpTimeT, minDownTimeT
-real(kind(1.d0)),allocatable, dimension(:,:)    :: spT, kSizeT
-real(kind(1.d0)), allocatable, dimension(:,:,:) :: etaElT, etaThT, etaChT, tempCorrT, presCorrT, altCorrT
+real(kind= prec),allocatable, dimension(:,:)    :: spT
+real(kind= prec), allocatable, dimension(:,:,:) :: etaElT, etaThT, etaChT, tempCorrT, presCorrT, altCorrT
 character(len=50), allocatable, dimension(:)    :: tecT
 
 !---Boilers.inp variables
 integer                                         :: nBoi
-integer, allocatable, dimension(:)              :: nSpB, nSizeB, nEtaB, ntcB, npcB, nacB
-real(kind(1.d0)),allocatable, dimension(:)      :: pMaxB , degRateB, fuelCostB, fuelLHVB,               & 
-                                                   invB, lifeB, fireCostB, maintCostB , minUpTimeB, minDownTimeB 
-real(kind(1.d0)),allocatable, dimension(:,:)    :: spB, kSizeB
-real(kind(1.d0)), allocatable, dimension(:,:,:) :: etaB, tempCorrB,  presCorrB, altCorrB
+integer, allocatable, dimension(:)              :: nSpB, nEtaB, ntcB, npcB, nacB
+real(kind= prec),allocatable, dimension(:)      :: pMaxB ,fuelCostB, fuelLHVB,               & 
+                                                   lifeB, fireCostB, maintCostB , minUpTimeB, minDownTimeB 
+real(kind= prec),allocatable, dimension(:,:)    :: spB
+real(kind= prec), allocatable, dimension(:,:,:) :: etaB, tempCorrB,  presCorrB, altCorrB
 character(len=50), allocatable, dimension(:)    :: tecB
 
 !---Chillers.inp variables
 integer                                         :: nChi
 integer, allocatable, dimension(:)              :: nSpC, nSizeC, nEtaC, ntcC, npcC, nacC
-real(kind(1.d0)),allocatable, dimension(:)      :: pMaxC , degRateC, invC, LifeC, fireCostC, maintCostC, minUpTimeC, minDownTimeC  
-real(kind(1.d0)),allocatable, dimension(:,:)    :: spC, kSizeC
-real(kind(1.d0)), allocatable, dimension(:,:,:) :: etaC, tempCorrC, presCorrC, altCorrC
+real(kind= prec),allocatable, dimension(:)      :: pMaxC , fireCostC, maintCostC, minUpTimeC, minDownTimeC  
+real(kind= prec),allocatable, dimension(:,:)    :: spC
+real(kind= prec), allocatable, dimension(:,:,:) :: etaC, tempCorrC, presCorrC, altCorrC
 character(len=50), allocatable, dimension(:)    :: tecC
 
 !---Load.inp variables
 integer                                       :: nTime, nLoad, iTime, iEl, iTh, iCh, iElp, iThp, iChp
-real(kind(1.d0)), allocatable, dimension(:,:) :: uEl, uTh, uCh, cEl, cTh, cCh
-real(kind(1.d0)), allocatable, dimension(:)   :: time, gridBuyCost, gridSellCost
+real(kind= prec), allocatable, dimension(:,:) :: uEl, uTh, uCh, cEl, cTh, cCh
+real(kind= prec), allocatable, dimension(:)   :: time, gridBuyCost, gridSellCost
 integer, allocatable, dimension(:)            :: nld, nlp
 
 !--environment.inp variables
-real(kind(1.d0)), allocatable, dimension(:) :: pAmb, tAmb
-real(kind(1.d0)), dimension(1)              :: Altitude
+real(kind= prec), allocatable, dimension(:) :: pAmb, tAmb
+real(kind= prec), dimension(1)              :: Altitude
 
 end module inputVar

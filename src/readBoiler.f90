@@ -61,6 +61,7 @@
 subroutine readBoiler
 
 !---Declare Unit usage---
+use shared
 use inputVar
 use fileTools
 use interfaces
@@ -80,7 +81,7 @@ integer,dimension(100) :: dummy
 integer              :: error
 character(len=20), dimension(3) :: param
 integer :: n, nt, nee, net, nec, np
-real(kind(1.d0)), allocatable, dimension(:,:) :: matrix
+real(kind = prec), allocatable, dimension(:,:) :: matrix
 
 !---Check File Presence---
 inquire(file = inputFile, exist = filePresent)
@@ -90,6 +91,10 @@ else
    open(unit = genUnit, file = inputFile)
 endif
 
+isPresent(3) = .true.
+isPresent(6) = .true.
+isPresent(7) = .true.
+isPresent(11) = .true.
 !---Skip all the lines befor the keyword "begin".
 firstLine = 0;
 do 
@@ -119,21 +124,21 @@ do
        case('Power')
           read(value,*) (pMaxB(i), i=1,nBoi)
           isPresent(2) = .true.
-       case('DegradationRate')
-          read(value,*) (degRateB(i), i=1,nBoi)
-          isPresent(3) = .true.
+!       case('DegradationRate')
+!          read(value,*) (degRateB(i), i=1,nBoi)
+!          isPresent(3) = .true.
        case('FuelCost')
           read(value,*) (fuelCostB(i), i=1,nBoi)
           isPresent(4) = .true.
        case('FuelLHV')
           read(value,*) (fuelLHVB(i), i=1,nBoi)
           isPresent(5) = .true.
-       case('Investment')
-          read(value,*) (invB(i), i=1,nBoi)
-          isPresent(6) = .true.
-       case('Lifetime')
-          read(value,*) (lifeB(i), i=1,nBoi)
-          isPresent(7) = .true.
+!       case('Investment')
+!          read(value,*) (invB(i), i=1,nBoi)
+!          isPresent(6) = .true.
+!       case('Lifetime')
+!          read(value,*) (lifeB(i), i=1,nBoi)
+!          isPresent(7) = .true.
        case('OnOffCost')
           read(value,*) (fireCostB(i), i=1,nBoi)
           isPresent(8) = .true.
@@ -156,22 +161,22 @@ do
              read(vector,*) (spB(j,i), j=1,nSpB(i))
              value =  value(n2 + 2:)
           enddo
-       case('Size')
-           value_ = value
-           isPresent(11) = .true.
-           do i=1,nBoi
-               nSizeB(i) = hCount(value_)
-               n2 = index(value_,')') + 1
-               value_ =  value_(n2 + 1:)
-           enddo
-           call allocateVar(9)
-           do i = 1, nBoi
-              n1 = index(value,'(') + 1
-              n2 = index(value,')') - 1
-              vector = trim(value(n1:n2))
-              read(vector,*) (kSizeB(i,j), j=1,nSizeB(i))
-              value =  value(n2 + 2:)
-           enddo
+!       case('Size')
+!           value_ = value
+!           isPresent(11) = .true.
+!           do i=1,nBoi
+!               nSizeB(i) = hCount(value_)
+!               n2 = index(value_,')') + 1
+!               value_ =  value_(n2 + 1:)
+!           enddo
+!           call allocateVar(9)
+!           do i = 1, nBoi
+!              n1 = index(value,'(') + 1
+!              n2 = index(value,')') - 1
+!              vector = trim(value(n1:n2))
+!              read(vector,*) (kSizeB(i,j), j=1,nSizeB(i))
+!              value =  value(n2 + 2:)
+!           enddo
        case('ThermalEfficiency')
               isPresent(12) = .true.
               backspace(genUnit)
@@ -217,7 +222,7 @@ do
             n = sum(ntcB)
             call rewUnit(genUnit,n)
             do i=1,nBoi
-               matrix = rNaN(1.d0)
+               matrix = rNaN(rVal)
                matrix = dmatrixRead(genUnit,ntcB(i),3)
                tempCorrB(:,1,i) = matrix(:,nt)
                tempCorrB(:,2,i) = matrix(:,net)
@@ -244,7 +249,7 @@ do
             n = sum(npcB)
             call rewUnit(genUnit,n)
             do i=1,nBoi
-               matrix = rNaN(1.d0)
+               matrix = rNaN(rVal)
                matrix = dmatrixRead(genUnit,npcB(i),3)
                presCorrB(:,1,i) = matrix(:,nt)
                presCorrB(:,2,i) = matrix(:,net)
@@ -271,7 +276,7 @@ do
             n = sum(nacB)
             call rewUnit(genUnit,n)
             do i=1,nBoi
-               matrix = rNaN(1.d0)
+               matrix = rNaN(rVal)
                matrix = dmatrixRead(genUnit,nacB(i),3)
                altCorrB(:,1,i) = matrix(:,nt)
                altCorrB(:,2,i) = matrix(:,net)

@@ -53,9 +53,12 @@ implicit none
 integer :: i,j, maxsp, k, k1, k2
 integer, dimension(2)  :: ext1,ext2,ext3, ext
 character(len=100)     :: word, cdummy
-real(kind(1.d0))       :: kJ_kWh
-real(kind(1.d0)), allocatable, dimension(:,:) :: upTimeVinc, downTimeVinc
+real(kind = prec)       :: kJ_kWh
+real(kind = prec), allocatable, dimension(:,:) :: upTimeVinc, downTimeVinc
 integer,dimension(nm):: dtv, utv
+real(kind = prec), dimension(1) :: rdummy1, rdummy2
+real(kind = prec), dimension(:,:,:), allocatable :: tCorr, pCorr
+real(kind = prec), dimension(:,:), allocatable :: aCorr
 
 !--subroutine body-----
 
@@ -132,8 +135,104 @@ enddo
 
 call allocateVar(18)
 
-sp(:,:) = rNan(1.d0)
+sp(:,:) = rNan(rVal)
 eSource(:) = -1
+
+!---Estimate environmental condition corrections for each time-step---
+call allocateVar(32)
+
+allocate(pCorr(nTime,nm,4), tCorr(nTime,nm,4), aCorr(nm,4))
+pCorr = rNan(rVal)
+tCorr = rNan(rVal)
+aCorr = rNan(rVal)
+do i=1,nTime
+   k = 0
+   do j=is(iT),ie(iT)
+      k = k + 1
+      rdummy2= interpolation(tempCorrT(:,1,k), tempCorrT(:,2,k), ntcT(k), tAmb(i),1)
+      tCorr(i,j,1) = rdummy2(1)
+      rdummy2= interpolation(tempCorrT(:,1,k), tempCorrT(:,3,k), ntcT(k), tAmb(i),1)
+      tCorr(i,j,2) = rdummy2(1)
+      rdummy2= interpolation(tempCorrT(:,1,k), tempCorrT(:,4,k), ntcT(k), tAmb(i),1)
+      tCorr(i,j,3) = rdummy2(1)
+      rdummy2= interpolation(tempCorrT(:,1,k), tempCorrT(:,5,k), ntcT(k), tAmb(i),1)
+      tCorr(i,j,4) = rdummy2(1)
+
+      rdummy2= interpolation(presCorrT(:,1,k), presCorrT(:,2,k), npcT(k), pAmb(i),1)
+      pCorr(i,j,1) = rdummy2(1)
+      rdummy2= interpolation(presCorrT(:,1,k), presCorrT(:,3,k), npcT(k), pAmb(i),1)
+      pCorr(i,j,2) = rdummy2(1)
+      rdummy2= interpolation(presCorrT(:,1,k), presCorrT(:,4,k), npcT(k), pAmb(i),1)
+      pCorr(i,j,3) = rdummy2(1)
+      rdummy2= interpolation(presCorrT(:,1,k), presCorrT(:,5,k), npcT(k), pAmb(i),1)
+      pCorr(i,j,4) = rdummy2(1)
+   enddo
+   k = 0
+   do j=is(iB),ie(iB)
+      k = k + 1
+      rdummy2= interpolation(tempCorrB(:,1,k), tempCorrB(:,2,k), ntcB(k), tAmb(i),1)
+      tCorr(i,j,2) = rdummy2(1)
+      rdummy2= interpolation(tempCorrB(:,1,k), tempCorrB(:,3,k), ntcB(k), tAmb(i),1)
+      tCorr(i,j,4) = rdummy2(1)
+
+      rdummy2= interpolation(presCorrB(:,1,k), presCorrB(:,2,k), npcB(k), pAmb(i),1)
+      pCorr(i,j,2) = rdummy2(1)
+      rdummy2= interpolation(presCorrB(:,1,k), presCorrB(:,3,k), npcB(k), pAmb(i),1)
+      pCorr(i,j,4) = rdummy2(1)
+   enddo
+   k = 0
+   do j=is(iC),ie(iC)
+      k = k + 1
+      rdummy2= interpolation(tempCorrC(:,1,k), tempCorrC(:,2,k), ntcC(k), tAmb(i),1)
+      tCorr(i,j,3) = rdummy2(1)
+      rdummy2= interpolation(tempCorrC(:,1,k), tempCorrC(:,3,k), ntcC(k), tAmb(i),1)
+      tCorr(i,j,4) = rdummy2(1)
+
+      rdummy2= interpolation(presCorrC(:,1,k), presCorrC(:,2,k), npcC(k), pAmb(i),1)
+      pCorr(i,j,3) = rdummy2(1)
+      rdummy2= interpolation(presCorrC(:,1,k), presCorrC(:,3,k), npcC(k), pAmb(i),1)
+      pCorr(i,j,4) = rdummy2(1)
+   enddo
+enddo
+
+k = 0
+do j=is(iT),ie(iT)
+   k = k + 1
+   rdummy2= interpolation(altCorrT(:,1,k), altCorrT(:,2,k), nacT(k), altitude,1)
+   aCorr(j,1) = rdummy2(1)
+   rdummy2= interpolation(altCorrT(:,1,k), altCorrT(:,3,k), nacT(k), altitude,1)
+   aCorr(j,2) = rdummy2(1)
+   rdummy2= interpolation(altCorrT(:,1,k), altCorrT(:,4,k), nacT(k), altitude,1)
+   aCorr(j,3) = rdummy2(1)
+   rdummy2= interpolation(altCorrT(:,1,k), altCorrT(:,5,k), nacT(k), altitude,1)
+   aCorr(j,4) = rdummy2(1)
+enddo
+k = 0
+do j=is(iB),ie(iB)
+   k = k + 1
+   rdummy2= interpolation(altCorrB(:,1,k), altCorrB(:,2,k), nacB(k), altitude,1)
+   aCorr(j,2) = rdummy2(1)
+   rdummy2= interpolation(altCorrB(:,1,k), altCorrB(:,3,k), nacB(k), altitude,1)
+   aCorr(j,4) = rdummy2(1)
+enddo
+k = 0
+do j=is(iC),ie(iC)
+   k = k + 1
+   rdummy2= interpolation(altCorrC(:,1,k), altCorrC(:,2,k), nacC(k), altitude,1)
+   aCorr(j,3) = rdummy2(1)
+   rdummy2= interpolation(altCorrC(:,1,k), altCorrC(:,3,k), nacC(k), altitude,1)
+   aCorr(j,4) = rdummy2(1)
+enddo
+
+envCorr = rNaN(rVal)
+do i=1,nTime
+   do j = 1,nm
+      do k = 1,4 
+         envCorr(i,j,k) = tCorr(i,j,k)*pCorr(i,j,k)*aCorr(j,k)
+      enddo
+   enddo
+enddo
+deallocate(aCorr,pCorr,tCorr)
 
 j = 0
 do i=is(iT),ie(iT)
@@ -150,6 +249,7 @@ do i=is(iT),ie(iT)
    OeMCost(i)   = maintCostT(j)/3.6e3
    minUpTime(i)   = minUpTimeT(j)*3.6e3
    minDownTime(i) = minDownTimeT(j)*3.6e3
+   tec(i) = tecT(j)
    do k=1,nSpT(j)
       cr(k,i) = k
    enddo
@@ -175,17 +275,19 @@ do i=is(iB),ie(iB)
    k      = index(cdummy,'@')
    if(cdummy(1:k-1).eq.'Trig') then
       pes(i) = 'heat'
+      tec(i) = 'Recovery'
       read(cdummy(k+1:),*) eSource(i) 
    else
       pes(i) = 'fuel'
       eSource(i) = -1
+      tec(i) = 'Fuel'
    endif
 enddo
 j=0
 do i=is(iC),ie(iC)
    j = j + 1 
    sp(1:nSp(i),i) = spC(1:nSp(i),j)
-   Pmax = PmaxC(j)
+   Pmax(i) = PmaxC(j)
    lhv(i)  = -1
    cf(i)   = -1
    etaEl(1:nSp(i),i) = -1
@@ -200,13 +302,15 @@ do i=is(iC),ie(iC)
    do k=1,nSpC(j)
       cr(k,i) = k
    enddo
+   tec(i) = tecB(j)
 enddo
 
+!---time-dependent constraints---
 call allocateVar(21)
 k1 = maxval(minUpTime)/3.6e3 + 1
 k2 = maxval(minDownTime)/3.6e3 + 1
 allocate(upTimeVinc(max(k1,k2),nm), downTimeVinc(max(k1,k2),nm))
-timeVinc(:,:) = 0.0d0
+timeVinc(:,:) = zero
 do i=1,nm
    nTv(i) = minUpTime(i)/3.6e3 + 1
    do j=1,ntv(i)
@@ -231,11 +335,13 @@ upTime0 = upTime0*3.6e3
 downTime0 = downTime0*3.6e3
 
 !--- convert all the prices in €/kJ---
-kJ_kWh = 1.d0/3.6e3
+kJ_kWh = 1.0/3.6e3
 gridBuyCost(:)  = gridBuyCost(:)*kJ_kWh
 gridSellCost(:) = gridSellCost(:)*kJ_kWh
 cEl(:,:)        = cEl(:,:)*kJ_kWh
 cTh(:,:)        = cTh(:,:)*kJ_kWh
 cCh(:,:)        = cCh(:,:)*kJ_kWh
+
+call deallocateVar(1)
 
 end subroutine buildPlant
