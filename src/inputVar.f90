@@ -61,6 +61,7 @@ logical :: writeTrig        = .false.
 logical :: writeBoi         = .false.
 logical :: writeChi         = .false.
 logical :: global           = .false.
+logical :: useEuristics     = .false.
 
 !---Trigeneration.inp variables
 integer                                         :: nTrig

@@ -216,12 +216,15 @@ contains
    !---Declare Local Variables---
    implicit none
   
-   real(kind = prec), allocatable, dimension(:,:) :: cl_
+   integer, allocatable, dimension(:,:) :: cl_
    real(kind = prec), allocatable, dimension(:)   :: cost_, time_
    integer         , allocatable, dimension(:)   :: startLoad 
-   integer :: i,j,n, iStart
+   integer :: i,j,n, iStart, iii
    integer , allocatable, dimension(:) :: load
    logical :: v, error, e1, ch
+
+   ch = .false.
+   e1 = .false.
   
    allocate(load(nm),nt(0:nTime+1))
    n = nComb*nTime
@@ -237,14 +240,16 @@ contains
       do j=1,nComb
          load = comb(j,:)
          v    = constraints(load,i)
-         e1   = thRedundant(load,i)
-         ch   = chRedundant(load,i)
+         if(useEuristics) then
+            e1   = thRedundant(load,i)
+            ch   = chRedundant(load,i)
+         endif
          if(v.and.(.not.e1).and.(.not.ch)) then
             n        = n + 1
             time_(n) = i
             timePoint(i,j) = n
             nt(i)    = nt(i) + 1
-            cl_(n,:) = load
+            cl_(n,:) = load            
             cost_(n) = objFunction(load,i,obj)
          endif
       enddo
@@ -254,7 +259,7 @@ contains
    do i=1,nTime
       if(nt(i).eq.0) call abortExecution(18,i)
    enddo
-  
+
    allocate(pointCost(0:n+1),pointLoad(0:n+1,nm),pointTime(0:n+1))
    allocate(startLoad(nm))
   
@@ -274,7 +279,7 @@ contains
    pointTime(0)     = zero
    pointTime(1:n)   = time_(1:n)
    pointTime(n+1)   = nTime + 1
-  
+
    deallocate(load)
    deallocate(cost_,cl_,time_)
    deallocate(startLoad)
@@ -313,7 +318,7 @@ contains
    !---Declare Local Variables---
    implicit none
   
-   integer :: i,j,t,n1,n2,ni,nf,k
+   integer :: i,j,t,n1,n2,ni,nf,k, iii
    integer, allocatable, dimension(:) :: cNew, cOld
   
    !predList(:,:) = -1!inan(1)
@@ -369,7 +374,7 @@ contains
          do i=0,nPoint
             cOld = pointLoad(i,:)
             do j=1,nSuc(i)
-!               k = sucList(i,j)
+               k = succList(i,j)
                cNew = pointLoad(k,:)
                succCost(i,j) = pointCost(i) + fireCost(cNew,cOld)
             enddo

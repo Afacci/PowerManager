@@ -63,7 +63,9 @@ contains
   integer              , intent(in) :: t
   integer                           :: i, j, ii
   real(kind = prec)                 :: uTermal 
-  real(kind = prec), dimension(nBoi):: minSetPoint 
+  integer, dimension(nBoi)          :: minSetPoint 
+  logical                           :: v
+  integer,dimension(nm)             :: cStar
 
   thRedundant = .false.
   
@@ -73,9 +75,9 @@ contains
   do i=is(iB),ie(iB)
      ii = ii + 1
      if(minUpTime(i).gt.zero.or.minDownTime(i).gt.zero) then
-        minSetPoint(ii) = sp(2,i)
+        minSetPoint(ii) = 2
      else
-        minSetPoint(ii) = zero
+        minSetPoint(ii) = 1
      endif
   enddo
 
@@ -85,10 +87,27 @@ contains
         ii = ii + 1
         j = c(i)
         if(pes(i).eq.'fuel') then
-           if(sp(j,i).gt.minSetPoint(ii)) thRedundant = .true.
+           if(c(i).gt.minSetPoint(ii)) then 
+             thRedundant = .true.
+             return
+           endif
         endif
      enddo
   endif
+
+  ii = 0
+  cStar = c
+  do i=is(iB),ie(iB)
+     ii = ii + 1
+     if(c(i).gt.minSetPoint(ii)) then
+        cStar(i) = c(i) - 1
+        v = constraints(cStar,t)
+        if(v) then
+            thRedundant = .true.
+            return
+        endif
+     endif
+  enddo
 
   end function thRedundant
 
@@ -105,7 +124,7 @@ contains
   integer              , intent(in) :: t
   integer                           :: i, j, ii
   real(kind = prec)                 :: uChilling
-  real(kind = prec), dimension(nBoi):: minSetPoint 
+  integer, dimension(nChi)          :: minSetPoint 
   logical                           :: v
   integer,dimension(nm)             :: cStar
 
@@ -117,9 +136,9 @@ contains
   do i=is(iC),ie(iC)
      ii = ii + 1
      if(minUpTime(i).gt.zero.or.minDownTime(i).gt.zero) then
-        minSetPoint(ii) = sp(2,i)
+        minSetPoint(ii) = 2
      else
-        minSetPoint(ii) = zero
+        minSetPoint(ii) = 1
      endif
   enddo
 

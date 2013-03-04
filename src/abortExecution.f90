@@ -54,7 +54,7 @@ real(kind = prec), intent(in), dimension(*), optional :: iVec
 integer, intent(in), optional          :: line
 character(len=*), intent(in), optional :: word
 real(kind = prec), intent(in), optional :: r1, r2
-character(len=18), dimension(8)        :: general
+character(len=18), dimension(9)        :: general
 character(len=18), dimension(17)       :: trigeneration
 character(len=18), dimension(15)       :: boilers
 character(len=18), dimension(13)       :: Chiller
@@ -69,7 +69,8 @@ print*, '!-----------------------------------FATAL ERROR------------------------
 print*
 
 general       = (/'GridConnection    ', 'Degradation       ', 'objective         ', 'StartPoint        '  &
-                 ,'FirstTimeStep     ', 'UpTime0           ', 'DownTime0         ', 'Algorithm         '  /)
+                 ,'FirstTimeStep     ', 'UpTime0           ', 'DownTime0         ', 'Algorithm         '  & 
+                 ,'Euristics         '/)
 trigeneration = (/'Number            ', 'Power             ', 'DegradationRate   ', 'FuelCost          '  &
                  ,'FuelLHV           ', 'Investment        ', 'Lifetime          ', 'OnLifetime        '  &
                  ,'OeMCost           ', 'SetPoint          ', 'Size              ', 'ElettrEfficiency  '  &

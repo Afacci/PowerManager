@@ -30,9 +30,9 @@ MODS = \
 ../obj/cmdVar.o \
 ../obj/energy.o \
 ../obj/economy.o \
-../obj/euristics.o \
 ../obj/graphTools.o \
 ../obj/globalResults.o \
+../obj/euristics.o \
 
 ################################################
 #  list of the files to be compiled            #
