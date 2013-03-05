@@ -30,6 +30,7 @@ MODS = \
 ../obj/cmdVar.o \
 ../obj/energy.o \
 ../obj/economy.o \
+../obj/euristics.o \
 ../obj/graphTools.o \
 
 ################################################
@@ -63,7 +64,8 @@ OBJS = \
 ../obj/output.o \
 ../obj/readEnv.o \
 ../obj/performances.o \
-../obj/deallocateVar \
+../obj/deallocateVar.o \
+../obj/globalResults.o \
 #../obj/readSteamPlant.o \
 
 ################################################

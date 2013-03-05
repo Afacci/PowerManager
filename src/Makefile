@@ -30,8 +30,9 @@ MODS = \
 ../obj/cmdVar.o \
 ../obj/energy.o \
 ../obj/economy.o \
-../obj/graphTools.o \
 ../obj/euristics.o \
+../obj/graphTools.o \
+../obj/globalResults.o \
 
 ################################################
 #  list of the files to be compiled            #
@@ -65,7 +66,6 @@ OBJS = \
 ../obj/readEnv.o \
 ../obj/performances.o \
 ../obj/deallocateVar.o \
-../obj/globalResults.o \
 #../obj/readSteamPlant.o \
 
 ################################################

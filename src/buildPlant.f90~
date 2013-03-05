@@ -302,7 +302,7 @@ do i=is(iC),ie(iC)
    do k=1,nSpC(j)
       cr(k,i) = k
    enddo
-   tec(i) = tecB(j)
+   tec(i) = tecC(j)
 enddo
 
 !---time-dependent constraints---

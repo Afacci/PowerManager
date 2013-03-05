@@ -35,6 +35,20 @@ use shared
 use energy
 use plantVar
 use inputVar
+use interfaces
+
+interface
+    logical function constraints(c,t)
+        use shared        
+        use plantVar
+        use interfaces
+        use inputVar
+        implicit none
+        integer, dimension(nm), intent(in) :: c
+        integer,                intent(in) :: t
+    end function constraints
+end interface
+
 
 contains
   
@@ -47,23 +61,38 @@ contains
 
   integer,dimension(nm), intent(in) :: c
   integer              , intent(in) :: t
-  integer                           :: i, j
-  real(kind = prec)                 :: uTermal
+  integer                           :: i, j, ii
+  real(kind = prec)                 :: uTermal 
+  real(kind = prec), dimension(nBoi):: minSetPoint 
 
   thRedundant = .false.
   
   uTermal = sum(uTh(t,:)) + thSelfCons(c,t)
 
+  ii = 0
+  do i=is(iB),ie(iB)
+     ii = ii + 1
+     if(minUpTime(i).gt.zero.or.minDownTime(i).gt.zero) then
+        minSetPoint(ii) = sp(2,i)
+     else
+        minSetPoint(ii) = zero
+     endif
+  enddo
+
+  ii = 0
   if(cogThProd(c,t).ge.uTermal) then
      do i=is(iB),ie(iB)
+        ii = ii + 1
         j = c(i)
-        if(sp(j,i).gt.0.d0) thRedundant = .true.
+        if(pes(i).eq.'fuel') then
+           if(sp(j,i).gt.minSetPoint(ii)) thRedundant = .true.
+        endif
      enddo
   endif
 
   end function thRedundant
 
-!==================================================================0
+!==================================================================
 
   logical function chRedundant(c,t)
 
@@ -74,12 +103,39 @@ contains
 
   integer,dimension(nm), intent(in) :: c
   integer              , intent(in) :: t
-  integer                           :: i, j
+  integer                           :: i, j, ii
   real(kind = prec)                 :: uChilling
+  real(kind = prec), dimension(nBoi):: minSetPoint 
+  logical                           :: v
+  integer,dimension(nm)             :: cStar
 
   chRedundant = .false.
   
   uChilling = sum(uCh(t,:))
+  
+  ii = 0
+  do i=is(iC),ie(iC)
+     ii = ii + 1
+     if(minUpTime(i).gt.zero.or.minDownTime(i).gt.zero) then
+        minSetPoint(ii) = sp(2,i)
+     else
+        minSetPoint(ii) = zero
+     endif
+  enddo
+
+  ii = 0
+  cStar = c
+  do i=is(iC),ie(iC)
+     ii = ii + 1
+     if(c(i).gt.minSetPoint(ii)) then
+        cStar(i) = c(i) - 1
+        v = constraints(cStar,t)
+        if(v) then
+            chRedundant = .true.
+            return
+        endif
+     endif
+  enddo
 
   end function chRedundant
 

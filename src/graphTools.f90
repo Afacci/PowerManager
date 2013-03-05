@@ -221,7 +221,7 @@ contains
    integer         , allocatable, dimension(:)   :: startLoad 
    integer :: i,j,n, iStart
    integer , allocatable, dimension(:) :: load
-   logical :: v, error, e1
+   logical :: v, error, e1, ch
   
    allocate(load(nm),nt(0:nTime+1))
    n = nComb*nTime
@@ -238,7 +238,8 @@ contains
          load = comb(j,:)
          v    = constraints(load,i)
          e1   = thRedundant(load,i)
-         if(v.and.(.not.e1)) then
+         ch   = chRedundant(load,i)
+         if(v.and.(.not.e1).and.(.not.ch)) then
             n        = n + 1
             time_(n) = i
             timePoint(i,j) = n

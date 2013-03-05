@@ -100,6 +100,8 @@ contains
    !> states of the plant is also returned in the variable "nComb"
    !> \author Andrea Facci
    subroutine allCombin(icm,dcm,imax,m,targ)
+
+   use myArithmetic
   
    !---Declare Module usage---
   
@@ -209,6 +211,7 @@ contains
    use inputVar
    use plantVar
    use mathTools
+   use euristics
   
    !---Declare Local Variables---
    implicit none
@@ -218,7 +221,7 @@ contains
    integer         , allocatable, dimension(:)   :: startLoad 
    integer :: i,j,n, iStart
    integer , allocatable, dimension(:) :: load
-   logical :: v, error
+   logical :: v, error, e1
   
    allocate(load(nm),nt(0:nTime+1))
    n = nComb*nTime
@@ -234,7 +237,9 @@ contains
       do j=1,nComb
          load = comb(j,:)
          v    = constraints(load,i)
-         if(v) then
+         e1   = thRedundant(load,i)
+         ch   = chRedundant(load,i)
+         if(v.and.(.not.e1).and.(.not.ch)) then
             n        = n + 1
             time_(n) = i
             timePoint(i,j) = n
@@ -273,7 +278,7 @@ contains
    deallocate(load)
    deallocate(cost_,cl_,time_)
    deallocate(startLoad)
-  
+
    return
   
    end subroutine graphPoints
@@ -311,18 +316,15 @@ contains
    integer :: i,j,t,n1,n2,ni,nf,k
    integer, allocatable, dimension(:) :: cNew, cOld
   
-   allocate(nPre(nPoint+1), predCost(nPoint+1,nComb))
-   allocate(nSuc(0:nPoint), succCost(0:nPoint,nComb))
-   allocate(predList(0:nPoint+1,nComb))
-   allocate(succList(0:nPoint+1,nComb))
-  
-   predList(:,:) = -1!inan(1)
-   succList(:,:) = -1!inan(1)
-   predCost(:,:) = rnan(rVal)
-   succCost(:,:) = rnan(rVal)
+   !predList(:,:) = -1!inan(1)
+   !succList(:,:) = -1!inan(1)
+   !predCost(:,:) = -1000! rnan(rVal)
+   !succCost(:,:) = -1000! rnan(rVal)
    
    select case(method)
       case('Forward')
+         allocate(nPre(nPoint+1), predCost(nPoint+1,nComb))
+         allocate(predList(0:nPoint+1,nComb))
    !---detect the predecessors for each node---
          n1 = 1
          ni  = 0
@@ -348,6 +350,8 @@ contains
          enddo
 
       case('Backward')
+         allocate(nSuc(0:nPoint), succCost(0:nPoint,nComb))
+         allocate(succList(0:nPoint+1,nComb))
          !---detect the successors for each node---
          n1 = 0
          ni  = 1
