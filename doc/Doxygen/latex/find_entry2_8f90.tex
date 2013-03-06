@@ -1,5 +1,5 @@
-\hypertarget{find_entry2_8f90}{\section{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/find\-Entry2.f90 File Reference}
-\label{find_entry2_8f90}\index{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/find\-Entry2.\-f90@{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/find\-Entry2.\-f90}}
+\hypertarget{find_entry2_8f90}{\section{/home/\-Codici/\-Blink/\-Power\-Manager/src/find\-Entry2.f90 File Reference}
+\label{find_entry2_8f90}\index{/home/\-Codici/\-Blink/\-Power\-Manager/src/find\-Entry2.\-f90@{/home/\-Codici/\-Blink/\-Power\-Manager/src/find\-Entry2.\-f90}}
 }
 
 
@@ -34,7 +34,7 @@ Definition in file \hyperlink{find_entry2_8f90_source}{find\-Entry2.\-f90}.
 \index{cfindentry@{cfindentry}!findEntry2.f90@{find\-Entry2.\-f90}}
 \subsubsection[{cfindentry}]{\setlength{\rightskip}{0pt plus 5cm}subroutine cfindentry (
 \begin{DoxyParamCaption}
-\item[{character(len=100), intent(in)}]{entry, }
+\item[{character(len=$\ast$), intent(in)}]{entry, }
 \item[{integer, intent(in)}]{n, }
 \item[{integer, intent(in)}]{the\-Unit, }
 \item[{logical, intent(in), optional}]{rew, }
@@ -65,7 +65,7 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 185 of file find\-Entry2.\-f90.
+Definition at line 187 of file find\-Entry2.\-f90.
 
 
 
@@ -79,11 +79,11 @@ Referenced by readchillers().
 \index{dfindentry@{dfindentry}!findEntry2.f90@{find\-Entry2.\-f90}}
 \subsubsection[{dfindentry}]{\setlength{\rightskip}{0pt plus 5cm}subroutine dfindentry (
 \begin{DoxyParamCaption}
-\item[{character(len=100), intent(in)}]{entry, }
+\item[{character(len=$\ast$), intent(in)}]{entry, }
 \item[{integer, intent(in)}]{n, }
 \item[{integer, intent(in)}]{the\-Unit, }
 \item[{logical, intent(in), optional}]{rew, }
-\item[{real(kind(1.d0)), dimension(n), intent(out), optional}]{valore, }
+\item[{real(kind = prec), dimension(n), intent(out), optional}]{valore, }
 \item[{logical, intent(out), optional}]{is\-Present, }
 \item[{integer, intent(out), optional}]{n\-Row}
 \end{DoxyParamCaption}
@@ -110,7 +110,7 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 115 of file find\-Entry2.\-f90.
+Definition at line 117 of file find\-Entry2.\-f90.
 
 
 
@@ -120,7 +120,7 @@ References findentry().
 \index{findentry@{findentry}!findEntry2.f90@{find\-Entry2.\-f90}}
 \subsubsection[{findentry}]{\setlength{\rightskip}{0pt plus 5cm}subroutine findentry (
 \begin{DoxyParamCaption}
-\item[{character(len=100), intent(in)}]{entry, }
+\item[{character(len=$\ast$), intent(in)}]{entry, }
 \item[{integer, intent(in)}]{the\-Unit, }
 \item[{logical, intent(in), optional}]{rew, }
 \item[{character(len=100), intent(out), optional}]{valore, }
@@ -150,7 +150,7 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 253 of file find\-Entry2.\-f90.
+Definition at line 256 of file find\-Entry2.\-f90.
 
 
 
@@ -164,7 +164,7 @@ Referenced by cfindentry(), dfindentry(), ifindentry(), and readloads().
 \index{ifindentry@{ifindentry}!findEntry2.f90@{find\-Entry2.\-f90}}
 \subsubsection[{ifindentry}]{\setlength{\rightskip}{0pt plus 5cm}subroutine ifindentry (
 \begin{DoxyParamCaption}
-\item[{character(len=100), intent(in)}]{entry, }
+\item[{character(len=$\ast$), intent(in)}]{entry, }
 \item[{integer, intent(in)}]{n, }
 \item[{integer, intent(in)}]{the\-Unit, }
 \item[{logical, intent(in), optional}]{rew, }

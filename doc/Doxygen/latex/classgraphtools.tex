@@ -3,8 +3,7 @@
 }
 
 
-Collaboration diagram for graphtools\-:
-\nopagebreak
+Collaboration diagram for graphtools\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -33,8 +32,8 @@ subroutine \hyperlink{classgraphtools_ade3577b19aec190e8e056f041bc8afdf}{minpath
 \begin{DoxyCompactList}\small\item\em Miniumum path detemination. \end{DoxyCompactList}\item 
 subroutine \hyperlink{classgraphtools_abef4e47145f628bc6d3001d4f6bd9601}{minpathtopobw} (ott\-Load, min\-Cost, up\-Time, min\-Path)
 \begin{DoxyCompactList}\small\item\em Miniumum path detemination. \end{DoxyCompactList}\item 
-real(kind(1.d0)) function, \\*
-dimension(2 $\ast$nm) \hyperlink{classgraphtools_ac61c9cdfdbeb51411798714a7ba88c3e}{uptimecalc} (up\-T, c, t)
+real(kind=prec) function, \\*
+dimension(2 $\ast$nm) \hyperlink{classgraphtools_a0a5fc60233fedc07e2a6297bfa1763ba}{uptimecalc} (up\-T, c, t)
 \end{DoxyCompactItemize}
 
 
@@ -51,7 +50,7 @@ Definition at line 34 of file graph\-Tools.\-f90.
 \subsubsection[{allcombin}]{\setlength{\rightskip}{0pt plus 5cm}subroutine graphtools\-::allcombin (
 \begin{DoxyParamCaption}
 \item[{integer, dimension(maxval(imax),m), intent(in), optional}]{icm, }
-\item[{real(kind(1.d0)), dimension(maxval(imax),m), intent(in), optional}]{dcm, }
+\item[{real(kind = prec), dimension(maxval(imax),m), intent(in), optional}]{dcm, }
 \item[{integer, dimension(m), intent(in)}]{imax, }
 \item[{integer, intent(in)}]{m, }
 \item[{character(len=100), intent(in), optional}]{targ}
@@ -62,11 +61,11 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 97 of file graph\-Tools.\-f90.
+Definition at line 102 of file graph\-Tools.\-f90.
 
 
 
-References abortexecution().
+References abortexecution(), and myarithmetic\-::rnan().
 
 
 
@@ -81,11 +80,11 @@ Referenced by main().
 )}}\label{classgraphtools_a47c76f30f7f4917536f94c642ffca865}
 Generates the grapsh arcs. Note that only vertex relative to consecutive time-\/steps are connected and that arcs are oriented in the direction of increasing time. Arcs are stored in the form of a predecessor list \char`\"{}pred\-List\char`\"{}, that associates to each node all its predecessors. A weight is assiciated to each element of the predecessor list, equal to the weight of the predecessor vertex plus a cost connected to the variation of state between the actual and predecessor state. \[ arcCost(i,j) = pointCost(c(i)) + fireCost(i,j) \] The number of predecessors for each vertex is asle stored in the \char`\"{}n\-Pre(i)\char`\"{} array. 
 
-Definition at line 290 of file graph\-Tools.\-f90.
+Definition at line 308 of file graph\-Tools.\-f90.
 
 
 
-References economy\-::firecost(), and myarithmetic\-::rnan().
+References economy\-::firecost().
 
 
 
@@ -103,11 +102,11 @@ Andrea Facci.
 \end{DoxyAuthor}
 
 
-Definition at line 199 of file graph\-Tools.\-f90.
+Definition at line 206 of file graph\-Tools.\-f90.
 
 
 
-References abortexecution(), mathtools\-::locaterow(), and objfunction().
+References abortexecution(), euristics\-::chredundant(), mathtools\-::locaterow(), objfunction(), and euristics\-::thredundant().
 
 
 
@@ -118,17 +117,17 @@ Referenced by main().
 \subsubsection[{minpathtopobw}]{\setlength{\rightskip}{0pt plus 5cm}subroutine graphtools\-::minpathtopobw (
 \begin{DoxyParamCaption}
 \item[{integer, dimension(0\-:ntime+1,nm), intent(out)}]{ott\-Load, }
-\item[{real(kind(1.d0)), intent(out)}]{min\-Cost, }
-\item[{real(kind(1.d0)), dimension(0\-:ntime+1,2$\ast$nm), intent(out)}]{up\-Time, }
+\item[{real(kind = prec), intent(out)}]{min\-Cost, }
+\item[{real(kind = prec), dimension(0\-:ntime+1,2$\ast$nm), intent(out)}]{up\-Time, }
 \item[{integer, dimension(0\-:ntime+1)}]{min\-Path}
 \end{DoxyParamCaption}
 )}}\label{classgraphtools_abef4e47145f628bc6d3001d4f6bd9601}
-This function determies the minumum path that connects the start point (0) to the arrival point of the graph (n\-Point + 1), using dynamic programming. Specifically the oprimizazion the algorithm is tailored to sort acyclic graphs with topolgical ordering. \begin{DoxyAuthor}{Author}
+This function determies the minumum path that connects the start point (0) to the arrival point of the graph (n\-Point + 1), using backward dynamic programming. Specifically the oprimizazion the algorithm is tailored to sort acyclic graphs with topolgical ordering. Constraints on the duration of operative intervals (on and off states) are considered. \begin{DoxyAuthor}{Author}
 Andrea Facci. 
 \end{DoxyAuthor}
 
 
-Definition at line 452 of file graph\-Tools.\-f90.
+Definition at line 472 of file graph\-Tools.\-f90.
 
 
 
@@ -143,7 +142,7 @@ Referenced by main().
 \subsubsection[{minpathtopofw}]{\setlength{\rightskip}{0pt plus 5cm}subroutine graphtools\-::minpathtopofw (
 \begin{DoxyParamCaption}
 \item[{integer, dimension(0\-:ntime+1,nm), intent(out)}]{ott\-Load, }
-\item[{real(kind(1.d0)), intent(out)}]{min\-Cost}
+\item[{real(kind = prec), intent(out)}]{min\-Cost}
 \end{DoxyParamCaption}
 )}}\label{classgraphtools_ade3577b19aec190e8e056f041bc8afdf}
 This function determies the minumum path that connects the start point (0) to the arrival point of the graph (n\-Point + 1), using dynamic programming. Specifically the oprimizazion the algorithm is tailored to sort acyclic graphs with topolgical ordering. \begin{DoxyAuthor}{Author}
@@ -151,24 +150,24 @@ Andrea Facci.
 \end{DoxyAuthor}
 
 
-Definition at line 394 of file graph\-Tools.\-f90.
+Definition at line 413 of file graph\-Tools.\-f90.
 
 
 
 Referenced by main().
 
-\hypertarget{classgraphtools_ac61c9cdfdbeb51411798714a7ba88c3e}{\index{graphtools@{graphtools}!uptimecalc@{uptimecalc}}
+\hypertarget{classgraphtools_a0a5fc60233fedc07e2a6297bfa1763ba}{\index{graphtools@{graphtools}!uptimecalc@{uptimecalc}}
 \index{uptimecalc@{uptimecalc}!graphtools@{graphtools}}
-\subsubsection[{uptimecalc}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function, dimension(2$\ast$nm) graphtools\-::uptimecalc (
+\subsubsection[{uptimecalc}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function, dimension(2$\ast$nm) graphtools\-::uptimecalc (
 \begin{DoxyParamCaption}
-\item[{real(kind(1.d0)), dimension(2$\ast$nm)}]{up\-T, }
+\item[{real(kind = prec), dimension(2$\ast$nm)}]{up\-T, }
 \item[{integer, dimension(nm), intent(in)}]{c, }
 \item[{integer, intent(in)}]{t}
 \end{DoxyParamCaption}
-)}}\label{classgraphtools_ac61c9cdfdbeb51411798714a7ba88c3e}
+)}}\label{classgraphtools_a0a5fc60233fedc07e2a6297bfa1763ba}
 
 
-Definition at line 529 of file graph\-Tools.\-f90.
+Definition at line 549 of file graph\-Tools.\-f90.
 
 
 
@@ -178,4 +177,4 @@ Referenced by minpathtopobw().
 
 The documentation for this module was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/\hyperlink{graph_tools_8f90}{graph\-Tools.\-f90}\end{DoxyCompactItemize}
+/home/\-Codici/\-Blink/\-Power\-Manager/src/\hyperlink{graph_tools_8f90}{graph\-Tools.\-f90}\end{DoxyCompactItemize}

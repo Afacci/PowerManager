@@ -13,20 +13,23 @@ Collaboration diagram for economy\-:\nopagebreak
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-real(kind(1.d0)) function \hyperlink{classeconomy_a4ce4c9a69167d8912d6f6bcb6ec5b53d}{elrev} (c, t)
+real(kind=prec) function \hyperlink{classeconomy_a4ab4325ba4da5a36bfc71dad24b101c6}{elrev} (c, t)
 \begin{DoxyCompactList}\small\item\em Electric energy revenues. \end{DoxyCompactList}\item 
-real(kind(1.d0)) function \hyperlink{classeconomy_a89bad0bc0b64f4480938f31adfa3ec33}{threv} (t)
+real(kind=prec) function \hyperlink{classeconomy_a5f12114d9d3d02f2d9590df75c787003}{threv} (t)
 \begin{DoxyCompactList}\small\item\em thermal energy revenues. \end{DoxyCompactList}\item 
-real(kind(1.d0)) function \hyperlink{classeconomy_ae4b1f9fc807735c83f9b8afedd25593f}{chrev} (t)
+real(kind=prec) function \hyperlink{classeconomy_af1f82a2c63a713af1676de7fb05aadc5}{chrev} (t)
 \begin{DoxyCompactList}\small\item\em Chilling energy revenues. \end{DoxyCompactList}\item 
-real(kind(1.d0)) function \hyperlink{classeconomy_a6037f7db113255ec913f030454cfebbd}{fuelcost} (c, t)
+real(kind=prec) function \hyperlink{classeconomy_aa8f3af6fe0e525bc72f54bf369789443}{fuelcost} (c, t)
 \begin{DoxyCompactList}\small\item\em Calculates the costs to buy the fuel. \end{DoxyCompactList}\item 
-real(kind(1.d0)) function \hyperlink{classeconomy_a5dac453402a93bcbfc5c4f5a0a9c296e}{maintenancecost} (c, t)
+real(kind=prec) function \hyperlink{classeconomy_af6ed48a60d50c438efa98f16deed7520}{maintenancecost} (c, t)
 \begin{DoxyCompactList}\small\item\em Calculates the mintenance costs. \end{DoxyCompactList}\item 
-real(kind(1.d0)) function \hyperlink{classeconomy_a94cd41a52844693de595358d30d4d78f}{currcost} (c, t)
+real(kind=prec) function \hyperlink{classeconomy_a542c71f53d112855d6a81bf21941c8a9}{currcost} (c, t)
 \begin{DoxyCompactList}\small\item\em Calculates the profit during a time step. \end{DoxyCompactList}\item 
-real(kind(1.d0)) function \hyperlink{classeconomy_a7fc5b61af90717efa0515636fc74c732}{firecost} (c\-New, c\-Old)
-\begin{DoxyCompactList}\small\item\em Calculates the lighting cost. \end{DoxyCompactList}\end{DoxyCompactItemize}
+real(kind=prec) function \hyperlink{classeconomy_ace504d2735fcf5bab047994e760346a9}{firecost} (c\-New, c\-Old)
+\begin{DoxyCompactList}\small\item\em Calculates the lighting cost. \end{DoxyCompactList}\item 
+real(kind=prec) function, \\*
+dimension(2) \hyperlink{classeconomy_a47cc446e4047749cb8b4ae10372ae3c4}{grideconomy} (c, t)
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -43,13 +46,13 @@ Definition at line 44 of file economy.\-f90.
 
 
 \subsection{Member Function/\-Subroutine Documentation}
-\hypertarget{classeconomy_ae4b1f9fc807735c83f9b8afedd25593f}{\index{economy@{economy}!chrev@{chrev}}
+\hypertarget{classeconomy_af1f82a2c63a713af1676de7fb05aadc5}{\index{economy@{economy}!chrev@{chrev}}
 \index{chrev@{chrev}!economy@{economy}}
-\subsubsection[{chrev}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function economy\-::chrev (
+\subsubsection[{chrev}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function economy\-::chrev (
 \begin{DoxyParamCaption}
 \item[{integer, intent(in)}]{t}
 \end{DoxyParamCaption}
-)}}\label{classeconomy_ae4b1f9fc807735c83f9b8afedd25593f}
+)}}\label{classeconomy_af1f82a2c63a713af1676de7fb05aadc5}
 Calculates the revenues (in euro or any other currency according to the one used in the input) from chilling energy selling to the various clients. \[ R_{ch} = \sum_{clients} U_{ch}(i)c_{ch}(i)dt \] where $ U_{ch}(i)$ is the power demand (in k\-W) of the $i$'th client, $c_{ch}(i)$ is the price in euro/k\-J of electric energy for each client and $ dt$ is the time-\/step duration.\par
  
 \begin{DoxyParams}[1]{Parameters}
@@ -63,20 +66,20 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 185 of file economy.\-f90.
+Definition at line 187 of file economy.\-f90.
 
 
 
-Referenced by currcost().
+Referenced by currcost(), and globalresults\-::globchrev().
 
-\hypertarget{classeconomy_a94cd41a52844693de595358d30d4d78f}{\index{economy@{economy}!currcost@{currcost}}
+\hypertarget{classeconomy_a542c71f53d112855d6a81bf21941c8a9}{\index{economy@{economy}!currcost@{currcost}}
 \index{currcost@{currcost}!economy@{economy}}
-\subsubsection[{currcost}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function economy\-::currcost (
+\subsubsection[{currcost}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function economy\-::currcost (
 \begin{DoxyParamCaption}
 \item[{integer, dimension(nm), intent(in)}]{c, }
 \item[{integer, intent(in)}]{t}
 \end{DoxyParamCaption}
-)}}\label{classeconomy_a94cd41a52844693de595358d30d4d78f}
+)}}\label{classeconomy_a542c71f53d112855d6a81bf21941c8a9}
 Calculates the profit of a time-\/step(in euro or any other currency according to the one used in the input) for a given set-\/point, all the costs, except for the costs associated to equipment ignition. \[ G = R_{el} + R_{th} + R_{ch} + C_{f} + C_{m} \] where \par
 
 \begin{DoxyItemize}
@@ -99,7 +102,7 @@ Andrea Facci
 
 \end{DoxyItemize}
 
-Definition at line 317 of file economy.\-f90.
+Definition at line 322 of file economy.\-f90.
 
 
 
@@ -109,14 +112,14 @@ References chrev(), elrev(), fuelcost(), maintenancecost(), and threv().
 
 Referenced by objfunction().
 
-\hypertarget{classeconomy_a4ce4c9a69167d8912d6f6bcb6ec5b53d}{\index{economy@{economy}!elrev@{elrev}}
+\hypertarget{classeconomy_a4ab4325ba4da5a36bfc71dad24b101c6}{\index{economy@{economy}!elrev@{elrev}}
 \index{elrev@{elrev}!economy@{economy}}
-\subsubsection[{elrev}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function economy\-::elrev (
+\subsubsection[{elrev}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function economy\-::elrev (
 \begin{DoxyParamCaption}
 \item[{integer, dimension(nm), intent(in)}]{c, }
 \item[{integer, intent(in)}]{t}
 \end{DoxyParamCaption}
-)}}\label{classeconomy_a4ce4c9a69167d8912d6f6bcb6ec5b53d}
+)}}\label{classeconomy_a4ab4325ba4da5a36bfc71dad24b101c6}
 Calculates the revenues (in euro or any other currency according to the one used in the input) from electric energy selling to the various clients and to the grid. Electric energy revenues are calculated in a different way for each kind of grid connection. Specifically\-:\par
 
 \begin{DoxyItemize}
@@ -145,16 +148,16 @@ References energy\-::elprod(), and energy\-::elselfcons().
 
 
 
-Referenced by currcost().
+Referenced by currcost(), and globalresults\-::globelrev().
 
-\hypertarget{classeconomy_a7fc5b61af90717efa0515636fc74c732}{\index{economy@{economy}!firecost@{firecost}}
+\hypertarget{classeconomy_ace504d2735fcf5bab047994e760346a9}{\index{economy@{economy}!firecost@{firecost}}
 \index{firecost@{firecost}!economy@{economy}}
-\subsubsection[{firecost}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function economy\-::firecost (
+\subsubsection[{firecost}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function economy\-::firecost (
 \begin{DoxyParamCaption}
 \item[{integer, dimension(nm), intent(in)}]{c\-New, }
 \item[{integer, dimension(nm), intent(in)}]{c\-Old}
 \end{DoxyParamCaption}
-)}}\label{classeconomy_a7fc5b61af90717efa0515636fc74c732}
+)}}\label{classeconomy_ace504d2735fcf5bab047994e760346a9}
 Calculates the cost associated to each lighting of a machinery. \[ C_{l} > 0 \qquad \mbox{if} \qquad sp(t,i) > 0 \;\mbox{and}\; sp(t-1,i) = 0 \] this cost will be added to the operative profit to for the arc profit/cost. 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em c} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
@@ -167,20 +170,20 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 349 of file economy.\-f90.
+Definition at line 355 of file economy.\-f90.
 
 
 
-Referenced by graphtools\-::grapharcs().
+Referenced by globalresults\-::globfirecost(), graphtools\-::grapharcs(), and output().
 
-\hypertarget{classeconomy_a6037f7db113255ec913f030454cfebbd}{\index{economy@{economy}!fuelcost@{fuelcost}}
+\hypertarget{classeconomy_aa8f3af6fe0e525bc72f54bf369789443}{\index{economy@{economy}!fuelcost@{fuelcost}}
 \index{fuelcost@{fuelcost}!economy@{economy}}
-\subsubsection[{fuelcost}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function economy\-::fuelcost (
+\subsubsection[{fuelcost}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function economy\-::fuelcost (
 \begin{DoxyParamCaption}
 \item[{integer, dimension(nm), intent(in)}]{c, }
 \item[{integer, intent(in)}]{t}
 \end{DoxyParamCaption}
-)}}\label{classeconomy_a6037f7db113255ec913f030454cfebbd}
+)}}\label{classeconomy_aa8f3af6fe0e525bc72f54bf369789443}
 Calculates the costs to buy the fuel (in euro or any other currency according to the one used in the input) \[ C_{f} = \sum_{Trig+Boi} \frac{E_{in}(i)c_{f}(i)}{H_i(i)}dt \] where $c_{f}(i)$ is the specific cost (per unit mass or volume) of the fuel for the $i$'th machine, $H_i(i)$ is the fuel L\-H\-V (k\-J per unit mass or volume), $E_{in}(i)$ is the primary energy input. $c_{ch}(i)$ is the price in euro/k\-J of electric energy for each client and $ dt$ is the time-\/step duration.\par
  Note that even though international units are strongly suggested, any units of mass and/or volume is valid for $c_{f}$ and $H_i$ provided that coherence between the units of these two variables is respected. Moreover prices and L\-V\-Ss may may be expressend in different units for differend machines. 
 \begin{DoxyParams}[1]{Parameters}
@@ -194,7 +197,7 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 230 of file economy.\-f90.
+Definition at line 233 of file economy.\-f90.
 
 
 
@@ -202,16 +205,36 @@ References energy\-::fuelcons().
 
 
 
-Referenced by currcost().
+Referenced by currcost(), globalresults\-::globfuelcost(), and output().
 
-\hypertarget{classeconomy_a5dac453402a93bcbfc5c4f5a0a9c296e}{\index{economy@{economy}!maintenancecost@{maintenancecost}}
-\index{maintenancecost@{maintenancecost}!economy@{economy}}
-\subsubsection[{maintenancecost}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function economy\-::maintenancecost (
+\hypertarget{classeconomy_a47cc446e4047749cb8b4ae10372ae3c4}{\index{economy@{economy}!grideconomy@{grideconomy}}
+\index{grideconomy@{grideconomy}!economy@{economy}}
+\subsubsection[{grideconomy}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function, dimension(2) economy\-::grideconomy (
 \begin{DoxyParamCaption}
 \item[{integer, dimension(nm), intent(in)}]{c, }
 \item[{integer, intent(in)}]{t}
 \end{DoxyParamCaption}
-)}}\label{classeconomy_a5dac453402a93bcbfc5c4f5a0a9c296e}
+)}}\label{classeconomy_a47cc446e4047749cb8b4ae10372ae3c4}
+
+
+Definition at line 380 of file economy.\-f90.
+
+
+
+References energy\-::elprod(), and energy\-::elselfcons().
+
+
+
+Referenced by output().
+
+\hypertarget{classeconomy_af6ed48a60d50c438efa98f16deed7520}{\index{economy@{economy}!maintenancecost@{maintenancecost}}
+\index{maintenancecost@{maintenancecost}!economy@{economy}}
+\subsubsection[{maintenancecost}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function economy\-::maintenancecost (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(nm), intent(in)}]{c, }
+\item[{integer, intent(in)}]{t}
+\end{DoxyParamCaption}
+)}}\label{classeconomy_af6ed48a60d50c438efa98f16deed7520}
 Calculates the maintenance costs (in euro or any other currency according to the one used in the input) \[ C_{m} = \sum c_{m}(i)dt \qquad \mbox{if}\qquad sp(i) > 0 \] where $c_{m}(i)$ is the maintenance cost per unit time and $ dt$ is the time-\/step duration.\par
  
 \begin{DoxyParams}[1]{Parameters}
@@ -225,19 +248,19 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 272 of file economy.\-f90.
+Definition at line 276 of file economy.\-f90.
 
 
 
-Referenced by currcost().
+Referenced by currcost(), globalresults\-::globmaintcost(), and output().
 
-\hypertarget{classeconomy_a89bad0bc0b64f4480938f31adfa3ec33}{\index{economy@{economy}!threv@{threv}}
+\hypertarget{classeconomy_a5f12114d9d3d02f2d9590df75c787003}{\index{economy@{economy}!threv@{threv}}
 \index{threv@{threv}!economy@{economy}}
-\subsubsection[{threv}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function economy\-::threv (
+\subsubsection[{threv}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function economy\-::threv (
 \begin{DoxyParamCaption}
 \item[{integer, intent(in)}]{t}
 \end{DoxyParamCaption}
-)}}\label{classeconomy_a89bad0bc0b64f4480938f31adfa3ec33}
+)}}\label{classeconomy_a5f12114d9d3d02f2d9590df75c787003}
 Calculates the revenues (in euro or any other currency according to the one used in the input) from thermal energy selling to the various clients. \[ R_{th} = \sum_{clients} U_{th}(i)c_{th}(i)dt \] where $ U_{th}(i)$ is the power demand (in k\-W) of the $i$'th client, $c_{th}(i)$ is the price in euro/k\-J of electric energy for each client and $ dt$ is the time-\/step duration.\par
  
 \begin{DoxyParams}[1]{Parameters}
@@ -251,14 +274,14 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 146 of file economy.\-f90.
+Definition at line 147 of file economy.\-f90.
 
 
 
-Referenced by currcost().
+Referenced by currcost(), and globalresults\-::globthrev().
 
 
 
 The documentation for this module was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/\hyperlink{economy_8f90}{economy.\-f90}\end{DoxyCompactItemize}
+/home/\-Codici/\-Blink/\-Power\-Manager/src/\hyperlink{economy_8f90}{economy.\-f90}\end{DoxyCompactItemize}

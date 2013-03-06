@@ -8,5 +8,5 @@ var classgraphtools =
     [ "graphpoints", "classgraphtools.html#a94b8e6e5a3d3cc0c3bedbe00d57fc2f9", null ],
     [ "minpathtopobw", "classgraphtools.html#abef4e47145f628bc6d3001d4f6bd9601", null ],
     [ "minpathtopofw", "classgraphtools.html#ade3577b19aec190e8e056f041bc8afdf", null ],
-    [ "uptimecalc", "classgraphtools.html#ac61c9cdfdbeb51411798714a7ba88c3e", null ]
+    [ "uptimecalc", "classgraphtools.html#a0a5fc60233fedc07e2a6297bfa1763ba", null ]
 ];

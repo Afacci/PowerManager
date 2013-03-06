@@ -1,5 +1,5 @@
-\hypertarget{abort_execution_8f90}{\section{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/abort\-Execution.f90 File Reference}
-\label{abort_execution_8f90}\index{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/abort\-Execution.\-f90@{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/abort\-Execution.\-f90}}
+\hypertarget{abort_execution_8f90}{\section{/home/\-Codici/\-Blink/\-Power\-Manager/src/abort\-Execution.f90 File Reference}
+\label{abort_execution_8f90}\index{/home/\-Codici/\-Blink/\-Power\-Manager/src/abort\-Execution.\-f90@{/home/\-Codici/\-Blink/\-Power\-Manager/src/abort\-Execution.\-f90}}
 }
 
 
@@ -9,7 +9,7 @@ terminates the execution in case of error.
 \subsection*{Functions/\-Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-subroutine \hyperlink{abort_execution_8f90_a77d76bae2ec6572915c5c3e0795bcb76}{abortexecution} (i, j, line, word, r1, r2)
+subroutine \hyperlink{abort_execution_8f90_af9fd9adc11792b7ac163e6d936be8995}{abortexecution} (i, j, line, word, r1, r2, i\-Vec)
 \begin{DoxyCompactList}\small\item\em abort the program execution. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -27,7 +27,7 @@ Definition in file \hyperlink{abort_execution_8f90_source}{abort\-Execution.\-f9
 
 
 \subsection{Function/\-Subroutine Documentation}
-\hypertarget{abort_execution_8f90_a77d76bae2ec6572915c5c3e0795bcb76}{\index{abort\-Execution.\-f90@{abort\-Execution.\-f90}!abortexecution@{abortexecution}}
+\hypertarget{abort_execution_8f90_af9fd9adc11792b7ac163e6d936be8995}{\index{abort\-Execution.\-f90@{abort\-Execution.\-f90}!abortexecution@{abortexecution}}
 \index{abortexecution@{abortexecution}!abortExecution.f90@{abort\-Execution.\-f90}}
 \subsubsection[{abortexecution}]{\setlength{\rightskip}{0pt plus 5cm}subroutine abortexecution (
 \begin{DoxyParamCaption}
@@ -35,10 +35,11 @@ Definition in file \hyperlink{abort_execution_8f90_source}{abort\-Execution.\-f9
 \item[{integer, intent(in), optional}]{j, }
 \item[{integer, intent(in), optional}]{line, }
 \item[{character(len=$\ast$), intent(in), optional}]{word, }
-\item[{real(kind(1.d0)), intent(in), optional}]{r1, }
-\item[{real(kind(1.d0)), intent(in), optional}]{r2}
+\item[{real(kind = prec), intent(in), optional}]{r1, }
+\item[{real(kind = prec), intent(in), optional}]{r2, }
+\item[{real(kind = prec), dimension($\ast$), intent(in), optional}]{i\-Vec}
 \end{DoxyParamCaption}
-)}}\label{abort_execution_8f90_a77d76bae2ec6572915c5c3e0795bcb76}
+)}}\label{abort_execution_8f90_af9fd9adc11792b7ac163e6d936be8995}
 aborts the program exectuion in case of error and print the error message according to the error code given as input. 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em i,j} & integers that identify the error. \\
@@ -56,5 +57,5 @@ Definition at line 42 of file abort\-Execution.\-f90.
 
 
 
-Referenced by graphtools\-::allcombin(), checkplant(), graphtools\-::graphpoints(), readboiler(), readchillers(), readgeneral(), readloads(), and readtrigen().
+Referenced by graphtools\-::allcombin(), checkplant(), graphtools\-::graphpoints(), readboiler(), readchillers(), readenv(), readgeneral(), readloads(), and readtrigen().
 

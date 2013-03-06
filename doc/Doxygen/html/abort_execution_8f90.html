@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>PowerManager: /home/andrea/Desktop/FortranCodeBW/src/abortExecution.f90 File Reference</title>
+<title>PowerManager: /home/Codici/Blink/PowerManager/src/abortExecution.f90 File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -115,8 +115,8 @@ $(document).ready(function(){initNavTree('abort_execution_8f90.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
-<tr class="memitem:a77d76bae2ec6572915c5c3e0795bcb76"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="abort_execution_8f90.html#a77d76bae2ec6572915c5c3e0795bcb76">abortexecution</a> (i, j, line, word, r1, r2)</td></tr>
-<tr class="memdesc:a77d76bae2ec6572915c5c3e0795bcb76"><td class="mdescLeft">&#160;</td><td class="mdescRight">abort the program execution.  <a href="#a77d76bae2ec6572915c5c3e0795bcb76"></a><br/></td></tr>
+<tr class="memitem:af9fd9adc11792b7ac163e6d936be8995"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="abort_execution_8f90.html#af9fd9adc11792b7ac163e6d936be8995">abortexecution</a> (i, j, line, word, r1, r2, iVec)</td></tr>
+<tr class="memdesc:af9fd9adc11792b7ac163e6d936be8995"><td class="mdescLeft">&#160;</td><td class="mdescRight">abort the program execution.  <a href="#af9fd9adc11792b7ac163e6d936be8995"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><pre class="fragment">aborts the program exectuion in case of error and print the error message
@@ -125,7 +125,7 @@ according to the error code given as input.
 
 <p>Definition in file <a class="el" href="abort_execution_8f90_source.html">abortExecution.f90</a>.</p>
 </div><h2>Function/Subroutine Documentation</h2>
-<a class="anchor" id="a77d76bae2ec6572915c5c3e0795bcb76"></a>
+<a class="anchor" id="af9fd9adc11792b7ac163e6d936be8995"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -156,14 +156,20 @@ according to the error code given as input.
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">real(kind(1.d0)), intent(in), optional&#160;</td>
+          <td class="paramtype">real(kind = prec), intent(in), optional&#160;</td>
           <td class="paramname"><em>r1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">real(kind(1.d0)), intent(in), optional&#160;</td>
-          <td class="paramname"><em>r2</em>&#160;</td>
+          <td class="paramtype">real(kind = prec), intent(in), optional&#160;</td>
+          <td class="paramname"><em>r2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind = prec), dimension(*), intent(in), optional&#160;</td>
+          <td class="paramname"><em>iVec</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -185,7 +191,7 @@ according to the error code given as input.
 
 <p>Definition at line <a class="el" href="abort_execution_8f90_source.html#l00042">42</a> of file <a class="el" href="abort_execution_8f90_source.html">abortExecution.f90</a>.</p>
 
-<p>Referenced by <a class="el" href="graph_tools_8f90_source.html#l00097">graphtools::allcombin()</a>, <a class="el" href="check_plant_8f90_source.html#l00041">checkplant()</a>, <a class="el" href="graph_tools_8f90_source.html#l00199">graphtools::graphpoints()</a>, <a class="el" href="read_boiler_8f90_source.html#l00061">readboiler()</a>, <a class="el" href="read_chiller_8f90_source.html#l00061">readchillers()</a>, <a class="el" href="read_general_8f90_source.html#l00060">readgeneral()</a>, <a class="el" href="read_load_8f90_source.html#l00061">readloads()</a>, and <a class="el" href="read_trigen_8f90_source.html#l00062">readtrigen()</a>.</p>
+<p>Referenced by <a class="el" href="graph_tools_8f90_source.html#l00102">graphtools::allcombin()</a>, <a class="el" href="check_plant_8f90_source.html#l00041">checkplant()</a>, <a class="el" href="graph_tools_8f90_source.html#l00206">graphtools::graphpoints()</a>, <a class="el" href="read_boiler_8f90_source.html#l00061">readboiler()</a>, <a class="el" href="read_chiller_8f90_source.html#l00061">readchillers()</a>, <a class="el" href="read_env_8f90_source.html#l00061">readenv()</a>, <a class="el" href="read_general_8f90_source.html#l00060">readgeneral()</a>, <a class="el" href="read_load_8f90_source.html#l00061">readloads()</a>, and <a class="el" href="read_steam_plant_8f90_source.html#l00062">readtrigen()</a>.</p>
 
 </div>
 </div>
@@ -195,7 +201,7 @@ according to the error code given as input.
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="abort_execution_8f90.html">abortExecution.f90</a></li>
-    <li class="footer">Generated on Tue Jan 29 2013 11:17:03 for PowerManager by
+    <li class="footer">Generated on Wed Mar 6 2013 15:25:15 for PowerManager by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

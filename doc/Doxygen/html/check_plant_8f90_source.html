@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>PowerManager: /home/andrea/Desktop/FortranCodeBW/src/checkPlant.f90 Source File</title>
+<title>PowerManager: /home/Codici/Blink/PowerManager/src/checkPlant.f90 Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -136,7 +136,7 @@ $(document).ready(function(){initNavTree('check_plant_8f90_source.html','');});
 <div class="line"><a name="l00041"></a><span class="lineno"><a class="code" href="check_plant_8f90.html#aba690d905ca61a9e24a3d8eefedd913e">   41</a></span>&#160;<span class="keyword">subroutine </span><a class="code" href="check_plant_8f90.html#aba690d905ca61a9e24a3d8eefedd913e">checkplant</a></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">!---Declare Module usage---</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">use </span><a class="code" href="classshared.html">shared</a></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">use </span><a class="code" href="classinputvar.html">inputvar</a></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">use </span><a class="code" href="classplantvar.html">plantvar</a></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">use </span><a class="code" href="classinterfaces.html">interfaces</a></div>
@@ -144,9 +144,9 @@ $(document).ready(function(){initNavTree('check_plant_8f90_source.html','');});
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">!---Declare Local Variables---</span></div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">implicit none</span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keywordtype">real(kind(1.d0))</span>  :: pel, pch, pth, ptht, uemax, ucmax, utmax, &amp;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keywordtype">real(kind = prec)</span>  :: pel, pch, pth, ptht, uemax, ucmax, utmax, &amp;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                     utf, uef, cmax, pin</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">real(kind(1.d0))</span>, <span class="keywordtype">allocatable</span>,<span class="keywordtype">dimension(:)</span> :: utht,uelt,ucht</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">real(kind = prec)</span>, <span class="keywordtype">allocatable</span>,<span class="keywordtype">dimension(:)</span> :: utht,uelt,ucht</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">integer</span>           :: n,  i</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">!--subroutine body-----</span></div>
@@ -154,21 +154,21 @@ $(document).ready(function(){initNavTree('check_plant_8f90_source.html','');});
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">allocate</span>(utht(ntime),uelt(ntime),ucht(ntime))</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">!-evaluation of maximum power for each energy vector.</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;pel = 0</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;pel = zero</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keywordflow">if</span>(ntrig.gt.0) <span class="keywordflow">then</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;   <span class="keywordflow">do</span> i=1,ntrig</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;      cmax = maxval(spt(:,i))</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;      pel  = pmaxt(i)*cmax + pel</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;   <span class="keywordflow">enddo</span></div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keywordflow">endif</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;pch = 0</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;pch = zero</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keywordflow">if</span>(nchi.gt.0) <span class="keywordflow">then</span></div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;   <span class="keywordflow">do</span> i=1,nchi</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;      cmax = maxval(spc(:,i))</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;      pch  = pch + pmaxc(i)*cmax</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;   <span class="keywordflow">enddo</span></div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keywordflow">endif</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;ptht = 0.d0</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;ptht = zero</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keywordflow">if</span>(ntrig.gt.0) <span class="keywordflow">then</span></div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;   <span class="keywordflow">do</span> i=1,ntrig</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      n    = nspt(i)</div>
@@ -177,7 +177,7 @@ $(document).ready(function(){initNavTree('check_plant_8f90_source.html','');});
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;      ptht = ptht + pin*etatht_(n,i)</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;   <span class="keywordflow">enddo</span></div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keywordflow">endif</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;pth = 0</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;pth = zero</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keywordflow">if</span>(nboi.gt.0) <span class="keywordflow">then</span></div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;   <span class="keywordflow">do</span> i=1,nboi</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;      cmax = maxval(spb(:,i))</div>
@@ -191,8 +191,8 @@ $(document).ready(function(){initNavTree('check_plant_8f90_source.html','');});
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    ucht(i) = sum(uch(i,:))</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keywordflow">enddo</span></div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;ucmax = maxval(ucht)</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;utf   = 0.d0</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;uef   = 0.d0</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;utf   = zero</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;uef   = zero</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keywordflow">if</span>(nchi.gt.0) <span class="keywordflow">then</span></div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;   <span class="keywordflow">do</span> i=1,nchi</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;      n = nspc(i)</div>
@@ -208,15 +208,15 @@ $(document).ready(function(){initNavTree('check_plant_8f90_source.html','');});
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;uemax = uef + maxval(uelt)</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">!-abort the execution when one of the loads cannot be satisfied.</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="keywordflow">if</span>(utmax.gt.pth) call <a class="code" href="abort_execution_8f90.html#a77d76bae2ec6572915c5c3e0795bcb76">abortexecution</a>(i=7,j=1,r1=pth, r2=utmax )</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keywordflow">if</span>(ucmax.gt.pch) call <a class="code" href="abort_execution_8f90.html#a77d76bae2ec6572915c5c3e0795bcb76">abortexecution</a>(i=7,j=2,r1=pch, r2=ucmax)</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keywordflow">if</span>(uemax.gt.pel.and.gridconnection.eq.<span class="stringliteral">&#39;StandAlone&#39;</span>) call <a class="code" href="abort_execution_8f90.html#a77d76bae2ec6572915c5c3e0795bcb76">abortexecution</a>(i=7,j=2,r1=pel, r2=uemax)</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="keywordflow">if</span>(utmax.gt.pth) call <a class="code" href="abort_execution_8f90.html#af9fd9adc11792b7ac163e6d936be8995">abortexecution</a>(i=7,j=1,r1=pth, r2=utmax )</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keywordflow">if</span>(ucmax.gt.pch) call <a class="code" href="abort_execution_8f90.html#af9fd9adc11792b7ac163e6d936be8995">abortexecution</a>(i=7,j=2,r1=pch, r2=ucmax)</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keywordflow">if</span>(uemax.gt.pel.and.gridconnection.eq.<span class="stringliteral">&#39;StandAlone&#39;</span>) call <a class="code" href="abort_execution_8f90.html#af9fd9adc11792b7ac163e6d936be8995">abortexecution</a>(i=7,j=2,r1=pel, r2=uemax)</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="keywordflow">do</span> i=1,ntrig+nboi+nchi</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;   <span class="keywordflow">if</span>(uptime0(i).eq.0.and.startpoint(i).gt.0.d0) call <a class="code" href="abort_execution_8f90.html#a77d76bae2ec6572915c5c3e0795bcb76">abortexecution</a>(15,i,word=<span class="stringliteral">&#39;upTime&#39;</span>,r1=uptime0(i),r2=startpoint(i))</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;   <span class="keywordflow">if</span>(uptime0(i).gt.0.and.startpoint(i).eq.0.d0) call <a class="code" href="abort_execution_8f90.html#a77d76bae2ec6572915c5c3e0795bcb76">abortexecution</a>(15,i,word=<span class="stringliteral">&#39;upTime&#39;</span>,r1=uptime0(i),r2=startpoint(i))</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;   <span class="keywordflow">if</span>(downtime0(i).eq.0.and.startpoint(i).eq.0.d0) call <a class="code" href="abort_execution_8f90.html#a77d76bae2ec6572915c5c3e0795bcb76">abortexecution</a>(15,i,word=<span class="stringliteral">&#39;DownTime&#39;</span>,r1=downtime0(i),r2=startpoint(i))</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;   <span class="keywordflow">if</span>(downtime0(i).gt.0.and.startpoint(i).gt.0.d0) call <a class="code" href="abort_execution_8f90.html#a77d76bae2ec6572915c5c3e0795bcb76">abortexecution</a>(15,i,word=<span class="stringliteral">&#39;DownTime&#39;</span>,r1=downtime0(i),r2=startpoint(i))</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;   <span class="keywordflow">if</span>(uptime0(i).eq.0.and.startpoint(i).gt.zero) call <a class="code" href="abort_execution_8f90.html#af9fd9adc11792b7ac163e6d936be8995">abortexecution</a>(15,i,word=<span class="stringliteral">&#39;upTime&#39;</span>,r1=uptime0(i),r2=startpoint(i))</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;   <span class="keywordflow">if</span>(uptime0(i).gt.0.and.startpoint(i).eq.zero) call <a class="code" href="abort_execution_8f90.html#af9fd9adc11792b7ac163e6d936be8995">abortexecution</a>(15,i,word=<span class="stringliteral">&#39;upTime&#39;</span>,r1=uptime0(i),r2=startpoint(i))</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;   <span class="keywordflow">if</span>(downtime0(i).eq.0.and.startpoint(i).eq.zero) call <a class="code" href="abort_execution_8f90.html#af9fd9adc11792b7ac163e6d936be8995">abortexecution</a>(15,i,word=<span class="stringliteral">&#39;DownTime&#39;</span>,r1=downtime0(i),r2=startpoint(i))</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;   <span class="keywordflow">if</span>(downtime0(i).gt.0.and.startpoint(i).gt.zero) call <a class="code" href="abort_execution_8f90.html#af9fd9adc11792b7ac163e6d936be8995">abortexecution</a>(15,i,word=<span class="stringliteral">&#39;DownTime&#39;</span>,r1=downtime0(i),r2=startpoint(i))</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="keywordflow">enddo</span></div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="keyword">deallocate</span>(utht,uelt,ucht)</div>
@@ -230,7 +230,7 @@ $(document).ready(function(){initNavTree('check_plant_8f90_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="check_plant_8f90.html">checkPlant.f90</a></li>
-    <li class="footer">Generated on Tue Jan 29 2013 11:17:03 for PowerManager by
+    <li class="footer">Generated on Wed Mar 6 2013 15:25:15 for PowerManager by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

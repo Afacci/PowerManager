@@ -67,3 +67,30 @@
 \form#66:\[ exArr = \left[ \begin{array}{c c} 11 & 12 \\ 21 & 22 \end{array} \right] \]
 \form#67:\[ exArr = \left[ \begin{array}{c c} 1.1 & 1.2 \\ 2.1 & 2.2 \end{array} \right] \]
 \form#68:\[ exArr = \left[ \begin{array}{c c} Scrudge & DonaldDuck \\ Goofy & MickeyMouse \end{array} \right] \]
+\form#69:\[ P_{el} = \sum_{Trig} sp(i)\cdot P_{max}(i) k_{env} \]
+\form#70:$ k_{env} = k_a\cdot k_T \cdot k_p $
+\form#71:$ k_a$
+\form#72:$ k_t$
+\form#73:$ k_p$
+\form#74:\[ P_{th} = \sum_{Trig} \frac{sp(i)\cdot P_{max}(i)}{\eta_{el}(i,sp(i))}\eta_{th}(i,sp(i)) + \sum_{HRSG} sp(i)\cdot P_{max}(i) \]
+\form#75:\[ P_{el} = \sum_{Trig} sp(i)\cdot P_{max}(i)\cdot k_{env} \]
+\form#76:\[ P_{th} = \sum_{Trig} \frac{sp(i)\cdot P_{max}(i)\cdot k_{env}}{\eta_{el}(i,sp(i))\cdot \alpha_{env}}\eta_{th}(i,sp(i))\cdot\gamma_{env}+ \sum_{Boi} sp(i)\cdot P_{max}(i)\cdot \lambda_{env} \]
+\form#77:$ k_{env} $
+\form#78:$ \alpha_{env} $
+\form#79:$ \gamma_{env} $
+\form#80:$ \lambda_{env} $
+\form#81:\[ P_{ch} = \sum_{Trig} \frac{sp(i)\cdot P_{max}(i)\cdot k_{env}}{\eta_{el}(i,sp(i))\cdot\alpha_{env}}\eta_{ch}(i,sp(i))\cdot\beta_{env} + \sum_{Chi} sp(i)\cdot P_{max}(i)\cdot\vartheta_{env} \]
+\form#82:$, $
+\form#83:$, and $
+\form#84:$ are the environmental corrections for electrical power and efficiency, chilling efficiency, and chilling power, respectively. \param[in] c_ index of the given set-point to be given as input. Defines the state of the plant $
+\form#85:\[ U_{th}^{self} = \sum_{AbsChi} \frac{sp(i)\cdot P_{max}(i)\cdot \vartheta_{env}}{\eta_{ch}(i,sp(i))\cdot \beta_{env}} \]
+\form#86:$\beta_{env}$
+\form#87:$\vartheta_{env}$
+\form#88:\[ U_{el}^{self} = \sum_{MecChi} \frac{sp(i)\cdot P_{max}(i)\cdot \vartheta_{env}}{\eta_{ch}(i,sp(i))\cdot \beta_{env}} \]
+\form#89:$ and $
+\form#90:$ are the environmental corrections for chilling efficiency, and chilling power, respectively. The summation is extended over the nmber of mechanical chillers. \param[in] c_ index of the given set-point to be given as input. Defines the state of the plant $
+\form#91:\[ E_{in}(i) = \frac{sp(i)\cdot P_{max}(i)\cdot k_{env}}{\eta(i,sp(i))\cdot \alpha_{env}} \]
+\form#92:$k_{env}$
+\form#93:$\alpha_{env}$
+\form#94:\[ E_{in}(i) = \frac{sp(i)\cdot P_{max}(i)\cdot k_{env} }{\eta(i,sp(i))\cdot \alpha_{env}} \]
+\form#95:\[ E_{exh}(i) = sp(i)\cdot P_{max}(i)\cdot k_{env} \left[\frac{1}{\eta(i,sp(i))\cdot \alpha_{env}} - 1 \right] \]

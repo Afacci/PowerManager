@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>PowerManager: /home/andrea/Desktop/FortranCodeBW/src/plantVar.f90 Source File</title>
+<title>PowerManager: /home/Codici/Blink/PowerManager/src/plantVar.f90 Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -133,28 +133,32 @@ $(document).ready(function(){initNavTree('plant_var_8f90_source.html','');});
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">!---------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">!  Andrea Facci.</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="code" href="classplantvar.html">   35</a></span>&#160;<span class="keyword">module</span> <a class="code" href="classplantvar.html">plantvar</a></div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="code" href="classplantvar.html">   35</a></span>&#160;<span class="keyword">module</span> <a class="code" href="classplantvar.html">plantvar</a>   </div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="code" href="classplantvar.html#a9ce23c96a4155736d33f064180fabeb8">   37</a></span>&#160;<span class="keywordtype">real(kind(1.d0))</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:,:)</span> :: etaElT_, etaThT_, etaChT_, etaB_, etaC_, &amp;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                                                 sp,cRef</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="code" href="classplantvar.html#a6dea565d53d4827373d4f85f19b2926e">   39</a></span>&#160;<span class="keywordtype">real(kind(1.d0))</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:,:)</span> :: etaEl, etaTh, etaCh, timeVinc</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="code" href="classplantvar.html#a01620e31bb05f1443908f0bff75215a4">   40</a></span>&#160;<span class="keywordtype">integer</span>         , <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:,:)</span> :: cr</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="code" href="classplantvar.html#af133780045aedae72cab4d1d76ec16e5">   41</a></span>&#160;<span class="keywordtype">real(kind(1.d0))</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:)</span>   :: Pmax, dt, cf, lhv, onOffCost, OeMCost, minUpTime, minDownTime</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="code" href="classplantvar.html#a8b75644cc6f0b1728b0fdcd7c575c177">   42</a></span>&#160;<span class="keywordtype">character(len=4)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:)</span>   :: pes</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="code" href="classplantvar.html#a1301bcb36aec6c118be8c084932de099">   43</a></span>&#160;<span class="keywordtype">integer</span>                                       :: nSpTot,nm, iT, iB, iC</div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="code" href="classplantvar.html#add18a489fead102059c74cf8875f94e0">   44</a></span>&#160;<span class="keywordtype">integer</span>,                       <span class="keywordtype">dimension(3)</span>   :: is,ie</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="code" href="classplantvar.html#a019098844671b06b71ae0b76aa3d4fa8">   45</a></span>&#160;<span class="keywordtype">integer</span>,          <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:)</span>   :: nSp, nTv</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">end module </span><a class="code" href="classplantvar.html">plantvar</a></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">use </span><a class="code" href="classshared.html">shared</a></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="code" href="classplantvar.html#a0ecfac9070622328232608ce808ede2b">   39</a></span>&#160;<span class="keywordtype">real(kind = prec)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:,:)</span>   :: etaElT_, etaThT_, etaChT_, etaB_, etaC_, &amp;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                                                   sp,cRef</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="code" href="classplantvar.html#a187eaf8e3b46428daf4b89db350aa0f1">   41</a></span>&#160;<span class="keywordtype">real(kind = prec)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:,:,:)</span> :: envCorr</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="code" href="classplantvar.html#aade5aa28513690acf2cf215b0dc1acd2">   42</a></span>&#160;<span class="keywordtype">real(kind = prec)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:,:)</span>   :: etaEl, etaTh, etaCh, timeVinc</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="code" href="classplantvar.html#a01620e31bb05f1443908f0bff75215a4">   43</a></span>&#160;<span class="keywordtype">integer</span>         , <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:,:)</span>   :: cr</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="code" href="classplantvar.html#aab06737bb534df1a69fff1f6f601a72a">   44</a></span>&#160;<span class="keywordtype">real(kind = prec)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:)</span>     :: Pmax, dt, cf, lhv, onOffCost, OeMCost, minUpTime, minDownTime</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="code" href="classplantvar.html#a8b75644cc6f0b1728b0fdcd7c575c177">   45</a></span>&#160;<span class="keywordtype">character(len=4)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:)</span>     :: pes</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="code" href="classplantvar.html#a1301bcb36aec6c118be8c084932de099">   46</a></span>&#160;<span class="keywordtype">integer</span>                                         :: nSpTot,nm, iT, iB, iC</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="code" href="classplantvar.html#add18a489fead102059c74cf8875f94e0">   47</a></span>&#160;<span class="keywordtype">integer</span>,                       <span class="keywordtype">dimension(3)</span>     :: is,ie</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="code" href="classplantvar.html#a019098844671b06b71ae0b76aa3d4fa8">   48</a></span>&#160;<span class="keywordtype">integer</span>,          <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:)</span>     :: nSp, nTv, eSource</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="code" href="classplantvar.html#a4de39d7f2e55534eeac1a570bf8d30ff">   49</a></span>&#160;<span class="keywordtype">character(len=50)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:)</span>    :: tec</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">end module </span><a class="code" href="classplantvar.html">plantvar</a></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="plant_var_8f90.html">plantVar.f90</a></li>
-    <li class="footer">Generated on Tue Jan 29 2013 11:17:03 for PowerManager by
+    <li class="footer">Generated on Wed Mar 6 2013 15:25:15 for PowerManager by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

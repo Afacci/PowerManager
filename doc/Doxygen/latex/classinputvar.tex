@@ -8,8 +8,7 @@ Input variables collection.
 
 
 
-Collaboration diagram for inputvar\-:
-\nopagebreak
+Collaboration diagram for inputvar\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -25,24 +24,52 @@ integer \hyperlink{classinputvar_a98d384e0347fb055110c18572dbdb522}{ntimes}
 \item 
 logical \hyperlink{classinputvar_a62235e6c8b16a98c1aea10ac01e11ac9}{ideg}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a8a730b8445d97ba3812647c22689dc01}{startpoint}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_a3b9acf8a358a0bad89d622cbbbab638f}{startpoint}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a3e87ba90459e069a492fde778f06b6a3}{uptime0}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_a3938be0ea72158eee837e2a8c08f29e0}{uptime0}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_ab7b48e990ab724feb4e8d6297d3cd63c}{downtime0}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_aaab84ab253f188eacce25a200a4ab300}{downtime0}
 \item 
-real(kind(1.d0)) \hyperlink{classinputvar_a8d3f282e92e7ea93ad6b14576bc3458b}{dt1}
+real(kind=prec) \hyperlink{classinputvar_a62c9f9492040ef5e03091380533f2c0f}{dt1}
 \item 
 character(len=100) \hyperlink{classinputvar_ab5d2f467a214e31204c18a24582b81bb}{obj}
+\item 
+character(len=100) \hyperlink{classinputvar_ad9c1a09ed4bd46ad673997ee302451a4}{method}
+\item 
+logical \hyperlink{classinputvar_ae3e0dfd2907bb36d0f62715b24f63536}{writepower} = .false.
+\item 
+logical \hyperlink{classinputvar_ae3e52c17a47fe8dd3e860abff881cfb0}{writeenergy} = .false.
+\item 
+logical \hyperlink{classinputvar_a7d67f2fa2027e1d60264f442eef9759c}{writeefficiency} = .false.
+\item 
+logical \hyperlink{classinputvar_afd3b4bc26c396eaba06cecc08717acf1}{writeelectricrev} = .false.
+\item 
+logical \hyperlink{classinputvar_ae7817d3a1abb7e02fdd1d3f40b45a4e8}{writethermalrev} = .false.
+\item 
+logical \hyperlink{classinputvar_a2d475a99a1a0efcca534104cf8e2efb5}{writechillingrev} = .false.
+\item 
+logical \hyperlink{classinputvar_ad6cafaf46b6d0f5bfaeb1ca26ccd0c68}{writedemand} = .false.
+\item 
+logical \hyperlink{classinputvar_a97c8b194b0db24c1c790d57bcc7b0f70}{writeinput} = .false.
+\item 
+logical \hyperlink{classinputvar_a5fa854d48ca73d10b807273f373076b2}{writecosts} = .false.
+\item 
+logical \hyperlink{classinputvar_a676701049b4d18d378d94894b1fcae7b}{writetrig} = .false.
+\item 
+logical \hyperlink{classinputvar_adfc2c014d1631c831bd700d9ff13dcff}{writeboi} = .false.
+\item 
+logical \hyperlink{classinputvar_a6e34f329672526cc9e682125013ce5e7}{writechi} = .false.
+\item 
+logical \hyperlink{classinputvar_aa558f36057a5ae647fb16b9659b90d04}{global} = .false.
+\item 
+logical \hyperlink{classinputvar_a04f11d38b133803024202cc546abddc3}{useeuristics} = .false.
 \item 
 integer \hyperlink{classinputvar_ae4403f5c5b16bf2cbd2b607a87e5ee9a}{ntrig}
 \item 
 integer, dimension(\-:), allocatable \hyperlink{classinputvar_a0c86e9a7915872ee547e5bd8802611e7}{nspt}
-\item 
-integer, dimension(\-:), allocatable \hyperlink{classinputvar_ad358835680a10ce32616f8262e7dea05}{nsizet}
 \item 
 integer, dimension(\-:), allocatable \hyperlink{classinputvar_a2bfcb389a7fba156b8c1146150a71f51}{netaelt}
 \item 
@@ -50,50 +77,56 @@ integer, dimension(\-:), allocatable \hyperlink{classinputvar_acebcf3d64f116183d
 \item 
 integer, dimension(\-:), allocatable \hyperlink{classinputvar_a7f82eda09f512dfe2f28f82efc5187ad}{netacht}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a4f173bcabd7673493639dfa0ad700822}{pmaxt}
+integer, dimension(\-:), allocatable \hyperlink{classinputvar_ad5c9bbca95851da9fa84642ea414e6be}{ntct}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_ac55cb9b2b78bb635b7083a15b40013e1}{degratet}
+integer, dimension(\-:), allocatable \hyperlink{classinputvar_a0f5eeaa6713564c7a3aa547b8ce8bae9}{npct}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_ad2ccd9c466f57cca3096b20a6492b453}{fuelcostt}
+integer, dimension(\-:), allocatable \hyperlink{classinputvar_aecb7a7ef500aee2174166b23b5c72e2a}{nact}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a0fafd66a5d231ffafe01ff620004eb65}{fuellhvt}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_a0a9434332c855a12ef886b675af68d35}{pmaxt}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_abe7ea839b7f1cd20925aa7e709396529}{invt}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_a85ccff6d868e650d2255bb9faa7c31be}{fuelcostt}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_ae41d245ccd35c2cc156a128bd2ecfb3c}{lifet}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_afe467edd87c4c589d3ad9d5b14825f94}{fuellhvt}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_ac4f3966035d1de814f32b69c620c75a0}{firecostt}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_a04abed47801bdfcda1ecba21b90ab85b}{lifet}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a59115307b83bfd1c0b1652c091e20b62}{maintcostt}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_a57526f25accbe0af7902997bd9cde614}{firecostt}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a1e617330959313dade0696c66ae235cf}{minuptimet}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_abeac95d7e558ca06d4456187b380fdbc}{maintcostt}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a80329f2c6a6631a2c21fadb194436b7c}{mindowntimet}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_a90d0b599ed6468fc322cf2fbd6b4ec95}{minuptimet}
 \item 
-real(kind(1.d0)), dimension(\-:,\-:), \\*
-allocatable \hyperlink{classinputvar_aea96dbeef4023d78701a4f3821152d1d}{spt}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_aca351a4427897a65d991d46243fadc34}{mindowntimet}
 \item 
-real(kind(1.d0)), dimension(\-:,\-:), \\*
-allocatable \hyperlink{classinputvar_a359d19cae6373fc1cdfff9739977c075}{ksizet}
+real(kind=prec), dimension(\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_aa1da1474767137ee483ef4253b7cef85}{spt}
 \item 
-real(kind(1.d0)), dimension(\-:,\-:,\-:), \\*
-allocatable \hyperlink{classinputvar_a369a3060de992f175783133d4a467699}{etaelt}
+real(kind=prec), dimension(\-:,\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_af7479b2afabbd7d596d91bb1319b0a8e}{etaelt}
 \item 
-real(kind(1.d0)), dimension(\-:,\-:,\-:), \\*
-allocatable \hyperlink{classinputvar_a258e931040b177ac64cb68a595378fe0}{etatht}
+real(kind=prec), dimension(\-:,\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_a93c858e92300ce7dfc06627cbc72d681}{etatht}
 \item 
-real(kind(1.d0)), dimension(\-:,\-:,\-:), \\*
-allocatable \hyperlink{classinputvar_aacd2eb8dce4dc295c06a7cab54423174}{etacht}
+real(kind=prec), dimension(\-:,\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_a7cd43a0a5d5ddb8d50af96d4c4f81bea}{etacht}
+\item 
+real(kind=prec), dimension(\-:,\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_a918356589b5f04f76333e6a65de35fb8}{tempcorrt}
+\item 
+real(kind=prec), dimension(\-:,\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_a4dc6d715b00d35dbff920be5c37c1d89}{prescorrt}
+\item 
+real(kind=prec), dimension(\-:,\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_a1405821026cba8a541725451f5a6f8dd}{altcorrt}
 \item 
 character(len=50), dimension(\-:), \\*
 allocatable \hyperlink{classinputvar_afb7d5163d753c7bbd2c1505e8ee68197}{tect}
@@ -102,48 +135,52 @@ integer \hyperlink{classinputvar_a168bc1dcb73e68b3620991b6494f3797}{nboi}
 \item 
 integer, dimension(\-:), allocatable \hyperlink{classinputvar_aa1e78ecd4b3cbb3f08b770cf604a5d3d}{nspb}
 \item 
-integer, dimension(\-:), allocatable \hyperlink{classinputvar_ad0bd77a901e4e300f887dc0682a4884d}{nsizeb}
-\item 
 integer, dimension(\-:), allocatable \hyperlink{classinputvar_af109996c7b379bac5d6c3d89c5b6df1d}{netab}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_abe0141eabac694fc809b9b8f8bff28e7}{pmaxb}
+integer, dimension(\-:), allocatable \hyperlink{classinputvar_a41aaaf97cb1f1e815c73bcfa5f975be3}{ntcb}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a62a3dfedaea148a2ae030b1f142663d9}{degrateb}
+integer, dimension(\-:), allocatable \hyperlink{classinputvar_a4f83c89634ccb8f94fca08a023648791}{npcb}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a613d5defd6204729146a9d70f3b81dbe}{fuelcostb}
+integer, dimension(\-:), allocatable \hyperlink{classinputvar_ae517f545e388b4352b7941203efa8449}{nacb}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a433ed9c0483e649c0c6e1be84bc9ece2}{fuellhvb}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_a29e37a8460969d1438ed9aeb5d37d798}{pmaxb}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a9720dc92330c2ac44a2ade71319efdfc}{invb}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_a7ba5eba73efe4e693920d6af7782e58e}{fuelcostb}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_abb62812e265fa305f173457cd4679829}{lifeb}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_a3cd62c9288fded8bd8de8066cbb3ca20}{fuellhvb}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a65f37e4fd6eb186d124bc4c8b2c26f4d}{firecostb}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_a74dcd10e62524e2f5145df13548eae82}{lifeb}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a7af239451cf6d5494b2dec7d873ffa53}{maintcostb}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_a1560f8312d0c0606566ee8f7e21c1e49}{firecostb}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a84de543a9e5ef22ff5f0fc9e0cce8b32}{minuptimeb}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_ac52f743f02f10e96c455d94c3cdc0fe8}{maintcostb}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a09eb64b393df82105b2d57d6ed03b939}{mindowntimeb}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_a699644b9b98282661cd55dc10d96dbcb}{minuptimeb}
 \item 
-real(kind(1.d0)), dimension(\-:,\-:), \\*
-allocatable \hyperlink{classinputvar_a831b2b0adb9e0bddc327d353012788e0}{spb}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_ae93da8603e9899963da53596705b1d98}{mindowntimeb}
 \item 
-real(kind(1.d0)), dimension(\-:,\-:), \\*
-allocatable \hyperlink{classinputvar_ad8be82d5fedb76e97006462fc334ee95}{ksizeb}
+real(kind=prec), dimension(\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_acd5ae0efcfc5e54e9c73d085132bcf5a}{spb}
 \item 
-real(kind(1.d0)), dimension(\-:,\-:,\-:), \\*
-allocatable \hyperlink{classinputvar_ac19333b401f362c7b0ed89ec10590872}{etab}
+real(kind=prec), dimension(\-:,\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_adba062c6d3ce600124e2cd8943f7c6e6}{etab}
+\item 
+real(kind=prec), dimension(\-:,\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_a4270f23d875d4a85d7bd5d6699205d03}{tempcorrb}
+\item 
+real(kind=prec), dimension(\-:,\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_a4de979203fa5e65fe0cbfd77c60654ae}{prescorrb}
+\item 
+real(kind=prec), dimension(\-:,\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_a3fb49f59a3c5a2a19350be6bea0d69c2}{altcorrb}
 \item 
 character(len=50), dimension(\-:), \\*
 allocatable \hyperlink{classinputvar_ab2486a625a1ff1aaf70cb9e38d8c07db}{tecb}
@@ -156,38 +193,41 @@ integer, dimension(\-:), allocatable \hyperlink{classinputvar_af28da5ec88564638b
 \item 
 integer, dimension(\-:), allocatable \hyperlink{classinputvar_ad9998f4f97f100bf6294fb8fa083bfe7}{netac}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a59b745ef4d38979ee6715cbbdd3b7fdc}{pmaxc}
+integer, dimension(\-:), allocatable \hyperlink{classinputvar_aaf3cc67ce289abacf61f20f5fdcfc3f6}{ntcc}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a60a72e191c29f7558641179db3a7fd65}{degratec}
+integer, dimension(\-:), allocatable \hyperlink{classinputvar_a78f4d80d45d564c96dd9101258656f66}{npcc}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_ad241283eadb6335a2d955ba6d30cffb6}{invc}
+integer, dimension(\-:), allocatable \hyperlink{classinputvar_a8e4bb497a3825e6f554e3268dd2bbd63}{nacc}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_aa699a72930e1393e056fa83bd5d68df5}{lifec}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_a93b555571bee30038d48c86de7ab5c14}{pmaxc}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a8120efafb95065c490efb058c2a6f9a4}{firecostc}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_afa2d0c05087f3cda5d3e984037a2a354}{firecostc}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_adfa59ffad19dbf455b4964e32c3659d8}{maintcostc}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_a4371de15edf20ae9883b07b3b843655d}{maintcostc}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a86ea15836ba0fabd0de2d5bb9ee52cc1}{minuptimec}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_a1c2a4cc32567b94cb7a884d3731bb5f4}{minuptimec}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a08f7d764ab0f1da8ac516b769fe8d2e4}{mindowntimec}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_a9bb1424e04e5c89d561d2316045f98d4}{mindowntimec}
 \item 
-real(kind(1.d0)), dimension(\-:,\-:), \\*
-allocatable \hyperlink{classinputvar_a16ce4ddae61b9940a768c5033f0e81a0}{spc}
+real(kind=prec), dimension(\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_a7a6b03a57941065017f0fe71a9d641f1}{spc}
 \item 
-real(kind(1.d0)), dimension(\-:,\-:), \\*
-allocatable \hyperlink{classinputvar_a566165a1a61dae24f58f3e8e117457d4}{ksizec}
+real(kind=prec), dimension(\-:,\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_a3c6d7517ec3f9097a8d4264b50e61b48}{etac}
 \item 
-real(kind(1.d0)), dimension(\-:,\-:,\-:), \\*
-allocatable \hyperlink{classinputvar_a983ea301ea452199170dcf1706f9262c}{etac}
+real(kind=prec), dimension(\-:,\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_a378a362979a22545cd843bbf687ca511}{tempcorrc}
+\item 
+real(kind=prec), dimension(\-:,\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_a4ad15e4562f67332a82dd70d6cfcb2fc}{prescorrc}
+\item 
+real(kind=prec), dimension(\-:,\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_a9fe000c19d0cd93b0e53d5d6b2cbc13f}{altcorrc}
 \item 
 character(len=50), dimension(\-:), \\*
 allocatable \hyperlink{classinputvar_a2eb1c20cfae159c006e0fdc4b9ef0ef0}{tecc}
@@ -210,36 +250,44 @@ integer \hyperlink{classinputvar_abb9734f3e3ee40c97881bd03881065c5}{ithp}
 \item 
 integer \hyperlink{classinputvar_af57151a30c510558682b98e1b72d844b}{ichp}
 \item 
-real(kind(1.d0)), dimension(\-:,\-:), \\*
-allocatable \hyperlink{classinputvar_a9833eea2b0f2ee5ab1a1927826656d05}{uel}
+real(kind=prec), dimension(\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_a8540cf286b75c5a77a2c3f8e2623617a}{uel}
 \item 
-real(kind(1.d0)), dimension(\-:,\-:), \\*
-allocatable \hyperlink{classinputvar_ace89e7bc6ca01804a1f664e9faec7d0c}{uth}
+real(kind=prec), dimension(\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_abd9a09032c8d997c45cd49020fb78609}{uth}
 \item 
-real(kind(1.d0)), dimension(\-:,\-:), \\*
-allocatable \hyperlink{classinputvar_a889ca8b7a94ff88ec05a082dd2470ac3}{uch}
+real(kind=prec), dimension(\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_a53339aa6533c8e2333ec3eaa4a54796b}{uch}
 \item 
-real(kind(1.d0)), dimension(\-:,\-:), \\*
-allocatable \hyperlink{classinputvar_a82b36ae2c53d6e6f9653b138e3e7452d}{cel}
+real(kind=prec), dimension(\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_aae07469e8800dce385d02a73306d320c}{cel}
 \item 
-real(kind(1.d0)), dimension(\-:,\-:), \\*
-allocatable \hyperlink{classinputvar_aca5ff14156cf1451425195acac825d1d}{cth}
+real(kind=prec), dimension(\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_adcb3f28e49daee36d91bc87941f486c9}{cth}
 \item 
-real(kind(1.d0)), dimension(\-:,\-:), \\*
-allocatable \hyperlink{classinputvar_a0f5658ba736453b1bc8c607069f9bea1}{cch}
+real(kind=prec), dimension(\-:,\-:), \\*
+allocatable \hyperlink{classinputvar_a88bb670dc0bca944104c292071818a36}{cch}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a1dcdb33405d780699da5958c347fad91}{time}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_a7d20a57b0a7dfe6c386e831f25636546}{time}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a7c31f58cc66e43cd8e7caddeda7ad097}{gridbuycost}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_a10f5c69ad85799dd2ae3a39500ba3005}{gridbuycost}
 \item 
-real(kind(1.d0)), dimension(\-:), \\*
-allocatable \hyperlink{classinputvar_a4c5f410c351c402a40ef3236195008e7}{gridsellcost}
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_a2f72c3ce64312b528c0679cbd950fb8f}{gridsellcost}
 \item 
 integer, dimension(\-:), allocatable \hyperlink{classinputvar_a8c5a23a5a519fb86c67fc1465aef0e33}{nld}
 \item 
 integer, dimension(\-:), allocatable \hyperlink{classinputvar_a3f2f71983b35bd63596385392671f89d}{nlp}
+\item 
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_a241f8b7a07fdc252022c2ef56cfded42}{pamb}
+\item 
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classinputvar_a1cdc501a6b8cb511ab141219362b9aaa}{tamb}
+\item 
+real(kind=prec), dimension(1) \hyperlink{classinputvar_a3f078edd3f3cfd59802ac6321ad3b837}{altitude}
 \end{DoxyCompactItemize}
 
 
@@ -254,596 +302,764 @@ Definition at line 40 of file input\-Var.\-f90.
 
 
 \subsection{Member Data Documentation}
-\hypertarget{classinputvar_a0f5658ba736453b1bc8c607069f9bea1}{\index{inputvar@{inputvar}!cch@{cch}}
+\hypertarget{classinputvar_a3fb49f59a3c5a2a19350be6bea0d69c2}{\index{inputvar@{inputvar}!altcorrb@{altcorrb}}
+\index{altcorrb@{altcorrb}!inputvar@{inputvar}}
+\subsubsection[{altcorrb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:,\-:), allocatable inputvar\-::altcorrb}}\label{classinputvar_a3fb49f59a3c5a2a19350be6bea0d69c2}
+
+
+Definition at line 81 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a9fe000c19d0cd93b0e53d5d6b2cbc13f}{\index{inputvar@{inputvar}!altcorrc@{altcorrc}}
+\index{altcorrc@{altcorrc}!inputvar@{inputvar}}
+\subsubsection[{altcorrc}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:,\-:), allocatable inputvar\-::altcorrc}}\label{classinputvar_a9fe000c19d0cd93b0e53d5d6b2cbc13f}
+
+
+Definition at line 89 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a1405821026cba8a541725451f5a6f8dd}{\index{inputvar@{inputvar}!altcorrt@{altcorrt}}
+\index{altcorrt@{altcorrt}!inputvar@{inputvar}}
+\subsubsection[{altcorrt}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:,\-:), allocatable inputvar\-::altcorrt}}\label{classinputvar_a1405821026cba8a541725451f5a6f8dd}
+
+
+Definition at line 72 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a3f078edd3f3cfd59802ac6321ad3b837}{\index{inputvar@{inputvar}!altitude@{altitude}}
+\index{altitude@{altitude}!inputvar@{inputvar}}
+\subsubsection[{altitude}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(1) inputvar\-::altitude}}\label{classinputvar_a3f078edd3f3cfd59802ac6321ad3b837}
+
+
+Definition at line 100 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a88bb670dc0bca944104c292071818a36}{\index{inputvar@{inputvar}!cch@{cch}}
 \index{cch@{cch}!inputvar@{inputvar}}
-\subsubsection[{cch}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:,\-:), allocatable inputvar\-::cch}}\label{classinputvar_a0f5658ba736453b1bc8c607069f9bea1}
+\subsubsection[{cch}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:), allocatable inputvar\-::cch}}\label{classinputvar_a88bb670dc0bca944104c292071818a36}
 
 
-Definition at line 78 of file input\-Var.\-f90.
+Definition at line 94 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_a82b36ae2c53d6e6f9653b138e3e7452d}{\index{inputvar@{inputvar}!cel@{cel}}
+\hypertarget{classinputvar_aae07469e8800dce385d02a73306d320c}{\index{inputvar@{inputvar}!cel@{cel}}
 \index{cel@{cel}!inputvar@{inputvar}}
-\subsubsection[{cel}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:,\-:), allocatable inputvar\-::cel}}\label{classinputvar_a82b36ae2c53d6e6f9653b138e3e7452d}
+\subsubsection[{cel}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:), allocatable inputvar\-::cel}}\label{classinputvar_aae07469e8800dce385d02a73306d320c}
 
 
-Definition at line 78 of file input\-Var.\-f90.
+Definition at line 94 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_aca5ff14156cf1451425195acac825d1d}{\index{inputvar@{inputvar}!cth@{cth}}
+\hypertarget{classinputvar_adcb3f28e49daee36d91bc87941f486c9}{\index{inputvar@{inputvar}!cth@{cth}}
 \index{cth@{cth}!inputvar@{inputvar}}
-\subsubsection[{cth}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:,\-:), allocatable inputvar\-::cth}}\label{classinputvar_aca5ff14156cf1451425195acac825d1d}
+\subsubsection[{cth}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:), allocatable inputvar\-::cth}}\label{classinputvar_adcb3f28e49daee36d91bc87941f486c9}
+
+
+Definition at line 94 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_aaab84ab253f188eacce25a200a4ab300}{\index{inputvar@{inputvar}!downtime0@{downtime0}}
+\index{downtime0@{downtime0}!inputvar@{inputvar}}
+\subsubsection[{downtime0}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec), dimension(\-:), allocatable inputvar\-::downtime0}}\label{classinputvar_aaab84ab253f188eacce25a200a4ab300}
+
+
+Definition at line 48 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a62c9f9492040ef5e03091380533f2c0f}{\index{inputvar@{inputvar}!dt1@{dt1}}
+\index{dt1@{dt1}!inputvar@{inputvar}}
+\subsubsection[{dt1}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) inputvar\-::dt1}}\label{classinputvar_a62c9f9492040ef5e03091380533f2c0f}
+
+
+Definition at line 49 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_adba062c6d3ce600124e2cd8943f7c6e6}{\index{inputvar@{inputvar}!etab@{etab}}
+\index{etab@{etab}!inputvar@{inputvar}}
+\subsubsection[{etab}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:,\-:), allocatable inputvar\-::etab}}\label{classinputvar_adba062c6d3ce600124e2cd8943f7c6e6}
+
+
+Definition at line 81 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a3c6d7517ec3f9097a8d4264b50e61b48}{\index{inputvar@{inputvar}!etac@{etac}}
+\index{etac@{etac}!inputvar@{inputvar}}
+\subsubsection[{etac}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:,\-:), allocatable inputvar\-::etac}}\label{classinputvar_a3c6d7517ec3f9097a8d4264b50e61b48}
+
+
+Definition at line 89 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a7cd43a0a5d5ddb8d50af96d4c4f81bea}{\index{inputvar@{inputvar}!etacht@{etacht}}
+\index{etacht@{etacht}!inputvar@{inputvar}}
+\subsubsection[{etacht}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:,\-:), allocatable inputvar\-::etacht}}\label{classinputvar_a7cd43a0a5d5ddb8d50af96d4c4f81bea}
+
+
+Definition at line 72 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_af7479b2afabbd7d596d91bb1319b0a8e}{\index{inputvar@{inputvar}!etaelt@{etaelt}}
+\index{etaelt@{etaelt}!inputvar@{inputvar}}
+\subsubsection[{etaelt}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:,\-:), allocatable inputvar\-::etaelt}}\label{classinputvar_af7479b2afabbd7d596d91bb1319b0a8e}
+
+
+Definition at line 72 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a93c858e92300ce7dfc06627cbc72d681}{\index{inputvar@{inputvar}!etatht@{etatht}}
+\index{etatht@{etatht}!inputvar@{inputvar}}
+\subsubsection[{etatht}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:,\-:), allocatable inputvar\-::etatht}}\label{classinputvar_a93c858e92300ce7dfc06627cbc72d681}
+
+
+Definition at line 72 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a1560f8312d0c0606566ee8f7e21c1e49}{\index{inputvar@{inputvar}!firecostb@{firecostb}}
+\index{firecostb@{firecostb}!inputvar@{inputvar}}
+\subsubsection[{firecostb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::firecostb}}\label{classinputvar_a1560f8312d0c0606566ee8f7e21c1e49}
 
 
 Definition at line 78 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_a62a3dfedaea148a2ae030b1f142663d9}{\index{inputvar@{inputvar}!degrateb@{degrateb}}
-\index{degrateb@{degrateb}!inputvar@{inputvar}}
-\subsubsection[{degrateb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::degrateb}}\label{classinputvar_a62a3dfedaea148a2ae030b1f142663d9}
-
-
-Definition at line 62 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_a60a72e191c29f7558641179db3a7fd65}{\index{inputvar@{inputvar}!degratec@{degratec}}
-\index{degratec@{degratec}!inputvar@{inputvar}}
-\subsubsection[{degratec}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::degratec}}\label{classinputvar_a60a72e191c29f7558641179db3a7fd65}
-
-
-Definition at line 71 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_ac55cb9b2b78bb635b7083a15b40013e1}{\index{inputvar@{inputvar}!degratet@{degratet}}
-\index{degratet@{degratet}!inputvar@{inputvar}}
-\subsubsection[{degratet}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::degratet}}\label{classinputvar_ac55cb9b2b78bb635b7083a15b40013e1}
-
-
-Definition at line 53 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_ab7b48e990ab724feb4e8d6297d3cd63c}{\index{inputvar@{inputvar}!downtime0@{downtime0}}
-\index{downtime0@{downtime0}!inputvar@{inputvar}}
-\subsubsection[{downtime0}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::downtime0}}\label{classinputvar_ab7b48e990ab724feb4e8d6297d3cd63c}
-
-
-Definition at line 46 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_a8d3f282e92e7ea93ad6b14576bc3458b}{\index{inputvar@{inputvar}!dt1@{dt1}}
-\index{dt1@{dt1}!inputvar@{inputvar}}
-\subsubsection[{dt1}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) inputvar\-::dt1}}\label{classinputvar_a8d3f282e92e7ea93ad6b14576bc3458b}
-
-
-Definition at line 47 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_ac19333b401f362c7b0ed89ec10590872}{\index{inputvar@{inputvar}!etab@{etab}}
-\index{etab@{etab}!inputvar@{inputvar}}
-\subsubsection[{etab}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:,\-:,\-:), allocatable inputvar\-::etab}}\label{classinputvar_ac19333b401f362c7b0ed89ec10590872}
-
-
-Definition at line 65 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_a983ea301ea452199170dcf1706f9262c}{\index{inputvar@{inputvar}!etac@{etac}}
-\index{etac@{etac}!inputvar@{inputvar}}
-\subsubsection[{etac}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:,\-:,\-:), allocatable inputvar\-::etac}}\label{classinputvar_a983ea301ea452199170dcf1706f9262c}
-
-
-Definition at line 73 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_aacd2eb8dce4dc295c06a7cab54423174}{\index{inputvar@{inputvar}!etacht@{etacht}}
-\index{etacht@{etacht}!inputvar@{inputvar}}
-\subsubsection[{etacht}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:,\-:,\-:), allocatable inputvar\-::etacht}}\label{classinputvar_aacd2eb8dce4dc295c06a7cab54423174}
-
-
-Definition at line 56 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_a369a3060de992f175783133d4a467699}{\index{inputvar@{inputvar}!etaelt@{etaelt}}
-\index{etaelt@{etaelt}!inputvar@{inputvar}}
-\subsubsection[{etaelt}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:,\-:,\-:), allocatable inputvar\-::etaelt}}\label{classinputvar_a369a3060de992f175783133d4a467699}
-
-
-Definition at line 56 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_a258e931040b177ac64cb68a595378fe0}{\index{inputvar@{inputvar}!etatht@{etatht}}
-\index{etatht@{etatht}!inputvar@{inputvar}}
-\subsubsection[{etatht}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:,\-:,\-:), allocatable inputvar\-::etatht}}\label{classinputvar_a258e931040b177ac64cb68a595378fe0}
-
-
-Definition at line 56 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_a65f37e4fd6eb186d124bc4c8b2c26f4d}{\index{inputvar@{inputvar}!firecostb@{firecostb}}
-\index{firecostb@{firecostb}!inputvar@{inputvar}}
-\subsubsection[{firecostb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::firecostb}}\label{classinputvar_a65f37e4fd6eb186d124bc4c8b2c26f4d}
-
-
-Definition at line 62 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_a8120efafb95065c490efb058c2a6f9a4}{\index{inputvar@{inputvar}!firecostc@{firecostc}}
+\hypertarget{classinputvar_afa2d0c05087f3cda5d3e984037a2a354}{\index{inputvar@{inputvar}!firecostc@{firecostc}}
 \index{firecostc@{firecostc}!inputvar@{inputvar}}
-\subsubsection[{firecostc}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::firecostc}}\label{classinputvar_a8120efafb95065c490efb058c2a6f9a4}
+\subsubsection[{firecostc}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::firecostc}}\label{classinputvar_afa2d0c05087f3cda5d3e984037a2a354}
 
 
-Definition at line 71 of file input\-Var.\-f90.
+Definition at line 87 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_ac4f3966035d1de814f32b69c620c75a0}{\index{inputvar@{inputvar}!firecostt@{firecostt}}
+\hypertarget{classinputvar_a57526f25accbe0af7902997bd9cde614}{\index{inputvar@{inputvar}!firecostt@{firecostt}}
 \index{firecostt@{firecostt}!inputvar@{inputvar}}
-\subsubsection[{firecostt}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::firecostt}}\label{classinputvar_ac4f3966035d1de814f32b69c620c75a0}
+\subsubsection[{firecostt}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::firecostt}}\label{classinputvar_a57526f25accbe0af7902997bd9cde614}
 
 
-Definition at line 53 of file input\-Var.\-f90.
+Definition at line 69 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_a613d5defd6204729146a9d70f3b81dbe}{\index{inputvar@{inputvar}!fuelcostb@{fuelcostb}}
+\hypertarget{classinputvar_a7ba5eba73efe4e693920d6af7782e58e}{\index{inputvar@{inputvar}!fuelcostb@{fuelcostb}}
 \index{fuelcostb@{fuelcostb}!inputvar@{inputvar}}
-\subsubsection[{fuelcostb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::fuelcostb}}\label{classinputvar_a613d5defd6204729146a9d70f3b81dbe}
+\subsubsection[{fuelcostb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::fuelcostb}}\label{classinputvar_a7ba5eba73efe4e693920d6af7782e58e}
 
 
-Definition at line 62 of file input\-Var.\-f90.
+Definition at line 78 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_ad2ccd9c466f57cca3096b20a6492b453}{\index{inputvar@{inputvar}!fuelcostt@{fuelcostt}}
+\hypertarget{classinputvar_a85ccff6d868e650d2255bb9faa7c31be}{\index{inputvar@{inputvar}!fuelcostt@{fuelcostt}}
 \index{fuelcostt@{fuelcostt}!inputvar@{inputvar}}
-\subsubsection[{fuelcostt}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::fuelcostt}}\label{classinputvar_ad2ccd9c466f57cca3096b20a6492b453}
+\subsubsection[{fuelcostt}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::fuelcostt}}\label{classinputvar_a85ccff6d868e650d2255bb9faa7c31be}
 
 
-Definition at line 53 of file input\-Var.\-f90.
+Definition at line 69 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_a433ed9c0483e649c0c6e1be84bc9ece2}{\index{inputvar@{inputvar}!fuellhvb@{fuellhvb}}
+\hypertarget{classinputvar_a3cd62c9288fded8bd8de8066cbb3ca20}{\index{inputvar@{inputvar}!fuellhvb@{fuellhvb}}
 \index{fuellhvb@{fuellhvb}!inputvar@{inputvar}}
-\subsubsection[{fuellhvb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::fuellhvb}}\label{classinputvar_a433ed9c0483e649c0c6e1be84bc9ece2}
+\subsubsection[{fuellhvb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::fuellhvb}}\label{classinputvar_a3cd62c9288fded8bd8de8066cbb3ca20}
 
 
-Definition at line 62 of file input\-Var.\-f90.
+Definition at line 78 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_a0fafd66a5d231ffafe01ff620004eb65}{\index{inputvar@{inputvar}!fuellhvt@{fuellhvt}}
+\hypertarget{classinputvar_afe467edd87c4c589d3ad9d5b14825f94}{\index{inputvar@{inputvar}!fuellhvt@{fuellhvt}}
 \index{fuellhvt@{fuellhvt}!inputvar@{inputvar}}
-\subsubsection[{fuellhvt}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::fuellhvt}}\label{classinputvar_a0fafd66a5d231ffafe01ff620004eb65}
+\subsubsection[{fuellhvt}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::fuellhvt}}\label{classinputvar_afe467edd87c4c589d3ad9d5b14825f94}
 
 
-Definition at line 53 of file input\-Var.\-f90.
+Definition at line 69 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_a7c31f58cc66e43cd8e7caddeda7ad097}{\index{inputvar@{inputvar}!gridbuycost@{gridbuycost}}
+\hypertarget{classinputvar_aa558f36057a5ae647fb16b9659b90d04}{\index{inputvar@{inputvar}!global@{global}}
+\index{global@{global}!inputvar@{inputvar}}
+\subsubsection[{global}]{\setlength{\rightskip}{0pt plus 5cm}logical inputvar\-::global = .false.}}\label{classinputvar_aa558f36057a5ae647fb16b9659b90d04}
+
+
+Definition at line 63 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a10f5c69ad85799dd2ae3a39500ba3005}{\index{inputvar@{inputvar}!gridbuycost@{gridbuycost}}
 \index{gridbuycost@{gridbuycost}!inputvar@{inputvar}}
-\subsubsection[{gridbuycost}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::gridbuycost}}\label{classinputvar_a7c31f58cc66e43cd8e7caddeda7ad097}
+\subsubsection[{gridbuycost}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::gridbuycost}}\label{classinputvar_a10f5c69ad85799dd2ae3a39500ba3005}
 
 
-Definition at line 79 of file input\-Var.\-f90.
+Definition at line 95 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_a8488f705094b7c59cf8cb06939fe9a7a}{\index{inputvar@{inputvar}!gridconnection@{gridconnection}}
 \index{gridconnection@{gridconnection}!inputvar@{inputvar}}
 \subsubsection[{gridconnection}]{\setlength{\rightskip}{0pt plus 5cm}character(len=20) inputvar\-::gridconnection}}\label{classinputvar_a8488f705094b7c59cf8cb06939fe9a7a}
 
 
-Definition at line 43 of file input\-Var.\-f90.
+Definition at line 45 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_a4c5f410c351c402a40ef3236195008e7}{\index{inputvar@{inputvar}!gridsellcost@{gridsellcost}}
+\hypertarget{classinputvar_a2f72c3ce64312b528c0679cbd950fb8f}{\index{inputvar@{inputvar}!gridsellcost@{gridsellcost}}
 \index{gridsellcost@{gridsellcost}!inputvar@{inputvar}}
-\subsubsection[{gridsellcost}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::gridsellcost}}\label{classinputvar_a4c5f410c351c402a40ef3236195008e7}
+\subsubsection[{gridsellcost}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::gridsellcost}}\label{classinputvar_a2f72c3ce64312b528c0679cbd950fb8f}
 
 
-Definition at line 79 of file input\-Var.\-f90.
+Definition at line 95 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_a69cdcc78492d1a96e3f02ee2915f207d}{\index{inputvar@{inputvar}!ich@{ich}}
 \index{ich@{ich}!inputvar@{inputvar}}
 \subsubsection[{ich}]{\setlength{\rightskip}{0pt plus 5cm}integer inputvar\-::ich}}\label{classinputvar_a69cdcc78492d1a96e3f02ee2915f207d}
 
 
-Definition at line 77 of file input\-Var.\-f90.
+Definition at line 93 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_af57151a30c510558682b98e1b72d844b}{\index{inputvar@{inputvar}!ichp@{ichp}}
 \index{ichp@{ichp}!inputvar@{inputvar}}
 \subsubsection[{ichp}]{\setlength{\rightskip}{0pt plus 5cm}integer inputvar\-::ichp}}\label{classinputvar_af57151a30c510558682b98e1b72d844b}
 
 
-Definition at line 77 of file input\-Var.\-f90.
+Definition at line 93 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_a62235e6c8b16a98c1aea10ac01e11ac9}{\index{inputvar@{inputvar}!ideg@{ideg}}
 \index{ideg@{ideg}!inputvar@{inputvar}}
 \subsubsection[{ideg}]{\setlength{\rightskip}{0pt plus 5cm}logical inputvar\-::ideg}}\label{classinputvar_a62235e6c8b16a98c1aea10ac01e11ac9}
 
 
-Definition at line 45 of file input\-Var.\-f90.
+Definition at line 47 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_a6f9a3a8beea8f6e1aa8140bab654a48f}{\index{inputvar@{inputvar}!iel@{iel}}
 \index{iel@{iel}!inputvar@{inputvar}}
 \subsubsection[{iel}]{\setlength{\rightskip}{0pt plus 5cm}integer inputvar\-::iel}}\label{classinputvar_a6f9a3a8beea8f6e1aa8140bab654a48f}
 
 
-Definition at line 77 of file input\-Var.\-f90.
+Definition at line 93 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_a0190bc42c3dad91d811c585952ff55f4}{\index{inputvar@{inputvar}!ielp@{ielp}}
 \index{ielp@{ielp}!inputvar@{inputvar}}
 \subsubsection[{ielp}]{\setlength{\rightskip}{0pt plus 5cm}integer inputvar\-::ielp}}\label{classinputvar_a0190bc42c3dad91d811c585952ff55f4}
 
 
-Definition at line 77 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_a9720dc92330c2ac44a2ade71319efdfc}{\index{inputvar@{inputvar}!invb@{invb}}
-\index{invb@{invb}!inputvar@{inputvar}}
-\subsubsection[{invb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::invb}}\label{classinputvar_a9720dc92330c2ac44a2ade71319efdfc}
-
-
-Definition at line 62 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_ad241283eadb6335a2d955ba6d30cffb6}{\index{inputvar@{inputvar}!invc@{invc}}
-\index{invc@{invc}!inputvar@{inputvar}}
-\subsubsection[{invc}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::invc}}\label{classinputvar_ad241283eadb6335a2d955ba6d30cffb6}
-
-
-Definition at line 71 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_abe7ea839b7f1cd20925aa7e709396529}{\index{inputvar@{inputvar}!invt@{invt}}
-\index{invt@{invt}!inputvar@{inputvar}}
-\subsubsection[{invt}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::invt}}\label{classinputvar_abe7ea839b7f1cd20925aa7e709396529}
-
-
-Definition at line 53 of file input\-Var.\-f90.
+Definition at line 93 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_a4bba5fd8a8c399940c4b81e4da0cc9ce}{\index{inputvar@{inputvar}!ith@{ith}}
 \index{ith@{ith}!inputvar@{inputvar}}
 \subsubsection[{ith}]{\setlength{\rightskip}{0pt plus 5cm}integer inputvar\-::ith}}\label{classinputvar_a4bba5fd8a8c399940c4b81e4da0cc9ce}
 
 
-Definition at line 77 of file input\-Var.\-f90.
+Definition at line 93 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_abb9734f3e3ee40c97881bd03881065c5}{\index{inputvar@{inputvar}!ithp@{ithp}}
 \index{ithp@{ithp}!inputvar@{inputvar}}
 \subsubsection[{ithp}]{\setlength{\rightskip}{0pt plus 5cm}integer inputvar\-::ithp}}\label{classinputvar_abb9734f3e3ee40c97881bd03881065c5}
 
 
-Definition at line 77 of file input\-Var.\-f90.
+Definition at line 93 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_a06f760a3ae10a8b9834a7e0d270d1d59}{\index{inputvar@{inputvar}!itime@{itime}}
 \index{itime@{itime}!inputvar@{inputvar}}
 \subsubsection[{itime}]{\setlength{\rightskip}{0pt plus 5cm}integer inputvar\-::itime}}\label{classinputvar_a06f760a3ae10a8b9834a7e0d270d1d59}
 
 
+Definition at line 93 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a74dcd10e62524e2f5145df13548eae82}{\index{inputvar@{inputvar}!lifeb@{lifeb}}
+\index{lifeb@{lifeb}!inputvar@{inputvar}}
+\subsubsection[{lifeb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::lifeb}}\label{classinputvar_a74dcd10e62524e2f5145df13548eae82}
+
+
+Definition at line 78 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a04abed47801bdfcda1ecba21b90ab85b}{\index{inputvar@{inputvar}!lifet@{lifet}}
+\index{lifet@{lifet}!inputvar@{inputvar}}
+\subsubsection[{lifet}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::lifet}}\label{classinputvar_a04abed47801bdfcda1ecba21b90ab85b}
+
+
+Definition at line 69 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_ac52f743f02f10e96c455d94c3cdc0fe8}{\index{inputvar@{inputvar}!maintcostb@{maintcostb}}
+\index{maintcostb@{maintcostb}!inputvar@{inputvar}}
+\subsubsection[{maintcostb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::maintcostb}}\label{classinputvar_ac52f743f02f10e96c455d94c3cdc0fe8}
+
+
+Definition at line 78 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a4371de15edf20ae9883b07b3b843655d}{\index{inputvar@{inputvar}!maintcostc@{maintcostc}}
+\index{maintcostc@{maintcostc}!inputvar@{inputvar}}
+\subsubsection[{maintcostc}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::maintcostc}}\label{classinputvar_a4371de15edf20ae9883b07b3b843655d}
+
+
+Definition at line 87 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_abeac95d7e558ca06d4456187b380fdbc}{\index{inputvar@{inputvar}!maintcostt@{maintcostt}}
+\index{maintcostt@{maintcostt}!inputvar@{inputvar}}
+\subsubsection[{maintcostt}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::maintcostt}}\label{classinputvar_abeac95d7e558ca06d4456187b380fdbc}
+
+
+Definition at line 69 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_ad9c1a09ed4bd46ad673997ee302451a4}{\index{inputvar@{inputvar}!method@{method}}
+\index{method@{method}!inputvar@{inputvar}}
+\subsubsection[{method}]{\setlength{\rightskip}{0pt plus 5cm}character(len=100) inputvar\-::method}}\label{classinputvar_ad9c1a09ed4bd46ad673997ee302451a4}
+
+
+Definition at line 50 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_ae93da8603e9899963da53596705b1d98}{\index{inputvar@{inputvar}!mindowntimeb@{mindowntimeb}}
+\index{mindowntimeb@{mindowntimeb}!inputvar@{inputvar}}
+\subsubsection[{mindowntimeb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::mindowntimeb}}\label{classinputvar_ae93da8603e9899963da53596705b1d98}
+
+
+Definition at line 78 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a9bb1424e04e5c89d561d2316045f98d4}{\index{inputvar@{inputvar}!mindowntimec@{mindowntimec}}
+\index{mindowntimec@{mindowntimec}!inputvar@{inputvar}}
+\subsubsection[{mindowntimec}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::mindowntimec}}\label{classinputvar_a9bb1424e04e5c89d561d2316045f98d4}
+
+
+Definition at line 87 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_aca351a4427897a65d991d46243fadc34}{\index{inputvar@{inputvar}!mindowntimet@{mindowntimet}}
+\index{mindowntimet@{mindowntimet}!inputvar@{inputvar}}
+\subsubsection[{mindowntimet}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::mindowntimet}}\label{classinputvar_aca351a4427897a65d991d46243fadc34}
+
+
+Definition at line 69 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a699644b9b98282661cd55dc10d96dbcb}{\index{inputvar@{inputvar}!minuptimeb@{minuptimeb}}
+\index{minuptimeb@{minuptimeb}!inputvar@{inputvar}}
+\subsubsection[{minuptimeb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::minuptimeb}}\label{classinputvar_a699644b9b98282661cd55dc10d96dbcb}
+
+
+Definition at line 78 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a1c2a4cc32567b94cb7a884d3731bb5f4}{\index{inputvar@{inputvar}!minuptimec@{minuptimec}}
+\index{minuptimec@{minuptimec}!inputvar@{inputvar}}
+\subsubsection[{minuptimec}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::minuptimec}}\label{classinputvar_a1c2a4cc32567b94cb7a884d3731bb5f4}
+
+
+Definition at line 87 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a90d0b599ed6468fc322cf2fbd6b4ec95}{\index{inputvar@{inputvar}!minuptimet@{minuptimet}}
+\index{minuptimet@{minuptimet}!inputvar@{inputvar}}
+\subsubsection[{minuptimet}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::minuptimet}}\label{classinputvar_a90d0b599ed6468fc322cf2fbd6b4ec95}
+
+
+Definition at line 69 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_ae517f545e388b4352b7941203efa8449}{\index{inputvar@{inputvar}!nacb@{nacb}}
+\index{nacb@{nacb}!inputvar@{inputvar}}
+\subsubsection[{nacb}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable inputvar\-::nacb}}\label{classinputvar_ae517f545e388b4352b7941203efa8449}
+
+
 Definition at line 77 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_ad8be82d5fedb76e97006462fc334ee95}{\index{inputvar@{inputvar}!ksizeb@{ksizeb}}
-\index{ksizeb@{ksizeb}!inputvar@{inputvar}}
-\subsubsection[{ksizeb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:,\-:), allocatable inputvar\-::ksizeb}}\label{classinputvar_ad8be82d5fedb76e97006462fc334ee95}
+\hypertarget{classinputvar_a8e4bb497a3825e6f554e3268dd2bbd63}{\index{inputvar@{inputvar}!nacc@{nacc}}
+\index{nacc@{nacc}!inputvar@{inputvar}}
+\subsubsection[{nacc}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable inputvar\-::nacc}}\label{classinputvar_a8e4bb497a3825e6f554e3268dd2bbd63}
 
 
-Definition at line 64 of file input\-Var.\-f90.
+Definition at line 86 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_a566165a1a61dae24f58f3e8e117457d4}{\index{inputvar@{inputvar}!ksizec@{ksizec}}
-\index{ksizec@{ksizec}!inputvar@{inputvar}}
-\subsubsection[{ksizec}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:,\-:), allocatable inputvar\-::ksizec}}\label{classinputvar_a566165a1a61dae24f58f3e8e117457d4}
-
-
-Definition at line 72 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_a359d19cae6373fc1cdfff9739977c075}{\index{inputvar@{inputvar}!ksizet@{ksizet}}
-\index{ksizet@{ksizet}!inputvar@{inputvar}}
-\subsubsection[{ksizet}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:,\-:), allocatable inputvar\-::ksizet}}\label{classinputvar_a359d19cae6373fc1cdfff9739977c075}
+\hypertarget{classinputvar_aecb7a7ef500aee2174166b23b5c72e2a}{\index{inputvar@{inputvar}!nact@{nact}}
+\index{nact@{nact}!inputvar@{inputvar}}
+\subsubsection[{nact}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable inputvar\-::nact}}\label{classinputvar_aecb7a7ef500aee2174166b23b5c72e2a}
 
 
-Definition at line 55 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_abb62812e265fa305f173457cd4679829}{\index{inputvar@{inputvar}!lifeb@{lifeb}}
-\index{lifeb@{lifeb}!inputvar@{inputvar}}
-\subsubsection[{lifeb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::lifeb}}\label{classinputvar_abb62812e265fa305f173457cd4679829}
-
-
-Definition at line 62 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_aa699a72930e1393e056fa83bd5d68df5}{\index{inputvar@{inputvar}!lifec@{lifec}}
-\index{lifec@{lifec}!inputvar@{inputvar}}
-\subsubsection[{lifec}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::lifec}}\label{classinputvar_aa699a72930e1393e056fa83bd5d68df5}
-
-
-Definition at line 71 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_ae41d245ccd35c2cc156a128bd2ecfb3c}{\index{inputvar@{inputvar}!lifet@{lifet}}
-\index{lifet@{lifet}!inputvar@{inputvar}}
-\subsubsection[{lifet}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::lifet}}\label{classinputvar_ae41d245ccd35c2cc156a128bd2ecfb3c}
-
-
-Definition at line 53 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_a7af239451cf6d5494b2dec7d873ffa53}{\index{inputvar@{inputvar}!maintcostb@{maintcostb}}
-\index{maintcostb@{maintcostb}!inputvar@{inputvar}}
-\subsubsection[{maintcostb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::maintcostb}}\label{classinputvar_a7af239451cf6d5494b2dec7d873ffa53}
-
-
-Definition at line 62 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_adfa59ffad19dbf455b4964e32c3659d8}{\index{inputvar@{inputvar}!maintcostc@{maintcostc}}
-\index{maintcostc@{maintcostc}!inputvar@{inputvar}}
-\subsubsection[{maintcostc}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::maintcostc}}\label{classinputvar_adfa59ffad19dbf455b4964e32c3659d8}
-
-
-Definition at line 71 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_a59115307b83bfd1c0b1652c091e20b62}{\index{inputvar@{inputvar}!maintcostt@{maintcostt}}
-\index{maintcostt@{maintcostt}!inputvar@{inputvar}}
-\subsubsection[{maintcostt}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::maintcostt}}\label{classinputvar_a59115307b83bfd1c0b1652c091e20b62}
-
-
-Definition at line 53 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_a09eb64b393df82105b2d57d6ed03b939}{\index{inputvar@{inputvar}!mindowntimeb@{mindowntimeb}}
-\index{mindowntimeb@{mindowntimeb}!inputvar@{inputvar}}
-\subsubsection[{mindowntimeb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::mindowntimeb}}\label{classinputvar_a09eb64b393df82105b2d57d6ed03b939}
-
-
-Definition at line 62 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_a08f7d764ab0f1da8ac516b769fe8d2e4}{\index{inputvar@{inputvar}!mindowntimec@{mindowntimec}}
-\index{mindowntimec@{mindowntimec}!inputvar@{inputvar}}
-\subsubsection[{mindowntimec}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::mindowntimec}}\label{classinputvar_a08f7d764ab0f1da8ac516b769fe8d2e4}
-
-
-Definition at line 71 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_a80329f2c6a6631a2c21fadb194436b7c}{\index{inputvar@{inputvar}!mindowntimet@{mindowntimet}}
-\index{mindowntimet@{mindowntimet}!inputvar@{inputvar}}
-\subsubsection[{mindowntimet}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::mindowntimet}}\label{classinputvar_a80329f2c6a6631a2c21fadb194436b7c}
-
-
-Definition at line 53 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_a84de543a9e5ef22ff5f0fc9e0cce8b32}{\index{inputvar@{inputvar}!minuptimeb@{minuptimeb}}
-\index{minuptimeb@{minuptimeb}!inputvar@{inputvar}}
-\subsubsection[{minuptimeb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::minuptimeb}}\label{classinputvar_a84de543a9e5ef22ff5f0fc9e0cce8b32}
-
-
-Definition at line 62 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_a86ea15836ba0fabd0de2d5bb9ee52cc1}{\index{inputvar@{inputvar}!minuptimec@{minuptimec}}
-\index{minuptimec@{minuptimec}!inputvar@{inputvar}}
-\subsubsection[{minuptimec}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::minuptimec}}\label{classinputvar_a86ea15836ba0fabd0de2d5bb9ee52cc1}
-
-
-Definition at line 71 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_a1e617330959313dade0696c66ae235cf}{\index{inputvar@{inputvar}!minuptimet@{minuptimet}}
-\index{minuptimet@{minuptimet}!inputvar@{inputvar}}
-\subsubsection[{minuptimet}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::minuptimet}}\label{classinputvar_a1e617330959313dade0696c66ae235cf}
-
-
-Definition at line 53 of file input\-Var.\-f90.
+Definition at line 68 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_a168bc1dcb73e68b3620991b6494f3797}{\index{inputvar@{inputvar}!nboi@{nboi}}
 \index{nboi@{nboi}!inputvar@{inputvar}}
 \subsubsection[{nboi}]{\setlength{\rightskip}{0pt plus 5cm}integer inputvar\-::nboi}}\label{classinputvar_a168bc1dcb73e68b3620991b6494f3797}
 
 
-Definition at line 60 of file input\-Var.\-f90.
+Definition at line 76 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_ac34eff504af528e971c7174dfcb39028}{\index{inputvar@{inputvar}!nchi@{nchi}}
 \index{nchi@{nchi}!inputvar@{inputvar}}
 \subsubsection[{nchi}]{\setlength{\rightskip}{0pt plus 5cm}integer inputvar\-::nchi}}\label{classinputvar_ac34eff504af528e971c7174dfcb39028}
 
 
-Definition at line 69 of file input\-Var.\-f90.
+Definition at line 85 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_af109996c7b379bac5d6c3d89c5b6df1d}{\index{inputvar@{inputvar}!netab@{netab}}
 \index{netab@{netab}!inputvar@{inputvar}}
 \subsubsection[{netab}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable inputvar\-::netab}}\label{classinputvar_af109996c7b379bac5d6c3d89c5b6df1d}
 
 
-Definition at line 61 of file input\-Var.\-f90.
+Definition at line 77 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_ad9998f4f97f100bf6294fb8fa083bfe7}{\index{inputvar@{inputvar}!netac@{netac}}
 \index{netac@{netac}!inputvar@{inputvar}}
 \subsubsection[{netac}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable inputvar\-::netac}}\label{classinputvar_ad9998f4f97f100bf6294fb8fa083bfe7}
 
 
-Definition at line 70 of file input\-Var.\-f90.
+Definition at line 86 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_a7f82eda09f512dfe2f28f82efc5187ad}{\index{inputvar@{inputvar}!netacht@{netacht}}
 \index{netacht@{netacht}!inputvar@{inputvar}}
 \subsubsection[{netacht}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable inputvar\-::netacht}}\label{classinputvar_a7f82eda09f512dfe2f28f82efc5187ad}
 
 
-Definition at line 52 of file input\-Var.\-f90.
+Definition at line 68 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_a2bfcb389a7fba156b8c1146150a71f51}{\index{inputvar@{inputvar}!netaelt@{netaelt}}
 \index{netaelt@{netaelt}!inputvar@{inputvar}}
 \subsubsection[{netaelt}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable inputvar\-::netaelt}}\label{classinputvar_a2bfcb389a7fba156b8c1146150a71f51}
 
 
-Definition at line 52 of file input\-Var.\-f90.
+Definition at line 68 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_acebcf3d64f116183dd364e920288729f}{\index{inputvar@{inputvar}!netatht@{netatht}}
 \index{netatht@{netatht}!inputvar@{inputvar}}
 \subsubsection[{netatht}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable inputvar\-::netatht}}\label{classinputvar_acebcf3d64f116183dd364e920288729f}
 
 
-Definition at line 52 of file input\-Var.\-f90.
+Definition at line 68 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_a8c5a23a5a519fb86c67fc1465aef0e33}{\index{inputvar@{inputvar}!nld@{nld}}
 \index{nld@{nld}!inputvar@{inputvar}}
 \subsubsection[{nld}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable inputvar\-::nld}}\label{classinputvar_a8c5a23a5a519fb86c67fc1465aef0e33}
 
 
-Definition at line 80 of file input\-Var.\-f90.
+Definition at line 96 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_ac924c0b7af6a3dbae99f1a60dc9242ab}{\index{inputvar@{inputvar}!nload@{nload}}
 \index{nload@{nload}!inputvar@{inputvar}}
 \subsubsection[{nload}]{\setlength{\rightskip}{0pt plus 5cm}integer inputvar\-::nload}}\label{classinputvar_ac924c0b7af6a3dbae99f1a60dc9242ab}
 
 
-Definition at line 77 of file input\-Var.\-f90.
+Definition at line 93 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_a3f2f71983b35bd63596385392671f89d}{\index{inputvar@{inputvar}!nlp@{nlp}}
 \index{nlp@{nlp}!inputvar@{inputvar}}
 \subsubsection[{nlp}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable inputvar\-::nlp}}\label{classinputvar_a3f2f71983b35bd63596385392671f89d}
 
 
-Definition at line 80 of file input\-Var.\-f90.
+Definition at line 96 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_ad0bd77a901e4e300f887dc0682a4884d}{\index{inputvar@{inputvar}!nsizeb@{nsizeb}}
-\index{nsizeb@{nsizeb}!inputvar@{inputvar}}
-\subsubsection[{nsizeb}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable inputvar\-::nsizeb}}\label{classinputvar_ad0bd77a901e4e300f887dc0682a4884d}
+\hypertarget{classinputvar_a4f83c89634ccb8f94fca08a023648791}{\index{inputvar@{inputvar}!npcb@{npcb}}
+\index{npcb@{npcb}!inputvar@{inputvar}}
+\subsubsection[{npcb}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable inputvar\-::npcb}}\label{classinputvar_a4f83c89634ccb8f94fca08a023648791}
 
 
-Definition at line 61 of file input\-Var.\-f90.
+Definition at line 77 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a78f4d80d45d564c96dd9101258656f66}{\index{inputvar@{inputvar}!npcc@{npcc}}
+\index{npcc@{npcc}!inputvar@{inputvar}}
+\subsubsection[{npcc}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable inputvar\-::npcc}}\label{classinputvar_a78f4d80d45d564c96dd9101258656f66}
+
+
+Definition at line 86 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a0f5eeaa6713564c7a3aa547b8ce8bae9}{\index{inputvar@{inputvar}!npct@{npct}}
+\index{npct@{npct}!inputvar@{inputvar}}
+\subsubsection[{npct}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable inputvar\-::npct}}\label{classinputvar_a0f5eeaa6713564c7a3aa547b8ce8bae9}
+
+
+Definition at line 68 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_af28da5ec88564638bee476f2a37f5308}{\index{inputvar@{inputvar}!nsizec@{nsizec}}
 \index{nsizec@{nsizec}!inputvar@{inputvar}}
 \subsubsection[{nsizec}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable inputvar\-::nsizec}}\label{classinputvar_af28da5ec88564638bee476f2a37f5308}
 
 
-Definition at line 70 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_ad358835680a10ce32616f8262e7dea05}{\index{inputvar@{inputvar}!nsizet@{nsizet}}
-\index{nsizet@{nsizet}!inputvar@{inputvar}}
-\subsubsection[{nsizet}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable inputvar\-::nsizet}}\label{classinputvar_ad358835680a10ce32616f8262e7dea05}
-
-
-Definition at line 52 of file input\-Var.\-f90.
+Definition at line 86 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_aa1e78ecd4b3cbb3f08b770cf604a5d3d}{\index{inputvar@{inputvar}!nspb@{nspb}}
 \index{nspb@{nspb}!inputvar@{inputvar}}
 \subsubsection[{nspb}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable inputvar\-::nspb}}\label{classinputvar_aa1e78ecd4b3cbb3f08b770cf604a5d3d}
 
 
-Definition at line 61 of file input\-Var.\-f90.
+Definition at line 77 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_aad6ce13b0378ba79e193cb3738e2d938}{\index{inputvar@{inputvar}!nspc@{nspc}}
 \index{nspc@{nspc}!inputvar@{inputvar}}
 \subsubsection[{nspc}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable inputvar\-::nspc}}\label{classinputvar_aad6ce13b0378ba79e193cb3738e2d938}
 
 
-Definition at line 70 of file input\-Var.\-f90.
+Definition at line 86 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_a0c86e9a7915872ee547e5bd8802611e7}{\index{inputvar@{inputvar}!nspt@{nspt}}
 \index{nspt@{nspt}!inputvar@{inputvar}}
 \subsubsection[{nspt}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable inputvar\-::nspt}}\label{classinputvar_a0c86e9a7915872ee547e5bd8802611e7}
 
 
-Definition at line 52 of file input\-Var.\-f90.
+Definition at line 68 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a41aaaf97cb1f1e815c73bcfa5f975be3}{\index{inputvar@{inputvar}!ntcb@{ntcb}}
+\index{ntcb@{ntcb}!inputvar@{inputvar}}
+\subsubsection[{ntcb}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable inputvar\-::ntcb}}\label{classinputvar_a41aaaf97cb1f1e815c73bcfa5f975be3}
+
+
+Definition at line 77 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_aaf3cc67ce289abacf61f20f5fdcfc3f6}{\index{inputvar@{inputvar}!ntcc@{ntcc}}
+\index{ntcc@{ntcc}!inputvar@{inputvar}}
+\subsubsection[{ntcc}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable inputvar\-::ntcc}}\label{classinputvar_aaf3cc67ce289abacf61f20f5fdcfc3f6}
+
+
+Definition at line 86 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_ad5c9bbca95851da9fa84642ea414e6be}{\index{inputvar@{inputvar}!ntct@{ntct}}
+\index{ntct@{ntct}!inputvar@{inputvar}}
+\subsubsection[{ntct}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable inputvar\-::ntct}}\label{classinputvar_ad5c9bbca95851da9fa84642ea414e6be}
+
+
+Definition at line 68 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_a30d8dd7bcf1952df019939f8ad23b6e2}{\index{inputvar@{inputvar}!ntime@{ntime}}
 \index{ntime@{ntime}!inputvar@{inputvar}}
 \subsubsection[{ntime}]{\setlength{\rightskip}{0pt plus 5cm}integer inputvar\-::ntime}}\label{classinputvar_a30d8dd7bcf1952df019939f8ad23b6e2}
 
 
-Definition at line 77 of file input\-Var.\-f90.
+Definition at line 93 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_a98d384e0347fb055110c18572dbdb522}{\index{inputvar@{inputvar}!ntimes@{ntimes}}
 \index{ntimes@{ntimes}!inputvar@{inputvar}}
 \subsubsection[{ntimes}]{\setlength{\rightskip}{0pt plus 5cm}integer inputvar\-::ntimes}}\label{classinputvar_a98d384e0347fb055110c18572dbdb522}
 
 
-Definition at line 44 of file input\-Var.\-f90.
+Definition at line 46 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_ae4403f5c5b16bf2cbd2b607a87e5ee9a}{\index{inputvar@{inputvar}!ntrig@{ntrig}}
 \index{ntrig@{ntrig}!inputvar@{inputvar}}
 \subsubsection[{ntrig}]{\setlength{\rightskip}{0pt plus 5cm}integer inputvar\-::ntrig}}\label{classinputvar_ae4403f5c5b16bf2cbd2b607a87e5ee9a}
 
 
-Definition at line 51 of file input\-Var.\-f90.
+Definition at line 67 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_ab5d2f467a214e31204c18a24582b81bb}{\index{inputvar@{inputvar}!obj@{obj}}
 \index{obj@{obj}!inputvar@{inputvar}}
 \subsubsection[{obj}]{\setlength{\rightskip}{0pt plus 5cm}character(len=100) inputvar\-::obj}}\label{classinputvar_ab5d2f467a214e31204c18a24582b81bb}
 
 
-Definition at line 48 of file input\-Var.\-f90.
+Definition at line 50 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_abe0141eabac694fc809b9b8f8bff28e7}{\index{inputvar@{inputvar}!pmaxb@{pmaxb}}
+\hypertarget{classinputvar_a241f8b7a07fdc252022c2ef56cfded42}{\index{inputvar@{inputvar}!pamb@{pamb}}
+\index{pamb@{pamb}!inputvar@{inputvar}}
+\subsubsection[{pamb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::pamb}}\label{classinputvar_a241f8b7a07fdc252022c2ef56cfded42}
+
+
+Definition at line 99 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a29e37a8460969d1438ed9aeb5d37d798}{\index{inputvar@{inputvar}!pmaxb@{pmaxb}}
 \index{pmaxb@{pmaxb}!inputvar@{inputvar}}
-\subsubsection[{pmaxb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::pmaxb}}\label{classinputvar_abe0141eabac694fc809b9b8f8bff28e7}
+\subsubsection[{pmaxb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::pmaxb}}\label{classinputvar_a29e37a8460969d1438ed9aeb5d37d798}
 
 
-Definition at line 62 of file input\-Var.\-f90.
+Definition at line 78 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_a59b745ef4d38979ee6715cbbdd3b7fdc}{\index{inputvar@{inputvar}!pmaxc@{pmaxc}}
+\hypertarget{classinputvar_a93b555571bee30038d48c86de7ab5c14}{\index{inputvar@{inputvar}!pmaxc@{pmaxc}}
 \index{pmaxc@{pmaxc}!inputvar@{inputvar}}
-\subsubsection[{pmaxc}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::pmaxc}}\label{classinputvar_a59b745ef4d38979ee6715cbbdd3b7fdc}
+\subsubsection[{pmaxc}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::pmaxc}}\label{classinputvar_a93b555571bee30038d48c86de7ab5c14}
 
 
-Definition at line 71 of file input\-Var.\-f90.
+Definition at line 87 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_a4f173bcabd7673493639dfa0ad700822}{\index{inputvar@{inputvar}!pmaxt@{pmaxt}}
+\hypertarget{classinputvar_a0a9434332c855a12ef886b675af68d35}{\index{inputvar@{inputvar}!pmaxt@{pmaxt}}
 \index{pmaxt@{pmaxt}!inputvar@{inputvar}}
-\subsubsection[{pmaxt}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::pmaxt}}\label{classinputvar_a4f173bcabd7673493639dfa0ad700822}
+\subsubsection[{pmaxt}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::pmaxt}}\label{classinputvar_a0a9434332c855a12ef886b675af68d35}
 
 
-Definition at line 53 of file input\-Var.\-f90.
+Definition at line 69 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_a831b2b0adb9e0bddc327d353012788e0}{\index{inputvar@{inputvar}!spb@{spb}}
-\index{spb@{spb}!inputvar@{inputvar}}
-\subsubsection[{spb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:,\-:), allocatable inputvar\-::spb}}\label{classinputvar_a831b2b0adb9e0bddc327d353012788e0}
+\hypertarget{classinputvar_a4de979203fa5e65fe0cbfd77c60654ae}{\index{inputvar@{inputvar}!prescorrb@{prescorrb}}
+\index{prescorrb@{prescorrb}!inputvar@{inputvar}}
+\subsubsection[{prescorrb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:,\-:), allocatable inputvar\-::prescorrb}}\label{classinputvar_a4de979203fa5e65fe0cbfd77c60654ae}
 
 
-Definition at line 64 of file input\-Var.\-f90.
+Definition at line 81 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_a16ce4ddae61b9940a768c5033f0e81a0}{\index{inputvar@{inputvar}!spc@{spc}}
-\index{spc@{spc}!inputvar@{inputvar}}
-\subsubsection[{spc}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:,\-:), allocatable inputvar\-::spc}}\label{classinputvar_a16ce4ddae61b9940a768c5033f0e81a0}
+\hypertarget{classinputvar_a4ad15e4562f67332a82dd70d6cfcb2fc}{\index{inputvar@{inputvar}!prescorrc@{prescorrc}}
+\index{prescorrc@{prescorrc}!inputvar@{inputvar}}
+\subsubsection[{prescorrc}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:,\-:), allocatable inputvar\-::prescorrc}}\label{classinputvar_a4ad15e4562f67332a82dd70d6cfcb2fc}
+
+
+Definition at line 89 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a4dc6d715b00d35dbff920be5c37c1d89}{\index{inputvar@{inputvar}!prescorrt@{prescorrt}}
+\index{prescorrt@{prescorrt}!inputvar@{inputvar}}
+\subsubsection[{prescorrt}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:,\-:), allocatable inputvar\-::prescorrt}}\label{classinputvar_a4dc6d715b00d35dbff920be5c37c1d89}
 
 
 Definition at line 72 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_aea96dbeef4023d78701a4f3821152d1d}{\index{inputvar@{inputvar}!spt@{spt}}
+\hypertarget{classinputvar_acd5ae0efcfc5e54e9c73d085132bcf5a}{\index{inputvar@{inputvar}!spb@{spb}}
+\index{spb@{spb}!inputvar@{inputvar}}
+\subsubsection[{spb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:), allocatable inputvar\-::spb}}\label{classinputvar_acd5ae0efcfc5e54e9c73d085132bcf5a}
+
+
+Definition at line 80 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a7a6b03a57941065017f0fe71a9d641f1}{\index{inputvar@{inputvar}!spc@{spc}}
+\index{spc@{spc}!inputvar@{inputvar}}
+\subsubsection[{spc}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:), allocatable inputvar\-::spc}}\label{classinputvar_a7a6b03a57941065017f0fe71a9d641f1}
+
+
+Definition at line 88 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_aa1da1474767137ee483ef4253b7cef85}{\index{inputvar@{inputvar}!spt@{spt}}
 \index{spt@{spt}!inputvar@{inputvar}}
-\subsubsection[{spt}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:,\-:), allocatable inputvar\-::spt}}\label{classinputvar_aea96dbeef4023d78701a4f3821152d1d}
+\subsubsection[{spt}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:), allocatable inputvar\-::spt}}\label{classinputvar_aa1da1474767137ee483ef4253b7cef85}
 
 
-Definition at line 55 of file input\-Var.\-f90.
+Definition at line 71 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_a8a730b8445d97ba3812647c22689dc01}{\index{inputvar@{inputvar}!startpoint@{startpoint}}
+\hypertarget{classinputvar_a3b9acf8a358a0bad89d622cbbbab638f}{\index{inputvar@{inputvar}!startpoint@{startpoint}}
 \index{startpoint@{startpoint}!inputvar@{inputvar}}
-\subsubsection[{startpoint}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::startpoint}}\label{classinputvar_a8a730b8445d97ba3812647c22689dc01}
+\subsubsection[{startpoint}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec), dimension(\-:), allocatable inputvar\-::startpoint}}\label{classinputvar_a3b9acf8a358a0bad89d622cbbbab638f}
 
 
-Definition at line 46 of file input\-Var.\-f90.
+Definition at line 48 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a1cdc501a6b8cb511ab141219362b9aaa}{\index{inputvar@{inputvar}!tamb@{tamb}}
+\index{tamb@{tamb}!inputvar@{inputvar}}
+\subsubsection[{tamb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::tamb}}\label{classinputvar_a1cdc501a6b8cb511ab141219362b9aaa}
+
+
+Definition at line 99 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_ab2486a625a1ff1aaf70cb9e38d8c07db}{\index{inputvar@{inputvar}!tecb@{tecb}}
 \index{tecb@{tecb}!inputvar@{inputvar}}
 \subsubsection[{tecb}]{\setlength{\rightskip}{0pt plus 5cm}character(len=50), dimension(\-:), allocatable inputvar\-::tecb}}\label{classinputvar_ab2486a625a1ff1aaf70cb9e38d8c07db}
 
 
-Definition at line 66 of file input\-Var.\-f90.
+Definition at line 82 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_a2eb1c20cfae159c006e0fdc4b9ef0ef0}{\index{inputvar@{inputvar}!tecc@{tecc}}
 \index{tecc@{tecc}!inputvar@{inputvar}}
 \subsubsection[{tecc}]{\setlength{\rightskip}{0pt plus 5cm}character(len=50), dimension(\-:), allocatable inputvar\-::tecc}}\label{classinputvar_a2eb1c20cfae159c006e0fdc4b9ef0ef0}
 
 
-Definition at line 74 of file input\-Var.\-f90.
+Definition at line 90 of file input\-Var.\-f90.
 
 \hypertarget{classinputvar_afb7d5163d753c7bbd2c1505e8ee68197}{\index{inputvar@{inputvar}!tect@{tect}}
 \index{tect@{tect}!inputvar@{inputvar}}
 \subsubsection[{tect}]{\setlength{\rightskip}{0pt plus 5cm}character(len=50), dimension(\-:), allocatable inputvar\-::tect}}\label{classinputvar_afb7d5163d753c7bbd2c1505e8ee68197}
 
 
+Definition at line 73 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a4270f23d875d4a85d7bd5d6699205d03}{\index{inputvar@{inputvar}!tempcorrb@{tempcorrb}}
+\index{tempcorrb@{tempcorrb}!inputvar@{inputvar}}
+\subsubsection[{tempcorrb}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:,\-:), allocatable inputvar\-::tempcorrb}}\label{classinputvar_a4270f23d875d4a85d7bd5d6699205d03}
+
+
+Definition at line 81 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a378a362979a22545cd843bbf687ca511}{\index{inputvar@{inputvar}!tempcorrc@{tempcorrc}}
+\index{tempcorrc@{tempcorrc}!inputvar@{inputvar}}
+\subsubsection[{tempcorrc}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:,\-:), allocatable inputvar\-::tempcorrc}}\label{classinputvar_a378a362979a22545cd843bbf687ca511}
+
+
+Definition at line 89 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a918356589b5f04f76333e6a65de35fb8}{\index{inputvar@{inputvar}!tempcorrt@{tempcorrt}}
+\index{tempcorrt@{tempcorrt}!inputvar@{inputvar}}
+\subsubsection[{tempcorrt}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:,\-:), allocatable inputvar\-::tempcorrt}}\label{classinputvar_a918356589b5f04f76333e6a65de35fb8}
+
+
+Definition at line 72 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a7d20a57b0a7dfe6c386e831f25636546}{\index{inputvar@{inputvar}!time@{time}}
+\index{time@{time}!inputvar@{inputvar}}
+\subsubsection[{time}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:), allocatable inputvar\-::time}}\label{classinputvar_a7d20a57b0a7dfe6c386e831f25636546}
+
+
+Definition at line 95 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a53339aa6533c8e2333ec3eaa4a54796b}{\index{inputvar@{inputvar}!uch@{uch}}
+\index{uch@{uch}!inputvar@{inputvar}}
+\subsubsection[{uch}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:), allocatable inputvar\-::uch}}\label{classinputvar_a53339aa6533c8e2333ec3eaa4a54796b}
+
+
+Definition at line 94 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a8540cf286b75c5a77a2c3f8e2623617a}{\index{inputvar@{inputvar}!uel@{uel}}
+\index{uel@{uel}!inputvar@{inputvar}}
+\subsubsection[{uel}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:), allocatable inputvar\-::uel}}\label{classinputvar_a8540cf286b75c5a77a2c3f8e2623617a}
+
+
+Definition at line 94 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a3938be0ea72158eee837e2a8c08f29e0}{\index{inputvar@{inputvar}!uptime0@{uptime0}}
+\index{uptime0@{uptime0}!inputvar@{inputvar}}
+\subsubsection[{uptime0}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec), dimension(\-:), allocatable inputvar\-::uptime0}}\label{classinputvar_a3938be0ea72158eee837e2a8c08f29e0}
+
+
+Definition at line 48 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a04f11d38b133803024202cc546abddc3}{\index{inputvar@{inputvar}!useeuristics@{useeuristics}}
+\index{useeuristics@{useeuristics}!inputvar@{inputvar}}
+\subsubsection[{useeuristics}]{\setlength{\rightskip}{0pt plus 5cm}logical inputvar\-::useeuristics = .false.}}\label{classinputvar_a04f11d38b133803024202cc546abddc3}
+
+
+Definition at line 64 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_abd9a09032c8d997c45cd49020fb78609}{\index{inputvar@{inputvar}!uth@{uth}}
+\index{uth@{uth}!inputvar@{inputvar}}
+\subsubsection[{uth}]{\setlength{\rightskip}{0pt plus 5cm}real(kind= prec), dimension(\-:,\-:), allocatable inputvar\-::uth}}\label{classinputvar_abd9a09032c8d997c45cd49020fb78609}
+
+
+Definition at line 94 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_adfc2c014d1631c831bd700d9ff13dcff}{\index{inputvar@{inputvar}!writeboi@{writeboi}}
+\index{writeboi@{writeboi}!inputvar@{inputvar}}
+\subsubsection[{writeboi}]{\setlength{\rightskip}{0pt plus 5cm}logical inputvar\-::writeboi = .false.}}\label{classinputvar_adfc2c014d1631c831bd700d9ff13dcff}
+
+
+Definition at line 61 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a6e34f329672526cc9e682125013ce5e7}{\index{inputvar@{inputvar}!writechi@{writechi}}
+\index{writechi@{writechi}!inputvar@{inputvar}}
+\subsubsection[{writechi}]{\setlength{\rightskip}{0pt plus 5cm}logical inputvar\-::writechi = .false.}}\label{classinputvar_a6e34f329672526cc9e682125013ce5e7}
+
+
+Definition at line 62 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a2d475a99a1a0efcca534104cf8e2efb5}{\index{inputvar@{inputvar}!writechillingrev@{writechillingrev}}
+\index{writechillingrev@{writechillingrev}!inputvar@{inputvar}}
+\subsubsection[{writechillingrev}]{\setlength{\rightskip}{0pt plus 5cm}logical inputvar\-::writechillingrev = .false.}}\label{classinputvar_a2d475a99a1a0efcca534104cf8e2efb5}
+
+
+Definition at line 56 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a5fa854d48ca73d10b807273f373076b2}{\index{inputvar@{inputvar}!writecosts@{writecosts}}
+\index{writecosts@{writecosts}!inputvar@{inputvar}}
+\subsubsection[{writecosts}]{\setlength{\rightskip}{0pt plus 5cm}logical inputvar\-::writecosts = .false.}}\label{classinputvar_a5fa854d48ca73d10b807273f373076b2}
+
+
+Definition at line 59 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_ad6cafaf46b6d0f5bfaeb1ca26ccd0c68}{\index{inputvar@{inputvar}!writedemand@{writedemand}}
+\index{writedemand@{writedemand}!inputvar@{inputvar}}
+\subsubsection[{writedemand}]{\setlength{\rightskip}{0pt plus 5cm}logical inputvar\-::writedemand = .false.}}\label{classinputvar_ad6cafaf46b6d0f5bfaeb1ca26ccd0c68}
+
+
 Definition at line 57 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_a1dcdb33405d780699da5958c347fad91}{\index{inputvar@{inputvar}!time@{time}}
-\index{time@{time}!inputvar@{inputvar}}
-\subsubsection[{time}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::time}}\label{classinputvar_a1dcdb33405d780699da5958c347fad91}
+\hypertarget{classinputvar_a7d67f2fa2027e1d60264f442eef9759c}{\index{inputvar@{inputvar}!writeefficiency@{writeefficiency}}
+\index{writeefficiency@{writeefficiency}!inputvar@{inputvar}}
+\subsubsection[{writeefficiency}]{\setlength{\rightskip}{0pt plus 5cm}logical inputvar\-::writeefficiency = .false.}}\label{classinputvar_a7d67f2fa2027e1d60264f442eef9759c}
 
 
-Definition at line 79 of file input\-Var.\-f90.
+Definition at line 53 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_a889ca8b7a94ff88ec05a082dd2470ac3}{\index{inputvar@{inputvar}!uch@{uch}}
-\index{uch@{uch}!inputvar@{inputvar}}
-\subsubsection[{uch}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:,\-:), allocatable inputvar\-::uch}}\label{classinputvar_a889ca8b7a94ff88ec05a082dd2470ac3}
-
-
-Definition at line 78 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_a9833eea2b0f2ee5ab1a1927826656d05}{\index{inputvar@{inputvar}!uel@{uel}}
-\index{uel@{uel}!inputvar@{inputvar}}
-\subsubsection[{uel}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:,\-:), allocatable inputvar\-::uel}}\label{classinputvar_a9833eea2b0f2ee5ab1a1927826656d05}
+\hypertarget{classinputvar_afd3b4bc26c396eaba06cecc08717acf1}{\index{inputvar@{inputvar}!writeelectricrev@{writeelectricrev}}
+\index{writeelectricrev@{writeelectricrev}!inputvar@{inputvar}}
+\subsubsection[{writeelectricrev}]{\setlength{\rightskip}{0pt plus 5cm}logical inputvar\-::writeelectricrev = .false.}}\label{classinputvar_afd3b4bc26c396eaba06cecc08717acf1}
 
 
-Definition at line 78 of file input\-Var.\-f90.
+Definition at line 54 of file input\-Var.\-f90.
 
-\hypertarget{classinputvar_a3e87ba90459e069a492fde778f06b6a3}{\index{inputvar@{inputvar}!uptime0@{uptime0}}
-\index{uptime0@{uptime0}!inputvar@{inputvar}}
-\subsubsection[{uptime0}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:), allocatable inputvar\-::uptime0}}\label{classinputvar_a3e87ba90459e069a492fde778f06b6a3}
-
-
-Definition at line 46 of file input\-Var.\-f90.
-
-\hypertarget{classinputvar_ace89e7bc6ca01804a1f664e9faec7d0c}{\index{inputvar@{inputvar}!uth@{uth}}
-\index{uth@{uth}!inputvar@{inputvar}}
-\subsubsection[{uth}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)), dimension(\-:,\-:), allocatable inputvar\-::uth}}\label{classinputvar_ace89e7bc6ca01804a1f664e9faec7d0c}
+\hypertarget{classinputvar_ae3e52c17a47fe8dd3e860abff881cfb0}{\index{inputvar@{inputvar}!writeenergy@{writeenergy}}
+\index{writeenergy@{writeenergy}!inputvar@{inputvar}}
+\subsubsection[{writeenergy}]{\setlength{\rightskip}{0pt plus 5cm}logical inputvar\-::writeenergy = .false.}}\label{classinputvar_ae3e52c17a47fe8dd3e860abff881cfb0}
 
 
-Definition at line 78 of file input\-Var.\-f90.
+Definition at line 52 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a97c8b194b0db24c1c790d57bcc7b0f70}{\index{inputvar@{inputvar}!writeinput@{writeinput}}
+\index{writeinput@{writeinput}!inputvar@{inputvar}}
+\subsubsection[{writeinput}]{\setlength{\rightskip}{0pt plus 5cm}logical inputvar\-::writeinput = .false.}}\label{classinputvar_a97c8b194b0db24c1c790d57bcc7b0f70}
+
+
+Definition at line 58 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_ae3e0dfd2907bb36d0f62715b24f63536}{\index{inputvar@{inputvar}!writepower@{writepower}}
+\index{writepower@{writepower}!inputvar@{inputvar}}
+\subsubsection[{writepower}]{\setlength{\rightskip}{0pt plus 5cm}logical inputvar\-::writepower = .false.}}\label{classinputvar_ae3e0dfd2907bb36d0f62715b24f63536}
+
+
+Definition at line 51 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_ae7817d3a1abb7e02fdd1d3f40b45a4e8}{\index{inputvar@{inputvar}!writethermalrev@{writethermalrev}}
+\index{writethermalrev@{writethermalrev}!inputvar@{inputvar}}
+\subsubsection[{writethermalrev}]{\setlength{\rightskip}{0pt plus 5cm}logical inputvar\-::writethermalrev = .false.}}\label{classinputvar_ae7817d3a1abb7e02fdd1d3f40b45a4e8}
+
+
+Definition at line 55 of file input\-Var.\-f90.
+
+\hypertarget{classinputvar_a676701049b4d18d378d94894b1fcae7b}{\index{inputvar@{inputvar}!writetrig@{writetrig}}
+\index{writetrig@{writetrig}!inputvar@{inputvar}}
+\subsubsection[{writetrig}]{\setlength{\rightskip}{0pt plus 5cm}logical inputvar\-::writetrig = .false.}}\label{classinputvar_a676701049b4d18d378d94894b1fcae7b}
+
+
+Definition at line 60 of file input\-Var.\-f90.
 
 
 
 The documentation for this module was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/\hyperlink{input_var_8f90}{input\-Var.\-f90}\end{DoxyCompactItemize}
+/home/\-Codici/\-Blink/\-Power\-Manager/src/\hyperlink{input_var_8f90}{input\-Var.\-f90}\end{DoxyCompactItemize}

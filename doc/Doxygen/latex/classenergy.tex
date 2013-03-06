@@ -12,25 +12,35 @@ Collaboration diagram for energy\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=156pt]{classenergy__coll__graph}
+\includegraphics[width=174pt]{classenergy__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-real(kind(1.d0)) function \hyperlink{classenergy_a0c7a79d68b0fd7f46b1bf0930ba12e49}{elprod} (c\-\_\-)
+real(kind=prec) function \hyperlink{classenergy_a5ce8ae58805b4f7abe840bedaea30a00}{elprod} (c\-\_\-, t)
 \begin{DoxyCompactList}\small\item\em Electrical production. \end{DoxyCompactList}\item 
-real(kind(1.d0)) function \hyperlink{classenergy_a65fb81fffe7a7a232c1633fd0efc734a}{thprod} (c\-\_\-)
+real(kind=prec) function \hyperlink{classenergy_a40ddda3c07be743826be8c2e982b9b98}{thprod} (c\-\_\-, t)
 \begin{DoxyCompactList}\small\item\em Thermal production. \end{DoxyCompactList}\item 
-real(kind(1.d0)) function \hyperlink{classenergy_afe20a23049f6d8f45669c9976b4adf95}{chprod} (c\-\_\-)
+real(kind=prec) function \hyperlink{classenergy_a78e3e5b7396e41d13b3c9aa8f4edca48}{chprod} (c\-\_\-, t)
 \begin{DoxyCompactList}\small\item\em Chilling production. \end{DoxyCompactList}\item 
-real(kind(1.d0)) function \hyperlink{classenergy_a8293f2861341c8b138b8040574c6b430}{thselfcons} (c\-\_\-)
+real(kind=prec) function \hyperlink{classenergy_af385040819d802e1a3c9e0c9a692ff0a}{thselfcons} (c\-\_\-, t)
 \begin{DoxyCompactList}\small\item\em Internal thermal consumption of the power plant. \end{DoxyCompactList}\item 
-real(kind(1.d0)) function \hyperlink{classenergy_a954e362be8eef1d3225b239a0b1a62eb}{elselfcons} (c\-\_\-)
+real(kind=prec) function \hyperlink{classenergy_af5299e75015a3803765a6b49efa22049}{elselfcons} (c\-\_\-, t)
 \begin{DoxyCompactList}\small\item\em Internal electrical consumption of the power plant. \end{DoxyCompactList}\item 
-real(kind(1.d0)) function, \\*
-dimension(nm) \hyperlink{classenergy_a9c457633e13afce0389b12b6758286b8}{fuelcons} (c\-\_\-)
-\begin{DoxyCompactList}\small\item\em Primary energy input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+real(kind=prec) function, \\*
+dimension(nboi+ntrig) \hyperlink{classenergy_a07a977e68ea1d19da65ba06a4e4007a2}{fuelcons} (c\-\_\-, t)
+\begin{DoxyCompactList}\small\item\em Primary energy input. \end{DoxyCompactList}\item 
+real(kind=prec) function, \\*
+dimension(nm) \hyperlink{classenergy_aebd116fdbb931db63a6450c7ba3197df}{energyinput} (c\-\_\-, t)
+\begin{DoxyCompactList}\small\item\em Primary energy input. \end{DoxyCompactList}\item 
+real(kind=prec) function, \\*
+dimension(ntrig+nboi) \hyperlink{classenergy_aa9595768898cb233d53596e9ce19744f}{energyexhaust} (c\-\_\-, t)
+\begin{DoxyCompactList}\small\item\em Energy exhausted by combustions equipment. \end{DoxyCompactList}\item 
+real(kind=prec) function \hyperlink{classenergy_adee2b0ef7e3ae6a8da4a2357ffa14a28}{limitrecovery} (i, valore, t)
+\begin{DoxyCompactList}\small\item\em Limit the power of an H\-R\-S\-G. \end{DoxyCompactList}\item 
+real(kind=prec) function \hyperlink{classenergy_a6060381a3418f406c8ca108f9c5a7fd5}{cogthprod} (c\-\_\-, t)
+\begin{DoxyCompactList}\small\item\em Cogenerative Thermal production. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -44,16 +54,35 @@ Definition at line 38 of file energy.\-f90.
 
 
 \subsection{Member Function/\-Subroutine Documentation}
-\hypertarget{classenergy_afe20a23049f6d8f45669c9976b4adf95}{\index{energy@{energy}!chprod@{chprod}}
+\hypertarget{classenergy_a78e3e5b7396e41d13b3c9aa8f4edca48}{\index{energy@{energy}!chprod@{chprod}}
 \index{chprod@{chprod}!energy@{energy}}
-\subsubsection[{chprod}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function energy\-::chprod (
+\subsubsection[{chprod}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function energy\-::chprod (
 \begin{DoxyParamCaption}
-\item[{integer, dimension(nm), intent(in)}]{c\-\_\-}
+\item[{integer, dimension(nm), intent(in)}]{c\-\_\-, }
+\item[{integer, intent(in)}]{t}
 \end{DoxyParamCaption}
-)}}\label{classenergy_afe20a23049f6d8f45669c9976b4adf95}
-Calculates the chilling production in k\-W of the whole power plant, for a given set-\/point Note that only trigeneration machines and Chillers produce chilling power so far. Thus chilling power is\-: \[ P_{ch} = \sum_{Trig} \frac{sp(i)\cdot P_{max}(i)}{\eta_{el}(i,sp(i))}\eta_{ch}(i,sp(i)) + \sum_{Chi} sp(i)\cdot P_{max}(i) \] where $sp(i)$ is the set point of the $i$'th machine, $\eta_{ch}$ and $\eta_{el}$ are the chilling and electrical efficiencies, respectively, and $P_{max}(i)$ is its rated power. 
+)}}\label{classenergy_a78e3e5b7396e41d13b3c9aa8f4edca48}
+Calculates the chilling production in k\-W of the whole power plant, for a given set-\/point Note that only trigeneration machines and Chillers produce chilling power so far. Thus chilling power is\-: \[ P_{ch} = \sum_{Trig} \frac{sp(i)\cdot P_{max}(i)\cdot k_{env}}{\eta_{el}(i,sp(i))\cdot\alpha_{env}}\eta_{ch}(i,sp(i))\cdot\beta_{env} + \sum_{Chi} sp(i)\cdot P_{max}(i)\cdot\vartheta_{env} \] where $sp(i)$ is the set point of the $i$'th machine, $\eta_{ch}$ and $\eta_{el}$ are the chilling and electrical efficiencies, respectively, and $P_{max}(i)$ is its rated power; f\$ k\-\_\-\{env\} $, $ \{env\} $, $ \{env\} $, and $ \{env\} $ are the environmental corrections for electrical power and efficiency, chilling efficiency, and chilling power, respectively. \param[in] c_ index of the given set-point to be given as input. Defines the state of the plant $(i) = sp(c\-\_\-(i)) 
+
+Definition at line 167 of file energy.\-f90.
+
+
+
+Referenced by constraints(), and output().
+
+\hypertarget{classenergy_a6060381a3418f406c8ca108f9c5a7fd5}{\index{energy@{energy}!cogthprod@{cogthprod}}
+\index{cogthprod@{cogthprod}!energy@{energy}}
+\subsubsection[{cogthprod}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function energy\-::cogthprod (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(nm), intent(in)}]{c\-\_\-, }
+\item[{integer, intent(in)}]{t}
+\end{DoxyParamCaption}
+)}}\label{classenergy_a6060381a3418f406c8ca108f9c5a7fd5}
+Calculates the cogenerative Thermal production in k\-W of the whole power plant, for a given set-\/point Note that only trigeneration machines and Boilers produce thermal power so far. Thus Thermal power is\-: \[ P_{th} = \sum_{Trig} \frac{sp(i)\cdot P_{max}(i)}{\eta_{el}(i,sp(i))}\eta_{th}(i,sp(i)) + \sum_{HRSG} sp(i)\cdot P_{max}(i) \] where $sp(i)$ is the set point of the $i$'th machine, $\eta_{th}$ and $\eta_{el}$ are the thermal and electrical efficiencies, respectively, and $P_{max}(i)$ is its rated power. 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em c\-\_\-} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time index \\
 \hline
 \end{DoxyParams}
 \begin{DoxyAuthor}{Author}
@@ -61,22 +90,29 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 144 of file energy.\-f90.
+Definition at line 551 of file energy.\-f90.
 
 
 
-Referenced by constraints().
+References limitrecovery().
 
-\hypertarget{classenergy_a0c7a79d68b0fd7f46b1bf0930ba12e49}{\index{energy@{energy}!elprod@{elprod}}
+
+
+Referenced by euristics\-::thredundant().
+
+\hypertarget{classenergy_a5ce8ae58805b4f7abe840bedaea30a00}{\index{energy@{energy}!elprod@{elprod}}
 \index{elprod@{elprod}!energy@{energy}}
-\subsubsection[{elprod}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function energy\-::elprod (
+\subsubsection[{elprod}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function energy\-::elprod (
 \begin{DoxyParamCaption}
-\item[{integer, dimension(nm), intent(in)}]{c\-\_\-}
+\item[{integer, dimension(nm), intent(in)}]{c\-\_\-, }
+\item[{integer, intent(in)}]{t}
 \end{DoxyParamCaption}
-)}}\label{classenergy_a0c7a79d68b0fd7f46b1bf0930ba12e49}
-Calculates the electrical production in k\-W of the whole power plant, for a given set-\/point Note that only trigeneration machines produce electrical power so far. Thus electrical power is\-: \[ P_{el} = \sum_{Trig} sp(i)\cdot P_{max}(i) \] where $sp(i)$ is the set point of the $i$'th trigenerative machine and $P_{max}(i)$ is its rated power. 
+)}}\label{classenergy_a5ce8ae58805b4f7abe840bedaea30a00}
+Calculates the electrical production in k\-W of the whole power plant, for a given set-\/point Note that only trigeneration machines produce electrical power so far. Thus electrical power is\-: \[ P_{el} = \sum_{Trig} sp(i)\cdot P_{max}(i)\cdot k_{env} \] where $sp(i)$ is the set point of the $i$'th trigenerative machine and $P_{max}(i)$ is its rated power. $ k_{env} = k_a\cdot k_T \cdot k_p $ is the environmental power correction; and $ k_a$, $ k_t$, and $ k_p$ are the altitude, temperature, and pressure corrections respectively. 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em c\-\_\-} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time index \\
 \hline
 \end{DoxyParams}
 \begin{DoxyAuthor}{Author}
@@ -84,22 +120,25 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 55 of file energy.\-f90.
+Definition at line 59 of file energy.\-f90.
 
 
 
-Referenced by economy\-::elrev().
+Referenced by economy\-::elrev(), economy\-::grideconomy(), and output().
 
-\hypertarget{classenergy_a954e362be8eef1d3225b239a0b1a62eb}{\index{energy@{energy}!elselfcons@{elselfcons}}
+\hypertarget{classenergy_af5299e75015a3803765a6b49efa22049}{\index{energy@{energy}!elselfcons@{elselfcons}}
 \index{elselfcons@{elselfcons}!energy@{energy}}
-\subsubsection[{elselfcons}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function energy\-::elselfcons (
+\subsubsection[{elselfcons}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function energy\-::elselfcons (
 \begin{DoxyParamCaption}
-\item[{integer, dimension(nm), intent(in)}]{c\-\_\-}
+\item[{integer, dimension(nm), intent(in)}]{c\-\_\-, }
+\item[{integer}]{t}
 \end{DoxyParamCaption}
-)}}\label{classenergy_a954e362be8eef1d3225b239a0b1a62eb}
-Calculates the electrical self-\/consumption of the trigeneration plant, that is, the electrical power needed by the mechanical chillers, for a given set-\/point \[ U_{el}^{self} = \sum_{MecChi} \frac{sp(i)\cdot P_{max}(i)}{\eta_{ch}(i,sp(i))} \] where $sp(i)$ is the set point of the $i$'th machine, $\eta_{ch}$ is the chilling efficiency, and $P_{max}(i)$ is its rated power. The summation is extended over the nmber of mechanical chillers. 
+)}}\label{classenergy_af5299e75015a3803765a6b49efa22049}
+Calculates the electrical self-\/consumption of the trigeneration plant, that is, the electrical power needed by the mechanical chillers, for a given set-\/point \[ U_{el}^{self} = \sum_{MecChi} \frac{sp(i)\cdot P_{max}(i)\cdot \vartheta_{env}}{\eta_{ch}(i,sp(i))\cdot \beta_{env}} \] where $sp(i)$ is the set point of the $i$'th machine, $\eta_{ch}$ is the chilling efficiency, and $P_{max}(i)$ is its rated power; $\beta_{env}$ and $\vartheta_{env}$ are the environmental corrections for chilling efficiency, and chilling power, respectively. The summation is extended over the nmber of mechanical chillers. 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em c\-\_\-} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time index \\
 \hline
 \end{DoxyParams}
 \begin{DoxyAuthor}{Author}
@@ -107,22 +146,73 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 231 of file energy.\-f90.
+Definition at line 268 of file energy.\-f90.
 
 
 
-Referenced by economy\-::elrev().
+Referenced by economy\-::elrev(), and economy\-::grideconomy().
 
-\hypertarget{classenergy_a9c457633e13afce0389b12b6758286b8}{\index{energy@{energy}!fuelcons@{fuelcons}}
+\hypertarget{classenergy_aa9595768898cb233d53596e9ce19744f}{\index{energy@{energy}!energyexhaust@{energyexhaust}}
+\index{energyexhaust@{energyexhaust}!energy@{energy}}
+\subsubsection[{energyexhaust}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function, dimension(ntrig+nboi) energy\-::energyexhaust (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(ntrig+nboi), intent(in)}]{c\-\_\-, }
+\item[{integer, intent(in)}]{t}
+\end{DoxyParamCaption}
+)}}\label{classenergy_aa9595768898cb233d53596e9ce19744f}
+Calculates the energy exhausted by trigenerative equipment and fuel boilers. \[ E_{exh}(i) = sp(i)\cdot P_{max}(i)\cdot k_{env} \left[\frac{1}{\eta(i,sp(i))\cdot \alpha_{env}} - 1 \right] \] where $sp(i)$ is the set point of the $i$'th machine, $\eta(i,sp(i)) = \eta_{el}(i,sp(i))$ for trigenerative equipment and $\eta(i,sp(i))=\eta_{th}(i,sp(i))$ for boilers and, and $P_{max}(i)$ is their rated power. $k_{env}$ and $\alpha_{env}$ represent the environmental corrections 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c\-\_\-} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 437 of file energy.\-f90.
+
+\hypertarget{classenergy_aebd116fdbb931db63a6450c7ba3197df}{\index{energy@{energy}!energyinput@{energyinput}}
+\index{energyinput@{energyinput}!energy@{energy}}
+\subsubsection[{energyinput}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function, dimension(nm) energy\-::energyinput (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(nm), intent(in)}]{c\-\_\-, }
+\item[{integer, intent(in)}]{t}
+\end{DoxyParamCaption}
+)}}\label{classenergy_aebd116fdbb931db63a6450c7ba3197df}
+Calculates the primary energy input of the trigeneration plant, for a given set-\/point \[ E_{in}(i) = \frac{sp(i)\cdot P_{max}(i)\cdot k_{env} }{\eta(i,sp(i))\cdot \alpha_{env}} \] where $sp(i)$ is the set point of the $i$'th machine, $\eta(i,sp(i)) = \eta_{el}(i,sp(i))$ for trigenerative equipment and $\eta(i,sp(i))=\eta_{th}(i,sp(i))$ for boilers and, and $P_{max}(i)$ is their rated power. $k_{env}$ and $\alpha_{env}$ represent the environmental corrections 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c\-\_\-} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 374 of file energy.\-f90.
+
+
+
+Referenced by output().
+
+\hypertarget{classenergy_a07a977e68ea1d19da65ba06a4e4007a2}{\index{energy@{energy}!fuelcons@{fuelcons}}
 \index{fuelcons@{fuelcons}!energy@{energy}}
-\subsubsection[{fuelcons}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function, dimension(nm) energy\-::fuelcons (
+\subsubsection[{fuelcons}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function, dimension(nboi+ntrig) energy\-::fuelcons (
 \begin{DoxyParamCaption}
-\item[{integer, dimension(nm), intent(in)}]{c\-\_\-}
+\item[{integer, dimension(nm), intent(in)}]{c\-\_\-, }
+\item[{integer, intent(in)}]{t}
 \end{DoxyParamCaption}
-)}}\label{classenergy_a9c457633e13afce0389b12b6758286b8}
-Calculates the eprimary energy input of the trigeneration plant, for a given set-\/point \[ E_{in}(i) = \frac{sp(i)\cdot P_{max}(i)}{\eta(i,sp(i))} \] where $sp(i)$ is the set point of the $i$'th machine, $\eta(i,sp(i)) = \eta_{el}(i,sp(i))$ for trigenerative equipment and $\eta(i,sp(i))=\eta_{th}(i,sp(i))$ for boilers and, and $P_{max}(i)$ is their rated power. 
+)}}\label{classenergy_a07a977e68ea1d19da65ba06a4e4007a2}
+Calculates the eprimary energy input of the trigeneration plant, for a given set-\/point \[ E_{in}(i) = \frac{sp(i)\cdot P_{max}(i)\cdot k_{env}}{\eta(i,sp(i))\cdot \alpha_{env}} \] where $sp(i)$ is the set point of the $i$'th machine, $\eta(i,sp(i)) = \eta_{el}(i,sp(i))$ for trigenerative equipment and $\eta(i,sp(i))=\eta_{th}(i,sp(i))$ for boilers and, and $P_{max}(i)$ is their rated power. $k_{env}$ and $\alpha_{env}$ represent the environmental corrections for power and efficiency respectively. 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em c\-\_\-} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time index \\
 \hline
 \end{DoxyParams}
 \begin{DoxyAuthor}{Author}
@@ -130,22 +220,54 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 273 of file energy.\-f90.
+Definition at line 317 of file energy.\-f90.
 
 
 
-Referenced by economy\-::fuelcost().
+Referenced by economy\-::fuelcost(), and output().
 
-\hypertarget{classenergy_a65fb81fffe7a7a232c1633fd0efc734a}{\index{energy@{energy}!thprod@{thprod}}
+\hypertarget{classenergy_adee2b0ef7e3ae6a8da4a2357ffa14a28}{\index{energy@{energy}!limitrecovery@{limitrecovery}}
+\index{limitrecovery@{limitrecovery}!energy@{energy}}
+\subsubsection[{limitrecovery}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function energy\-::limitrecovery (
+\begin{DoxyParamCaption}
+\item[{integer, intent(in)}]{i, }
+\item[{real(kind = prec), intent(in)}]{valore, }
+\item[{integer, intent(in)}]{t}
+\end{DoxyParamCaption}
+)}}\label{classenergy_adee2b0ef7e3ae6a8da4a2357ffa14a28}
+Limit the power of an H\-R\-S\-G according to the maximum input power coming from the topping plant. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em i} & index of the H\-R\-S\-G being considered \\
+\hline
+\mbox{\tt in}  & {\em t} & time index \\
+\hline
+\mbox{\tt in}  & {\em valore} & maximum value of the input energy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 487 of file energy.\-f90.
+
+
+
+Referenced by cogthprod(), and thprod().
+
+\hypertarget{classenergy_a40ddda3c07be743826be8c2e982b9b98}{\index{energy@{energy}!thprod@{thprod}}
 \index{thprod@{thprod}!energy@{energy}}
-\subsubsection[{thprod}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function energy\-::thprod (
+\subsubsection[{thprod}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function energy\-::thprod (
 \begin{DoxyParamCaption}
-\item[{integer, dimension(nm), intent(in)}]{c\-\_\-}
+\item[{integer, dimension(nm), intent(in)}]{c\-\_\-, }
+\item[{integer, intent(in)}]{t}
 \end{DoxyParamCaption}
-)}}\label{classenergy_a65fb81fffe7a7a232c1633fd0efc734a}
-Calculates the Thermal production in k\-W of the whole power plant, for a given set-\/point Note that only trigeneration machines and Boilers produce thermal power so far. Thus Thermal power is\-: \[ P_{th} = \sum_{Trig} \frac{sp(i)\cdot P_{max}(i)}{\eta_{el}(i,sp(i))}\eta_{th}(i,sp(i)) + \sum_{Boi} sp(i)\cdot P_{max}(i) \] where $sp(i)$ is the set point of the $i$'th machine, $\eta_{th}$ and $\eta_{el}$ are the thermal and electrical efficiencies, respectively, and $P_{max}(i)$ is its rated power. 
+)}}\label{classenergy_a40ddda3c07be743826be8c2e982b9b98}
+Calculates the Thermal production in k\-W of the whole power plant, for a given set-\/point Note that only trigeneration machines and Boilers produce thermal power so far. Thus Thermal power is\-: \[ P_{th} = \sum_{Trig} \frac{sp(i)\cdot P_{max}(i)\cdot k_{env}}{\eta_{el}(i,sp(i))\cdot \alpha_{env}}\eta_{th}(i,sp(i))\cdot\gamma_{env}+ \sum_{Boi} sp(i)\cdot P_{max}(i)\cdot \lambda_{env} \] where $sp(i)$ is the set point of the $i$'th machine, $\eta_{th}$ and $\eta_{el}$ are the thermal and electrical efficiencies, respectively, and $P_{max}(i)$ is its rated power; $ k_{env} $, $ \alpha_{env} $, $ \gamma_{env} $, and $ \lambda_{env} $ are the environmental corrections for electrical power and efficiency, thermal efficiency, and thermal power, respectively. 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em c\-\_\-} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time index \\
 \hline
 \end{DoxyParams}
 \begin{DoxyAuthor}{Author}
@@ -153,22 +275,29 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 97 of file energy.\-f90.
+Definition at line 104 of file energy.\-f90.
 
 
 
-Referenced by constraints().
+References limitrecovery().
 
-\hypertarget{classenergy_a8293f2861341c8b138b8040574c6b430}{\index{energy@{energy}!thselfcons@{thselfcons}}
+
+
+Referenced by constraints(), and output().
+
+\hypertarget{classenergy_af385040819d802e1a3c9e0c9a692ff0a}{\index{energy@{energy}!thselfcons@{thselfcons}}
 \index{thselfcons@{thselfcons}!energy@{energy}}
-\subsubsection[{thselfcons}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function energy\-::thselfcons (
+\subsubsection[{thselfcons}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function energy\-::thselfcons (
 \begin{DoxyParamCaption}
-\item[{integer, dimension(nm), intent(in)}]{c\-\_\-}
+\item[{integer, dimension(nm), intent(in)}]{c\-\_\-, }
+\item[{integer, intent(in)}]{t}
 \end{DoxyParamCaption}
-)}}\label{classenergy_a8293f2861341c8b138b8040574c6b430}
-Calculates the thermal self-\/consumption of the trigeneration plant, that is, hte thermal power needed by the absorbtion chillers. \[ U_{th}^{self} = \sum_{AbsChi} \frac{sp(i)\cdot P_{max}(i)}{\eta_{ch}(i,sp(i))} \] where $sp(i)$ is the set point of the $i$'th machine, $\eta_{ch}$ is the chilling efficiency, and $P_{max}(i)$ is its rated power. 
+)}}\label{classenergy_af385040819d802e1a3c9e0c9a692ff0a}
+Calculates the thermal self-\/consumption of the trigeneration plant, that is, hte thermal power needed by the absorbtion chillers. \[ U_{th}^{self} = \sum_{AbsChi} \frac{sp(i)\cdot P_{max}(i)\cdot \vartheta_{env}}{\eta_{ch}(i,sp(i))\cdot \beta_{env}} \] where $sp(i)$ is the set point of the $i$'th machine, $\eta_{ch}$ is the chilling efficiency, and $P_{max}(i)$ is its rated power; $\beta_{env}$ and $\vartheta_{env}$ are the environmental corrections for chilling efficiency, and chilling power, respectively. 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em c\-\_\-} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time index \\
 \hline
 \end{DoxyParams}
 \begin{DoxyAuthor}{Author}
@@ -176,14 +305,14 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 188 of file energy.\-f90.
+Definition at line 219 of file energy.\-f90.
 
 
 
-Referenced by constraints().
+Referenced by constraints(), and euristics\-::thredundant().
 
 
 
 The documentation for this module was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/\hyperlink{energy_8f90}{energy.\-f90}\end{DoxyCompactItemize}
+/home/\-Codici/\-Blink/\-Power\-Manager/src/\hyperlink{energy_8f90}{energy.\-f90}\end{DoxyCompactItemize}

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>PowerManager: /home/andrea/Desktop/FortranCodeBW/src/findEntry2.f90 File Reference</title>
+<title>PowerManager: /home/Codici/Blink/PowerManager/src/findEntry2.f90 File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -136,7 +136,7 @@ Functions/Subroutines</h2></td></tr>
         <tr>
           <td class="memname">subroutine cfindentry </td>
           <td>(</td>
-          <td class="paramtype">character(len=100), intent(in)&#160;</td>
+          <td class="paramtype">character(len=*), intent(in)&#160;</td>
           <td class="paramname"><em>entry</em>, </td>
         </tr>
         <tr>
@@ -197,9 +197,9 @@ Functions/Subroutines</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
 
-<p>Definition at line <a class="el" href="find_entry2_8f90_source.html#l00185">185</a> of file <a class="el" href="find_entry2_8f90_source.html">findEntry2.f90</a>.</p>
+<p>Definition at line <a class="el" href="find_entry2_8f90_source.html#l00187">187</a> of file <a class="el" href="find_entry2_8f90_source.html">findEntry2.f90</a>.</p>
 
-<p>References <a class="el" href="find_entry2_8f90_source.html#l00253">findentry()</a>.</p>
+<p>References <a class="el" href="find_entry2_8f90_source.html#l00256">findentry()</a>.</p>
 
 <p>Referenced by <a class="el" href="read_chiller_8f90_source.html#l00061">readchillers()</a>.</p>
 
@@ -212,7 +212,7 @@ Functions/Subroutines</h2></td></tr>
         <tr>
           <td class="memname">subroutine dfindentry </td>
           <td>(</td>
-          <td class="paramtype">character(len=100), intent(in)&#160;</td>
+          <td class="paramtype">character(len=*), intent(in)&#160;</td>
           <td class="paramname"><em>entry</em>, </td>
         </tr>
         <tr>
@@ -236,7 +236,7 @@ Functions/Subroutines</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">real(kind(1.d0)), dimension(n), intent(out), optional&#160;</td>
+          <td class="paramtype">real(kind = prec), dimension(n), intent(out), optional&#160;</td>
           <td class="paramname"><em>valore</em>, </td>
         </tr>
         <tr>
@@ -273,9 +273,9 @@ Functions/Subroutines</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
 
-<p>Definition at line <a class="el" href="find_entry2_8f90_source.html#l00115">115</a> of file <a class="el" href="find_entry2_8f90_source.html">findEntry2.f90</a>.</p>
+<p>Definition at line <a class="el" href="find_entry2_8f90_source.html#l00117">117</a> of file <a class="el" href="find_entry2_8f90_source.html">findEntry2.f90</a>.</p>
 
-<p>References <a class="el" href="find_entry2_8f90_source.html#l00253">findentry()</a>.</p>
+<p>References <a class="el" href="find_entry2_8f90_source.html#l00256">findentry()</a>.</p>
 
 </div>
 </div>
@@ -286,7 +286,7 @@ Functions/Subroutines</h2></td></tr>
         <tr>
           <td class="memname">subroutine findentry </td>
           <td>(</td>
-          <td class="paramtype">character(len=100), intent(in)&#160;</td>
+          <td class="paramtype">character(len=*), intent(in)&#160;</td>
           <td class="paramname"><em>entry</em>, </td>
         </tr>
         <tr>
@@ -341,11 +341,11 @@ Functions/Subroutines</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
 
-<p>Definition at line <a class="el" href="find_entry2_8f90_source.html#l00253">253</a> of file <a class="el" href="find_entry2_8f90_source.html">findEntry2.f90</a>.</p>
+<p>Definition at line <a class="el" href="find_entry2_8f90_source.html#l00256">256</a> of file <a class="el" href="find_entry2_8f90_source.html">findEntry2.f90</a>.</p>
 
 <p>References <a class="el" href="rew_unit_8f90_source.html#l00038">rewunit()</a>.</p>
 
-<p>Referenced by <a class="el" href="find_entry2_8f90_source.html#l00185">cfindentry()</a>, <a class="el" href="find_entry2_8f90_source.html#l00115">dfindentry()</a>, <a class="el" href="find_entry2_8f90_source.html#l00047">ifindentry()</a>, and <a class="el" href="read_load_8f90_source.html#l00061">readloads()</a>.</p>
+<p>Referenced by <a class="el" href="find_entry2_8f90_source.html#l00187">cfindentry()</a>, <a class="el" href="find_entry2_8f90_source.html#l00117">dfindentry()</a>, <a class="el" href="find_entry2_8f90_source.html#l00047">ifindentry()</a>, and <a class="el" href="read_load_8f90_source.html#l00061">readloads()</a>.</p>
 
 </div>
 </div>
@@ -356,7 +356,7 @@ Functions/Subroutines</h2></td></tr>
         <tr>
           <td class="memname">subroutine ifindentry </td>
           <td>(</td>
-          <td class="paramtype">character(len=100), intent(in)&#160;</td>
+          <td class="paramtype">character(len=*), intent(in)&#160;</td>
           <td class="paramname"><em>entry</em>, </td>
         </tr>
         <tr>
@@ -419,9 +419,9 @@ Functions/Subroutines</h2></td></tr>
 
 <p>Definition at line <a class="el" href="find_entry2_8f90_source.html#l00047">47</a> of file <a class="el" href="find_entry2_8f90_source.html">findEntry2.f90</a>.</p>
 
-<p>References <a class="el" href="find_entry2_8f90_source.html#l00253">findentry()</a>.</p>
+<p>References <a class="el" href="find_entry2_8f90_source.html#l00256">findentry()</a>.</p>
 
-<p>Referenced by <a class="el" href="read_boiler_8f90_source.html#l00061">readboiler()</a>, <a class="el" href="read_chiller_8f90_source.html#l00061">readchillers()</a>, and <a class="el" href="read_trigen_8f90_source.html#l00062">readtrigen()</a>.</p>
+<p>Referenced by <a class="el" href="read_boiler_8f90_source.html#l00061">readboiler()</a>, <a class="el" href="read_chiller_8f90_source.html#l00061">readchillers()</a>, and <a class="el" href="read_steam_plant_8f90_source.html#l00062">readtrigen()</a>.</p>
 
 </div>
 </div>
@@ -431,7 +431,7 @@ Functions/Subroutines</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="find_entry2_8f90.html">findEntry2.f90</a></li>
-    <li class="footer">Generated on Tue Jan 29 2013 11:17:03 for PowerManager by
+    <li class="footer">Generated on Wed Mar 6 2013 15:25:15 for PowerManager by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

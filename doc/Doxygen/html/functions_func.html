@@ -92,6 +92,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="#index_l"><span>l</span></a></li>
       <li><a href="#index_m"><span>m</span></a></li>
       <li><a href="#index_o"><span>o</span></a></li>
+      <li><a href="#index_p"><span>p</span></a></li>
       <li><a href="#index_r"><span>r</span></a></li>
       <li><a href="#index_t"><span>t</span></a></li>
       <li><a href="#index_u"><span>u</span></a></li>
@@ -133,7 +134,7 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 
 <h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
 <li>abortexecution()
-: <a class="el" href="interfaceinterfaces_1_1abort_execution.html#a8af77035559d5f1eee0e3b9c3843a08d">interfaces::abortExecution</a>
+: <a class="el" href="interfaceinterfaces_1_1abort_execution.html#a80e28af83055359ee64f57fb1a7fa48b">interfaces::abortExecution</a>
 </li>
 <li>allcombin()
 : <a class="el" href="classgraphtools.html#a4607d975b5dd57d2ca7fcdbab2b1ef56">graphtools</a>
@@ -146,19 +147,29 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 : <a class="el" href="interfacefiletools_1_1c_find_entry.html#af8f083dc5d82069ac9c02e3ae98e30bf">filetools::cFindEntry</a>
 </li>
 <li>chprod()
-: <a class="el" href="classenergy.html#afe20a23049f6d8f45669c9976b4adf95">energy</a>
+: <a class="el" href="classenergy.html#a78e3e5b7396e41d13b3c9aa8f4edca48">energy</a>
+</li>
+<li>chredundant()
+: <a class="el" href="classeuristics.html#ab4b148eaf23e6a4fd686423477b8ee82">euristics</a>
 </li>
 <li>chrev()
-: <a class="el" href="classeconomy.html#ae4b1f9fc807735c83f9b8afedd25593f">economy</a>
+: <a class="el" href="classeconomy.html#af1f82a2c63a713af1676de7fb05aadc5">economy</a>
 </li>
 <li>cmatrixread()
 : <a class="el" href="interfacefiletools_1_1c_matrix_read.html#ad46208c86143112574df85f78b52bc95">filetools::cMatrixRead</a>
 </li>
+<li>cmdvarwrite()
+: <a class="el" href="classcommand.html#a60af514b101e4bce27774827c2e01d98">command</a>
+</li>
+<li>cogthprod()
+: <a class="el" href="classenergy.html#a6060381a3418f406c8ca108f9c5a7fd5">energy</a>
+</li>
 <li>constraints()
-: <a class="el" href="interfacegraphtools_1_1constraints.html#ac9d0e4805d083cf1018e385898c7fe5f">graphtools::constraints</a>
+: <a class="el" href="interfaceeuristics_1_1constraints.html#af7a1c3bd5963a623596775c45c03eed7">euristics::constraints</a>
+, <a class="el" href="interfacegraphtools_1_1constraints.html#ac9d0e4805d083cf1018e385898c7fe5f">graphtools::constraints</a>
 </li>
 <li>currcost()
-: <a class="el" href="classeconomy.html#a94cd41a52844693de595358d30d4d78f">economy</a>
+: <a class="el" href="classeconomy.html#a542c71f53d112855d6a81bf21941c8a9">economy</a>
 </li>
 </ul>
 
@@ -168,20 +179,26 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 : <a class="el" href="interfacefiletools_1_1d_find_entry.html#a5ec867262eca2566d523b83684eb69fa">filetools::dFindEntry</a>
 </li>
 <li>dmatrixread()
-: <a class="el" href="interfacefiletools_1_1d_matrix_read.html#ade43d60737b02be7730f15a6cdf20b83">filetools::dMatrixRead</a>
+: <a class="el" href="interfacefiletools_1_1d_matrix_read.html#af22620390ccf8978e358e97bcf141bd0">filetools::dMatrixRead</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
 <li>elprod()
-: <a class="el" href="classenergy.html#a0c7a79d68b0fd7f46b1bf0930ba12e49">energy</a>
+: <a class="el" href="classenergy.html#a5ce8ae58805b4f7abe840bedaea30a00">energy</a>
 </li>
 <li>elrev()
-: <a class="el" href="classeconomy.html#a4ce4c9a69167d8912d6f6bcb6ec5b53d">economy</a>
+: <a class="el" href="classeconomy.html#a4ab4325ba4da5a36bfc71dad24b101c6">economy</a>
 </li>
 <li>elselfcons()
-: <a class="el" href="classenergy.html#a954e362be8eef1d3225b239a0b1a62eb">energy</a>
+: <a class="el" href="classenergy.html#af5299e75015a3803765a6b49efa22049">energy</a>
+</li>
+<li>energyexhaust()
+: <a class="el" href="classenergy.html#aa9595768898cb233d53596e9ce19744f">energy</a>
+</li>
+<li>energyinput()
+: <a class="el" href="classenergy.html#aebd116fdbb931db63a6450c7ba3197df">energy</a>
 </li>
 </ul>
 
@@ -191,23 +208,53 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 : <a class="el" href="interfacefiletools_1_1find_entry.html#a850f330e19410327017ded432bedab00">filetools::findEntry</a>
 </li>
 <li>firecost()
-: <a class="el" href="classeconomy.html#a7fc5b61af90717efa0515636fc74c732">economy</a>
+: <a class="el" href="classeconomy.html#ace504d2735fcf5bab047994e760346a9">economy</a>
 </li>
 <li>fuelcons()
-: <a class="el" href="classenergy.html#a9c457633e13afce0389b12b6758286b8">energy</a>
+: <a class="el" href="classenergy.html#a07a977e68ea1d19da65ba06a4e4007a2">energy</a>
 </li>
 <li>fuelcost()
-: <a class="el" href="classeconomy.html#a6037f7db113255ec913f030454cfebbd">economy</a>
+: <a class="el" href="classeconomy.html#aa8f3af6fe0e525bc72f54bf369789443">economy</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_g"></a>- g -</h3><ul>
+<li>globchrev()
+: <a class="el" href="classglobalresults.html#a972ef181b25a59b4f9325c85b021149e">globalresults</a>
+</li>
+<li>globcost()
+: <a class="el" href="classglobalresults.html#a0edf7ae83d7b521a5b8f0c4d7b87dddc">globalresults</a>
+</li>
+<li>globelrev()
+: <a class="el" href="classglobalresults.html#ac009a3d3d776d80a58d143c137dd9426">globalresults</a>
+</li>
+<li>globfirecost()
+: <a class="el" href="classglobalresults.html#aaa04d5674fda6eda87d3896259835080">globalresults</a>
+</li>
+<li>globfuelcost()
+: <a class="el" href="classglobalresults.html#a5e2fcd8b1f2a5d2ffa7be6e316a54d8d">globalresults</a>
+</li>
+<li>globmaintcost()
+: <a class="el" href="classglobalresults.html#a94041d2c7b3dd5969c1abcf1e9546e65">globalresults</a>
+</li>
+<li>globprofit()
+: <a class="el" href="classglobalresults.html#afd33ba4d9415e6eba9f99590f55d71a8">globalresults</a>
+</li>
+<li>globrevenues()
+: <a class="el" href="classglobalresults.html#ad14556fe1ddf08129231242d3716028e">globalresults</a>
+</li>
+<li>globthrev()
+: <a class="el" href="classglobalresults.html#aed1df63c124b3ac76809e37374672f26">globalresults</a>
+</li>
 <li>grapharcs()
 : <a class="el" href="classgraphtools.html#a47c76f30f7f4917536f94c642ffca865">graphtools</a>
 </li>
 <li>graphpoints()
 : <a class="el" href="classgraphtools.html#a94b8e6e5a3d3cc0c3bedbe00d57fc2f9">graphtools</a>
+</li>
+<li>grideconomy()
+: <a class="el" href="classeconomy.html#a47cc446e4047749cb8b4ae10372ae3c4">economy</a>
 </li>
 </ul>
 
@@ -224,13 +271,13 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 : <a class="el" href="interfacefiletools_1_1i_find_entry.html#acc5d0e736fc0e81737c4ae294410f3c8">filetools::iFindEntry</a>
 </li>
 <li>imatrixread()
-: <a class="el" href="interfacefiletools_1_1i_matrix_read.html#abcb8aa52da9f4ed587de95575cdc2114">filetools::iMatrixRead</a>
+: <a class="el" href="interfacefiletools_1_1i_matrix_read.html#afa8b378d4dfdc6516ef2c90a9d9d89ca">filetools::iMatrixRead</a>
 </li>
 <li>inan()
 : <a class="el" href="classmyarithmetic.html#a13e401cc199f6d40533cae2c20fac922">myarithmetic</a>
 </li>
 <li>interpolation()
-: <a class="el" href="interfacemathtools_1_1interpolation.html#aa34b2fd6d7e39693e1e649c213ae000d">mathtools::interpolation</a>
+: <a class="el" href="interfacemathtools_1_1interpolation.html#a4b6ad870f4e5e805870157ad7d6d7baf">mathtools::interpolation</a>
 </li>
 <li>isnan()
 : <a class="el" href="classmyarithmetic.html#ac0dec559e69eb7ec762b2eee93884e0f">myarithmetic</a>
@@ -239,6 +286,9 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 
 
 <h3><a class="anchor" id="index_l"></a>- l -</h3><ul>
+<li>limitrecovery()
+: <a class="el" href="classenergy.html#adee2b0ef7e3ae6a8da4a2357ffa14a28">energy</a>
+</li>
 <li>locaterow()
 : <a class="el" href="classmathtools.html#a64c72087c0180d1e0cfbd7356d8a1a5a">mathtools</a>
 </li>
@@ -247,7 +297,7 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 
 <h3><a class="anchor" id="index_m"></a>- m -</h3><ul>
 <li>maintenancecost()
-: <a class="el" href="classeconomy.html#a5dac453402a93bcbfc5c4f5a0a9c296e">economy</a>
+: <a class="el" href="classeconomy.html#af6ed48a60d50c438efa98f16deed7520">economy</a>
 </li>
 <li>matrixread()
 : <a class="el" href="interfacefiletools_1_1matrix_read.html#afaa814a69eb7a257ba058ab3ff0aa713">filetools::matrixRead</a>
@@ -263,7 +313,14 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 
 <h3><a class="anchor" id="index_o"></a>- o -</h3><ul>
 <li>objfunction()
-: <a class="el" href="interfacegraphtools_1_1obj_function.html#aec9e3aedcf634e9995e9d8790c573498">graphtools::objFunction</a>
+: <a class="el" href="interfacegraphtools_1_1obj_function.html#aff21e5d518d88e2ef9d4bb3eae3b8066">graphtools::objFunction</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_p"></a>- p -</h3><ul>
+<li>performances()
+: <a class="el" href="interfaceinterfaces_1_1performances.html#a974c64e6d2f0a16c66c24bf3799de6f6">interfaces::performances</a>
 </li>
 </ul>
 
@@ -276,20 +333,23 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 : <a class="el" href="interfacefiletools_1_1rew_unit.html#ae40c548f951aab72dc54707581133b08">filetools::rewUnit</a>
 </li>
 <li>rnan()
-: <a class="el" href="classmyarithmetic.html#a5bfa55e975e245be29b376c7b2b6214f">myarithmetic</a>
+: <a class="el" href="classmyarithmetic.html#a227377a7c2675f5faa77ba3c8bc05ec9">myarithmetic</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
 <li>thprod()
-: <a class="el" href="classenergy.html#a65fb81fffe7a7a232c1633fd0efc734a">energy</a>
+: <a class="el" href="classenergy.html#a40ddda3c07be743826be8c2e982b9b98">energy</a>
+</li>
+<li>thredundant()
+: <a class="el" href="classeuristics.html#a1fea2abd84fede7cc3905d9983e374e0">euristics</a>
 </li>
 <li>threv()
-: <a class="el" href="classeconomy.html#a89bad0bc0b64f4480938f31adfa3ec33">economy</a>
+: <a class="el" href="classeconomy.html#a5f12114d9d3d02f2d9590df75c787003">economy</a>
 </li>
 <li>thselfcons()
-: <a class="el" href="classenergy.html#a8293f2861341c8b138b8040574c6b430">energy</a>
+: <a class="el" href="classenergy.html#af385040819d802e1a3c9e0c9a692ff0a">energy</a>
 </li>
 <li>timeconstr()
 : <a class="el" href="interfacegraphtools_1_1time_constr.html#a603698c9db0de9269bc3084299e18937">graphtools::timeConstr</a>
@@ -299,7 +359,7 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 
 <h3><a class="anchor" id="index_u"></a>- u -</h3><ul>
 <li>uptimecalc()
-: <a class="el" href="classgraphtools.html#ac61c9cdfdbeb51411798714a7ba88c3e">graphtools</a>
+: <a class="el" href="classgraphtools.html#a0a5fc60233fedc07e2a6297bfa1763ba">graphtools</a>
 </li>
 </ul>
 
@@ -321,7 +381,7 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Jan 29 2013 11:17:03 for PowerManager by
+    <li class="footer">Generated on Wed Mar 6 2013 15:25:15 for PowerManager by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2012.12.11)  14 JAN 2013 18:25
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.1.23)  6 MAR 2013 13:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1105,15 +1105,17 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
 
 ]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <7> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 72.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 71.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 6.29996pt on input line 72.
+(Font)              scaled to size 6.29996pt on input line 71.
  [2] [3] [4]
-[5] [6] [7] [8] [9])
+[5] [6] [7] [8] [9] [10] [11] [12])
 \tf@toc=\write5
 \openout5 = `refman.toc'.
 
- [10]
+ [13] [14
+
+]
 Package hyperref Info: Option `pageanchor' set `true' on input line 65.
 
 Chapter 1.
@@ -1125,7 +1127,7 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 18.66588pt on input line 66.
 LaTeX Font Info:    Font shape `OT1/phv/bc/n' will be
 (Font)              scaled to size 18.66588pt on input line 66.
-(./annotated.tex
+(./index.tex
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 1.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
@@ -1134,15 +1136,26 @@ LaTeX Font Info:    Font shape `OT1/phv/bc/n' will be
 (Font)              scaled to size 12.9599pt on input line 1.
 ) [1
 
-
 ] [2
 
 ]
 Chapter 2.
-(./files.tex [3]) [4]
+(./_a.tex) [3] [4
+
+]
 Chapter 3.
+(./annotated.tex [5]) [6]
+Chapter 4.
+(./files.tex
+Underfull \vbox (badness 2521) has occurred while \output is active []
+
+ [7
+
+])
+[8]
+Chapter 5.
 (./interfaceinterfaces_1_1abort_execution.tex
-<interfaceinterfaces_1_1abort_execution__coll__graph.pdf, id=2021, 210.7875pt x
+<interfaceinterfaces_1_1abort_execution__coll__graph.pdf, id=2761, 210.7875pt x
  144.54pt>
 File: interfaceinterfaces_1_1abort_execution__coll__graph.pdf Graphic file (typ
 e pdf)
@@ -1164,14 +1177,14 @@ File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
 LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
 (Font)              scaled to size 8.99994pt on input line 16.
 LaTeX Font Info:    Font shape `OT1/phv/bc/n' will be
-(Font)              scaled to size 8.99994pt on input line 39.
+(Font)              scaled to size 8.99994pt on input line 40.
 LaTeX Font Info:    Font shape `OT1/phv/bc/it' in size <10> not available
-(Font)              Font shape `OT1/phv/bc/sl' tried instead on input line 39.
+(Font)              Font shape `OT1/phv/bc/sl' tried instead on input line 40.
 LaTeX Font Info:    Font shape `OT1/phv/bc/sl' will be
-(Font)              scaled to size 8.99994pt on input line 39.
+(Font)              scaled to size 8.99994pt on input line 40.
 )
 (./interfacefiletools_1_1c_find_entry.tex
-<interfacefiletools_1_1c_find_entry__coll__graph.pdf, id=2024, 184.69pt x 144.5
+<interfacefiletools_1_1c_find_entry__coll__graph.pdf, id=2764, 184.69pt x 144.5
 4pt>
 File: interfacefiletools_1_1c_find_entry__coll__graph.pdf Graphic file (type pd
 f)
@@ -1179,11 +1192,11 @@ f)
 Package pdftex.def Info: interfacefiletools_1_1c_find_entry__coll__graph.pdf us
 ed on input line 10.
 (pdftex.def)             Requested size: 184.0pt x 144.00148pt.
- [5
+ [9
 
  <./interfaceinterfaces_1_1abort_execution__coll__graph.pdf>])
 (./interfacefiletools_1_1c_matrix_read.tex
-<interfacefiletools_1_1c_matrix_read__coll__graph.pdf, id=2043, 192.72pt x 144.
+<interfacefiletools_1_1c_matrix_read__coll__graph.pdf, id=2784, 192.72pt x 144.
 54pt>
 File: interfacefiletools_1_1c_matrix_read__coll__graph.pdf Graphic file (type p
 df)
@@ -1191,26 +1204,42 @@ df)
 Package pdftex.def Info: interfacefiletools_1_1c_matrix_read__coll__graph.pdf u
 sed on input line 10.
 (pdftex.def)             Requested size: 192.0pt x 143.99927pt.
- [6 <./interfacefiletools_1_1c_find_entry__coll__graph.pdf> <./interfacefiletoo
-ls_1_1c_matrix_read__coll__graph.pdf
+ [10 <./interfacefiletools_1_1c_find_entry__coll__graph.pdf> <./interfacefileto
+ols_1_1c_matrix_read__coll__graph.pdf
 
 pdfTeX warning: pdflatex (file ./interfacefiletools_1_1c_matrix_read__coll__gra
 ph.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 
 >]) (./classcmdvar.tex
-<classcmdvar__coll__graph.pdf, id=2063, 134.5025pt x 170.6375pt>
+<classcmdvar__coll__graph.pdf, id=2805, 134.5025pt x 196.735pt>
 File: classcmdvar__coll__graph.pdf Graphic file (type pdf)
 
 <use classcmdvar__coll__graph.pdf>
 Package pdftex.def Info: classcmdvar__coll__graph.pdf used on input line 15.
-(pdftex.def)             Requested size: 134.0pt x 170.00175pt.
+(pdftex.def)             Requested size: 134.0pt x 196.00201pt.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 22.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
 (Font)              scaled to size 8.09995pt on input line 22.
- [7 <./classcmdvar__coll__graph.pdf>])
+ [11 <./classcmdvar__coll__graph.pdf>])
+(./classcmdvarwr.tex
+<classcmdvarwr__coll__graph.pdf, id=2831, 138.5175pt x 144.54pt>
+File: classcmdvarwr__coll__graph.pdf Graphic file (type pdf)
+
+<use classcmdvarwr__coll__graph.pdf>
+Package pdftex.def Info: classcmdvarwr__coll__graph.pdf used on input line 15.
+(pdftex.def)             Requested size: 138.0pt x 144.00148pt.
+ [12 <./classcmdvarwr__coll__graph.pdf>])
+(./classcommand.tex
+<classcommand__coll__graph.pdf, id=2844, 164.615pt x 158.5925pt>
+File: classcommand__coll__graph.pdf Graphic file (type pdf)
+
+<use classcommand__coll__graph.pdf>
+Package pdftex.def Info: classcommand__coll__graph.pdf used on input line 10.
+(pdftex.def)             Requested size: 164.0pt x 158.00404pt.
+ [13 <./classcommand__coll__graph.pdf>])
 (./interfacegraphtools_1_1constraints.tex
-<interfacegraphtools_1_1constraints__coll__graph.pdf, id=2086, 196.735pt x 144.
+<interfacegraphtools_1_1constraints__coll__graph.pdf, id=2866, 196.735pt x 144.
 54pt>
 File: interfacegraphtools_1_1constraints__coll__graph.pdf Graphic file (type pd
 f)
@@ -1218,9 +1247,19 @@ f)
 Package pdftex.def Info: interfacegraphtools_1_1constraints__coll__graph.pdf us
 ed on input line 10.
 (pdftex.def)             Requested size: 196.0pt x 143.99927pt.
- [8 <./interfacegraphtools_1_1constraints__coll__graph.pdf>])
+ [14 <./interfacegraphtools_1_1constraints__coll__graph.pdf>])
+(./interfaceeuristics_1_1constraints.tex
+<interfaceeuristics_1_1constraints__coll__graph.pdf, id=2882, 186.6975pt x 144.
+54pt>
+File: interfaceeuristics_1_1constraints__coll__graph.pdf Graphic file (type pdf
+)
+ <use interfaceeuristics_1_1constraints__coll__graph.pdf>
+Package pdftex.def Info: interfaceeuristics_1_1constraints__coll__graph.pdf use
+d on input line 10.
+(pdftex.def)             Requested size: 186.0pt x 144.00589pt.
+)
 (./interfacefiletools_1_1d_find_entry.tex
-<interfacefiletools_1_1d_find_entry__coll__graph.pdf, id=2102, 184.69pt x 144.5
+<interfacefiletools_1_1d_find_entry__coll__graph.pdf, id=2885, 184.69pt x 144.5
 4pt>
 File: interfacefiletools_1_1d_find_entry__coll__graph.pdf Graphic file (type pd
 f)
@@ -1228,9 +1267,12 @@ f)
 Package pdftex.def Info: interfacefiletools_1_1d_find_entry__coll__graph.pdf us
 ed on input line 10.
 (pdftex.def)             Requested size: 184.0pt x 144.00148pt.
-)
+
+Underfull \vbox (badness 1701) has occurred while \output is active []
+
+ [15 <./interfaceeuristics_1_1constraints__coll__graph.pdf>])
 (./interfacefiletools_1_1d_matrix_read.tex
-<interfacefiletools_1_1d_matrix_read__coll__graph.pdf, id=2105, 192.72pt x 144.
+<interfacefiletools_1_1d_matrix_read__coll__graph.pdf, id=2901, 192.72pt x 144.
 54pt>
 File: interfacefiletools_1_1d_matrix_read__coll__graph.pdf Graphic file (type p
 df)
@@ -1238,97 +1280,134 @@ df)
 Package pdftex.def Info: interfacefiletools_1_1d_matrix_read__coll__graph.pdf u
 sed on input line 10.
 (pdftex.def)             Requested size: 192.0pt x 143.99927pt.
- [9 <./interfacefiletools_1_1d_find_entry__coll__graph.pdf>]) (./classeconomy.t
-ex
-<classeconomy__coll__graph.pdf, id=2120, 186.6975pt x 222.8325pt>
+ [16 <./interfacefiletools_1_1d_find_entry__coll__graph.pdf> <./interfacefileto
+ols_1_1d_matrix_read__coll__graph.pdf
+
+pdfTeX warning: pdflatex (file ./interfacefiletools_1_1d_matrix_read__coll__gra
+ph.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+
+>]) (./classeconomy.tex
+<classeconomy__coll__graph.pdf, id=2921, 186.6975pt x 236.885pt>
 File: classeconomy__coll__graph.pdf Graphic file (type pdf)
 
 <use classeconomy__coll__graph.pdf>
 Package pdftex.def Info: classeconomy__coll__graph.pdf used on input line 10.
-(pdftex.def)             Requested size: 186.0pt x 222.00911pt.
+(pdftex.def)             Requested size: 186.0pt x 236.00967pt.
+ [17 <./classeconomy__coll__graph.pdf>]
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 59.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [10 <./interfacefiletools_1_1d_matrix_read__coll__graph.pdf>] [11 <./classecon
-omy__coll__graph.pdf>]
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 56.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 56.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 59.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 8.99994pt on input line 56.
+(Font)              scaled to size 8.99994pt on input line 59.
 
-Underfull \vbox (badness 10000) detected at line 60
+Underfull \vbox (badness 10000) detected at line 63
+ []
+
+[18]
+Underfull \vbox (badness 10000) detected at line 98
  []
 
 
-Underfull \vbox (badness 10000) detected at line 95
- []
-
-[12]
-Underfull \vbox (badness 10000) detected at line 133
+Underfull \vbox (badness 10000) detected at line 136
  []
 
 
-Underfull \vbox (badness 10000) detected at line 164
+Overfull \vbox (14.64879pt too high) has occurred while \output is active []
+
+
+[19]
+Underfull \vbox (badness 10000) detected at line 167
  []
 
-[13]
-Underfull \vbox (badness 10000) detected at line 191
+
+Underfull \vbox (badness 10000) detected at line 194
+ []
+
+[20]
+Underfull \vbox (badness 10000) detected at line 245
  []
 
 
-Underfull \vbox (badness 10000) detected at line 222
+Underfull \vbox (badness 10000) detected at line 271
  []
 
-[14]
-Underfull \vbox (badness 10000) detected at line 248
- []
-
-) (./classenergy.tex
-<classenergy__coll__graph.pdf, id=2184, 156.585pt x 210.7875pt>
+) (./classenergy.tex [21]
+<classenergy__coll__graph.pdf, id=2983, 174.6525pt x 262.9825pt>
 File: classenergy__coll__graph.pdf Graphic file (type pdf)
 
 <use classenergy__coll__graph.pdf>
 Package pdftex.def Info: classenergy__coll__graph.pdf used on input line 15.
-(pdftex.def)             Requested size: 156.0pt x 210.00862pt.
- [15 <./classenergy__coll__graph.pdf>]
-Underfull \vbox (badness 10000) detected at line 58
- []
-
-[16]
-Underfull \vbox (badness 10000) detected at line 81
+(pdftex.def)             Requested size: 174.0pt x 262.01476pt.
+ [22 <./classenergy__coll__graph.pdf>]
+Underfull \vbox (badness 10000) detected at line 71
  []
 
 
-Underfull \vbox (badness 10000) detected at line 104
+Underfull \vbox (badness 10000) detected at line 97
  []
 
-
+[23]
 Underfull \vbox (badness 10000) detected at line 127
  []
 
-[17]
-Underfull \vbox (badness 10000) detected at line 150
+
+Underfull \vbox (badness 10000) detected at line 153
+ []
+
+[24]
+Underfull \vbox (badness 10000) detected at line 191
  []
 
 
-Underfull \vbox (badness 10000) detected at line 173
+Underfull \vbox (badness 10000) detected at line 217
+ []
+
+
+Underfull \vbox (badness 1810) has occurred while \output is active []
+
+ [25]
+Underfull \vbox (badness 10000) detected at line 260
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 290
+ []
+
+) (./classeuristics.tex [26]
+<classeuristics__coll__graph.pdf, id=3041, 164.615pt x 158.5925pt>
+File: classeuristics__coll__graph.pdf Graphic file (type pdf)
+
+<use classeuristics__coll__graph.pdf>
+Package pdftex.def Info: classeuristics__coll__graph.pdf used on input line 15.
+
+(pdftex.def)             Requested size: 164.0pt x 158.00404pt.
+
+Underfull \vbox (badness 10000) detected at line 57
+ []
+
+
+Overfull \vbox (13.99168pt too high) has occurred while \output is active []
+
+
+[27 <./classeuristics__coll__graph.pdf>]
+Underfull \vbox (badness 10000) detected at line 83
  []
 
 ) (./classfiletools.tex
-<classfiletools__coll__graph.pdf, id=2224, 130.4875pt x 144.54pt>
+<classfiletools__coll__graph.pdf, id=3063, 130.4875pt x 144.54pt>
 File: classfiletools__coll__graph.pdf Graphic file (type pdf)
 
 <use classfiletools__coll__graph.pdf>
 Package pdftex.def Info: classfiletools__coll__graph.pdf used on input line 15.
 
 (pdftex.def)             Requested size: 130.0pt x 144.00148pt.
- [18])
-(./interfacefiletools_1_1find_entry.tex
-<interfacefiletools_1_1find_entry__coll__graph.pdf, id=2244, 174.6525pt x 144.5
+ [28 <./classfiletools__coll__graph.pdf>]) (./interfacefiletools_1_1find_entry.
+tex
+<interfacefiletools_1_1find_entry__coll__graph.pdf, id=3089, 174.6525pt x 144.5
 4pt>
 File: interfacefiletools_1_1find_entry__coll__graph.pdf Graphic file (type pdf)
 
@@ -1336,32 +1415,74 @@ File: interfacefiletools_1_1find_entry__coll__graph.pdf Graphic file (type pdf)
 Package pdftex.def Info: interfacefiletools_1_1find_entry__coll__graph.pdf used
  on input line 10.
 (pdftex.def)             Requested size: 174.0pt x 144.00809pt.
+ [29 <./interfacefiletools_1_1find_entry__coll__graph.pdf>]) (./classglobalresu
+lts.tex
+<classglobalresults__coll__graph.pdf, id=3104, 172.645pt x 248.93pt>
+File: classglobalresults__coll__graph.pdf Graphic file (type pdf)
 
-Underfull \vbox (badness 1838) has occurred while \output is active []
+<use classglobalresults__coll__graph.pdf>
+Package pdftex.def Info: classglobalresults__coll__graph.pdf used on input line
+ 10.
+(pdftex.def)             Requested size: 172.0pt x 248.00258pt.
+ [30 <./classglobalresults__coll__graph.pdf>]
+Underfull \vbox (badness 10000) detected at line 64
+ []
 
- [19 <./classfiletools__coll__graph.pdf>]) (./classgraphtools.tex
-<classgraphtools__coll__graph.pdf, id=2259, 164.615pt x 184.69pt>
+[31]
+Underfull \vbox (badness 10000) detected at line 119
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 149
+ []
+
+
+Underfull \vbox (badness 3769) has occurred while \output is active []
+
+ [32]
+Underfull \vbox (badness 10000) detected at line 179
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 209
+ []
+
+[33]
+Underfull \vbox (badness 10000) detected at line 277
+ []
+
+) (./classgraphtools.tex
+<classgraphtools__coll__graph.pdf, id=3153, 178.6675pt x 210.7875pt>
 File: classgraphtools__coll__graph.pdf Graphic file (type pdf)
 
 <use classgraphtools__coll__graph.pdf>
 Package pdftex.def Info: classgraphtools__coll__graph.pdf used on input line 10
 .
-(pdftex.def)             Requested size: 164.0pt x 184.00471pt.
+(pdftex.def)             Requested size: 178.0pt x 210.01184pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [20 <./interfacefiletools_1_1find_entry__coll__graph.pdf>] [21 <./classgraphto
-ols__coll__graph.pdf>]) (./interfacefiletools_1_1h_count.tex
-<interfacefiletools_1_1h_count__coll__graph.pdf, id=2296, 168.63pt x 144.54pt>
+ [34]
+[35 <./classgraphtools__coll__graph.pdf>]
+Underfull \hbox (badness 4217) in paragraph at lines 109--110
+[]\T1/phv/m/n/10 References abor-tex-e-cu-tion(), euristics-::chredundant(), ma
+thtools-::locaterow(), ob-j-func-tion(), and euristics-
+ []
+
+[36]) (./interfacefiletools_1_1h_count.tex
+<interfacefiletools_1_1h_count__coll__graph.pdf, id=3192, 168.63pt x 144.54pt>
 File: interfacefiletools_1_1h_count__coll__graph.pdf Graphic file (type pdf)
 
 <use interfacefiletools_1_1h_count__coll__graph.pdf>
 Package pdftex.def Info: interfacefiletools_1_1h_count__coll__graph.pdf used on
  input line 10.
 (pdftex.def)             Requested size: 168.0pt x 144.00368pt.
- [22])
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [37])
 (./interfacefiletools_1_1i_find_entry.tex
-<interfacefiletools_1_1i_find_entry__coll__graph.pdf, id=2303, 180.675pt x 144.
+<interfacefiletools_1_1i_find_entry__coll__graph.pdf, id=3199, 180.675pt x 144.
 54pt>
 File: interfacefiletools_1_1i_find_entry__coll__graph.pdf Graphic file (type pd
 f)
@@ -1369,13 +1490,13 @@ f)
 Package pdftex.def Info: interfacefiletools_1_1i_find_entry__coll__graph.pdf us
 ed on input line 10.
 (pdftex.def)             Requested size: 180.0pt x 144.00148pt.
- [23 <./interfacefiletools_1_1h_count__coll__graph.pdf> <./interfacefiletools_1
+ [38 <./interfacefiletools_1_1h_count__coll__graph.pdf> <./interfacefiletools_1
 _1i_find_entry__coll__graph.pdf
 
 pdfTeX warning: pdflatex (file ./interfacefiletools_1_1i_find_entry__coll__grap
 h.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 >]) (./interfacefiletools_1_1i_matrix_read.tex
-<interfacefiletools_1_1i_matrix_read__coll__graph.pdf, id=2323, 188.705pt x 144
+<interfacefiletools_1_1i_matrix_read__coll__graph.pdf, id=3219, 188.705pt x 144
 .54pt>
 File: interfacefiletools_1_1i_matrix_read__coll__graph.pdf Graphic file (type p
 df)
@@ -1383,26 +1504,26 @@ df)
 Package pdftex.def Info: interfacefiletools_1_1i_matrix_read__coll__graph.pdf u
 sed on input line 10.
 (pdftex.def)             Requested size: 188.0pt x 143.99927pt.
- [24 <./interfacefiletools_1_1i_matrix_read__coll__graph.pdf>]) (./classinputva
+ [39 <./interfacefiletools_1_1i_matrix_read__coll__graph.pdf>]) (./classinputva
 r.tex
-<classinputvar__coll__graph.pdf, id=2340, 168.63pt x 275.0275pt>
+<classinputvar__coll__graph.pdf, id=3237, 168.63pt x 275.0275pt>
 File: classinputvar__coll__graph.pdf Graphic file (type pdf)
 
 <use classinputvar__coll__graph.pdf>
 Package pdftex.def Info: classinputvar__coll__graph.pdf used on input line 15.
 (pdftex.def)             Requested size: 168.0pt x 274.00705pt.
- [25 <./classinputvar__coll__graph.pdf>]
-[26] [27] [28] [29] [30] [31] [32] [33]) (./classinterfaces.tex
-<classinterfaces__coll__graph.pdf, id=2542, 138.5175pt x 144.54pt>
+ [40 <./classinputvar__coll__graph.pdf>]
+[41] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51]) (./classinterfaces.tex
+<classinterfaces__coll__graph.pdf, id=3516, 138.5175pt x 144.54pt>
 File: classinterfaces__coll__graph.pdf Graphic file (type pdf)
 
 <use classinterfaces__coll__graph.pdf>
 Package pdftex.def Info: classinterfaces__coll__graph.pdf used on input line 10
 .
 (pdftex.def)             Requested size: 138.0pt x 144.00148pt.
-)
+ [52])
 (./interfacemathtools_1_1interpolation.tex
-<interfacemathtools_1_1interpolation__coll__graph.pdf, id=2546, 198.7425pt x 14
+<interfacemathtools_1_1interpolation__coll__graph.pdf, id=3525, 198.7425pt x 14
 4.54pt>
 File: interfacemathtools_1_1interpolation__coll__graph.pdf Graphic file (type p
 df)
@@ -1410,20 +1531,23 @@ df)
 Package pdftex.def Info: interfacemathtools_1_1interpolation__coll__graph.pdf u
 sed on input line 10.
 (pdftex.def)             Requested size: 198.0pt x 144.00368pt.
- [34 <./classinterfaces__coll__graph.pdf>]) (./classmathtools.tex
-<classmathtools__coll__graph.pdf, id=2560, 138.5175pt x 144.54pt>
+ [53 <./classinterfaces__coll__graph.pdf> <./interfacemathtools_1_1interpolatio
+n__coll__graph.pdf
+
+pdfTeX warning: pdflatex (file ./interfacemathtools_1_1interpolation__coll__gra
+ph.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+
+>]) (./classmathtools.tex
+<classmathtools__coll__graph.pdf, id=3546, 154.5775pt x 144.54pt>
 File: classmathtools__coll__graph.pdf Graphic file (type pdf)
 
 <use classmathtools__coll__graph.pdf>
 Package pdftex.def Info: classmathtools__coll__graph.pdf used on input line 15.
 
-(pdftex.def)             Requested size: 138.0pt x 144.00148pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [35 <./interfacemathtools_1_1interpolation__coll__graph.pdf>])
-(./interfacefiletools_1_1matrix_read.tex
-<interfacefiletools_1_1matrix_read__coll__graph.pdf, id=2575, 186.6975pt x 144.
+(pdftex.def)             Requested size: 154.0pt x 144.01251pt.
+ [54 <./classmathtools__coll__graph.pdf>]) (./interfacefiletools_1_1matrix_read
+.tex
+<interfacefiletools_1_1matrix_read__coll__graph.pdf, id=3564, 186.6975pt x 144.
 54pt>
 File: interfacefiletools_1_1matrix_read__coll__graph.pdf Graphic file (type pdf
 )
@@ -1431,33 +1555,29 @@ File: interfacefiletools_1_1matrix_read__coll__graph.pdf Graphic file (type pdf
 Package pdftex.def Info: interfacefiletools_1_1matrix_read__coll__graph.pdf use
 d on input line 10.
 (pdftex.def)             Requested size: 186.0pt x 144.00589pt.
- [36 <./classmathtools__coll__graph.pdf> <./interfacefiletools_1_1matrix_read__
-coll__graph.pdf
-
-pdfTeX warning: pdflatex (file ./interfacefiletools_1_1matrix_read__coll__graph
-.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->]) (./classmyarithmetic.tex
-<classmyarithmetic__coll__graph.pdf, id=2596, 152.57pt x 170.6375pt>
+)
+(./classmyarithmetic.tex
+<classmyarithmetic__coll__graph.pdf, id=3567, 152.57pt x 170.6375pt>
 File: classmyarithmetic__coll__graph.pdf Graphic file (type pdf)
 
 <use classmyarithmetic__coll__graph.pdf>
 Package pdftex.def Info: classmyarithmetic__coll__graph.pdf used on input line 
 15.
 (pdftex.def)             Requested size: 152.0pt x 170.00696pt.
- [37 <./classmyarithmetic__coll__graph.pdf>]
+ [55 <./interfacefiletools_1_1matrix_read__coll__graph.pdf>]
 Underfull \vbox (badness 10000) detected at line 51
  []
 
-
-Underfull \vbox (badness 10000) detected at line 74
+[56 <./classmyarithmetic__coll__graph.pdf>]
+Underfull \vbox (badness 10000) detected at line 70
  []
 
 
-Underfull \vbox (badness 10000) detected at line 93
+Underfull \vbox (badness 10000) detected at line 89
  []
 
 ) (./interfacegraphtools_1_1obj_function.tex
-<interfacegraphtools_1_1obj_function__coll__graph.pdf, id=2617, 198.7425pt x 14
+<interfacegraphtools_1_1obj_function__coll__graph.pdf, id=3599, 198.7425pt x 14
 4.54pt>
 File: interfacegraphtools_1_1obj_function__coll__graph.pdf Graphic file (type p
 df)
@@ -1465,21 +1585,27 @@ df)
 Package pdftex.def Info: interfacegraphtools_1_1obj_function__coll__graph.pdf u
 sed on input line 10.
 (pdftex.def)             Requested size: 198.0pt x 144.00368pt.
-
-Underfull \vbox (badness 7504) has occurred while \output is active []
-
- [38])
-(./classplantvar.tex
-<classplantvar__coll__graph.pdf, id=2627, 160.6pt x 275.0275pt>
+ [57 <./interfacegraphtools_1_1obj_function__coll__graph.pdf>])
+(./interfaceinterfaces_1_1performances.tex
+<interfaceinterfaces_1_1performances__coll__graph.pdf, id=3617, 204.765pt x 144
+.54pt>
+File: interfaceinterfaces_1_1performances__coll__graph.pdf Graphic file (type p
+df)
+ <use interfaceinterfaces_1_1performances__coll__graph.pdf>
+Package pdftex.def Info: interfaceinterfaces_1_1performances__coll__graph.pdf u
+sed on input line 10.
+(pdftex.def)             Requested size: 204.0pt x 144.00809pt.
+)
+(./classplantvar.tex [58 <./interfaceinterfaces_1_1performances__coll__graph.pd
+f>] <classplantvar__coll__graph.pdf, id=3632, 160.6pt x 275.0275pt>
 File: classplantvar__coll__graph.pdf Graphic file (type pdf)
 
 <use classplantvar__coll__graph.pdf>
 Package pdftex.def Info: classplantvar__coll__graph.pdf used on input line 15.
 (pdftex.def)             Requested size: 160.0pt x 274.00705pt.
- [39 <./interfacegraphtools_1_1obj_function__coll__graph.pdf>] [40 <./classplan
-tvar__coll__graph.pdf>] [41] [42])
-(./interfacefiletools_1_1read_keyword.tex
-<interfacefiletools_1_1read_keyword__coll__graph.pdf, id=2713, 192.72pt x 144.5
+ [59 <./classplantvar__coll__graph.pdf>]
+[60] [61] [62]) (./interfacefiletools_1_1read_keyword.tex
+<interfacefiletools_1_1read_keyword__coll__graph.pdf, id=3725, 192.72pt x 144.5
 4pt>
 File: interfacefiletools_1_1read_keyword__coll__graph.pdf Graphic file (type pd
 f)
@@ -1487,207 +1613,330 @@ f)
 Package pdftex.def Info: interfacefiletools_1_1read_keyword__coll__graph.pdf us
 ed on input line 10.
 (pdftex.def)             Requested size: 192.0pt x 143.99927pt.
-
-Underfull \vbox (badness 7851) has occurred while \output is active []
-
- [43])
+ [63 <./interfacefiletools_1_1read_keyword__coll__graph.pdf>])
 (./interfacefiletools_1_1rew_unit.tex
-<interfacefiletools_1_1rew_unit__coll__graph.pdf, id=2721, 170.6375pt x 144.54p
+<interfacefiletools_1_1rew_unit__coll__graph.pdf, id=3739, 170.6375pt x 144.54p
 t>
 File: interfacefiletools_1_1rew_unit__coll__graph.pdf Graphic file (type pdf)
  <use interfacefiletools_1_1rew_unit__coll__graph.pdf>
 Package pdftex.def Info: interfacefiletools_1_1rew_unit__coll__graph.pdf used o
 n input line 10.
 (pdftex.def)             Requested size: 170.0pt x 144.00809pt.
- [44 <./interfacefiletools_1_1read_keyword__coll__graph.pdf> <./interfacefileto
-ols_1_1rew_unit__coll__graph.pdf
+ [64 <./interfacefiletools_1_1rew_unit__coll__graph.pdf>]) (./classshared.tex
+<classshared__coll__graph.pdf, id=3756, 126.4725pt x 170.6375pt>
+File: classshared__coll__graph.pdf Graphic file (type pdf)
 
-pdfTeX warning: pdflatex (file ./interfacefiletools_1_1rew_unit__coll__graph.pd
-f): PDF inclusion: multiple pdfs with page group included in a single page
->]) (./interfacefiletools_1_1v_count.tex
-<interfacefiletools_1_1v_count__coll__graph.pdf, id=2741, 168.63pt x 144.54pt>
+<use classshared__coll__graph.pdf>
+Package pdftex.def Info: classshared__coll__graph.pdf used on input line 10.
+(pdftex.def)             Requested size: 126.0pt x 170.00436pt.
+) (./interfacegraphtools_1_1time_constr.tex
+<interfacegraphtools_1_1time_constr__coll__graph.pdf, id=3763, 196.735pt x 144.
+54pt>
+File: interfacegraphtools_1_1time_constr__coll__graph.pdf Graphic file (type pd
+f)
+ <use interfacegraphtools_1_1time_constr__coll__graph.pdf>
+Package pdftex.def Info: interfacegraphtools_1_1time_constr__coll__graph.pdf us
+ed on input line 10.
+(pdftex.def)             Requested size: 196.0pt x 143.99927pt.
+ [65 <./classshared__coll__graph.pdf>]) (./interfacefiletools_1_1v_count.tex
+<interfacefiletools_1_1v_count__coll__graph.pdf, id=3780, 168.63pt x 144.54pt>
 File: interfacefiletools_1_1v_count__coll__graph.pdf Graphic file (type pdf)
 
 <use interfacefiletools_1_1v_count__coll__graph.pdf>
 Package pdftex.def Info: interfacefiletools_1_1v_count__coll__graph.pdf used on
  input line 10.
 (pdftex.def)             Requested size: 168.0pt x 144.00368pt.
-)
-(./interfaceinterfaces_1_1warning.tex [45 <./interfacefiletools_1_1v_count__col
-l__graph.pdf>]
-<interfaceinterfaces_1_1warning__coll__graph.pdf, id=2758, 178.6675pt x 144.54p
+ [66 <./interfacegraphtools_1_1time_constr__coll__graph.pdf> <./interfacefileto
+ols_1_1v_count__coll__graph.pdf
+
+pdfTeX warning: pdflatex (file ./interfacefiletools_1_1v_count__coll__graph.pdf
+): PDF inclusion: multiple pdfs with page group included in a single page
+>]) (./interfaceinterfaces_1_1warning.tex
+<interfaceinterfaces_1_1warning__coll__graph.pdf, id=3800, 178.6675pt x 144.54p
 t>
 File: interfaceinterfaces_1_1warning__coll__graph.pdf Graphic file (type pdf)
  <use interfaceinterfaces_1_1warning__coll__graph.pdf>
 Package pdftex.def Info: interfaceinterfaces_1_1warning__coll__graph.pdf used o
 n input line 10.
 (pdftex.def)             Requested size: 178.0pt x 144.00809pt.
-) [46 <./interfaceinterfaces_1_1warning__coll__graph.pdf>]
-Chapter 4.
+ [67 <./interfaceinterfaces_1_1warning__coll__graph.pdf>]) [68]
+Chapter 6.
 (./abort_execution_8f90.tex
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 7.19995pt on input line 17.
 
-Underfull \vbox (badness 10000) detected at line 52
+Underfull \vbox (badness 10000) detected at line 53
  []
 
 ) (./aiuto_8f90.tex
-Underfull \vbox (badness 4001) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [47
+ [69
 
 ])
-(./allocate_var_8f90.tex [48]
+(./allocate_var_8f90.tex [70]
 Underfull \vbox (badness 10000) detected at line 41
  []
 
-) (./build_plant_8f90.tex) (./check_plant_8f90.tex [49]) (./cmd_var_8f90.tex)
-(./commandline_8f90.tex [50]) (./constraints_8f90.tex [51]
-Underfull \vbox (badness 10000) detected at line 43
+) (./build_plant_8f90.tex) (./check_plant_8f90.tex [71]) (./cmd_var_8f90.tex)
+(./cmd_var_wr_8f90.tex [72]) (./command_8f90.tex) (./commandline_8f90.tex)
+(./constraints_8f90.tex [73]
+Underfull \vbox (badness 10000) detected at line 45
  []
 
-) (./economy_8f90.tex) (./end_execution_8f90.tex [52]) (./energy_8f90.tex)
-(./file_tools_8f90.tex [53]) (./find_entry2_8f90.tex
+) (./deallocate_var_8f90.tex [74]
+Underfull \vbox (badness 10000) detected at line 26
+ []
+
+) (./economy_8f90.tex) (./end_execution_8f90.tex [75]) (./energy_8f90.tex)
+(./euristics_8f90.tex) (./file_tools_8f90.tex [76]) (./find_entry2_8f90.tex
+[77]
 Underfull \vbox (badness 10000) detected at line 62
  []
 
-[54]
+
 Underfull \vbox (badness 10000) detected at line 107
  []
 
-
+[78]
 Underfull \vbox (badness 10000) detected at line 147
  []
 
-[55]
+
 Underfull \vbox (badness 10000) detected at line 192
  []
 
-) (./graph_tools_8f90.tex) (./h_count_8f90.tex [56]
+) (./global_results_8f90.tex [79]) (./graph_tools_8f90.tex) (./h_count_8f90.tex
+[80]
 Underfull \vbox (badness 10000) detected at line 42
  []
 
-) (./input_var_8f90.tex [57]) (./interfaces_8f90.tex) (./interpolation_8f90.tex
-[58]
+) (./input_var_8f90.tex) (./interfaces_8f90.tex [81]) (./interpolation_8f90.tex
+
 Underfull \vbox (badness 10000) detected at line 52
  []
 
-) (./main_8f90.tex
+) (./main_8f90.tex [82]
 Underfull \hbox (badness 7685) in paragraph at lines 47--48
 []\T1/phv/m/n/10 References graphtools-::allcombin(), build-plant(), com-man-d-
 line(), en-dex-e-cu-tion(), graphtools-::grapharcs(),
  []
 
-) (./math_tools_8f90.tex [59]) (./matrix_read2_8f90.tex [60]
+) (./manual_8f90.tex) (./math_tools_8f90.tex) (./matrix_read2_8f90.tex [83]
+[84]
 Underfull \vbox (badness 10000) detected at line 82
  []
 
-[61]
+[85]
 Underfull \vbox (badness 10000) detected at line 143
  []
 
-[62]
+[86]
 Underfull \vbox (badness 10000) detected at line 204
  []
 
-[63]
+
 Underfull \vbox (badness 10000) detected at line 242
  []
 
-) (./my_arithmetic_8f90.tex) (./obj_function_8f90.tex [64]
+) (./my_arithmetic_8f90.tex [87]) (./obj_function_8f90.tex
 Underfull \vbox (badness 10000) detected at line 44
  []
 
-) (./open_unit_8f90.tex [65]
+) (./open_unit_8f90.tex [88]
 Underfull \vbox (badness 10000) detected at line 44
  []
 
-) (./plant_var_8f90.tex) (./prototipo_8f90.tex [66]) (./read_boiler_8f90.tex
-[67]) (./read_chiller_8f90.tex [68]) (./read_general_8f90.tex [69])
-(./read_keyword_8f90.tex [70]
+) (./output_8f90.tex [89]
+Underfull \hbox (badness 1281) in paragraph at lines 41--42
+[]\T1/phv/m/n/10 References energy-::chprod(), energy-::elprod(), energy-::ener
+gyinput(), economy-::firecost(), energy-::fuelcons(),
+ []
+
+) (./performances_8f90.tex) (./plant_var_8f90.tex [90]) (./prototipo_8f90.tex)
+(./read_boiler_8f90.tex [91]
+Underfull \hbox (badness 2961) in paragraph at lines 59--60
+[]\T1/phv/m/n/10 References abor-tex-e-cu-tion(), al-lo-cat-e-var(), dma-trixre
+ad(), hcount(), ifind-en-try(), read-key-word(), rewu-nit(),
+ []
+
+) (./read_chiller_8f90.tex [92]) (./read_env_8f90.tex [93])
+(./read_general_8f90.tex [94]) (./read_keyword_8f90.tex [95]
 Underfull \vbox (badness 10000) detected at line 67
  []
 
-) (./read_load_8f90.tex [71]) (./read_trigen_8f90.tex [72])
-(./rew_unit_8f90.tex
+) (./read_load_8f90.tex [96]) (./read_steam_plant_8f90.tex [97])
+(./read_trigen_8f90.tex
+Underfull \hbox (badness 2961) in paragraph at lines 59--60
+[]\T1/phv/m/n/10 References abor-tex-e-cu-tion(), al-lo-cat-e-var(), dma-trixre
+ad(), hcount(), ifind-en-try(), read-key-word(), rewu-nit(),
+ []
+
+) (./rew_unit_8f90.tex [98]
 Underfull \vbox (badness 10000) detected at line 41
  []
 
-) (./v_count_8f90.tex [73]
+) (./shared_8f90.tex [99]) (./v_count_8f90.tex [100]
 Underfull \vbox (badness 10000) detected at line 67
  []
 
-[74]) (./warning_8f90.tex
+) (./warning_8f90.tex
 Underfull \vbox (badness 10000) detected at line 53
  []
 
-) (./refman.ind [75]
+[101]) (./refman.ind [102]
 Underfull \hbox (badness 10000) in paragraph at lines 3--5
-[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Fortran-Code/src/abort-Execution.-f90,
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/abort-Execution.-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--9
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/allocate-Var.-f90,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--11
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/build-Plant.-f90,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--13
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/check-Plant.-f90,
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 15--17
-[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Fortran-Code/src/commandline.-f90,
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/cmd-Var-Wr.-f90,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--19
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/command.-f90,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--21
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/commandline.-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 21--23
-[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Fortran-Code/src/end-Execution.-f90,
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/constraints.-f90,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--25
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/deallocate-Var.-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--29
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/end-Execution.-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 35--37
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/find-Entry2.-f90,
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 37--39
-[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Fortran-Code/src/interpolation.-f90,
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/global-Results.-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 43--45
-[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Fortran-Code/src/matrix-Read2.-f90,
+Underfull \hbox (badness 10000) in paragraph at lines 39--41
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/graph-Tools.-f90,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 45--47
-[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Fortran-Code/src/my-Arithmetic.-f90,
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/interpolation.-f90,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 53--55
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/math-Tools.-f90,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--57
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/matrix-Read2.-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--59
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/my-Arithmetic.-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 59--61
-[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Fortran-Code/src/read-General.-f90,
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/obj-Function.-f90,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--63
-[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Fortran-Code/src/read-Keyword.-f90,
+Underfull \hbox (badness 10000) in paragraph at lines 65--67
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/performances.-
  []
 
-[76
 
-] [77] [78] [79] [80] [81
+Underfull \hbox (badness 10000) in paragraph at lines 71--73
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/read-Boiler.-f90,
+ []
 
-])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 135.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 135.
+
+Underfull \hbox (badness 10000) in paragraph at lines 73--75
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/read-Chiller.-f90,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--79
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/read-General.-f90,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--81
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/read-Keyword.-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 83--85
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/read-Steam-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--87
+[]\T1/phv/m/n/10 /home/-Codici/-Blink/-Power-Manager/src/read-Trigen.-f90,
+ []
+
+[103
+
+] [104] [105] [106] [107] [108] [109] [110])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 160.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 160.
  (./refman.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 135.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 135.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 160.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 160.
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: 6346A6A22533A07D3201C12C7A8F7745;61660.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 135.
+(rerunfilecheck)             Checksum: 7E9958CB76E82128A8B97F31609E33C9;83659.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 160.
  ) 
 Here is how much of TeX's memory you used:
- 13109 strings out of 495059
- 202712 string characters out of 3182029
- 290052 words of memory out of 3000000
- 15099 multiletter control sequences out of 15000+200000
+ 13729 strings out of 495059
+ 219706 string characters out of 3182030
+ 294555 words of memory out of 3000000
+ 15372 multiletter control sequences out of 15000+200000
  69102 words of font info for 95 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 41i,13n,58p,728b,512s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,13n,58p,728b,529s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{warning_8f90_source} has been referenced but does
  not exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{v_count_8f90_source} has been referenced but does n
 ot exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{shared_8f90_source} has been referenced but does no
+t exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{rew_unit_8f90_source} has been referenced but does 
 not exist, replaced by a fixed one
@@ -1715,6 +1964,12 @@ pdfTeX warning (dest): name{prototipo_8f90_source} has been referenced but does
 
 pdfTeX warning (dest): name{plant_var_8f90_source} has been referenced but does
  not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{performances_8f90_source} has been referenced but d
+oes not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{output_8f90_source} has been referenced but does no
+t exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{open_unit_8f90_source} has been referenced but does
  not exist, replaced by a fixed one
@@ -1755,6 +2010,9 @@ es not exist, replaced by a fixed one
 pdfTeX warning (dest): name{file_tools_8f90_source} has been referenced but doe
 s not exist, replaced by a fixed one
 
+pdfTeX warning (dest): name{euristics_8f90_source} has been referenced but does
+ not exist, replaced by a fixed one
+
 pdfTeX warning (dest): name{energy_8f90_source} has been referenced but does no
 t exist, replaced by a fixed one
 
@@ -1769,6 +2027,9 @@ es not exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{commandline_8f90_source} has been referenced but do
 es not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{command_8f90_source} has been referenced but does n
+ot exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{cmd_var_8f90_source} has been referenced but does n
 ot exist, replaced by a fixed one
@@ -1801,10 +2062,10 @@ f-dist/fonts/type1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-dist/font
 s/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symb
 ol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on refman.pdf (93 pages, 407116 bytes).
+Output written on refman.pdf (126 pages, 499307 bytes).
 PDF statistics:
- 3768 PDF objects out of 4296 (max. 8388607)
- 3569 compressed objects within 36 object streams
- 803 named destinations out of 1000 (max. 500000)
- 2952 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 5127 PDF objects out of 5155 (max. 8388607)
+ 4866 compressed objects within 49 object streams
+ 1099 named destinations out of 1200 (max. 500000)
+ 4024 words of extra memory for PDF output out of 10000 (max. 10000000)
 

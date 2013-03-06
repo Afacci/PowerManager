@@ -1,5 +1,5 @@
-\hypertarget{interpolation_8f90}{\section{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/interpolation.f90 File Reference}
-\label{interpolation_8f90}\index{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/interpolation.\-f90@{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/interpolation.\-f90}}
+\hypertarget{interpolation_8f90}{\section{/home/\-Codici/\-Blink/\-Power\-Manager/src/interpolation.f90 File Reference}
+\label{interpolation_8f90}\index{/home/\-Codici/\-Blink/\-Power\-Manager/src/interpolation.\-f90@{/home/\-Codici/\-Blink/\-Power\-Manager/src/interpolation.\-f90}}
 }
 
 
@@ -9,8 +9,8 @@ Remaps a discrete scalar field on a given 1d grid.
 \subsection*{Functions/\-Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-real(kind(1.d0)) function, \\*
-dimension(m) \hyperlink{interpolation_8f90_abf4c9a66d390bb689405c6a16a088575}{interpolation} (x\-In, y\-In, n, x\-Out, m, warn)
+real(kind=prec) function, \\*
+dimension(m) \hyperlink{interpolation_8f90_af82151c6134b883711c2a1fa732ca69a}{interpolation} (x\-In, y\-In, n, x\-Out, m, warn)
 \begin{DoxyCompactList}\small\item\em Remaps a discrete scalar field on a given 1d grid. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -25,18 +25,18 @@ Definition in file \hyperlink{interpolation_8f90_source}{interpolation.\-f90}.
 
 
 \subsection{Function/\-Subroutine Documentation}
-\hypertarget{interpolation_8f90_abf4c9a66d390bb689405c6a16a088575}{\index{interpolation.\-f90@{interpolation.\-f90}!interpolation@{interpolation}}
+\hypertarget{interpolation_8f90_af82151c6134b883711c2a1fa732ca69a}{\index{interpolation.\-f90@{interpolation.\-f90}!interpolation@{interpolation}}
 \index{interpolation@{interpolation}!interpolation.f90@{interpolation.\-f90}}
-\subsubsection[{interpolation}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function, dimension(m) interpolation (
+\subsubsection[{interpolation}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function, dimension(m) interpolation (
 \begin{DoxyParamCaption}
-\item[{real(kind(1.d0)), dimension(n), intent(in)}]{x\-In, }
-\item[{real(kind(1.d0)), dimension(n), intent(in)}]{y\-In, }
+\item[{real(kind = prec), dimension(n), intent(in)}]{x\-In, }
+\item[{real(kind = prec), dimension(n), intent(in)}]{y\-In, }
 \item[{integer, intent(in)}]{n, }
-\item[{real(kind(1.d0)), dimension(m), intent(in)}]{x\-Out, }
+\item[{real(kind = prec), dimension(m), intent(in)}]{x\-Out, }
 \item[{integer, intent(in)}]{m, }
 \item[{integer, dimension(2), intent(out), optional}]{warn}
 \end{DoxyParamCaption}
-)}}\label{interpolation_8f90_abf4c9a66d390bb689405c6a16a088575}
+)}}\label{interpolation_8f90_af82151c6134b883711c2a1fa732ca69a}
 This subroutine takes a discrete scalar field defined over a 1d grid and remaps it on another 1d mesh given as input. If any of the values in the new mesh is outside the range defined by the oiginal grid, values are extrapolated and an optional warning code is returned. 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em x\-In,y\-In} & grid and values of the 1d field to be mapped \\

@@ -21,13 +21,19 @@
 !    Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 !
 !>\file 
-!>\brief File  prototype. 
-!>\details this is the prototype for all the files of the PowerManger project.
-!> Copy, rename, and modify this this file to create a new procedure or module.
-!>\Author 
+!>\file euristics.f90
+!>\brief Module that contains the function to apply an euristics to the graph. 
+!>\details 
+!> Module that contains the function to apply an euristics to the graph. in order to reduce the number of points and arcs of the graph.
+!>\author 
 !>     Andrea Facci.
 !
 !---------------------------------------------------------------------------
+
+!>\brief Module that contains the function to apply an euristics to the graph. 
+!>\details 
+!> Module that contains the function to apply an euristics to the graph. in order to reduce the number of points and arcs of the graph.
+!>\author Andrea Facci
 
 module euristics
 
@@ -52,6 +58,15 @@ end interface
 
 contains
   
+!>\brief Rejects solutions with excess of thermal production.
+!>\details Rejects the points where an excess thermal production is achieved
+!> using fuel boilers. If there is a constraint on the duration of the on or
+!> off intervals the possibility to operate the boilers at minimum load even when
+!> not strictly necessary is considered.
+!>\param[in] c  index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
+!>\param[in] t  time-step index
+!>\author Andrea Facci
+
   logical function thRedundant(c,t)
 
   !---Declare Module usage---
@@ -112,7 +127,14 @@ contains
   end function thRedundant
 
 !==================================================================
-
+!>\brief Rejects solutions with excess of chilling production.
+!>\details Rejects the points where an excess chilling production is achieved
+!> using mechanical chillers. If there is a constraint on the duration of the on or
+!> off intervals the possibility to operate the chillers at minimum load even when
+!> not strictly necessary is considered.
+!>\param[in] c  index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
+!>\param[in] t  time-step index
+!>\author Andrea Facci
   logical function chRedundant(c,t)
 
   !---Declare Module usage---

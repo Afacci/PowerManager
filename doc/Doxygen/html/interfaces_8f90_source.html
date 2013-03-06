@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>PowerManager: /home/andrea/Desktop/FortranCodeBW/src/interfaces.f90 Source File</title>
+<title>PowerManager: /home/Codici/Blink/PowerManager/src/interfaces.f90 Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -136,33 +136,49 @@ $(document).ready(function(){initNavTree('interfaces_8f90_source.html','');});
 <div class="line"><a name="l00035"></a><span class="lineno"><a class="code" href="classinterfaces.html">   35</a></span>&#160;<span class="keyword">module</span> <a class="code" href="classinterfaces.html">interfaces</a></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">interface</span> </div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="interfaceinterfaces_1_1abort_execution.html#a8af77035559d5f1eee0e3b9c3843a08d">   38</a></span>&#160;<span class="keyword">    subroutine </span><a class="code" href="abort_execution_8f90.html#a77d76bae2ec6572915c5c3e0795bcb76">abortexecution</a>(i,j,line,word,r1,r2)</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordtype">implicit none</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordtype">integer</span>, <span class="keywordtype">intent(in)</span>, <span class="keywordtype">optional</span>          :: i,j</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordtype">integer</span>, <span class="keywordtype">intent(in)</span>, <span class="keywordtype">optional</span>          :: line</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">character(len=*)</span>, <span class="keywordtype">intent(in)</span>, <span class="keywordtype">optional</span> :: word</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">real(kind(1.d0))</span>, <span class="keywordtype">intent(in)</span>, <span class="keywordtype">optional</span> :: r1, r2</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">    end subroutine </span><a class="code" href="abort_execution_8f90.html#a77d76bae2ec6572915c5c3e0795bcb76">abortexecution</a></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">end interface</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">interface</span> </div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="code" href="interfaceinterfaces_1_1warning.html#a167b4a1eeeff911a881c3159e243147d">   48</a></span>&#160;<span class="keyword">    subroutine </span><a class="code" href="interfaceinterfaces_1_1warning.html">warning</a>(i,j,k,line,word,r1,r2)</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordtype">implicit none</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordtype">integer</span>, <span class="keywordtype">intent(in)</span>, <span class="keywordtype">optional</span>          :: i,j,k</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordtype">integer</span>, <span class="keywordtype">intent(in)</span>, <span class="keywordtype">optional</span>          :: line</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordtype">character(len=*)</span>, <span class="keywordtype">intent(in)</span>, <span class="keywordtype">optional</span> :: word</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordtype">real(kind(1.d0))</span>, <span class="keywordtype">intent(in)</span>, <span class="keywordtype">optional</span> :: r1, r2</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">    end subroutine </span><a class="code" href="interfaceinterfaces_1_1warning.html">warning</a></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">end interface</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">end module </span><a class="code" href="classinterfaces.html">interfaces</a></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="interfaceinterfaces_1_1abort_execution.html#a80e28af83055359ee64f57fb1a7fa48b">   38</a></span>&#160;<span class="keyword">    subroutine </span><a class="code" href="abort_execution_8f90.html#af9fd9adc11792b7ac163e6d936be8995">abortexecution</a>(i,j,line,word,r1,r2, iVec)</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordtype">use </span><a class="code" href="classshared.html">shared</a></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordtype">implicit none</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordtype">integer</span>, <span class="keywordtype">intent(in)</span>, <span class="keywordtype">optional</span>          :: i,j</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">real(kind = prec)</span>, <span class="keywordtype">intent(in)</span>, <span class="keywordtype">dimension(*)</span>, <span class="keywordtype">optional</span> :: ivec</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">integer</span>, <span class="keywordtype">intent(in)</span>, <span class="keywordtype">optional</span>          :: line</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordtype">character(len=*)</span>, <span class="keywordtype">intent(in)</span>, <span class="keywordtype">optional</span> :: word</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">real(kind = prec)</span>, <span class="keywordtype">intent(in)</span>, <span class="keywordtype">optional</span> :: r1, r2</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">    end subroutine </span><a class="code" href="abort_execution_8f90.html#af9fd9adc11792b7ac163e6d936be8995">abortexecution</a></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">end interface</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">interface</span> </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="code" href="interfaceinterfaces_1_1warning.html#a167b4a1eeeff911a881c3159e243147d">   50</a></span>&#160;<span class="keyword">    subroutine </span><a class="code" href="interfaceinterfaces_1_1warning.html">warning</a>(i,j,k,line,word,r1,r2)</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordtype">use </span><a class="code" href="classshared.html">shared</a></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordtype">implicit none</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordtype">integer</span>, <span class="keywordtype">intent(in)</span>, <span class="keywordtype">optional</span>          :: i,j,k</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordtype">integer</span>, <span class="keywordtype">intent(in)</span>, <span class="keywordtype">optional</span>          :: line</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordtype">character(len=*)</span>, <span class="keywordtype">intent(in)</span>, <span class="keywordtype">optional</span> :: word</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">real(kind = prec)</span>, <span class="keywordtype">intent(in)</span>, <span class="keywordtype">optional</span> :: r1, r2</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">    end subroutine </span><a class="code" href="interfaceinterfaces_1_1warning.html">warning</a></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">end interface</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">interface</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="code" href="interfaceinterfaces_1_1performances.html#a974c64e6d2f0a16c66c24bf3799de6f6">   61</a></span>&#160;<span class="keyword">    subroutine </span><a class="code" href="interfaceinterfaces_1_1performances.html">performances</a>(c, cOld, equip, num,t, pEl, pTh, pCh, eIn, mf, cfu,cm,cOn) </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordtype">use </span><a class="code" href="classshared.html">shared</a></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordtype">use </span><a class="code" href="classinputvar.html">inputvar</a></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordtype">use </span><a class="code" href="classplantvar.html">plantvar</a></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">implicit none</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordtype">integer</span>, <span class="keywordtype">intent(in)</span> :: c, num, t</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordtype">integer</span>, <span class="keywordtype">intent(in)</span>, <span class="keywordtype">optional</span> :: cold</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordtype">character(len=*)</span>, <span class="keywordtype">intent(in)</span> :: equip</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordtype">real(kind = prec)</span>, <span class="keywordtype">intent(out)</span>, <span class="keywordtype">optional</span> :: pel, pth, pch, ein, mf, cfu,cm,con</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">    end subroutine </span><a class="code" href="interfaceinterfaces_1_1performances.html">performances</a></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keyword">end interface</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keyword">end module </span><a class="code" href="classinterfaces.html">interfaces</a></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="interfaces_8f90.html">interfaces.f90</a></li>
-    <li class="footer">Generated on Tue Jan 29 2013 11:17:03 for PowerManager by
+    <li class="footer">Generated on Wed Mar 6 2013 15:25:15 for PowerManager by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

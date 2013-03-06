@@ -1,5 +1,5 @@
-\hypertarget{matrix_read2_8f90}{\section{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/matrix\-Read2.f90 File Reference}
-\label{matrix_read2_8f90}\index{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/matrix\-Read2.\-f90@{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/matrix\-Read2.\-f90}}
+\hypertarget{matrix_read2_8f90}{\section{/home/\-Codici/\-Blink/\-Power\-Manager/src/matrix\-Read2.f90 File Reference}
+\label{matrix_read2_8f90}\index{/home/\-Codici/\-Blink/\-Power\-Manager/src/matrix\-Read2.\-f90@{/home/\-Codici/\-Blink/\-Power\-Manager/src/matrix\-Read2.\-f90}}
 }
 
 
@@ -9,8 +9,8 @@ reads 2\-D array of values from a file
 \subsection*{Functions/\-Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-real(kind(1.d0)) function, \\*
-dimension(nline, ncol) \hyperlink{matrix_read2_8f90_a2a8cd6e54d2e10751ce52e8a50091191}{dmatrixread} (the\-Unit, nline, ncol, first\-\_\-, last\-\_\-)
+real(kind=prec) function, \\*
+dimension(nline, ncol) \hyperlink{matrix_read2_8f90_ae4323e4e0e0e6ecb1e6bc40ccb4bec64}{dmatrixread} (the\-Unit, nline, ncol, first\-\_\-, last\-\_\-)
 \begin{DoxyCompactList}\small\item\em reads 2\-D array of double precision values from a file. \end{DoxyCompactList}\item 
 integer function, dimension(nline, \\*
 ncol) \hyperlink{matrix_read2_8f90_a9bbb90a3f70ad54afe3a0c51af1396d7}{imatrixread} (the\-Unit, nline, ncol, first\-\_\-, last\-\_\-)
@@ -85,7 +85,7 @@ Andrea Facci.
 \end{DoxyAuthor}
 
 
-Definition at line 286 of file matrix\-Read2.\-f90.
+Definition at line 289 of file matrix\-Read2.\-f90.
 
 
 
@@ -93,11 +93,11 @@ References matrixread().
 
 
 
-Referenced by readloads().
+Referenced by readenv(), and readloads().
 
-\hypertarget{matrix_read2_8f90_a2a8cd6e54d2e10751ce52e8a50091191}{\index{matrix\-Read2.\-f90@{matrix\-Read2.\-f90}!dmatrixread@{dmatrixread}}
+\hypertarget{matrix_read2_8f90_ae4323e4e0e0e6ecb1e6bc40ccb4bec64}{\index{matrix\-Read2.\-f90@{matrix\-Read2.\-f90}!dmatrixread@{dmatrixread}}
 \index{dmatrixread@{dmatrixread}!matrixRead2.f90@{matrix\-Read2.\-f90}}
-\subsubsection[{dmatrixread}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function, dimension(nline,ncol) dmatrixread (
+\subsubsection[{dmatrixread}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec ) function, dimension(nline,ncol) dmatrixread (
 \begin{DoxyParamCaption}
 \item[{integer, intent(in)}]{the\-Unit, }
 \item[{integer, intent(in)}]{nline, }
@@ -105,7 +105,7 @@ Referenced by readloads().
 \item[{character(len=1), optional}]{first\-\_\-, }
 \item[{character(len=1), optional}]{last\-\_\-}
 \end{DoxyParamCaption}
-)}}\label{matrix_read2_8f90_a2a8cd6e54d2e10751ce52e8a50091191}
+)}}\label{matrix_read2_8f90_ae4323e4e0e0e6ecb1e6bc40ccb4bec64}
 This subroutine reads a 2\-D array of double precision values directly from a specified unit. The unit must be already opened and associated to the desired file. All the values to read must be written in \char`\"{}value\char`\"{} field of the text file that is between the two \char`\"{}$|$\char`\"{} (see the following box for an example of input text) and delimited by appropriate opening and closure delimiters. \begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
     begin 
        !Commented line
@@ -154,7 +154,7 @@ References matrixread().
 
 
 
-Referenced by readboiler(), readchillers(), readloads(), and readtrigen().
+Referenced by readboiler(), readchillers(), readenv(), readloads(), and readtrigen().
 
 \hypertarget{matrix_read2_8f90_a9bbb90a3f70ad54afe3a0c51af1396d7}{\index{matrix\-Read2.\-f90@{matrix\-Read2.\-f90}!imatrixread@{imatrixread}}
 \index{imatrixread@{imatrixread}!matrixRead2.f90@{matrix\-Read2.\-f90}}
@@ -207,7 +207,7 @@ Andrea Facci.
 \end{DoxyAuthor}
 
 
-Definition at line 187 of file matrix\-Read2.\-f90.
+Definition at line 188 of file matrix\-Read2.\-f90.
 
 
 
@@ -245,7 +245,7 @@ Andrea Facci.
 \end{DoxyAuthor}
 
 
-Definition at line 359 of file matrix\-Read2.\-f90.
+Definition at line 364 of file matrix\-Read2.\-f90.
 
 
 

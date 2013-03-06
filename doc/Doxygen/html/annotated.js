@@ -1,8 +1,11 @@
 var annotated =
 [
     [ "cmdvar", "classcmdvar.html", "classcmdvar" ],
+    [ "cmdvarwr", "classcmdvarwr.html", "classcmdvarwr" ],
+    [ "command", "classcommand.html", "classcommand" ],
     [ "economy", "classeconomy.html", "classeconomy" ],
     [ "energy", "classenergy.html", "classenergy" ],
+    [ "euristics", "classeuristics.html", "classeuristics" ],
     [ "filetools", "classfiletools.html", [
       [ "cFindEntry", "interfacefiletools_1_1c_find_entry.html", "interfacefiletools_1_1c_find_entry" ],
       [ "cMatrixRead", "interfacefiletools_1_1c_matrix_read.html", "interfacefiletools_1_1c_matrix_read" ],
@@ -17,13 +20,16 @@ var annotated =
       [ "rewUnit", "interfacefiletools_1_1rew_unit.html", "interfacefiletools_1_1rew_unit" ],
       [ "vCount", "interfacefiletools_1_1v_count.html", "interfacefiletools_1_1v_count" ]
     ] ],
+    [ "globalresults", "classglobalresults.html", "classglobalresults" ],
     [ "graphtools", "classgraphtools.html", "classgraphtools" ],
     [ "inputvar", "classinputvar.html", "classinputvar" ],
     [ "interfaces", "classinterfaces.html", [
       [ "abortExecution", "interfaceinterfaces_1_1abort_execution.html", "interfaceinterfaces_1_1abort_execution" ],
+      [ "performances", "interfaceinterfaces_1_1performances.html", "interfaceinterfaces_1_1performances" ],
       [ "warning", "interfaceinterfaces_1_1warning.html", "interfaceinterfaces_1_1warning" ]
     ] ],
     [ "mathtools", "classmathtools.html", "classmathtools" ],
     [ "myarithmetic", "classmyarithmetic.html", "classmyarithmetic" ],
-    [ "plantvar", "classplantvar.html", "classplantvar" ]
+    [ "plantvar", "classplantvar.html", "classplantvar" ],
+    [ "shared", "classshared.html", "classshared" ]
 ];

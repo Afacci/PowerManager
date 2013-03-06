@@ -1,752 +1,1022 @@
 \begin{theindex}
 
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/abort\discretionary {-}{}{}Execution.\discretionary {-}{}{}f90}, 
-		\hyperpage{47}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/aiuto.\discretionary {-}{}{}f90}, 
-		\hyperpage{48}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/allocate\discretionary {-}{}{}Var.\discretionary {-}{}{}f90}, 
-		\hyperpage{48}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/build\discretionary {-}{}{}Plant.\discretionary {-}{}{}f90}, 
-		\hyperpage{49}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/check\discretionary {-}{}{}Plant.\discretionary {-}{}{}f90}, 
-		\hyperpage{50}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/cmd\discretionary {-}{}{}Var.\discretionary {-}{}{}f90}, 
-		\hyperpage{50}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/commandline.\discretionary {-}{}{}f90}, 
-		\hyperpage{51}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/constraints.\discretionary {-}{}{}f90}, 
-		\hyperpage{51}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/economy.\discretionary {-}{}{}f90}, 
-		\hyperpage{52}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/end\discretionary {-}{}{}Execution.\discretionary {-}{}{}f90}, 
-		\hyperpage{52}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/energy.\discretionary {-}{}{}f90}, 
-		\hyperpage{53}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/file\discretionary {-}{}{}Tools.\discretionary {-}{}{}f90}, 
-		\hyperpage{53}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/find\discretionary {-}{}{}Entry2.\discretionary {-}{}{}f90}, 
-		\hyperpage{54}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/graph\discretionary {-}{}{}Tools.\discretionary {-}{}{}f90}, 
-		\hyperpage{56}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/h\discretionary {-}{}{}Count.\discretionary {-}{}{}f90}, 
-		\hyperpage{57}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/input\discretionary {-}{}{}Var.\discretionary {-}{}{}f90}, 
-		\hyperpage{57}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/interfaces.\discretionary {-}{}{}f90}, 
-		\hyperpage{58}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/interpolation.\discretionary {-}{}{}f90}, 
-		\hyperpage{58}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/main.\discretionary {-}{}{}f90}, 
-		\hyperpage{59}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/math\discretionary {-}{}{}Tools.\discretionary {-}{}{}f90}, 
-		\hyperpage{60}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/matrix\discretionary {-}{}{}Read2.\discretionary {-}{}{}f90}, 
-		\hyperpage{60}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/my\discretionary {-}{}{}Arithmetic.\discretionary {-}{}{}f90}, 
-		\hyperpage{64}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/obj\discretionary {-}{}{}Function.\discretionary {-}{}{}f90}, 
-		\hyperpage{65}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/open\discretionary {-}{}{}Unit.\discretionary {-}{}{}f90}, 
-		\hyperpage{65}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/plant\discretionary {-}{}{}Var.\discretionary {-}{}{}f90}, 
-		\hyperpage{66}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/prototipo.\discretionary {-}{}{}f90}, 
-		\hyperpage{66}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/read\discretionary {-}{}{}Boiler.\discretionary {-}{}{}f90}, 
-		\hyperpage{67}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/read\discretionary {-}{}{}Chiller.\discretionary {-}{}{}f90}, 
-		\hyperpage{68}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/read\discretionary {-}{}{}General.\discretionary {-}{}{}f90}, 
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/abort\discretionary {-}{}{}Execution.\discretionary {-}{}{}f90}, 
 		\hyperpage{69}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/read\discretionary {-}{}{}Keyword.\discretionary {-}{}{}f90}, 
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/aiuto.\discretionary {-}{}{}f90}, 
 		\hyperpage{70}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/read\discretionary {-}{}{}Load.\discretionary {-}{}{}f90}, 
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/allocate\discretionary {-}{}{}Var.\discretionary {-}{}{}f90}, 
+		\hyperpage{70}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/build\discretionary {-}{}{}Plant.\discretionary {-}{}{}f90}, 
 		\hyperpage{71}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/read\discretionary {-}{}{}Trigen.\discretionary {-}{}{}f90}, 
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/check\discretionary {-}{}{}Plant.\discretionary {-}{}{}f90}, 
 		\hyperpage{72}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/rew\discretionary {-}{}{}Unit.\discretionary {-}{}{}f90}, 
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/cmd\discretionary {-}{}{}Var.\discretionary {-}{}{}f90}, 
+		\hyperpage{72}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/cmd\discretionary {-}{}{}Var\discretionary {-}{}{}Wr.\discretionary {-}{}{}f90}, 
 		\hyperpage{73}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/v\discretionary {-}{}{}Count.\discretionary {-}{}{}f90}, 
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/command.\discretionary {-}{}{}f90}, 
 		\hyperpage{73}
-  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/warning.\discretionary {-}{}{}f90}, 
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/commandline.\discretionary {-}{}{}f90}, 
+		\hyperpage{73}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/constraints.\discretionary {-}{}{}f90}, 
+		\hyperpage{74}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/deallocate\discretionary {-}{}{}Var.\discretionary {-}{}{}f90}, 
+		\hyperpage{74}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/economy.\discretionary {-}{}{}f90}, 
 		\hyperpage{75}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/end\discretionary {-}{}{}Execution.\discretionary {-}{}{}f90}, 
+		\hyperpage{75}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/energy.\discretionary {-}{}{}f90}, 
+		\hyperpage{76}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/euristics.\discretionary {-}{}{}f90}, 
+		\hyperpage{76}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/file\discretionary {-}{}{}Tools.\discretionary {-}{}{}f90}, 
+		\hyperpage{77}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/find\discretionary {-}{}{}Entry2.\discretionary {-}{}{}f90}, 
+		\hyperpage{77}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/global\discretionary {-}{}{}Results.\discretionary {-}{}{}f90}, 
+		\hyperpage{80}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/graph\discretionary {-}{}{}Tools.\discretionary {-}{}{}f90}, 
+		\hyperpage{80}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/h\discretionary {-}{}{}Count.\discretionary {-}{}{}f90}, 
+		\hyperpage{80}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/input\discretionary {-}{}{}Var.\discretionary {-}{}{}f90}, 
+		\hyperpage{81}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/interfaces.\discretionary {-}{}{}f90}, 
+		\hyperpage{81}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/interpolation.\discretionary {-}{}{}f90}, 
+		\hyperpage{82}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/main.\discretionary {-}{}{}f90}, 
+		\hyperpage{82}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/manual.\discretionary {-}{}{}f90}, 
+		\hyperpage{83}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/math\discretionary {-}{}{}Tools.\discretionary {-}{}{}f90}, 
+		\hyperpage{83}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/matrix\discretionary {-}{}{}Read2.\discretionary {-}{}{}f90}, 
+		\hyperpage{84}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/my\discretionary {-}{}{}Arithmetic.\discretionary {-}{}{}f90}, 
+		\hyperpage{88}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/obj\discretionary {-}{}{}Function.\discretionary {-}{}{}f90}, 
+		\hyperpage{88}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/open\discretionary {-}{}{}Unit.\discretionary {-}{}{}f90}, 
+		\hyperpage{89}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/output.\discretionary {-}{}{}f90}, 
+		\hyperpage{89}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/performances.\discretionary {-}{}{}f90}, 
+		\hyperpage{90}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/plant\discretionary {-}{}{}Var.\discretionary {-}{}{}f90}, 
+		\hyperpage{90}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/prototipo.\discretionary {-}{}{}f90}, 
+		\hyperpage{91}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/read\discretionary {-}{}{}Boiler.\discretionary {-}{}{}f90}, 
+		\hyperpage{91}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/read\discretionary {-}{}{}Chiller.\discretionary {-}{}{}f90}, 
+		\hyperpage{92}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/read\discretionary {-}{}{}Env.\discretionary {-}{}{}f90}, 
+		\hyperpage{93}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/read\discretionary {-}{}{}General.\discretionary {-}{}{}f90}, 
+		\hyperpage{94}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/read\discretionary {-}{}{}Keyword.\discretionary {-}{}{}f90}, 
+		\hyperpage{95}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/read\discretionary {-}{}{}Load.\discretionary {-}{}{}f90}, 
+		\hyperpage{96}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/read\discretionary {-}{}{}Steam\discretionary {-}{}{}Plant.\discretionary {-}{}{}f90}, 
+		\hyperpage{97}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/read\discretionary {-}{}{}Trigen.\discretionary {-}{}{}f90}, 
+		\hyperpage{98}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/rew\discretionary {-}{}{}Unit.\discretionary {-}{}{}f90}, 
+		\hyperpage{99}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/shared.\discretionary {-}{}{}f90}, 
+		\hyperpage{99}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/v\discretionary {-}{}{}Count.\discretionary {-}{}{}f90}, 
+		\hyperpage{100}
+  \item {/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/warning.\discretionary {-}{}{}f90}, 
+		\hyperpage{101}
 
   \indexspace
 
   \item {abort\discretionary {-}{}{}Execution.\discretionary {-}{}{}f90}
-    \subitem {abortexecution}, \hyperpage{47}
+    \subitem {abortexecution}, \hyperpage{69}
   \item {abortexecution}
     \subitem {abort\discretionary {-}{}{}Execution.\discretionary {-}{}{}f90}, 
-		\hyperpage{47}
+		\hyperpage{69}
     \subitem {interfaces\discretionary {-}{}{}::abort\discretionary {-}{}{}Execution}, 
-		\hyperpage{5}
+		\hyperpage{9}
   \item {aiuto}
-    \subitem {aiuto.\discretionary {-}{}{}f90}, \hyperpage{48}
+    \subitem {aiuto.\discretionary {-}{}{}f90}, \hyperpage{70}
   \item {aiuto.\discretionary {-}{}{}f90}
-    \subitem {aiuto}, \hyperpage{48}
+    \subitem {aiuto}, \hyperpage{70}
   \item {allcombin}
-    \subitem {graphtools}, \hyperpage{21}
+    \subitem {graphtools}, \hyperpage{36}
   \item {allocate\discretionary {-}{}{}Var.\discretionary {-}{}{}f90}
-    \subitem {allocatevar}, \hyperpage{49}
+    \subitem {allocatevar}, \hyperpage{71}
   \item {allocatevar}
     \subitem {allocate\discretionary {-}{}{}Var.\discretionary {-}{}{}f90}, 
-		\hyperpage{49}
+		\hyperpage{71}
+  \item {altcorrb}
+    \subitem {inputvar}, \hyperpage{43}
+  \item {altcorrc}
+    \subitem {inputvar}, \hyperpage{43}
+  \item {altcorrt}
+    \subitem {inputvar}, \hyperpage{43}
+  \item {altitude}
+    \subitem {inputvar}, \hyperpage{44}
 
   \indexspace
 
   \item {build\discretionary {-}{}{}Plant.\discretionary {-}{}{}f90}
-    \subitem {buildplant}, \hyperpage{49}
+    \subitem {buildplant}, \hyperpage{71}
   \item {buildplant}
     \subitem {build\discretionary {-}{}{}Plant.\discretionary {-}{}{}f90}, 
-		\hyperpage{49}
+		\hyperpage{71}
 
   \indexspace
 
+  \item {cartella}
+    \subitem {command}, \hyperpage{14}
   \item {cch}
-    \subitem {inputvar}, \hyperpage{28}
+    \subitem {inputvar}, \hyperpage{44}
   \item {cel}
-    \subitem {inputvar}, \hyperpage{28}
+    \subitem {inputvar}, \hyperpage{44}
   \item {cf}
-    \subitem {plantvar}, \hyperpage{41}
+    \subitem {plantvar}, \hyperpage{60}
   \item {cfindentry}
     \subitem {filetools\discretionary {-}{}{}::c\discretionary {-}{}{}Find\discretionary {-}{}{}Entry}, 
-		\hyperpage{6}
+		\hyperpage{10}
     \subitem {find\discretionary {-}{}{}Entry2.\discretionary {-}{}{}f90}, 
-		\hyperpage{54}
+		\hyperpage{78}
   \item {check\discretionary {-}{}{}Plant.\discretionary {-}{}{}f90}
-    \subitem {checkplant}, \hyperpage{50}
+    \subitem {checkplant}, \hyperpage{72}
   \item {checkplant}
     \subitem {check\discretionary {-}{}{}Plant.\discretionary {-}{}{}f90}, 
-		\hyperpage{50}
+		\hyperpage{72}
   \item {chprod}
-    \subitem {energy}, \hyperpage{16}
+    \subitem {energy}, \hyperpage{23}
+  \item {chredundant}
+    \subitem {euristics}, \hyperpage{27}
   \item {chrev}
-    \subitem {economy}, \hyperpage{12}
+    \subitem {economy}, \hyperpage{18}
   \item {cmatrixread}
     \subitem {filetools\discretionary {-}{}{}::c\discretionary {-}{}{}Matrix\discretionary {-}{}{}Read}, 
-		\hyperpage{7}
+		\hyperpage{11}
     \subitem {matrix\discretionary {-}{}{}Read2.\discretionary {-}{}{}f90}, 
-		\hyperpage{61}
-  \item {cmdvar}, \hyperpage{7}
-    \subitem {silent}, \hyperpage{8}
-    \subitem {verb}, \hyperpage{8}
-    \subitem {vsilent}, \hyperpage{8}
+		\hyperpage{84}
+  \item {cmdvar}, \hyperpage{11}
+    \subitem {debug}, \hyperpage{12}
+    \subitem {out}, \hyperpage{12}
+    \subitem {silent}, \hyperpage{12}
+    \subitem {verb}, \hyperpage{12}
+    \subitem {vsilent}, \hyperpage{12}
+  \item {cmdvarwr}, \hyperpage{12}
+    \subitem {folder}, \hyperpage{13}
+  \item {cmdvarwrite}
+    \subitem {command}, \hyperpage{14}
+  \item {cogthprod}
+    \subitem {energy}, \hyperpage{23}
+  \item {command}, \hyperpage{13}
+    \subitem {cartella}, \hyperpage{14}
+    \subitem {cmdvarwrite}, \hyperpage{14}
+    \subitem {protected}, \hyperpage{14}
   \item {commandline}
-    \subitem {commandline.\discretionary {-}{}{}f90}, \hyperpage{51}
+    \subitem {commandline.\discretionary {-}{}{}f90}, \hyperpage{73}
   \item {commandline.\discretionary {-}{}{}f90}
-    \subitem {commandline}, \hyperpage{51}
+    \subitem {commandline}, \hyperpage{73}
   \item {constraints}
-    \subitem {constraints.\discretionary {-}{}{}f90}, \hyperpage{51}
+    \subitem {constraints.\discretionary {-}{}{}f90}, \hyperpage{74}
+    \subitem {euristics\discretionary {-}{}{}::constraints}, 
+		\hyperpage{15}
     \subitem {graphtools\discretionary {-}{}{}::constraints}, 
-		\hyperpage{9}
+		\hyperpage{15}
   \item {constraints.\discretionary {-}{}{}f90}
-    \subitem {constraints}, \hyperpage{51}
+    \subitem {constraints}, \hyperpage{74}
+    \subitem {timeconstr}, \hyperpage{74}
   \item {cr}
-    \subitem {plantvar}, \hyperpage{41}
+    \subitem {plantvar}, \hyperpage{60}
   \item {cref}
-    \subitem {plantvar}, \hyperpage{41}
+    \subitem {plantvar}, \hyperpage{60}
   \item {cth}
-    \subitem {inputvar}, \hyperpage{28}
+    \subitem {inputvar}, \hyperpage{44}
   \item {currcost}
-    \subitem {economy}, \hyperpage{12}
+    \subitem {economy}, \hyperpage{18}
 
   \indexspace
 
-  \item {degrateb}
-    \subitem {inputvar}, \hyperpage{28}
-  \item {degratec}
-    \subitem {inputvar}, \hyperpage{28}
-  \item {degratet}
-    \subitem {inputvar}, \hyperpage{28}
+  \item {deallocate\discretionary {-}{}{}Var.\discretionary {-}{}{}f90}
+    \subitem {deallocatevar}, \hyperpage{75}
+  \item {deallocatevar}
+    \subitem {deallocate\discretionary {-}{}{}Var.\discretionary {-}{}{}f90}, 
+		\hyperpage{75}
+  \item {debug}
+    \subitem {cmdvar}, \hyperpage{12}
   \item {dfindentry}
     \subitem {filetools\discretionary {-}{}{}::d\discretionary {-}{}{}Find\discretionary {-}{}{}Entry}, 
-		\hyperpage{9}
+		\hyperpage{16}
     \subitem {find\discretionary {-}{}{}Entry2.\discretionary {-}{}{}f90}, 
-		\hyperpage{55}
+		\hyperpage{78}
   \item {dmatrixread}
     \subitem {filetools\discretionary {-}{}{}::d\discretionary {-}{}{}Matrix\discretionary {-}{}{}Read}, 
-		\hyperpage{10}
+		\hyperpage{17}
     \subitem {matrix\discretionary {-}{}{}Read2.\discretionary {-}{}{}f90}, 
-		\hyperpage{62}
+		\hyperpage{85}
+  \item {downtime0}
+    \subitem {inputvar}, \hyperpage{44}
   \item {dt}
-    \subitem {plantvar}, \hyperpage{41}
+    \subitem {plantvar}, \hyperpage{61}
   \item {dt1}
-    \subitem {inputvar}, \hyperpage{28}
+    \subitem {inputvar}, \hyperpage{44}
 
   \indexspace
 
-  \item {economy}, \hyperpage{11}
-    \subitem {chrev}, \hyperpage{12}
-    \subitem {currcost}, \hyperpage{12}
-    \subitem {elrev}, \hyperpage{13}
-    \subitem {firecost}, \hyperpage{13}
-    \subitem {fuelcost}, \hyperpage{14}
-    \subitem {maintenancecost}, \hyperpage{14}
-    \subitem {threv}, \hyperpage{14}
+  \item {economy}, \hyperpage{17}
+    \subitem {chrev}, \hyperpage{18}
+    \subitem {currcost}, \hyperpage{18}
+    \subitem {elrev}, \hyperpage{19}
+    \subitem {firecost}, \hyperpage{20}
+    \subitem {fuelcost}, \hyperpage{20}
+    \subitem {grideconomy}, \hyperpage{21}
+    \subitem {maintenancecost}, \hyperpage{21}
+    \subitem {threv}, \hyperpage{21}
   \item {elprod}
-    \subitem {energy}, \hyperpage{16}
+    \subitem {energy}, \hyperpage{24}
   \item {elrev}
-    \subitem {economy}, \hyperpage{13}
+    \subitem {economy}, \hyperpage{19}
   \item {elselfcons}
-    \subitem {energy}, \hyperpage{17}
+    \subitem {energy}, \hyperpage{24}
   \item {end\discretionary {-}{}{}Execution.\discretionary {-}{}{}f90}
-    \subitem {endexecution}, \hyperpage{53}
+    \subitem {endexecution}, \hyperpage{76}
   \item {endexecution}
     \subitem {end\discretionary {-}{}{}Execution.\discretionary {-}{}{}f90}, 
-		\hyperpage{53}
-  \item {energy}, \hyperpage{15}
-    \subitem {chprod}, \hyperpage{16}
-    \subitem {elprod}, \hyperpage{16}
-    \subitem {elselfcons}, \hyperpage{17}
-    \subitem {fuelcons}, \hyperpage{17}
-    \subitem {thprod}, \hyperpage{18}
-    \subitem {thselfcons}, \hyperpage{18}
+		\hyperpage{76}
+  \item {energy}, \hyperpage{22}
+    \subitem {chprod}, \hyperpage{23}
+    \subitem {cogthprod}, \hyperpage{23}
+    \subitem {elprod}, \hyperpage{24}
+    \subitem {elselfcons}, \hyperpage{24}
+    \subitem {energyexhaust}, \hyperpage{24}
+    \subitem {energyinput}, \hyperpage{25}
+    \subitem {fuelcons}, \hyperpage{25}
+    \subitem {limitrecovery}, \hyperpage{25}
+    \subitem {thprod}, \hyperpage{26}
+    \subitem {thselfcons}, \hyperpage{26}
+  \item {energyexhaust}
+    \subitem {energy}, \hyperpage{24}
+  \item {energyinput}
+    \subitem {energy}, \hyperpage{25}
+  \item {envcorr}
+    \subitem {plantvar}, \hyperpage{61}
+  \item {esource}
+    \subitem {plantvar}, \hyperpage{61}
   \item {etab}
-    \subitem {inputvar}, \hyperpage{28}
+    \subitem {inputvar}, \hyperpage{44}
   \item {etab\discretionary {-}{}{}\_\discretionary {-}{}{}}
-    \subitem {plantvar}, \hyperpage{41}
+    \subitem {plantvar}, \hyperpage{61}
   \item {etac}
-    \subitem {inputvar}, \hyperpage{28}
+    \subitem {inputvar}, \hyperpage{44}
   \item {etac\discretionary {-}{}{}\_\discretionary {-}{}{}}
-    \subitem {plantvar}, \hyperpage{41}
+    \subitem {plantvar}, \hyperpage{61}
   \item {etach}
-    \subitem {plantvar}, \hyperpage{41}
+    \subitem {plantvar}, \hyperpage{61}
   \item {etacht}
-    \subitem {inputvar}, \hyperpage{28}
+    \subitem {inputvar}, \hyperpage{44}
   \item {etacht\discretionary {-}{}{}\_\discretionary {-}{}{}}
-    \subitem {plantvar}, \hyperpage{42}
+    \subitem {plantvar}, \hyperpage{61}
   \item {etael}
-    \subitem {plantvar}, \hyperpage{42}
+    \subitem {plantvar}, \hyperpage{61}
   \item {etaelt}
-    \subitem {inputvar}, \hyperpage{28}
+    \subitem {inputvar}, \hyperpage{44}
   \item {etaelt\discretionary {-}{}{}\_\discretionary {-}{}{}}
-    \subitem {plantvar}, \hyperpage{42}
+    \subitem {plantvar}, \hyperpage{61}
   \item {etath}
-    \subitem {plantvar}, \hyperpage{42}
+    \subitem {plantvar}, \hyperpage{61}
   \item {etatht}
-    \subitem {inputvar}, \hyperpage{28}
+    \subitem {inputvar}, \hyperpage{44}
   \item {etatht\discretionary {-}{}{}\_\discretionary {-}{}{}}
-    \subitem {plantvar}, \hyperpage{42}
+    \subitem {plantvar}, \hyperpage{61}
+  \item {euristics}, \hyperpage{27}
+    \subitem {chredundant}, \hyperpage{27}
+    \subitem {thredundant}, \hyperpage{28}
+  \item {euristics\discretionary {-}{}{}::constraints}, \hyperpage{15}
+    \subitem {constraints}, \hyperpage{15}
 
   \indexspace
 
-  \item {filetools}, \hyperpage{18}
+  \item {filetools}, \hyperpage{28}
   \item {filetools\discretionary {-}{}{}::c\discretionary {-}{}{}Find\discretionary {-}{}{}Entry}, 
-		\hyperpage{6}
-    \subitem {cfindentry}, \hyperpage{6}
-  \item {filetools\discretionary {-}{}{}::c\discretionary {-}{}{}Matrix\discretionary {-}{}{}Read}, 
-		\hyperpage{6}
-    \subitem {cmatrixread}, \hyperpage{7}
-  \item {filetools\discretionary {-}{}{}::d\discretionary {-}{}{}Find\discretionary {-}{}{}Entry}, 
-		\hyperpage{9}
-    \subitem {dfindentry}, \hyperpage{9}
-  \item {filetools\discretionary {-}{}{}::d\discretionary {-}{}{}Matrix\discretionary {-}{}{}Read}, 
 		\hyperpage{10}
-    \subitem {dmatrixread}, \hyperpage{10}
+    \subitem {cfindentry}, \hyperpage{10}
+  \item {filetools\discretionary {-}{}{}::c\discretionary {-}{}{}Matrix\discretionary {-}{}{}Read}, 
+		\hyperpage{10}
+    \subitem {cmatrixread}, \hyperpage{11}
+  \item {filetools\discretionary {-}{}{}::d\discretionary {-}{}{}Find\discretionary {-}{}{}Entry}, 
+		\hyperpage{16}
+    \subitem {dfindentry}, \hyperpage{16}
+  \item {filetools\discretionary {-}{}{}::d\discretionary {-}{}{}Matrix\discretionary {-}{}{}Read}, 
+		\hyperpage{16}
+    \subitem {dmatrixread}, \hyperpage{17}
   \item {filetools\discretionary {-}{}{}::find\discretionary {-}{}{}Entry}, 
-		\hyperpage{20}
-    \subitem {findentry}, \hyperpage{20}
+		\hyperpage{29}
+    \subitem {findentry}, \hyperpage{30}
   \item {filetools\discretionary {-}{}{}::h\discretionary {-}{}{}Count}, 
-		\hyperpage{23}
-    \subitem {hcount}, \hyperpage{23}
+		\hyperpage{38}
+    \subitem {hcount}, \hyperpage{38}
   \item {filetools\discretionary {-}{}{}::i\discretionary {-}{}{}Find\discretionary {-}{}{}Entry}, 
-		\hyperpage{23}
-    \subitem {ifindentry}, \hyperpage{24}
+		\hyperpage{38}
+    \subitem {ifindentry}, \hyperpage{39}
   \item {filetools\discretionary {-}{}{}::i\discretionary {-}{}{}Matrix\discretionary {-}{}{}Read}, 
-		\hyperpage{24}
-    \subitem {imatrixread}, \hyperpage{24}
+		\hyperpage{39}
+    \subitem {imatrixread}, \hyperpage{39}
   \item {filetools\discretionary {-}{}{}::matrix\discretionary {-}{}{}Read}, 
-		\hyperpage{36}
-    \subitem {matrixread}, \hyperpage{37}
+		\hyperpage{55}
+    \subitem {matrixread}, \hyperpage{55}
   \item {filetools\discretionary {-}{}{}::read\discretionary {-}{}{}Keyword}, 
-		\hyperpage{44}
-    \subitem {readkeyword}, \hyperpage{44}
+		\hyperpage{63}
+    \subitem {readkeyword}, \hyperpage{64}
   \item {filetools\discretionary {-}{}{}::rew\discretionary {-}{}{}Unit}, 
-		\hyperpage{44}
-    \subitem {rewunit}, \hyperpage{45}
+		\hyperpage{64}
+    \subitem {rewunit}, \hyperpage{64}
   \item {filetools\discretionary {-}{}{}::v\discretionary {-}{}{}Count}, 
-		\hyperpage{45}
-    \subitem {vcount}, \hyperpage{45}
+		\hyperpage{66}
+    \subitem {vcount}, \hyperpage{67}
   \item {find\discretionary {-}{}{}Entry2.\discretionary {-}{}{}f90}
-    \subitem {cfindentry}, \hyperpage{54}
-    \subitem {dfindentry}, \hyperpage{55}
-    \subitem {findentry}, \hyperpage{55}
-    \subitem {ifindentry}, \hyperpage{56}
+    \subitem {cfindentry}, \hyperpage{78}
+    \subitem {dfindentry}, \hyperpage{78}
+    \subitem {findentry}, \hyperpage{78}
+    \subitem {ifindentry}, \hyperpage{79}
   \item {findentry}
     \subitem {filetools\discretionary {-}{}{}::find\discretionary {-}{}{}Entry}, 
-		\hyperpage{20}
+		\hyperpage{30}
     \subitem {find\discretionary {-}{}{}Entry2.\discretionary {-}{}{}f90}, 
-		\hyperpage{55}
+		\hyperpage{78}
   \item {firecost}
-    \subitem {economy}, \hyperpage{13}
+    \subitem {economy}, \hyperpage{20}
   \item {firecostb}
-    \subitem {inputvar}, \hyperpage{28}
+    \subitem {inputvar}, \hyperpage{44}
   \item {firecostc}
-    \subitem {inputvar}, \hyperpage{29}
+    \subitem {inputvar}, \hyperpage{45}
   \item {firecostt}
-    \subitem {inputvar}, \hyperpage{29}
+    \subitem {inputvar}, \hyperpage{45}
+  \item {folder}
+    \subitem {cmdvarwr}, \hyperpage{13}
   \item {fuelcons}
-    \subitem {energy}, \hyperpage{17}
+    \subitem {energy}, \hyperpage{25}
   \item {fuelcost}
-    \subitem {economy}, \hyperpage{14}
+    \subitem {economy}, \hyperpage{20}
   \item {fuelcostb}
-    \subitem {inputvar}, \hyperpage{29}
+    \subitem {inputvar}, \hyperpage{45}
   \item {fuelcostt}
-    \subitem {inputvar}, \hyperpage{29}
+    \subitem {inputvar}, \hyperpage{45}
   \item {fuellhvb}
-    \subitem {inputvar}, \hyperpage{29}
+    \subitem {inputvar}, \hyperpage{45}
   \item {fuellhvt}
-    \subitem {inputvar}, \hyperpage{29}
+    \subitem {inputvar}, \hyperpage{45}
 
   \indexspace
 
+  \item {global}
+    \subitem {inputvar}, \hyperpage{45}
+  \item {globalresults}, \hyperpage{30}
+    \subitem {globchrev}, \hyperpage{31}
+    \subitem {globcost}, \hyperpage{31}
+    \subitem {globelrev}, \hyperpage{31}
+    \subitem {globfirecost}, \hyperpage{32}
+    \subitem {globfuelcost}, \hyperpage{33}
+    \subitem {globmaintcost}, \hyperpage{33}
+    \subitem {globprofit}, \hyperpage{34}
+    \subitem {globrevenues}, \hyperpage{34}
+    \subitem {globthrev}, \hyperpage{34}
+  \item {globchrev}
+    \subitem {globalresults}, \hyperpage{31}
+  \item {globcost}
+    \subitem {globalresults}, \hyperpage{31}
+  \item {globelrev}
+    \subitem {globalresults}, \hyperpage{31}
+  \item {globfirecost}
+    \subitem {globalresults}, \hyperpage{32}
+  \item {globfuelcost}
+    \subitem {globalresults}, \hyperpage{33}
+  \item {globmaintcost}
+    \subitem {globalresults}, \hyperpage{33}
+  \item {globprofit}
+    \subitem {globalresults}, \hyperpage{34}
+  \item {globrevenues}
+    \subitem {globalresults}, \hyperpage{34}
+  \item {globthrev}
+    \subitem {globalresults}, \hyperpage{34}
   \item {grapharcs}
-    \subitem {graphtools}, \hyperpage{22}
+    \subitem {graphtools}, \hyperpage{36}
   \item {graphpoints}
-    \subitem {graphtools}, \hyperpage{22}
-  \item {graphtools}, \hyperpage{21}
-    \subitem {allcombin}, \hyperpage{21}
-    \subitem {grapharcs}, \hyperpage{22}
-    \subitem {graphpoints}, \hyperpage{22}
-    \subitem {minpathtopo}, \hyperpage{22}
-  \item {graphtools\discretionary {-}{}{}::constraints}, \hyperpage{8}
-    \subitem {constraints}, \hyperpage{9}
+    \subitem {graphtools}, \hyperpage{36}
+  \item {graphtools}, \hyperpage{35}
+    \subitem {allcombin}, \hyperpage{36}
+    \subitem {grapharcs}, \hyperpage{36}
+    \subitem {graphpoints}, \hyperpage{36}
+    \subitem {minpathtopobw}, \hyperpage{36}
+    \subitem {minpathtopofw}, \hyperpage{37}
+    \subitem {uptimecalc}, \hyperpage{37}
+  \item {graphtools\discretionary {-}{}{}::constraints}, \hyperpage{14}
+    \subitem {constraints}, \hyperpage{15}
   \item {graphtools\discretionary {-}{}{}::obj\discretionary {-}{}{}Function}, 
-		\hyperpage{39}
-    \subitem {objfunction}, \hyperpage{39}
+		\hyperpage{57}
+    \subitem {objfunction}, \hyperpage{58}
+  \item {graphtools\discretionary {-}{}{}::time\discretionary {-}{}{}Constr}, 
+		\hyperpage{66}
+    \subitem {timeconstr}, \hyperpage{66}
   \item {gridbuycost}
-    \subitem {inputvar}, \hyperpage{29}
+    \subitem {inputvar}, \hyperpage{45}
   \item {gridconnection}
-    \subitem {inputvar}, \hyperpage{29}
+    \subitem {inputvar}, \hyperpage{45}
+  \item {grideconomy}
+    \subitem {economy}, \hyperpage{21}
   \item {gridsellcost}
-    \subitem {inputvar}, \hyperpage{29}
+    \subitem {inputvar}, \hyperpage{45}
 
   \indexspace
 
   \item {h\discretionary {-}{}{}Count.\discretionary {-}{}{}f90}
-    \subitem {hcount}, \hyperpage{57}
+    \subitem {hcount}, \hyperpage{81}
   \item {hcount}
     \subitem {filetools\discretionary {-}{}{}::h\discretionary {-}{}{}Count}, 
-		\hyperpage{23}
+		\hyperpage{38}
     \subitem {h\discretionary {-}{}{}Count.\discretionary {-}{}{}f90}, 
-		\hyperpage{57}
+		\hyperpage{81}
 
   \indexspace
 
   \item {ib}
-    \subitem {plantvar}, \hyperpage{42}
+    \subitem {plantvar}, \hyperpage{61}
   \item {ic}
-    \subitem {plantvar}, \hyperpage{42}
+    \subitem {plantvar}, \hyperpage{62}
   \item {ich}
-    \subitem {inputvar}, \hyperpage{29}
+    \subitem {inputvar}, \hyperpage{45}
   \item {ichp}
-    \subitem {inputvar}, \hyperpage{29}
+    \subitem {inputvar}, \hyperpage{45}
   \item {ideg}
-    \subitem {inputvar}, \hyperpage{29}
+    \subitem {inputvar}, \hyperpage{46}
   \item {ie}
-    \subitem {plantvar}, \hyperpage{42}
+    \subitem {plantvar}, \hyperpage{62}
   \item {iel}
-    \subitem {inputvar}, \hyperpage{30}
+    \subitem {inputvar}, \hyperpage{46}
   \item {ielp}
-    \subitem {inputvar}, \hyperpage{30}
+    \subitem {inputvar}, \hyperpage{46}
   \item {ifindentry}
     \subitem {filetools\discretionary {-}{}{}::i\discretionary {-}{}{}Find\discretionary {-}{}{}Entry}, 
-		\hyperpage{24}
+		\hyperpage{39}
     \subitem {find\discretionary {-}{}{}Entry2.\discretionary {-}{}{}f90}, 
-		\hyperpage{56}
+		\hyperpage{79}
   \item {imatrixread}
     \subitem {filetools\discretionary {-}{}{}::i\discretionary {-}{}{}Matrix\discretionary {-}{}{}Read}, 
-		\hyperpage{24}
+		\hyperpage{39}
     \subitem {matrix\discretionary {-}{}{}Read2.\discretionary {-}{}{}f90}, 
-		\hyperpage{63}
+		\hyperpage{86}
   \item {implicit}
-    \subitem {prototipo.\discretionary {-}{}{}f90}, \hyperpage{67}
+    \subitem {prototipo.\discretionary {-}{}{}f90}, \hyperpage{91}
   \item {inan}
-    \subitem {myarithmetic}, \hyperpage{38}
-  \item {inputvar}, \hyperpage{25}
-    \subitem {cch}, \hyperpage{28}
-    \subitem {cel}, \hyperpage{28}
-    \subitem {cth}, \hyperpage{28}
-    \subitem {degrateb}, \hyperpage{28}
-    \subitem {degratec}, \hyperpage{28}
-    \subitem {degratet}, \hyperpage{28}
-    \subitem {dt1}, \hyperpage{28}
-    \subitem {etab}, \hyperpage{28}
-    \subitem {etac}, \hyperpage{28}
-    \subitem {etacht}, \hyperpage{28}
-    \subitem {etaelt}, \hyperpage{28}
-    \subitem {etatht}, \hyperpage{28}
-    \subitem {firecostb}, \hyperpage{28}
-    \subitem {firecostc}, \hyperpage{29}
-    \subitem {firecostt}, \hyperpage{29}
-    \subitem {fuelcostb}, \hyperpage{29}
-    \subitem {fuelcostt}, \hyperpage{29}
-    \subitem {fuellhvb}, \hyperpage{29}
-    \subitem {fuellhvt}, \hyperpage{29}
-    \subitem {gridbuycost}, \hyperpage{29}
-    \subitem {gridconnection}, \hyperpage{29}
-    \subitem {gridsellcost}, \hyperpage{29}
-    \subitem {ich}, \hyperpage{29}
-    \subitem {ichp}, \hyperpage{29}
-    \subitem {ideg}, \hyperpage{29}
-    \subitem {iel}, \hyperpage{30}
-    \subitem {ielp}, \hyperpage{30}
-    \subitem {invb}, \hyperpage{30}
-    \subitem {invc}, \hyperpage{30}
-    \subitem {invt}, \hyperpage{30}
-    \subitem {ith}, \hyperpage{30}
-    \subitem {ithp}, \hyperpage{30}
-    \subitem {itime}, \hyperpage{30}
-    \subitem {ksizeb}, \hyperpage{30}
-    \subitem {ksizec}, \hyperpage{30}
-    \subitem {ksizet}, \hyperpage{30}
-    \subitem {lifeb}, \hyperpage{30}
-    \subitem {lifec}, \hyperpage{31}
-    \subitem {lifet}, \hyperpage{31}
-    \subitem {maintcostb}, \hyperpage{31}
-    \subitem {maintcostc}, \hyperpage{31}
-    \subitem {maintcostt}, \hyperpage{31}
-    \subitem {nboi}, \hyperpage{31}
-    \subitem {nchi}, \hyperpage{31}
-    \subitem {netab}, \hyperpage{31}
-    \subitem {netac}, \hyperpage{31}
-    \subitem {netacht}, \hyperpage{31}
-    \subitem {netaelt}, \hyperpage{31}
-    \subitem {netatht}, \hyperpage{31}
-    \subitem {nld}, \hyperpage{32}
-    \subitem {nload}, \hyperpage{32}
-    \subitem {nlp}, \hyperpage{32}
-    \subitem {nsizeb}, \hyperpage{32}
-    \subitem {nsizec}, \hyperpage{32}
-    \subitem {nsizet}, \hyperpage{32}
-    \subitem {nspb}, \hyperpage{32}
-    \subitem {nspc}, \hyperpage{32}
-    \subitem {nspt}, \hyperpage{32}
-    \subitem {ntime}, \hyperpage{32}
-    \subitem {ntimes}, \hyperpage{32}
-    \subitem {ntrig}, \hyperpage{32}
-    \subitem {obj}, \hyperpage{33}
-    \subitem {pmaxb}, \hyperpage{33}
-    \subitem {pmaxc}, \hyperpage{33}
-    \subitem {pmaxt}, \hyperpage{33}
-    \subitem {spb}, \hyperpage{33}
-    \subitem {spc}, \hyperpage{33}
-    \subitem {spt}, \hyperpage{33}
-    \subitem {startpoint}, \hyperpage{33}
-    \subitem {tecb}, \hyperpage{33}
-    \subitem {tecc}, \hyperpage{33}
-    \subitem {tect}, \hyperpage{33}
-    \subitem {time}, \hyperpage{33}
-    \subitem {uch}, \hyperpage{34}
-    \subitem {uel}, \hyperpage{34}
-    \subitem {uth}, \hyperpage{34}
-  \item {interfaces}, \hyperpage{34}
+    \subitem {myarithmetic}, \hyperpage{56}
+  \item {inputvar}, \hyperpage{40}
+    \subitem {altcorrb}, \hyperpage{43}
+    \subitem {altcorrc}, \hyperpage{43}
+    \subitem {altcorrt}, \hyperpage{43}
+    \subitem {altitude}, \hyperpage{44}
+    \subitem {cch}, \hyperpage{44}
+    \subitem {cel}, \hyperpage{44}
+    \subitem {cth}, \hyperpage{44}
+    \subitem {downtime0}, \hyperpage{44}
+    \subitem {dt1}, \hyperpage{44}
+    \subitem {etab}, \hyperpage{44}
+    \subitem {etac}, \hyperpage{44}
+    \subitem {etacht}, \hyperpage{44}
+    \subitem {etaelt}, \hyperpage{44}
+    \subitem {etatht}, \hyperpage{44}
+    \subitem {firecostb}, \hyperpage{44}
+    \subitem {firecostc}, \hyperpage{45}
+    \subitem {firecostt}, \hyperpage{45}
+    \subitem {fuelcostb}, \hyperpage{45}
+    \subitem {fuelcostt}, \hyperpage{45}
+    \subitem {fuellhvb}, \hyperpage{45}
+    \subitem {fuellhvt}, \hyperpage{45}
+    \subitem {global}, \hyperpage{45}
+    \subitem {gridbuycost}, \hyperpage{45}
+    \subitem {gridconnection}, \hyperpage{45}
+    \subitem {gridsellcost}, \hyperpage{45}
+    \subitem {ich}, \hyperpage{45}
+    \subitem {ichp}, \hyperpage{45}
+    \subitem {ideg}, \hyperpage{46}
+    \subitem {iel}, \hyperpage{46}
+    \subitem {ielp}, \hyperpage{46}
+    \subitem {ith}, \hyperpage{46}
+    \subitem {ithp}, \hyperpage{46}
+    \subitem {itime}, \hyperpage{46}
+    \subitem {lifeb}, \hyperpage{46}
+    \subitem {lifet}, \hyperpage{46}
+    \subitem {maintcostb}, \hyperpage{46}
+    \subitem {maintcostc}, \hyperpage{46}
+    \subitem {maintcostt}, \hyperpage{46}
+    \subitem {method}, \hyperpage{46}
+    \subitem {mindowntimeb}, \hyperpage{47}
+    \subitem {mindowntimec}, \hyperpage{47}
+    \subitem {mindowntimet}, \hyperpage{47}
+    \subitem {minuptimeb}, \hyperpage{47}
+    \subitem {minuptimec}, \hyperpage{47}
+    \subitem {minuptimet}, \hyperpage{47}
+    \subitem {nacb}, \hyperpage{47}
+    \subitem {nacc}, \hyperpage{47}
+    \subitem {nact}, \hyperpage{47}
+    \subitem {nboi}, \hyperpage{47}
+    \subitem {nchi}, \hyperpage{47}
+    \subitem {netab}, \hyperpage{47}
+    \subitem {netac}, \hyperpage{48}
+    \subitem {netacht}, \hyperpage{48}
+    \subitem {netaelt}, \hyperpage{48}
+    \subitem {netatht}, \hyperpage{48}
+    \subitem {nld}, \hyperpage{48}
+    \subitem {nload}, \hyperpage{48}
+    \subitem {nlp}, \hyperpage{48}
+    \subitem {npcb}, \hyperpage{48}
+    \subitem {npcc}, \hyperpage{48}
+    \subitem {npct}, \hyperpage{48}
+    \subitem {nsizec}, \hyperpage{48}
+    \subitem {nspb}, \hyperpage{48}
+    \subitem {nspc}, \hyperpage{49}
+    \subitem {nspt}, \hyperpage{49}
+    \subitem {ntcb}, \hyperpage{49}
+    \subitem {ntcc}, \hyperpage{49}
+    \subitem {ntct}, \hyperpage{49}
+    \subitem {ntime}, \hyperpage{49}
+    \subitem {ntimes}, \hyperpage{49}
+    \subitem {ntrig}, \hyperpage{49}
+    \subitem {obj}, \hyperpage{49}
+    \subitem {pamb}, \hyperpage{49}
+    \subitem {pmaxb}, \hyperpage{49}
+    \subitem {pmaxc}, \hyperpage{49}
+    \subitem {pmaxt}, \hyperpage{50}
+    \subitem {prescorrb}, \hyperpage{50}
+    \subitem {prescorrc}, \hyperpage{50}
+    \subitem {prescorrt}, \hyperpage{50}
+    \subitem {spb}, \hyperpage{50}
+    \subitem {spc}, \hyperpage{50}
+    \subitem {spt}, \hyperpage{50}
+    \subitem {startpoint}, \hyperpage{50}
+    \subitem {tamb}, \hyperpage{50}
+    \subitem {tecb}, \hyperpage{50}
+    \subitem {tecc}, \hyperpage{50}
+    \subitem {tect}, \hyperpage{50}
+    \subitem {tempcorrb}, \hyperpage{51}
+    \subitem {tempcorrc}, \hyperpage{51}
+    \subitem {tempcorrt}, \hyperpage{51}
+    \subitem {time}, \hyperpage{51}
+    \subitem {uch}, \hyperpage{51}
+    \subitem {uel}, \hyperpage{51}
+    \subitem {uptime0}, \hyperpage{51}
+    \subitem {useeuristics}, \hyperpage{51}
+    \subitem {uth}, \hyperpage{51}
+    \subitem {writeboi}, \hyperpage{51}
+    \subitem {writechi}, \hyperpage{51}
+    \subitem {writechillingrev}, \hyperpage{51}
+    \subitem {writecosts}, \hyperpage{52}
+    \subitem {writedemand}, \hyperpage{52}
+    \subitem {writeefficiency}, \hyperpage{52}
+    \subitem {writeelectricrev}, \hyperpage{52}
+    \subitem {writeenergy}, \hyperpage{52}
+    \subitem {writeinput}, \hyperpage{52}
+    \subitem {writepower}, \hyperpage{52}
+    \subitem {writethermalrev}, \hyperpage{52}
+    \subitem {writetrig}, \hyperpage{52}
+  \item {interfaces}, \hyperpage{53}
   \item {interfaces\discretionary {-}{}{}::abort\discretionary {-}{}{}Execution}, 
-		\hyperpage{5}
-    \subitem {abortexecution}, \hyperpage{5}
-  \item {interfaces\discretionary {-}{}{}::warning}, \hyperpage{46}
-    \subitem {warning}, \hyperpage{46}
+		\hyperpage{9}
+    \subitem {abortexecution}, \hyperpage{9}
+  \item {interfaces\discretionary {-}{}{}::performances}, 
+		\hyperpage{58}
+    \subitem {performances}, \hyperpage{58}
+  \item {interfaces\discretionary {-}{}{}::warning}, \hyperpage{67}
+    \subitem {warning}, \hyperpage{67}
   \item {interpolation}
-    \subitem {interpolation.\discretionary {-}{}{}f90}, \hyperpage{59}
+    \subitem {interpolation.\discretionary {-}{}{}f90}, \hyperpage{82}
     \subitem {mathtools\discretionary {-}{}{}::interpolation}, 
-		\hyperpage{35}
+		\hyperpage{54}
   \item {interpolation.\discretionary {-}{}{}f90}
-    \subitem {interpolation}, \hyperpage{59}
-  \item {invb}
-    \subitem {inputvar}, \hyperpage{30}
-  \item {invc}
-    \subitem {inputvar}, \hyperpage{30}
-  \item {invt}
-    \subitem {inputvar}, \hyperpage{30}
+    \subitem {interpolation}, \hyperpage{82}
   \item {is}
-    \subitem {plantvar}, \hyperpage{42}
+    \subitem {plantvar}, \hyperpage{62}
   \item {isnan}
-    \subitem {myarithmetic}, \hyperpage{38}
+    \subitem {myarithmetic}, \hyperpage{56}
   \item {it}
-    \subitem {plantvar}, \hyperpage{42}
+    \subitem {plantvar}, \hyperpage{62}
   \item {ith}
-    \subitem {inputvar}, \hyperpage{30}
+    \subitem {inputvar}, \hyperpage{46}
   \item {ithp}
-    \subitem {inputvar}, \hyperpage{30}
+    \subitem {inputvar}, \hyperpage{46}
   \item {itime}
-    \subitem {inputvar}, \hyperpage{30}
-
-  \indexspace
-
-  \item {ksizeb}
-    \subitem {inputvar}, \hyperpage{30}
-  \item {ksizec}
-    \subitem {inputvar}, \hyperpage{30}
-  \item {ksizet}
-    \subitem {inputvar}, \hyperpage{30}
+    \subitem {inputvar}, \hyperpage{46}
 
   \indexspace
 
   \item {lhv}
-    \subitem {plantvar}, \hyperpage{42}
+    \subitem {plantvar}, \hyperpage{62}
   \item {lifeb}
-    \subitem {inputvar}, \hyperpage{30}
-  \item {lifec}
-    \subitem {inputvar}, \hyperpage{31}
+    \subitem {inputvar}, \hyperpage{46}
   \item {lifet}
-    \subitem {inputvar}, \hyperpage{31}
+    \subitem {inputvar}, \hyperpage{46}
+  \item {limitrecovery}
+    \subitem {energy}, \hyperpage{25}
+  \item {locaterow}
+    \subitem {mathtools}, \hyperpage{55}
 
   \indexspace
 
   \item {main}
-    \subitem {main.\discretionary {-}{}{}f90}, \hyperpage{59}
+    \subitem {main.\discretionary {-}{}{}f90}, \hyperpage{83}
   \item {main.\discretionary {-}{}{}f90}
-    \subitem {main}, \hyperpage{59}
+    \subitem {main}, \hyperpage{83}
   \item {maintcostb}
-    \subitem {inputvar}, \hyperpage{31}
+    \subitem {inputvar}, \hyperpage{46}
   \item {maintcostc}
-    \subitem {inputvar}, \hyperpage{31}
+    \subitem {inputvar}, \hyperpage{46}
   \item {maintcostt}
-    \subitem {inputvar}, \hyperpage{31}
+    \subitem {inputvar}, \hyperpage{46}
   \item {maintenancecost}
-    \subitem {economy}, \hyperpage{14}
-  \item {mathtools}, \hyperpage{35}
+    \subitem {economy}, \hyperpage{21}
+  \item {mathtools}, \hyperpage{54}
+    \subitem {locaterow}, \hyperpage{55}
   \item {mathtools\discretionary {-}{}{}::interpolation}, 
-		\hyperpage{35}
-    \subitem {interpolation}, \hyperpage{35}
+		\hyperpage{53}
+    \subitem {interpolation}, \hyperpage{54}
   \item {matrix\discretionary {-}{}{}Read2.\discretionary {-}{}{}f90}
-    \subitem {cmatrixread}, \hyperpage{61}
-    \subitem {dmatrixread}, \hyperpage{62}
-    \subitem {imatrixread}, \hyperpage{63}
-    \subitem {matrixread}, \hyperpage{64}
+    \subitem {cmatrixread}, \hyperpage{84}
+    \subitem {dmatrixread}, \hyperpage{85}
+    \subitem {imatrixread}, \hyperpage{86}
+    \subitem {matrixread}, \hyperpage{87}
   \item {matrixread}
     \subitem {filetools\discretionary {-}{}{}::matrix\discretionary {-}{}{}Read}, 
-		\hyperpage{37}
+		\hyperpage{55}
     \subitem {matrix\discretionary {-}{}{}Read2.\discretionary {-}{}{}f90}, 
-		\hyperpage{64}
-  \item {minpathtopo}
-    \subitem {graphtools}, \hyperpage{22}
-  \item {myarithmetic}, \hyperpage{37}
-    \subitem {inan}, \hyperpage{38}
-    \subitem {isnan}, \hyperpage{38}
-    \subitem {rnan}, \hyperpage{38}
+		\hyperpage{87}
+  \item {method}
+    \subitem {inputvar}, \hyperpage{46}
+  \item {mindowntime}
+    \subitem {plantvar}, \hyperpage{62}
+  \item {mindowntimeb}
+    \subitem {inputvar}, \hyperpage{47}
+  \item {mindowntimec}
+    \subitem {inputvar}, \hyperpage{47}
+  \item {mindowntimet}
+    \subitem {inputvar}, \hyperpage{47}
+  \item {minpathtopobw}
+    \subitem {graphtools}, \hyperpage{36}
+  \item {minpathtopofw}
+    \subitem {graphtools}, \hyperpage{37}
+  \item {minuptime}
+    \subitem {plantvar}, \hyperpage{62}
+  \item {minuptimeb}
+    \subitem {inputvar}, \hyperpage{47}
+  \item {minuptimec}
+    \subitem {inputvar}, \hyperpage{47}
+  \item {minuptimet}
+    \subitem {inputvar}, \hyperpage{47}
+  \item {myarithmetic}, \hyperpage{55}
+    \subitem {inan}, \hyperpage{56}
+    \subitem {isnan}, \hyperpage{56}
+    \subitem {rnan}, \hyperpage{57}
 
   \indexspace
 
+  \item {nacb}
+    \subitem {inputvar}, \hyperpage{47}
+  \item {nacc}
+    \subitem {inputvar}, \hyperpage{47}
+  \item {nact}
+    \subitem {inputvar}, \hyperpage{47}
   \item {nboi}
-    \subitem {inputvar}, \hyperpage{31}
+    \subitem {inputvar}, \hyperpage{47}
   \item {nchi}
-    \subitem {inputvar}, \hyperpage{31}
+    \subitem {inputvar}, \hyperpage{47}
   \item {netab}
-    \subitem {inputvar}, \hyperpage{31}
+    \subitem {inputvar}, \hyperpage{47}
   \item {netac}
-    \subitem {inputvar}, \hyperpage{31}
+    \subitem {inputvar}, \hyperpage{48}
   \item {netacht}
-    \subitem {inputvar}, \hyperpage{31}
+    \subitem {inputvar}, \hyperpage{48}
   \item {netaelt}
-    \subitem {inputvar}, \hyperpage{31}
+    \subitem {inputvar}, \hyperpage{48}
   \item {netatht}
-    \subitem {inputvar}, \hyperpage{31}
+    \subitem {inputvar}, \hyperpage{48}
   \item {nld}
-    \subitem {inputvar}, \hyperpage{32}
+    \subitem {inputvar}, \hyperpage{48}
   \item {nload}
-    \subitem {inputvar}, \hyperpage{32}
+    \subitem {inputvar}, \hyperpage{48}
   \item {nlp}
-    \subitem {inputvar}, \hyperpage{32}
+    \subitem {inputvar}, \hyperpage{48}
   \item {nm}
-    \subitem {plantvar}, \hyperpage{42}
-  \item {nsizeb}
-    \subitem {inputvar}, \hyperpage{32}
+    \subitem {plantvar}, \hyperpage{62}
+  \item {npcb}
+    \subitem {inputvar}, \hyperpage{48}
+  \item {npcc}
+    \subitem {inputvar}, \hyperpage{48}
+  \item {npct}
+    \subitem {inputvar}, \hyperpage{48}
   \item {nsizec}
-    \subitem {inputvar}, \hyperpage{32}
-  \item {nsizet}
-    \subitem {inputvar}, \hyperpage{32}
+    \subitem {inputvar}, \hyperpage{48}
   \item {nsp}
-    \subitem {plantvar}, \hyperpage{43}
+    \subitem {plantvar}, \hyperpage{62}
   \item {nspb}
-    \subitem {inputvar}, \hyperpage{32}
+    \subitem {inputvar}, \hyperpage{48}
   \item {nspc}
-    \subitem {inputvar}, \hyperpage{32}
+    \subitem {inputvar}, \hyperpage{49}
   \item {nspt}
-    \subitem {inputvar}, \hyperpage{32}
+    \subitem {inputvar}, \hyperpage{49}
   \item {nsptot}
-    \subitem {plantvar}, \hyperpage{43}
+    \subitem {plantvar}, \hyperpage{62}
+  \item {ntcb}
+    \subitem {inputvar}, \hyperpage{49}
+  \item {ntcc}
+    \subitem {inputvar}, \hyperpage{49}
+  \item {ntct}
+    \subitem {inputvar}, \hyperpage{49}
   \item {ntime}
-    \subitem {inputvar}, \hyperpage{32}
+    \subitem {inputvar}, \hyperpage{49}
   \item {ntimes}
-    \subitem {inputvar}, \hyperpage{32}
+    \subitem {inputvar}, \hyperpage{49}
   \item {ntrig}
-    \subitem {inputvar}, \hyperpage{32}
+    \subitem {inputvar}, \hyperpage{49}
+  \item {ntv}
+    \subitem {plantvar}, \hyperpage{62}
 
   \indexspace
 
   \item {obj}
-    \subitem {inputvar}, \hyperpage{33}
+    \subitem {inputvar}, \hyperpage{49}
   \item {obj\discretionary {-}{}{}Function.\discretionary {-}{}{}f90}
-    \subitem {objfunction}, \hyperpage{65}
+    \subitem {objfunction}, \hyperpage{88}
   \item {objfunction}
     \subitem {graphtools\discretionary {-}{}{}::obj\discretionary {-}{}{}Function}, 
-		\hyperpage{39}
+		\hyperpage{58}
     \subitem {obj\discretionary {-}{}{}Function.\discretionary {-}{}{}f90}, 
-		\hyperpage{65}
+		\hyperpage{88}
   \item {oemcost}
-    \subitem {plantvar}, \hyperpage{43}
+    \subitem {plantvar}, \hyperpage{62}
   \item {onoffcost}
-    \subitem {plantvar}, \hyperpage{43}
+    \subitem {plantvar}, \hyperpage{63}
   \item {open\discretionary {-}{}{}Unit.\discretionary {-}{}{}f90}
-    \subitem {openunit}, \hyperpage{66}
+    \subitem {openunit}, \hyperpage{89}
   \item {openunit}
     \subitem {open\discretionary {-}{}{}Unit.\discretionary {-}{}{}f90}, 
-		\hyperpage{66}
+		\hyperpage{89}
+  \item {out}
+    \subitem {cmdvar}, \hyperpage{12}
+  \item {output}
+    \subitem {output.\discretionary {-}{}{}f90}, \hyperpage{90}
+  \item {output.\discretionary {-}{}{}f90}
+    \subitem {output}, \hyperpage{90}
+    \subitem {preparefile}, \hyperpage{90}
 
   \indexspace
 
+  \item {pamb}
+    \subitem {inputvar}, \hyperpage{49}
+  \item {performances}
+    \subitem {interfaces\discretionary {-}{}{}::performances}, 
+		\hyperpage{58}
+    \subitem {performances.\discretionary {-}{}{}f90}, \hyperpage{90}
+  \item {performances.\discretionary {-}{}{}f90}
+    \subitem {performances}, \hyperpage{90}
   \item {pes}
-    \subitem {plantvar}, \hyperpage{43}
-  \item {plantvar}, \hyperpage{39}
-    \subitem {cf}, \hyperpage{41}
-    \subitem {cr}, \hyperpage{41}
-    \subitem {cref}, \hyperpage{41}
-    \subitem {dt}, \hyperpage{41}
+    \subitem {plantvar}, \hyperpage{63}
+  \item {plantvar}, \hyperpage{59}
+    \subitem {cf}, \hyperpage{60}
+    \subitem {cr}, \hyperpage{60}
+    \subitem {cref}, \hyperpage{60}
+    \subitem {dt}, \hyperpage{61}
+    \subitem {envcorr}, \hyperpage{61}
+    \subitem {esource}, \hyperpage{61}
     \subitem {etab\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
-		\hyperpage{41}
+		\hyperpage{61}
     \subitem {etac\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
-		\hyperpage{41}
-    \subitem {etach}, \hyperpage{41}
+		\hyperpage{61}
+    \subitem {etach}, \hyperpage{61}
     \subitem {etacht\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
-		\hyperpage{42}
-    \subitem {etael}, \hyperpage{42}
+		\hyperpage{61}
+    \subitem {etael}, \hyperpage{61}
     \subitem {etaelt\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
-		\hyperpage{42}
-    \subitem {etath}, \hyperpage{42}
+		\hyperpage{61}
+    \subitem {etath}, \hyperpage{61}
     \subitem {etatht\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
-		\hyperpage{42}
-    \subitem {ib}, \hyperpage{42}
-    \subitem {ic}, \hyperpage{42}
-    \subitem {ie}, \hyperpage{42}
-    \subitem {is}, \hyperpage{42}
-    \subitem {it}, \hyperpage{42}
-    \subitem {lhv}, \hyperpage{42}
-    \subitem {nm}, \hyperpage{42}
-    \subitem {nsp}, \hyperpage{43}
-    \subitem {nsptot}, \hyperpage{43}
-    \subitem {oemcost}, \hyperpage{43}
-    \subitem {onoffcost}, \hyperpage{43}
-    \subitem {pes}, \hyperpage{43}
-    \subitem {pmax}, \hyperpage{43}
-    \subitem {sp}, \hyperpage{43}
+		\hyperpage{61}
+    \subitem {ib}, \hyperpage{61}
+    \subitem {ic}, \hyperpage{62}
+    \subitem {ie}, \hyperpage{62}
+    \subitem {is}, \hyperpage{62}
+    \subitem {it}, \hyperpage{62}
+    \subitem {lhv}, \hyperpage{62}
+    \subitem {mindowntime}, \hyperpage{62}
+    \subitem {minuptime}, \hyperpage{62}
+    \subitem {nm}, \hyperpage{62}
+    \subitem {nsp}, \hyperpage{62}
+    \subitem {nsptot}, \hyperpage{62}
+    \subitem {ntv}, \hyperpage{62}
+    \subitem {oemcost}, \hyperpage{62}
+    \subitem {onoffcost}, \hyperpage{63}
+    \subitem {pes}, \hyperpage{63}
+    \subitem {pmax}, \hyperpage{63}
+    \subitem {sp}, \hyperpage{63}
+    \subitem {tec}, \hyperpage{63}
+    \subitem {timevinc}, \hyperpage{63}
   \item {pmax}
-    \subitem {plantvar}, \hyperpage{43}
+    \subitem {plantvar}, \hyperpage{63}
   \item {pmaxb}
-    \subitem {inputvar}, \hyperpage{33}
+    \subitem {inputvar}, \hyperpage{49}
   \item {pmaxc}
-    \subitem {inputvar}, \hyperpage{33}
+    \subitem {inputvar}, \hyperpage{49}
   \item {pmaxt}
-    \subitem {inputvar}, \hyperpage{33}
+    \subitem {inputvar}, \hyperpage{50}
+  \item {prec}
+    \subitem {shared}, \hyperpage{65}
+  \item {preparefile}
+    \subitem {output.\discretionary {-}{}{}f90}, \hyperpage{90}
+  \item {prescorrb}
+    \subitem {inputvar}, \hyperpage{50}
+  \item {prescorrc}
+    \subitem {inputvar}, \hyperpage{50}
+  \item {prescorrt}
+    \subitem {inputvar}, \hyperpage{50}
+  \item {protected}
+    \subitem {command}, \hyperpage{14}
   \item {prototipo.\discretionary {-}{}{}f90}
-    \subitem {implicit}, \hyperpage{67}
+    \subitem {implicit}, \hyperpage{91}
 
   \indexspace
 
   \item {read\discretionary {-}{}{}Boiler.\discretionary {-}{}{}f90}
-    \subitem {readboiler}, \hyperpage{67}
+    \subitem {readboiler}, \hyperpage{92}
   \item {read\discretionary {-}{}{}Chiller.\discretionary {-}{}{}f90}
-    \subitem {readchillers}, \hyperpage{68}
+    \subitem {readchillers}, \hyperpage{93}
+  \item {read\discretionary {-}{}{}Env.\discretionary {-}{}{}f90}
+    \subitem {readenv}, \hyperpage{93}
   \item {read\discretionary {-}{}{}General.\discretionary {-}{}{}f90}
-    \subitem {readgeneral}, \hyperpage{69}
+    \subitem {readgeneral}, \hyperpage{94}
   \item {read\discretionary {-}{}{}Keyword.\discretionary {-}{}{}f90}
-    \subitem {readkeyword}, \hyperpage{70}
+    \subitem {readkeyword}, \hyperpage{95}
   \item {read\discretionary {-}{}{}Load.\discretionary {-}{}{}f90}
-    \subitem {readloads}, \hyperpage{71}
+    \subitem {readloads}, \hyperpage{96}
+  \item {read\discretionary {-}{}{}Steam\discretionary {-}{}{}Plant.\discretionary {-}{}{}f90}
+    \subitem {readtrigen}, \hyperpage{97}
   \item {read\discretionary {-}{}{}Trigen.\discretionary {-}{}{}f90}
-    \subitem {readtrigen}, \hyperpage{72}
+    \subitem {readtrigen}, \hyperpage{98}
   \item {readboiler}
     \subitem {read\discretionary {-}{}{}Boiler.\discretionary {-}{}{}f90}, 
-		\hyperpage{67}
+		\hyperpage{92}
   \item {readchillers}
     \subitem {read\discretionary {-}{}{}Chiller.\discretionary {-}{}{}f90}, 
-		\hyperpage{68}
+		\hyperpage{93}
+  \item {readenv}
+    \subitem {read\discretionary {-}{}{}Env.\discretionary {-}{}{}f90}, 
+		\hyperpage{93}
   \item {readgeneral}
     \subitem {read\discretionary {-}{}{}General.\discretionary {-}{}{}f90}, 
-		\hyperpage{69}
+		\hyperpage{94}
   \item {readkeyword}
     \subitem {filetools\discretionary {-}{}{}::read\discretionary {-}{}{}Keyword}, 
-		\hyperpage{44}
+		\hyperpage{64}
     \subitem {read\discretionary {-}{}{}Keyword.\discretionary {-}{}{}f90}, 
-		\hyperpage{70}
+		\hyperpage{95}
   \item {readloads}
     \subitem {read\discretionary {-}{}{}Load.\discretionary {-}{}{}f90}, 
-		\hyperpage{71}
+		\hyperpage{96}
   \item {readtrigen}
+    \subitem {read\discretionary {-}{}{}Steam\discretionary {-}{}{}Plant.\discretionary {-}{}{}f90}, 
+		\hyperpage{97}
     \subitem {read\discretionary {-}{}{}Trigen.\discretionary {-}{}{}f90}, 
-		\hyperpage{72}
+		\hyperpage{98}
   \item {rew\discretionary {-}{}{}Unit.\discretionary {-}{}{}f90}
-    \subitem {rewunit}, \hyperpage{73}
+    \subitem {rewunit}, \hyperpage{99}
   \item {rewunit}
     \subitem {filetools\discretionary {-}{}{}::rew\discretionary {-}{}{}Unit}, 
-		\hyperpage{45}
+		\hyperpage{64}
     \subitem {rew\discretionary {-}{}{}Unit.\discretionary {-}{}{}f90}, 
-		\hyperpage{73}
+		\hyperpage{99}
   \item {rnan}
-    \subitem {myarithmetic}, \hyperpage{38}
+    \subitem {myarithmetic}, \hyperpage{57}
+  \item {rval}
+    \subitem {shared}, \hyperpage{65}
 
   \indexspace
 
+  \item {shared}, \hyperpage{65}
+    \subitem {prec}, \hyperpage{65}
+    \subitem {rval}, \hyperpage{65}
+    \subitem {zero}, \hyperpage{65}
   \item {silent}
-    \subitem {cmdvar}, \hyperpage{8}
+    \subitem {cmdvar}, \hyperpage{12}
   \item {sp}
-    \subitem {plantvar}, \hyperpage{43}
+    \subitem {plantvar}, \hyperpage{63}
   \item {spb}
-    \subitem {inputvar}, \hyperpage{33}
+    \subitem {inputvar}, \hyperpage{50}
   \item {spc}
-    \subitem {inputvar}, \hyperpage{33}
+    \subitem {inputvar}, \hyperpage{50}
   \item {spt}
-    \subitem {inputvar}, \hyperpage{33}
+    \subitem {inputvar}, \hyperpage{50}
   \item {startpoint}
-    \subitem {inputvar}, \hyperpage{33}
+    \subitem {inputvar}, \hyperpage{50}
 
   \indexspace
 
+  \item {tamb}
+    \subitem {inputvar}, \hyperpage{50}
+  \item {tec}
+    \subitem {plantvar}, \hyperpage{63}
   \item {tecb}
-    \subitem {inputvar}, \hyperpage{33}
+    \subitem {inputvar}, \hyperpage{50}
   \item {tecc}
-    \subitem {inputvar}, \hyperpage{33}
+    \subitem {inputvar}, \hyperpage{50}
   \item {tect}
-    \subitem {inputvar}, \hyperpage{33}
+    \subitem {inputvar}, \hyperpage{50}
+  \item {tempcorrb}
+    \subitem {inputvar}, \hyperpage{51}
+  \item {tempcorrc}
+    \subitem {inputvar}, \hyperpage{51}
+  \item {tempcorrt}
+    \subitem {inputvar}, \hyperpage{51}
   \item {thprod}
-    \subitem {energy}, \hyperpage{18}
+    \subitem {energy}, \hyperpage{26}
+  \item {thredundant}
+    \subitem {euristics}, \hyperpage{28}
   \item {threv}
-    \subitem {economy}, \hyperpage{14}
+    \subitem {economy}, \hyperpage{21}
   \item {thselfcons}
-    \subitem {energy}, \hyperpage{18}
+    \subitem {energy}, \hyperpage{26}
   \item {time}
-    \subitem {inputvar}, \hyperpage{33}
+    \subitem {inputvar}, \hyperpage{51}
+  \item {timeconstr}
+    \subitem {constraints.\discretionary {-}{}{}f90}, \hyperpage{74}
+    \subitem {graphtools\discretionary {-}{}{}::time\discretionary {-}{}{}Constr}, 
+		\hyperpage{66}
+  \item {timevinc}
+    \subitem {plantvar}, \hyperpage{63}
 
   \indexspace
 
   \item {uch}
-    \subitem {inputvar}, \hyperpage{34}
+    \subitem {inputvar}, \hyperpage{51}
   \item {uel}
-    \subitem {inputvar}, \hyperpage{34}
+    \subitem {inputvar}, \hyperpage{51}
+  \item {uptime0}
+    \subitem {inputvar}, \hyperpage{51}
+  \item {uptimecalc}
+    \subitem {graphtools}, \hyperpage{37}
+  \item {useeuristics}
+    \subitem {inputvar}, \hyperpage{51}
   \item {uth}
-    \subitem {inputvar}, \hyperpage{34}
+    \subitem {inputvar}, \hyperpage{51}
 
   \indexspace
 
   \item {v\discretionary {-}{}{}Count.\discretionary {-}{}{}f90}
-    \subitem {vcount}, \hyperpage{74}
+    \subitem {vcount}, \hyperpage{100}
   \item {vcount}
     \subitem {filetools\discretionary {-}{}{}::v\discretionary {-}{}{}Count}, 
-		\hyperpage{45}
+		\hyperpage{67}
     \subitem {v\discretionary {-}{}{}Count.\discretionary {-}{}{}f90}, 
-		\hyperpage{74}
+		\hyperpage{100}
   \item {verb}
-    \subitem {cmdvar}, \hyperpage{8}
+    \subitem {cmdvar}, \hyperpage{12}
   \item {vsilent}
-    \subitem {cmdvar}, \hyperpage{8}
+    \subitem {cmdvar}, \hyperpage{12}
 
   \indexspace
 
   \item {warning}
     \subitem {interfaces\discretionary {-}{}{}::warning}, 
-		\hyperpage{46}
-    \subitem {warning.\discretionary {-}{}{}f90}, \hyperpage{75}
+		\hyperpage{67}
+    \subitem {warning.\discretionary {-}{}{}f90}, \hyperpage{101}
   \item {warning.\discretionary {-}{}{}f90}
-    \subitem {warning}, \hyperpage{75}
+    \subitem {warning}, \hyperpage{101}
+  \item {writeboi}
+    \subitem {inputvar}, \hyperpage{51}
+  \item {writechi}
+    \subitem {inputvar}, \hyperpage{51}
+  \item {writechillingrev}
+    \subitem {inputvar}, \hyperpage{51}
+  \item {writecosts}
+    \subitem {inputvar}, \hyperpage{52}
+  \item {writedemand}
+    \subitem {inputvar}, \hyperpage{52}
+  \item {writeefficiency}
+    \subitem {inputvar}, \hyperpage{52}
+  \item {writeelectricrev}
+    \subitem {inputvar}, \hyperpage{52}
+  \item {writeenergy}
+    \subitem {inputvar}, \hyperpage{52}
+  \item {writeinput}
+    \subitem {inputvar}, \hyperpage{52}
+  \item {writepower}
+    \subitem {inputvar}, \hyperpage{52}
+  \item {writethermalrev}
+    \subitem {inputvar}, \hyperpage{52}
+  \item {writetrig}
+    \subitem {inputvar}, \hyperpage{52}
+
+  \indexspace
+
+  \item {zero}
+    \subitem {shared}, \hyperpage{65}
 
 \end{theindex}

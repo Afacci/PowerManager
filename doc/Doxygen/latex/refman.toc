@@ -1,352 +1,481 @@
-\contentsline {chapter}{\numberline {1}Data Type Index}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}Data Types List}{1}{section.1.1}
-\contentsline {chapter}{\numberline {2}File Index}{3}{chapter.2}
-\contentsline {section}{\numberline {2.1}File List}{3}{section.2.1}
-\contentsline {chapter}{\numberline {3}Data Type Documentation}{5}{chapter.3}
-\contentsline {section}{\numberline {3.1}interfaces\discretionary {-}{}{}:\discretionary {-}{}{}:abort\discretionary {-}{}{}Execution Interface Reference}{5}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Detailed Description}{5}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{5}{subsection.3.1.2}
-\contentsline {subsubsection}{\numberline {3.1.2.1}abortexecution}{5}{subsubsection.3.1.2.1}
-\contentsline {section}{\numberline {3.2}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:c\discretionary {-}{}{}Find\discretionary {-}{}{}Entry Interface Reference}{6}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Detailed Description}{6}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{6}{subsection.3.2.2}
-\contentsline {subsubsection}{\numberline {3.2.2.1}cfindentry}{6}{subsubsection.3.2.2.1}
-\contentsline {section}{\numberline {3.3}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:c\discretionary {-}{}{}Matrix\discretionary {-}{}{}Read Interface Reference}{6}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Detailed Description}{7}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{7}{subsection.3.3.2}
-\contentsline {subsubsection}{\numberline {3.3.2.1}cmatrixread}{7}{subsubsection.3.3.2.1}
-\contentsline {section}{\numberline {3.4}cmdvar Module Reference}{7}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Detailed Description}{7}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Member Data Documentation}{8}{subsection.3.4.2}
-\contentsline {subsubsection}{\numberline {3.4.2.1}silent}{8}{subsubsection.3.4.2.1}
-\contentsline {subsubsection}{\numberline {3.4.2.2}verb}{8}{subsubsection.3.4.2.2}
-\contentsline {subsubsection}{\numberline {3.4.2.3}vsilent}{8}{subsubsection.3.4.2.3}
-\contentsline {section}{\numberline {3.5}graphtools\discretionary {-}{}{}:\discretionary {-}{}{}:constraints Interface Reference}{8}{section.3.5}
-\contentsline {subsection}{\numberline {3.5.1}Detailed Description}{8}{subsection.3.5.1}
-\contentsline {subsection}{\numberline {3.5.2}Constructor \& Destructor Documentation}{9}{subsection.3.5.2}
-\contentsline {subsubsection}{\numberline {3.5.2.1}constraints}{9}{subsubsection.3.5.2.1}
-\contentsline {section}{\numberline {3.6}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:d\discretionary {-}{}{}Find\discretionary {-}{}{}Entry Interface Reference}{9}{section.3.6}
-\contentsline {subsection}{\numberline {3.6.1}Detailed Description}{9}{subsection.3.6.1}
-\contentsline {subsection}{\numberline {3.6.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{9}{subsection.3.6.2}
-\contentsline {subsubsection}{\numberline {3.6.2.1}dfindentry}{9}{subsubsection.3.6.2.1}
-\contentsline {section}{\numberline {3.7}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:d\discretionary {-}{}{}Matrix\discretionary {-}{}{}Read Interface Reference}{10}{section.3.7}
-\contentsline {subsection}{\numberline {3.7.1}Detailed Description}{10}{subsection.3.7.1}
-\contentsline {subsection}{\numberline {3.7.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{10}{subsection.3.7.2}
-\contentsline {subsubsection}{\numberline {3.7.2.1}dmatrixread}{10}{subsubsection.3.7.2.1}
-\contentsline {section}{\numberline {3.8}economy Module Reference}{11}{section.3.8}
-\contentsline {subsection}{\numberline {3.8.1}Detailed Description}{11}{subsection.3.8.1}
-\contentsline {subsection}{\numberline {3.8.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{12}{subsection.3.8.2}
-\contentsline {subsubsection}{\numberline {3.8.2.1}chrev}{12}{subsubsection.3.8.2.1}
-\contentsline {subsubsection}{\numberline {3.8.2.2}currcost}{12}{subsubsection.3.8.2.2}
-\contentsline {subsubsection}{\numberline {3.8.2.3}elrev}{13}{subsubsection.3.8.2.3}
-\contentsline {subsubsection}{\numberline {3.8.2.4}firecost}{13}{subsubsection.3.8.2.4}
-\contentsline {subsubsection}{\numberline {3.8.2.5}fuelcost}{14}{subsubsection.3.8.2.5}
-\contentsline {subsubsection}{\numberline {3.8.2.6}maintenancecost}{14}{subsubsection.3.8.2.6}
-\contentsline {subsubsection}{\numberline {3.8.2.7}threv}{15}{subsubsection.3.8.2.7}
-\contentsline {section}{\numberline {3.9}energy Module Reference}{15}{section.3.9}
-\contentsline {subsection}{\numberline {3.9.1}Detailed Description}{16}{subsection.3.9.1}
-\contentsline {subsection}{\numberline {3.9.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{16}{subsection.3.9.2}
-\contentsline {subsubsection}{\numberline {3.9.2.1}chprod}{16}{subsubsection.3.9.2.1}
-\contentsline {subsubsection}{\numberline {3.9.2.2}elprod}{16}{subsubsection.3.9.2.2}
-\contentsline {subsubsection}{\numberline {3.9.2.3}elselfcons}{17}{subsubsection.3.9.2.3}
-\contentsline {subsubsection}{\numberline {3.9.2.4}fuelcons}{17}{subsubsection.3.9.2.4}
-\contentsline {subsubsection}{\numberline {3.9.2.5}thprod}{18}{subsubsection.3.9.2.5}
-\contentsline {subsubsection}{\numberline {3.9.2.6}thselfcons}{18}{subsubsection.3.9.2.6}
-\contentsline {section}{\numberline {3.10}filetools Module Reference}{18}{section.3.10}
-\contentsline {subsection}{\numberline {3.10.1}Detailed Description}{19}{subsection.3.10.1}
-\contentsline {section}{\numberline {3.11}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:find\discretionary {-}{}{}Entry Interface Reference}{20}{section.3.11}
-\contentsline {subsection}{\numberline {3.11.1}Detailed Description}{20}{subsection.3.11.1}
-\contentsline {subsection}{\numberline {3.11.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{20}{subsection.3.11.2}
-\contentsline {subsubsection}{\numberline {3.11.2.1}findentry}{20}{subsubsection.3.11.2.1}
-\contentsline {section}{\numberline {3.12}graphtools Module Reference}{21}{section.3.12}
-\contentsline {subsection}{\numberline {3.12.1}Detailed Description}{21}{subsection.3.12.1}
-\contentsline {subsection}{\numberline {3.12.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{21}{subsection.3.12.2}
-\contentsline {subsubsection}{\numberline {3.12.2.1}allcombin}{21}{subsubsection.3.12.2.1}
-\contentsline {subsubsection}{\numberline {3.12.2.2}grapharcs}{22}{subsubsection.3.12.2.2}
-\contentsline {subsubsection}{\numberline {3.12.2.3}graphpoints}{22}{subsubsection.3.12.2.3}
-\contentsline {subsubsection}{\numberline {3.12.2.4}minpathtopo}{22}{subsubsection.3.12.2.4}
-\contentsline {section}{\numberline {3.13}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:h\discretionary {-}{}{}Count Interface Reference}{23}{section.3.13}
-\contentsline {subsection}{\numberline {3.13.1}Detailed Description}{23}{subsection.3.13.1}
-\contentsline {subsection}{\numberline {3.13.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{23}{subsection.3.13.2}
-\contentsline {subsubsection}{\numberline {3.13.2.1}hcount}{23}{subsubsection.3.13.2.1}
-\contentsline {section}{\numberline {3.14}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:i\discretionary {-}{}{}Find\discretionary {-}{}{}Entry Interface Reference}{23}{section.3.14}
-\contentsline {subsection}{\numberline {3.14.1}Detailed Description}{24}{subsection.3.14.1}
-\contentsline {subsection}{\numberline {3.14.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{24}{subsection.3.14.2}
-\contentsline {subsubsection}{\numberline {3.14.2.1}ifindentry}{24}{subsubsection.3.14.2.1}
-\contentsline {section}{\numberline {3.15}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:i\discretionary {-}{}{}Matrix\discretionary {-}{}{}Read Interface Reference}{24}{section.3.15}
-\contentsline {subsection}{\numberline {3.15.1}Detailed Description}{24}{subsection.3.15.1}
-\contentsline {subsection}{\numberline {3.15.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{24}{subsection.3.15.2}
-\contentsline {subsubsection}{\numberline {3.15.2.1}imatrixread}{24}{subsubsection.3.15.2.1}
-\contentsline {section}{\numberline {3.16}inputvar Module Reference}{25}{section.3.16}
-\contentsline {subsection}{\numberline {3.16.1}Detailed Description}{27}{subsection.3.16.1}
-\contentsline {subsection}{\numberline {3.16.2}Member Data Documentation}{28}{subsection.3.16.2}
-\contentsline {subsubsection}{\numberline {3.16.2.1}cch}{28}{subsubsection.3.16.2.1}
-\contentsline {subsubsection}{\numberline {3.16.2.2}cel}{28}{subsubsection.3.16.2.2}
-\contentsline {subsubsection}{\numberline {3.16.2.3}cth}{28}{subsubsection.3.16.2.3}
-\contentsline {subsubsection}{\numberline {3.16.2.4}degrateb}{28}{subsubsection.3.16.2.4}
-\contentsline {subsubsection}{\numberline {3.16.2.5}degratec}{28}{subsubsection.3.16.2.5}
-\contentsline {subsubsection}{\numberline {3.16.2.6}degratet}{28}{subsubsection.3.16.2.6}
-\contentsline {subsubsection}{\numberline {3.16.2.7}dt1}{28}{subsubsection.3.16.2.7}
-\contentsline {subsubsection}{\numberline {3.16.2.8}etab}{28}{subsubsection.3.16.2.8}
-\contentsline {subsubsection}{\numberline {3.16.2.9}etac}{28}{subsubsection.3.16.2.9}
-\contentsline {subsubsection}{\numberline {3.16.2.10}etacht}{28}{subsubsection.3.16.2.10}
-\contentsline {subsubsection}{\numberline {3.16.2.11}etaelt}{28}{subsubsection.3.16.2.11}
-\contentsline {subsubsection}{\numberline {3.16.2.12}etatht}{28}{subsubsection.3.16.2.12}
-\contentsline {subsubsection}{\numberline {3.16.2.13}firecostb}{29}{subsubsection.3.16.2.13}
-\contentsline {subsubsection}{\numberline {3.16.2.14}firecostc}{29}{subsubsection.3.16.2.14}
-\contentsline {subsubsection}{\numberline {3.16.2.15}firecostt}{29}{subsubsection.3.16.2.15}
-\contentsline {subsubsection}{\numberline {3.16.2.16}fuelcostb}{29}{subsubsection.3.16.2.16}
-\contentsline {subsubsection}{\numberline {3.16.2.17}fuelcostt}{29}{subsubsection.3.16.2.17}
-\contentsline {subsubsection}{\numberline {3.16.2.18}fuellhvb}{29}{subsubsection.3.16.2.18}
-\contentsline {subsubsection}{\numberline {3.16.2.19}fuellhvt}{29}{subsubsection.3.16.2.19}
-\contentsline {subsubsection}{\numberline {3.16.2.20}gridbuycost}{29}{subsubsection.3.16.2.20}
-\contentsline {subsubsection}{\numberline {3.16.2.21}gridconnection}{29}{subsubsection.3.16.2.21}
-\contentsline {subsubsection}{\numberline {3.16.2.22}gridsellcost}{29}{subsubsection.3.16.2.22}
-\contentsline {subsubsection}{\numberline {3.16.2.23}ich}{29}{subsubsection.3.16.2.23}
-\contentsline {subsubsection}{\numberline {3.16.2.24}ichp}{29}{subsubsection.3.16.2.24}
-\contentsline {subsubsection}{\numberline {3.16.2.25}ideg}{30}{subsubsection.3.16.2.25}
-\contentsline {subsubsection}{\numberline {3.16.2.26}iel}{30}{subsubsection.3.16.2.26}
-\contentsline {subsubsection}{\numberline {3.16.2.27}ielp}{30}{subsubsection.3.16.2.27}
-\contentsline {subsubsection}{\numberline {3.16.2.28}invb}{30}{subsubsection.3.16.2.28}
-\contentsline {subsubsection}{\numberline {3.16.2.29}invc}{30}{subsubsection.3.16.2.29}
-\contentsline {subsubsection}{\numberline {3.16.2.30}invt}{30}{subsubsection.3.16.2.30}
-\contentsline {subsubsection}{\numberline {3.16.2.31}ith}{30}{subsubsection.3.16.2.31}
-\contentsline {subsubsection}{\numberline {3.16.2.32}ithp}{30}{subsubsection.3.16.2.32}
-\contentsline {subsubsection}{\numberline {3.16.2.33}itime}{30}{subsubsection.3.16.2.33}
-\contentsline {subsubsection}{\numberline {3.16.2.34}ksizeb}{30}{subsubsection.3.16.2.34}
-\contentsline {subsubsection}{\numberline {3.16.2.35}ksizec}{30}{subsubsection.3.16.2.35}
-\contentsline {subsubsection}{\numberline {3.16.2.36}ksizet}{30}{subsubsection.3.16.2.36}
-\contentsline {subsubsection}{\numberline {3.16.2.37}lifeb}{31}{subsubsection.3.16.2.37}
-\contentsline {subsubsection}{\numberline {3.16.2.38}lifec}{31}{subsubsection.3.16.2.38}
-\contentsline {subsubsection}{\numberline {3.16.2.39}lifet}{31}{subsubsection.3.16.2.39}
-\contentsline {subsubsection}{\numberline {3.16.2.40}maintcostb}{31}{subsubsection.3.16.2.40}
-\contentsline {subsubsection}{\numberline {3.16.2.41}maintcostc}{31}{subsubsection.3.16.2.41}
-\contentsline {subsubsection}{\numberline {3.16.2.42}maintcostt}{31}{subsubsection.3.16.2.42}
-\contentsline {subsubsection}{\numberline {3.16.2.43}nboi}{31}{subsubsection.3.16.2.43}
-\contentsline {subsubsection}{\numberline {3.16.2.44}nchi}{31}{subsubsection.3.16.2.44}
-\contentsline {subsubsection}{\numberline {3.16.2.45}netab}{31}{subsubsection.3.16.2.45}
-\contentsline {subsubsection}{\numberline {3.16.2.46}netac}{31}{subsubsection.3.16.2.46}
-\contentsline {subsubsection}{\numberline {3.16.2.47}netacht}{31}{subsubsection.3.16.2.47}
-\contentsline {subsubsection}{\numberline {3.16.2.48}netaelt}{31}{subsubsection.3.16.2.48}
-\contentsline {subsubsection}{\numberline {3.16.2.49}netatht}{32}{subsubsection.3.16.2.49}
-\contentsline {subsubsection}{\numberline {3.16.2.50}nld}{32}{subsubsection.3.16.2.50}
-\contentsline {subsubsection}{\numberline {3.16.2.51}nload}{32}{subsubsection.3.16.2.51}
-\contentsline {subsubsection}{\numberline {3.16.2.52}nlp}{32}{subsubsection.3.16.2.52}
-\contentsline {subsubsection}{\numberline {3.16.2.53}nsizeb}{32}{subsubsection.3.16.2.53}
-\contentsline {subsubsection}{\numberline {3.16.2.54}nsizec}{32}{subsubsection.3.16.2.54}
-\contentsline {subsubsection}{\numberline {3.16.2.55}nsizet}{32}{subsubsection.3.16.2.55}
-\contentsline {subsubsection}{\numberline {3.16.2.56}nspb}{32}{subsubsection.3.16.2.56}
-\contentsline {subsubsection}{\numberline {3.16.2.57}nspc}{32}{subsubsection.3.16.2.57}
-\contentsline {subsubsection}{\numberline {3.16.2.58}nspt}{32}{subsubsection.3.16.2.58}
-\contentsline {subsubsection}{\numberline {3.16.2.59}ntime}{32}{subsubsection.3.16.2.59}
-\contentsline {subsubsection}{\numberline {3.16.2.60}ntimes}{32}{subsubsection.3.16.2.60}
-\contentsline {subsubsection}{\numberline {3.16.2.61}ntrig}{33}{subsubsection.3.16.2.61}
-\contentsline {subsubsection}{\numberline {3.16.2.62}obj}{33}{subsubsection.3.16.2.62}
-\contentsline {subsubsection}{\numberline {3.16.2.63}pmaxb}{33}{subsubsection.3.16.2.63}
-\contentsline {subsubsection}{\numberline {3.16.2.64}pmaxc}{33}{subsubsection.3.16.2.64}
-\contentsline {subsubsection}{\numberline {3.16.2.65}pmaxt}{33}{subsubsection.3.16.2.65}
-\contentsline {subsubsection}{\numberline {3.16.2.66}spb}{33}{subsubsection.3.16.2.66}
-\contentsline {subsubsection}{\numberline {3.16.2.67}spc}{33}{subsubsection.3.16.2.67}
-\contentsline {subsubsection}{\numberline {3.16.2.68}spt}{33}{subsubsection.3.16.2.68}
-\contentsline {subsubsection}{\numberline {3.16.2.69}startpoint}{33}{subsubsection.3.16.2.69}
-\contentsline {subsubsection}{\numberline {3.16.2.70}tecb}{33}{subsubsection.3.16.2.70}
-\contentsline {subsubsection}{\numberline {3.16.2.71}tecc}{33}{subsubsection.3.16.2.71}
-\contentsline {subsubsection}{\numberline {3.16.2.72}tect}{33}{subsubsection.3.16.2.72}
-\contentsline {subsubsection}{\numberline {3.16.2.73}time}{34}{subsubsection.3.16.2.73}
-\contentsline {subsubsection}{\numberline {3.16.2.74}uch}{34}{subsubsection.3.16.2.74}
-\contentsline {subsubsection}{\numberline {3.16.2.75}uel}{34}{subsubsection.3.16.2.75}
-\contentsline {subsubsection}{\numberline {3.16.2.76}uth}{34}{subsubsection.3.16.2.76}
-\contentsline {section}{\numberline {3.17}interfaces Module Reference}{34}{section.3.17}
-\contentsline {subsection}{\numberline {3.17.1}Detailed Description}{34}{subsection.3.17.1}
-\contentsline {section}{\numberline {3.18}mathtools\discretionary {-}{}{}:\discretionary {-}{}{}:interpolation Interface Reference}{35}{section.3.18}
-\contentsline {subsection}{\numberline {3.18.1}Detailed Description}{35}{subsection.3.18.1}
-\contentsline {subsection}{\numberline {3.18.2}Constructor \& Destructor Documentation}{35}{subsection.3.18.2}
-\contentsline {subsubsection}{\numberline {3.18.2.1}interpolation}{35}{subsubsection.3.18.2.1}
-\contentsline {section}{\numberline {3.19}mathtools Module Reference}{35}{section.3.19}
-\contentsline {subsection}{\numberline {3.19.1}Detailed Description}{36}{subsection.3.19.1}
-\contentsline {section}{\numberline {3.20}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:matrix\discretionary {-}{}{}Read Interface Reference}{36}{section.3.20}
-\contentsline {subsection}{\numberline {3.20.1}Detailed Description}{37}{subsection.3.20.1}
-\contentsline {subsection}{\numberline {3.20.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{37}{subsection.3.20.2}
-\contentsline {subsubsection}{\numberline {3.20.2.1}matrixread}{37}{subsubsection.3.20.2.1}
-\contentsline {section}{\numberline {3.21}myarithmetic Module Reference}{37}{section.3.21}
-\contentsline {subsection}{\numberline {3.21.1}Detailed Description}{37}{subsection.3.21.1}
-\contentsline {subsection}{\numberline {3.21.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{38}{subsection.3.21.2}
-\contentsline {subsubsection}{\numberline {3.21.2.1}inan}{38}{subsubsection.3.21.2.1}
-\contentsline {subsubsection}{\numberline {3.21.2.2}isnan}{38}{subsubsection.3.21.2.2}
-\contentsline {subsubsection}{\numberline {3.21.2.3}rnan}{38}{subsubsection.3.21.2.3}
-\contentsline {section}{\numberline {3.22}graphtools\discretionary {-}{}{}:\discretionary {-}{}{}:obj\discretionary {-}{}{}Function Interface Reference}{39}{section.3.22}
-\contentsline {subsection}{\numberline {3.22.1}Detailed Description}{39}{subsection.3.22.1}
-\contentsline {subsection}{\numberline {3.22.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{39}{subsection.3.22.2}
-\contentsline {subsubsection}{\numberline {3.22.2.1}objfunction}{39}{subsubsection.3.22.2.1}
-\contentsline {section}{\numberline {3.23}plantvar Module Reference}{39}{section.3.23}
-\contentsline {subsection}{\numberline {3.23.1}Detailed Description}{41}{subsection.3.23.1}
-\contentsline {subsection}{\numberline {3.23.2}Member Data Documentation}{41}{subsection.3.23.2}
-\contentsline {subsubsection}{\numberline {3.23.2.1}cf}{41}{subsubsection.3.23.2.1}
-\contentsline {subsubsection}{\numberline {3.23.2.2}cr}{41}{subsubsection.3.23.2.2}
-\contentsline {subsubsection}{\numberline {3.23.2.3}cref}{41}{subsubsection.3.23.2.3}
-\contentsline {subsubsection}{\numberline {3.23.2.4}dt}{41}{subsubsection.3.23.2.4}
-\contentsline {subsubsection}{\numberline {3.23.2.5}etab\discretionary {-}{}{}\_\discretionary {-}{}{}}{41}{subsubsection.3.23.2.5}
-\contentsline {subsubsection}{\numberline {3.23.2.6}etac\discretionary {-}{}{}\_\discretionary {-}{}{}}{41}{subsubsection.3.23.2.6}
-\contentsline {subsubsection}{\numberline {3.23.2.7}etach}{42}{subsubsection.3.23.2.7}
-\contentsline {subsubsection}{\numberline {3.23.2.8}etacht\discretionary {-}{}{}\_\discretionary {-}{}{}}{42}{subsubsection.3.23.2.8}
-\contentsline {subsubsection}{\numberline {3.23.2.9}etael}{42}{subsubsection.3.23.2.9}
-\contentsline {subsubsection}{\numberline {3.23.2.10}etaelt\discretionary {-}{}{}\_\discretionary {-}{}{}}{42}{subsubsection.3.23.2.10}
-\contentsline {subsubsection}{\numberline {3.23.2.11}etath}{42}{subsubsection.3.23.2.11}
-\contentsline {subsubsection}{\numberline {3.23.2.12}etatht\discretionary {-}{}{}\_\discretionary {-}{}{}}{42}{subsubsection.3.23.2.12}
-\contentsline {subsubsection}{\numberline {3.23.2.13}ib}{42}{subsubsection.3.23.2.13}
-\contentsline {subsubsection}{\numberline {3.23.2.14}ic}{42}{subsubsection.3.23.2.14}
-\contentsline {subsubsection}{\numberline {3.23.2.15}ie}{42}{subsubsection.3.23.2.15}
-\contentsline {subsubsection}{\numberline {3.23.2.16}is}{42}{subsubsection.3.23.2.16}
-\contentsline {subsubsection}{\numberline {3.23.2.17}it}{42}{subsubsection.3.23.2.17}
-\contentsline {subsubsection}{\numberline {3.23.2.18}lhv}{42}{subsubsection.3.23.2.18}
-\contentsline {subsubsection}{\numberline {3.23.2.19}nm}{43}{subsubsection.3.23.2.19}
-\contentsline {subsubsection}{\numberline {3.23.2.20}nsp}{43}{subsubsection.3.23.2.20}
-\contentsline {subsubsection}{\numberline {3.23.2.21}nsptot}{43}{subsubsection.3.23.2.21}
-\contentsline {subsubsection}{\numberline {3.23.2.22}oemcost}{43}{subsubsection.3.23.2.22}
-\contentsline {subsubsection}{\numberline {3.23.2.23}onoffcost}{43}{subsubsection.3.23.2.23}
-\contentsline {subsubsection}{\numberline {3.23.2.24}pes}{43}{subsubsection.3.23.2.24}
-\contentsline {subsubsection}{\numberline {3.23.2.25}pmax}{43}{subsubsection.3.23.2.25}
-\contentsline {subsubsection}{\numberline {3.23.2.26}sp}{43}{subsubsection.3.23.2.26}
-\contentsline {section}{\numberline {3.24}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:read\discretionary {-}{}{}Keyword Interface Reference}{44}{section.3.24}
-\contentsline {subsection}{\numberline {3.24.1}Detailed Description}{44}{subsection.3.24.1}
-\contentsline {subsection}{\numberline {3.24.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{44}{subsection.3.24.2}
-\contentsline {subsubsection}{\numberline {3.24.2.1}readkeyword}{44}{subsubsection.3.24.2.1}
-\contentsline {section}{\numberline {3.25}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:rew\discretionary {-}{}{}Unit Interface Reference}{44}{section.3.25}
-\contentsline {subsection}{\numberline {3.25.1}Detailed Description}{45}{subsection.3.25.1}
-\contentsline {subsection}{\numberline {3.25.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{45}{subsection.3.25.2}
-\contentsline {subsubsection}{\numberline {3.25.2.1}rewunit}{45}{subsubsection.3.25.2.1}
-\contentsline {section}{\numberline {3.26}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:v\discretionary {-}{}{}Count Interface Reference}{45}{section.3.26}
-\contentsline {subsection}{\numberline {3.26.1}Detailed Description}{45}{subsection.3.26.1}
-\contentsline {subsection}{\numberline {3.26.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{45}{subsection.3.26.2}
-\contentsline {subsubsection}{\numberline {3.26.2.1}vcount}{45}{subsubsection.3.26.2.1}
-\contentsline {section}{\numberline {3.27}interfaces\discretionary {-}{}{}:\discretionary {-}{}{}:warning Interface Reference}{46}{section.3.27}
-\contentsline {subsection}{\numberline {3.27.1}Detailed Description}{46}{subsection.3.27.1}
-\contentsline {subsection}{\numberline {3.27.2}Constructor \& Destructor Documentation}{46}{subsection.3.27.2}
-\contentsline {subsubsection}{\numberline {3.27.2.1}warning}{46}{subsubsection.3.27.2.1}
-\contentsline {chapter}{\numberline {4}File Documentation}{47}{chapter.4}
-\contentsline {section}{\numberline {4.1}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/abort\discretionary {-}{}{}Execution.f90 File Reference}{47}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Detailed Description}{47}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Function/\discretionary {-}{}{}Subroutine Documentation}{47}{subsection.4.1.2}
-\contentsline {subsubsection}{\numberline {4.1.2.1}abortexecution}{47}{subsubsection.4.1.2.1}
-\contentsline {section}{\numberline {4.2}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/aiuto.f90 File Reference}{48}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Detailed Description}{48}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Function/\discretionary {-}{}{}Subroutine Documentation}{48}{subsection.4.2.2}
-\contentsline {subsubsection}{\numberline {4.2.2.1}aiuto}{48}{subsubsection.4.2.2.1}
-\contentsline {section}{\numberline {4.3}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/allocate\discretionary {-}{}{}Var.f90 File Reference}{48}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Detailed Description}{48}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Function/\discretionary {-}{}{}Subroutine Documentation}{49}{subsection.4.3.2}
-\contentsline {subsubsection}{\numberline {4.3.2.1}allocatevar}{49}{subsubsection.4.3.2.1}
-\contentsline {section}{\numberline {4.4}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/build\discretionary {-}{}{}Plant.f90 File Reference}{49}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Detailed Description}{49}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Function/\discretionary {-}{}{}Subroutine Documentation}{49}{subsection.4.4.2}
-\contentsline {subsubsection}{\numberline {4.4.2.1}buildplant}{49}{subsubsection.4.4.2.1}
-\contentsline {section}{\numberline {4.5}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/check\discretionary {-}{}{}Plant.f90 File Reference}{50}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Detailed Description}{50}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}Function/\discretionary {-}{}{}Subroutine Documentation}{50}{subsection.4.5.2}
-\contentsline {subsubsection}{\numberline {4.5.2.1}checkplant}{50}{subsubsection.4.5.2.1}
-\contentsline {section}{\numberline {4.6}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/cmd\discretionary {-}{}{}Var.f90 File Reference}{50}{section.4.6}
-\contentsline {subsection}{\numberline {4.6.1}Detailed Description}{50}{subsection.4.6.1}
-\contentsline {section}{\numberline {4.7}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/commandline.f90 File Reference}{51}{section.4.7}
-\contentsline {subsection}{\numberline {4.7.1}Detailed Description}{51}{subsection.4.7.1}
-\contentsline {subsection}{\numberline {4.7.2}Function/\discretionary {-}{}{}Subroutine Documentation}{51}{subsection.4.7.2}
-\contentsline {subsubsection}{\numberline {4.7.2.1}commandline}{51}{subsubsection.4.7.2.1}
-\contentsline {section}{\numberline {4.8}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/constraints.f90 File Reference}{51}{section.4.8}
-\contentsline {subsection}{\numberline {4.8.1}Detailed Description}{51}{subsection.4.8.1}
-\contentsline {subsection}{\numberline {4.8.2}Function/\discretionary {-}{}{}Subroutine Documentation}{51}{subsection.4.8.2}
-\contentsline {subsubsection}{\numberline {4.8.2.1}constraints}{51}{subsubsection.4.8.2.1}
-\contentsline {section}{\numberline {4.9}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/economy.f90 File Reference}{52}{section.4.9}
-\contentsline {subsection}{\numberline {4.9.1}Detailed Description}{52}{subsection.4.9.1}
-\contentsline {section}{\numberline {4.10}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/end\discretionary {-}{}{}Execution.f90 File Reference}{52}{section.4.10}
-\contentsline {subsection}{\numberline {4.10.1}Detailed Description}{52}{subsection.4.10.1}
-\contentsline {subsection}{\numberline {4.10.2}Function/\discretionary {-}{}{}Subroutine Documentation}{53}{subsection.4.10.2}
-\contentsline {subsubsection}{\numberline {4.10.2.1}endexecution}{53}{subsubsection.4.10.2.1}
-\contentsline {section}{\numberline {4.11}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/energy.f90 File Reference}{53}{section.4.11}
-\contentsline {subsection}{\numberline {4.11.1}Detailed Description}{53}{subsection.4.11.1}
-\contentsline {section}{\numberline {4.12}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/file\discretionary {-}{}{}Tools.f90 File Reference}{53}{section.4.12}
-\contentsline {subsection}{\numberline {4.12.1}Detailed Description}{54}{subsection.4.12.1}
-\contentsline {section}{\numberline {4.13}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/find\discretionary {-}{}{}Entry2.f90 File Reference}{54}{section.4.13}
-\contentsline {subsection}{\numberline {4.13.1}Detailed Description}{54}{subsection.4.13.1}
-\contentsline {subsection}{\numberline {4.13.2}Function/\discretionary {-}{}{}Subroutine Documentation}{54}{subsection.4.13.2}
-\contentsline {subsubsection}{\numberline {4.13.2.1}cfindentry}{54}{subsubsection.4.13.2.1}
-\contentsline {subsubsection}{\numberline {4.13.2.2}dfindentry}{55}{subsubsection.4.13.2.2}
-\contentsline {subsubsection}{\numberline {4.13.2.3}findentry}{55}{subsubsection.4.13.2.3}
-\contentsline {subsubsection}{\numberline {4.13.2.4}ifindentry}{56}{subsubsection.4.13.2.4}
-\contentsline {section}{\numberline {4.14}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/graph\discretionary {-}{}{}Tools.f90 File Reference}{56}{section.4.14}
-\contentsline {subsection}{\numberline {4.14.1}Detailed Description}{56}{subsection.4.14.1}
-\contentsline {section}{\numberline {4.15}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/h\discretionary {-}{}{}Count.f90 File Reference}{57}{section.4.15}
-\contentsline {subsection}{\numberline {4.15.1}Detailed Description}{57}{subsection.4.15.1}
-\contentsline {subsection}{\numberline {4.15.2}Function/\discretionary {-}{}{}Subroutine Documentation}{57}{subsection.4.15.2}
-\contentsline {subsubsection}{\numberline {4.15.2.1}hcount}{57}{subsubsection.4.15.2.1}
-\contentsline {section}{\numberline {4.16}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/input\discretionary {-}{}{}Var.f90 File Reference}{57}{section.4.16}
-\contentsline {subsection}{\numberline {4.16.1}Detailed Description}{58}{subsection.4.16.1}
-\contentsline {section}{\numberline {4.17}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/interfaces.f90 File Reference}{58}{section.4.17}
-\contentsline {subsection}{\numberline {4.17.1}Detailed Description}{58}{subsection.4.17.1}
-\contentsline {section}{\numberline {4.18}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/interpolation.f90 File Reference}{58}{section.4.18}
-\contentsline {subsection}{\numberline {4.18.1}Detailed Description}{58}{subsection.4.18.1}
-\contentsline {subsection}{\numberline {4.18.2}Function/\discretionary {-}{}{}Subroutine Documentation}{59}{subsection.4.18.2}
-\contentsline {subsubsection}{\numberline {4.18.2.1}interpolation}{59}{subsubsection.4.18.2.1}
-\contentsline {section}{\numberline {4.19}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/main.f90 File Reference}{59}{section.4.19}
-\contentsline {subsection}{\numberline {4.19.1}Detailed Description}{59}{subsection.4.19.1}
-\contentsline {subsection}{\numberline {4.19.2}Function/\discretionary {-}{}{}Subroutine Documentation}{59}{subsection.4.19.2}
-\contentsline {subsubsection}{\numberline {4.19.2.1}main}{59}{subsubsection.4.19.2.1}
-\contentsline {section}{\numberline {4.20}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/math\discretionary {-}{}{}Tools.f90 File Reference}{60}{section.4.20}
-\contentsline {subsection}{\numberline {4.20.1}Detailed Description}{60}{subsection.4.20.1}
-\contentsline {section}{\numberline {4.21}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/matrix\discretionary {-}{}{}Read2.f90 File Reference}{60}{section.4.21}
-\contentsline {subsection}{\numberline {4.21.1}Detailed Description}{60}{subsection.4.21.1}
-\contentsline {subsection}{\numberline {4.21.2}Function/\discretionary {-}{}{}Subroutine Documentation}{61}{subsection.4.21.2}
-\contentsline {subsubsection}{\numberline {4.21.2.1}cmatrixread}{61}{subsubsection.4.21.2.1}
-\contentsline {subsubsection}{\numberline {4.21.2.2}dmatrixread}{62}{subsubsection.4.21.2.2}
-\contentsline {subsubsection}{\numberline {4.21.2.3}imatrixread}{63}{subsubsection.4.21.2.3}
-\contentsline {subsubsection}{\numberline {4.21.2.4}matrixread}{64}{subsubsection.4.21.2.4}
-\contentsline {section}{\numberline {4.22}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/my\discretionary {-}{}{}Arithmetic.f90 File Reference}{64}{section.4.22}
-\contentsline {subsection}{\numberline {4.22.1}Detailed Description}{64}{subsection.4.22.1}
-\contentsline {section}{\numberline {4.23}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/obj\discretionary {-}{}{}Function.f90 File Reference}{65}{section.4.23}
-\contentsline {subsection}{\numberline {4.23.1}Detailed Description}{65}{subsection.4.23.1}
-\contentsline {subsection}{\numberline {4.23.2}Function/\discretionary {-}{}{}Subroutine Documentation}{65}{subsection.4.23.2}
-\contentsline {subsubsection}{\numberline {4.23.2.1}objfunction}{65}{subsubsection.4.23.2.1}
-\contentsline {section}{\numberline {4.24}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/open\discretionary {-}{}{}Unit.f90 File Reference}{65}{section.4.24}
-\contentsline {subsection}{\numberline {4.24.1}Detailed Description}{66}{subsection.4.24.1}
-\contentsline {subsection}{\numberline {4.24.2}Function/\discretionary {-}{}{}Subroutine Documentation}{66}{subsection.4.24.2}
-\contentsline {subsubsection}{\numberline {4.24.2.1}openunit}{66}{subsubsection.4.24.2.1}
-\contentsline {section}{\numberline {4.25}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/plant\discretionary {-}{}{}Var.f90 File Reference}{66}{section.4.25}
-\contentsline {subsection}{\numberline {4.25.1}Detailed Description}{66}{subsection.4.25.1}
-\contentsline {section}{\numberline {4.26}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/prototipo.f90 File Reference}{66}{section.4.26}
-\contentsline {subsection}{\numberline {4.26.1}Detailed Description}{67}{subsection.4.26.1}
-\contentsline {subsection}{\numberline {4.26.2}Function/\discretionary {-}{}{}Subroutine Documentation}{67}{subsection.4.26.2}
-\contentsline {subsubsection}{\numberline {4.26.2.1}implicit}{67}{subsubsection.4.26.2.1}
-\contentsline {section}{\numberline {4.27}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/read\discretionary {-}{}{}Boiler.f90 File Reference}{67}{section.4.27}
-\contentsline {subsection}{\numberline {4.27.1}Detailed Description}{67}{subsection.4.27.1}
-\contentsline {subsection}{\numberline {4.27.2}Function/\discretionary {-}{}{}Subroutine Documentation}{67}{subsection.4.27.2}
-\contentsline {subsubsection}{\numberline {4.27.2.1}readboiler}{67}{subsubsection.4.27.2.1}
-\contentsline {section}{\numberline {4.28}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/read\discretionary {-}{}{}Chiller.f90 File Reference}{68}{section.4.28}
-\contentsline {subsection}{\numberline {4.28.1}Detailed Description}{68}{subsection.4.28.1}
-\contentsline {subsection}{\numberline {4.28.2}Function/\discretionary {-}{}{}Subroutine Documentation}{68}{subsection.4.28.2}
-\contentsline {subsubsection}{\numberline {4.28.2.1}readchillers}{68}{subsubsection.4.28.2.1}
-\contentsline {section}{\numberline {4.29}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/read\discretionary {-}{}{}General.f90 File Reference}{69}{section.4.29}
-\contentsline {subsection}{\numberline {4.29.1}Detailed Description}{69}{subsection.4.29.1}
-\contentsline {subsection}{\numberline {4.29.2}Function/\discretionary {-}{}{}Subroutine Documentation}{69}{subsection.4.29.2}
-\contentsline {subsubsection}{\numberline {4.29.2.1}readgeneral}{69}{subsubsection.4.29.2.1}
-\contentsline {section}{\numberline {4.30}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/read\discretionary {-}{}{}Keyword.f90 File Reference}{70}{section.4.30}
-\contentsline {subsection}{\numberline {4.30.1}Detailed Description}{70}{subsection.4.30.1}
-\contentsline {subsection}{\numberline {4.30.2}Function/\discretionary {-}{}{}Subroutine Documentation}{70}{subsection.4.30.2}
-\contentsline {subsubsection}{\numberline {4.30.2.1}readkeyword}{70}{subsubsection.4.30.2.1}
-\contentsline {section}{\numberline {4.31}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/read\discretionary {-}{}{}Load.f90 File Reference}{71}{section.4.31}
-\contentsline {subsection}{\numberline {4.31.1}Detailed Description}{71}{subsection.4.31.1}
-\contentsline {subsection}{\numberline {4.31.2}Function/\discretionary {-}{}{}Subroutine Documentation}{71}{subsection.4.31.2}
-\contentsline {subsubsection}{\numberline {4.31.2.1}readloads}{71}{subsubsection.4.31.2.1}
-\contentsline {section}{\numberline {4.32}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/read\discretionary {-}{}{}Trigen.f90 File Reference}{72}{section.4.32}
-\contentsline {subsection}{\numberline {4.32.1}Detailed Description}{72}{subsection.4.32.1}
-\contentsline {subsection}{\numberline {4.32.2}Function/\discretionary {-}{}{}Subroutine Documentation}{72}{subsection.4.32.2}
-\contentsline {subsubsection}{\numberline {4.32.2.1}readtrigen}{72}{subsubsection.4.32.2.1}
-\contentsline {section}{\numberline {4.33}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/rew\discretionary {-}{}{}Unit.f90 File Reference}{73}{section.4.33}
-\contentsline {subsection}{\numberline {4.33.1}Detailed Description}{73}{subsection.4.33.1}
-\contentsline {subsection}{\numberline {4.33.2}Function/\discretionary {-}{}{}Subroutine Documentation}{73}{subsection.4.33.2}
-\contentsline {subsubsection}{\numberline {4.33.2.1}rewunit}{73}{subsubsection.4.33.2.1}
-\contentsline {section}{\numberline {4.34}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/v\discretionary {-}{}{}Count.f90 File Reference}{73}{section.4.34}
-\contentsline {subsection}{\numberline {4.34.1}Detailed Description}{74}{subsection.4.34.1}
-\contentsline {subsection}{\numberline {4.34.2}Function/\discretionary {-}{}{}Subroutine Documentation}{74}{subsection.4.34.2}
-\contentsline {subsubsection}{\numberline {4.34.2.1}vcount}{74}{subsubsection.4.34.2.1}
-\contentsline {section}{\numberline {4.35}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Fortran\discretionary {-}{}{}Code/src/warning.f90 File Reference}{75}{section.4.35}
-\contentsline {subsection}{\numberline {4.35.1}Detailed Description}{75}{subsection.4.35.1}
-\contentsline {subsection}{\numberline {4.35.2}Function/\discretionary {-}{}{}Subroutine Documentation}{75}{subsection.4.35.2}
-\contentsline {subsubsection}{\numberline {4.35.2.1}warning}{75}{subsubsection.4.35.2.1}
+\contentsline {chapter}{\numberline {1}Power\discretionary {-}{}{}Manager}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Introduction}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Licence}{1}{section.1.2}
+\contentsline {chapter}{\numberline {2}Documentation Page}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}First section}{3}{section.2.1}
+\contentsline {chapter}{\numberline {3}Data Type Index}{5}{chapter.3}
+\contentsline {section}{\numberline {3.1}Data Types List}{5}{section.3.1}
+\contentsline {chapter}{\numberline {4}File Index}{7}{chapter.4}
+\contentsline {section}{\numberline {4.1}File List}{7}{section.4.1}
+\contentsline {chapter}{\numberline {5}Data Type Documentation}{9}{chapter.5}
+\contentsline {section}{\numberline {5.1}interfaces\discretionary {-}{}{}:\discretionary {-}{}{}:abort\discretionary {-}{}{}Execution Interface Reference}{9}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Detailed Description}{9}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{9}{subsection.5.1.2}
+\contentsline {subsubsection}{\numberline {5.1.2.1}abortexecution}{9}{subsubsection.5.1.2.1}
+\contentsline {section}{\numberline {5.2}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:c\discretionary {-}{}{}Find\discretionary {-}{}{}Entry Interface Reference}{10}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Detailed Description}{10}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{10}{subsection.5.2.2}
+\contentsline {subsubsection}{\numberline {5.2.2.1}cfindentry}{10}{subsubsection.5.2.2.1}
+\contentsline {section}{\numberline {5.3}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:c\discretionary {-}{}{}Matrix\discretionary {-}{}{}Read Interface Reference}{10}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Detailed Description}{11}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{11}{subsection.5.3.2}
+\contentsline {subsubsection}{\numberline {5.3.2.1}cmatrixread}{11}{subsubsection.5.3.2.1}
+\contentsline {section}{\numberline {5.4}cmdvar Module Reference}{11}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Detailed Description}{12}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Member Data Documentation}{12}{subsection.5.4.2}
+\contentsline {subsubsection}{\numberline {5.4.2.1}debug}{12}{subsubsection.5.4.2.1}
+\contentsline {subsubsection}{\numberline {5.4.2.2}out}{12}{subsubsection.5.4.2.2}
+\contentsline {subsubsection}{\numberline {5.4.2.3}silent}{12}{subsubsection.5.4.2.3}
+\contentsline {subsubsection}{\numberline {5.4.2.4}verb}{12}{subsubsection.5.4.2.4}
+\contentsline {subsubsection}{\numberline {5.4.2.5}vsilent}{12}{subsubsection.5.4.2.5}
+\contentsline {section}{\numberline {5.5}cmdvarwr Module Reference}{12}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Detailed Description}{13}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Member Data Documentation}{13}{subsection.5.5.2}
+\contentsline {subsubsection}{\numberline {5.5.2.1}folder}{13}{subsubsection.5.5.2.1}
+\contentsline {section}{\numberline {5.6}command Module Reference}{13}{section.5.6}
+\contentsline {subsection}{\numberline {5.6.1}Detailed Description}{14}{subsection.5.6.1}
+\contentsline {subsection}{\numberline {5.6.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{14}{subsection.5.6.2}
+\contentsline {subsubsection}{\numberline {5.6.2.1}cmdvarwrite}{14}{subsubsection.5.6.2.1}
+\contentsline {subsection}{\numberline {5.6.3}Member Data Documentation}{14}{subsection.5.6.3}
+\contentsline {subsubsection}{\numberline {5.6.3.1}cartella}{14}{subsubsection.5.6.3.1}
+\contentsline {subsubsection}{\numberline {5.6.3.2}protected}{14}{subsubsection.5.6.3.2}
+\contentsline {section}{\numberline {5.7}graphtools\discretionary {-}{}{}:\discretionary {-}{}{}:constraints Interface Reference}{14}{section.5.7}
+\contentsline {subsection}{\numberline {5.7.1}Detailed Description}{14}{subsection.5.7.1}
+\contentsline {subsection}{\numberline {5.7.2}Constructor \& Destructor Documentation}{15}{subsection.5.7.2}
+\contentsline {subsubsection}{\numberline {5.7.2.1}constraints}{15}{subsubsection.5.7.2.1}
+\contentsline {section}{\numberline {5.8}euristics\discretionary {-}{}{}:\discretionary {-}{}{}:constraints Interface Reference}{15}{section.5.8}
+\contentsline {subsection}{\numberline {5.8.1}Detailed Description}{15}{subsection.5.8.1}
+\contentsline {subsection}{\numberline {5.8.2}Constructor \& Destructor Documentation}{15}{subsection.5.8.2}
+\contentsline {subsubsection}{\numberline {5.8.2.1}constraints}{15}{subsubsection.5.8.2.1}
+\contentsline {section}{\numberline {5.9}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:d\discretionary {-}{}{}Find\discretionary {-}{}{}Entry Interface Reference}{16}{section.5.9}
+\contentsline {subsection}{\numberline {5.9.1}Detailed Description}{16}{subsection.5.9.1}
+\contentsline {subsection}{\numberline {5.9.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{16}{subsection.5.9.2}
+\contentsline {subsubsection}{\numberline {5.9.2.1}dfindentry}{16}{subsubsection.5.9.2.1}
+\contentsline {section}{\numberline {5.10}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:d\discretionary {-}{}{}Matrix\discretionary {-}{}{}Read Interface Reference}{16}{section.5.10}
+\contentsline {subsection}{\numberline {5.10.1}Detailed Description}{17}{subsection.5.10.1}
+\contentsline {subsection}{\numberline {5.10.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{17}{subsection.5.10.2}
+\contentsline {subsubsection}{\numberline {5.10.2.1}dmatrixread}{17}{subsubsection.5.10.2.1}
+\contentsline {section}{\numberline {5.11}economy Module Reference}{17}{section.5.11}
+\contentsline {subsection}{\numberline {5.11.1}Detailed Description}{18}{subsection.5.11.1}
+\contentsline {subsection}{\numberline {5.11.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{18}{subsection.5.11.2}
+\contentsline {subsubsection}{\numberline {5.11.2.1}chrev}{18}{subsubsection.5.11.2.1}
+\contentsline {subsubsection}{\numberline {5.11.2.2}currcost}{18}{subsubsection.5.11.2.2}
+\contentsline {subsubsection}{\numberline {5.11.2.3}elrev}{19}{subsubsection.5.11.2.3}
+\contentsline {subsubsection}{\numberline {5.11.2.4}firecost}{20}{subsubsection.5.11.2.4}
+\contentsline {subsubsection}{\numberline {5.11.2.5}fuelcost}{20}{subsubsection.5.11.2.5}
+\contentsline {subsubsection}{\numberline {5.11.2.6}grideconomy}{21}{subsubsection.5.11.2.6}
+\contentsline {subsubsection}{\numberline {5.11.2.7}maintenancecost}{21}{subsubsection.5.11.2.7}
+\contentsline {subsubsection}{\numberline {5.11.2.8}threv}{21}{subsubsection.5.11.2.8}
+\contentsline {section}{\numberline {5.12}energy Module Reference}{22}{section.5.12}
+\contentsline {subsection}{\numberline {5.12.1}Detailed Description}{23}{subsection.5.12.1}
+\contentsline {subsection}{\numberline {5.12.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{23}{subsection.5.12.2}
+\contentsline {subsubsection}{\numberline {5.12.2.1}chprod}{23}{subsubsection.5.12.2.1}
+\contentsline {subsubsection}{\numberline {5.12.2.2}cogthprod}{23}{subsubsection.5.12.2.2}
+\contentsline {subsubsection}{\numberline {5.12.2.3}elprod}{24}{subsubsection.5.12.2.3}
+\contentsline {subsubsection}{\numberline {5.12.2.4}elselfcons}{24}{subsubsection.5.12.2.4}
+\contentsline {subsubsection}{\numberline {5.12.2.5}energyexhaust}{25}{subsubsection.5.12.2.5}
+\contentsline {subsubsection}{\numberline {5.12.2.6}energyinput}{25}{subsubsection.5.12.2.6}
+\contentsline {subsubsection}{\numberline {5.12.2.7}fuelcons}{25}{subsubsection.5.12.2.7}
+\contentsline {subsubsection}{\numberline {5.12.2.8}limitrecovery}{26}{subsubsection.5.12.2.8}
+\contentsline {subsubsection}{\numberline {5.12.2.9}thprod}{26}{subsubsection.5.12.2.9}
+\contentsline {subsubsection}{\numberline {5.12.2.10}thselfcons}{26}{subsubsection.5.12.2.10}
+\contentsline {section}{\numberline {5.13}euristics Module Reference}{27}{section.5.13}
+\contentsline {subsection}{\numberline {5.13.1}Detailed Description}{27}{subsection.5.13.1}
+\contentsline {subsection}{\numberline {5.13.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{27}{subsection.5.13.2}
+\contentsline {subsubsection}{\numberline {5.13.2.1}chredundant}{27}{subsubsection.5.13.2.1}
+\contentsline {subsubsection}{\numberline {5.13.2.2}thredundant}{28}{subsubsection.5.13.2.2}
+\contentsline {section}{\numberline {5.14}filetools Module Reference}{28}{section.5.14}
+\contentsline {subsection}{\numberline {5.14.1}Detailed Description}{29}{subsection.5.14.1}
+\contentsline {section}{\numberline {5.15}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:find\discretionary {-}{}{}Entry Interface Reference}{29}{section.5.15}
+\contentsline {subsection}{\numberline {5.15.1}Detailed Description}{29}{subsection.5.15.1}
+\contentsline {subsection}{\numberline {5.15.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{30}{subsection.5.15.2}
+\contentsline {subsubsection}{\numberline {5.15.2.1}findentry}{30}{subsubsection.5.15.2.1}
+\contentsline {section}{\numberline {5.16}globalresults Module Reference}{30}{section.5.16}
+\contentsline {subsection}{\numberline {5.16.1}Detailed Description}{31}{subsection.5.16.1}
+\contentsline {subsection}{\numberline {5.16.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{31}{subsection.5.16.2}
+\contentsline {subsubsection}{\numberline {5.16.2.1}globchrev}{31}{subsubsection.5.16.2.1}
+\contentsline {subsubsection}{\numberline {5.16.2.2}globcost}{31}{subsubsection.5.16.2.2}
+\contentsline {subsubsection}{\numberline {5.16.2.3}globelrev}{31}{subsubsection.5.16.2.3}
+\contentsline {subsubsection}{\numberline {5.16.2.4}globfirecost}{32}{subsubsection.5.16.2.4}
+\contentsline {subsubsection}{\numberline {5.16.2.5}globfuelcost}{33}{subsubsection.5.16.2.5}
+\contentsline {subsubsection}{\numberline {5.16.2.6}globmaintcost}{33}{subsubsection.5.16.2.6}
+\contentsline {subsubsection}{\numberline {5.16.2.7}globprofit}{34}{subsubsection.5.16.2.7}
+\contentsline {subsubsection}{\numberline {5.16.2.8}globrevenues}{34}{subsubsection.5.16.2.8}
+\contentsline {subsubsection}{\numberline {5.16.2.9}globthrev}{34}{subsubsection.5.16.2.9}
+\contentsline {section}{\numberline {5.17}graphtools Module Reference}{35}{section.5.17}
+\contentsline {subsection}{\numberline {5.17.1}Detailed Description}{35}{subsection.5.17.1}
+\contentsline {subsection}{\numberline {5.17.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{36}{subsection.5.17.2}
+\contentsline {subsubsection}{\numberline {5.17.2.1}allcombin}{36}{subsubsection.5.17.2.1}
+\contentsline {subsubsection}{\numberline {5.17.2.2}grapharcs}{36}{subsubsection.5.17.2.2}
+\contentsline {subsubsection}{\numberline {5.17.2.3}graphpoints}{36}{subsubsection.5.17.2.3}
+\contentsline {subsubsection}{\numberline {5.17.2.4}minpathtopobw}{37}{subsubsection.5.17.2.4}
+\contentsline {subsubsection}{\numberline {5.17.2.5}minpathtopofw}{37}{subsubsection.5.17.2.5}
+\contentsline {subsubsection}{\numberline {5.17.2.6}uptimecalc}{37}{subsubsection.5.17.2.6}
+\contentsline {section}{\numberline {5.18}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:h\discretionary {-}{}{}Count Interface Reference}{38}{section.5.18}
+\contentsline {subsection}{\numberline {5.18.1}Detailed Description}{38}{subsection.5.18.1}
+\contentsline {subsection}{\numberline {5.18.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{38}{subsection.5.18.2}
+\contentsline {subsubsection}{\numberline {5.18.2.1}hcount}{38}{subsubsection.5.18.2.1}
+\contentsline {section}{\numberline {5.19}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:i\discretionary {-}{}{}Find\discretionary {-}{}{}Entry Interface Reference}{38}{section.5.19}
+\contentsline {subsection}{\numberline {5.19.1}Detailed Description}{39}{subsection.5.19.1}
+\contentsline {subsection}{\numberline {5.19.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{39}{subsection.5.19.2}
+\contentsline {subsubsection}{\numberline {5.19.2.1}ifindentry}{39}{subsubsection.5.19.2.1}
+\contentsline {section}{\numberline {5.20}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:i\discretionary {-}{}{}Matrix\discretionary {-}{}{}Read Interface Reference}{39}{section.5.20}
+\contentsline {subsection}{\numberline {5.20.1}Detailed Description}{39}{subsection.5.20.1}
+\contentsline {subsection}{\numberline {5.20.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{39}{subsection.5.20.2}
+\contentsline {subsubsection}{\numberline {5.20.2.1}imatrixread}{39}{subsubsection.5.20.2.1}
+\contentsline {section}{\numberline {5.21}inputvar Module Reference}{40}{section.5.21}
+\contentsline {subsection}{\numberline {5.21.1}Detailed Description}{43}{subsection.5.21.1}
+\contentsline {subsection}{\numberline {5.21.2}Member Data Documentation}{43}{subsection.5.21.2}
+\contentsline {subsubsection}{\numberline {5.21.2.1}altcorrb}{43}{subsubsection.5.21.2.1}
+\contentsline {subsubsection}{\numberline {5.21.2.2}altcorrc}{43}{subsubsection.5.21.2.2}
+\contentsline {subsubsection}{\numberline {5.21.2.3}altcorrt}{44}{subsubsection.5.21.2.3}
+\contentsline {subsubsection}{\numberline {5.21.2.4}altitude}{44}{subsubsection.5.21.2.4}
+\contentsline {subsubsection}{\numberline {5.21.2.5}cch}{44}{subsubsection.5.21.2.5}
+\contentsline {subsubsection}{\numberline {5.21.2.6}cel}{44}{subsubsection.5.21.2.6}
+\contentsline {subsubsection}{\numberline {5.21.2.7}cth}{44}{subsubsection.5.21.2.7}
+\contentsline {subsubsection}{\numberline {5.21.2.8}downtime0}{44}{subsubsection.5.21.2.8}
+\contentsline {subsubsection}{\numberline {5.21.2.9}dt1}{44}{subsubsection.5.21.2.9}
+\contentsline {subsubsection}{\numberline {5.21.2.10}etab}{44}{subsubsection.5.21.2.10}
+\contentsline {subsubsection}{\numberline {5.21.2.11}etac}{44}{subsubsection.5.21.2.11}
+\contentsline {subsubsection}{\numberline {5.21.2.12}etacht}{44}{subsubsection.5.21.2.12}
+\contentsline {subsubsection}{\numberline {5.21.2.13}etaelt}{44}{subsubsection.5.21.2.13}
+\contentsline {subsubsection}{\numberline {5.21.2.14}etatht}{44}{subsubsection.5.21.2.14}
+\contentsline {subsubsection}{\numberline {5.21.2.15}firecostb}{45}{subsubsection.5.21.2.15}
+\contentsline {subsubsection}{\numberline {5.21.2.16}firecostc}{45}{subsubsection.5.21.2.16}
+\contentsline {subsubsection}{\numberline {5.21.2.17}firecostt}{45}{subsubsection.5.21.2.17}
+\contentsline {subsubsection}{\numberline {5.21.2.18}fuelcostb}{45}{subsubsection.5.21.2.18}
+\contentsline {subsubsection}{\numberline {5.21.2.19}fuelcostt}{45}{subsubsection.5.21.2.19}
+\contentsline {subsubsection}{\numberline {5.21.2.20}fuellhvb}{45}{subsubsection.5.21.2.20}
+\contentsline {subsubsection}{\numberline {5.21.2.21}fuellhvt}{45}{subsubsection.5.21.2.21}
+\contentsline {subsubsection}{\numberline {5.21.2.22}global}{45}{subsubsection.5.21.2.22}
+\contentsline {subsubsection}{\numberline {5.21.2.23}gridbuycost}{45}{subsubsection.5.21.2.23}
+\contentsline {subsubsection}{\numberline {5.21.2.24}gridconnection}{45}{subsubsection.5.21.2.24}
+\contentsline {subsubsection}{\numberline {5.21.2.25}gridsellcost}{45}{subsubsection.5.21.2.25}
+\contentsline {subsubsection}{\numberline {5.21.2.26}ich}{45}{subsubsection.5.21.2.26}
+\contentsline {subsubsection}{\numberline {5.21.2.27}ichp}{46}{subsubsection.5.21.2.27}
+\contentsline {subsubsection}{\numberline {5.21.2.28}ideg}{46}{subsubsection.5.21.2.28}
+\contentsline {subsubsection}{\numberline {5.21.2.29}iel}{46}{subsubsection.5.21.2.29}
+\contentsline {subsubsection}{\numberline {5.21.2.30}ielp}{46}{subsubsection.5.21.2.30}
+\contentsline {subsubsection}{\numberline {5.21.2.31}ith}{46}{subsubsection.5.21.2.31}
+\contentsline {subsubsection}{\numberline {5.21.2.32}ithp}{46}{subsubsection.5.21.2.32}
+\contentsline {subsubsection}{\numberline {5.21.2.33}itime}{46}{subsubsection.5.21.2.33}
+\contentsline {subsubsection}{\numberline {5.21.2.34}lifeb}{46}{subsubsection.5.21.2.34}
+\contentsline {subsubsection}{\numberline {5.21.2.35}lifet}{46}{subsubsection.5.21.2.35}
+\contentsline {subsubsection}{\numberline {5.21.2.36}maintcostb}{46}{subsubsection.5.21.2.36}
+\contentsline {subsubsection}{\numberline {5.21.2.37}maintcostc}{46}{subsubsection.5.21.2.37}
+\contentsline {subsubsection}{\numberline {5.21.2.38}maintcostt}{46}{subsubsection.5.21.2.38}
+\contentsline {subsubsection}{\numberline {5.21.2.39}method}{47}{subsubsection.5.21.2.39}
+\contentsline {subsubsection}{\numberline {5.21.2.40}mindowntimeb}{47}{subsubsection.5.21.2.40}
+\contentsline {subsubsection}{\numberline {5.21.2.41}mindowntimec}{47}{subsubsection.5.21.2.41}
+\contentsline {subsubsection}{\numberline {5.21.2.42}mindowntimet}{47}{subsubsection.5.21.2.42}
+\contentsline {subsubsection}{\numberline {5.21.2.43}minuptimeb}{47}{subsubsection.5.21.2.43}
+\contentsline {subsubsection}{\numberline {5.21.2.44}minuptimec}{47}{subsubsection.5.21.2.44}
+\contentsline {subsubsection}{\numberline {5.21.2.45}minuptimet}{47}{subsubsection.5.21.2.45}
+\contentsline {subsubsection}{\numberline {5.21.2.46}nacb}{47}{subsubsection.5.21.2.46}
+\contentsline {subsubsection}{\numberline {5.21.2.47}nacc}{47}{subsubsection.5.21.2.47}
+\contentsline {subsubsection}{\numberline {5.21.2.48}nact}{47}{subsubsection.5.21.2.48}
+\contentsline {subsubsection}{\numberline {5.21.2.49}nboi}{47}{subsubsection.5.21.2.49}
+\contentsline {subsubsection}{\numberline {5.21.2.50}nchi}{47}{subsubsection.5.21.2.50}
+\contentsline {subsubsection}{\numberline {5.21.2.51}netab}{48}{subsubsection.5.21.2.51}
+\contentsline {subsubsection}{\numberline {5.21.2.52}netac}{48}{subsubsection.5.21.2.52}
+\contentsline {subsubsection}{\numberline {5.21.2.53}netacht}{48}{subsubsection.5.21.2.53}
+\contentsline {subsubsection}{\numberline {5.21.2.54}netaelt}{48}{subsubsection.5.21.2.54}
+\contentsline {subsubsection}{\numberline {5.21.2.55}netatht}{48}{subsubsection.5.21.2.55}
+\contentsline {subsubsection}{\numberline {5.21.2.56}nld}{48}{subsubsection.5.21.2.56}
+\contentsline {subsubsection}{\numberline {5.21.2.57}nload}{48}{subsubsection.5.21.2.57}
+\contentsline {subsubsection}{\numberline {5.21.2.58}nlp}{48}{subsubsection.5.21.2.58}
+\contentsline {subsubsection}{\numberline {5.21.2.59}npcb}{48}{subsubsection.5.21.2.59}
+\contentsline {subsubsection}{\numberline {5.21.2.60}npcc}{48}{subsubsection.5.21.2.60}
+\contentsline {subsubsection}{\numberline {5.21.2.61}npct}{48}{subsubsection.5.21.2.61}
+\contentsline {subsubsection}{\numberline {5.21.2.62}nsizec}{48}{subsubsection.5.21.2.62}
+\contentsline {subsubsection}{\numberline {5.21.2.63}nspb}{49}{subsubsection.5.21.2.63}
+\contentsline {subsubsection}{\numberline {5.21.2.64}nspc}{49}{subsubsection.5.21.2.64}
+\contentsline {subsubsection}{\numberline {5.21.2.65}nspt}{49}{subsubsection.5.21.2.65}
+\contentsline {subsubsection}{\numberline {5.21.2.66}ntcb}{49}{subsubsection.5.21.2.66}
+\contentsline {subsubsection}{\numberline {5.21.2.67}ntcc}{49}{subsubsection.5.21.2.67}
+\contentsline {subsubsection}{\numberline {5.21.2.68}ntct}{49}{subsubsection.5.21.2.68}
+\contentsline {subsubsection}{\numberline {5.21.2.69}ntime}{49}{subsubsection.5.21.2.69}
+\contentsline {subsubsection}{\numberline {5.21.2.70}ntimes}{49}{subsubsection.5.21.2.70}
+\contentsline {subsubsection}{\numberline {5.21.2.71}ntrig}{49}{subsubsection.5.21.2.71}
+\contentsline {subsubsection}{\numberline {5.21.2.72}obj}{49}{subsubsection.5.21.2.72}
+\contentsline {subsubsection}{\numberline {5.21.2.73}pamb}{49}{subsubsection.5.21.2.73}
+\contentsline {subsubsection}{\numberline {5.21.2.74}pmaxb}{49}{subsubsection.5.21.2.74}
+\contentsline {subsubsection}{\numberline {5.21.2.75}pmaxc}{50}{subsubsection.5.21.2.75}
+\contentsline {subsubsection}{\numberline {5.21.2.76}pmaxt}{50}{subsubsection.5.21.2.76}
+\contentsline {subsubsection}{\numberline {5.21.2.77}prescorrb}{50}{subsubsection.5.21.2.77}
+\contentsline {subsubsection}{\numberline {5.21.2.78}prescorrc}{50}{subsubsection.5.21.2.78}
+\contentsline {subsubsection}{\numberline {5.21.2.79}prescorrt}{50}{subsubsection.5.21.2.79}
+\contentsline {subsubsection}{\numberline {5.21.2.80}spb}{50}{subsubsection.5.21.2.80}
+\contentsline {subsubsection}{\numberline {5.21.2.81}spc}{50}{subsubsection.5.21.2.81}
+\contentsline {subsubsection}{\numberline {5.21.2.82}spt}{50}{subsubsection.5.21.2.82}
+\contentsline {subsubsection}{\numberline {5.21.2.83}startpoint}{50}{subsubsection.5.21.2.83}
+\contentsline {subsubsection}{\numberline {5.21.2.84}tamb}{50}{subsubsection.5.21.2.84}
+\contentsline {subsubsection}{\numberline {5.21.2.85}tecb}{50}{subsubsection.5.21.2.85}
+\contentsline {subsubsection}{\numberline {5.21.2.86}tecc}{50}{subsubsection.5.21.2.86}
+\contentsline {subsubsection}{\numberline {5.21.2.87}tect}{51}{subsubsection.5.21.2.87}
+\contentsline {subsubsection}{\numberline {5.21.2.88}tempcorrb}{51}{subsubsection.5.21.2.88}
+\contentsline {subsubsection}{\numberline {5.21.2.89}tempcorrc}{51}{subsubsection.5.21.2.89}
+\contentsline {subsubsection}{\numberline {5.21.2.90}tempcorrt}{51}{subsubsection.5.21.2.90}
+\contentsline {subsubsection}{\numberline {5.21.2.91}time}{51}{subsubsection.5.21.2.91}
+\contentsline {subsubsection}{\numberline {5.21.2.92}uch}{51}{subsubsection.5.21.2.92}
+\contentsline {subsubsection}{\numberline {5.21.2.93}uel}{51}{subsubsection.5.21.2.93}
+\contentsline {subsubsection}{\numberline {5.21.2.94}uptime0}{51}{subsubsection.5.21.2.94}
+\contentsline {subsubsection}{\numberline {5.21.2.95}useeuristics}{51}{subsubsection.5.21.2.95}
+\contentsline {subsubsection}{\numberline {5.21.2.96}uth}{51}{subsubsection.5.21.2.96}
+\contentsline {subsubsection}{\numberline {5.21.2.97}writeboi}{51}{subsubsection.5.21.2.97}
+\contentsline {subsubsection}{\numberline {5.21.2.98}writechi}{51}{subsubsection.5.21.2.98}
+\contentsline {subsubsection}{\numberline {5.21.2.99}writechillingrev}{52}{subsubsection.5.21.2.99}
+\contentsline {subsubsection}{\numberline {5.21.2.100}writecosts}{52}{subsubsection.5.21.2.100}
+\contentsline {subsubsection}{\numberline {5.21.2.101}writedemand}{52}{subsubsection.5.21.2.101}
+\contentsline {subsubsection}{\numberline {5.21.2.102}writeefficiency}{52}{subsubsection.5.21.2.102}
+\contentsline {subsubsection}{\numberline {5.21.2.103}writeelectricrev}{52}{subsubsection.5.21.2.103}
+\contentsline {subsubsection}{\numberline {5.21.2.104}writeenergy}{52}{subsubsection.5.21.2.104}
+\contentsline {subsubsection}{\numberline {5.21.2.105}writeinput}{52}{subsubsection.5.21.2.105}
+\contentsline {subsubsection}{\numberline {5.21.2.106}writepower}{52}{subsubsection.5.21.2.106}
+\contentsline {subsubsection}{\numberline {5.21.2.107}writethermalrev}{52}{subsubsection.5.21.2.107}
+\contentsline {subsubsection}{\numberline {5.21.2.108}writetrig}{52}{subsubsection.5.21.2.108}
+\contentsline {section}{\numberline {5.22}interfaces Module Reference}{53}{section.5.22}
+\contentsline {subsection}{\numberline {5.22.1}Detailed Description}{53}{subsection.5.22.1}
+\contentsline {section}{\numberline {5.23}mathtools\discretionary {-}{}{}:\discretionary {-}{}{}:interpolation Interface Reference}{53}{section.5.23}
+\contentsline {subsection}{\numberline {5.23.1}Detailed Description}{54}{subsection.5.23.1}
+\contentsline {subsection}{\numberline {5.23.2}Constructor \& Destructor Documentation}{54}{subsection.5.23.2}
+\contentsline {subsubsection}{\numberline {5.23.2.1}interpolation}{54}{subsubsection.5.23.2.1}
+\contentsline {section}{\numberline {5.24}mathtools Module Reference}{54}{section.5.24}
+\contentsline {subsection}{\numberline {5.24.1}Detailed Description}{54}{subsection.5.24.1}
+\contentsline {subsection}{\numberline {5.24.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{55}{subsection.5.24.2}
+\contentsline {subsubsection}{\numberline {5.24.2.1}locaterow}{55}{subsubsection.5.24.2.1}
+\contentsline {section}{\numberline {5.25}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:matrix\discretionary {-}{}{}Read Interface Reference}{55}{section.5.25}
+\contentsline {subsection}{\numberline {5.25.1}Detailed Description}{55}{subsection.5.25.1}
+\contentsline {subsection}{\numberline {5.25.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{55}{subsection.5.25.2}
+\contentsline {subsubsection}{\numberline {5.25.2.1}matrixread}{55}{subsubsection.5.25.2.1}
+\contentsline {section}{\numberline {5.26}myarithmetic Module Reference}{55}{section.5.26}
+\contentsline {subsection}{\numberline {5.26.1}Detailed Description}{56}{subsection.5.26.1}
+\contentsline {subsection}{\numberline {5.26.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{56}{subsection.5.26.2}
+\contentsline {subsubsection}{\numberline {5.26.2.1}inan}{56}{subsubsection.5.26.2.1}
+\contentsline {subsubsection}{\numberline {5.26.2.2}isnan}{57}{subsubsection.5.26.2.2}
+\contentsline {subsubsection}{\numberline {5.26.2.3}rnan}{57}{subsubsection.5.26.2.3}
+\contentsline {section}{\numberline {5.27}graphtools\discretionary {-}{}{}:\discretionary {-}{}{}:obj\discretionary {-}{}{}Function Interface Reference}{57}{section.5.27}
+\contentsline {subsection}{\numberline {5.27.1}Detailed Description}{58}{subsection.5.27.1}
+\contentsline {subsection}{\numberline {5.27.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{58}{subsection.5.27.2}
+\contentsline {subsubsection}{\numberline {5.27.2.1}objfunction}{58}{subsubsection.5.27.2.1}
+\contentsline {section}{\numberline {5.28}interfaces\discretionary {-}{}{}:\discretionary {-}{}{}:performances Interface Reference}{58}{section.5.28}
+\contentsline {subsection}{\numberline {5.28.1}Detailed Description}{58}{subsection.5.28.1}
+\contentsline {subsection}{\numberline {5.28.2}Constructor \& Destructor Documentation}{58}{subsection.5.28.2}
+\contentsline {subsubsection}{\numberline {5.28.2.1}performances}{58}{subsubsection.5.28.2.1}
+\contentsline {section}{\numberline {5.29}plantvar Module Reference}{59}{section.5.29}
+\contentsline {subsection}{\numberline {5.29.1}Detailed Description}{60}{subsection.5.29.1}
+\contentsline {subsection}{\numberline {5.29.2}Member Data Documentation}{60}{subsection.5.29.2}
+\contentsline {subsubsection}{\numberline {5.29.2.1}cf}{60}{subsubsection.5.29.2.1}
+\contentsline {subsubsection}{\numberline {5.29.2.2}cr}{60}{subsubsection.5.29.2.2}
+\contentsline {subsubsection}{\numberline {5.29.2.3}cref}{61}{subsubsection.5.29.2.3}
+\contentsline {subsubsection}{\numberline {5.29.2.4}dt}{61}{subsubsection.5.29.2.4}
+\contentsline {subsubsection}{\numberline {5.29.2.5}envcorr}{61}{subsubsection.5.29.2.5}
+\contentsline {subsubsection}{\numberline {5.29.2.6}esource}{61}{subsubsection.5.29.2.6}
+\contentsline {subsubsection}{\numberline {5.29.2.7}etab\discretionary {-}{}{}\_\discretionary {-}{}{}}{61}{subsubsection.5.29.2.7}
+\contentsline {subsubsection}{\numberline {5.29.2.8}etac\discretionary {-}{}{}\_\discretionary {-}{}{}}{61}{subsubsection.5.29.2.8}
+\contentsline {subsubsection}{\numberline {5.29.2.9}etach}{61}{subsubsection.5.29.2.9}
+\contentsline {subsubsection}{\numberline {5.29.2.10}etacht\discretionary {-}{}{}\_\discretionary {-}{}{}}{61}{subsubsection.5.29.2.10}
+\contentsline {subsubsection}{\numberline {5.29.2.11}etael}{61}{subsubsection.5.29.2.11}
+\contentsline {subsubsection}{\numberline {5.29.2.12}etaelt\discretionary {-}{}{}\_\discretionary {-}{}{}}{61}{subsubsection.5.29.2.12}
+\contentsline {subsubsection}{\numberline {5.29.2.13}etath}{61}{subsubsection.5.29.2.13}
+\contentsline {subsubsection}{\numberline {5.29.2.14}etatht\discretionary {-}{}{}\_\discretionary {-}{}{}}{61}{subsubsection.5.29.2.14}
+\contentsline {subsubsection}{\numberline {5.29.2.15}ib}{62}{subsubsection.5.29.2.15}
+\contentsline {subsubsection}{\numberline {5.29.2.16}ic}{62}{subsubsection.5.29.2.16}
+\contentsline {subsubsection}{\numberline {5.29.2.17}ie}{62}{subsubsection.5.29.2.17}
+\contentsline {subsubsection}{\numberline {5.29.2.18}is}{62}{subsubsection.5.29.2.18}
+\contentsline {subsubsection}{\numberline {5.29.2.19}it}{62}{subsubsection.5.29.2.19}
+\contentsline {subsubsection}{\numberline {5.29.2.20}lhv}{62}{subsubsection.5.29.2.20}
+\contentsline {subsubsection}{\numberline {5.29.2.21}mindowntime}{62}{subsubsection.5.29.2.21}
+\contentsline {subsubsection}{\numberline {5.29.2.22}minuptime}{62}{subsubsection.5.29.2.22}
+\contentsline {subsubsection}{\numberline {5.29.2.23}nm}{62}{subsubsection.5.29.2.23}
+\contentsline {subsubsection}{\numberline {5.29.2.24}nsp}{62}{subsubsection.5.29.2.24}
+\contentsline {subsubsection}{\numberline {5.29.2.25}nsptot}{62}{subsubsection.5.29.2.25}
+\contentsline {subsubsection}{\numberline {5.29.2.26}ntv}{62}{subsubsection.5.29.2.26}
+\contentsline {subsubsection}{\numberline {5.29.2.27}oemcost}{63}{subsubsection.5.29.2.27}
+\contentsline {subsubsection}{\numberline {5.29.2.28}onoffcost}{63}{subsubsection.5.29.2.28}
+\contentsline {subsubsection}{\numberline {5.29.2.29}pes}{63}{subsubsection.5.29.2.29}
+\contentsline {subsubsection}{\numberline {5.29.2.30}pmax}{63}{subsubsection.5.29.2.30}
+\contentsline {subsubsection}{\numberline {5.29.2.31}sp}{63}{subsubsection.5.29.2.31}
+\contentsline {subsubsection}{\numberline {5.29.2.32}tec}{63}{subsubsection.5.29.2.32}
+\contentsline {subsubsection}{\numberline {5.29.2.33}timevinc}{63}{subsubsection.5.29.2.33}
+\contentsline {section}{\numberline {5.30}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:read\discretionary {-}{}{}Keyword Interface Reference}{63}{section.5.30}
+\contentsline {subsection}{\numberline {5.30.1}Detailed Description}{64}{subsection.5.30.1}
+\contentsline {subsection}{\numberline {5.30.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{64}{subsection.5.30.2}
+\contentsline {subsubsection}{\numberline {5.30.2.1}readkeyword}{64}{subsubsection.5.30.2.1}
+\contentsline {section}{\numberline {5.31}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:rew\discretionary {-}{}{}Unit Interface Reference}{64}{section.5.31}
+\contentsline {subsection}{\numberline {5.31.1}Detailed Description}{64}{subsection.5.31.1}
+\contentsline {subsection}{\numberline {5.31.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{64}{subsection.5.31.2}
+\contentsline {subsubsection}{\numberline {5.31.2.1}rewunit}{64}{subsubsection.5.31.2.1}
+\contentsline {section}{\numberline {5.32}shared Module Reference}{65}{section.5.32}
+\contentsline {subsection}{\numberline {5.32.1}Detailed Description}{65}{subsection.5.32.1}
+\contentsline {subsection}{\numberline {5.32.2}Member Data Documentation}{65}{subsection.5.32.2}
+\contentsline {subsubsection}{\numberline {5.32.2.1}prec}{65}{subsubsection.5.32.2.1}
+\contentsline {subsubsection}{\numberline {5.32.2.2}rval}{65}{subsubsection.5.32.2.2}
+\contentsline {subsubsection}{\numberline {5.32.2.3}zero}{65}{subsubsection.5.32.2.3}
+\contentsline {section}{\numberline {5.33}graphtools\discretionary {-}{}{}:\discretionary {-}{}{}:time\discretionary {-}{}{}Constr Interface Reference}{66}{section.5.33}
+\contentsline {subsection}{\numberline {5.33.1}Detailed Description}{66}{subsection.5.33.1}
+\contentsline {subsection}{\numberline {5.33.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{66}{subsection.5.33.2}
+\contentsline {subsubsection}{\numberline {5.33.2.1}timeconstr}{66}{subsubsection.5.33.2.1}
+\contentsline {section}{\numberline {5.34}filetools\discretionary {-}{}{}:\discretionary {-}{}{}:v\discretionary {-}{}{}Count Interface Reference}{66}{section.5.34}
+\contentsline {subsection}{\numberline {5.34.1}Detailed Description}{67}{subsection.5.34.1}
+\contentsline {subsection}{\numberline {5.34.2}Member Function/\discretionary {-}{}{}Subroutine Documentation}{67}{subsection.5.34.2}
+\contentsline {subsubsection}{\numberline {5.34.2.1}vcount}{67}{subsubsection.5.34.2.1}
+\contentsline {section}{\numberline {5.35}interfaces\discretionary {-}{}{}:\discretionary {-}{}{}:warning Interface Reference}{67}{section.5.35}
+\contentsline {subsection}{\numberline {5.35.1}Detailed Description}{67}{subsection.5.35.1}
+\contentsline {subsection}{\numberline {5.35.2}Constructor \& Destructor Documentation}{67}{subsection.5.35.2}
+\contentsline {subsubsection}{\numberline {5.35.2.1}warning}{67}{subsubsection.5.35.2.1}
+\contentsline {chapter}{\numberline {6}File Documentation}{69}{chapter.6}
+\contentsline {section}{\numberline {6.1}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/abort\discretionary {-}{}{}Execution.f90 File Reference}{69}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Detailed Description}{69}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Function/\discretionary {-}{}{}Subroutine Documentation}{69}{subsection.6.1.2}
+\contentsline {subsubsection}{\numberline {6.1.2.1}abortexecution}{69}{subsubsection.6.1.2.1}
+\contentsline {section}{\numberline {6.2}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/aiuto.f90 File Reference}{70}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Detailed Description}{70}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Function/\discretionary {-}{}{}Subroutine Documentation}{70}{subsection.6.2.2}
+\contentsline {subsubsection}{\numberline {6.2.2.1}aiuto}{70}{subsubsection.6.2.2.1}
+\contentsline {section}{\numberline {6.3}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/allocate\discretionary {-}{}{}Var.f90 File Reference}{70}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Detailed Description}{70}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}Function/\discretionary {-}{}{}Subroutine Documentation}{71}{subsection.6.3.2}
+\contentsline {subsubsection}{\numberline {6.3.2.1}allocatevar}{71}{subsubsection.6.3.2.1}
+\contentsline {section}{\numberline {6.4}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/build\discretionary {-}{}{}Plant.f90 File Reference}{71}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Detailed Description}{71}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.2}Function/\discretionary {-}{}{}Subroutine Documentation}{71}{subsection.6.4.2}
+\contentsline {subsubsection}{\numberline {6.4.2.1}buildplant}{71}{subsubsection.6.4.2.1}
+\contentsline {section}{\numberline {6.5}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/check\discretionary {-}{}{}Plant.f90 File Reference}{72}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}Detailed Description}{72}{subsection.6.5.1}
+\contentsline {subsection}{\numberline {6.5.2}Function/\discretionary {-}{}{}Subroutine Documentation}{72}{subsection.6.5.2}
+\contentsline {subsubsection}{\numberline {6.5.2.1}checkplant}{72}{subsubsection.6.5.2.1}
+\contentsline {section}{\numberline {6.6}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/cmd\discretionary {-}{}{}Var.f90 File Reference}{72}{section.6.6}
+\contentsline {subsection}{\numberline {6.6.1}Detailed Description}{72}{subsection.6.6.1}
+\contentsline {section}{\numberline {6.7}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/cmd\discretionary {-}{}{}Var\discretionary {-}{}{}Wr.f90 File Reference}{73}{section.6.7}
+\contentsline {section}{\numberline {6.8}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/command.f90 File Reference}{73}{section.6.8}
+\contentsline {subsection}{\numberline {6.8.1}Detailed Description}{73}{subsection.6.8.1}
+\contentsline {section}{\numberline {6.9}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/commandline.f90 File Reference}{73}{section.6.9}
+\contentsline {subsection}{\numberline {6.9.1}Detailed Description}{73}{subsection.6.9.1}
+\contentsline {subsection}{\numberline {6.9.2}Function/\discretionary {-}{}{}Subroutine Documentation}{73}{subsection.6.9.2}
+\contentsline {subsubsection}{\numberline {6.9.2.1}commandline}{73}{subsubsection.6.9.2.1}
+\contentsline {section}{\numberline {6.10}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/constraints.f90 File Reference}{74}{section.6.10}
+\contentsline {subsection}{\numberline {6.10.1}Detailed Description}{74}{subsection.6.10.1}
+\contentsline {subsection}{\numberline {6.10.2}Function/\discretionary {-}{}{}Subroutine Documentation}{74}{subsection.6.10.2}
+\contentsline {subsubsection}{\numberline {6.10.2.1}constraints}{74}{subsubsection.6.10.2.1}
+\contentsline {subsubsection}{\numberline {6.10.2.2}timeconstr}{74}{subsubsection.6.10.2.2}
+\contentsline {section}{\numberline {6.11}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/deallocate\discretionary {-}{}{}Var.f90 File Reference}{74}{section.6.11}
+\contentsline {subsection}{\numberline {6.11.1}Function/\discretionary {-}{}{}Subroutine Documentation}{75}{subsection.6.11.1}
+\contentsline {subsubsection}{\numberline {6.11.1.1}deallocatevar}{75}{subsubsection.6.11.1.1}
+\contentsline {section}{\numberline {6.12}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/economy.f90 File Reference}{75}{section.6.12}
+\contentsline {subsection}{\numberline {6.12.1}Detailed Description}{75}{subsection.6.12.1}
+\contentsline {section}{\numberline {6.13}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/end\discretionary {-}{}{}Execution.f90 File Reference}{75}{section.6.13}
+\contentsline {subsection}{\numberline {6.13.1}Detailed Description}{75}{subsection.6.13.1}
+\contentsline {subsection}{\numberline {6.13.2}Function/\discretionary {-}{}{}Subroutine Documentation}{76}{subsection.6.13.2}
+\contentsline {subsubsection}{\numberline {6.13.2.1}endexecution}{76}{subsubsection.6.13.2.1}
+\contentsline {section}{\numberline {6.14}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/energy.f90 File Reference}{76}{section.6.14}
+\contentsline {subsection}{\numberline {6.14.1}Detailed Description}{76}{subsection.6.14.1}
+\contentsline {section}{\numberline {6.15}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/euristics.f90 File Reference}{76}{section.6.15}
+\contentsline {subsection}{\numberline {6.15.1}Detailed Description}{76}{subsection.6.15.1}
+\contentsline {section}{\numberline {6.16}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/file\discretionary {-}{}{}Tools.f90 File Reference}{77}{section.6.16}
+\contentsline {subsection}{\numberline {6.16.1}Detailed Description}{77}{subsection.6.16.1}
+\contentsline {section}{\numberline {6.17}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/find\discretionary {-}{}{}Entry2.f90 File Reference}{77}{section.6.17}
+\contentsline {subsection}{\numberline {6.17.1}Detailed Description}{77}{subsection.6.17.1}
+\contentsline {subsection}{\numberline {6.17.2}Function/\discretionary {-}{}{}Subroutine Documentation}{78}{subsection.6.17.2}
+\contentsline {subsubsection}{\numberline {6.17.2.1}cfindentry}{78}{subsubsection.6.17.2.1}
+\contentsline {subsubsection}{\numberline {6.17.2.2}dfindentry}{78}{subsubsection.6.17.2.2}
+\contentsline {subsubsection}{\numberline {6.17.2.3}findentry}{79}{subsubsection.6.17.2.3}
+\contentsline {subsubsection}{\numberline {6.17.2.4}ifindentry}{79}{subsubsection.6.17.2.4}
+\contentsline {section}{\numberline {6.18}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/global\discretionary {-}{}{}Results.f90 File Reference}{80}{section.6.18}
+\contentsline {section}{\numberline {6.19}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/graph\discretionary {-}{}{}Tools.f90 File Reference}{80}{section.6.19}
+\contentsline {subsection}{\numberline {6.19.1}Detailed Description}{80}{subsection.6.19.1}
+\contentsline {section}{\numberline {6.20}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/h\discretionary {-}{}{}Count.f90 File Reference}{80}{section.6.20}
+\contentsline {subsection}{\numberline {6.20.1}Detailed Description}{80}{subsection.6.20.1}
+\contentsline {subsection}{\numberline {6.20.2}Function/\discretionary {-}{}{}Subroutine Documentation}{81}{subsection.6.20.2}
+\contentsline {subsubsection}{\numberline {6.20.2.1}hcount}{81}{subsubsection.6.20.2.1}
+\contentsline {section}{\numberline {6.21}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/input\discretionary {-}{}{}Var.f90 File Reference}{81}{section.6.21}
+\contentsline {subsection}{\numberline {6.21.1}Detailed Description}{81}{subsection.6.21.1}
+\contentsline {section}{\numberline {6.22}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/interfaces.f90 File Reference}{81}{section.6.22}
+\contentsline {subsection}{\numberline {6.22.1}Detailed Description}{82}{subsection.6.22.1}
+\contentsline {section}{\numberline {6.23}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/interpolation.f90 File Reference}{82}{section.6.23}
+\contentsline {subsection}{\numberline {6.23.1}Detailed Description}{82}{subsection.6.23.1}
+\contentsline {subsection}{\numberline {6.23.2}Function/\discretionary {-}{}{}Subroutine Documentation}{82}{subsection.6.23.2}
+\contentsline {subsubsection}{\numberline {6.23.2.1}interpolation}{82}{subsubsection.6.23.2.1}
+\contentsline {section}{\numberline {6.24}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/main.f90 File Reference}{82}{section.6.24}
+\contentsline {subsection}{\numberline {6.24.1}Detailed Description}{83}{subsection.6.24.1}
+\contentsline {subsection}{\numberline {6.24.2}Function/\discretionary {-}{}{}Subroutine Documentation}{83}{subsection.6.24.2}
+\contentsline {subsubsection}{\numberline {6.24.2.1}main}{83}{subsubsection.6.24.2.1}
+\contentsline {section}{\numberline {6.25}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/manual.f90 File Reference}{83}{section.6.25}
+\contentsline {section}{\numberline {6.26}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/math\discretionary {-}{}{}Tools.f90 File Reference}{83}{section.6.26}
+\contentsline {subsection}{\numberline {6.26.1}Detailed Description}{83}{subsection.6.26.1}
+\contentsline {section}{\numberline {6.27}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/matrix\discretionary {-}{}{}Read2.f90 File Reference}{84}{section.6.27}
+\contentsline {subsection}{\numberline {6.27.1}Detailed Description}{84}{subsection.6.27.1}
+\contentsline {subsection}{\numberline {6.27.2}Function/\discretionary {-}{}{}Subroutine Documentation}{84}{subsection.6.27.2}
+\contentsline {subsubsection}{\numberline {6.27.2.1}cmatrixread}{84}{subsubsection.6.27.2.1}
+\contentsline {subsubsection}{\numberline {6.27.2.2}dmatrixread}{85}{subsubsection.6.27.2.2}
+\contentsline {subsubsection}{\numberline {6.27.2.3}imatrixread}{86}{subsubsection.6.27.2.3}
+\contentsline {subsubsection}{\numberline {6.27.2.4}matrixread}{87}{subsubsection.6.27.2.4}
+\contentsline {section}{\numberline {6.28}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/my\discretionary {-}{}{}Arithmetic.f90 File Reference}{88}{section.6.28}
+\contentsline {subsection}{\numberline {6.28.1}Detailed Description}{88}{subsection.6.28.1}
+\contentsline {section}{\numberline {6.29}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/obj\discretionary {-}{}{}Function.f90 File Reference}{88}{section.6.29}
+\contentsline {subsection}{\numberline {6.29.1}Detailed Description}{88}{subsection.6.29.1}
+\contentsline {subsection}{\numberline {6.29.2}Function/\discretionary {-}{}{}Subroutine Documentation}{88}{subsection.6.29.2}
+\contentsline {subsubsection}{\numberline {6.29.2.1}objfunction}{88}{subsubsection.6.29.2.1}
+\contentsline {section}{\numberline {6.30}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/open\discretionary {-}{}{}Unit.f90 File Reference}{89}{section.6.30}
+\contentsline {subsection}{\numberline {6.30.1}Detailed Description}{89}{subsection.6.30.1}
+\contentsline {subsection}{\numberline {6.30.2}Function/\discretionary {-}{}{}Subroutine Documentation}{89}{subsection.6.30.2}
+\contentsline {subsubsection}{\numberline {6.30.2.1}openunit}{89}{subsubsection.6.30.2.1}
+\contentsline {section}{\numberline {6.31}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/output.f90 File Reference}{89}{section.6.31}
+\contentsline {subsection}{\numberline {6.31.1}Detailed Description}{89}{subsection.6.31.1}
+\contentsline {subsection}{\numberline {6.31.2}Function/\discretionary {-}{}{}Subroutine Documentation}{90}{subsection.6.31.2}
+\contentsline {subsubsection}{\numberline {6.31.2.1}output}{90}{subsubsection.6.31.2.1}
+\contentsline {subsubsection}{\numberline {6.31.2.2}preparefile}{90}{subsubsection.6.31.2.2}
+\contentsline {section}{\numberline {6.32}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/performances.f90 File Reference}{90}{section.6.32}
+\contentsline {subsection}{\numberline {6.32.1}Detailed Description}{90}{subsection.6.32.1}
+\contentsline {subsection}{\numberline {6.32.2}Function/\discretionary {-}{}{}Subroutine Documentation}{90}{subsection.6.32.2}
+\contentsline {subsubsection}{\numberline {6.32.2.1}performances}{90}{subsubsection.6.32.2.1}
+\contentsline {section}{\numberline {6.33}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/plant\discretionary {-}{}{}Var.f90 File Reference}{90}{section.6.33}
+\contentsline {subsection}{\numberline {6.33.1}Detailed Description}{91}{subsection.6.33.1}
+\contentsline {section}{\numberline {6.34}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/prototipo.f90 File Reference}{91}{section.6.34}
+\contentsline {subsection}{\numberline {6.34.1}Detailed Description}{91}{subsection.6.34.1}
+\contentsline {subsection}{\numberline {6.34.2}Function/\discretionary {-}{}{}Subroutine Documentation}{91}{subsection.6.34.2}
+\contentsline {subsubsection}{\numberline {6.34.2.1}implicit}{91}{subsubsection.6.34.2.1}
+\contentsline {section}{\numberline {6.35}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/read\discretionary {-}{}{}Boiler.f90 File Reference}{91}{section.6.35}
+\contentsline {subsection}{\numberline {6.35.1}Detailed Description}{91}{subsection.6.35.1}
+\contentsline {subsection}{\numberline {6.35.2}Function/\discretionary {-}{}{}Subroutine Documentation}{92}{subsection.6.35.2}
+\contentsline {subsubsection}{\numberline {6.35.2.1}readboiler}{92}{subsubsection.6.35.2.1}
+\contentsline {section}{\numberline {6.36}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/read\discretionary {-}{}{}Chiller.f90 File Reference}{92}{section.6.36}
+\contentsline {subsection}{\numberline {6.36.1}Detailed Description}{92}{subsection.6.36.1}
+\contentsline {subsection}{\numberline {6.36.2}Function/\discretionary {-}{}{}Subroutine Documentation}{93}{subsection.6.36.2}
+\contentsline {subsubsection}{\numberline {6.36.2.1}readchillers}{93}{subsubsection.6.36.2.1}
+\contentsline {section}{\numberline {6.37}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/read\discretionary {-}{}{}Env.f90 File Reference}{93}{section.6.37}
+\contentsline {subsection}{\numberline {6.37.1}Function/\discretionary {-}{}{}Subroutine Documentation}{93}{subsection.6.37.1}
+\contentsline {subsubsection}{\numberline {6.37.1.1}readenv}{93}{subsubsection.6.37.1.1}
+\contentsline {section}{\numberline {6.38}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/read\discretionary {-}{}{}General.f90 File Reference}{94}{section.6.38}
+\contentsline {subsection}{\numberline {6.38.1}Detailed Description}{94}{subsection.6.38.1}
+\contentsline {subsection}{\numberline {6.38.2}Function/\discretionary {-}{}{}Subroutine Documentation}{94}{subsection.6.38.2}
+\contentsline {subsubsection}{\numberline {6.38.2.1}readgeneral}{94}{subsubsection.6.38.2.1}
+\contentsline {section}{\numberline {6.39}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/read\discretionary {-}{}{}Keyword.f90 File Reference}{95}{section.6.39}
+\contentsline {subsection}{\numberline {6.39.1}Detailed Description}{95}{subsection.6.39.1}
+\contentsline {subsection}{\numberline {6.39.2}Function/\discretionary {-}{}{}Subroutine Documentation}{95}{subsection.6.39.2}
+\contentsline {subsubsection}{\numberline {6.39.2.1}readkeyword}{95}{subsubsection.6.39.2.1}
+\contentsline {section}{\numberline {6.40}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/read\discretionary {-}{}{}Load.f90 File Reference}{96}{section.6.40}
+\contentsline {subsection}{\numberline {6.40.1}Detailed Description}{96}{subsection.6.40.1}
+\contentsline {subsection}{\numberline {6.40.2}Function/\discretionary {-}{}{}Subroutine Documentation}{96}{subsection.6.40.2}
+\contentsline {subsubsection}{\numberline {6.40.2.1}readloads}{96}{subsubsection.6.40.2.1}
+\contentsline {section}{\numberline {6.41}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/read\discretionary {-}{}{}Steam\discretionary {-}{}{}Plant.f90 File Reference}{97}{section.6.41}
+\contentsline {subsection}{\numberline {6.41.1}Function/\discretionary {-}{}{}Subroutine Documentation}{97}{subsection.6.41.1}
+\contentsline {subsubsection}{\numberline {6.41.1.1}readtrigen}{97}{subsubsection.6.41.1.1}
+\contentsline {section}{\numberline {6.42}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/read\discretionary {-}{}{}Trigen.f90 File Reference}{98}{section.6.42}
+\contentsline {subsection}{\numberline {6.42.1}Detailed Description}{98}{subsection.6.42.1}
+\contentsline {subsection}{\numberline {6.42.2}Function/\discretionary {-}{}{}Subroutine Documentation}{98}{subsection.6.42.2}
+\contentsline {subsubsection}{\numberline {6.42.2.1}readtrigen}{98}{subsubsection.6.42.2.1}
+\contentsline {section}{\numberline {6.43}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/rew\discretionary {-}{}{}Unit.f90 File Reference}{99}{section.6.43}
+\contentsline {subsection}{\numberline {6.43.1}Detailed Description}{99}{subsection.6.43.1}
+\contentsline {subsection}{\numberline {6.43.2}Function/\discretionary {-}{}{}Subroutine Documentation}{99}{subsection.6.43.2}
+\contentsline {subsubsection}{\numberline {6.43.2.1}rewunit}{99}{subsubsection.6.43.2.1}
+\contentsline {section}{\numberline {6.44}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/shared.f90 File Reference}{99}{section.6.44}
+\contentsline {subsection}{\numberline {6.44.1}Detailed Description}{100}{subsection.6.44.1}
+\contentsline {section}{\numberline {6.45}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/v\discretionary {-}{}{}Count.f90 File Reference}{100}{section.6.45}
+\contentsline {subsection}{\numberline {6.45.1}Detailed Description}{100}{subsection.6.45.1}
+\contentsline {subsection}{\numberline {6.45.2}Function/\discretionary {-}{}{}Subroutine Documentation}{100}{subsection.6.45.2}
+\contentsline {subsubsection}{\numberline {6.45.2.1}vcount}{100}{subsubsection.6.45.2.1}
+\contentsline {section}{\numberline {6.46}/home/\discretionary {-}{}{}Codici/\discretionary {-}{}{}Blink/\discretionary {-}{}{}Power\discretionary {-}{}{}Manager/src/warning.f90 File Reference}{101}{section.6.46}
+\contentsline {subsection}{\numberline {6.46.1}Detailed Description}{101}{subsection.6.46.1}
+\contentsline {subsection}{\numberline {6.46.2}Function/\discretionary {-}{}{}Subroutine Documentation}{101}{subsection.6.46.2}
+\contentsline {subsubsection}{\numberline {6.46.2.1}warning}{101}{subsubsection.6.46.2.1}

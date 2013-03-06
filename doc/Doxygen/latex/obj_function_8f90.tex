@@ -1,5 +1,5 @@
-\hypertarget{obj_function_8f90}{\section{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/obj\-Function.f90 File Reference}
-\label{obj_function_8f90}\index{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/obj\-Function.\-f90@{/home/andrea/\-Desktop/\-Fortran\-Code\-B\-W/src/obj\-Function.\-f90}}
+\hypertarget{obj_function_8f90}{\section{/home/\-Codici/\-Blink/\-Power\-Manager/src/obj\-Function.f90 File Reference}
+\label{obj_function_8f90}\index{/home/\-Codici/\-Blink/\-Power\-Manager/src/obj\-Function.\-f90@{/home/\-Codici/\-Blink/\-Power\-Manager/src/obj\-Function.\-f90}}
 }
 
 
@@ -9,7 +9,7 @@ Objective function.
 \subsection*{Functions/\-Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-real(kind(1.d0)) function \hyperlink{obj_function_8f90_a0ff9fc399d164c2a4d02766246f4ba8e}{objfunction} (c, t, obj)
+real(kind=prec) function \hyperlink{obj_function_8f90_a8586ea0db25d91bd8ca4ce412f7a397c}{objfunction} (c, t, obj)
 \begin{DoxyCompactList}\small\item\em Objective function. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -24,15 +24,15 @@ Definition in file \hyperlink{obj_function_8f90_source}{obj\-Function.\-f90}.
 
 
 \subsection{Function/\-Subroutine Documentation}
-\hypertarget{obj_function_8f90_a0ff9fc399d164c2a4d02766246f4ba8e}{\index{obj\-Function.\-f90@{obj\-Function.\-f90}!objfunction@{objfunction}}
+\hypertarget{obj_function_8f90_a8586ea0db25d91bd8ca4ce412f7a397c}{\index{obj\-Function.\-f90@{obj\-Function.\-f90}!objfunction@{objfunction}}
 \index{objfunction@{objfunction}!objFunction.f90@{obj\-Function.\-f90}}
-\subsubsection[{objfunction}]{\setlength{\rightskip}{0pt plus 5cm}real(kind(1.d0)) function objfunction (
+\subsubsection[{objfunction}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function objfunction (
 \begin{DoxyParamCaption}
 \item[{integer, dimension(nm), intent(in)}]{c, }
 \item[{integer, intent(in)}]{t, }
 \item[{character(len=100), intent(in)}]{obj}
 \end{DoxyParamCaption}
-)}}\label{obj_function_8f90_a0ff9fc399d164c2a4d02766246f4ba8e}
+)}}\label{obj_function_8f90_a8586ea0db25d91bd8ca4ce412f7a397c}
 Returns the value of the objective function for a given plant state, time step and optimization criterion. This procedure accounts only for functions that are local in time, that is, that are function only of the plant state at time t and not at time $>$ t, neither at time $<$ t. 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em obj} & the optimization criterion. \\

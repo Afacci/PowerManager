@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>PowerManager: /home/andrea/Desktop/FortranCodeBW/src/commandline.f90 Source File</title>
+<title>PowerManager: /home/Codici/Blink/PowerManager/src/commandline.f90 Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -134,70 +134,71 @@ $(document).ready(function(){initNavTree('commandline_8f90_source.html','');});
 <div class="line"><a name="l00035"></a><span class="lineno"><a class="code" href="commandline_8f90.html#af04b4d1682c512753cb698fade0a7216">   35</a></span>&#160;<span class="keyword">subroutine </span><a class="code" href="commandline_8f90.html#af04b4d1682c512753cb698fade0a7216">commandline</a></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">use </span><a class="code" href="classcmdvar.html">cmdvar</a></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">implicit none</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">integer</span>:: numarg, i</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">character(len=200)</span> :: riga</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">integer</span> ::  iargc</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;numarg = iargc()</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;silent  = .false.</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;vsilent = .false.</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;verb    = .false.</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;i=0</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keywordflow">do</span> <span class="keywordflow">while</span>(i.lt.numarg)</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;   i = i + 1</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;   call getarg(i,riga)</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;   riga = trim(riga)</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;   <span class="keywordflow">select</span> <span class="keywordflow">case</span>(riga)</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;      <span class="keywordflow">case</span>(<span class="stringliteral">&#39;-verbose&#39;</span>)</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;          verb = .true.</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;      <span class="keywordflow">case</span>(<span class="stringliteral">&#39;-silent&#39;</span>) </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;          silent = .true.</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      <span class="keywordflow">case</span>(<span class="stringliteral">&#39;-verysilent&#39;</span>) </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;          vsilent = .true. </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;          silent=.true.</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;      <span class="keywordflow">case</span>(<span class="stringliteral">&#39;-help&#39;</span>) </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;          call <a class="code" href="aiuto_8f90.html#a3ed5835345f688be2ada38b00be5a1e1">aiuto</a></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;      <span class="keywordflow">case</span> default </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;      print*,<span class="stringliteral">&#39;-------------------------------------------------------------&#39;</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;      <span class="keyword">write</span>(*,100)trim(riga)</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;      print*,<span class="stringliteral">&#39; use -help option for the known options                      &#39;</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;      print*,<span class="stringliteral">&#39;-------------------------------------------------------------&#39;</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;   <span class="keywordflow">end select</span>    </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">!   if(.not.esiste) then</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">!      print*,&#39;=============================================================&#39;</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">!      write(*,100)trim(riga)</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">!      print*,&#39;Digitare OneD -help per conoscere le opzioni possibili       &#39;</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">!      print*,&#39;Per continuare ugualmente premere invio oppure q per abortire&#39;</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">!      print*,&#39;=============================================================&#39;</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">!      pause</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">!   endif      </span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keywordflow">enddo</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;100 <span class="keyword">format</span>(<span class="stringliteral">&#39; Unknown option&#39;</span>,2x,a,2x,<span class="stringliteral">&#39; will be ignored&#39;</span>)</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword">end subroutine </span><a class="code" href="commandline_8f90.html#af04b4d1682c512753cb698fade0a7216">commandline</a></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keywordtype">use </span><a class="code" href="classshared.html">shared</a></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">implicit none</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">integer</span>:: numarg, i</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">character(len=200)</span> :: riga</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">integer</span> ::  iargc</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;numarg = iargc()</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;silent  = .false.</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;vsilent = .false.</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;verb    = .false.</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;out     = <span class="stringliteral">&#39;Rename&#39;</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;debug   = .false. </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;i=0</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordflow">do</span> <span class="keywordflow">while</span>(i.lt.numarg)</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;   i = i + 1</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;   call getarg(i,riga)</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;   riga = trim(riga)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;   <span class="keywordflow">select</span> <span class="keywordflow">case</span>(riga)</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;      <span class="keywordflow">case</span>(<span class="stringliteral">&#39;-verbose&#39;</span>)</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;          verb = .true.</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;      <span class="keywordflow">case</span>(<span class="stringliteral">&#39;-silent&#39;</span>) </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;          silent = .true.</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;      <span class="keywordflow">case</span>(<span class="stringliteral">&#39;-verysilent&#39;</span>) </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;          vsilent = .true. </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;          silent=.true.</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;      <span class="keywordflow">case</span>(<span class="stringliteral">&#39;-help&#39;</span>) </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;         call <a class="code" href="aiuto_8f90.html#a3ed5835345f688be2ada38b00be5a1e1">aiuto</a></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;      <span class="keywordflow">case</span>(<span class="stringliteral">&#39;-overwrite&#39;</span>)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;         out = <span class="stringliteral">&#39;Overwrite&#39;</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;      <span class="keywordflow">case</span>(<span class="stringliteral">&#39;-rename&#39;</span>)</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;         out = <span class="stringliteral">&#39;Rename&#39;</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;      <span class="keywordflow">case</span>(<span class="stringliteral">&#39;-debug&#39;</span>)</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;         debug = .true.</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;      <span class="keywordflow">case</span> default </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;      print*,<span class="stringliteral">&#39;-------------------------------------------------------------&#39;</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;      <span class="keyword">write</span>(*,100)trim(riga)</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;      print*,<span class="stringliteral">&#39; use -help option for the known options                      &#39;</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      print*,<span class="stringliteral">&#39;-------------------------------------------------------------&#39;</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;   <span class="keywordflow">end select</span>    </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordflow">enddo</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;100 <span class="keyword">format</span>(<span class="stringliteral">&#39; Unknown option&#39;</span>,2x,a,2x,<span class="stringliteral">&#39; will be ignored&#39;</span>)</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keyword">end subroutine </span><a class="code" href="commandline_8f90.html#af04b4d1682c512753cb698fade0a7216">commandline</a></div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">!=============================================================================</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">!                    OPZIONI CONSIDERATE                                     !</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">!=============================================================================</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">!</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">!-silent: non stampa riepilogo sottomodelli la solo riepilogo generale.</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">!-verysilent: non stampa nulla a schermo</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">!-help: stampa un help devo ancora scrivere.</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">!==============================================================================</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">!=============================================================================</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">!                    OPZIONI CONSIDERATE                                     !</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">!=============================================================================</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">!</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">!-silent: non stampa riepilogo sottomodelli la solo riepilogo generale.</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">!-verysilent: non stampa nulla a schermo</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">!-help: stampa un help devo ancora scrivere.</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">!==============================================================================</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="commandline_8f90.html">commandline.f90</a></li>
-    <li class="footer">Generated on Tue Jan 29 2013 11:17:03 for PowerManager by
+    <li class="footer">Generated on Wed Mar 6 2013 15:25:15 for PowerManager by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>PowerManager: /home/andrea/Desktop/FortranCodeBW/src/readKeyword.f90 Source File</title>
+<title>PowerManager: /home/Codici/Blink/PowerManager/src/readKeyword.f90 Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -133,71 +133,72 @@ $(document).ready(function(){initNavTree('read_keyword_8f90_source.html','');});
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
 <div class="line"><a name="l00071"></a><span class="lineno"><a class="code" href="read_keyword_8f90.html#a25147e00369196a9059879141682718f">   71</a></span>&#160;<span class="keyword">subroutine </span><a class="code" href="read_keyword_8f90.html#a25147e00369196a9059879141682718f">readkeyword</a> (theUnit,rew, keyword, value, error,nRow)</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">!---Declare Module usage---</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">!---Declare local variables---</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keywordtype">implicit none</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keywordtype">character(len=100)</span>, <span class="keywordtype">intent(out)</span>:: keyword, value</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keywordtype">integer</span>, <span class="keywordtype">intent(out)</span>, <span class="keywordtype">optional</span> :: error</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keywordtype">integer</span>, <span class="keywordtype">intent(out)</span>, <span class="keywordtype">optional</span> :: nrow </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">integer</span>, <span class="keywordtype">intent(in)</span>            :: theunit</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keywordtype">logical</span>, <span class="keywordtype">intent(in)</span>, <span class="keywordtype">optional</span>  :: rew</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keywordtype">character(len=100)</span>             :: buffer</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keywordtype">integer</span>                        :: ifirst, ilast, nrow_</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keywordtype">logical</span>                        :: rew_</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keywordflow">if</span>(present(rew)) <span class="keywordflow">then</span> </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    rew_ = rew</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keywordflow">else</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    rew_ = .false.</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keywordflow">endif</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keywordflow">if</span>(present(error)) error = 0</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;nrow_ = 0</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keywordflow">do</span>  </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    nrow_ = nrow_ + 1</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">read</span>(theunit,100) buffer</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    buffer = adjustl(buffer)</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">if</span>(buffer(1:1).ne.<span class="stringliteral">&#39;!&#39;</span>)<span class="keywordflow">then</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordflow">if</span>(buffer(1:3).eq.<span class="stringliteral">&#39;end&#39;</span>) <span class="keywordflow">then</span>  <span class="comment">!last useful line --&gt; associate a dummy parater to value</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            keyword    = trim(buffer(1:3))</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            value      = <span class="stringliteral">&#39; &#39;</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            <span class="keywordflow">exit</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            ifirst    = index(buffer,<span class="stringliteral">&#39;|&#39;</span>)</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            ilast     = index(buffer(ifirst+1:),<span class="stringliteral">&#39;|&#39;</span>) + ifirst</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            <span class="keywordflow">if</span>(buffer(1:).eq.<span class="stringliteral">&#39; &#39;</span>) <span class="keywordflow">then</span>                    <span class="comment">!the line is blank --&gt; read another line</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;               <span class="keywordflow">continue</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            <span class="keywordflow">elseif</span> ((ifirst.eq.ilast).or.ilast.eq.0) <span class="keywordflow">then</span> <span class="comment">!missing one of the &quot;|&quot;</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;               <span class="keywordflow">if</span>(present(error)) error   = 1                                <span class="comment">!that should delimit the table</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;               keyword = <span class="stringliteral">&#39; &#39;</span>                              <span class="comment">!dummy values</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;               value   = <span class="stringliteral">&#39; &#39;</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;               <span class="keywordflow">exit</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;               keyword   = trim(buffer(1:ifirst-1))</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;               value     = trim(buffer(ifirst+1 : ilast-1))</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;               <span class="keywordflow">exit</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            <span class="keywordflow">endif</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;         <span class="keywordflow">endif</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordflow">endif</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keywordflow">enddo</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment">!---Rewind the input file</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="keywordflow">if</span>(rew_) call <a class="code" href="rew_unit_8f90.html#ad71be38edfc5b3981be9de4cd607daa6">rewunit</a>(theunit,nrow_, .false.)</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="keywordflow">if</span>(present(nrow)) nrow = nrow_</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="keywordflow">return</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;100 <span class="keyword">format</span>(a100)</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="keyword">end subroutine </span><a class="code" href="read_keyword_8f90.html#a25147e00369196a9059879141682718f">readkeyword</a></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">!---Declare Module usage--- </span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">use </span><a class="code" href="classshared.html">shared</a></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">!---Declare local variables---</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keywordtype">implicit none</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keywordtype">character(len=*)</span>, <span class="keywordtype">intent(out)</span>  :: keyword, value</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keywordtype">integer</span>, <span class="keywordtype">intent(out)</span>, <span class="keywordtype">optional</span> :: error</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">integer</span>, <span class="keywordtype">intent(out)</span>, <span class="keywordtype">optional</span> :: nrow </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keywordtype">integer</span>, <span class="keywordtype">intent(in)</span>            :: theunit</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keywordtype">logical</span>, <span class="keywordtype">intent(in)</span>, <span class="keywordtype">optional</span>  :: rew</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keywordtype">character(len=100)</span>             :: buffer</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keywordtype">integer</span>                        :: ifirst, ilast, nrow_</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keywordtype">logical</span>                        :: rew_</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keywordflow">if</span>(present(rew)) <span class="keywordflow">then</span> </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    rew_ = rew</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keywordflow">else</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    rew_ = .false.</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keywordflow">endif</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keywordflow">if</span>(present(error)) error = 0</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;nrow_ = 0</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keywordflow">do</span>  </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    nrow_ = nrow_ + 1</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keyword">read</span>(theunit,100) buffer</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    buffer = adjustl(buffer)</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">if</span>(buffer(1:1).ne.<span class="stringliteral">&#39;!&#39;</span>)<span class="keywordflow">then</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordflow">if</span>(buffer(1:3).eq.<span class="stringliteral">&#39;end&#39;</span>) <span class="keywordflow">then</span>  <span class="comment">!last useful line --&gt; associate a dummy parater to value</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            keyword    = trim(buffer(1:3))</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            value      = <span class="stringliteral">&#39; &#39;</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            <span class="keywordflow">exit</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            ifirst    = index(buffer,<span class="stringliteral">&#39;|&#39;</span>)</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            ilast     = index(buffer(ifirst+1:),<span class="stringliteral">&#39;|&#39;</span>) + ifirst</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            <span class="keywordflow">if</span>(buffer(1:).eq.<span class="stringliteral">&#39; &#39;</span>) <span class="keywordflow">then</span>                    <span class="comment">!the line is blank --&gt; read another line</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;               <span class="keywordflow">continue</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <span class="keywordflow">elseif</span> ((ifirst.eq.ilast).or.ilast.eq.0) <span class="keywordflow">then</span> <span class="comment">!missing one of the &quot;|&quot;</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;               <span class="keywordflow">if</span>(present(error)) error   = 1             <span class="comment">!that should delimit the table</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;               keyword = <span class="stringliteral">&#39; &#39;</span>                              <span class="comment">!dummy values</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;               value   = <span class="stringliteral">&#39; &#39;</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;               <span class="keywordflow">exit</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;               keyword   = trim(buffer(1:ifirst-1))</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;               value     = trim(buffer(ifirst+1 : ilast-1))</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;               <span class="keywordflow">exit</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            <span class="keywordflow">endif</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;         <span class="keywordflow">endif</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordflow">endif</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="keywordflow">enddo</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment">!---Rewind the input file</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="keywordflow">if</span>(rew_) call <a class="code" href="rew_unit_8f90.html#ad71be38edfc5b3981be9de4cd607daa6">rewunit</a>(theunit,nrow_, .false.)</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="keywordflow">if</span>(present(nrow)) nrow = nrow_</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="keywordflow">return</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;100 <span class="keyword">format</span>(a100)</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="keyword">end subroutine </span><a class="code" href="read_keyword_8f90.html#a25147e00369196a9059879141682718f">readkeyword</a></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="read_keyword_8f90.html">readKeyword.f90</a></li>
-    <li class="footer">Generated on Tue Jan 29 2013 11:17:03 for PowerManager by
+    <li class="footer">Generated on Wed Mar 6 2013 15:25:15 for PowerManager by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>
