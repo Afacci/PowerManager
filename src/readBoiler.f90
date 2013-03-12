@@ -74,7 +74,7 @@ implicit none
 integer              :: genUnit = 107
 character(len=50)    :: inputFile = './Input/Boilers.inp'
 logical              :: filePresent
-character(len=100)   :: buffer, keyword, value,vector,elements,value_
+character(len=500)   :: buffer, keyword, value,vector,elements,value_
 integer              :: firstLine, line, i, nInp, nRow, n1, n2, x, j, il, nl
 logical,dimension(15)  :: isPresent = .false.
 integer,dimension(100) :: dummy
@@ -297,6 +297,6 @@ do i = 1,nInp
 enddo
 
 close(genUnit)
-100 format(A100)
+100 format(A500)
 
 end subroutine readBoiler

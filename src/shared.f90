@@ -38,6 +38,7 @@ implicit none
 integer, parameter :: prec = kind(1.0)
 real(kind = prec), parameter :: rVal = 1.0
 real(kind = prec), parameter :: zero = 0.0
+real(kind = prec), parameter :: vsmall = 1.0e-5
 
 
 !---Declare Local Variables---

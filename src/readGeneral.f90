@@ -72,7 +72,7 @@ implicit none
 integer              :: genUnit = 105
 character(len=20)    :: inputFile = './Input/General.inp'
 logical              :: filePresent
-character(len=100)   :: buffer, keyword, val, val_
+character(len=500)   :: buffer, keyword, val, val_
 integer              :: firstLine, i, nInp, line, n, n_
 logical,dimension(9) :: isPresent = .false.
 logical,dimension(13):: optEntry  = .false.
@@ -239,6 +239,6 @@ do i = 1,nOpt
 enddo
 
 close(genUnit)
-100 format(A100)
+100 format(A500)
 
 end subroutine readGeneral

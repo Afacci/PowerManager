@@ -74,7 +74,7 @@ implicit none
 integer              :: genUnit = 108, dinte
 character(len=50)    :: inputFile = './Input/Chillers.inp'
 logical              :: filePresent
-character(len=100)   :: buffer, keyword, value,vector,elements,value_
+character(len=500)   :: buffer, keyword, value,vector,elements,value_
 integer              :: firstLine, line, nl, i, nInp, nRow, n1, n2, x, j, il
 logical,dimension(13):: isPresent = .false.
 character(len=100)   :: chKind(2)
@@ -297,6 +297,6 @@ do i = 1,nInp
 enddo
 
 close(genUnit)
-100 format(A100)
+100 format(A500)
 
 end subroutine readChillers

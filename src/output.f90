@@ -58,6 +58,7 @@ subroutine output(setPoint,postProcessing,path)
   real(kind = prec),dimension(2)                :: gGrid
   character(len=20), dimension(100)            :: buffer20
   real(kind = prec), dimension(100)             :: rbuffer
+  integer                                       :: stat
 
 !---Function body---
   
@@ -80,8 +81,7 @@ subroutine output(setPoint,postProcessing,path)
               call system('mv Results '//folder)
         end select
      endif
-!     path = 'Results'
-     call system('mkdir Results')
+     call system('mkdir -v Results', status=stat)
   endif
 
   t(0) = zero
@@ -133,7 +133,7 @@ subroutine output(setPoint,postProcessing,path)
      write(u,*) '#--------------------------------------------------------------------------#'
      write(u,*)
      buffer20(1) = 'Time [h]            '
-     buffer20(2) = 'Electricity [kwW]    '
+     buffer20(2) = 'Electricity [kW]    '
      buffer20(3) = 'Thermal  [kW]       '
      buffer20(4) = 'Chilling [kW]       '
      buffer20(5) = 'Input [kW]          '
@@ -141,7 +141,7 @@ subroutine output(setPoint,postProcessing,path)
      write(u,*)
      do i=1,nTime
         kk = setPoint(i,:)
-        write(u,'(5(ES9.2E2,11X))') t(i), elProd(kk,i), thProd(kk,i), chProd(kk,i),sum(fuelCons(kk,i))
+        write(u,'(5(ES9.2E2,11X))') t(i), elProd(kk,i), thProd(kk,i), chProd(kk,i), sum(fuelCons(kk,i))
      enddo
   endif
 

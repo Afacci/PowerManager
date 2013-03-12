@@ -81,7 +81,7 @@ integer, intent(out), optional :: error
 integer, intent(out), optional :: nRow 
 integer, intent(in)            :: theUnit
 logical, intent(in), optional  :: rew
-character(len=100)             :: buffer
+character(len=500)             :: buffer
 integer                        :: ifirst, ilast, nRow_
 logical                        :: rew_
 
@@ -126,6 +126,6 @@ if(present(nRow)) nRow = nRow_
 
 return
 
-100 format(A100)
+100 format(A500)
 
 end subroutine readKeyword

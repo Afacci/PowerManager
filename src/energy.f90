@@ -124,6 +124,7 @@ if(nTrig.gt.0) then
       eEff = etaEl(j,i)*envCorr(t,i,1)
       tEff = etaTh(j,i)*envCorr(t,i,2)
       pow  = sp(j,i)*Pmax(i)*envCorr(t,i,4)
+      eEff = max(eEff,vsmall)
       thProd = thProd + tEff*pow/eEff
    enddo
 endif
@@ -136,7 +137,8 @@ if(nBoi.gt.0) then
          l     = c_(k)
          pow   = sp(l,k)*Pmax(k)*envCorr(t,k,4)
          eEff  = etaEl(l,k)*envCorr(t,k,1)
-         eDisp = pow*(1.d0/etaEl(l,k) - 1.d0)
+         eEff  = max(eEff,vsmall)
+         eDisp = pow*(1.0/eEff - 1.0)
          if(calore.gt.eDisp) calore = limitRecovery(i,eDisp,t)
       endif
       thProd = thProd + calore
@@ -187,6 +189,7 @@ if(nTrig.gt.0) then
       cEff = etaCh(j,i)*envCorr(t,i,3)
       pow  = Pmax(i)*sp(j,i)*envCorr(t,i,4)
       eEff = etaEl(j,i)*envCorr(t,i,1)
+      eEff = max(eEff,vsmall)
       chProd = chProd + pow*cEff/eEff
    enddo
 endif
@@ -240,6 +243,7 @@ if(nChi.gt.0) then
          j = c_(i)
          pow  = sp(j,i)*Pmax(i)*envCorr(t,i,4)
          cEff = etaCh(j,i)*envCorr(t,i,3)
+         cEff = max(cEff,vSmall)
          thSelfCons = thSelfCons + pow/cEff
       endif
    enddo
@@ -289,6 +293,7 @@ if(nChi.gt.0) then
          j = c_(i)
          pow  = sp(j,i)*Pmax(i)*envCorr(t,i,4)
          cEff = etaCh(j,i)*envCorr(t,i,3)
+         cEff = max(cEff,vSmall)
          elSelfCons = elSelfCons + pow/cEff
       endif
    enddo
@@ -327,18 +332,18 @@ real(kind = prec),dimension(nBoi+nTrig)     :: fuelCons
 integer,                        intent(in) :: t
 integer         ,dimension(nm), intent(in) :: c_
 integer                                    :: i,j 
-real(kind = prec)              , parameter  :: vsmall = 1.0e-20
 real(kind = prec)                           :: pow, eff
 
 !---Function Body
 
-fuelCons = 0.d0
+fuelCons = zero
 
 if(nTrig.gt.0) then
    do i=is(iT),ie(iT)
       j    = c_(i)
       pow  = sp(j,i)*Pmax(i)*envCorr(t,i,4)
       eff = etaEl(j,i)*envCorr(t,i,1)
+      eff = max(eff,vsmall)
       fuelCons(i) = pow/eff
    enddo
 endif
@@ -348,6 +353,7 @@ if(nBoi.gt.0) then
       j = c_(i)
       pow  = sp(j,i)*Pmax(i)*envCorr(t,i,4)
       eff = etaTh(j,i)*envCorr(t,i,2)
+      eff = max(eff,vsmall)
       if(pes(i).eq.'fuel') fuelCons(i) = pow/eff
    enddo
 endif
@@ -384,18 +390,18 @@ real(kind = prec),dimension(nm)             :: energyInput
 integer,                        intent(in) :: t
 integer         ,dimension(nm), intent(in) :: c_
 integer                                    :: i,j 
-real(kind = prec)              , parameter  :: vsmall = 1.0e-20
 real(kind = prec)                           :: pow, eff
 
 !---Function Body
 
-energyInput = 0.d0
+energyInput = zero
 
 if(nTrig.gt.0) then
    do i=is(iT),ie(iT)
       j    = c_(i)
       pow  = sp(j,i)*Pmax(i)*envCorr(t,i,4)
       eff  = etaTh(j,i)*envCorr(t,i,1)
+      eff = max(eff,vsmall)
       energyInput(i) = pow/eff
    enddo
 endif
@@ -405,6 +411,7 @@ if(nBoi.gt.0) then
       j = c_(i)
       pow  = sp(j,i)*Pmax(i)*envCorr(t,i,4)
       eff  = etaTh(j,i)*envCorr(t,i,2)
+      eff = max(eff,vsmall)
       energyInput(i) = pow/eff
    enddo
 endif
@@ -414,6 +421,7 @@ if(nChi.gt.0) then
       j = c_(i)
       pow  = sp(j,i)*Pmax(i)*envCorr(t,i,4)
       eff  = etaCh(j,i)*envCorr(t,i,3)
+      eff = max(eff,vsmall)
       energyInput(i) = pow/eff
    enddo
 endif
@@ -447,19 +455,19 @@ real(kind = prec),dimension(nTrig+nBoi)             :: energyExhaust
 integer         ,dimension(nTrig+nBoi), intent(in) :: c_
 integer                               , intent(in) :: t
 integer                                    :: i,j 
-real(kind = prec)              , parameter  :: vsmall = 1.0e-20
 real(kind = prec)                           :: pow, eff
 
 !---Function Body
 
-energyExhaust = 0.d0
+energyExhaust = zero
 
 if(nTrig.gt.0) then
    do i=is(iT),ie(iT)
       j = c_(i)
       pow  = sp(i,j)*Pmax(i)*envCorr(t,i,4)
       eff  = etaEl(j,i)*envCorr(t,i,1)
-      energyExhaust(i) = pow*(1.d0/eff - 1.d0)
+      eff = max(eff,vsmall)
+      energyExhaust(i) = pow*(1.0/eff - 1.0)
    enddo
 endif
 
@@ -468,7 +476,8 @@ if(nBoi.gt.0) then
       j = c_(i)
       pow  = sp(i,j)*Pmax(i)*envCorr(t,i,4)
       eff  = etaTh(j,i)*envCorr(t,i,2)
-      energyExhaust(i) = pow*(1.d0/eff - 1.d0)
+      eff = max(eff,vsmall)
+      energyExhaust(i) = pow*(1.0/eff - 1.0)
    enddo
 endif
 
@@ -496,38 +505,33 @@ implicit none
 !---Declare Local Variables---
 real(kind = prec), intent(in) :: valore
 integer         , intent(in) :: i,t
-real(kind = prec), parameter  :: vsmall = 1.0e-20
 
 real(kind = prec),allocatable, dimension(:) :: eIn, eOUt
-real(kind = prec)              :: c, a, b
+real(kind = prec)              :: c, a, b, eTh
 integer                       :: j,n,iBoi
 
 !---Function Body
 
 iBoi = i - is(iB) + 1
-!n = nEtaB(iBoi)
 n = nSp(i)
 allocate(eIn(n), eOut(n))
-eIn = 0.d0
-eOut = 0.d0
+eIn = zero
+eOut = zero
 
 do j=1,n
-!   c      = etaB(j,1,iBoi)
    c = sp(j,i)
    eOut(j)= Pmax(i)*c*envCorr(t,i,4)         
-!   eIn(j) = eOut(j)/(etaB(j,2,iBoi)*envCorr(t,i,2))
-   eIn(j) = eOut(j)/(etaTh(j,i)*envCorr(t,i,2))
+   eTh = etaTh(j,i)*envCorr(t,i,2)
+   eTh = max(eTh,vsmall)
+   eIn(j) = eOut(j)/eTh
    if(eIn(j).ge.valore) exit
 enddo
-
-!a = envCorr(t,i,2)*(etaB(j,2,iBoi) - etaB(j-1,2,iBoi))/(eOut(j) - eOut(j-1))
-!b = envCorr(t,i,2)*etaB(j-1,2,iBoi) - a*eOut(j-1)
 
 a = envCorr(t,i,2)*(etaTh(j,i) - etaTh(j-1,i))/(eOut(j) - eOut(j-1))
 b = envCorr(t,i,2)*etaTh(j-1,i) - a*eOut(j-1)
 limitRecovery = -b*valore/(a*Valore - 1.0)
 
-deallocate(eIn)
+deallocate(eIn, eOut)
 
 end function limitRecovery
 
@@ -570,6 +574,7 @@ if(nTrig.gt.0) then
       j = c_(i)
       eEff = etaEl(j,i)*envCorr(t,i,1)
       tEff = etaTh(j,i)*envCorr(t,i,2)
+      eEff = max(eEff,vsmall)
       pow  = sp(j,i)*Pmax(i)*envCorr(t,i,4)
       cogthProd = cogthProd + tEff*pow/eEff
    enddo
@@ -583,7 +588,8 @@ if(nBoi.gt.0) then
          l     = c_(k)
          pow   = sp(l,k)*Pmax(k)*envCorr(t,k,4)
          eEff  = etaEl(l,k)*envCorr(t,k,1)
-         eDisp = pow*(1.d0/etaEl(l,k) - 1.d0)
+         eEff  = max(eEff,vsmall)
+         eDisp = pow*(1.0/eEff - 1.0)
          if(calore.gt.eDisp) calore = limitRecovery(i,eDisp,t)
          cogThProd = cogThProd + calore
       endif

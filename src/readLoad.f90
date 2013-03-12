@@ -72,7 +72,7 @@ implicit none
 integer              :: genUnit = 109, idummy
 character(len=20)    :: inputFile = './Input/Loads.inp'
 logical              :: filePresent
-character(len=100)   :: buffer, keyword, value
+character(len=500)   :: buffer, keyword, value
 integer              :: firstLine, i, n2, j, ntest, k, nmax, n3, n4, nPrice &
                         , iBuy, iSell
 logical,dimension(4) :: isPresent = .false.
@@ -247,6 +247,6 @@ deallocate(theLoads, thePrices)
 deallocate(Loads_, prices_, gridPrices)
 
 close(genUnit)
-100 format(A100)
+100 format(A500)
 
 end subroutine readLoads

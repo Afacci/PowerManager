@@ -73,7 +73,7 @@ implicit none
 integer              :: genUnit = 110, idummy
 character(len=100)    :: inputFile = './Input/Environment.inp'
 logical              :: filePresent
-character(len=100)   :: buffer, keyword, value, cdummy
+character(len=500)   :: buffer, keyword, value, cdummy
 integer              :: i, j, nl, error, line, n
 logical,dimension(2) :: isPresent = .false.
 character(len=100),dimension(1,3)   :: env
@@ -132,6 +132,6 @@ do i=1,3
 end do
 
 close(genUnit)
-100 format(A100)
+100 format(A500)
 
 end subroutine readEnv

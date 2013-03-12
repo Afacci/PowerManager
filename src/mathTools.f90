@@ -64,7 +64,6 @@ contains
      logical,                         intent(out), optional :: error
      integer :: i
      real(kind = prec),dimension(n)              :: test 
-     real(kind = prec) ::vsmall = 1.0e-5
     
      !---function body----
      

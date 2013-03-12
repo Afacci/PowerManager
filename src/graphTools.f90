@@ -541,6 +541,8 @@ contains
       ottLoad(t,:)= pointLoad(p,:)
    enddo
    
+   
+   deallocate(minSucc, succList, succCost)
 
    end subroutine minPathTopoBw
 
