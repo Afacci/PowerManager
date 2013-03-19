@@ -116,7 +116,7 @@ contains
    logical                                                          :: fine
    character(len=7)                                                 :: tipo
    integer,         dimension(:,:), allocatable                     :: iComb_
-   real(kind = prec),dimension(:,:), allocatable                     :: dComb_
+   real(kind = prec),dimension(:,:), allocatable                    :: dComb_
 
    if(present(dcm).and.present(icm)) then
       print*, '----Fatal error in "allCombin" call----'
@@ -284,6 +284,8 @@ contains
    deallocate(cost_,cl_,time_)
    deallocate(startLoad)
 
+   print*, 'nNodi', nPoint, nComb
+
    return
   
    end subroutine graphPoints
@@ -318,18 +320,20 @@ contains
    !---Declare Local Variables---
    implicit none
   
-   integer :: i,j,t,n1,n2,ni,nf,k, iii
+   integer :: i,j,t,n1,n2,ni,nf,k, iii, nMax
    integer, allocatable, dimension(:) :: cNew, cOld
   
    !predList(:,:) = -1!inan(1)
    !succList(:,:) = -1!inan(1)
    !predCost(:,:) = -1000! rnan(rVal)
    !succCost(:,:) = -1000! rnan(rVal)
+
+   nMax = maxval(nt)
    
    select case(method)
       case('Forward')
-         allocate(nPre(nPoint+1), predCost(nPoint+1,nComb))
-         allocate(predList(0:nPoint+1,nComb))
+         allocate(nPre(nPoint+1), predCost(nPoint+1,nMax))
+         allocate(predList(0:nPoint+1,nMax))
    !---detect the predecessors for each node---
          n1 = 1
          ni  = 0
@@ -355,8 +359,8 @@ contains
          enddo
 
       case('Backward')
-         allocate(nSuc(0:nPoint), succCost(0:nPoint,nComb))
-         allocate(succList(0:nPoint+1,nComb))
+         allocate(nSuc(0:nPoint), succCost(0:nPoint,nMax))
+         allocate(succList(0:nPoint+1,nMax))
          !---detect the successors for each node---
          n1 = 0
          ni  = 1

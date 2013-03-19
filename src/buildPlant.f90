@@ -341,6 +341,8 @@ gridSellCost(:) = gridSellCost(:)*kJ_kWh
 cEl(:,:)        = cEl(:,:)*kJ_kWh
 cTh(:,:)        = cTh(:,:)*kJ_kWh
 cCh(:,:)        = cCh(:,:)*kJ_kWh
+c_st = c_st*kJ_kWh
+c_tr = c_tr*kJ_kWh
 
 call deallocateVar(1)
 

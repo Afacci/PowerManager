@@ -46,7 +46,7 @@ character(len=20)  :: gridConnection
 integer            :: nTimes
 logical            :: iDeg 
 real(kind = prec), allocatable, dimension(:) :: startPoint, upTime0, downTime0
-real(kind = prec)                            :: dt1
+real(kind = prec)                            :: dt1, k_tr, k_el, c_tr, c_st
 character(len=100) :: obj, method
 logical :: writePower       = .false.
 logical :: writeEnergy      = .false.

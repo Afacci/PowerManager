@@ -78,6 +78,8 @@ logical,dimension(9) :: isPresent = .false.
 logical,dimension(13):: optEntry  = .false.
 integer              :: error, nOpt
 character(len=50)    :: dummy
+logical              :: isGse = .false.
+logical, dimension(4):: kGSE = .false.
 
 
 !---Check File Presence---
@@ -110,10 +112,23 @@ do
           read(val,*) gridConnection
           gridConnection = trim(gridConnection)
           isPresent(1) = .true.
-          if(gridConnection.ne.'NetMetering'.and.gridConnection               &
-             .ne.'DedicatedRetire'.and.gridConnection.ne.'StandAlone')  then
+          if(gridConnection.ne.'Stock'.and.gridConnection               &
+             .ne.'GSE'.and.gridConnection.ne.'StandAlone'.and.gridConnection.ne.'Sell+Buy')  then
               call abortExecution(2,1,line,gridConnection)
           endif
+          if(gridConnection.eq.'GSE') isGSE = .true.
+       case('GridLoss')
+          kGSE(1) = .true.
+          read(val,*) k_el
+       case('TransportCoeff')
+          kGSE(2) = .true.
+          read(val,*) k_tr
+       case('TransportCost')
+          kGSE(3) = .true.
+          read(val,*) c_tr
+       case('TrasmissionCost')
+          kGSE(4) = .true.
+          read(val,*) c_st
        case('Degradation')
           read(val,*) iDeg
           isPresent(2) = .true.
@@ -236,6 +251,9 @@ enddo
 nOpt = size(optEntry)
 do i = 1,nOpt
    if(.not.optEntry(i)) call warning(7,i)
+enddo
+do i=1,size(kGSE)
+   if(.not.kGSE(i)) call abortExecution(19,i)
 enddo
 
 close(genUnit)

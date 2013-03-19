@@ -63,6 +63,7 @@ character(len=11), dimension(3)        :: eLoads
 character(len=16), dimension(3)        :: gConn
 character(len=8),  dimension(2)        :: algo
 integer                                :: t
+character(len=18), dimension(4)        :: GSE
 
 print*
 print*, '!-----------------------------------FATAL ERROR-----------------------------------------!'
@@ -86,6 +87,8 @@ Chiller       = (/'Number            ', 'Technology        ', 'Power            
                  ,'Investment        ', 'Lifetime          ', 'OnLifetime        '                        &
                  ,'OeMCost           ', 'SetPoint          ', 'Size              ', 'Efficiency        '  &
                  ,'MinUpTime         ', 'MinDownTime       '/)
+
+GSE           = (/'GridLoss          ', 'TransportCoeff    ', 'TransportCost     ', 'TrasmissionCost   '/)
 
 files         = (/'./Input/General.inp      ',             & 
                   './Input/Trigeneratoin.inp',             &
@@ -183,6 +186,9 @@ select case(i)
         print*, 'Need to insert the same number of time entry in Load.inp.'
     case(18)
         print*, 'Zero feasible plant states for time-step number ', j 
+    case(19)
+        print*, 'GSE grid Connection requires the specification of transport and trasmission coefficients.'
+        print*, 'missing', GSE(j)
     case default
         continue
 end select

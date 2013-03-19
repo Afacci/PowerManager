@@ -82,7 +82,8 @@ real(kind = prec) function elRev(c,t)
 !---Declare Module usage---
 
 use shared
-use inputVar, only : uEl, cEl, gridBuyCost, gridSellCost, gridConnection
+use inputVar, only : uEl, cEl, gridBuyCost, gridSellCost, gridConnection, k_tr, &
+                     k_el, c_tr, c_st
 use plantVar, only : nm, dt
 use energy
 
@@ -91,7 +92,7 @@ implicit none
 integer, dimension(nm), intent(in) :: c !> Vector of set-point indexes
 integer,                intent(in) :: t !> Current time-step index
 integer          :: n, i
-real(kind = prec) :: p, u, rVend
+real(kind = prec) :: p, u, rVend, eNet, rTr, rSt, rGrid
 
 n = size(uEl,2)
 
@@ -112,14 +113,24 @@ elRev = zero
 select case(gridConnection)
     case('StandAlone')
          elRev = rVend
-    case('NetMetering')
+    case('Stock')
          if(p.gt.u) then
             elRev = rVend + (p - u)*gridSellCost(t)*dt(t)
          else
             elRev = rVend + (p - u)*gridBuyCost(t)*dt(t)
          endif
-    case('DedicatedRetire')
+    case('Sell+Buy')
          elRev = rVend + (p*gridSellCost(t) - u*gridBuyCost(t))*dt(t)
+    case('GSE')
+         eNet = (p - u)*dt(t)
+         if(p.gt.u) then
+            rGrid = eNet*gridSellCost(t)*k_el
+            rTr   = eNet*k_tr*c_tr
+            rSt   = eNet*c_st
+            elRev = rVend + rGrid + rTr - rSt
+         else
+            elRev = rVend + eNet*gridBuyCost(t)
+         endif
 end select
 
 return
@@ -380,7 +391,8 @@ end function fireCost
 function gridEconomy(c,t)
 
 use shared
-use inputVar, only : uEl, cEl, gridBuyCost, gridSellCost, gridConnection
+use inputVar, only : uEl, cEl, gridBuyCost, gridSellCost, gridConnection, k_tr, &
+                     k_el, c_tr, c_st
 use plantVar, only : nm, dt
 use energy
 
@@ -390,7 +402,7 @@ real(kind = prec), dimension(2) :: gridEconomy
 integer, dimension(nm), intent(in) :: c !> Vector of set-point indexes
 integer,                intent(in) :: t !> Current time-step index
 integer          :: n, i
-real(kind = prec) :: p, u
+real(kind = prec) :: p, u, rGrid, rTr, eNet, rSt
 
 gridEconomy(:) = zero
 
@@ -408,15 +420,25 @@ select case(gridConnection)
     case('StandAlone')
          gridEconomy(1) = zero        
          gridEconomy(2) = zero
-    case('NetMetering')
+    case('Stock')
          if(p.gt.u) then
-            gridEconomy(1) = (p - u)*gridSellCost(t)
+            gridEconomy(1) = (p - u)*gridSellCost(t)*dt(t)
          else
-            gridEconomy(2) = (p - u)*gridBuyCost(t)
+            gridEconomy(2) = (p - u)*gridBuyCost(t)*dt(t)
          endif
-    case('DedicatedRetire')
-         gridEconomy(1) = p*gridSellCost(t) 
-         gridEconomy(2) = u*gridBuyCost(t)
+    case('Sell+Buy')
+         gridEconomy(1) = p*gridSellCost(t)*dt(t)
+         gridEconomy(2) = u*gridBuyCost(t)*dt(t)
+    case('GSE')
+         eNet = (p - u)*dt(t)
+         if(p.gt.u) then
+            rGrid = eNet*gridSellCost(t)*k_el
+            rTr   = eNet*k_tr*c_tr
+            rSt   = eNet*c_st
+            gridEconomy(1) = rGrid + rTr - rSt
+         else
+            gridEconomy(2) = eNet*gridBuyCost(t)
+         endif
 end select
 
 return

@@ -109,7 +109,7 @@ do i=1,nTime
     uTht(i) = sum(uTh(i,:))
     uElt(i) = sum(uEl(i,:))
 enddo
-uTmax = uTf + maxval(uTht)
+uTmax = maxval(uTht) !+ uTf
 uEmax = uEf + maxval(uElt)
 
 !-abort the execution when one of the loads cannot be satisfied.
