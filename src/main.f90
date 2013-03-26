@@ -92,48 +92,52 @@ print*,'     --> Enivronment.inp read'
 print*, ' ---Checking Input Coherence---'
 call buildPlant
 call etime(tVEc,tempo)
+allocate(setPoint(0:nTime+1,nm), load(0:nTime+1,nm))
 print*, ' ---Elapsed Time: ', tempo, ' sec'
 
-!---Build the graph-----
-print*, ' ---Building the graph---'
-cDummy = 'set-point'
-call allCombin(icm=cr,imax=nSp,m=nm,targ=cDummy) 
-cDummy = 'state'
-call allCombin(dcm=sp,imax=nSp,m=nm,targ=cDummy) 
-print*, '    --> Vertices'
-call graphPoints
-print*, '    --> Arcs'
-call graphArcs
-call etime(tVEc,tempo)
-print*, ' ---Elapsed Time: ', tempo, ' sec'
-print*
-
-!-----optimization -------------!
-print*, ' ---Finiding minumum path---'
-select case(method)
-   case('Forward')
-      allocate(setPoint(0:nTime+1,nm), load(0:nTime+1,nm))
-      call minPathTopoFw(setPoint, cost)
-   case('Backward')
-      cDummy = 'time-constraints' 
-      call allCombin(dcm=timeVinc,imax=nTv,m=2*nm,targ=cDummy) 
-!      allocate(setPointBw(0:nTime+1,nm), loadBw(0:nTime+1,nm))
-      allocate(setPoint(0:nTime+1,nm), load(0:nTime+1,nm))
-      allocate(upTime(0:nTime+1,2*nm))
-      allocate(minPathBw(0:nTime+1))
-      call minPathTopoBw(setPoint, cost, upTime, minPathBw)
-end select
-!---print some data to screen----
-if(verb) then
-   do i=0,nTime+1
-      select case(method)
-         case('Forward')
-           print*, i,'pointFW = ', setPoint(i,:)
-         case('Backward')
-           print*, i,'pointBW = ', setPoint(i,:), 'vertex = ', minPathBw(i)
-      end select
-   enddo
+if(method.eq.'Thermal') then
+  !Assumed thermal guide strategy: No need to build and sort graph.
+  setPoint = thermalGuide()
+else
+   !---Build the graph-----
+   print*, ' ---Building the graph---'
+   cDummy = 'set-point'
+   call allCombin(icm=cr,imax=nSp,m=nm,targ=cDummy) 
+   cDummy = 'state'
+   call allCombin(dcm=sp,imax=nSp,m=nm,targ=cDummy) 
+   print*, '    --> Vertices'
+   call graphPoints
+   print*, '    --> Arcs'
+   call graphArcs
+   call etime(tVEc,tempo)
+   print*, ' ---Elapsed Time: ', tempo, ' sec'
+   print*
+   
+   !-----optimization -------------!
+   print*, ' ---Finiding minumum path---'
+   select case(method)
+      case('Forward')
+         call minPathTopoFw(setPoint, cost)
+      case('Backward')
+         cDummy = 'time-constraints' 
+         call allCombin(dcm=timeVinc,imax=nTv,m=2*nm,targ=cDummy) 
+         allocate(upTime(0:nTime+1,2*nm))
+         allocate(minPathBw(0:nTime+1))
+         call minPathTopoBw(setPoint, cost, upTime, minPathBw)
+   end select
+   !---print some data to screen----
+   if(verb) then
+      do i=0,nTime+1
+         select case(method)
+            case('Forward')
+              print*, i,'pointFW = ', setPoint(i,:)
+            case('Backward')
+              print*, i,'pointBW = ', setPoint(i,:), 'vertex = ', minPathBw(i)
+         end select
+      enddo
+   endif
 endif
+
 call etime(tVEc,tempo)
 print*, ' ---Elapsed Time: ', tempo, ' sec'
 

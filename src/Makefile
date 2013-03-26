@@ -33,6 +33,7 @@ MODS = \
 ../obj/graphTools.o \
 ../obj/globalResults.o \
 ../obj/euristics.o \
+../obj/predStrategies.o \
 
 ################################################
 #  list of the files to be compiled            #
