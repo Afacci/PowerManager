@@ -345,7 +345,6 @@ subroutine output(setPoint,postProcessing,path)
         write(u,'(ES8.2E2,2X)', advance='no') t(i)
         kk = setPoint(i,:)
         kko = setPoint(i-1,:) 
-        print*, 'come come??', i, kk, kko
         write(u,'(3ES15.2E2)') fuelCost(kk,i),maintenanceCost(kk,i), fireCost(kk, kko)
      enddo
   endif

@@ -35,19 +35,19 @@ module graphTools
 
 use shared
 
-integer,                                       private :: nComb     !> number of combination of the given set point vectors
+integer                                                :: nComb     !> number of combination of the given set point vectors
 integer,                                       private :: nTvComb   !> number of combination of the time-constraints vectors.
-real(kind = prec), allocatable, dimension(:,:), private :: comb      !> array of all the possible set point indexes combinations (one combination per row)
-real(kind = prec), allocatable, dimension(:,:), private :: spVal      !> array of all the possible set point valiues combinations (one combination per row)
-real(kind = prec), allocatable, dimension(:,:), private :: tState    !> array of all the possible stime-constraints combinations (one combination per row)
+real(kind = prec), allocatable, dimension(:,:)         :: comb      !> array of all the possible set point indexes combinations (one combination per row)
+real(kind = prec), allocatable, dimension(:,:)         :: spVal     !> array of all the possible set point valiues combinations (one combination per row)
+real(kind = prec), allocatable, dimension(:,:),private :: tState    !> array of all the possible stime-constraints combinations (one combination per row)
 integer         , allocatable, dimension(:,:), private :: pointLoad !> set point of each vertex of the graph
-real(kind = prec), allocatable, dimension(:)  , private :: pointCost !> weight associated to each vertex of the graph
+real(kind = prec), allocatable, dimension(:)  ,private :: pointCost !> weight associated to each vertex of the graph
 integer         , allocatable, dimension(:)  , private :: nt        !> number of vertices for each time-step
-real(kind = prec), allocatable, dimension(:)  , private :: pointTime !> time-step index of each vertex
+real(kind = prec), allocatable, dimension(:)  ,private :: pointTime !> time-step index of each vertex
 integer,          allocatable, dimension(:,:), private :: predList  !> Predecessor List
 integer,          allocatable, dimension(:,:), private :: succList  !> Successor List
-real(kind = prec), allocatable, dimension(:,:), private :: predCost  !> weight of each arc in the predecessor list 
-real(kind = prec), allocatable, dimension(:,:), private :: succCost  !> weight of each arc in the successor list 
+real(kind = prec), allocatable, dimension(:,:),private :: predCost  !> weight of each arc in the predecessor list 
+real(kind = prec), allocatable, dimension(:,:),private :: succCost  !> weight of each arc in the successor list 
 integer,          allocatable, dimension(:)  , private :: nPre      !> number of predecessors for each graph vertex
 integer,          allocatable, dimension(:)  , private :: nSuc      !> number of successors for each graph vertex
 integer                                      , private :: nPoint    !> vertex number
@@ -109,8 +109,8 @@ contains
    integer,                            intent(in)                   :: m         !> number of vectors (input)
    integer,          dimension(m)             , intent(in)          :: imax      !> lenght of each set-point vector (input)
    integer,          dimension(maxval(imax),m), intent(in),optional :: icm       !> set-point vectors (input)
-   real(kind = prec), dimension(maxval(imax),m), intent(in),optional :: dcm       !> set-point vectors (input)
-   character(len=100),                          intent(in),optional :: targ
+   real(kind = prec), dimension(maxval(imax),m),intent(in),optional :: dcm       !> set-point vectors (input)
+   character(len=*),                            intent(in),optional :: targ
    integer,          dimension(m)                                   :: j
    integer                                                          :: k, i, h, n
    logical                                                          :: fine
@@ -190,7 +190,7 @@ contains
 !================================================================================
    
    !>\brief
-   !> Generates the graph veteces, starting from the array of the set-point
+   !> Generates the graph vetexes, starting from the array of the set-point
    !> combinations.
    !>\details
    !> Generates the graph veteces, starting from the array of the set-point
@@ -283,8 +283,6 @@ contains
    deallocate(load)
    deallocate(cost_,cl_,time_)
    deallocate(startLoad)
-
-   print*, 'nNodi', nPoint, nComb
 
    return
   

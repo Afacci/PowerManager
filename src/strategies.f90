@@ -35,8 +35,10 @@ use shared
 use inputvar
 use plantvar
 use energy
-
+use graphTools
 use getSetPoint
+use mathTools
+
 contains
   
    !============================================================
@@ -50,26 +52,32 @@ contains
       integer, dimension(nBoi)         :: kb
       integer, dimension(ntrig)        :: kt
       real(kind=prec)                  :: power, heat, cold, tSelf, eSelf
-      integer                          :: t, i, j
+      integer                          :: t, i, j, istart
       integer, dimension(nm)           :: kk
+      logical                          :: error
       !-------------------------------------------------------------
 
-      thermalTracking(0,:)       = startLoad(:)
-      thermalTracking(nTime+1,:) = startLoad(:)
+      iStart = locateRow(startPoint,spVal,nm,nComb,error)
+      if(error) then
+         call abortExecution(14)
+      else
+         thermalTracking(0,:)       = comb(istart,:)
+         thermalTracking(nTime+1,:) = comb(istart,:)
+      endif
       
       do t=1,nTime
          cold  = sum(uCh(t,:))
-         kc    = getSpChi(cold)
+         kc    = getSpChi(cold,t)
          kk(:) = 1
          kk(is(ic):ie(ic)) = kc
          tSelf = thSelfCons(kk,t)
          eSelf = elSelfCons(kk,t)
          heat  = sum(uTh(t,:)) + tSelf
-         kt    = getSpTrig(Heat_=heat)
+         kt    = getSpTrig(Heat_=heat,t=t)
          kk(:) = 1
          kk(is(iT):ie(iT)) = kt
          heat  = heat - thProd(kk,t)
-         kb    = getSpBoi(heat)
+         kb    = getSpBoi(heat,t)
          thermalTracking(t,is(iT):ie(iT)) = kt(:)
          thermalTracking(t,is(iB):ie(iB)) = kb(:)
          thermalTracking(t,is(iC):ie(iC)) = kc(:)
@@ -87,26 +95,32 @@ contains
       integer, dimension(nBoi)         :: kb
       integer, dimension(ntrig)        :: kt
       real(kind=prec)                  :: power, heat, cold, tSelf, eSelf
-      integer                          :: t, i, j
+      integer                          :: t, i, j, istart
       integer, dimension(nm)           :: kk
+      logical                          :: error
       !-------------------------------------------------------------
 
-      electricalTracking(0,:)       = startLoad(:)
-      electricalTracking(nTime+1,:) = startLoad(:)
+      iStart = locateRow(startPoint,spVal,nm,nComb,error)
+      if(error) then
+         call abortExecution(14)
+      else
+         electricalTracking(0,:)       = comb(istart,:)
+         electricalTracking(nTime+1,:) = comb(istart,:)
+      endif
       
       do t=1,nTime
          cold  = sum(uCh(t,:))
-         kc    = getSpChi(cold)
+         kc    = getSpChi(cold,t)
          kk(:) = 1
          kk(is(ic):ie(ic)) = kc
          tSelf = thSelfCons(kk,t)
          eSelf = elSelfCons(kk,t)
          power =  sum(uEl(t,:)) + eSelf
-         kt    = getSpTrig(Power_=power)
+         kt    = getSpTrig(Power_=power,t=t)
          kk(:) = 1
          kk(is(iT):ie(iT)) = kt
          heat  = heat - thProd(kk,t)
-         kb    = getSpBoi(heat)
+         kb    = getSpBoi(heat,t)
          electricalTracking(t,is(iT):ie(iT)) = kt(:)
          electricalTracking(t,is(iB):ie(iB)) = kb(:)
          electricalTracking(t,is(iC):ie(iC)) = kc(:)

@@ -56,7 +56,7 @@ implicit none
 
 real(kind = prec) :: rdummy
 character(len=100) :: cDummy
-integer :: nComb, i, dummy(2),k,j, kBw, idummy(3)
+integer :: i, dummy(2),k,j, kBw, idummy(3)
 real(kind = prec) :: cost
 integer,allocatable, dimension(:,:) :: setPoint,setPointBw
 real(kind = prec),allocatable, dimension(:,:) :: load, loadBw, upTime
@@ -99,8 +99,12 @@ print*, ' ---Elapsed Time: ', tempo, ' sec'
 
 select case(strategy)
   case('ThermalTrack') 
+      call allCombin(icm=cr,imax=nSp,m=nm,targ='set-point') 
+      call allCombin(dcm=sp,imax=nSp,m=nm,targ='state') 
       setPoint = thermalTracking()
   case('ElectricalTrack')
+      call allCombin(icm=cr,imax=nSp,m=nm,targ='set-point') 
+      call allCombin(dcm=sp,imax=nSp,m=nm,targ='state') 
       setPoint = electricalTracking()
   case('Optimized')
       !---Build the graph-----
