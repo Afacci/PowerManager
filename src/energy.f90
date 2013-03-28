@@ -131,7 +131,7 @@ endif
 if(nBoi.gt.0) then
    do i=is(iB),ie(iB)
       j = c_(i)
-      calore = sp(j,i)*Pmax(i)*envCorr(t,i,2)
+      calore = sp(j,i)*Pmax(i)*envCorr(t,i,4)
       if(pes(i).eq.'heat') then
          k     = eSource(i)
          l     = c_(k)
@@ -351,8 +351,8 @@ endif
 if(nBoi.gt.0) then
    do i=is(iB),ie(iB)
       j = c_(i)
-      pow  = sp(j,i)*Pmax(i)!*envCorr(t,i,4)
-      eff = etaTh(j,i)!*envCorr(t,i,2)
+      pow  = sp(j,i)*Pmax(i)*envCorr(t,i,4)
+      eff = etaTh(j,i)*envCorr(t,i,2)
       eff = max(eff,vsmall)
       if(pes(i).eq.'fuel') fuelCons(i) = pow/eff
    enddo
@@ -583,7 +583,7 @@ if(nBoi.gt.0) then
    do i=is(iB),ie(iB)
       if(pes(i).eq.'heat') then
          j = c_(i)
-         calore = sp(j,i)*Pmax(i)*envCorr(t,i,2)
+         calore = sp(j,i)*Pmax(i)*envCorr(t,i,4)
          k     = eSource(i)
          l     = c_(k)
          pow   = sp(l,k)*Pmax(k)*envCorr(t,k,4)

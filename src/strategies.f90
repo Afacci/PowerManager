@@ -51,7 +51,7 @@ contains
       integer, dimension(nChi)         :: kc
       integer, dimension(nBoi)         :: kb
       integer, dimension(ntrig)        :: kt
-      real(kind=prec)                  :: power, heat, cold, tSelf, eSelf
+      real(kind=prec)                  :: power, heat, cold, tSelf, eSelf, qmax
       integer                          :: t, i, j, istart
       integer, dimension(nm)           :: kk
       logical                          :: error
@@ -66,8 +66,10 @@ contains
       endif
       
       do t=1,nTime
+         kk    = nSp
+         qmax  = cogThProd(kk, t)
          cold  = sum(uCh(t,:))
-         kc    = getSpChi(cold,t)
+         kc    = getSpChi(cold,t=t,hlimit_=qmax)
          kk(:) = 1
          kk(is(ic):ie(ic)) = kc
          tSelf = thSelfCons(kk,t)
@@ -83,6 +85,7 @@ contains
          thermalTracking(t,is(iC):ie(iC)) = kc(:)
       enddo
    end function thermalTracking
+
    !============================================================
    
    function electricalTracking()
@@ -110,7 +113,7 @@ contains
       
       do t=1,nTime
          cold  = sum(uCh(t,:))
-         kc    = getSpChi(cold,t)
+         kc    = getSpChi(cold,t=t)
          kk(:) = 1
          kk(is(ic):ie(ic)) = kc
          tSelf = thSelfCons(kk,t)

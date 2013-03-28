@@ -47,7 +47,7 @@ contains
       integer, dimension(nBoi)    :: getSpBoi
       real(kind=prec), intent(in) :: Heat_
       integer,         intent(in) :: t
-      integer                     :: i, j, k, full
+      integer                     :: i, j, k, full, ii
       real(kind=prec)             :: c, p, maxp, Heat
 
       !--------------------------------------------
@@ -57,8 +57,10 @@ contains
 
       do i=1,nBoi
          j    = BoiPriority(i)
-         maxp = pMax(j)*envCorr(t,j,2)
-         full = maxval(sp(:,j))
+         ii   = j - is(iB) + 1
+         maxp = pMax(j)*envCorr(t,j,4)
+!         full = maxval(sp(:,j))
+         full = nSp(j)
          if(maxp.ge.Heat) then
             k = 0
             do 
@@ -66,13 +68,13 @@ contains
                c = sp(k,j)
                p = c*maxp
                if (p.ge.heat) then
-                   getSpBoi(i) = k
+                   getSpBoi(ii) = k
                    exit
                endif
             enddo
             exit
          else
-            getSpBoi(i) = full
+            getSpBoi(ii) = full
             heat = heat - maxp
          endif
       enddo
@@ -82,16 +84,19 @@ contains
 
 !============================================================        
 
-   function getSpChi(Cold_,t)
+   function getSpChi(Cold_,hlimit_,t)
 
       !--------------------------------------------
       implicit none
       
       integer, dimension(nChi)    :: getSpChi
       real(kind=prec), intent(in) :: Cold_
+      real(kind=prec), intent(in), optional :: hlimit_
       integer,         intent(in) :: t
-      integer                     :: i, j, k, full
-      real(kind=prec)             :: c, p, maxp, Cold
+      integer                     :: i, j, k, full, ii
+      real(kind=prec)             :: c, p, maxp, Cold, ech, hmax, echf, &
+                                     pin, hlimit, cmax
+      integer, dimension(nChi)    :: spmax
 
       !--------------------------------------------
       
@@ -99,9 +104,47 @@ contains
       getSpChi(:) = 1
 
       do i=1,nChi
+         j = i + is(iC) - 1
+         spmax(i) = nSp(j)
+      enddo
+
+      if(present(hlimit_)) then
+         hlimit  = hlimit_
+         do i=1,nChi
+            j    = ChiPriority(i)
+            if(pes(j).eq.'heat') then
+               full = nSp(j)
+               echf = etaCh(full,j)*envCorr(t,j,3)
+               echf = max(echf,vsmall)
+               hmax = pMax(j)*envCorr(t,j,4)/echf
+               if(hmax.lt.hlimit) then
+                  spmax(i) = full
+                  hlimit = hlimit - hmax
+               else 
+                  k = 0
+                  do 
+                     k = k + 1
+                     c = sp(k,j)
+                     ech  = etaCh(k,j)*envCorr(t,j,3)
+                     ech  = max(ech,vsmall)
+                     pin  = c*pMax(j)*envCorr(t,j,4)/ech
+                     if (pin.ge.Cold) then
+                         spmax(i) = k - 1
+                         exit
+                     endif
+                  enddo
+               endif
+            endif
+         enddo
+      endif
+
+      do i=1,nChi
          j    = ChiPriority(i)
-         maxp = pMax(j)*envCorr(t,j,2)
-         full = maxval(sp(:,j))
+         ii   = j - is(iC) + 1
+         full = spmax(i)
+         cmax = sp(full,j)
+         maxp = cmax*pMax(j)*envCorr(t,j,4)
+!         full = maxval(sp(:,j))
          if(maxp.ge.Cold) then
             k = 0
             do 
@@ -109,13 +152,13 @@ contains
                c = sp(k,j)
                p = c*maxp
                if (p.ge.Cold) then
-                   getSpChi(i) = k
+                   getSpChi(ii) = k
                    exit
                endif
             enddo
             exit
          else
-            getSpChi(i) = full
+            getSpChi(ii) = full
             Cold = Cold - maxp
          endif
       enddo
@@ -132,7 +175,7 @@ contains
       integer, dimension(nTrig)             :: getSpTrig
       real(kind=prec), intent(in), optional :: Power_, Heat_, Cold_
       integer,         intent(in)           :: t
-      integer                               :: i, j, k, full, nin, request
+      integer                               :: i, j, k, full, nin, request, ii, ifull
       real(kind=prec)                       :: c, p, maxp, Power, Heat, Cold &
                                                , eth, ech, eel
 
@@ -176,8 +219,10 @@ contains
 
             do i=1,nTrig
                j    = TrigPriority(i)
+               ii   = j - is(iT) + 1
                maxp = pMax(j)*envCorr(t,j,4)
-               full = maxval(sp(:,j))
+               !full = maxval(sp(:,j))
+               full = nSp(j)
                if(maxp.ge.Power) then
                   k = 0
                   do 
@@ -185,13 +230,13 @@ contains
                      c = sp(k,j)
                      p = c*maxp
                      if (p.ge.Power) then
-                         getSpTrig(i) = k
+                         getSpTrig(ii) = k
                          exit
                      endif
                   enddo
                   exit
                else
-                  getSpTrig(i) = full
+                  getSpTrig(ii) = full
                   Power = Power - maxp
                endif
             enddo
@@ -200,28 +245,30 @@ contains
 
             do i=1,nTrig
                j    = TrigPriority(i)
-               full = maxval(sp(:,j))
+               ii   = j - is(iT) + 1
+               !full = maxval(sp(:,j))
+               full = nSp(j)
                eth  = etaTh(full,j)*envCorr(t,j,2)
                eel  = etaEl(full,j)*envCorr(t,j,1)
-               eel  = max(eel, 0.0) 
+               eel  = max(eel, vsmall) 
                maxp = eth*pMax(j)*envCorr(t,j,4)/(eel)
-               if(maxp.ge.Heat) then
+               if(maxp.gt.Heat) then
                   k = 0
                   do 
                      k = k + 1
                      c = sp(k,j)
                      eth  = etaTh(k,j)*envCorr(t,j,2)
                      eel  = etaEl(k,j)*envCorr(t,j,1)
-                     eel  = max(eel, 0.0) 
+                     eel  = max(eel, vsmall) 
                      p = c*eth*envCorr(t,j,4)*pMax(j)/(eel)
                      if (p.ge.Heat) then
-                         getSpTrig(i) = k
+                         getSpTrig(ii) = k
                          exit
                      endif
                   enddo
                   exit
                else
-                  getSpTrig(i) = full
+                  getSpTrig(ii) = full
                   Power = Power - maxp
                endif
             enddo
@@ -230,10 +277,12 @@ contains
 
             do i=1,nTrig
                j    = TrigPriority(i)
-               full = maxval(sp(:,j))
+               ii   = j - is(iT) + 1
+               full= nSp(j)
+               !full = maxval(sp(:,j))
                ech  = etach(full,j)*envCorr(t,j,3)
                eel  = etaEl(full,j)*envCorr(t,j,1)
-               eel  = max(eel, 0.0) 
+               eel  = max(eel, vsmall) 
                maxp = ech*pMax(j)/eel
                if(maxp.ge.Cold) then
                   k = 0
@@ -242,16 +291,16 @@ contains
                      c = sp(k,j)
                      ech  = etaCh(k,j)*envCorr(t,j,3)
                      eel  = etaEl(k,j)*envCorr(t,j,1)
-                     eel  = max(eel, 0.0) 
+                     eel  = max(eel, vsmall) 
                      p = c*ech*envCorr(t,j,4)*pMax(j)/(eel)
                      if (p.ge.Cold) then
-                         getSpTrig(i) = k
+                         getSpTrig(ii) = k
                          exit
                      endif
                   enddo
                   exit
                else
-                  getSpTrig(i) = full
+                  getSpTrig(ii) = full
                   Power = Power - maxp
                endif
             enddo
