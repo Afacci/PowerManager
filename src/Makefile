@@ -21,6 +21,7 @@ DEB         = -fbacktrace -cpp -fbounds-check
 ################################################
 MODS = \
 ../obj/shared.o \
+../obj/euristics.o \
 ../obj/inputVar.o \
 ../obj/fileTools.o \
 ../obj/myArithmetic.o \
@@ -32,8 +33,8 @@ MODS = \
 ../obj/economy.o \
 ../obj/graphTools.o \
 ../obj/globalResults.o \
-../obj/euristics.o \
-../obj/predStrategies.o \
+../obj/getSetPoint.o \
+../obj/strategies.o \
 
 ################################################
 #  list of the files to be compiled            #

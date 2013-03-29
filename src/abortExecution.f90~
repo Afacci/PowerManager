@@ -193,11 +193,11 @@ select case(i)
         print*, 'Priority list is necessary for all the equipmente in case of thermal tracking'
         print*, 'Cannot find keyword "keyword "Priority" in', trim(files(j+1))
     case(22)
-        print*, 'The', j,'th element of the trigeneration priority list i > than nTrig'
+        print*, 'The', j'th element of the trigeneration priority list i > than nTrig'
     case(23)
-        print*, 'The', j,'th element of the Boilers priority list i > than nBoi'
+        print*, 'The', j'th element of the Boilers priority list i > than nBoi'
     case(24)
-        print*, 'The', j,'th element of the Chillers priority list i > than nChi'
+        print*, 'The', j'th element of the Chillers priority list i > than nChi'
     case default
         continue
 end select

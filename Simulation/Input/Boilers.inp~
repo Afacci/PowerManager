@@ -34,7 +34,7 @@ begin
 
 Number             | 1        | !total number of trigenerative equipments
 Power              | 800.00   | !rated power
-HeatSource         | Trig@2   |
+HeatSource         | fuel Trig@2   |
 FuelCost           | 0.3500   | !euro/kg
 FuelLHV            | 35.0e3   | !kJ/kg
 OnOffCost          | 0.00     | !cost to turn on the power plant

@@ -129,6 +129,9 @@ do
        case('Power')
           read(value,*) (pMaxT(i), i=1,nTrig)
           isPresent(2) = .true.
+       case('Priority')
+          read(value,*) (TrigPriority(i), i=1,nTrig)
+          iPrio(1) = .true.
 !       case('DegradationRate')
 !          read(value,*) (degRateT(i), i=1,nTrig)
 !          isPresent(3) = .true.

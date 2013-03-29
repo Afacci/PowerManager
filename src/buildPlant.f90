@@ -250,6 +250,8 @@ do i=is(iT),ie(iT)
    minUpTime(i)   = minUpTimeT(j)*3.6e3
    minDownTime(i) = minDownTimeT(j)*3.6e3
    tec(i) = tecT(j)
+   if(trigPriority(j).gt.nTrig) call abortExecution(21,j)
+   TrigPriority(j) = TrigPriority(j) + is(iT) - 1
    do k=1,nSpT(j)
       cr(k,i) = k
    enddo
@@ -282,6 +284,8 @@ do i=is(iB),ie(iB)
       eSource(i) = -1
       tec(i) = 'Fuel'
    endif
+   if(BoiPriority(j).gt.nBoi) call abortExecution(22,j)
+   BoiPriority(j) = BoiPriority(j) + is(iB) - 1
 enddo
 j=0
 do i=is(iC),ie(iC)
@@ -303,6 +307,8 @@ do i=is(iC),ie(iC)
       cr(k,i) = k
    enddo
    tec(i) = tecC(j)
+   if(ChiPriority(j).gt.nChi) call abortExecution(23,j)
+   ChiPriority(j) = chiPriority(j) + is(iC) - 1
 enddo
 
 !---time-dependent constraints---

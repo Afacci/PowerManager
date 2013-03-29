@@ -131,6 +131,9 @@ do
        case('Power')
           read(value,*) (pMaxC(i), i=1,nChi)
           isPresent(3) = .true.
+       case('Priority')
+          read(value,*) (ChiPriority(i), i=1,nChi)
+          iPrio(3) = .true.
 !       case('DegradationRate')
 !          read(value,*) (degRateC(i), i=1,nChi)
 !          isPresent(4) = .true.

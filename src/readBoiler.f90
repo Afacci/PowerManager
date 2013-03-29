@@ -124,6 +124,9 @@ do
        case('Power')
           read(value,*) (pMaxB(i), i=1,nBoi)
           isPresent(2) = .true.
+       case('Priority')
+          read(value,*) (BoiPriority(i), i=1,nBoi)
+          iPrio(2) = .true.
 !       case('DegradationRate')
 !          read(value,*) (degRateB(i), i=1,nBoi)
 !          isPresent(3) = .true.

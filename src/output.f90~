@@ -38,6 +38,7 @@ subroutine output(setPoint,postProcessing,path)
   use plantVar
   use energy
   use economy
+  use globalResults
 
 
 !---Declare Local Variables---
@@ -57,6 +58,7 @@ subroutine output(setPoint,postProcessing,path)
   real(kind = prec),dimension(2)                :: gGrid
   character(len=20), dimension(100)            :: buffer20
   real(kind = prec), dimension(100)             :: rbuffer
+  integer                                       :: stat
 
 !---Function body---
   
@@ -79,8 +81,7 @@ subroutine output(setPoint,postProcessing,path)
               call system('mv Results '//folder)
         end select
      endif
-!     path = 'Results'
-     call system('mkdir Results')
+     call system('mkdir -v Results', status=stat)
   endif
 
   t(0) = zero
@@ -132,7 +133,7 @@ subroutine output(setPoint,postProcessing,path)
      write(u,*) '#--------------------------------------------------------------------------#'
      write(u,*)
      buffer20(1) = 'Time [h]            '
-     buffer20(2) = 'Electricity [kwW]    '
+     buffer20(2) = 'Electricity [kW]    '
      buffer20(3) = 'Thermal  [kW]       '
      buffer20(4) = 'Chilling [kW]       '
      buffer20(5) = 'Input [kW]          '
@@ -140,7 +141,7 @@ subroutine output(setPoint,postProcessing,path)
      write(u,*)
      do i=1,nTime
         kk = setPoint(i,:)
-        write(u,'(5(ES9.2E2,11X))') t(i), elProd(kk,i), thProd(kk,i), chProd(kk,i),sum(fuelCons(kk,i))
+        write(u,'(5(ES9.2E2,11X))') t(i), elProd(kk,i), thProd(kk,i), chProd(kk,i), sum(fuelCons(kk,i))
      enddo
   endif
 
@@ -308,15 +309,15 @@ subroutine output(setPoint,postProcessing,path)
      write(u,'(A8,2X)', advance='no') 'Time [h]'
      do i=1,nTrig
         j = is(iT) + i - 1
-        write(u,'(A5,2X,A4,2X)', advance='no') trim(tec(i)), '[kW]'
+        write(u,'(A5,2X,A4,2X)', advance='no') trim(tec(j)), '[kW]'
      enddo
      do i=1,nBoi
         j = is(iB) + i - 1
-        write(u,'(A5,1X,A12,2X)', advance='no') trim(tec(i)),'Boiler [kW]'
+        write(u,'(A5,1X,A12,2X)', advance='no') trim(tec(j)),'Boiler [kW]'
      enddo
      do i=1,nChi
         j = is(iC) + i - 1
-        write(u,'(A,1X,A,2X)', advance='no') trim(tec(i)),'Chiller [kW]'
+        write(u,'(A,1X,A,2X)', advance='no') trim(tec(j)),'Chiller [kW]'
      enddo
      write(u,*)
      write(u,*)
@@ -454,6 +455,29 @@ subroutine output(setPoint,postProcessing,path)
         enddo
      enddo
      k = k + 1
+  endif
+
+  if(global) then
+     u = u + 1
+     call prepareFile(u,'global','Results')
+     write(u,*) '# global.dat, contains global results '
+     write(u,*) '#--------------------------------------------------------------------------#'
+     write(u,*)
+     
+     write(u,*) '---------------Revenues---------------------------------'
+     write(u,*) 'Electric Revenues: ' , globElRev(setPoint),'€'
+     write(u,*) 'Thermal Revenues : ' , globThRev(setPoint),'€'
+     write(u,*) 'Chilling Revenues: ' , globChRev(setPoint),'€'
+     write(u,*) 'Total Revenues   : ' , globRevenues(setPoint),'€'
+
+     write(u,*) '---------------Costs---------------------------------'
+     write(u,*) 'Fuel Costs       : ' , globFuelCost(setPoint),'€'
+     write(u,*) 'Maintenace Costs : ' , globMaintCost(setPoint),'€'
+     write(u,*) 'On-Off Costs     : ' , globFireCost(setPoint),'€'
+     write(u,*) 'Totat Costs      : ' , globCost(SetPoint),'€'
+
+     write(u,*) '---------------Profits---------------------------------'
+     write(u,*) 'Profits          : ' , globProfit(setPoint),'€'
   endif
 
   do i=500,u

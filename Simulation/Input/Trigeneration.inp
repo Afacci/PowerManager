@@ -39,6 +39,7 @@ FuelCost           | 0.35  0.35 | !euro/Sm3
 FuelLHV            | 35.0e3  35.0e3 | !kJ/Sm3
 OnOffCost          | 0.00    0.00   | !cost to turn on the power plant
 OeMCost            | 0.00    0.00   | !euro/h maintenance cost
+Priority           | 2 1 |
 
 SetPoint           | (0  0.5 0.7 0.9 1.0) (0  0.5 0.7 0.9 1)| !Possible set points
 

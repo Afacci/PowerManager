@@ -54,8 +54,8 @@ select case(what)
     case(1)
         allocate(pMaxT(nTrig), fuelCostT(nTrig), fuelLHVT(nTrig), fireCostT(nTrig), maintCostT(nTrig), nSpT(nTrig))
         nSpT(1:nTrig) = 0
-        allocate(nSizeT(nTrig))
-        nSizeT(1:nTrig) = 0
+!        allocate(nSizeT(nTrig))
+!        nSizeT(1:nTrig) = 0
         allocate(nEtaElT(nTrig), nEtaThT(nTrig), nEtaChT(nTrig), tecT(nTrig), minUpTimeT(nTrig),minDownTimeT(nTrig))
         allocate(ntcT(nTrig), npcT(nTrig), nacT(nTrig))
    case(2)
@@ -78,11 +78,11 @@ select case(what)
    !--readBoilers
    case(7)
         allocate(pMaxB(nBoi), fuelCostB(nBoi), fuelLHVB(nBoi), fireCostB(nBoi), maintCostB(nBoi), &
-                 nSpB(nBoi), minUpTimeB(nTrig), minDownTimeB(nTrig))
+                 nSpB(nBoi), minUpTimeB(nBoi), minDownTimeB(nBoi))
         allocate(ntcB(nBoi), npcB(nBoi), nacB(nBoi))
         nSpB(1:nBoi) = 0
-        allocate(nSizeB(nBoi))
-        nSizeB(1:nBoi) = 0
+!        allocate(nSizeB(nBoi))
+!        nSizeB(1:nBoi) = 0
         allocate(nEtaB(nBoi), tecB(nTrig))
    case(8)
         nMax = maxval(nSpB)
@@ -97,10 +97,10 @@ select case(what)
         allocate(etaB(nMax,2,nBoi))
         !---readChillers
    case(11)
-        allocate(pMaxC(nChi), fireCostC(nChi), maintCostC(nChi), nSpC(nChi), minUpTimeC(nChi),minDownTimeC(nTrig))
+        allocate(pMaxC(nChi), fireCostC(nChi), maintCostC(nChi), nSpC(nChi), minUpTimeC(nChi),minDownTimeC(nChi))
         nSpC(1:nChi) = 0
-        allocate(nSizeC(nChi))
-        nSizeC(1:nChi) = 0
+!        allocate(nSizeC(nChi))
+!        nSizeC(1:nChi) = 0
         allocate(nEtaC(nChi), tecC(nChi))        
         allocate(ntcC(nChi), npcC(nChi), nacC(nChi))
    case(12)

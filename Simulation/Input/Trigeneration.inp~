@@ -41,7 +41,6 @@ OnOffCost          | 0.00    0.00   | !cost to turn on the power plant
 OeMCost            | 0.00    0.00   | !euro/h maintenance cost
 
 SetPoint           | (0  0.5 0.7 0.9 1.0) (0  0.5 0.7 0.9 1)| !Possible set points
-Size               | (1)  (1)      |  !Scale the size of the equipment
 
 !---efficiencies tables. 
 ElettrEfficiency   | (0.0    0.15       |  

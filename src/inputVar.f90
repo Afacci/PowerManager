@@ -41,13 +41,15 @@ module inputVar
 
 use shared
 
+logical, dimension(3) :: iPrio = .false.
+
 !---General input variables---
 character(len=20)  :: gridConnection 
 integer            :: nTimes
 logical            :: iDeg 
 real(kind = prec), allocatable, dimension(:) :: startPoint, upTime0, downTime0
 real(kind = prec)                            :: dt1, k_tr, k_el, c_tr, c_st
-character(len=100) :: obj, method
+character(len=100) :: obj, method, strategy
 logical :: writePower       = .false.
 logical :: writeEnergy      = .false.
 logical :: writeEfficiency  = .false.
@@ -65,7 +67,8 @@ logical :: useEuristics     = .false.
 
 !---Trigeneration.inp variables
 integer                                         :: nTrig
-integer, allocatable, dimension(:)              :: nSpT, nEtaElT, nEtaThT, nEtaChT, ntcT, npcT, nacT
+integer, allocatable, dimension(:)              :: nSpT, nEtaElT, nEtaThT, nEtaChT, ntcT, npcT, nacT, &
+                                                   TrigPriority
 real(kind= prec),allocatable, dimension(:)      :: pMaxT, fuelCostT, fuelLHVT, lifeT, &
                                                    fireCostT, maintCostT,minUpTimeT, minDownTimeT
 real(kind= prec),allocatable, dimension(:,:)    :: spT
@@ -74,7 +77,7 @@ character(len=50), allocatable, dimension(:)    :: tecT
 
 !---Boilers.inp variables
 integer                                         :: nBoi
-integer, allocatable, dimension(:)              :: nSpB, nEtaB, ntcB, npcB, nacB
+integer, allocatable, dimension(:)              :: nSpB, nEtaB, ntcB, npcB, nacB, BoiPriority
 real(kind= prec),allocatable, dimension(:)      :: pMaxB ,fuelCostB, fuelLHVB,               & 
                                                    lifeB, fireCostB, maintCostB , minUpTimeB, minDownTimeB 
 real(kind= prec),allocatable, dimension(:,:)    :: spB
@@ -83,7 +86,7 @@ character(len=50), allocatable, dimension(:)    :: tecB
 
 !---Chillers.inp variables
 integer                                         :: nChi
-integer, allocatable, dimension(:)              :: nSpC, nSizeC, nEtaC, ntcC, npcC, nacC
+integer, allocatable, dimension(:)              :: nSpC, nSizeC, nEtaC, ntcC, npcC, nacC, ChiPriority
 real(kind= prec),allocatable, dimension(:)      :: pMaxC , fireCostC, maintCostC, minUpTimeC, minDownTimeC  
 real(kind= prec),allocatable, dimension(:,:)    :: spC
 real(kind= prec), allocatable, dimension(:,:,:) :: etaC, tempCorrC, presCorrC, altCorrC

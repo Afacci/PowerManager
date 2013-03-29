@@ -75,7 +75,7 @@ implicit none
 integer              :: genUnit = 106
 character(len=50)    :: inputFile = './Input/Trigeneration.inp'
 logical              :: filePresent
-character(len=100)   :: buffer,keyword, value,vector,elements,value_
+character(len=500)   :: buffer,keyword, value,vector,elements,value_
 integer              :: firstLine, i, nInp, line, nRow, n1, n2, x, j, il, nl
 logical,dimension(17) :: isPresent = .false.
 integer, dimension(100) :: dummy
@@ -128,6 +128,9 @@ do
           isPresent(15) = .true.
        case('Power')
           read(value,*) (pMaxT(i), i=1,nTrig)
+          isPresent(2) = .true.
+       case('Priority')
+          read(value,*) (TrigPriority(i), i=1,nTrig)
           isPresent(2) = .true.
 !       case('DegradationRate')
 !          read(value,*) (degRateT(i), i=1,nTrig)
@@ -345,6 +348,6 @@ do i = 1,nInp
 enddo
 
 close(genUnit)
-100 format(A100)
+100 format(A500)
 
 end subroutine readTrigen

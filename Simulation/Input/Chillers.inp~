@@ -37,9 +37,9 @@ Technology         | Mechanical | !Mechanical or absorption chiller?
 Power              | 720.00     | !rated power
 OnOffCost          | 100.00     | !cost to turn on the power plant
 OeMCost            | 0.200      | !euro/h maintenance cost 
+Priority           | 2 1 |
 
 SetPoint           | (0  0.3 0.5 0.6 0.7 0.8 0.9 1.0) | !Possible set points
-Size               | (1)        |  !Scale the size of the equipmente     
 
 Efficiency         | (0.0 0.03      |
                    |   0.3 0.90     |
