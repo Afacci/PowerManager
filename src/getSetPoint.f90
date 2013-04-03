@@ -108,10 +108,12 @@ contains
          spmax(i) = nSp(j)
       enddo
 
+
       if(present(hlimit_)) then
          hlimit  = hlimit_
          do i=1,nChi
             j    = ChiPriority(i)
+            ii   = j - is(iC) + 1
             if(pes(j).eq.'heat') then
                full = nSp(j)
                echf = etaCh(full,j)*envCorr(t,j,3)
@@ -128,8 +130,8 @@ contains
                      ech  = etaCh(k,j)*envCorr(t,j,3)
                      ech  = max(ech,vsmall)
                      pin  = c*pMax(j)*envCorr(t,j,4)/ech
-                     if (pin.ge.Cold) then
-                         spmax(i) = k - 1
+                     if (pin.ge.hlimit) then
+                         spmax(ii) = k - 1
                          exit
                      endif
                   enddo
@@ -141,16 +143,16 @@ contains
       do i=1,nChi
          j    = ChiPriority(i)
          ii   = j - is(iC) + 1
-         full = spmax(i)
+         full = spmax(ii)
          cmax = sp(full,j)
          maxp = cmax*pMax(j)*envCorr(t,j,4)
 !         full = maxval(sp(:,j))
-         if(maxp.ge.Cold) then
+         if(maxp.gt.Cold) then
             k = 0
             do 
                k = k + 1
                c = sp(k,j)
-               p = c*maxp
+               p = c*pMax(j)*envCorr(t,j,4)
                if (p.ge.Cold) then
                    getSpChi(ii) = k
                    exit

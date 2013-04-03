@@ -67,7 +67,7 @@ contains
       
       do t=1,nTime
          kk    = nSp
-         qmax  = cogThProd(kk, t)
+         qmax  = cogThProd(kk, t) - sum(uTh(t,:))
          cold  = sum(uCh(t,:))
          kc    = getSpChi(cold,t=t,hlimit_=qmax)
          kk(:) = 1
@@ -97,7 +97,7 @@ contains
       integer, dimension(nChi)         :: kc
       integer, dimension(nBoi)         :: kb
       integer, dimension(ntrig)        :: kt
-      real(kind=prec)                  :: power, heat, cold, tSelf, eSelf
+      real(kind=prec)                  :: power, heat, cold, tSelf, eSelf, qmax
       integer                          :: t, i, j, istart
       integer, dimension(nm)           :: kk
       logical                          :: error
@@ -112,8 +112,10 @@ contains
       endif
       
       do t=1,nTime
+         kk    = nSp
+         qmax  = cogThProd(kk, t) - sum(uTh(t,:))
          cold  = sum(uCh(t,:))
-         kc    = getSpChi(cold,t=t)
+         kc    = getSpChi(cold,t=t,hlimit_=qmax)
          kk(:) = 1
          kk(is(ic):ie(ic)) = kc
          tSelf = thSelfCons(kk,t)
@@ -122,7 +124,7 @@ contains
          kt    = getSpTrig(Power_=power,t=t)
          kk(:) = 1
          kk(is(iT):ie(iT)) = kt
-         heat  = heat - thProd(kk,t)
+         heat  = sum(uTh(t,:)) + tself - thProd(kk,t)
          kb    = getSpBoi(heat,t)
          electricalTracking(t,is(iT):ie(iT)) = kt(:)
          electricalTracking(t,is(iB):ie(iB)) = kb(:)

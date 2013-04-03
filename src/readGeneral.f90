@@ -258,7 +258,7 @@ enddo
 do i=1,size(kGSE)
    if(.not.kGSE(i)) call abortExecution(19,i)
 enddo
-if(strategy.eq.'ThermalTrack'.or.obj.eq.'electricalTrack') then
+if(strategy.eq.'ThermalTrack'.or.strategy.eq.'electricalTrack') then
    do i=1,3
       if(.not.iPrio(i)) call abortExecution(20,i)
    enddo
