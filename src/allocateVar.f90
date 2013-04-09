@@ -57,7 +57,8 @@ select case(what)
 !        allocate(nSizeT(nTrig))
 !        nSizeT(1:nTrig) = 0
         allocate(nEtaElT(nTrig), nEtaThT(nTrig), nEtaChT(nTrig), tecT(nTrig), minUpTimeT(nTrig),minDownTimeT(nTrig))
-        allocate(ntcT(nTrig), npcT(nTrig), nacT(nTrig), TrigPriority(nTrig))
+        allocate(ntcT(nTrig), npcT(nTrig), nacT(nTrig), TrigPriority(nTrig),pefT(nTrig), & 
+                 pecOnT(nTrig))
    case(2)
         nMax = maxval(nSpT)
         allocate(spT(nMax,nTrig))
@@ -79,7 +80,7 @@ select case(what)
    case(7)
         allocate(pMaxB(nBoi), fuelCostB(nBoi), fuelLHVB(nBoi), fireCostB(nBoi), maintCostB(nBoi), &
                  nSpB(nBoi), minUpTimeB(nBoi), minDownTimeB(nBoi))
-        allocate(ntcB(nBoi), npcB(nBoi), nacB(nBoi))
+        allocate(ntcB(nBoi), npcB(nBoi), nacB(nBoi), pefB(nBoi), pecOn(nBoi))
         nSpB(1:nBoi) = 0
 !        allocate(nSizeB(nBoi))
 !        nSizeB(1:nBoi) = 0
@@ -143,6 +144,11 @@ select case(what)
         allocate(cRef(np,nm))
         allocate(etaEl(nMax,nm), etaCh(nMax,nm), etaTh(nMax,nm))
         allocate(Pmax(nm),pes(nm),lhv(nm),cf(nm), onOffCost(nm), OeMCost(nm),tec(nm))
+        if(iPEC) then 
+          allocate(pef(nm), pecOn(nm))
+          pef = zero
+          pecOn = zero
+        endif
    case(20)
         allocate(cEl(nTime,nlp(iElp)), cTh(nTime,nlp(iThp)), cCh(nTime,nlp(iChp)))    
         allocate(gridBuyCost(nTime), gridSellCost(nTime)) 

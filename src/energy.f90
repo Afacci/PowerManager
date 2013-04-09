@@ -601,4 +601,71 @@ end function cogThProd
 
 !=======================================================================
 
+real(kind=prec) function pec(c,t)
+
+  use plantVar
+  use inputVar , only : pefGrid, uEl
+
+  implicit none
+
+  integer, dimension(nm), intent(in) :: c
+  integer,                intent(in) :: t
+  integer                            :: i
+  real(kind=prec), dimension(nm)     :: pin
+  real(kind=prec)                    :: pGrid
+
+  pec = zero
+
+  pin = energyInput(c,t)
+
+  do i=is(iT),ie(iT)
+     pec = pec + pin(i)*pef(i)*dt(t)
+  enddo
+
+  do i=is(iB),ie(iB)
+     pec = pec + pin(i)*pef(i)*dt(t)
+  enddo
+
+  pGrid = elProd(c,t) - sum(uEl(t,:))
+
+  pec = pec + pGrid*pefGrid*dt(t)
+
+end function pec
+!=======================================================================
+
+real(kind=prec) function pecPenalty(cNew,cOld,t)
+
+  use plantVar
+  use inputVar , only : pefGrid, uEl
+
+  implicit none
+
+  integer, dimension(nm), intent(in) :: cNew, cOld
+  integer,                intent(in) :: t
+  integer                            :: i, j
+  real(kind=prec), dimension(nm)     :: pin
+  real(kind=prec)                    :: spNew, spOld
+
+  pecPenalty = zero
+
+  pin = energyInput(cNew,t)
+
+  do i=is(iT),ie(iT)
+     j = cNew(i)
+     spNew = sp(j,i)
+     j = cOld(i)
+     spOld = sp(j,i)
+     if(spNew.gt.zero.and.spOld.eq.zero) pecPenalty = pecPenalty +  pin(i)*pef(i)*dt(t)*pecOn(i)
+  enddo
+
+  do i=is(iB),ie(iB)
+     j = cNew(i)
+     spNew = sp(j,i)
+     j = cOld(i)
+     spOld = sp(j,i)
+     if(spNew.gt.zero.and.spOld.eq.zero) pecPenalty = pecPenalty + pin(i)*pef(i)*dt(t)*pecOn(i)
+  enddo
+
+end function pecPenalty
+
 end module energy

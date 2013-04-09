@@ -336,6 +336,12 @@ do
                altCorrT(:,5,i) = matrix(:,np)
             enddo
             deallocate(matrix)
+       case('PEF')
+           kPEC(2) = .true.
+           read(value,*) (pefT(i),i=1,nTrig)
+       case('onOffPec')
+           kPEC(4) = .true.
+           read(value,*) (pecOnT(i),i=1,nTrig)
        case default
                if(.not.silent) call warning(1,2,line=line,word=keyword)
     end select

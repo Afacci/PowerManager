@@ -409,7 +409,7 @@ subroutine output(setPoint,postProcessing,path)
         buffer20(7) = 'fuel cost [€]       '
         buffer20(8) = 'maint. cost [€]     '
         buffer20(9) = 'on-off cost [€]     '
-        write(u,'(13A)') (buffer20(i), i=1,9)
+        write(u,'(9A)') (buffer20(i), i=1,9)
         write(u,*)
         do i=1,nTime
            n  = setPoint(i,k)
@@ -442,7 +442,7 @@ subroutine output(setPoint,postProcessing,path)
         buffer20(5) = 'input Energy[kW]    '
         buffer20(6) = 'maint. cost [€]     '
         buffer20(7) = 'on-off cost [€]     '
-        write(u,'(13A)') (buffer20(i), i=1,9)
+        write(u,'(7A)') (buffer20(i), i=1,9)
         write(u,*)
         do i=1,nTime
            n  = setPoint(i,k)
@@ -478,6 +478,29 @@ subroutine output(setPoint,postProcessing,path)
 
      write(u,*) '---------------Profits---------------------------------'
      write(u,*) 'Profits          : ' , globProfit(setPoint),'€'
+
+     if(writePec) then 
+        write(u,*) '--------------Primary ebergy consumption----------------------'
+        write(u,*) 'Pec              : ' , globPec(setPoint),'kJ'
+     endif
+  endif
+
+  if(writePec) then
+     u = u + 1
+     call prepareFile(u,'pec',path)
+     write(u,*) '# pec.dat: primary energy consumption.     '
+     write(u,*) '#--------------------------------------------------------------------------#'
+     write(u,*)
+     buffer20(1) = 'Time [h]            '
+     buffer20(2) = 'Pec  [kJ]           '
+     write(u,'(7A)') (buffer20(i), i=1,2)
+     do i=1,nTime
+        kk = setPoint(i,:)
+        kko = setPoint(i-1,:) 
+        rbuffer(1) = (t(i))   
+        rbuffer(2) = pec(kk,i) + pecPenalty(kk,kkO,i)
+        write(u,'(2(ES9.2E2,11X))') (rbuffer(l), l=1,9)
+     enddo
   endif
 
   do i=500,u

@@ -286,6 +286,12 @@ do
                altCorrB(:,3,i) = matrix(:,np)
             enddo
             deallocate(matrix)
+       case('PEF')
+           kPEC(3) = .true.
+           read(value,*) (pefB(i), i=1,nBoi)
+       case('onOffPec')
+           kPEC(5) = .true.
+           read(value,*) (pecOnB(i),i=1,nBoi)
        case(' ') 
             if(verb) call warning(4,3,line=line)
        case default

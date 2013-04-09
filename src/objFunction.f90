@@ -42,6 +42,7 @@ real(kind = prec) function objFunction(c,t,obj)
 use shared
 use plantVar, only : nm
 use economy
+use energy
 
 !---Declare Local Variables---
 implicit none
@@ -53,6 +54,8 @@ character(len=100),      intent(in) :: obj
 select case(obj)
    case('Economic')
        objFunction = currCost(c,t)
+   case('PEC')
+       objFunction = pec(c,t)
 end select
 
 end function objFunction

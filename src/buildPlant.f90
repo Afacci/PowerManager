@@ -257,6 +257,10 @@ do i=is(iT),ie(iT)
    do k=1,nSpT(j)
       cr(k,i) = k
    enddo
+   if(iPEC) then
+      pef(i) = pefT(j)
+      pecOn(i) = pecOnT(j)
+   endif
 enddo
 j=0
 do i=is(iB),ie(iB)
@@ -289,6 +293,10 @@ do i=is(iB),ie(iB)
    if(strategy.ne.'Optimized') then
       if(BoiPriority(j).gt.nBoi) call abortExecution(22,j)
       BoiPriority(j) = BoiPriority(j) + is(iB) - 1
+   endif
+   if(iPEC) then
+      pef(i) = pefB(j)
+      pecOn(i) = pecOnB(j)
    endif
 enddo
 j=0

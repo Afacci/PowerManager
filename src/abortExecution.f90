@@ -198,6 +198,15 @@ select case(i)
         print*, 'The', j,'th element of the Boilers priority list i > than nBoi'
     case(24)
         print*, 'The', j,'th element of the Chillers priority list i > than nChi'
+    case(25) 
+        print*, 'Cannot find "GridPEF" entry in "General.inp". The grid primary energy factor is necessary to'
+        print*, 'perform primary energy consumption minimization'
+    case(26)
+        print*, 'Cannot find "PEF" entry in', trim(files(j)), 'The primary energy factor is necessary to'
+        print*, 'perform primary energy consumption minimization'
+    case(27)
+        print*, 'Cannot find "onOffPec" entry in', trim(files(j)), 'The primary energy wate at ignition is necessary'
+        print*, 'perform primary energy consumption minimization'
     case default
         continue
 end select

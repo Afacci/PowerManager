@@ -321,4 +321,26 @@ real(kind=prec) function globProfit(setPoint)
 
 end function globProfit
 
+!================================================================================================
+
+real(kind=prec) function globPec(setPoint)
+
+  implicit none
+
+  integer, intent (in), dimension(0:nTime+1,nm) :: setPoint
+  integer          ::  t
+  integer, dimension(nm) :: c, cOld
+
+  globPec = zero
+
+  do t=1,nTime
+     c       = setPoint(t,:)
+     cOld    = setPoint(t-1,:)
+     globPec = globPec + pec(c,t) + pecPenalty(c, cOld, t)
+  enddo
+
+  return
+
+end function globPec
+
 end module globalResults

@@ -69,17 +69,17 @@ use cmdVar
 implicit none
 
 !---Declare Local Variables---
-integer              :: genUnit = 105
-character(len=20)    :: inputFile = './Input/General.inp'
-logical              :: filePresent
-character(len=500)   :: buffer, keyword, val, val_
-integer              :: firstLine, i, nInp, line, n, n_
-logical,dimension(9) :: isPresent = .false.
-logical,dimension(13):: optEntry  = .false.
-integer              :: error, nOpt
-character(len=50)    :: dummy
-logical              :: isGse = .false.
-logical, dimension(4):: kGSE = .false.
+integer               :: genUnit = 105
+character(len=20)     :: inputFile = './Input/General.inp'
+logical               :: filePresent
+character(len=500)    :: buffer, keyword, val, val_
+integer               :: firstLine, i, nInp, line, n, n_
+logical,dimension(9)  :: isPresent = .false.
+logical,dimension(14) :: optEntry  = .false.
+integer               :: error, nOpt
+character(len=50)     :: dummy
+logical               :: isGse = .false.
+logical, dimension(4) :: kGSE  = .false.
 
 
 !---Check File Presence---
@@ -135,6 +135,9 @@ do
        case('objective')
           read(val,*) obj
           isPresent(3) = .true.
+       case('GridPEF') 
+          kPEC(1) = .true.
+          read(val,*) pefGrid
        case('StartPoint')
           isPresent(4) = .true.
           n = nTrig + nBoi + nChi
@@ -229,6 +232,11 @@ do
              read(val,*), dummy
              if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
              read(val,*), writeChi
+        case('writePec')
+             optEntry(14) = .true.
+             read(val,*), dummy
+             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
+             read(val,*), writePec
         case('global')
              optEntry(13) = .true.
              read(val,*), dummy
@@ -262,6 +270,16 @@ if(strategy.eq.'ThermalTrack'.or.strategy.eq.'electricalTrack') then
    do i=1,3
       if(.not.iPrio(i)) call abortExecution(20,i)
    enddo
+endif
+if(obj.eq.'PEC'.or.writePec) then
+  iPec = .true.
+  if(.not.kPEC(1)) call abortExecution(25)
+  do i=2,3
+     if(.not.kPEC(i)) call abortExecution(26,i)
+  enddo
+  do i=4,5
+     if(.not.kPEC(i)) call abortExecution(27,i-2)
+  enddo
 endif
 
 close(genUnit)

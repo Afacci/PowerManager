@@ -54,15 +54,15 @@ use strategies
 
 implicit none
 
-real(kind = prec) :: rdummy
-character(len=100) :: cDummy
-integer :: i, dummy(2),k,j, kBw, idummy(3)
-real(kind = prec) :: cost
-integer,allocatable, dimension(:,:) :: setPoint,setPointBw
+real(kind = prec)                             :: rdummy
+character(len=100)                            :: cDummy
+integer                                       :: i, dummy(2),k,j, kBw, idummy(3)
+real(kind = prec)                             :: cost
+real(kind = prec)                             :: tempo, t2
+real, dimension(2)                            :: tVec
+integer,          allocatable, dimension(:,:) :: setPoint,setPointBw
 real(kind = prec),allocatable, dimension(:,:) :: load, loadBw, upTime
-integer,allocatable, dimension(:) :: minPathBw
-real               :: tempo, t2
-real, dimension(2) :: tVec
+integer,          allocatable, dimension(:)   :: minPathBw
 
  
 call system('clear')

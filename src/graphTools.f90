@@ -43,7 +43,7 @@ real(kind = prec), allocatable, dimension(:,:),private :: tState    !> array of 
 integer         , allocatable, dimension(:,:), private :: pointLoad !> set point of each vertex of the graph
 real(kind = prec), allocatable, dimension(:)  ,private :: pointCost !> weight associated to each vertex of the graph
 integer         , allocatable, dimension(:)  , private :: nt        !> number of vertices for each time-step
-real(kind = prec), allocatable, dimension(:)  ,private :: pointTime !> time-step index of each vertex
+integer          , allocatable, dimension(:)  ,private :: pointTime !> time-step index of each vertex
 integer,          allocatable, dimension(:,:), private :: predList  !> Predecessor List
 integer,          allocatable, dimension(:,:), private :: succList  !> Successor List
 real(kind = prec), allocatable, dimension(:,:),private :: predCost  !> weight of each arc in the predecessor list 
@@ -312,14 +312,16 @@ contains
    use inputVar
    use plantVar
    use economy
+   use energy
    use myArithmetic
    use cmdVar
   
    !---Declare Local Variables---
    implicit none
   
-   integer :: i,j,t,n1,n2,ni,nf,k, iii, nMax
+   integer                            :: i,j,t,n1,n2,ni,nf,k, iii, nMax
    integer, allocatable, dimension(:) :: cNew, cOld
+   real(kind=prec)                    :: deltaC
   
    !predList(:,:) = -1!inan(1)
    !succList(:,:) = -1!inan(1)
@@ -378,7 +380,13 @@ contains
             do j=1,nSuc(i)
                k = succList(i,j)
                cNew = pointLoad(k,:)
-               succCost(i,j) = pointCost(i) + fireCost(cNew,cOld)
+               select case(obj)
+                  case('PEC')
+                    deltaC = pecPenalty(cNew,cOld,pointTime(i))
+                  case('Economic')
+                    deltaC = fireCost(cNew,cOld)
+               end select
+               succCost(i,j) = pointCost(i) + deltaC
             enddo
          enddo
        end select
