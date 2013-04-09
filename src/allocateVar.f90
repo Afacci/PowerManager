@@ -80,7 +80,7 @@ select case(what)
    case(7)
         allocate(pMaxB(nBoi), fuelCostB(nBoi), fuelLHVB(nBoi), fireCostB(nBoi), maintCostB(nBoi), &
                  nSpB(nBoi), minUpTimeB(nBoi), minDownTimeB(nBoi))
-        allocate(ntcB(nBoi), npcB(nBoi), nacB(nBoi), pefB(nBoi), pecOn(nBoi))
+        allocate(ntcB(nBoi), npcB(nBoi), nacB(nBoi), pefB(nBoi), pecOnB(nBoi))
         nSpB(1:nBoi) = 0
 !        allocate(nSizeB(nBoi))
 !        nSizeB(1:nBoi) = 0

@@ -382,7 +382,7 @@ contains
                cNew = pointLoad(k,:)
                select case(obj)
                   case('PEC')
-                    deltaC = pecPenalty(cNew,cOld,pointTime(i))
+                    deltaC = pecPenalty(cNew,cOld,pointTime(j))
                   case('Economic')
                     deltaC = fireCost(cNew,cOld)
                end select

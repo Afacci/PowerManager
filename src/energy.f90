@@ -400,7 +400,7 @@ if(nTrig.gt.0) then
    do i=is(iT),ie(iT)
       j    = c_(i)
       pow  = sp(j,i)*Pmax(i)*envCorr(t,i,4)
-      eff  = etaTh(j,i)*envCorr(t,i,1)
+      eff  = etaEl(j,i)*envCorr(t,i,1)
       eff = max(eff,vsmall)
       energyInput(i) = pow/eff
    enddo
@@ -626,9 +626,14 @@ real(kind=prec) function pec(c,t)
      pec = pec + pin(i)*pef(i)*dt(t)
   enddo
 
-  pGrid = elProd(c,t) - sum(uEl(t,:))
-
+  if(t.eq.7) print*, 'prima', c, pec/dt(t) 
+   
+  pGrid = sum(uEl(t,:)) + elSelfCons(c,t) - elProd(c,t)
+  
   pec = pec + pGrid*pefGrid*dt(t)
+
+  if(t.eq.7) print*, 'dopo ', c, pec/dt(t), sum(uEl(t,:))
+
 
 end function pec
 !=======================================================================
@@ -648,6 +653,8 @@ real(kind=prec) function pecPenalty(cNew,cOld,t)
 
   pecPenalty = zero
 
+  return 
+
   pin = energyInput(cNew,t)
 
   do i=is(iT),ie(iT)
@@ -665,6 +672,7 @@ real(kind=prec) function pecPenalty(cNew,cOld,t)
      spOld = sp(j,i)
      if(spNew.gt.zero.and.spOld.eq.zero) pecPenalty = pecPenalty + pin(i)*pef(i)*dt(t)*pecOn(i)
   enddo
+
 
 end function pecPenalty
 

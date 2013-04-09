@@ -49,7 +49,7 @@ subroutine output(setPoint,postProcessing,path)
   character(len=*)                , intent(in) :: path
   integer                                      :: i, u,j,k,n,l, nO
   real(kind = prec ), dimension(nTime,nm)        :: c
-  integer,          dimension(nm)              :: kk, kko
+  integer,          dimension(nm)              :: kk, kko, kkk
   logical                                      :: ex, oldRes
   character(len=100)                           :: folder, filename
   real(kind = prec ), dimension(0:nTime)         :: t
@@ -494,12 +494,16 @@ subroutine output(setPoint,postProcessing,path)
      buffer20(1) = 'Time [h]            '
      buffer20(2) = 'Pec  [kJ]           '
      write(u,'(7A)') (buffer20(i), i=1,2)
+     rbuffer = zero
      do i=1,nTime
         kk = setPoint(i,:)
         kko = setPoint(i-1,:) 
-        rbuffer(1) = (t(i))   
-        rbuffer(2) = pec(kk,i) + pecPenalty(kk,kkO,i)
-        write(u,'(2(ES9.2E2,11X))') (rbuffer(l), l=1,9)
+        rbuffer(1) = t(i)
+        rbuffer(2) = pec(kk,i)/dt(i) ! + pecPenalty(kk,kkO,i)
+        kkk = 1
+        kkk(1) =  (nsp(1))
+        rbuffer(3) = pec(kkk,i)/dt(i)
+        write(u,'(3(ES11.2E2,11X))') (rbuffer(j), j=1,3)
      enddo
   endif
 
