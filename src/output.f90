@@ -499,7 +499,7 @@ subroutine output(setPoint,postProcessing,path)
         kk = setPoint(i,:)
         kko = setPoint(i-1,:) 
         rbuffer(1) = t(i)
-        rbuffer(2) = pec(kk,i)/dt(i) ! + pecPenalty(kk,kkO,i)
+        rbuffer(2) = pec(kk,i)/dt(i)  + pecPenalty(kk,kkO,i)
         kkk = 1
         kkk(1) =  (nsp(1))
         rbuffer(3) = pec(kkk,i)/dt(i)

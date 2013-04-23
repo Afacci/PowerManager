@@ -625,15 +625,10 @@ real(kind=prec) function pec(c,t)
   do i=is(iB),ie(iB)
      pec = pec + pin(i)*pef(i)*dt(t)
   enddo
-
-  if(t.eq.7) print*, 'prima', c, pec/dt(t) 
    
   pGrid = sum(uEl(t,:)) + elSelfCons(c,t) - elProd(c,t)
   
   pec = pec + pGrid*pefGrid*dt(t)
-
-  if(t.eq.7) print*, 'dopo ', c, pec/dt(t), sum(uEl(t,:))
-
 
 end function pec
 !=======================================================================
@@ -672,7 +667,6 @@ real(kind=prec) function pecPenalty(cNew,cOld,t)
      spOld = sp(j,i)
      if(spNew.gt.zero.and.spOld.eq.zero) pecPenalty = pecPenalty + pin(i)*pef(i)*dt(t)*pecOn(i)
   enddo
-
 
 end function pecPenalty
 
