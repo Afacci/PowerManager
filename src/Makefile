@@ -68,6 +68,7 @@ OBJS = \
 ../obj/readEnv.o \
 ../obj/performances.o \
 ../obj/deallocateVar.o \
+../obj/readThStorage.o \
 #../obj/readSteamPlant.o \
 
 ################################################

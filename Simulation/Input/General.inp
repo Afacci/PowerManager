@@ -30,14 +30,19 @@
 
 begin
 
-GridConnection | Stock | !NetMetering;GridConn;StandAlone
-Degradation    | False           | !True/False
-objective      | Economic        |
-Strategy       | ThermalTrack |
+GridConnection  | GSE      | !NetMetering;GridConn;StandAlone
+GridLoss        | 1.051    |
+TransportCoeff  | 1.042    |
+TransportCost   | 3.56e-3  |
+TrasmissionCost | 2.56e-4  |
+Degradation     | False    | !True/False
+Strategy        | Optimized |
+objective       | PEC |
+GridPEF         | 2.174 |
 !---------Initial Conditions------------------------------
-StartPoint      | 0.00 0.00 0.00 0.00 |         
-UpTime          | 0     0    0   0 |         
-DownTime        | 1     1    1   1 |         
+StartPoint      | 0.0 0.0 0.0 0.0 |         
+UpTime          | 0     0    0   0|         
+DownTime        | 2     2    2   2|         
 FirstTimeStep   | 1               |
 Algorithm       | Backward        |
 writeEnergy     | .true.          |
@@ -52,7 +57,9 @@ writeCosts      | .true.          |
 writeTrig       | .false.         |
 writeChiller    | .false.         |
 writeBoiler     | .false.         |
+global          | .true.          |
 Euristics       | .true.          |
+writePec        | .true.          |
 
 end
 

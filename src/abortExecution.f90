@@ -58,12 +58,13 @@ character(len=18), dimension(9)        :: general
 character(len=18), dimension(17)       :: trigeneration
 character(len=18), dimension(15)       :: boilers
 character(len=18), dimension(13)       :: Chiller
-character(len=24), dimension(6)        :: files
+character(len=24), dimension(7)        :: files
 character(len=11), dimension(3)        :: eLoads 
 character(len=16), dimension(3)        :: gConn
 character(len=12), dimension(3)        :: algo
 integer                                :: t
 character(len=18), dimension(4)        :: GSE
+character(len=18), dimension(5)        :: ThStorage
 
 print*
 print*, '!-----------------------------------FATAL ERROR-----------------------------------------!'
@@ -90,12 +91,15 @@ Chiller       = (/'Number            ', 'Technology        ', 'Power            
 
 GSE           = (/'GridLoss          ', 'TransportCoeff    ', 'TransportCost     ', 'TrasmissionCost   '/)
 
+thStorage     = (/'Power             ', 'Capacity          ', 'SetPoint          ', 'InputEfficiency   ', 'OutputEfficiency  '/)
+
 files         = (/'./Input/General.inp      ',             & 
                   './Input/Trigeneratoin.inp',             &
                   './Input/Boliers.inp      ',             &
                   './Input/Chillers.inp     ',             &
                   './Input/Loads.inp        ',             &
-                  './Input/Environment.inp  '/)
+                  './Input/Environment.inp  ' ,            &
+                  './ThermalStorage.inp     '/)
 eLoads        = (/'Electricity', 'Thermal    ', 'Chilling   '/)
 gConn         = (/'NetMetering    ','DedicatadRetire','StandAlone     '/)
 algo          = (/'Backward    ', 'Forward     ', 'ThermalTrack'/)
@@ -205,8 +209,10 @@ select case(i)
         print*, 'Cannot find "PEF" entry in', trim(files(j)), 'The primary energy factor is necessary to'
         print*, 'perform primary energy consumption minimization'
     case(27)
-        print*, 'Cannot find "onOffPec" entry in', trim(files(j)), 'The primary energy wate at ignition is necessary'
+        print*, 'Cannot find "onOffPec" entry in', trim(files(j)), 'The primary energy rate at ignition is necessary'
         print*, 'perform primary energy consumption minimization'
+    case(28)
+        print*,'Could not find "', trim(ThStorage(j)) ,'" in ThermalStorage.inp'
     case default
         continue
 end select

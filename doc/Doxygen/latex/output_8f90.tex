@@ -1,0 +1,63 @@
+\hypertarget{output_8f90}{\section{/home/\-Codici/\-Blink/\-Power\-Manager/src/output.f90 File Reference}
+\label{output_8f90}\index{/home/\-Codici/\-Blink/\-Power\-Manager/src/output.\-f90@{/home/\-Codici/\-Blink/\-Power\-Manager/src/output.\-f90}}
+}
+
+
+Print the output.  
+
+
+\subsection*{Functions/\-Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \hyperlink{output_8f90_a649cd4df4d8e2fa52c888432b827fb14}{output} (set\-Point, post\-Processing, path)
+\item 
+subroutine \hyperlink{output_8f90_ac7902f418032aa17a7b8cb8f995f647b}{preparefile} (u, nome, folder)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Print the output.  Andrea Facci. 
+
+Definition in file \hyperlink{output_8f90_source}{output.\-f90}.
+
+
+
+\subsection{Function/\-Subroutine Documentation}
+\hypertarget{output_8f90_a649cd4df4d8e2fa52c888432b827fb14}{\index{output.\-f90@{output.\-f90}!output@{output}}
+\index{output@{output}!output.f90@{output.\-f90}}
+\subsubsection[{output}]{\setlength{\rightskip}{0pt plus 5cm}subroutine output (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(0\-:ntime+1,nm), intent(in)}]{set\-Point, }
+\item[{logical, intent(in)}]{post\-Processing, }
+\item[{character(len=$\ast$), intent(in)}]{path}
+\end{DoxyParamCaption}
+)}}\label{output_8f90_a649cd4df4d8e2fa52c888432b827fb14}
+
+
+Definition at line 31 of file output.\-f90.
+
+
+
+References energy\-::chprod(), energy\-::elprod(), energy\-::energyinput(), economy\-::firecost(), energy\-::fuelcons(), economy\-::fuelcost(), globalresults\-::globchrev(), globalresults\-::globcost(), globalresults\-::globelrev(), globalresults\-::globfirecost(), globalresults\-::globfuelcost(), globalresults\-::globmaintcost(), globalresults\-::globprofit(), globalresults\-::globrevenues(), globalresults\-::globthrev(), economy\-::grideconomy(), economy\-::maintenancecost(), preparefile(), and energy\-::thprod().
+
+
+
+Referenced by main(), and warning().
+
+\hypertarget{output_8f90_ac7902f418032aa17a7b8cb8f995f647b}{\index{output.\-f90@{output.\-f90}!preparefile@{preparefile}}
+\index{preparefile@{preparefile}!output.f90@{output.\-f90}}
+\subsubsection[{preparefile}]{\setlength{\rightskip}{0pt plus 5cm}subroutine preparefile (
+\begin{DoxyParamCaption}
+\item[{integer, intent(in)}]{u, }
+\item[{character(len=$\ast$), intent(in)}]{nome, }
+\item[{character(len=$\ast$), intent(in)}]{folder}
+\end{DoxyParamCaption}
+)}}\label{output_8f90_ac7902f418032aa17a7b8cb8f995f647b}
+
+
+Definition at line 491 of file output.\-f90.
+
+
+
+Referenced by output().
+

@@ -105,4 +105,11 @@ integer, allocatable, dimension(:)            :: nld, nlp
 real(kind= prec), allocatable, dimension(:) :: pAmb, tAmb
 real(kind= prec), dimension(1)              :: Altitude
 
+!---Thermal storage----
+
+real(kind=prec)                              :: PmaxTS, CapacityTS
+integer                                      :: nSpTS , nEtaTsIn, nEtaTsOut
+!real(kind=prec), allocatable, dimension(:,:) :: etaTsOut, etaTsIn
+real(kind=prec)                              :: etaTsOut, etaTsIn
+
 end module inputVar

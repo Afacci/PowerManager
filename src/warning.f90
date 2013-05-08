@@ -52,9 +52,10 @@ character(len=18), dimension(21)        :: general
 character(len=18), dimension(17)       :: trigeneration
 character(len=18), dimension(15)       :: boilers
 character(len=18), dimension(13)       :: Chiller
-character(len=24), dimension(5)        :: files
+character(len=24), dimension(6)        :: files
 character(len=13), dimension(3)        :: equip
 character(len=17), dimension(13)       :: output
+character(len=18), dimension(5)        :: ThStorage
 integer                                :: l
 
 print*
@@ -84,13 +85,17 @@ files         = (/'./Input/General.inp      ',             &
                   './Input/Trigeneratoin.inp',             &
                   './Input/Boliers.inp      ',             &
                   './Input/Chillers.inp     ',             &
-                  './Input/Loads.inp        '/)
+                  './Input/Loads.inp        ',             & 
+                  './Input/ThermalStorage   ' /)
 equip         = (/'Trigenerator ', 'Boiler       ', 'Chiller      '/)
 
 output        = (/'writePower      ','writeEnergy     ','writeEfficiency ','writeElectricRev', &
                   'writeThermalRev ','writeChillingRev','writeDemand     ','writeInput      ', &   
                   'writeCosts      ','writeTrig       ','writeChiller    ','writeBoiler     ', &
                   'global          '/)
+
+thStorage     = (/'Power             ', 'Capacity          ', 'SetPoint          ', 'InputEfficiency   ', 'OutputEfficiency  '/)
+
 general(9:21) = output
 
 
@@ -110,6 +115,8 @@ select case(i)
                 write(*,'(5x,A18)')  (boilers(l), l=1,13)
             case(4)
                 write(*,'(5x,A18)')  (Chiller(l), l=1,12)
+            case(6)
+                write(*,'(5x,A18)')  (ThStorage(l), l=1,12)
         end select
         print*, ' Note that the code is case-sensitive'
     case(2,3)

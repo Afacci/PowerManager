@@ -1,0 +1,297 @@
+\hypertarget{classglobalresults}{\section{globalresults Module Reference}
+\label{classglobalresults}\index{globalresults@{globalresults}}
+}
+
+
+Collaboration diagram for globalresults\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=172pt]{classglobalresults__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+real(kind=prec) function \hyperlink{classglobalresults_ac009a3d3d776d80a58d143c137dd9426}{globelrev} (set\-Point)
+\begin{DoxyCompactList}\small\item\em Electric energy revenues. \end{DoxyCompactList}\item 
+real(kind=prec) function \hyperlink{classglobalresults_aed1df63c124b3ac76809e37374672f26}{globthrev} (set\-Point)
+\begin{DoxyCompactList}\small\item\em thermal energy revenues. \end{DoxyCompactList}\item 
+real(kind=prec) function \hyperlink{classglobalresults_a972ef181b25a59b4f9325c85b021149e}{globchrev} (set\-Point)
+\begin{DoxyCompactList}\small\item\em Chilling energy revenues. \end{DoxyCompactList}\item 
+real(kind=prec) function \hyperlink{classglobalresults_a5e2fcd8b1f2a5d2ffa7be6e316a54d8d}{globfuelcost} (set\-Point)
+\begin{DoxyCompactList}\small\item\em Calculates the costs to buy the fuel. \end{DoxyCompactList}\item 
+real(kind=prec) function \hyperlink{classglobalresults_a94041d2c7b3dd5969c1abcf1e9546e65}{globmaintcost} (set\-Point)
+\begin{DoxyCompactList}\small\item\em Calculates the mintenance costs. \end{DoxyCompactList}\item 
+real(kind=prec) function \hyperlink{classglobalresults_aaa04d5674fda6eda87d3896259835080}{globfirecost} (set\-Point)
+\begin{DoxyCompactList}\small\item\em Calculates the lighting cost. \end{DoxyCompactList}\item 
+real(kind=prec) function \hyperlink{classglobalresults_a0edf7ae83d7b521a5b8f0c4d7b87dddc}{globcost} (set\-Point)
+\item 
+real(kind=prec) function \hyperlink{classglobalresults_ad14556fe1ddf08129231242d3716028e}{globrevenues} (set\-Point)
+\item 
+real(kind=prec) function \hyperlink{classglobalresults_afd33ba4d9415e6eba9f99590f55d71a8}{globprofit} (set\-Point)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+
+\end{DoxyAuthor}
+This module contains the definition of all the procedures that perform global economic and energetic calculation for the whole duration of ths simulation \begin{DoxyAuthor}{Author}
+
+\end{DoxyAuthor}
+
+
+Definition at line 42 of file global\-Results.\-f90.
+
+
+
+\subsection{Member Function/\-Subroutine Documentation}
+\hypertarget{classglobalresults_a972ef181b25a59b4f9325c85b021149e}{\index{globalresults@{globalresults}!globchrev@{globchrev}}
+\index{globchrev@{globchrev}!globalresults@{globalresults}}
+\subsubsection[{globchrev}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function globalresults\-::globchrev (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(0\-:ntime+1, nm), intent(in)}]{set\-Point}
+\end{DoxyParamCaption}
+)}}\label{classglobalresults_a972ef181b25a59b4f9325c85b021149e}
+Calculates the revenues (in euro or any other currency according to the one used in the input) from chilling energy selling to the various clients. \[ R_{ch} = \sum_{clients} U_{ch}(i)c_{ch}(i)dt \] where $ U_{ch}(i)$ is the power demand (in k\-W) of the $i$'th client, $c_{ch}(i)$ is the price in euro/k\-J of electric energy for each client and $ dt$ is the time-\/step duration.\par
+ 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time step index. Note t=x meas the x'th time step from the simulation start. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 159 of file global\-Results.\-f90.
+
+
+
+References economy\-::chrev().
+
+
+
+Referenced by globrevenues(), and output().
+
+\hypertarget{classglobalresults_a0edf7ae83d7b521a5b8f0c4d7b87dddc}{\index{globalresults@{globalresults}!globcost@{globcost}}
+\index{globcost@{globcost}!globalresults@{globalresults}}
+\subsubsection[{globcost}]{\setlength{\rightskip}{0pt plus 5cm}real(kind=prec) function globalresults\-::globcost (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(0\-:ntime+1,nm), intent(in)}]{set\-Point}
+\end{DoxyParamCaption}
+)}}\label{classglobalresults_a0edf7ae83d7b521a5b8f0c4d7b87dddc}
+
+
+Definition at line 290 of file global\-Results.\-f90.
+
+
+
+References globfirecost(), globfuelcost(), and globmaintcost().
+
+
+
+Referenced by globprofit(), and output().
+
+\hypertarget{classglobalresults_ac009a3d3d776d80a58d143c137dd9426}{\index{globalresults@{globalresults}!globelrev@{globelrev}}
+\index{globelrev@{globelrev}!globalresults@{globalresults}}
+\subsubsection[{globelrev}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function globalresults\-::globelrev (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(0\-:ntime+1, nm), intent(in)}]{set\-Point}
+\end{DoxyParamCaption}
+)}}\label{classglobalresults_ac009a3d3d776d80a58d143c137dd9426}
+Calculates the revenues (in euro or any other currency according to the one used in the input) from electric energy selling to the various clients and to the grid. Electric energy revenues are calculated in a different way for each kind of grid connection. Specifically\-:\par
+
+\begin{DoxyItemize}
+\item Stand Alone\-: \[ R_{el} = \sum_{clients} U_{el}(i)c_{el}(i)dt \] where $ U_{el}(i)$ is the power demand (in k\-W) of the $i$'th client, $c_{el}(i)$ is the price in euro/k\-J of electric energy for each client and $ dt$ is the time-\/step duration.\par
+
+\item Grid connected with net metering\-: \[ R_{el} = \sum_{clients} U_{el}(i)c_{el}(i)dt + P_{el}c_{s_{grid}} - U_{el}^{t}c_{b_{grid}} \] where $P_{el}$ is the total electric power produced by the power plant, $c_{s_{grid}}$ is the selling price to the grid, $U_{el}^{t} = \sum_{clients} U_{el}(i) + U_{el}^{self} $ is the total electric demand, including the power plant self-\/consumption $U_{el}^{self}$\par
+
+\item Grid Connected without net metering\-: \[ R_{el} = \sum_{clients} U_{el}(i)c_{el}(i)dt + (P_{el} - U_{el}^{t}) c_{grid} \] where $ c_{grid} = c_{s_{grid}}$ if $P_{el} \ge U_{el}^{t}$ and $ c_{grid} = c_{b_{grid}}$ otherwise 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time step index. Note t=x meas the x'th time step from the simulation start. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+\end{DoxyItemize}
+
+Definition at line 84 of file global\-Results.\-f90.
+
+
+
+References economy\-::elrev().
+
+
+
+Referenced by globrevenues(), and output().
+
+\hypertarget{classglobalresults_aaa04d5674fda6eda87d3896259835080}{\index{globalresults@{globalresults}!globfirecost@{globfirecost}}
+\index{globfirecost@{globfirecost}!globalresults@{globalresults}}
+\subsubsection[{globfirecost}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function globalresults\-::globfirecost (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(0\-:ntime+1,nm), intent(in)}]{set\-Point}
+\end{DoxyParamCaption}
+)}}\label{classglobalresults_aaa04d5674fda6eda87d3896259835080}
+Calculates the cost associated to each lighting of a machinery. \[ C_{l} > 0 \qquad \mbox{if} \qquad sp(t,i) > 0 \;\mbox{and}\; sp(t-1,i) = 0 \] this cost will be added to the operative profit to for the arc profit/cost. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time step index. Note t=x meas the x'th time step from the simulation start. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 270 of file global\-Results.\-f90.
+
+
+
+References economy\-::firecost().
+
+
+
+Referenced by globcost(), and output().
+
+\hypertarget{classglobalresults_a5e2fcd8b1f2a5d2ffa7be6e316a54d8d}{\index{globalresults@{globalresults}!globfuelcost@{globfuelcost}}
+\index{globfuelcost@{globfuelcost}!globalresults@{globalresults}}
+\subsubsection[{globfuelcost}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function globalresults\-::globfuelcost (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(0\-:ntime+1, nm), intent(in)}]{set\-Point}
+\end{DoxyParamCaption}
+)}}\label{classglobalresults_a5e2fcd8b1f2a5d2ffa7be6e316a54d8d}
+Calculates the costs to buy the fuel (in euro or any other currency according to the one used in the input) \[ C_{f} = \sum_{Trig+Boi} \frac{E_{in}(i)c_{f}(i)}{H_i(i)}dt \] where $c_{f}(i)$ is the specific cost (per unit mass or volume) of the fuel for the $i$'th machine, $H_i(i)$ is the fuel L\-H\-V (k\-J per unit mass or volume), $E_{in}(i)$ is the primary energy input. $c_{ch}(i)$ is the price in euro/k\-J of electric energy for each client and $ dt$ is the time-\/step duration.\par
+ Note that even though international units are strongly suggested, any units of mass and/or volume is valid for $c_{f}$ and $H_i$ provided that coherence between the units of these two variables is respected. Moreover prices and L\-V\-Ss may may be expressend in different units for differend machines. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time step index. Note t=x meas the x'th time step from the simulation start. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 202 of file global\-Results.\-f90.
+
+
+
+References economy\-::fuelcost().
+
+
+
+Referenced by globcost(), and output().
+
+\hypertarget{classglobalresults_a94041d2c7b3dd5969c1abcf1e9546e65}{\index{globalresults@{globalresults}!globmaintcost@{globmaintcost}}
+\index{globmaintcost@{globmaintcost}!globalresults@{globalresults}}
+\subsubsection[{globmaintcost}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function globalresults\-::globmaintcost (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(0\-:ntime+1, nm), intent(in)}]{set\-Point}
+\end{DoxyParamCaption}
+)}}\label{classglobalresults_a94041d2c7b3dd5969c1abcf1e9546e65}
+Calculates the maintenance costs (in euro or any other currency according to the one used in the input) \[ C_{m} = \sum c_{m}(i)dt \qquad \mbox{if}\qquad sp(i) > 0 \] where $c_{m}(i)$ is the maintenance cost per unit time and $ dt$ is the time-\/step duration.\par
+ 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time step index. Note t=x meas the x'th time step from the simulation start. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 237 of file global\-Results.\-f90.
+
+
+
+References economy\-::maintenancecost().
+
+
+
+Referenced by globcost(), and output().
+
+\hypertarget{classglobalresults_afd33ba4d9415e6eba9f99590f55d71a8}{\index{globalresults@{globalresults}!globprofit@{globprofit}}
+\index{globprofit@{globprofit}!globalresults@{globalresults}}
+\subsubsection[{globprofit}]{\setlength{\rightskip}{0pt plus 5cm}real(kind=prec) function globalresults\-::globprofit (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(0\-:ntime+1,nm), intent(in)}]{set\-Point}
+\end{DoxyParamCaption}
+)}}\label{classglobalresults_afd33ba4d9415e6eba9f99590f55d71a8}
+
+
+Definition at line 314 of file global\-Results.\-f90.
+
+
+
+References globcost(), and globrevenues().
+
+
+
+Referenced by output().
+
+\hypertarget{classglobalresults_ad14556fe1ddf08129231242d3716028e}{\index{globalresults@{globalresults}!globrevenues@{globrevenues}}
+\index{globrevenues@{globrevenues}!globalresults@{globalresults}}
+\subsubsection[{globrevenues}]{\setlength{\rightskip}{0pt plus 5cm}real(kind=prec) function globalresults\-::globrevenues (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(0\-:ntime+1,nm), intent(in)}]{set\-Point}
+\end{DoxyParamCaption}
+)}}\label{classglobalresults_ad14556fe1ddf08129231242d3716028e}
+
+
+Definition at line 302 of file global\-Results.\-f90.
+
+
+
+References globchrev(), globelrev(), and globthrev().
+
+
+
+Referenced by globprofit(), and output().
+
+\hypertarget{classglobalresults_aed1df63c124b3ac76809e37374672f26}{\index{globalresults@{globalresults}!globthrev@{globthrev}}
+\index{globthrev@{globthrev}!globalresults@{globalresults}}
+\subsubsection[{globthrev}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function globalresults\-::globthrev (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(0\-:ntime+1, nm), intent(in)}]{set\-Point}
+\end{DoxyParamCaption}
+)}}\label{classglobalresults_aed1df63c124b3ac76809e37374672f26}
+Calculates the revenues (in euro or any other currency according to the one used in the input) from thermal energy selling to the various clients. \[ R_{th} = \sum_{clients} U_{th}(i)c_{th}(i)dt \] where $ U_{th}(i)$ is the power demand (in k\-W) of the $i$'th client, $c_{th}(i)$ is the price in euro/k\-J of electric energy for each client and $ dt$ is the time-\/step duration.\par
+ 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time step index. Note t=x meas the x'th time step from the simulation start. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 121 of file global\-Results.\-f90.
+
+
+
+References economy\-::threv().
+
+
+
+Referenced by globrevenues(), and output().
+
+
+
+The documentation for this module was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+/home/\-Codici/\-Blink/\-Power\-Manager/src/\hyperlink{global_results_8f90}{global\-Results.\-f90}\end{DoxyCompactItemize}
