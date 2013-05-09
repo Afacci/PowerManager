@@ -43,8 +43,8 @@ real(kind = prec), allocatable, dimension(:,:)   :: etaEl, etaTh, etaCh, timeVin
 integer         , allocatable, dimension(:,:)    :: cr
 real(kind = prec), allocatable, dimension(:)     :: Pmax, dt, cf, lhv, onOffCost, OeMCost, minUpTime, minDownTime, pef, pecOn
 character(len=4), allocatable, dimension(:)      :: pes
-integer                                          :: nSpTot,nm, iT, iB, iC
-integer,                       dimension(3)      :: is,ie
+integer                                          :: nSpTot,nm, iT, iB, iC, iTS
+integer,                       dimension(4)      :: is,ie
 integer,          allocatable, dimension(:)      :: nSp, nTv, eSource
 character(len=50), allocatable, dimension(:)     :: tec
 

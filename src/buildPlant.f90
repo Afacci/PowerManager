@@ -53,9 +53,8 @@ implicit none
 integer :: i,j, maxsp, k, k1, k2
 integer, dimension(2)  :: ext1,ext2,ext3, ext
 character(len=100)     :: word, cdummy
-real(kind = prec)       :: kJ_kWh
+real(kind = prec)       :: kJ_kWh, dsp
 real(kind = prec), allocatable, dimension(:,:) :: upTimeVinc, downTimeVinc
-integer,dimension(nm):: dtv, utv
 real(kind = prec), dimension(1) :: rdummy1, rdummy2
 real(kind = prec), dimension(:,:,:), allocatable :: tCorr, pCorr
 real(kind = prec), dimension(:,:), allocatable :: aCorr
@@ -99,21 +98,26 @@ endif
 call checkPlant
 
 nm  = nTrig + nBoi + nChi                    !total number of machinery
+if(pMaxTS.gt.zero) nm = nm + 1
 nSpTot = 0
 if(nBoi.gt.0) nSpTot = nSpTot + sum(nSpT)
 if(nBoi.gt.0) nSpTot = nSpTot + sum(nSpB)
 if(nChi.gt.0) nSpTot = nSpTot + sum(nSpC)
+if(pMaxTS.gt.zero) nSpTot = nSpTot + 2*nSpTS + 1
 call allocateVar(17)
 !-starting index for each kind of equip. in the set-point vector.
 iT = 1
 iB = 2
 iC = 3
+iTS= 4
+
 is(iT) = 1                   !Trigeneration
 ie(iT) = nTrig
 is(iB) = is(iT) + nTrig      !Boilers
 ie(iB) = ie(iT) + nBoi
 is(iC) = is(iB) + nBoi       !Chillers
 ie(iC) = ie(iB) + nChi
+is(iTs)= is(iC) + nChi
 
 !--- build the power plant "connections", that is the set-point, power, and
 !--- efficiencies vectors of the global power plant.
@@ -132,6 +136,7 @@ do i=is(iC),ie(iC)
    j = j + 1 
    nSp(i)  = nSpC(j)
 enddo
+nSp(is(iTS)) = 2*nSpTS + 1
 
 call allocateVar(18)
 
@@ -186,7 +191,7 @@ do i=1,nTime
       rdummy2= interpolation(tempCorrC(:,1,k), tempCorrC(:,2,k), ntcC(k), tAmb(i),1)
       tCorr(i,j,3) = rdummy2(1)
       rdummy2= interpolation(tempCorrC(:,1,k), tempCorrC(:,3,k), ntcC(k), tAmb(i),1)
-      tCorr(i,j,4) = rdummy2(1)
+      tCorr(i,j,4) = rdummy2(1)!
 
       rdummy2= interpolation(presCorrC(:,1,k), presCorrC(:,2,k), npcC(k), pAmb(i),1)
       pCorr(i,j,3) = rdummy2(1)
@@ -233,6 +238,8 @@ do i=1,nTime
    enddo
 enddo
 deallocate(aCorr,pCorr,tCorr)
+
+!envCorr = correction()
 
 j = 0
 do i=is(iT),ie(iT)
@@ -324,6 +331,25 @@ do i=is(iC),ie(iC)
       ChiPriority(j) = chiPriority(j) + is(iC) - 1
    endif
 enddo
+!thermal storage
+j = is(iTS) 
+sp(1,j) = -1
+cr(1,j) = 1
+dsp = 1.0/nSpTs
+do i=2,nSpTS
+   sp(i,j) = sp(i-1,j) + dsp
+   cr(i,j) = i
+enddo
+sp(nSpTS + 1,j) = zero
+cr(nSpTS + 1,j) = nSpTs + 1
+do i= nSpTS + 2, nSp(j)
+   sp(i,j) = sp(i-1,j) + dsp
+   cr(i,j) = i
+enddo
+print*, 'sp storage ', sp(:,j) 
+print*, 'spr storage ', cr(:,j) 
+print*, 'spr chi ', cr(:,j-1) 
+stop
 
 !---time-dependent constraints---
 call allocateVar(21)
