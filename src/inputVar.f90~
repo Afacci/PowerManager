@@ -48,8 +48,8 @@ character(len=20)  :: gridConnection
 integer            :: nTimes
 logical            :: iDeg 
 real(kind = prec), allocatable, dimension(:) :: startPoint, upTime0, downTime0
-real(kind = prec)                            :: dt1, k_tr, k_el, c_tr, c_st
-character(len=100) :: obj, method
+real(kind = prec)                            :: dt1, k_tr, k_el, c_tr, c_st, pefGrid
+character(len=100) :: obj, method, strategy
 logical :: writePower       = .false.
 logical :: writeEnergy      = .false.
 logical :: writeEfficiency  = .false.
@@ -62,14 +62,17 @@ logical :: writeCosts       = .false.
 logical :: writeTrig        = .false.
 logical :: writeBoi         = .false.
 logical :: writeChi         = .false.
+logical :: writePec         = .false.
 logical :: global           = .false.
 logical :: useEuristics     = .false.
+logical , dimension(5) :: kPEC = .false.
+logical :: iPec = .false.
 
 !---Trigeneration.inp variables
 integer                                         :: nTrig
 integer, allocatable, dimension(:)              :: nSpT, nEtaElT, nEtaThT, nEtaChT, ntcT, npcT, nacT, &
                                                    TrigPriority
-real(kind= prec),allocatable, dimension(:)      :: pMaxT, fuelCostT, fuelLHVT, lifeT, &
+real(kind= prec),allocatable, dimension(:)      :: pMaxT, fuelCostT, fuelLHVT, lifeT, pefT, pecOnT,   &
                                                    fireCostT, maintCostT,minUpTimeT, minDownTimeT
 real(kind= prec),allocatable, dimension(:,:)    :: spT
 real(kind= prec), allocatable, dimension(:,:,:) :: etaElT, etaThT, etaChT, tempCorrT, presCorrT, altCorrT
@@ -78,7 +81,7 @@ character(len=50), allocatable, dimension(:)    :: tecT
 !---Boilers.inp variables
 integer                                         :: nBoi
 integer, allocatable, dimension(:)              :: nSpB, nEtaB, ntcB, npcB, nacB, BoiPriority
-real(kind= prec),allocatable, dimension(:)      :: pMaxB ,fuelCostB, fuelLHVB,               & 
+real(kind= prec),allocatable, dimension(:)      :: pMaxB ,fuelCostB, fuelLHVB, pefB,  pecOnB,          & 
                                                    lifeB, fireCostB, maintCostB , minUpTimeB, minDownTimeB 
 real(kind= prec),allocatable, dimension(:,:)    :: spB
 real(kind= prec), allocatable, dimension(:,:,:) :: etaB, tempCorrB,  presCorrB, altCorrB
@@ -101,5 +104,12 @@ integer, allocatable, dimension(:)            :: nld, nlp
 !--environment.inp variables
 real(kind= prec), allocatable, dimension(:) :: pAmb, tAmb
 real(kind= prec), dimension(1)              :: Altitude
+
+!---Thermal storage----
+
+real(kind=prec)                              :: PmaxTS, CapacityTS
+integer                                      :: nSpTS , nEtaTsIn, nEtaTsOut
+!real(kind=prec), allocatable, dimension(:,:) :: etaTsOut, etaTsIn
+real(kind=prec)                              :: etaTsOut, etaTsIn
 
 end module inputVar

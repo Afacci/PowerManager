@@ -85,4 +85,41 @@ contains
      return
    end function locateRow
 
+!=================================================================================
+
+
+   integer function locateElement(val,vec,n,error)
+     
+     use plantVar , only : nm
+     use myArithmetic
+
+     implicit none
+
+     real(kind = prec), intent(in)  :: val
+     real(kind = prec), dimension(n), intent(in) :: vec
+     integer, intent(in) :: n
+     logical,                         intent(out), optional :: error
+     integer :: i
+     real(kind = prec) :: test 
+    
+     !---function body----
+     
+     if(present(error)) error = .false.
+     
+     i = 0
+     do 
+       i = i + 1
+       if(i.gt.n) then
+         if(present(error)) error = .true.
+         locateElement = -huge(1)
+         return
+       endif
+       test = vec(i)
+       if(abs(val-test).le.1.0) exit
+     enddo
+     locateElement = i
+
+     return
+   end function locateElement
+
 end module mathTools

@@ -247,6 +247,9 @@ do
              read(val,*), dummy
              if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
              read(val,*), useEuristics
+        case('ThermalStorageLevel')
+!             isPresent(10) = .true.
+             read(val,*) iSocTh, eSocTh
         case(' ')
              if(verb) call warning(4,1,line=line)
         case  default

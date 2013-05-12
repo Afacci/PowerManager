@@ -40,12 +40,14 @@ real(kind = prec), allocatable, dimension(:,:)   :: etaElT_, etaThT_, etaChT_, e
                                                    sp,cRef
 real(kind = prec), allocatable, dimension(:,:,:) :: envCorr
 real(kind = prec), allocatable, dimension(:,:)   :: etaEl, etaTh, etaCh, timeVinc
-integer         , allocatable, dimension(:,:)   :: cr
-real(kind = prec), allocatable, dimension(:)     :: Pmax, dt, cf, lhv, onOffCost, OeMCost, minUpTime, minDownTime
-character(len=4), allocatable, dimension(:)     :: pes
-integer                                         :: nSpTot,nm, iT, iB, iC
-integer,                       dimension(3)     :: is,ie
-integer,          allocatable, dimension(:)     :: nSp, nTv, eSource
+integer         , allocatable, dimension(:,:)    :: cr
+real(kind = prec), allocatable, dimension(:)     :: Pmax, dt, cf, lhv, onOffCost, OeMCost, minUpTime, minDownTime, pef, pecOn, &
+                                                    soc
+character(len=4), allocatable, dimension(:)      :: pes
+integer                                          :: nSpTot,nm, iT, iB, iC, iTS, nm0, nsoc
+integer,                       dimension(4)      :: is,ie
+integer,          allocatable, dimension(:)      :: nSp, nTv, eSource
+character(len=50), allocatable, dimension(:)     :: tec
 
 
 end module plantVar

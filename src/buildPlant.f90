@@ -53,7 +53,7 @@ implicit none
 integer :: i,j, maxsp, k, k1, k2
 integer, dimension(2)  :: ext1,ext2,ext3, ext
 character(len=100)     :: word, cdummy
-real(kind = prec)       :: kJ_kWh, dsp
+real(kind = prec)       :: kJ_kWh, dsp, dtmin, dsoc
 real(kind = prec), allocatable, dimension(:,:) :: upTimeVinc, downTimeVinc
 real(kind = prec), dimension(1) :: rdummy1, rdummy2
 real(kind = prec), dimension(:,:,:), allocatable :: tCorr, pCorr
@@ -62,6 +62,16 @@ real(kind = prec), dimension(:,:), allocatable :: aCorr
 !--subroutine body-----
 
 call allocateVar(16)
+
+
+!---time step in seconds---
+dt(0) = dt1*3.6e3
+do i=1,nTime - 1
+   dt(i) = 3.6e3*(time(i+1) - time(i))      
+enddo
+dt(nTime) = dt1*3.6e3
+upTime0 = upTime0*3.6e3
+downTime0 = downTime0*3.6e3
 
 !-- calculate all the efficiencies for the given set points.
 if(nTrig.ge.0) then
@@ -97,13 +107,18 @@ endif
 !--- check that the power plant is able to satisfie the required loads
 call checkPlant
 
-nm  = nTrig + nBoi + nChi                    !total number of machinery
-if(pMaxTS.gt.zero) nm = nm + 1
+nm0  = nTrig + nBoi + nChi                    !total number of machinery without storage
+if(capacityTS.gt.zero) then
+   nm  = nm0 + 1                                 !total number of machinery with storage
+else
+   nm = nm0
+endif
+
 nSpTot = 0
 if(nBoi.gt.0) nSpTot = nSpTot + sum(nSpT)
 if(nBoi.gt.0) nSpTot = nSpTot + sum(nSpB)
 if(nChi.gt.0) nSpTot = nSpTot + sum(nSpC)
-if(pMaxTS.gt.zero) nSpTot = nSpTot + 2*nSpTS + 1
+if(capacityTS.gt.zero) nSpTot = nSpTot + 2*nSpTS + 1
 call allocateVar(17)
 !-starting index for each kind of equip. in the set-point vector.
 iT = 1
@@ -136,7 +151,7 @@ do i=is(iC),ie(iC)
    j = j + 1 
    nSp(i)  = nSpC(j)
 enddo
-nSp(is(iTS)) = 2*nSpTS + 1
+if(capacityTS.gt.0) nSp(is(iTS)) = 2*nSpTS + 1
 
 call allocateVar(18)
 
@@ -332,24 +347,38 @@ do i=is(iC),ie(iC)
    endif
 enddo
 !thermal storage
-j = is(iTS) 
-sp(1,j) = -1
-cr(1,j) = 1
-dsp = 1.0/nSpTs
-do i=2,nSpTS
-   sp(i,j) = sp(i-1,j) + dsp
-   cr(i,j) = i
-enddo
-sp(nSpTS + 1,j) = zero
-cr(nSpTS + 1,j) = nSpTs + 1
-do i= nSpTS + 2, nSp(j)
-   sp(i,j) = sp(i-1,j) + dsp
-   cr(i,j) = i
-enddo
-print*, 'sp storage ', sp(:,j) 
-print*, 'spr storage ', cr(:,j) 
-print*, 'spr chi ', cr(:,j-1) 
-stop
+if(capacityTS.gt.zero) then
+   j = is(iTS) 
+   sp(1,j) = -1
+   cr(1,j) = 1
+   dsp = 1.0/nSpTs
+   do i=2,nSpTS
+      sp(i,j) = sp(i-1,j) + dsp
+      cr(i,j) = i
+   enddo
+   sp(nSpTS + 1,j) = zero
+   cr(nSpTS + 1,j) = nSpTs + 1
+   do i= nSpTS + 2, nSp(j)
+      sp(i,j) = sp(i-1,j) + dsp
+      cr(i,j) = i
+   enddo
+   iSocTh = iSocTh*capacityTS
+   eSocTh = eSocTh*capacityTS
+   dtmin  = minval(dt)
+   dsoc   = dsp*dtmin
+   nsoc   = floor(capacityTs/(dsoc)) + 1
+   allocate(soc(nsoc), socTh(0:nTime+1))
+   soc(1) = zero
+   do i=2,nsoc
+      soc(i) = soc(i-1) + dsoc
+   enddo
+else
+   nsoc = 1
+   allocate(soc(nsoc), socTh(0:nTime+1))
+   soc(1) = 0
+endif
+!=================================================================
+
 
 !---time-dependent constraints---
 call allocateVar(21)
@@ -357,28 +386,20 @@ k1 = maxval(minUpTime)/3.6e3 + 1
 k2 = maxval(minDownTime)/3.6e3 + 1
 allocate(upTimeVinc(max(k1,k2),nm), downTimeVinc(max(k1,k2),nm))
 timeVinc(:,:) = zero
-do i=1,nm
+do i=1,nm0
    nTv(i) = minUpTime(i)/3.6e3 + 1
    do j=1,ntv(i)
       timeVinc(j,i) = (j - 1)*3.6e3
    enddo
 enddo
-do i=1,nm
-   k = nm + i
+do i=1,nm0
+   k = nm0 + i
    nTv(k) = minDownTime(i)/3.6e3 + 1
    do j=1,ntv(k)
       timeVinc(j,k) = (j - 1)*3.6e3
    enddo
 enddo
 
-!---time step in seconds---
-dt(0) = dt1*3.6e3
-do i=1,nTime - 1
-   dt(i) = 3.6e3*(time(i+1) - time(i))      
-enddo
-dt(nTime) = dt1*3.6e3
-upTime0 = upTime0*3.6e3
-downTime0 = downTime0*3.6e3
 
 !--- convert all the prices in €/kJ---
 kJ_kWh = 1.0/3.6e3

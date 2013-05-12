@@ -60,8 +60,8 @@ ThermalEfficiency  | ( 0.0 0.40   |
 ChillingEfficiency | (0.0 0.00      |
                    |  1.0 0.00)     |
 
-MinUpTime          | 2 2 2           |                   
-MinDownTime        | 2 2 2           |   
+MinUpTime          | 0 2 2           |                   
+MinDownTime        | 0 2 2           |   
 
 !---Correction parameters----
 

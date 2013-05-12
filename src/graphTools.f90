@@ -89,6 +89,20 @@ interface
     end function timeConstr
 end interface
 
+interface
+   logical function thStorageConstr(oldLevel,c,t)
+   use shared
+   use plantVar
+   use inputVar
+   use energy
+   implicit none
+   integer, dimension(nm), intent(in) :: c
+   integer,                intent(in) :: t
+   real(kind=prec),        intent(in) :: oldLevel
+   end function thStorageConstr
+end interface
+
+
 contains 
    !>\brief
    !> Generates all the combinations of the set points, staring from the
@@ -423,7 +437,7 @@ contains
    subroutine minPathTopoFw(ottLoad, minCost)
    
    use inputVar, only : nTime
-   use plantVar, only : nm
+   use plantVar, only : nm, nm0
 
    implicit none
     
@@ -481,26 +495,28 @@ contains
 
    subroutine minPathTopoBw(ottLoad, minCost,upTime, minPath)
    
-   use inputVar, only : nTime, upTime0, downTime0
-   use plantVar, only : nm, minUpTime, minDownTime
+   use inputVar, only : nTime, upTime0, downTime0, iSocTh
+   use plantVar, only : nm, minUpTime, minDownTime, nm0, soc, nSoc, socTh
    use mathTools
+   use energy
 
    implicit none
     
    integer, dimension(0:nTime+1,nm), intent(out):: ottLoad
    real(kind = prec),              intent(out)   :: minCost
-   integer                                      :: orig, dest, i, j, p, suc,t,k,ki
-   real(kind = prec)                             :: ci
-   real(kind = prec), allocatable, dimension(:,:)  :: pathCost
-   integer         , allocatable, dimension(:,:)  :: minSucc
+   integer                                      :: orig, dest, i, j, p, suc,t,k,ki, l , li
+   real(kind = prec)                             :: ci, newSoc
+   real(kind = prec), allocatable, dimension(:,:,:)  :: pathCost
+   integer         , allocatable, dimension(:,:,:)  :: minSucc
    integer, dimension(0:nTime+1)                :: minPath
-   logical                                      :: tv
+   logical                                      :: tv,thv, error
    integer, dimension(nm)                       :: cn, co
    real(kind = prec), dimension(0:nTime+1,2*nm), intent(out)       :: upTime 
-   real(kind = prec), dimension(2*nm)              :: upTimeIn, upTimeOut
+   real(kind = prec), dimension(2*nm0)              :: upTimeIn, upTimeOut
 
    !----------function body-----------------------------------------------------
 
+   error = .false.
    orig = 0              
    dest = nPoint + 1
    allocate(pathCost(orig:dest,nTvComb), minSucc(orig:dest,nTvComb))
@@ -509,23 +525,29 @@ contains
    minSucc(orig:dest,:)    = 0
 
    do i=nPoint,0,-1
+      t         = pointTime(i)
+      co        = pointLoad(i,:)
       do k=1,nTvComb
-         t         = pointTime(i)
-         co        = pointLoad(i,:)
          upTimeIn  = tState(k,:)
          tv = timeConstr(co,upTimeIn)
          if(tv) then
             upTimeOut = upTimeCalc(upTimeIn,co,t)
-            ki = locateRow(upTimeOut,tState,2*nm,nTvComb)
-            do j=1,nSuc(i)
-               suc = succList(i,j)
-               ci  = pathCost(suc,ki) + succCost(i,j)
-               cn  = pointLoad(suc,:)
-               if(ci.lt.pathCost(i,k)) then
-                   pathCost(i,k) = ci
-                   minSucc(i,k)  = suc
-               endif
-            enddo
+            ki = locateRow(upTimeOut,tState,2*nm0,nTvComb)
+            !do l=1,nSoc
+            !   thv = thStorageConstr(soc(l),co,t)
+            !   if(thv) then
+             !     newSoc = thStorageLevelUpdate(soc(l),co,t)
+             !     li = locateElement(newSoc,soc,nSoc, error)
+                  do j=1,nSuc(i)
+                     suc = succList(i,j)
+                     ci  = pathCost(suc,ki) + succCost(i,j)
+                     if(ci.lt.pathCost(i,k)) then
+                         pathCost(i,k) = ci
+                         minSucc(i,k)  = suc
+                     endif
+                  enddo
+             !  endif
+            !enddo
          endif
       enddo
    enddo
@@ -537,20 +559,23 @@ contains
    ottLoad(0,      :) = pointLoad(orig,:)
    p = orig 
    t = 0
-   do i=1,nm
-      j = i + nm
+   do i=1,nm0
+      j = i + nm0
       upTime(0,i) = min(upTime0(i), minUpTime(i))
       upTime(0,j) = min(downTime0(i), minDownTime(i))
+      socTh(0)    = iSocTh
    enddo
    do while (p < dest)
       t = t + 1
-      ki = locateRow(upTime(t-1,:),tState,2*nm,nTvComb)
+      print*, t, p
+      ki = locateRow(upTime(t-1,:),tState,2*nm0,nTvComb)
       upTime(t,:) = upTimeCalc(upTime(t-1,:),pointLoad(p,:),t-1)
+!      li = locateElement(socTh(t-1), soc, nSoc)
+!      socTh(t) = thStorageLevelUpdate(socTh(t-1),pointLoad(p,:), t-1)
       p = minSucc(p,ki)
       minPath(t)  = p
       ottLoad(t,:)= pointLoad(p,:)
    enddo
-   
    
    deallocate(minSucc, succList, succCost)
 
@@ -560,21 +585,21 @@ contains
 
   function upTimeCalc(upT,c,t)
 
-     use plantVar, only : nm, sp, dt, minUpTime, minDownTime
+     use plantVar, only : nm0, sp, dt, minUpTime, minDownTime, nm
 
      implicit none
 
-     real(kind = prec), dimension(2*nm)    :: upTimeCalc
-     real(kind = prec), dimension(2*nm)    :: upT
+     real(kind = prec), dimension(2*nm0):: upTimeCalc
+     real(kind = prec), dimension(2*nm0):: upT
      integer,                intent(in) :: t
      integer, dimension(nm), intent(in) :: c
      integer                            :: i,j,k
-     real(kind = prec)                   :: load
+     real(kind = prec)                  :: load
 
      !---function body----
-     do i=1,nm
+     do i=1,nm0
         j = c(i)
-        k = i + nm
+        k = i + nm0
         load = sp(j,i)
         if(load.gt.zero) then 
            upTimeCalc(i) = upT(i) + dt(t)

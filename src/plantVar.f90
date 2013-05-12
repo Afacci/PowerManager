@@ -41,9 +41,10 @@ real(kind = prec), allocatable, dimension(:,:)   :: etaElT_, etaThT_, etaChT_, e
 real(kind = prec), allocatable, dimension(:,:,:) :: envCorr
 real(kind = prec), allocatable, dimension(:,:)   :: etaEl, etaTh, etaCh, timeVinc
 integer         , allocatable, dimension(:,:)    :: cr
-real(kind = prec), allocatable, dimension(:)     :: Pmax, dt, cf, lhv, onOffCost, OeMCost, minUpTime, minDownTime, pef, pecOn
+real(kind = prec), allocatable, dimension(:)     :: Pmax, dt, cf, lhv, onOffCost, OeMCost, minUpTime, minDownTime, pef, pecOn, &
+                                                    soc, socTh
 character(len=4), allocatable, dimension(:)      :: pes
-integer                                          :: nSpTot,nm, iT, iB, iC, iTS
+integer                                          :: nSpTot,nm, iT, iB, iC, iTS, nm0, nsoc
 integer,                       dimension(4)      :: is,ie
 integer,          allocatable, dimension(:)      :: nSp, nTv, eSource
 character(len=50), allocatable, dimension(:)     :: tec

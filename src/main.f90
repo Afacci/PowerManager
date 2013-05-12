@@ -130,7 +130,7 @@ select case(strategy)
             call minPathTopoFw(setPoint, cost)
          case('Backward')
             cDummy = 'time-constraints' 
-            call allCombin(dcm=timeVinc,imax=nTv,m=2*nm,targ=cDummy) 
+            call allCombin(dcm=timeVinc,imax=nTv,m=2*nm0,targ=cDummy) 
             allocate(upTime(0:nTime+1,2*nm))
             allocate(minPathBw(0:nTime+1))
             call minPathTopoBw(setPoint, cost, upTime, minPathBw)

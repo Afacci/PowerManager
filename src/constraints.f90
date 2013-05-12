@@ -99,13 +99,13 @@ use plantVar
 
 implicit none
 integer, dimension(nm), intent(in) :: cindex
-real(kind = prec), dimension(2*nm),intent(in) :: tState
+real(kind = prec), dimension(2*nm0),intent(in) :: tState
 integer                            :: i,j
 real(kind = prec)                   :: cc
 
 timeConstr = .true. 
 
-do i=1,nm
+do i=1,nm0
    cc = sp(cindex(i),i)
    if(cc.eq.zero.and.tState(i).gt.zero) then
       if(tState(i).lt.minUpTime(i)) then
@@ -113,7 +113,7 @@ do i=1,nm
          exit
       endif
    endif
-   j = nm + i
+   j = nm0 + i
    if(cc.gt.zero.and.tState(j).gt.zero) then
       if(tState(j).lt.minDownTime(i)) then
          timeConstr = .false.
@@ -123,3 +123,35 @@ do i=1,nm
 enddo
 
 end function timeConstr
+
+
+!=============================================================
+
+logical function thStorageConstr(oldLevel,c,t)
+
+
+!---Declare Module usage---
+
+use shared
+use plantVar
+use inputVar
+use energy
+
+implicit none
+integer, dimension(nm), intent(in) :: c
+integer,                intent(in) :: t
+real(kind=prec),        intent(in) :: oldLevel
+real(kind=prec)                    :: newLevel
+
+thStorageConstr = .true.
+
+newLevel = thStorageLevelUpdate(oldLevel,c,t)
+if(newLevel.lt.zero)       thStorageConstr = .false.
+if(newLevel.gt.capacityTS) thStorageConstr = .false.
+if(t.eq.nTime) then
+   if(newLevel.ne.eSocTh)  thStorageConstr = .false.
+endif
+
+return
+
+end function thStorageConstr

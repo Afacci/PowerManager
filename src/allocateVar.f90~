@@ -57,7 +57,8 @@ select case(what)
 !        allocate(nSizeT(nTrig))
 !        nSizeT(1:nTrig) = 0
         allocate(nEtaElT(nTrig), nEtaThT(nTrig), nEtaChT(nTrig), tecT(nTrig), minUpTimeT(nTrig),minDownTimeT(nTrig))
-        allocate(ntcT(nTrig), npcT(nTrig), nacT(nTrig))
+        allocate(ntcT(nTrig), npcT(nTrig), nacT(nTrig), TrigPriority(nTrig),pefT(nTrig), & 
+                 pecOnT(nTrig))
    case(2)
         nMax = maxval(nSpT)
         allocate(spT(nMax,nTrig))
@@ -79,11 +80,11 @@ select case(what)
    case(7)
         allocate(pMaxB(nBoi), fuelCostB(nBoi), fuelLHVB(nBoi), fireCostB(nBoi), maintCostB(nBoi), &
                  nSpB(nBoi), minUpTimeB(nBoi), minDownTimeB(nBoi))
-        allocate(ntcB(nBoi), npcB(nBoi), nacB(nBoi))
+        allocate(ntcB(nBoi), npcB(nBoi), nacB(nBoi), pefB(nBoi), pecOnB(nBoi))
         nSpB(1:nBoi) = 0
 !        allocate(nSizeB(nBoi))
 !        nSizeB(1:nBoi) = 0
-        allocate(nEtaB(nBoi), tecB(nTrig))
+        allocate(nEtaB(nBoi), tecB(nTrig), BoiPriority(nBoi))
    case(8)
         nMax = maxval(nSpB)
         allocate(spB(nMax,nBoi))
@@ -102,7 +103,7 @@ select case(what)
 !        allocate(nSizeC(nChi))
 !        nSizeC(1:nChi) = 0
         allocate(nEtaC(nChi), tecC(nChi))        
-        allocate(ntcC(nChi), npcC(nChi), nacC(nChi))
+        allocate(ntcC(nChi), npcC(nChi), nacC(nChi), ChiPriority(nChi))
    case(12)
         nMax = maxval(nSpC)
         allocate(spC(nMax,nChi))
@@ -138,11 +139,16 @@ select case(what)
    case(18)
         nMax = maxval(nSp)
         allocate(sp(nMax,nm),cr(nMax,nm))
-        allocate(minUpTime(nm), minDownTime(nm), eSource(nm))
+        allocate(minUpTime(nm0), minDownTime(nm0), eSource(nm))
         np   = nMax**nm 
         allocate(cRef(np,nm))
         allocate(etaEl(nMax,nm), etaCh(nMax,nm), etaTh(nMax,nm))
         allocate(Pmax(nm),pes(nm),lhv(nm),cf(nm), onOffCost(nm), OeMCost(nm),tec(nm))
+        if(iPEC) then 
+          allocate(pef(nm), pecOn(nm))
+          pef = zero
+          pecOn = zero
+        endif
    case(20)
         allocate(cEl(nTime,nlp(iElp)), cTh(nTime,nlp(iThp)), cCh(nTime,nlp(iChp)))    
         allocate(gridBuyCost(nTime), gridSellCost(nTime)) 
@@ -174,6 +180,10 @@ select case(what)
         allocate(altCorrC(num,3,nChi))
    case(32)
         allocate(envCorr(nTime,nm,4))
+!   case(33)
+!        allocate(etaTsIn(nEtaTsIn,2))
+!   case(34)
+!        allocate(etaTsOut(nEtaTsOut,2))
 end select
 
 end subroutine 
