@@ -45,7 +45,7 @@ StartPoint      | 0.0   0.0  0.0|! 0.0 |
 UpTime          | 0     0    0  |! 0   |         
 DownTime        | 2     2    2  |! 2|         
 FirstTimeStep   | 1             |
-ThermalStorageLevel|  0.5 0.5   |
+ThermalStorageLevel|  0.0 0.0   |
 !---------------submodels-------------------------------
 writeEnergy     | .true.          |
 writeEfficiency | .true.          |

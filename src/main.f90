@@ -112,6 +112,7 @@ select case(strategy)
       !---Build the graph-----
       print*, ' ---Building the graph---'
       cDummy = 'set-point'
+      print*, 'che cazzo dici? ', nm
       call allCombin(icm=cr,imax=nSp,m=nm,targ=cDummy) 
       cDummy = 'state'
       call allCombin(dcm=sp,imax=nSp,m=nm,targ=cDummy) 
@@ -130,8 +131,9 @@ select case(strategy)
             call minPathTopoFw(setPoint, cost)
          case('Backward')
             cDummy = 'time-constraints' 
-            call allCombin(dcm=timeVinc,imax=nTv,m=2*nm0,targ=cDummy) 
-            allocate(upTime(0:nTime+1,2*nm))
+            call allCombin(dcm=timeVinc,imax=nTv,m=2*nm0 + 1,targ=cDummy) 
+            print*, 'aho'
+            allocate(upTime(0:nTime+1,2*nm + 1))
             allocate(minPathBw(0:nTime+1))
             call minPathTopoBw(setPoint, cost, upTime, minPathBw)
       end select

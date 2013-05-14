@@ -32,9 +32,9 @@ Everything written before begin or after end is ignore as well as every line aft
 
 begin
 
-Power              | 0  | !rated power
-Capacity           | 0 |!360000   |
-SetPoint           | 12   | !euro/Sm3
+Power              | 3500  | !rated power
+Capacity           | 126e6|!360000   |
+SetPoint           | 12   | 
 
 InputEfficiency    | 0.9 |
 

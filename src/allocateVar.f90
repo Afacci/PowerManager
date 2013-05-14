@@ -155,9 +155,9 @@ select case(what)
    case(21)
         nMax1 = maxval(minUpTime  )/3.6e3 + 1
         nMax2 = maxval(minDownTime)/3.6e3 + 1
-        nMax  = max(nMax1,nMax2)
-        allocate(timeVinc(nMax,2*nm))
-        allocate(nTv(2*nm0))
+        nMax  = max(nMax1,nMax2,nSoc)
+        allocate(timeVinc(nMax,2*nm0 + 1))
+        allocate(nTv(2*nm0 + 1))
    case(22)
         allocate(tAmb(nTime), pAmb(nTime))
    case(23)

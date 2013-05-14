@@ -146,10 +146,10 @@ if(nBoi.gt.0) then
    enddo
 endif
 
-if(pMaxTS.gt.zero) then
+if(pMaxTS.gt.zero.and.capacityTS.gt.zero) then
    i    = is(iTS)
    j    = c_(i)
-   if(sp(j,i).gt.zero) thProd  =  thProd + pMaxTS*sp(j,i)*etaTSout
+   if(sp(j,i).gt.zero) thProd  =  thProd + pMax(i)*sp(j,i)*etaTSout
 endif
 
 return
@@ -258,10 +258,10 @@ if(nChi.gt.0) then
 endif
 
 
-if(pMaxTS.gt.zero) then
+if(pMaxTS.gt.zero.and.capacityTS.gt.zero) then
    i    = is(iTS)
    j    = c_(i)
-   if(sp(j,i).lt.zero) thSelfCons  =  thSelfCons + pMaxTS*sp(j,i)*etaTSin
+   if(sp(j,i).lt.zero) thSelfCons  =  thSelfCons + pMax(i)*sp(j,i)*etaTSin
 endif
 
 return
@@ -715,9 +715,13 @@ real(kind=prec)      , intent(in) :: oldLevel
 integer,               intent(in) :: t
 integer                           :: i, j
 
-i = is(iTS)
-j = c(i)
-thStorageLevelUpdate = oldLevel + sp(j,i)*PmaxTS*dt(t)
+if(capacityTS.gt.zero) then
+   i = is(iTS)
+   j = c(i)
+   thStorageLevelUpdate = oldLevel + sp(j,i)*Pmax(i)*dt(t)
+else
+   thStorageLevelUpdate = zero
+endif
 
 return
 
