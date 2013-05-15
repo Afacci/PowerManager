@@ -62,15 +62,29 @@ contains
      real(kind = prec), dimension(m,n), intent(in) :: mat
      integer, intent(in) :: n,m
      logical,                         intent(out), optional :: error
-     integer :: i
+     integer :: i,j
      real(kind = prec),dimension(n)              :: test 
+     logical                                     :: ok
+     real(kind=prec), parameter                  :: err=0.01, aerr=0.01
+     real(kind=prec), dimension(n)               :: diff, toll
+     real(kind=prec)                             :: delta
     
      !---function body----
      
      if(present(error)) error = .false.
+
+     diff(:) = huge(1.0)
+     do i=1,n
+        do j=1,m-1
+           delta = abs(mat(j,i) - mat(j+1,i))
+           if(delta.gt.zero) diff(i) = min(diff(i),delta)
+        enddo
+     enddo
+     toll(:) = err*diff(:)
      
      i = 0
      do 
+       ok= .true.
        i = i + 1
        if(i.gt.m) then
          if(present(error)) error = .true.
@@ -78,7 +92,11 @@ contains
          return
        endif
        test = mat(i,:)
-       if(all(abs(row-test).le.vsmall)) exit
+       do j=1,n
+          delta = abs(test(j) - row(j))
+          if(delta.ge.toll(j)) ok = .false.
+       enddo
+       if(ok) exit
      enddo
      locateRow = i
 

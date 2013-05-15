@@ -140,7 +140,8 @@ do
           read(val,*) pefGrid
        case('StartPoint')
           isPresent(4) = .true.
-          n = nTrig + nBoi + nChi
+          n = nTrig + nBoi + nChi 
+          if(capacityTS.gt.zero) n = n + 1
           call allocateVar(0,n)
           val_ = '('//trim(val)//')'
           n_ = hCount(val_)

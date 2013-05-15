@@ -213,6 +213,8 @@ select case(i)
         print*, 'perform primary energy consumption minimization'
     case(28)
         print*,'Could not find "', trim(ThStorage(j)) ,'" in ThermalStorage.inp'
+    case(29)
+        print*,'No feasible paths from time ', j,' to time ', j + 1, '.Entering time-step with plant state', iVec(1:nm)
     case default
         continue
 end select

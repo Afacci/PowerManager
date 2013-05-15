@@ -34,6 +34,7 @@
 module graphTools
 
 use shared
+use interfaces
 
 integer                                                :: nComb     !> number of combination of the given set point vectors
 integer,                                       private :: nTvComb   !> number of combination of the time-constraints vectors.
@@ -146,14 +147,16 @@ contains
    endif
 
    n=maxval(imax)
-   mm = m
-   do i=1,m
-      if(imax(i).le.1) mm = mm-1
-   enddo
-   !---Declare Local Variables---
-   k = n**mm       ! maximum number of combinations. The actual number
-                   ! will be lower, because m is the maximum number of 
-                   ! set points.
+!   mm = m
+!   do i=1,m
+!      if(imax(i).le.1) mm = mm-1
+!   enddo
+!   !---Declare Local Variables---
+!   k = n**mm       ! maximum number of combinations. The actual number
+!                   ! will be lower, because m is the maximum number of 
+!                   ! set points.
+   k = product(imax) !number of combinations. The actual number
+
    if(present(icm)) then 
       tipo = 'integer'
       allocate(icomb_(k,m))   
@@ -284,6 +287,7 @@ contains
    allocate(startLoad(nm))
   
    iStart = locateRow(startPoint,spVal,nm,nComb,error)
+   print*, 'cazzaro', startPoint
    if(error) then
       call abortExecution(14)
    else
@@ -528,7 +532,7 @@ contains
    allocate(pathCost(orig:dest,nTvComb), minSucc(orig:dest,nTvComb))
    pathCost(orig:dest,:)   = huge(rVal)
    pathCost(dest,:)        = zero
-   minSucc(orig:dest,:)    = 0
+   minSucc(orig:dest,:)    = -1
 
    do i=nPoint,0,-1
       t         = pointTime(i)
@@ -543,7 +547,6 @@ contains
             ki = locateRow(upTimeOut,tState,2*nm0 + 1,nTvComb)
             do j=1,nSuc(i)
                suc = succList(i,j)
-               if(ki.lt.0) print*, 'errore', upTimeOut, sp(co(4),4)
                ci  = pathCost(suc,ki) + succCost(i,j)
                if(ci.lt.pathCost(i,k)) then
                    pathCost(i,k) = ci
@@ -569,10 +572,11 @@ contains
    enddo
    do while (p < dest)
       t = t + 1
-      print*, t, p
       ki = locateRow(upTime(t-1,:),tState,2*nm0,nTvComb)
       upTime(t,:) = upTimeCalc(upTime(t-1,:),pointLoad(p,:),t-1)
+      print*, t, p, ki, minsucc(p,1:10)
       p = minSucc(p,ki)
+      if(p.eq.-1) call abortExecution(29,t, iVec=upTime(t-1,:))
       minPath(t)  = p
       ottLoad(t,:)= pointLoad(p,:)
    enddo

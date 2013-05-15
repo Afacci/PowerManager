@@ -83,14 +83,14 @@ call readBoiler
 print*,'     --> Boiler.inp read'
 call readChillers
 print*,'     --> Chillers.inp read'
+call readThStorage
+print*,'     --> ThermalStorage.inp read'
 call readLoads
 print*,'     --> Loads.inp read'
 call readGeneral
 print*,'     --> General.inp read'
 call readEnv
 print*,'     --> Enivronment.inp read'
-call readThStorage
-print*,'     --> ThermalStorage.inp read'
 
 !---build the energy coonection inside the plant---
 print*, ' ---Checking Input Coherence---'
