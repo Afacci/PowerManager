@@ -521,7 +521,7 @@ contains
    integer, dimension(0:nTime+1)                :: minPath
    logical                                      :: tv,thv, error, ts
    integer, dimension(nm)                       :: cn, co
-   real(kind = prec), dimension(0:nTime+1,2*nm), intent(out)       :: upTime 
+   real(kind = prec), dimension(0:nTime+1,2*nm + 1), intent(out)       :: upTime 
    real(kind = prec), dimension(2*nm0 + 1)              :: upTimeIn, upTimeOut
 
    !----------function body-----------------------------------------------------
@@ -568,13 +568,13 @@ contains
       j = i + nm0
       upTime(0,i) = min(upTime0(i), minUpTime(i))
       upTime(0,j) = min(downTime0(i), minDownTime(i))
-      socTh(0)    = iSocTh
    enddo
+   upTime(0,2*nm0+1) = iSocTh
    do while (p < dest)
       t = t + 1
-      ki = locateRow(upTime(t-1,:),tState,2*nm0,nTvComb)
+      ki = locateRow(upTime(t-1,:),tState,2*nm0 + 1,nTvComb)
       upTime(t,:) = upTimeCalc(upTime(t-1,:),pointLoad(p,:),t-1)
-      print*, t, p, ki, minsucc(p,1:10)
+!     print*, t, p, ki, minsucc(p,1:10)
       p = minSucc(p,ki)
       if(p.eq.-1) call abortExecution(29,t, iVec=upTime(t-1,:))
       minPath(t)  = p
@@ -594,8 +594,8 @@ contains
 
      implicit none
 
-     real(kind = prec), dimension(2*nm0 + 1):: upTimeCalc
-     real(kind = prec), dimension(2*nm0 + 1):: upT
+     real(kind = prec), dimension(2*nm0 + 1) :: upTimeCalc
+     real(kind = prec), dimension(2*nm0 + 1) :: upT
      integer,                intent(in) :: t
      integer, dimension(nm), intent(in) :: c
      integer                            :: i,j,k

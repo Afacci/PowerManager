@@ -119,7 +119,7 @@ subroutine output(setPoint,postProcessing,path)
     do i=1,nTime
        write(u,'(ES8.2E2,5X)', advance='no') t(i)
        do j=1,nm
-          write(u,'(F4.2,5X)', advance='no') c(i,j)
+          write(u,'(F5.2,5X)', advance='no') c(i,j)
        enddo
        write(u,*)
     enddo
