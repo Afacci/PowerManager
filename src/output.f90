@@ -100,7 +100,8 @@ subroutine output(setPoint,postProcessing,path)
     write(u,*) '# equipment and time-step'
     write(u,*) '#--------------------------------------------------------------------------#'
     write(u,*)
-    write(u,'(A8,2X)', advance='no') 'Time [h]'
+!    write(u,'(A8,2X)', advance='no') 'Time [h]'
+    write(u,'(A)') 'Time [h]            '
     do i=1,nTrig
        j = is(iT) + i - 1
        write(u,'(A5,2X)', advance='no') trim(tec(j))
@@ -113,6 +114,7 @@ subroutine output(setPoint,postProcessing,path)
        j = is(iC) + i - 1
        write(u,'(A,1X,A,2X)', advance='no') trim(tec(j)),'Chiller'
     enddo
+    if(capacityTS.gt.zero) write(u,'(A)', advance='no') 'Thermal Storage'
     write(u,*)
     write(u,*)
     t(0) = 0.d0
@@ -481,7 +483,7 @@ subroutine output(setPoint,postProcessing,path)
 
      if(writePec) then 
         write(u,*) '--------------Primary ebergy consumption----------------------'
-        write(u,*) 'Pec              : ' , globPec(setPoint),'kJ'
+        write(u,'(A,ES14.5,4X,A)') ' Pec              : ' , globPec(setPoint),'kJ'
      endif
   endif
 

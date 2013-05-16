@@ -7,7 +7,8 @@
  # equipment and time-step
  #--------------------------------------------------------------------------#
 
-Time [h]    ICE   Fuel Boiler  Mechanical Chiller  
+Time [h]            
+  ICE   Fuel Boiler  Mechanical Chiller  Thermal Storage
 
 1.00E+00      0.00      0.00      0.30      0.08     
 2.00E+00      0.00      0.00      0.30      0.08     
