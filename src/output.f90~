@@ -59,6 +59,7 @@ subroutine output(setPoint,postProcessing,path)
   character(len=20), dimension(100)            :: buffer20
   real(kind = prec), dimension(100)             :: rbuffer
   integer                                       :: stat
+  real(kind=prec)                               :: thSoc
 
 !---Function body---
   
@@ -509,6 +510,25 @@ subroutine output(setPoint,postProcessing,path)
      enddo
   endif
 
+  if(capacityTS.gt.zero) then
+     u = u + 1
+     call prepareFile(u,'ThermalStorageSOC',path)
+     write(u,*) '#  file ThermalStorageSOC.dat; contains the state of charge of the thermal storage.  '
+     write(u,*) '#--------------------------------------------------------------------------#'
+     write(u,*) '#--------------------------------------------------------------------------#'
+     write(u,*)
+     buffer20(1) = 'Time [h]            '
+     buffer20(2) = 'SOC  [%]            '
+     write(u,*)
+     thsoc = iSocTh
+     do i=1,nTime
+        rbuffer(1) = t(i)
+        kk = setPoint(i,:)
+        thsoc = thStorageLevelUpdate(thsoc,kk,i)
+        rbuffer(2) = soc/capacityTS
+        write(u,'(3(ES11.2E2,11X))') (rbuffer(j), j=1,2)
+     enddo
+  endif
   do i=500,u
      close(i)
   enddo
