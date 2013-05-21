@@ -30,6 +30,7 @@
 
 subroutine output(setPoint,postProcessing,path)
 
+
 !---Declare Module usage---
   use shared
   use inputvar
@@ -59,7 +60,20 @@ subroutine output(setPoint,postProcessing,path)
   character(len=20), dimension(100)            :: buffer20
   real(kind = prec), dimension(100)             :: rbuffer
   integer                                       :: stat
-  real(kind=prec)                               :: thSoc
+  real(kind=prec)                               :: thSoc, thSoc_
+
+
+interface
+    logical function constraints(c,t)
+        use shared        
+        use plantVar
+        use interfaces
+        use inputVar
+        implicit none
+        integer, dimension(nm), intent(in) :: c
+        integer,                intent(in) :: t
+    end function constraints
+end interface
 
 !---Function body---
   
@@ -101,8 +115,8 @@ subroutine output(setPoint,postProcessing,path)
     write(u,*) '# equipment and time-step'
     write(u,*) '#--------------------------------------------------------------------------#'
     write(u,*)
-!    write(u,'(A8,2X)', advance='no') 'Time [h]'
-    write(u,'(A)') 'Time [h]            '
+    write(u,'(A8,2X)', advance='no') 'Time [h]'
+!    write(u,'(A)', advance = 'no') 'Time [h]            '
     do i=1,nTrig
        j = is(iT) + i - 1
        write(u,'(A5,2X)', advance='no') trim(tec(j))
@@ -513,21 +527,25 @@ subroutine output(setPoint,postProcessing,path)
   if(capacityTS.gt.zero) then
      u = u + 1
      call prepareFile(u,'ThermalStorageSOC',path)
-     write(u,*) '#  file ThermalStorageSOC.dat; contains the state of charge of the thermal storage.  '
      write(u,*) '#--------------------------------------------------------------------------#'
+     write(u,*) '#  file ThermalStorageSOC.dat; contains the state of charge of the thermal storage.  '
      write(u,*) '#--------------------------------------------------------------------------#'
      write(u,*)
      buffer20(1) = 'Time [h]            '
      buffer20(2) = 'SOC  [%]            '
+     write(u,'(2A)') (buffer20(i), i=1,2)
      write(u,*)
      thsoc = iSocTh
      do i=1,nTime
         rbuffer(1) = t(i)
         kk = setPoint(i,:)
+        thSoc_ = thSoc
         thsoc = thStorageLevelUpdate(thsoc,kk,i)
-        print*, 'ah si?', thSoc, c(i,4)
         rbuffer(2) = Thsoc/capacityTS
         write(u,'(3(ES11.2E2,11X))') (rbuffer(j), j=1,2)
+        rbuffer(2) = 100*Thsoc/capacityTS
+        print*, 'debug', c(i,4), thsoc_, thSoc, constraints(kk,i), thSelfCons(kk,i)
+        write(u,'(3(F5.2,15X))') (rbuffer(j), j=1,2)
      enddo
   endif
   do i=500,u

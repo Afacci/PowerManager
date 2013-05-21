@@ -55,8 +55,6 @@ Loads     | (Time  Electricity       Thermal     Chilling)|
           |   22     (0.911e3)      (0.250e3)    (1.268e3)  |       
           |   23     (0.817e3)      (0.184e3)    (1.147e3)  |       
           |   24     (0.740e3)      (0.195e3)    (1.081e3) ]|                                                                                                                        
-                                                                                                                                                                      
-                                                                                                                                                                                     
 Prices    | (Time  Electricity  Thermal Chilling)|                                                                                                                    
           | [1      (0.0)     (0.0)   (0.0)    |                                                                                                                    
           |  2      (0.0)     (0.0)   (0.0)    |                                                                                                                    

@@ -65,7 +65,7 @@ contains
      integer :: i,j
      real(kind = prec),dimension(n)              :: test 
      logical                                     :: ok
-     real(kind=prec), parameter                  :: err=0.01, aerr=0.01
+     real(kind=prec), parameter                  :: err=0.001, aerr=0.01
      real(kind=prec), dimension(n)               :: diff, toll
      real(kind=prec)                             :: delta
     
