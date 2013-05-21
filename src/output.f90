@@ -532,20 +532,23 @@ end interface
      write(u,*) '#--------------------------------------------------------------------------#'
      write(u,*)
      buffer20(1) = 'Time [h]            '
-     buffer20(2) = 'SOC  [%]            '
-     write(u,'(2A)') (buffer20(i), i=1,2)
+     buffer20(2) = 'SOC in [%]          '
+     buffer20(3) = 'SOC out [%]         '
+     buffer20(4) = 'SOC in [kJ]         '
+     buffer20(5) = 'SOC out [kJ]        '
+     write(u,'(5A)') (buffer20(i), i=1,5)
      write(u,*)
      thsoc = iSocTh
      do i=1,nTime
         rbuffer(1) = t(i)
         kk = setPoint(i,:)
-        thSoc_ = thSoc
-        thsoc = thStorageLevelUpdate(thsoc,kk,i)
-        rbuffer(2) = Thsoc/capacityTS
-        write(u,'(3(ES11.2E2,11X))') (rbuffer(j), j=1,2)
         rbuffer(2) = 100*Thsoc/capacityTS
-        print*, 'debug', c(i,4), thsoc_, thSoc, constraints(kk,i), thSelfCons(kk,i)
-        write(u,'(3(F5.2,15X))') (rbuffer(j), j=1,2)
+        rbuffer(4) = Thsoc
+        thsoc = thStorageLevelUpdate(thsoc,kk,i)
+        rbuffer(3) = 100*Thsoc/capacityTS
+        rbuffer(5) = Thsoc
+        write(u,'(3(F5.2,15X),2(ES11.2E2,9X))') (rbuffer(j), j=1,5)
+!        print*, 'debug', c(i,4), thsoc_, thSoc, constraints(kk,i), thSelfCons(kk,i)
      enddo
   endif
   do i=500,u
