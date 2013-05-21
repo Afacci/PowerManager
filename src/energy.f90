@@ -261,7 +261,7 @@ endif
 if(pMaxTS.gt.zero.and.capacityTS.gt.zero) then
    i    = is(iTS)
    j    = c_(i)
-   if(sp(j,i).lt.zero) thSelfCons  =  thSelfCons + pMax(i)*sp(j,i)*etaTSin
+   if(sp(j,i).lt.zero) thSelfCons  =  thSelfCons - pMax(i)*sp(j,i)/etaTSin
 endif
 
 return
@@ -718,7 +718,7 @@ integer                           :: i, j
 if(capacityTS.gt.zero) then
    i = is(iTS)
    j = c(i)
-   thStorageLevelUpdate = oldLevel + sp(j,i)*Pmax(i)*dt(t)
+   thStorageLevelUpdate = oldLevel - sp(j,i)*Pmax(i)*dt(t)
 else
    thStorageLevelUpdate = zero
 endif

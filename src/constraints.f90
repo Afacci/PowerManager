@@ -146,6 +146,7 @@ real(kind=prec)                    :: newLevel
 thStorageConstr = .true.
 
 newLevel = thStorageLevelUpdate(oldLevel,c,t)
+
 if(newLevel.lt.zero)       thStorageConstr = .false.
 if(newLevel.gt.capacityTS) thStorageConstr = .false.
 if(t.eq.nTime) then
