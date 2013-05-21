@@ -525,6 +525,7 @@ subroutine output(setPoint,postProcessing,path)
         rbuffer(1) = t(i)
         kk = setPoint(i,:)
         thsoc = thStorageLevelUpdate(thsoc,kk,i)
+        print*, 'ah si?', thSoc, c(i,4)
         rbuffer(2) = Thsoc/capacityTS
         write(u,'(3(ES11.2E2,11X))') (rbuffer(j), j=1,2)
      enddo
