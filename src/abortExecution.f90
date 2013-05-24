@@ -58,10 +58,14 @@ character(len=18), dimension(9)        :: general
 character(len=18), dimension(17)       :: trigeneration
 character(len=18), dimension(15)       :: boilers
 character(len=18), dimension(13)       :: Chiller
-character(len=24), dimension(7)        :: files
+character(len=19), dimension(8)        :: PV
+character(len=19), dimension(8)        :: SC
+character(len=24), dimension(8)        :: files
 character(len=11), dimension(3)        :: eLoads 
 character(len=16), dimension(3)        :: gConn
 character(len=12), dimension(3)        :: algo
+character(len=9) , dimension(1)        :: PV2
+character(len=10), dimension(4)        :: PV3
 integer                                :: t
 character(len=18), dimension(4)        :: GSE
 character(len=18), dimension(5)        :: ThStorage
@@ -89,17 +93,25 @@ Chiller       = (/'Number            ', 'Technology        ', 'Power            
                  ,'OeMCost           ', 'SetPoint          ', 'Size              ', 'Efficiency        '  &
                  ,'MinUpTime         ', 'MinDownTime       '/)
 
+PV            = (/'Surface            ', 'Efficiency         ', 'Slope              ', 'Orientation        ', &
+                  'CutOff             ', 'Model              ', 'TemperatureDerating', 'AuxEfficiency      '/)                 
+PV2           = (/'Radiation'/)
+PV3           = (/'Latitude  ', 'Day       ', 'SummerTime', 'Cloudiness'/)
+SC            = (/'Surface            ', 'Efficiency         ', 'Slope              ', 'Orientation        ', &
+                  'Model              ', 'Reflection         ', 'PanelKind          ', 'InputTemp          '/)
+
 GSE           = (/'GridLoss          ', 'TransportCoeff    ', 'TransportCost     ', 'TrasmissionCost   '/)
 
 thStorage     = (/'Power             ', 'Capacity          ', 'SetPoint          ', 'InputEfficiency   ', 'OutputEfficiency  '/)
 
-files         = (/'./Input/General.inp      ',             & 
-                  './Input/Trigeneratoin.inp',             &
-                  './Input/Boliers.inp      ',             &
-                  './Input/Chillers.inp     ',             &
-                  './Input/Loads.inp        ',             &
-                  './Input/Environment.inp  ' ,            &
-                  './ThermalStorage.inp     '/)
+files         = (/'./Input/General.inp      ',  & 
+                  './Input/Trigeneratoin.inp',  &
+                  './Input/Boliers.inp      ',  &
+                  './Input/Chillers.inp     ',  &
+                  './Input/Loads.inp        ',  &
+                  './Input/Environment.inp  ',  &
+                  './ThermalStorage.inp     ',  &
+                  './Photovoltaic           '  /)
 eLoads        = (/'Electricity', 'Thermal    ', 'Chilling   '/)
 gConn         = (/'NetMetering    ','DedicatadRetire','StandAlone     '/)
 algo          = (/'Backward    ', 'Forward     ', 'ThermalTrack'/)
@@ -135,7 +147,7 @@ select case(i)
                print*,' Expected one of ".true." or ".false.", found ',  trim(word)
        end select
            print*,' in line', line, ' of file General.inp'
-    case(3:6)
+         case(3:6,32:33)
         write(*,'(A)',advance='no'),'  Missing input entry: '
         select case(i)
             case(3)
@@ -146,6 +158,10 @@ select case(i)
                 print*,'Could not find "', trim(boilers(j)) ,'" in Boilers.inp'
             case(6)
                 print*,'Could not find "', trim(chiller(j)) ,'" in Chillers.inp'
+            case(32)
+                print*,'Could not find "', trim(PV(j)) ,'" in Photovoltaic.inp'
+            case(33)
+                print*,'Could not find "', trim(SC(j)) ,'" in SolarCollectors.inp'
         end select
     case(7)
         print*, ' The power plant is not able to satisfie the load'
@@ -215,6 +231,12 @@ select case(i)
         print*,'Could not find "', trim(ThStorage(j)) ,'" in ThermalStorage.inp'
     case(29)
         print*,'No feasible paths from time ', j,' to time ', j + 1, '.Entering time-step with plant state', iVec(1:nm)
+    case(30)
+        print*, 'The Simple model for photovoltaic or solar collectors requires the specification '
+        print*, 'of hourly solar direct and diffused irradiance.'
+        print*, 'Missing', PV2(j), 'in file Environment.inp'
+    case(31)
+        print*, 'The Liu-Jordan model requires the specification of ',  PV3(j), 'in file Environment.inp'
     case default
         continue
 end select

@@ -75,7 +75,7 @@ logical               :: filePresent
 character(len=500)    :: buffer, keyword, val, val_
 integer               :: firstLine, i, nInp, line, n, n_
 logical,dimension(9)  :: isPresent = .false.
-logical,dimension(14) :: optEntry  = .false.
+logical,dimension(15) :: optEntry  = .false.
 integer               :: error, nOpt
 character(len=50)     :: dummy
 logical               :: isGse = .false.
@@ -238,6 +238,11 @@ do
              read(val,*), dummy
              if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
              read(val,*), writePec
+        case('writeRenewables')
+             optEntry(15) = .true.
+             read(val,*), dummy
+             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
+             read(val,*), writeRen
         case('global')
              optEntry(13) = .true.
              read(val,*), dummy

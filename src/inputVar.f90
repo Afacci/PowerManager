@@ -63,6 +63,7 @@ logical :: writeTrig        = .false.
 logical :: writeBoi         = .false.
 logical :: writeChi         = .false.
 logical :: writePec         = .false.
+logical :: writeRen         = .false.
 logical :: global           = .false.
 logical :: useEuristics     = .false.
 logical , dimension(5) :: kPEC = .false.
@@ -111,5 +112,24 @@ real(kind=prec)                              :: PmaxTS, CapacityTS
 integer                                      :: nSpTS , nEtaTsIn, nEtaTsOut
 !real(kind=prec), allocatable, dimension(:,:) :: etaTsOut, etaTsIn
 real(kind=prec)                              :: etaTsOut, etaTsIn
+
+!---Photovoltaic field ---------------
+
+real(kind=prec)                              :: surfPV, etaPV, slopePV, azimutPV, cutOffPV, latitude, clouds, rhoPV &
+                                               ,etaAuxPV
+real(kind=prec), dimension(24)               :: BeamRad, DiffRad
+real(kind=prec), allocatable, dimension(:,:) :: pvCorr
+integer                                      :: Day
+logical                                      :: summerTime
+character(len=100)                           :: modelPV
+integer                                      :: ntPv
+
+!-----Solar Collectors field ---------------
+
+real(kind=prec)                              :: surfSC, slopeSC, azimutSC, rhoSC , TinSC
+real(kind=prec), allocatable, dimension(:,:) :: etaSC
+character(len=100)                           :: SCkind
+integer                                      :: nEtaSc
+character(len=100)                           :: modelSC
 
 end module inputVar

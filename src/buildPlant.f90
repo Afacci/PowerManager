@@ -47,6 +47,7 @@ use plantVar
 use mathTools
 use interfaces
 use myArithmetic
+use sun
 
 !---Declare Local Variables---
 implicit none
@@ -367,7 +368,6 @@ if(capacityTS.gt.zero) then
    dtmin  = minval(dt)
    dsoc   = dsp*dtmin*PmaxTs
    nsoc   = floor(capacityTs/(dsoc)) + 1
-   print*, 'nSoc.... ' ,nsoc, dsoc, capacityTS , dtmin
    allocate(soc(nsoc), socTh(0:nTime+1))
    soc(1) = zero
    do i=2,nsoc
@@ -418,6 +418,19 @@ cTh(:,:)        = cTh(:,:)*kJ_kWh
 cCh(:,:)        = cCh(:,:)*kJ_kWh
 c_st = c_st*kJ_kWh
 c_tr = c_tr*kJ_kWh
+
+allocate(sunEl(nTime), sunTh(nTime))
+if(surfPV.gt.zero) then
+  sunEl = photo()
+else
+  sunEl = zero
+endif
+
+if(surfSC.gt.zero) then
+  sunTh = thermalCollector()
+else
+  sunTh = zero
+endif
 
 call deallocateVar(1)
 

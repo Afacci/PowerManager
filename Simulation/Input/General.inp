@@ -62,6 +62,7 @@ writeBoiler     | .false.         |
 global          | .true.          |
 Euristics       | .true.          |
 writePec        | .true.          |
+writeRenewables | .true.          |
 
 end
 

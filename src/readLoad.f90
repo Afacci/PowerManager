@@ -153,7 +153,6 @@ uEl(:,:) = Loads_(:,iEl,1:nld(iEl))
 uTh(:,:) = Loads_(:,iTh,1:nld(iTh))
 uCh(:,:) = Loads_(:,iCh,1:nld(iCh))
 
-
 !Read Prices entry
 
 buffer   = 'Prices'

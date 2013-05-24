@@ -524,6 +524,25 @@ end interface
      enddo
   endif
 
+  if(writeRen) then
+     u = u + 1
+     call prepareFile(u,'Renewable',path)
+     write(u,*) '# Renewable.dat: Power produced using renewable sources.'
+     write(u,*) '#--------------------------------------------------------------------------#'
+     write(u,*)
+     buffer20(1) = 'Time [h]            '
+     buffer20(2) = 'Photovoltaic  [kW]  '
+     buffer20(3) = 'Thermal  [kW]       '
+     write(u,'(3A)') (buffer20(i), i=1,3)
+     rbuffer = zero
+     do i=1,nTime
+        rbuffer(1) = t(i)
+        rbuffer(2) = sunEl(i)
+        rbuffer(3) = sunTh(i)
+        write(u,'(3(ES11.2E2,11X))') (rbuffer(j), j=1,3)
+     enddo
+  endif
+
   if(capacityTS.gt.zero) then
      u = u + 1
      call prepareFile(u,'ThermalStorageSOC',path)

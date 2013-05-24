@@ -73,7 +73,7 @@ integer                           :: i,j
 
 !--note that trigeneration machines are the only one that produce electricity
 !(so far) and that they occupy the first positions of the plant load vector
-elProd = 0
+elProd = sunEl(t)
 if(nTrig.gt.0) then
    do i=is(iT),ie(iT)
       j = c_(i)
@@ -117,7 +117,7 @@ real(kind = prec)                  :: calore,eDisp,eEff,tEff,pow
 
 !---Function Body
 
-thProd = 0
+thProd = sunTh(t)
 if(nTrig.gt.0) then
    do i=is(iT),ie(iT)
       j = c_(i)

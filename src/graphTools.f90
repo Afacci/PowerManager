@@ -163,7 +163,6 @@ contains
       icomb_(:,:) = -1
    elseif(present(dcm)) then
       tipo = 'double '
-      print*, 'romammerda', n,m,k
       allocate(dcomb_(k,m))   
       dcomb_(:,:) = rNaN(rVal)
    endif
@@ -198,7 +197,6 @@ contains
          deallocate(iComb_)
       case('time-constraints')
          nTvComb = i
-         print*, 'ahoooooooooooo', m
          allocate(tState(nTvComb,m))
          tState(:,:) = dComb_(1:nTvComb,:)
          deallocate(dComb_)
@@ -287,7 +285,6 @@ contains
    allocate(startLoad(nm))
   
    iStart = locateRow(startPoint,spVal,nm,nComb,error)
-   print*, 'cazzaro', startPoint
    if(error) then
       call abortExecution(14)
    else

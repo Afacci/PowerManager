@@ -48,15 +48,16 @@ integer, intent(in) ,optional          :: i,j,k
 integer, intent(in), optional          :: line
 character(len=*), intent(in), optional :: word
 real(kind = prec), intent(in), optional :: r1,r2
-character(len=18), dimension(21)        :: general
+character(len=18), dimension(22)        :: general
 character(len=18), dimension(17)       :: trigeneration
 character(len=18), dimension(15)       :: boilers
 character(len=18), dimension(13)       :: Chiller
-character(len=24), dimension(6)        :: files
+character(len=24), dimension(7)        :: files
 character(len=13), dimension(3)        :: equip
-character(len=17), dimension(13)       :: output
+character(len=17), dimension(14)       :: output
 character(len=18), dimension(5)        :: ThStorage
 integer                                :: l
+character(len=19), dimension(14)        :: PV
 
 print*
 print*,'!---------------------------Warning-------------------------------------------------!'
@@ -81,24 +82,28 @@ Chiller       = (/'Number            ', 'Technology        ', 'Power            
                  ,'OeMCost           ', 'SetPoint          ', 'Size              ', 'Efficiency        '  &
                  ,'MinUpTime         ', 'MinDownTime       '/)
 
-files         = (/'./Input/General.inp      ',             & 
-                  './Input/Trigeneratoin.inp',             &
-                  './Input/Boliers.inp      ',             &
-                  './Input/Chillers.inp     ',             &
-                  './Input/Loads.inp        ',             & 
-                  './Input/ThermalStorage   ' /)
+files         = (/'./Input/General.inp      ',& 
+                  './Input/Trigeneratoin.inp',&
+                  './Input/Boliers.inp      ',&
+                  './Input/Chillers.inp     ',&
+                  './Input/Loads.inp        ',& 
+                  './Input/ThermalStorage   ',&
+                  './Input/Photovoltaic     '/)
 equip         = (/'Trigenerator ', 'Boiler       ', 'Chiller      '/)
 
 output        = (/'writePower      ','writeEnergy     ','writeEfficiency ','writeElectricRev', &
                   'writeThermalRev ','writeChillingRev','writeDemand     ','writeInput      ', &   
                   'writeCosts      ','writeTrig       ','writeChiller    ','writeBoiler     ', &
-                  'global          '/)
+                  'global          ','WriteRenewables '/)
 
 thStorage     = (/'Power             ', 'Capacity          ', 'SetPoint          ', 'InputEfficiency   ', 'OutputEfficiency  '/)
 
-general(9:21) = output
+general(9:22) = output
 
-
+PV            = (/'Surface            ', 'Efficiency         ', 'Slope              ', 'Orientation        ', &
+                  'CutOff             ', 'Model              ', 'TemperatureDerating', 'Radiation          ', &
+                  'Latitude           ', 'Day                ', 'SummerTime         ', 'Cloudiness         ', &
+                  'Reflection         ', 'AuxEfficiency      '/)
 
 select case(i)
     case(0)
@@ -117,6 +122,8 @@ select case(i)
                 write(*,'(5x,A18)')  (Chiller(l), l=1,12)
             case(6)
                 write(*,'(5x,A18)')  (ThStorage(l), l=1,12)
+            case(7)    
+                write(*,'(5x,A18)')  (PV(l), l=1,12)
         end select
         print*, ' Note that the code is case-sensitive'
     case(2,3)

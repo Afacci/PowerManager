@@ -180,10 +180,10 @@ select case(what)
         allocate(altCorrC(num,3,nChi))
    case(32)
         allocate(envCorr(nTime,nm,4))
-!   case(33)
-!        allocate(etaTsIn(nEtaTsIn,2))
-!   case(34)
-!        allocate(etaTsOut(nEtaTsOut,2))
+   case(33)
+        allocate(pvCorr(ntPV,2))
+   case(34)
+        allocate(etaSC(nEtaSC,2))
 end select
 
 end subroutine 

@@ -66,6 +66,7 @@ use inputVar
 use fileTools
 use interfaces
 use cmdVar
+use myArithmetic
 
 implicit none
 
@@ -74,10 +75,14 @@ integer              :: genUnit = 110, idummy
 character(len=100)    :: inputFile = './Input/Environment.inp'
 logical              :: filePresent
 character(len=500)   :: buffer, keyword, value, cdummy
-integer              :: i, j, nl, error, line, n
+integer              :: i, j, nl, error, line, n, firstLine, nb, nd, nInp
 logical,dimension(2) :: isPresent = .false.
 character(len=100),dimension(1,3)   :: env
 real(kind = prec), allocatable, dimension(:,:) :: matrix
+logical ,dimension(4)  :: ljModel = .false.
+logical                :: simpleModel = .false.
+character(len=20), dimension(3)                :: param
+
 
 !---Check File Presence---
 call openUnit(inputFile,genUnit,filePresent)
@@ -92,6 +97,8 @@ do
     if(buffer(1:5).eq.'begin') exit
 enddo
 
+firstLine = line
+
 do 
     call readKeyword(genUnit,.false., keyword,value,error, nl)
     if (error.eq.1) call abortExecution(0,6,line)
@@ -99,6 +106,8 @@ do
     select case(keyword)
        case('end')
           exit
+       case('Latitude','Day','SummerTime','Cloudiness','Radiation')
+          continue
        case('Climate')
           isPresent(1) = .true.
           call rewUnit(genUnit,1)
@@ -108,6 +117,19 @@ do
           allocate(matrix(nTime,3))
           matrix =  dmatrixRead(genUnit,n,3)
           call allocateVar(22)
+             do i=1,3
+                buffer = env(1,i)
+                select case(buffer)
+                   case('Time')
+                      iTime = i
+                      if(iTime.ne.1) call abortExecution(8)
+                   case('Temperature')
+                      tAmb = matrix(:,i)
+                   case('Pressure')
+                      pAmb = matrix(:,i)
+                end select
+           end do
+           deallocate(matrix)
        case('Altitude')
           isPresent(2) = .true.
           read(value,*) altitude
@@ -116,20 +138,65 @@ do
        case default
           if(.not.silent) call warning(1,3,line=line,word=keyword)
     end select
+    if(surfSC.gt.zero.or.surfPV.gt.zero) then
+         select case(keyword)
+           case('end')
+              exit
+           case('Climate','Altitude','Radiation')
+              continue
+           case('Latitude')
+              read(value,*) latitude
+              ljModel(1) = .true.
+           case('Day')
+              read(value,*) Day
+              ljModel(2) = .true.
+           case('SummerTime')
+              read(value,*) summerTime
+              ljModel(3) = .true.
+           case('Cloudiness')
+              read(value,*) clouds
+              ljModel(4) = .true.
+           case(' ') 
+              if(verb) call warning(4,3,line=line)
+           case default
+              if(.not.silent) call warning(1,7,line=line,word=keyword)
+        end select
+      if(modelPV.eq.'Simple'.or.modelSC.eq.'Simple') then
+         if(keyword.eq.'Radiation') then
+            simpleModel = .true.
+            read(value,*) (param(i), i=1,2)
+            do i=1,2
+               select case(param(i))
+                  case('Beam')
+                     nb = i
+                  case('Diffused')
+                     nd = i
+               end select
+            enddo
+            allocate(matrix(24,2))
+            matrix  = rNaN(rVal)
+            matrix  = dmatrixRead(genUnit,24,2)
+            BeamRad = matrix(:,nb)
+            DiffRad = matrix(:,nd)
+            deallocate(matrix)
+         endif
+      endif
+    endif
 enddo
 
-do i=1,3
-   buffer = env(1,i)
-   select case(buffer)
-       case('Time')
-           iTime = i
-           if(iTime.ne.1) call abortExecution(8)
-       case('Temperature')
-           tAmb = matrix(:,i)
-       case('Pressure')
-           pAmb = matrix(:,i)
-   end select
-end do
+
+
+if(surfSC.gt.zero.or.surfPV.gt.zero) then
+   if(modelPV.eq.'Simple'.or.modelSC.eq.'Simple') then
+      if(.not.simpleModel) call abortExecution(30,1)
+   endif
+   if(modelPV.eq.'LiuJordan'.or.modelSC.eq.'LuiJordan') then
+      nInp = size(ljModel)
+      do i=1,nInp
+         if(.not.ljModel(i)) call abortExecution(31,i)
+      enddo
+  endif
+endif
 
 close(genUnit)
 100 format(A500)

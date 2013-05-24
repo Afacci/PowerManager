@@ -35,6 +35,7 @@ MODS = \
 ../obj/getSetPoint.o \
 ../obj/strategies.o \
 ../obj/euristics.o \
+../obj/sun.o \
 
 ################################################
 #  list of the files to be compiled            #
@@ -69,6 +70,8 @@ OBJS = \
 ../obj/performances.o \
 ../obj/deallocateVar.o \
 ../obj/readThStorage.o \
+../obj/readPV.o \
+../obj/readSC.o \
 #../obj/readSteamPlant.o \
 
 ################################################
