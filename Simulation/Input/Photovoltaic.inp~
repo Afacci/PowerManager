@@ -32,24 +32,18 @@ Everything written before begin or after end is ignore as well as every line aft
 
 begin
 
-Surface             | 3.5e3  | 
-Efficiency          | 0.37   | 
-Slope               | 35.0e3 |
-Orientation         | 1.d0   | 
-CutOff              | 1.d0   |
+Surface             | 200    | 
+Efficiency          | 0.14   | 
+Slope               | 35.0   |
+Orientation         | 0.0    | 
+CutOff              | 50e-3  |
+AuxEfficiency       | 0.8    |
 TemperatureDerating | (0.0  1.0  |
                     |  50.0 1.0 )|
-!-----Liu Jordan Model Parameters----
-Model       | 1.1    |
-Latitude    | 0.1    |
-Day         | 1 1    |
-SummerTime  |No      |
-Cloudiness  | 0.1    |
-!------------------------------------
+Model       | Simple |
+Reflection  | 0.1    |
 
-Radiation   | pres  eta    pmax |
-            | (1  1.0  |
-            |  2  1.0   |
-            |  3  1.0   |
+
+            
 end
     

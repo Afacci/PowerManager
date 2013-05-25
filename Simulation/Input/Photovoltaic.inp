@@ -36,11 +36,11 @@ Surface             | 200    |
 Efficiency          | 0.14   | 
 Slope               | 35.0   |
 Orientation         | 0.0    | 
-CutOff              | 50     |
+CutOff              | 50e-3  |
 AuxEfficiency       | 0.8    |
 TemperatureDerating | (0.0  1.0  |
                     |  50.0 1.0 )|
-Model       | Simple |
+Model       | LiuJordan |
 Reflection  | 0.1    |
 
 

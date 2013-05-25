@@ -76,7 +76,7 @@ character(len=50)      :: inputFile = './Input/Photovoltaic.inp'
 logical                :: filePresent
 character(len=500)     :: buffer, keyword, value 
 integer                :: firstLine, line, i, nInp, nl
-logical,dimension(9)   :: isPresent = .false.
+logical,dimension(8)   :: isPresent = .false.
 integer                :: error
 integer                :: nb, nd
 
@@ -102,10 +102,10 @@ enddo
 
 line = firstLine
 
-buffer = 'Model'
-call cFindEntry(buffer,1,genUnit,.true.,dummy(1),isPresent(6))
-ModelPV = dummy(1)
-if(.not.isPresent(6)) call abortExecution(7,6)
+!buffer = 'Model'
+!call cFindEntry(buffer,1,genUnit,.true.,dummy(1),isPresent(6))
+!ModelPV = dummy(1)
+!if(.not.isPresent(6)) call abortExecution(7,6)
 
 
 !---read the input list---
@@ -135,9 +135,9 @@ do
           isPresent(5) = .true.
        case('AuxEfficiency')
           read(value,*) etaAuxPV
-          isPresent(8) = .true.
-        case('TemperatureDerating')
           isPresent(7) = .true.
+        case('TemperatureDerating')
+          isPresent(6) = .true.
           backspace(genUnit)
           line = line - 1
           nTPV= vCount(genUnit,.false.)
@@ -147,7 +147,7 @@ do
           line = line + nTPV  
         case('Reflection')
           read(value,*) rhoPV
-          isPresent(9) = .true.
+          isPresent(8) = .true.
        case(' ') 
           if(verb) call warning(4,3,line=line)
        case default

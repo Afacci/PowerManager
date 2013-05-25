@@ -121,7 +121,7 @@ real(kind=prec), dimension(24)               :: BeamRad, DiffRad
 real(kind=prec), allocatable, dimension(:,:) :: pvCorr
 integer                                      :: Day
 logical                                      :: summerTime
-character(len=100)                           :: modelPV
+character(len=100)                           :: radMod
 integer                                      :: ntPv
 
 !-----Solar Collectors field ---------------
@@ -130,6 +130,5 @@ real(kind=prec)                              :: surfSC, slopeSC, azimutSC, rhoSC
 real(kind=prec), allocatable, dimension(:,:) :: etaSC
 character(len=100)                           :: SCkind
 integer                                      :: nEtaSc
-character(len=100)                           :: modelSC
 
 end module inputVar

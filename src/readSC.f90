@@ -76,7 +76,7 @@ character(len=50)      :: inputFile = './Input/SolarCollectors.inp'
 logical                :: filePresent
 character(len=500)     :: buffer, keyword, value 
 integer                :: firstLine, line, i, nInp, nl
-logical,dimension(8)   :: isPresent = .false.
+logical,dimension(7)   :: isPresent = .false.
 integer                :: error
 integer                :: nb, nd
 
@@ -103,10 +103,10 @@ enddo
 
 line = firstLine
 
-buffer = 'Model'
-call cFindEntry(buffer,1,genUnit,.true.,dummy(1),isPresent(6))
-ModelSC = dummy(1)
-if(.not.isPresent(6)) call abortExecution(7,6)
+!buffer = 'Model'
+!call cFindEntry(buffer,1,genUnit,.true.,dummy(1),isPresent(6))
+!ModelSC = dummy(1)
+!if(.not.isPresent(6)) call abortExecution(7,6)
 
 !---read the input list---
 do 
@@ -141,10 +141,10 @@ do
           isPresent(5) = .true.
        case('PanelKind')
           read(value,*) SCkind
-          isPresent(7) = .true.
+          isPresent(6) = .true.
        case('InputTemp')
           read(value,*) TinSC
-          isPresent(8) = .true.
+          isPresent(7) = .true.
        case(' ') 
           if(verb) call warning(4,3,line=line)
        case default

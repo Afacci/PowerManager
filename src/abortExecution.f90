@@ -58,14 +58,14 @@ character(len=18), dimension(9)        :: general
 character(len=18), dimension(17)       :: trigeneration
 character(len=18), dimension(15)       :: boilers
 character(len=18), dimension(13)       :: Chiller
-character(len=19), dimension(8)        :: PV
-character(len=19), dimension(8)        :: SC
+character(len=19), dimension(7)        :: PV
+character(len=19), dimension(7)        :: SC
 character(len=24), dimension(8)        :: files
 character(len=11), dimension(3)        :: eLoads 
 character(len=16), dimension(3)        :: gConn
 character(len=12), dimension(3)        :: algo
 character(len=9) , dimension(1)        :: PV2
-character(len=10), dimension(4)        :: PV3
+character(len=14), dimension(5)        :: PV3
 integer                                :: t
 character(len=18), dimension(4)        :: GSE
 character(len=18), dimension(5)        :: ThStorage
@@ -94,11 +94,11 @@ Chiller       = (/'Number            ', 'Technology        ', 'Power            
                  ,'MinUpTime         ', 'MinDownTime       '/)
 
 PV            = (/'Surface            ', 'Efficiency         ', 'Slope              ', 'Orientation        ', &
-                  'CutOff             ', 'Model              ', 'TemperatureDerating', 'AuxEfficiency      '/)                 
+                  'CutOff             ', 'TemperatureDerating', 'AuxEfficiency      '/)                 
 PV2           = (/'Radiation'/)
-PV3           = (/'Latitude  ', 'Day       ', 'SummerTime', 'Cloudiness'/)
+PV3           = (/'Latitude      ', 'Day           ', 'SummerTime    ', 'Cloudiness    ', 'RadiationModel'/)
 SC            = (/'Surface            ', 'Efficiency         ', 'Slope              ', 'Orientation        ', &
-                  'Model              ', 'Reflection         ', 'PanelKind          ', 'InputTemp          '/)
+                  'Reflection         ', 'PanelKind          ', 'InputTemp          '/)
 
 GSE           = (/'GridLoss          ', 'TransportCoeff    ', 'TransportCost     ', 'TrasmissionCost   '/)
 

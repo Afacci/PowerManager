@@ -79,7 +79,7 @@ integer              :: i, j, nl, error, line, n, firstLine, nb, nd, nInp
 logical,dimension(2) :: isPresent = .false.
 character(len=100),dimension(1,3)   :: env
 real(kind = prec), allocatable, dimension(:,:) :: matrix
-logical ,dimension(4)  :: ljModel = .false.
+logical ,dimension(5)  :: ljModel = .false.
 logical                :: simpleModel = .false.
 character(len=20), dimension(3)                :: param
 
@@ -106,7 +106,7 @@ do
     select case(keyword)
        case('end')
           exit
-       case('Latitude','Day','SummerTime','Cloudiness','Radiation')
+       case('Latitude','Day','SummerTime','Cloudiness','Radiation','RadiationModel')
           continue
        case('Climate')
           isPresent(1) = .true.
@@ -156,12 +156,15 @@ do
            case('Cloudiness')
               read(value,*) clouds
               ljModel(4) = .true.
+           case('RadiationModel') 
+              read(value,*) radMod
+              ljModel(5) = .true.
            case(' ') 
               if(verb) call warning(4,3,line=line)
            case default
               if(.not.silent) call warning(1,7,line=line,word=keyword)
         end select
-      if(modelPV.eq.'Simple'.or.modelSC.eq.'Simple') then
+      if(radMod.eq.'Simple') then
          if(keyword.eq.'Radiation') then
             simpleModel = .true.
             read(value,*) (param(i), i=1,2)
@@ -185,17 +188,14 @@ do
 enddo
 
 
-
 if(surfSC.gt.zero.or.surfPV.gt.zero) then
-   if(modelPV.eq.'Simple'.or.modelSC.eq.'Simple') then
+   if(radMod.eq.'Simple') then
       if(.not.simpleModel) call abortExecution(30,1)
    endif
-   if(modelPV.eq.'LiuJordan'.or.modelSC.eq.'LuiJordan') then
-      nInp = size(ljModel)
-      do i=1,nInp
-         if(.not.ljModel(i)) call abortExecution(31,i)
-      enddo
-  endif
+   nInp = size(ljModel)
+   do i=1,nInp
+      if(.not.ljModel(i)) call abortExecution(31,i)
+   enddo
 endif
 
 close(genUnit)
