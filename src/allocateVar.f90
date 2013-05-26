@@ -184,6 +184,12 @@ select case(what)
         allocate(pvCorr(ntPV,2))
    case(34)
         allocate(etaSC(nEtaSC,2))
+   case(35)
+        allocate(nwt(nwf), wSurf(nwf), nCpW(nwf), minWind(nwf))
+   case(36)
+        allocate(cpw(maxval(nCpw),2,nwf))
+   case(37)
+        allocate(wind(nWind,2))
 end select
 
 end subroutine 

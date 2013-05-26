@@ -36,6 +36,7 @@ MODS = \
 ../obj/strategies.o \
 ../obj/euristics.o \
 ../obj/sun.o \
+../obj/windPower.o \
 
 ################################################
 #  list of the files to be compiled            #
@@ -72,6 +73,7 @@ OBJS = \
 ../obj/readThStorage.o \
 ../obj/readPV.o \
 ../obj/readSC.o \
+../obj/readWind.o \
 #../obj/readSteamPlant.o \
 
 ################################################

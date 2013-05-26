@@ -44,19 +44,20 @@ use shared
 implicit none
 
 !---Declare Local Variables---
-integer, intent(in) ,optional          :: i,j,k
-integer, intent(in), optional          :: line
-character(len=*), intent(in), optional :: word
+integer, intent(in) ,optional           :: i,j,k
+integer, intent(in), optional           :: line
+character(len=*), intent(in), optional  :: word
 real(kind = prec), intent(in), optional :: r1,r2
 character(len=18), dimension(22)        :: general
-character(len=18), dimension(17)       :: trigeneration
-character(len=18), dimension(15)       :: boilers
-character(len=18), dimension(13)       :: Chiller
-character(len=24), dimension(7)        :: files
-character(len=13), dimension(3)        :: equip
-character(len=17), dimension(14)       :: output
-character(len=18), dimension(5)        :: ThStorage
-integer                                :: l
+character(len=18), dimension(17)        :: trigeneration
+character(len=18), dimension(15)        :: boilers
+character(len=18), dimension(13)        :: Chiller
+character(len=24), dimension(7)         :: files
+character(len=13), dimension(3)         :: equip
+character(len=17), dimension(14)        :: output
+character(len=18), dimension(5)         :: ThStorage
+character(len=16), dimension(6)         :: iWind
+integer                                 :: l
 character(len=19), dimension(14)        :: PV
 
 print*
@@ -104,6 +105,9 @@ PV            = (/'Surface            ', 'Efficiency         ', 'Slope          
                   'CutOff             ', 'Model              ', 'TemperatureDerating', 'Radiation          ', &
                   'Latitude           ', 'Day                ', 'SummerTime         ', 'Cloudiness         ', &
                   'Reflection         ', 'AuxEfficiency      '/)
+
+Iwind         = (/'FieldNumber     ','TurbineNUmber   ','BladeSurface    ','PowerCoefficient', &
+                  'MinWindVelocity ','WindVelocity    '/)
 
 select case(i)
     case(0)

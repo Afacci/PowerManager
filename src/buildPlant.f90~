@@ -47,6 +47,8 @@ use plantVar
 use mathTools
 use interfaces
 use myArithmetic
+use sun
+use eolo
 
 !---Declare Local Variables---
 implicit none
@@ -62,7 +64,6 @@ real(kind = prec), dimension(:,:), allocatable :: aCorr
 !--subroutine body-----
 
 call allocateVar(16)
-
 
 !---time step in seconds---
 dt(0) = dt1*3.6e3
@@ -349,6 +350,7 @@ enddo
 !thermal storage
 if(capacityTS.gt.zero) then
    j = is(iTS) 
+   Pmax(j) = PmaxTs
    sp(1,j) = -1
    cr(1,j) = 1
    dsp = 1.0/nSpTs
@@ -365,7 +367,7 @@ if(capacityTS.gt.zero) then
    iSocTh = iSocTh*capacityTS
    eSocTh = eSocTh*capacityTS
    dtmin  = minval(dt)
-   dsoc   = dsp*dtmin
+   dsoc   = dsp*dtmin*PmaxTs
    nsoc   = floor(capacityTs/(dsoc)) + 1
    allocate(soc(nsoc), socTh(0:nTime+1))
    soc(1) = zero
@@ -385,6 +387,7 @@ call allocateVar(21)
 k1 = maxval(minUpTime)/3.6e3 + 1
 k2 = maxval(minDownTime)/3.6e3 + 1
 allocate(upTimeVinc(max(k1,k2),nm), downTimeVinc(max(k1,k2),nm))
+!min running time
 timeVinc(:,:) = zero
 do i=1,nm0
    nTv(i) = minUpTime(i)/3.6e3 + 1
@@ -392,6 +395,7 @@ do i=1,nm0
       timeVinc(j,i) = (j - 1)*3.6e3
    enddo
 enddo
+!min non-running time
 do i=1,nm0
    k = nm0 + i
    nTv(k) = minDownTime(i)/3.6e3 + 1
@@ -399,7 +403,12 @@ do i=1,nm0
       timeVinc(j,k) = (j - 1)*3.6e3
    enddo
 enddo
-
+!Thermal storage capacity constraint
+k = 2*nm0 + 1
+nTv(k) = nSoc
+do j=1,nsoc
+   timeVinc(j,k) = soc(j)
+enddo
 
 !--- convert all the prices in €/kJ---
 kJ_kWh = 1.0/3.6e3
@@ -410,6 +419,26 @@ cTh(:,:)        = cTh(:,:)*kJ_kWh
 cCh(:,:)        = cCh(:,:)*kJ_kWh
 c_st = c_st*kJ_kWh
 c_tr = c_tr*kJ_kWh
+
+!------renewable stuff-----------------
+allocate(sunEl(nTime), sunTh(nTime), windEl(nTime))
+if(surfPV.gt.zero) then
+  sunEl = photo()
+else
+  sunEl = zero
+endif
+
+if(surfSC.gt.zero) then
+  sunTh = thermalCollector()
+else
+  sunTh = zero
+endif
+
+if(nwf.gt.0) then
+  windEl = windPower
+else
+  windEl = zero
+endif
 
 call deallocateVar(1)
 

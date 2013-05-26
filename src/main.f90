@@ -95,6 +95,8 @@ call readSC
 print*,'     --> Photovoltaic.inp read'
 call readEnv
 print*,'     --> Enivronment.inp read'
+call readWind
+print*,'     --> WindTurbines.inp read'
 
 !print*, '++++++++++++++++++++++++++++++++++++++++++++++++++++++'
 !print*, '                      DEBUG                           '

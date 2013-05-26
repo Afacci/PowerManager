@@ -87,7 +87,7 @@ character(len=20), dimension(3)                :: param
 !---Check File Presence---
 inquire(file = inputFile, exist = filePresent)
 if(.not.filePresent) then
-   call abortExecution(1,8)
+   call abortExecution(1,9)
 else
    open(unit = genUnit, file = inputFile)
 endif

@@ -60,7 +60,7 @@ character(len=18), dimension(15)       :: boilers
 character(len=18), dimension(13)       :: Chiller
 character(len=19), dimension(7)        :: PV
 character(len=19), dimension(7)        :: SC
-character(len=24), dimension(8)        :: files
+character(len=24), dimension(10)        :: files
 character(len=11), dimension(3)        :: eLoads 
 character(len=16), dimension(3)        :: gConn
 character(len=12), dimension(3)        :: algo
@@ -69,6 +69,7 @@ character(len=14), dimension(5)        :: PV3
 integer                                :: t
 character(len=18), dimension(4)        :: GSE
 character(len=18), dimension(5)        :: ThStorage
+character(len=16), dimension(6)        :: Iwind
 
 print*
 print*, '!-----------------------------------FATAL ERROR-----------------------------------------!'
@@ -111,31 +112,39 @@ files         = (/'./Input/General.inp      ',  &
                   './Input/Loads.inp        ',  &
                   './Input/Environment.inp  ',  &
                   './ThermalStorage.inp     ',  &
-                  './Photovoltaic           '  /)
+                  './Photovoltaic.inp       ',  &
+                  './SolarCollectors.inp    ',  &
+                  './WindTurbines.inp       '/)
+
 eLoads        = (/'Electricity', 'Thermal    ', 'Chilling   '/)
 gConn         = (/'NetMetering    ','DedicatadRetire','StandAlone     '/)
 algo          = (/'Backward    ', 'Forward     ', 'ThermalTrack'/)
+
+Iwind         = (/'FieldNumber     ','TurbineNUmber   ','BladeSurface    ','PowerCoefficient', &
+                  'MinWindVelocity ','WindVelocity    '/)
+
 select case(i)
     case(0)
             print*,'Mispelled entry in file ', trim(files(j)), ' in line ', line 
             print*,'Missing one of "|" delimiters'
     case(1)
-      select case(j)
-           case(1)
-               print*,'    Missing ./Input/General.inp' 
-           case(2)  
-               print*,'    Missing ./Input/Trigeneration.inp '
-           case(3) 
-               print*,'    Missing ./Input/Boilers.inp ' 
-           case(4)
-               print*,'    Missing ./Input/Chillers.inp ' 
-           case(5)
-               print*,'    Missing ./Input/Loads.inp ' 
-           case(6)
-               print*,'    Missing  ', trim(word),'/setPoint.dat'  
-           case(7)
-               print*,'    Missing ./Input/Environment.inp'  
-       end select
+       print*,'    Missing file ./Input/', trim(files(j))
+!      select case(j)
+!           case(1)
+!               print*,'    Missing ./Input/General.inp' 
+!           case(2)  
+!               print*,'    Missing ./Input/Trigeneration.inp '
+!           case(3) 
+!               print*,'    Missing ./Input/Boilers.inp ' 
+!           case(4)
+!               print*,'    Missing ./Input/Chillers.inp ' 
+!           case(5)
+!               print*,'    Missing ./Input/Loads.inp ' 
+!           case(6)
+!               print*,'    Missing  ', trim(word),'/setPoint.dat'  
+!           case(7)
+!               print*,'    Missing ./Input/Environment.inp'  
+!       end select
     case(2)
        print*,' Wrong or mispelled entry '
        select case(j)
@@ -147,7 +156,7 @@ select case(i)
                print*,' Expected one of ".true." or ".false.", found ',  trim(word)
        end select
            print*,' in line', line, ' of file General.inp'
-         case(3:6,32:33)
+         case(3:6,32:34)
         write(*,'(A)',advance='no'),'  Missing input entry: '
         select case(i)
             case(3)
@@ -162,6 +171,8 @@ select case(i)
                 print*,'Could not find "', trim(PV(j)) ,'" in Photovoltaic.inp'
             case(33)
                 print*,'Could not find "', trim(SC(j)) ,'" in SolarCollectors.inp'
+            case(34)
+                print*,'Could not find "', trim(Iwind(j)) ,'" in WindTurbines.inp'
         end select
     case(7)
         print*, ' The power plant is not able to satisfie the load'
@@ -237,6 +248,10 @@ select case(i)
         print*, 'Missing', PV2(j), 'in file Environment.inp'
     case(31)
         print*, 'The Liu-Jordan model requires the specification of ',  PV3(j), 'in file Environment.inp'
+    case(35)
+        print*, 'The number of time intervals in the wind table must be equal to'
+        print*, 'the number of time intervals of energy demand, and all the other'
+        print*, 'enviromental conditions'
     case default
         continue
 end select

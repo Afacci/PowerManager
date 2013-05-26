@@ -539,7 +539,8 @@ end interface
         rbuffer(1) = t(i)
         rbuffer(2) = sunEl(i)
         rbuffer(3) = sunTh(i)
-        write(u,'(3(ES11.2E2,11X))') (rbuffer(j), j=1,3)
+        rbuffer(4) = windEl(i)
+        write(u,'(4(ES11.2E2,11X))') (rbuffer(j), j=1,3)
      enddo
   endif
 

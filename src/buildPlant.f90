@@ -48,6 +48,7 @@ use mathTools
 use interfaces
 use myArithmetic
 use sun
+use eolo
 
 !---Declare Local Variables---
 implicit none
@@ -419,7 +420,8 @@ cCh(:,:)        = cCh(:,:)*kJ_kWh
 c_st = c_st*kJ_kWh
 c_tr = c_tr*kJ_kWh
 
-allocate(sunEl(nTime), sunTh(nTime))
+!------renewable stuff-----------------
+allocate(sunEl(nTime), sunTh(nTime), windEl(nTime))
 if(surfPV.gt.zero) then
   sunEl = photo()
 else
@@ -430,6 +432,12 @@ if(surfSC.gt.zero) then
   sunTh = thermalCollector()
 else
   sunTh = zero
+endif
+
+if(nwf.gt.0) then
+  windEl = windPower()
+else
+  windEl = zero
 endif
 
 call deallocateVar(1)

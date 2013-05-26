@@ -131,4 +131,12 @@ real(kind=prec), allocatable, dimension(:,:) :: etaSC
 character(len=100)                           :: SCkind
 integer                                      :: nEtaSc
 
+!-----------------Wind turbine data----------------------
+
+integer                                        :: nwf, nwind
+integer, allocatable, dimension(:)             :: nwt, ncpw
+real(kind=prec), allocatable, dimension(:)     :: wSurf, minWind
+real(kind=prec), allocatable, dimension(:,:)   :: wind
+real(kind=prec), allocatable, dimension(:,:,:) :: cpw
+
 end module inputVar

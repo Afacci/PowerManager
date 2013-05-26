@@ -86,7 +86,7 @@ real(kind = prec), allocatable, dimension(:,:) :: matrix
 !---Check File Presence---
 inquire(file = inputFile, exist = filePresent)
 if(.not.filePresent) then
-   call abortExecution(1,7)
+   call abortExecution(1,8)
 else
    open(unit = genUnit, file = inputFile)
 endif

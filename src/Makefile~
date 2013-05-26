@@ -21,7 +21,6 @@ DEB         = -fbacktrace -cpp -fbounds-check
 ################################################
 MODS = \
 ../obj/shared.o \
-../obj/euristics.o \
 ../obj/inputVar.o \
 ../obj/fileTools.o \
 ../obj/myArithmetic.o \
@@ -34,7 +33,9 @@ MODS = \
 ../obj/graphTools.o \
 ../obj/globalResults.o \
 ../obj/getSetPoint.o \
-../obj/strategies.o/
+../obj/strategies.o \
+../obj/euristics.o \
+../obj/sun.o \
 
 ################################################
 #  list of the files to be compiled            #
@@ -68,6 +69,11 @@ OBJS = \
 ../obj/readEnv.o \
 ../obj/performances.o \
 ../obj/deallocateVar.o \
+../obj/readThStorage.o \
+../obj/readPV.o \
+../obj/readSC.o \
+../obj/readWind.o \
+../obj/windPower.o \
 #../obj/readSteamPlant.o \
 
 ################################################

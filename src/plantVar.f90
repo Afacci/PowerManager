@@ -48,7 +48,7 @@ integer                                          :: nSpTot,nm, iT, iB, iC, iTS, 
 integer,                       dimension(4)      :: is,ie
 integer,          allocatable, dimension(:)      :: nSp, nTv, eSource
 character(len=50), allocatable, dimension(:)     :: tec
-real(kind=prec), allocatable, dimension(:)       :: sunEl, sunTh 
+real(kind=prec), allocatable, dimension(:)       :: sunEl, sunTh , windEl
 
 
 end module plantVar
