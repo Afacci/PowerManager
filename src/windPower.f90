@@ -56,7 +56,9 @@ function windPower()
    do i=1,nwf
       eff = interpolation(cpw(:,1,i),cpw(:,2,i),ncpw(i),vel,nTime) !Power coefficient
       do t=1,nTime
-         windPower(t) = windPower(t) + 0.5*eff(t)*nwt(i)*rho*wSurf(i)*vel(t)**3
+         if(vel(t).gt.minWind(i).and.vel(i).lt.maxWind(i)) then
+            windPower(t) = windPower(t) + 0.5*eff(t)*nwt(i)*rho*wSurf(i)*vel(t)**3
+         endif
       enddo
    enddo
 

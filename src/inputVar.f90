@@ -135,7 +135,7 @@ integer                                      :: nEtaSc
 
 integer                                        :: nwf, nwind
 integer, allocatable, dimension(:)             :: nwt, ncpw
-real(kind=prec), allocatable, dimension(:)     :: wSurf, minWind
+real(kind=prec), allocatable, dimension(:)     :: wSurf, minWind, maxWind
 real(kind=prec), allocatable, dimension(:,:)   :: wind
 real(kind=prec), allocatable, dimension(:,:,:) :: cpw
 

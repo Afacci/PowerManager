@@ -127,6 +127,9 @@ do
        case('MinWindVelocity')
           read(value,*) (minWind(i), i=1,nwf)
           isPresent(4) = .true.
+       case('MaxWindVelocity')
+          read(value,*) (maxWind(i), i=1,nwf)
+          isPresent(4) = .true.
        case('PowerCoefficient')
           isPresent(5) = .true.
           backspace(genUnit)
