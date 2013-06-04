@@ -28,7 +28,7 @@
 !
 !---------------------------------------------------------------------------
 
-Everything written before begin or after end is ignore as well as every line after a !
+Everything written before begin or after end is ignored as well as every line after a !
 
 begin
 
