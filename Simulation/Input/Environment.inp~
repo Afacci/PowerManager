@@ -1,0 +1,96 @@
+!---------------------------------------------------------------------------
+!  
+!   PowerManager.  
+!
+!---------------------------------------------------------------------------
+!License
+!    This file is part of PowerManager.
+!
+!    PowerManager is free software; you can redistribute it and/or modify it
+!    under the terms of the GNU General Public License as published by the
+!    Free Software Foundation; either version 2 of the License, or (at your
+!    option) any later version.
+!
+!    PowerManager is distributed in the hope that it will be useful, but WITHOUT
+!    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+!    FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+!    for more details.
+!
+!    You should have received a copy of the GNU General Public License
+!    along with OpenFOAM; if not, write to the Free Software Foundation,
+!    Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+!
+!Application
+!    Loads.inp
+!
+!Description
+!    Input file.
+!
+!---------------------------------------------------------------------------
+
+begin
+
+Climate     | (Time  Temperature  Pressure)| !(h,°C,bar)
+            | ( 1        25        1.01    |          
+            |   2        25        1.01    | 
+            |   3        25        1.01    | 
+            |   4        25        1.01    | 
+            |   5        25        1.01    | 
+            |   6        25        1.01    | 
+            |   7        25        1.01    | 
+            |   8        25        1.01    | 
+            |   9        25        1.01    | 
+            |   10       25        1.01    | 
+            |   11       25        1.01    | 
+            |   12       25        1.01    | 
+            |   13       25        1.01    | 
+            |   14       25        1.01    | 
+            |   15       25        1.01    | 
+            |   16       25        1.01    | 
+            |   17       25        1.01    | 
+            |   18       25        1.01    | 
+            |   19       25        1.01    | 
+            |   20       25        1.01    | 
+            |   21       25        1.01    | 
+            |   22       25        1.01    |
+            |   23       25        1.01    |
+            |   24       25        1.01)   |
+
+Altitude    | 200  |!mslm
+
+
+Radiation   | Diffused  Beam  |
+            |( 39e-3   144e-3 |
+            |  39e-3  144e-3  |
+            |  39e-3   144e-3 |
+            |  39e-3   144e-3 |
+            |  39e-3   144e-3 |
+            |  90e-3   378e-3 |
+            |  129e-3  524e-3 |
+            |  155e-3  616e-3 |
+            |  169e-3  676e-3 |
+            |  175e-3  713e-3 |
+            |  177e-3  732e-3 |
+            |  177e-3  737e-3 |
+            |  177e-3  729e-3 |
+            |  174e-3  705e-3 |
+            |  166e-3  663e-3 |
+            |  149e-3  597e-3 |
+            |  120e-3  494e-3 |
+            |  78e-3   329e-3 |
+            |  25e-3   83e-3  |
+            |  39e-3   144e-3 |
+            |  39e-3   144e-3 |
+            |  39e-3   144e-3 |
+            |  39e-3   144e-3 |
+            |  39e-3   144e-3)|
+
+!-----Liu Jordan Model Parameters----
+Latitude    | 35     |
+Day         | 1      |
+SummerTime  |.false. |
+Cloudiness  | 0.8    |
+RadiationModel| LiuJordan|
+!------------------------------------
+
+end
