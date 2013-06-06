@@ -58,7 +58,7 @@ OBJS = \
 ../obj/warning.o \
 ../obj/readLoad.o \
 ../obj/interpolation.o \
-../obj/buildPlant.o \
+../obj/buildPlantRev.o \
 ../obj/checkPlant.o \
 ../obj/commandline.o \
 ../obj/aiuto.o \
@@ -74,6 +74,8 @@ OBJS = \
 ../obj/readPV.o \
 ../obj/readSC.o \
 ../obj/readWind.o \
+../obj/readElStorage.o \
+../obj/timestep.o
 #../obj/readSteamPlant.o \
 
 ################################################

@@ -85,6 +85,8 @@ call readChillers
 print*,'     --> Chillers.inp read'
 call readThStorage
 print*,'     --> ThermalStorage.inp read'
+call readElStorage
+print*,'     --> ElectricalStorage.inp read'
 call readLoads
 print*,'     --> Loads.inp read'
 call readGeneral
@@ -98,13 +100,6 @@ print*,'     --> Enivronment.inp read'
 call readWind
 print*,'     --> WindTurbines.inp read'
 
-!print*, '++++++++++++++++++++++++++++++++++++++++++++++++++++++'
-!print*, '                      DEBUG                           '
-!print*, '++++++++++++++++++++++++++++++++++++++++++++++++++++++'
-!do i=1,nTime
-!   print*, 'radiation', beamrad(i)
-!enddo
-!print*, '++++++++++++++++++++++++++++++++++++++++++++++++++++++'
 
 !---build the energy coonection inside the plant---
 print*, ' ---Checking Input Coherence---'
@@ -144,8 +139,8 @@ select case(strategy)
             call minPathTopoFw(setPoint, cost)
          case('Backward')
             cDummy = 'time-constraints' 
-            call allCombin(dcm=timeVinc,imax=nTv,m=2*nm0 + 1,targ=cDummy) 
-            allocate(upTime(0:nTime+1,2*nm + 1))
+            call allCombin(dcm=timeVinc,imax=nTv,m=2*nm0 + 2,targ=cDummy) 
+            allocate(upTime(0:nTime+1,2*nm0 + 2))
             allocate(minPathBw(0:nTime+1))
             call minPathTopoBw(setPoint, cost, upTime, minPathBw)
       end select
@@ -168,6 +163,7 @@ print*, ' ---Elapsed Time: ', tempo, ' sec'
 !----write output files---
 call output(setPoint,.false.,'Results')
 
+deallocate(upTime, minPathBw)
 !---end the execution----
 call endExecution
 

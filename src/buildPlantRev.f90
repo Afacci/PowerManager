@@ -52,6 +52,16 @@ use eolo
 
 !---Declare Local Variables---
 implicit none
+
+interface
+  real(kind=prec) function timestep()
+    use shared 
+    use plantvar
+    use inputvar
+    implicit none
+  end function
+end interface
+
 integer :: i,j, maxsp, k, k1, k2
 integer, dimension(2)  :: ext1,ext2,ext3, ext
 character(len=100)     :: word, cdummy
@@ -60,18 +70,21 @@ real(kind = prec), allocatable, dimension(:,:) :: upTimeVinc, downTimeVinc
 real(kind = prec), dimension(1) :: rdummy1, rdummy2
 real(kind = prec), dimension(:,:,:), allocatable :: tCorr, pCorr
 real(kind = prec), dimension(:,:), allocatable :: aCorr
+integer :: nMax
 
 !--subroutine body-----
 
 call allocateVar(16)
 
-!---time step in seconds---
-dt(0) = dt1*3.6e3
-do i=1,nTime - 1
-   dt(i) = 3.6e3*(time(i+1) - time(i))      
-enddo
-dt(nTime) = dt1*3.6e3
-upTime0 = upTime0*3.6e3
+!!---time step in seconds---
+!dt(0) = dt1*3.6e3
+!do i=1,nTime - 1
+!   dt(i) = 3.6e3*(time(i+1) - time(i))      
+!enddo
+!dt(nTime) = dt1*3.6e3
+
+dt        = timestep()
+upTime0   = upTime0*3.6e3
 downTime0 = downTime0*3.6e3
 
 !-- calculate all the efficiencies for the given set points.
@@ -123,14 +136,15 @@ if(nBoi.gt.0) nSpTot = nSpTot + sum(nSpB)
 if(nChi.gt.0) nSpTot = nSpTot + sum(nSpC)
 if(capacityTS.gt.zero) nSpTot = nSpTot + 2*nSpTS + 1
 if(capacityES.gt.zero) nSpTot = nSpTot + 2*nSpES + 1
-call allocateVar(17)
-!-starting index for each kind of equip. in the set-point vector.
-iT = 1
-iB = 2
-iC = 3
-iTS= 4
-iES= 5
 
+call allocateVar(17)
+
+!-starting index for each kind of equip. in the set-point vector.
+!iT = 1
+!iB = 2
+!iC = 3
+!iTS= 4
+!iES= 5
 
 is(iT) = 1                   !Trigeneration
 ie(iT) = nTrig
@@ -165,7 +179,8 @@ enddo
 if(capacityTS.gt.0) nSp(is(iTS)) = 2*nSpTS + 1
 if(capacityES.gt.0) nSp(is(iES)) = 2*nSpES + 1
 
-call allocateVar(18)
+nMax = max(maxval(nSpT), maxval(nSpB), maxval(nSpC), 2*nSpTS + 1,2*nSpES + 1)
+call allocateVar(18,nMax)
 
 sp(:,:) = rNan(rVal)
 eSource(:) = -1
@@ -492,3 +507,6 @@ endif
 call deallocateVar(1)
 
 end subroutine buildPlant
+
+!===============================================================0
+

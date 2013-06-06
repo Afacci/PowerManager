@@ -2,7 +2,7 @@
 !  
 !   PowerManager.  
 !
----------------------------------------------------------------------------
+!---------------------------------------------------------------------------
 !License
 !    This file is part of PowerManager.
 !
@@ -32,8 +32,8 @@ Everything written before begin or after end is ignore as well as every line aft
 
 begin
 
-Power              | 3500  | !rated power
-Capacity           | 126e5|!360000   |
+Power              | 0.0 |!  !rated power3500  0.0 
+Capacity           | 0.0 |!|             126e5 0.0 
 SetPoint           | 12   | 
 
 InputEfficiency    | 0.9 |

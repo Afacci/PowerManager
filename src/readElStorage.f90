@@ -21,13 +21,13 @@
 !    Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 !
 !>\file readBoiler.f90
-!>\brief Reads Boiler.inp file
+!>\brief Reads ElectricalStorage.inp file
 !>\author 
 !>     Andrea Facci.
 !
 !---------------------------------------------------------------------------
 
-!>\brief Reads Boiler.inp file
+!>\brief Reads ElectricalStorage.inp file
 !>\details 
 !> This subroutine reads the file "Boilers.inp". The procedure looks for each specific entry
 !> in the "keyword field", and associates the value in the "value" field, to the
@@ -58,10 +58,9 @@
 !>\author 
 !>     Andrea Facci.
 
-subroutine readWind
+subroutine readElStorage
 
-!===============================Declare Module usage===============================
-
+!---Declare Unit usage---
 use shared
 use inputVar
 use fileTools
@@ -71,23 +70,19 @@ use myArithmetic
 
 implicit none
 
-!===================================Declare Local Variables=====================
-
-integer                :: genUnit = 114
-character(len=50)      :: inputFile = './Input/WindTurbines.inp'
-logical                :: filePresent
-character(len=500)     :: buffer, keyword, value
-integer                :: firstLine, line, i, nInp  
-logical,dimension(10)   :: isPresent = .false.
-integer,dimension(100) :: dummy
-integer                :: error, j, nl
-
-!========================Subroutine Body=========================================
+!---Declare Local Variables---
+integer              :: genUnit = 112
+character(len=50)    :: inputFile = './Input/ElectricalStorage.inp'
+logical              :: filePresent
+character(len=500)   :: buffer, keyword, value
+integer              :: firstLine, line, i, nInp, nl
+logical,dimension(6) :: isPresent = .false.
+integer              :: error
 
 !---Check File Presence---
 inquire(file = inputFile, exist = filePresent)
 if(.not.filePresent) then
-   call abortExecution(1,10)
+   call abortExecution(1,3)
 else
    open(unit = genUnit, file = inputFile)
 endif
@@ -101,84 +96,60 @@ do
     if(buffer(1:5).eq.'begin') exit
 enddo
 
-!---Look for the the "Number" entry that is neede for most of the other entries---
-buffer = 'FieldNumber'
-call iFindEntry(buffer,1,genUnit,.true.,dummy(1),isPresent(1))
-nwf = dummy(1)
-if(nwf.eq.0) return
-if(.not.isPresent(1)) call abortExecution(34,1)
-call allocateVar(35)
-
 line = firstLine
 !---read the input list---
 do 
     call readKeyword(genUnit,.false., keyword,value,error, nl)
-    if (error.eq.1) call abortExecution(0,3)
+    if (error.eq.1) call abortExecution(0,7)
     line = line + nl
     select case(keyword)
        case('end')
           exit
-       case('TurbinesNumber')
-          read(value,*) (nwt(i), i=1,nwf)
+       case('Power')
+!          read(value,*) (pMaxES(i), i=1,2)
+          read(value,*) pMaxES
+          isPresent(1) = .true.
+       case('Capacity')
+          read(value,*) CapacityES
           isPresent(2) = .true.
-       case('BladeSurface')
-          read(value,*) (wSurf(i), i=1,nwf)
+       case('SetPoint')
+          read(value,*) nSpES
           isPresent(3) = .true.
-       case('MinWindVelocity')
-          read(value,*) (minWind(i), i=1,nwf)
-          isPresent(4) = .true.
-       case('MaxWindVelocity')
-          read(value,*) (maxWind(i), i=1,nwf)
-          isPresent(7) = .true.
-       case('PowerCoefficient')
-          isPresent(5) = .true.
-          backspace(genUnit)
-          line = line - 1
-          do i = 1,nwf
-             nCpw(i) = vCount(genUnit,.false.)
-          enddo
-          j = sum(nCpw)
-          call allocateVar(36)
-          call rewUnit(genUnit,j)
-          do i = 1, nwf
-             cpw(:,:,i) =  dmatrixRead(genUnit,nCpw(i),2)
-          enddo
-          line = line + j
-       case('WindVelocity')
+       case('InputEfficiency')
+              isPresent(4) = .true.
+!              backspace(genUnit)
+!              line         = line - 1
+!              nEtaTsIn     = vCount(genUnit,.false.)
+              nEtaTsIn = 1
+!              call allocateVar(33)
+!              call rewUnit(genUnit,nEtaTsIn)
+!              etaTsIn(:,:) =  dmatrixRead(genUnit,nEtaTsIn,2)
+              read(value,*) etaEsIn
+       case('OutputEfficiency')
+              isPresent(5)  = .true.
+!              backspace(genUnit)
+!              line          = line - 1
+!              nEtaTsOut     = vCount(genUnit,.false.)
+              nEtaTsOut     = 1
+!              call allocateVar(34)
+!              call rewUnit(genUnit,nEtaTsOut)
+!              etaTsOut(:,:) =  dmatrixRead(genUnit,nEtaTsOut,2)
+              read(value,*) etaEsOut
+       case('SwitchCost')
+          read(value,*) swCost
           isPresent(6) = .true.
-          backspace(genUnit)
-          line = line - 1
-          nWind  = vCount(genUnit,.false.)
-          if(nWind.ne.nTime) call abortExecution(35)
-          call allocateVar(37)
-          call rewUnit(genUnit,nWind)
-          wind(:,:) =  dmatrixRead(genUnit,nWind,2)
-          line = line + nWind
-       case('WindMeasureAltitude')
-          read(value,*) hWind
-          isPresent(8) = .true.
-       case('HellmanExponent')
-          read(value,*) hellman
-          isPresent(9) = .true.
-       case('TurbineHeight')
-          read(value,*) (hPale(i), i=1,nwf)
-          isPresent(10) = .true.
-       case('FieldNumber')
-             continue
-       case(' ') 
-            if(verb) call warning(4,3,line=line)
        case default
-            if(.not.silent) call warning(1,3,line=line,word=keyword)
+            if(.not.silent) call warning(1,6,line=line,word=keyword)
     end select
 enddo
 
 !---check if all the variablea were read---
 nInp = size(isPresent)
 do i = 1,nInp
-    if(.not.isPresent(i)) call abortExecution(34,i)
+    if(.not.isPresent(i)) call abortExecution(28,i)
 enddo
 
 close(genUnit)
 100 format(A500)
 
-end subroutine readWind
+end subroutine readElStorage

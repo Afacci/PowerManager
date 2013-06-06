@@ -69,7 +69,7 @@ character(len=14), dimension(5)        :: PV3
 integer                                :: t
 character(len=18), dimension(4)        :: GSE
 character(len=18), dimension(5)        :: ThStorage
-character(len=16), dimension(6)        :: Iwind
+character(len=19), dimension(10)        :: Iwind
 
 print*
 print*, '!-----------------------------------FATAL ERROR-----------------------------------------!'
@@ -120,8 +120,9 @@ eLoads        = (/'Electricity', 'Thermal    ', 'Chilling   '/)
 gConn         = (/'NetMetering    ','DedicatadRetire','StandAlone     '/)
 algo          = (/'Backward    ', 'Forward     ', 'ThermalTrack'/)
 
-Iwind         = (/'FieldNumber     ','TurbineNUmber   ','BladeSurface    ','PowerCoefficient', &
-                  'MinWindVelocity ','WindVelocity    '/)
+Iwind         = (/'FieldNumber        ','TurbineNUmber      ','BladeSurface       ','PowerCoefficient   ', &
+                  'MinWindVelocity    ','WindVelocity       ','MaxVelocity        ','WindMeasureAltitude', &
+                  'HelmannExponent    ','TurbineHeight      '/)
 
 select case(i)
     case(0)

@@ -2,7 +2,7 @@
 !  
 !   PowerManager.  
 !
----------------------------------------------------------------------------
+!---------------------------------------------------------------------------
 !License
 !    This file is part of PowerManager.
 !
@@ -32,18 +32,13 @@ Everything written before begin or after end is ignore as well as every line aft
 
 begin
 
-Surface             | 0.0    | 
-Efficiency          | 0.14   | 
-Slope               | 35.0   |
-Orientation         | 0.0    | 
-CutOff              | 50e-3  |
-AuxEfficiency       | 0.8    |
-TemperatureDerating | (0.0  1.0  |
-                    |  50.0 1.0 )|
-Model       | LiuJordan |
-Reflection  | 0.1    |
+Power              |3500 |! | !rated power0.0 3500 
+Capacity           |126e5|!|   |          0.0 126e5
+SetPoint           | 12   | 
+InputEfficiency    | 0.9 |
+OutputEfficiency   | 0.9 |
+SwitchCost         | 0.0 |
 
 
-            
 end
     

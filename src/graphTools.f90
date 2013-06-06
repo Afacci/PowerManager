@@ -103,6 +103,18 @@ interface
    end function thStorageConstr
 end interface
 
+interface
+   logical function elStorageConstr(oldLevel,c,t)
+   use shared
+   use plantVar
+   use inputVar
+   use energy
+   implicit none
+   integer, dimension(nm), intent(in) :: c
+   integer,                intent(in) :: t
+   real(kind=prec),        intent(in) :: oldLevel
+   end function elStorageConstr
+end interface
 
 contains 
    !>\brief
@@ -233,6 +245,8 @@ contains
    use plantVar
    use mathTools
    use euristics
+
+   use economy
   
    !---Declare Local Variables---
    implicit none
@@ -502,8 +516,8 @@ contains
 
    subroutine minPathTopoBw(ottLoad, minCost,upTime, minPath)
    
-   use inputVar, only : nTime, upTime0, downTime0, iSocTh
-   use plantVar, only : nm, minUpTime, minDownTime, nm0, soc, nSoc, socTh, sp
+   use inputVar, only : nTime, upTime0, downTime0, iSocTh, iSocEl
+   use plantVar, only : nm, minUpTime, minDownTime, nm0, soc, nSoc, socTh, sp, iTs, iEs, is
    use mathTools
    use energy
 
@@ -512,14 +526,14 @@ contains
    integer, dimension(0:nTime+1,nm), intent(out):: ottLoad
    real(kind = prec),              intent(out)   :: minCost
    integer                                      :: orig, dest, i, j, p, suc,t,k,ki, l , li
-   real(kind = prec)                             :: ci, newSoc, qOld
+   real(kind = prec)                             :: ci, newSoc, qOld, eOld
    real(kind = prec), allocatable, dimension(:,:)  :: pathCost
    integer          , allocatable, dimension(:,:)  :: minSucc
    integer, dimension(0:nTime+1)                :: minPath
-   logical                                      :: tv,thv, error, ts
+   logical                                      :: tv,thv, error, ts, es
    integer, dimension(nm)                       :: cn, co
-   real(kind = prec), dimension(0:nTime+1,2*nm + 1), intent(out)       :: upTime 
-   real(kind = prec), dimension(2*nm0 + 1)              :: upTimeIn, upTimeOut
+   real(kind = prec), dimension(0:nTime+1,2*nm0 + 2), intent(out)       :: upTime 
+   real(kind = prec), dimension(2*nm0 + 2)              :: upTimeIn, upTimeOut
 
    !----------function body-----------------------------------------------------
 
@@ -538,10 +552,14 @@ contains
          upTimeIn  = tState(k,:)
          tv = timeConstr(co,upTimeIn(1:2*nm0))
          qOld = tState(k,2*nm0 + 1)
+         eOld = tState(k,2*nm0 + 2)
+!         qOld = tState(k,is(iTS))
+!         eOld = tState(k,is(iES))
          ts = thStorageConstr(qOld,co,t)
-         if(tv.and.ts) then
+         es = elStorageConstr(eOld,co,t)
+         if(tv.and.ts.and.es) then
             upTimeOut = upTimeCalc(upTimeIn,co,t)
-            ki = locateRow(upTimeOut,tState,2*nm0 + 1,nTvComb)
+            ki = locateRow(upTimeOut,tState,2*nm0 + 2,nTvComb)
             do j=1,nSuc(i)
                suc = succList(i,j)
                ci  = pathCost(suc,ki) + succCost(i,j)
@@ -553,7 +571,7 @@ contains
          endif
       enddo
    enddo
-
+   
    minCost            = pathCost(orig,1)
    minPath(nTime+1)   = dest
    minPath(0)         = orig
@@ -567,9 +585,11 @@ contains
       upTime(0,j) = min(downTime0(i), minDownTime(i))
    enddo
    upTime(0,2*nm0+1) = iSocTh
+   upTime(0,2*nm0+2) = iSocEl
+
    do while (p < dest)
       t = t + 1
-      ki = locateRow(upTime(t-1,:),tState,2*nm0 + 1,nTvComb)
+      ki = locateRow(upTime(t-1,:),tState,2*nm0 + 2,nTvComb)
       upTime(t,:) = upTimeCalc(upTime(t-1,:),pointLoad(p,:),t-1)
 !     print*, t, p, ki, minsucc(p,1:10)
       p = minSucc(p,ki)
@@ -578,7 +598,10 @@ contains
       ottLoad(t,:)= pointLoad(p,:)
    enddo
 
-   deallocate(minSucc, succList, succCost)
+   deallocate(minSucc)
+   deallocate(succList)
+   deallocate(succCost)
+
 
    end subroutine minPathTopoBw
 
@@ -591,8 +614,8 @@ contains
 
      implicit none
 
-     real(kind = prec), dimension(2*nm0 + 1) :: upTimeCalc
-     real(kind = prec), dimension(2*nm0 + 1) :: upT
+     real(kind = prec), dimension(2*nm0 + 2) :: upTimeCalc
+     real(kind = prec), dimension(2*nm0 + 2) :: upT
      integer,                intent(in) :: t
      integer, dimension(nm), intent(in) :: c
      integer                            :: i,j,k
@@ -615,6 +638,8 @@ contains
      enddo
      i = 2*nm0 + 1  
      upTimeCalc(i) = thStorageLevelUpdate(upT(i),c,t)
+     i = 2*nm0 + 2  
+     upTimeCalc(i) = elStorageLevelUpdate(upT(i),c,t)
    
    return
   

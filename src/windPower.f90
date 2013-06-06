@@ -44,23 +44,38 @@ function windPower()
 
    implicit none
 
-   real(kind=prec), dimension(nTime) :: windPower
-   real(kind=prec), dimension(nTime) :: eff, vel
-   integer                           :: i,t
-   real(kind=prec), parameter        :: rho = 1.025  !Air density
+   real(kind=prec), dimension(nTime)     :: windPower
+   real(kind=prec), dimension(nTime)     :: eff
+   real(kind=prec), dimension(nTime,nwf) :: vel
+   integer                               :: i,t
+   real(kind=prec)                       :: rho, pres, temp, hCoeff
+   real(kind=prec), parameter            :: Ra = 287.7 !Costante gas aria.
 
    windPower = zero
 
-   vel = wind(:,2)
+   if (nwf.le.0.or.maxval(nwt).le.0) return
+   
+   !---calculate wind velocity al te turbine height
+   do i=1,nwf
+      hCoeff = (hPale(i)/hWind)**hellman
+      do t =1,nTime
+         vel(t,i)  = wind(t,2)*hCoeff
+      enddo
+   enddo
 
    do i=1,nwf
-      eff = interpolation(cpw(:,1,i),cpw(:,2,i),ncpw(i),vel,nTime) !Power coefficient
+      eff   = interpolation(cpw(:,1,i),cpw(:,2,i),ncpw(i),vel(:,i),nTime) !Power coefficient
       do t=1,nTime
-         if(vel(t).gt.minWind(i).and.vel(i).lt.maxWind(i)) then
-            windPower(t) = windPower(t) + 0.5*eff(t)*nwt(i)*rho*wSurf(i)*vel(t)**3
+         pres = pAmb(t)*1.013e5
+         temp = tAmb(t) + 273.15
+         rho  = pres/(Ra*temp)
+         if(vel(t,i).gt.minWind(i).and.vel(t,i).lt.maxWind(i)) then
+            windPower(t) = windPower(t) + 0.5*eff(t)*nwt(i)*rho*wSurf(i)*vel(t,i)**3
          endif
       enddo
    enddo
+
+   windPower = windPower*1.0e-3
 
    return
    

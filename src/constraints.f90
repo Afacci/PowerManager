@@ -156,3 +156,35 @@ endif
 return
 
 end function thStorageConstr
+
+
+!=============================================================
+
+logical function elStorageConstr(oldLevel,c,t)
+
+!---Declare Module usage---
+
+use shared
+use plantVar
+use inputVar
+use energy
+
+implicit none
+integer, dimension(nm), intent(in) :: c
+integer,                intent(in) :: t
+real(kind=prec),        intent(in) :: oldLevel
+real(kind=prec)                    :: newLevel
+
+elStorageConstr = .true.
+
+newLevel = elStorageLevelUpdate(oldLevel,c,t)
+
+if(newLevel.lt.zero)       elStorageConstr = .false.
+if(newLevel.gt.capacityES) elStorageConstr = .false.
+if(t.eq.nTime) then
+   if(newLevel.ne.eSocTh)  elStorageConstr = .false.
+endif
+
+return
+
+end function elStorageConstr

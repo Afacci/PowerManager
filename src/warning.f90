@@ -56,7 +56,7 @@ character(len=24), dimension(7)         :: files
 character(len=13), dimension(3)         :: equip
 character(len=17), dimension(14)        :: output
 character(len=18), dimension(5)         :: ThStorage
-character(len=16), dimension(6)         :: iWind
+character(len=19), dimension(10)         :: iWind
 integer                                 :: l
 character(len=19), dimension(14)        :: PV
 
@@ -106,8 +106,9 @@ PV            = (/'Surface            ', 'Efficiency         ', 'Slope          
                   'Latitude           ', 'Day                ', 'SummerTime         ', 'Cloudiness         ', &
                   'Reflection         ', 'AuxEfficiency      '/)
 
-Iwind         = (/'FieldNumber     ','TurbineNUmber   ','BladeSurface    ','PowerCoefficient', &
-                  'MinWindVelocity ','WindVelocity    '/)
+Iwind         = (/'FieldNumber        ','TurbineNUmber      ','BladeSurface       ','PowerCoefficient   ', &
+                  'MinWindVelocity    ','WindVelocity       ','MaxVelocity        ','WindMeasureAltitude', &
+                  'HelmannExponent    ','TurbineHeight      '/)
 
 select case(i)
     case(0)

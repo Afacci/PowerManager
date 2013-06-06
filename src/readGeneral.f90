@@ -142,6 +142,7 @@ do
           isPresent(4) = .true.
           n = nTrig + nBoi + nChi 
           if(capacityTS.gt.zero) n = n + 1
+          if(capacityES.gt.zero) n = n + 1
           call allocateVar(0,n)
           val_ = '('//trim(val)//')'
           n_ = hCount(val_)
@@ -256,6 +257,9 @@ do
         case('ThermalStorageLevel')
 !             isPresent(10) = .true.
              read(val,*) iSocTh, eSocTh
+        case('ElectricalStorageLevel')
+!             isPresent(10) = .true.
+             read(val,*) iSocEl, eSocEl
         case(' ')
              if(verb) call warning(4,1,line=line)
         case  default

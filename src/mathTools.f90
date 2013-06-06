@@ -58,7 +58,7 @@ contains
 
      implicit none
 
-     real(kind = prec ), dimension(n), intent(in)   :: row
+     real(kind = prec ), dimension(n), intent(in)  :: row
      real(kind = prec), dimension(m,n), intent(in) :: mat
      integer, intent(in) :: n,m
      logical,                         intent(out), optional :: error

@@ -60,7 +60,7 @@ real(kind = prec) function elProd(c_, t)
 
 !--Declare Module usage---
 use plantVar
-use inputVar, only : nTrig
+use inputVar, only : nTrig, capacityES, etaESout, pMaxEs
 
 implicit none
 
@@ -80,6 +80,14 @@ if(nTrig.gt.0) then
       elProd = elProd + sp(j,i)*Pmax(i)*envCorr(t,i,4)
    enddo
 endif
+
+!--production from electrical storage.
+if(pMaxES.gt.zero.and.capacityES.gt.zero) then
+   i    = is(iES)
+   j    = c_(i)
+   if(sp(j,i).gt.zero) elProd  =  elProd + pMax(i)*sp(j,i)*etaESout
+endif
+
 return
 end function elProd
 
@@ -117,6 +125,7 @@ real(kind = prec)                  :: calore,eDisp,eEff,tEff,pow
 
 !---Function Body
 
+!--Cogenerative thermal production.
 thProd = sunTh(t)
 if(nTrig.gt.0) then
    do i=is(iT),ie(iT)
@@ -129,6 +138,7 @@ if(nTrig.gt.0) then
    enddo
 endif
 
+!--- boilers thermal production.
 if(nBoi.gt.0) then
    do i=is(iB),ie(iB)
       j = c_(i)
@@ -146,6 +156,7 @@ if(nBoi.gt.0) then
    enddo
 endif
 
+!--production from thermal storage.
 if(pMaxTS.gt.zero.and.capacityTS.gt.zero) then
    i    = is(iTS)
    j    = c_(i)
@@ -257,7 +268,7 @@ if(nChi.gt.0) then
    enddo
 endif
 
-
+!--Consumption of thermal storage.
 if(pMaxTS.gt.zero.and.capacityTS.gt.zero) then
    i    = is(iTS)
    j    = c_(i)
@@ -314,6 +325,15 @@ if(nChi.gt.0) then
       endif
    enddo
 endif
+
+
+!--Consumption of electrical storage.
+if(pMaxES.gt.zero.and.capacityES.gt.zero) then
+   i    = is(iES)
+   j    = c_(i)
+   if(sp(j,i).lt.zero) elSelfCons  =  elSelfCons - pMax(i)*sp(j,i)/etaESin
+endif
+
 return
 end function elSelfCons
 
@@ -728,5 +748,44 @@ return
 end function thStorageLevelUpdate
 
 
+!==========================================================================================
+
+real(kind=prec) function elStorageLevelUpdate(oldLevel,c,t)
+
+!>\brief Updates the level of electrical storage
+!>\details Updates the state of charge of vthe thermal storage according to old
+!> state of charge and present set point.
+!>\f[ 
+!> SOC_{th}(t) = SOC_{th}(t-1) sp_{th}\cdot P_{max}\eta
+!>\f]
+!>where \f$sp(i)\f$ is the set point of the thermal storage
+!>\f$P_{max}(i)\f$ is its rated power and \f$\eta = \eta_{in}$\f if sp<0 and \f$\eta = \eta_{out}$\f if sp>0
+!>\param[in] c_  index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
+!>\param[in] t   time index
+!>\author Andrea Facci
+
+!--Declare Module usage---
+use plantVar
+use inputVar
+
+implicit none
+
+!---Declare Local Variables---
+integer,dimension(nm), intent(in) :: c
+real(kind=prec)      , intent(in) :: oldLevel
+integer,               intent(in) :: t
+integer                           :: i, j
+
+if(capacityES.gt.zero.and.pMaxES.gt.zero) then
+   i = is(iES)
+   j = c(i)
+   elStorageLevelUpdate = oldLevel - sp(j,i)*Pmax(i)*dt(t)
+else
+   elStorageLevelUpdate = zero
+endif
+
+return
+
+end function elStorageLevelUpdate
 
 end module energy

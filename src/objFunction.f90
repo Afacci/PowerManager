@@ -48,7 +48,7 @@ use energy
 implicit none
 integer, dimension(nm), intent(in)  :: c
 integer,                 intent(in) :: t
-character(len=100),      intent(in) :: obj 
+character(len=*),      intent(in) :: obj 
 
 !---Function body.
 select case(obj)
