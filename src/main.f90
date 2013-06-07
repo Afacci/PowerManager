@@ -103,7 +103,7 @@ print*,'     --> WindTurbines.inp read'
 
 !---build the energy coonection inside the plant---
 print*, ' ---Checking Input Coherence---'
-call buildPlant
+call buildPlantRev
 call etime(tVEc,tempo)
 allocate(setPoint(0:nTime+1,nm), load(0:nTime+1,nm))
 print*, ' ---Elapsed Time: ', tempo, ' sec'

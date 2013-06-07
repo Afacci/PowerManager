@@ -35,6 +35,8 @@
 module plantVar   
 
 use shared
+use shared
+use inputVar
 
 real(kind = prec), allocatable, dimension(:,:)   :: etaElT_, etaThT_, etaChT_, etaB_, etaC_, &
                                                    sp,cRef

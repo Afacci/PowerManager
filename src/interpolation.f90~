@@ -91,7 +91,7 @@ end function interpolation
 
 !=======================================================================
 
-function ScalarInterp(xIn,yIn,n,x,warn)
+function ScalarInterp(xIn,yIn,n,warn)
 
 !---Declare Module usage---
 use shared

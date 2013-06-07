@@ -1,4 +1,3 @@
-
 !---------------------------------------------------------------------------
 !  
 !   PowerManager.  
@@ -18,52 +17,60 @@
 !    for more details.
 !
 !    You should have received a copy of the GNU General Public License
-!    along with OpenFOAM; if not, write to the Free Software Foundation,
+!    along with PowerManager; if not, write to the Free Software Foundation,
 !    Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 !
-!>\file plantVar.f90
-!>\brief collection of variables relative to the power plant structure.
-!>\author 
-!  Andrea Facci.
+!>\file 
+!>\brief File  prototype. 
+!>\details this is the prototype for all the files of the PowerManger project.
+!> Copy, rename, and modify this this file to create a new procedure or module.
+!>\Author 
+!>     Andrea Facci.
 !
 !---------------------------------------------------------------------------
 
-!>\brief collection of variables relative to the power plant structure.
-!>\details collection of variables relative to the power plant structure.
-!>\author 
-!  Andrea Facci.
-module plantVar   
+module addSection
+
+!---Declare Module usage---
 
 use shared
-use shared
+use plantVar
 use inputVar
-
-real(kind = prec), allocatable, dimension(:,:)   :: etaElT_, etaThT_, etaChT_, etaB_, etaC_, &
-                                                   sp,cRef
-real(kind = prec), allocatable, dimension(:,:,:) :: envCorr
-real(kind = prec), allocatable, dimension(:,:)   :: etaEl, etaTh, etaCh, timeVinc
-integer         , allocatable, dimension(:,:)    :: cr
-real(kind = prec), allocatable, dimension(:)     :: Pmax, dt, cf, lhv, onOffCost, OeMCost, minUpTime, minDownTime, pef, pecOn, &
-                                                    soc, socTh, socEl, Esoc
-character(len=4), allocatable, dimension(:)      :: pes
-integer                                          :: nSpTot,nm,  nm0, nsoc, nSocEl
-integer,                       dimension(5)      :: is,ie
-integer,          allocatable, dimension(:)      :: nSp, nTv, eSource
-character(len=50), allocatable, dimension(:)     :: tec
-real(kind=prec), allocatable, dimension(:)       :: sunEl, sunTh , windEl
-
-integer, parameter :: iT = 1, iB = 2, iC = 3, iTS = 4, iES = 5
+use cmdVar
+use interfaces
+use mathTools
 
 contains
 
    subroutine addTrigenerative
 
-      implicit none
-      integer :: i, j, k
 
+      implicit none
+      integer :: i, j, k, l
+      integer, dimension(2)  :: ext1,ext2,ext3
+      character(len=100)     :: word
+      real(kind=prec), dimension(4) :: tCorr, pCorr
+      real(kind=prec), dimension(ntime,4) ::aCorr
+
+
+      if(nTrig.ge.0) then
+         do i=1,nTrig
+            etaElT_(:,i) = interpolation(etaElT(:,1,i), etaElT(:,2,i), nEtaElT(i), spT(:,i),nSpT(i), ext1)     
+            if(ext1(1).eq.1.and.(.not.silent)) call warning(2,1,i, word='Electrical')
+            if(ext1(2).eq.1.and.(.not.silent)) call warning(3,1,i, word='Electrical')
+            etaThT_(:,i) = interpolation(etaThT(:,1,i), etaThT(:,2,i), nEtaThT(i), spT(:,i),nSpT(i), ext2) 
+            if(ext2(1).eq.1.and.(.not.silent)) call warning(2,1,i, word='Thermal')
+            if(ext2(2).eq.1.and.(.not.silent)) call warning(3,1,i, word='Thermal')
+            etaChT_(:,i) = interpolation(etaChT(:,1,i), etaChT(:,2,i), nEtaChT(i), spT(:,i),nSpT(i), ext3)
+            if(ext3(1).eq.1.and.(.not.silent)) call warning(2,1,i, word='Chilling')
+            if(ext3(2).eq.1.and.(.not.silent)) call warning(3,1,i, word='Chilling')
+         enddo
+      endif
+      
       j = 0
       do i=is(iT),ie(iT)
          j = j + 1 
+         nSp(i)  = nSpT(j)
          sp(1:nSp(i),i) = spT(:,j)
          Pmax(i)  = PmaxT(j)
          lhv(i)   = fuelLhvT(j)
@@ -90,20 +97,65 @@ contains
          endif
       enddo
 
+
+      k = 0
+      do j=is(iT),ie(iT)
+         k = k + 1
+         aCorr(i,1) = scalarInterp(altCorrT(:,1,k), altCorrT(:,2,k), nacT(k), altitude(1))
+         aCorr(i,2) = scalarInterp(altCorrT(:,1,k), altCorrT(:,3,k), nacT(k), altitude(1))
+         aCorr(i,3) = scalarInterp(altCorrT(:,1,k), altCorrT(:,4,k), nacT(k), altitude(1))
+         aCorr(i,4) = scalarInterp(altCorrT(:,1,k), altCorrT(:,5,k), nacT(k), altitude(1))
+      enddo
+
+      do i=1,nTime
+         k = 0
+         do j=is(iT),ie(iT)
+            k = k + 1
+            tCorr(1) = scalarInterp(tempCorrT(:,1,k), tempCorrT(:,2,k), ntcT(k), tAmb(i))
+            tCorr(2) = scalarInterp(tempCorrT(:,1,k), tempCorrT(:,3,k), ntcT(k), tAmb(i))
+            tCorr(3) = scalarInterp(tempCorrT(:,1,k), tempCorrT(:,4,k), ntcT(k), tAmb(i))
+            tCorr(4) = scalarInterp(tempCorrT(:,1,k), tempCorrT(:,5,k), ntcT(k), tAmb(i))
+  
+            pCorr(1) = scalarInterp(presCorrT(:,1,k), presCorrT(:,2,k), npcT(k), pAmb(i))
+            pCorr(2) = scalarInterp(presCorrT(:,1,k), presCorrT(:,3,k), npcT(k), pAmb(i))
+            pCorr(3) = scalarInterp(presCorrT(:,1,k), presCorrT(:,4,k), npcT(k), pAmb(i))
+            pCorr(4) = scalarInterp(presCorrT(:,1,k), presCorrT(:,5,k), npcT(k), pAmb(i))
+
+            do l = 1,4 
+               envCorr(i,j,l) = tCorr(l)*pCorr(l)*aCorr(i,l)
+            enddo
+         enddo
+
+      enddo
+
    end subroutine addTrigenerative
 
 !=========================================================================================
 
-   subroutine addBoiler
+   subroutine addBoilers
      
       implicit none
 
       integer :: i, j, k
       character(len=100)     :: cdummy
-   
+      integer, dimension(2)  :: ext
+      character(len=100)     :: word
+      real(kind=prec), dimension(2) :: tCorr, pCorr
+      real(kind=prec), dimension(ntime,2) ::aCorr
+
+
+      if(nBoi.gt.0) then
+         do i=1,nBoi
+            etaB_(:,i) = interpolation(etaB(:,1,i), etaB(:,2,i), nEtaB(i), spB(:,i),nSpB(i), ext) 
+            if(ext(1).eq.1.and.(.not.silent)) call warning(2,2,i, word='Thermal')
+            if(ext(2).eq.1.and.(.not.silent)) call warning(3,2,i, word='Thermal')
+         enddo
+      endif
+
       j=0
       do i=is(iB),ie(iB)
          j = j + 1 
+         nSp(i)  = nSpB(j)
          sp(1:nSp(i),i)    = spB(:,j)
          Pmax(i)           = PmaxB(j)
          lhv(i)            = fuelLhvB(j)
@@ -138,20 +190,56 @@ contains
             pecOn(i) = pecOnB(j)
          endif
       enddo
+
+      k = 0
+      do j=is(iB),ie(iB)
+         k = k + 1
+         aCorr(i,1) = scalarInterp(altCorrB(:,1,k), altCorrB(:,2,k), nacB(k), altitude(1))
+         aCorr(i,2) = scalarInterp(altCorrB(:,1,k), altCorrB(:,3,k), nacB(k), altitude(1))
+      enddo
+
+      do i=1,nTime
+         k = 0
+         do j=is(iB),ie(iB)
+            k = k + 1
+            tCorr(1) = scalarInterp(tempCorrB(:,1,k), tempCorrB(:,2,k), ntcB(k), tAmb(i))
+            tCorr(2) = scalarInterp(tempCorrB(:,1,k), tempCorrB(:,3,k), ntcB(k), tAmb(i))
+  
+            pCorr(1) = scalarInterp(presCorrB(:,1,k), presCorrB(:,2,k), npcB(k), pAmb(i))
+            pCorr(2) = scalarInterp(presCorrB(:,1,k), presCorrB(:,3,k), npcB(k), pAmb(i))
+
+            envCorr(i,j,2) = tCorr(l)*pCorr(l)*aCorr(i,1)
+            envCorr(i,j,4) = tCorr(l)*pCorr(l)*aCorr(i,2)
+         enddo
+      enddo
    
-   end subroutine addBoiler
+   end subroutine addBoilers
 
 !=========================================================================================
   
-   subroutine addChiller
+   subroutine addChillers
 
       implicit none
 
-      integer :: j, i, k
+      integer :: j, i, k, l
+      integer, dimension(2)  :: ext
+      character(len=100)     :: word
+      real(kind=prec), dimension(2) :: tCorr, pCorr
+      real(kind=prec), dimension(ntime,2) ::aCorr
+
+
+      if(nChi.gt.0) then
+         do i=1,nChi
+            etaC_(:,i) = interpolation(etaC(:,1,i), etaC(:,2,i), nEtaC(i), spC(:,i),nSpC(i), ext) 
+            if(ext(1).eq.1.and.(.not.silent)) call warning(2,3,i, word='Chilling')
+            if(ext(2).eq.1.and.(.not.silent)) call warning(3,3,i, word='Chilling')
+         enddo
+      endif
 
       j=0
       do i=is(iC),ie(iC)
          j = j + 1 
+         nSp(i)  = nSpC(j)
          sp(1:nSp(i),i) = spC(1:nSp(i),j)
          Pmax(i) = PmaxC(j)
          lhv(i)  = -1
@@ -175,11 +263,35 @@ contains
          endif
       enddo
 
-   end subroutine addChiller
+
+      k = 0
+      do j=is(iC),ie(iC)
+         k = k + 1
+         aCorr(i,1) = scalarInterp(altCorrC(:,1,k), altCorrC(:,2,k), nacC(k), altitude(1))
+         aCorr(i,2) = scalarInterp(altCorrC(:,1,k), altCorrC(:,3,k), nacC(k), altitude(1))
+      enddo
+
+      do i=1,nTime
+         k = 0
+         do j=is(iC),ie(iC)
+            k = k + 1
+            tCorr(1) = scalarInterp(tempCorrC(:,1,k), tempCorrC(:,2,k), ntcC(k), tAmb(i))
+            tCorr(2) = scalarInterp(tempCorrC(:,1,k), tempCorrC(:,3,k), ntcC(k), tAmb(i))
+  
+            pCorr(1) = scalarInterp(presCorrC(:,1,k), presCorrC(:,2,k), npcC(k), pAmb(i))
+            pCorr(2) = scalarInterp(presCorrC(:,1,k), presCorrC(:,3,k), npcC(k), pAmb(i))
+
+            envCorr(i,j,3) = tCorr(l)*pCorr(l)*aCorr(i,1)
+            envCorr(i,j,4) = tCorr(l)*pCorr(l)*aCorr(i,2)
+         enddo
+      enddo
+
+
+   end subroutine addChillers
 
 !=========================================================================================
 
-   subroutine addThermasStorage
+   subroutine addThermalStorage
 
      implicit none
      
@@ -188,6 +300,7 @@ contains
 
      if(capacityTS.gt.zero) then
          j = is(iTS) 
+         nSp(is(iTS)) = 2*nSpTS + 1
          Pmax(j) = PmaxTs
          sp(1,j) = -1
          cr(1,j) = 1
@@ -218,7 +331,7 @@ contains
          soc(1) = 0
      endif
 
-   end subroutine addThermasStorage
+   end subroutine addThermalStorage
 
 !=========================================================================================
 
@@ -231,6 +344,7 @@ contains
 
      if(capacityES.gt.zero.and.pMaxEs.gt.zero) then
          j = is(iES) 
+         nSp(is(iES)) = 2*nSpES + 1
          Pmax(j) = PmaxEs
          sp(1,j) = -1
          cr(1,j) = 1
@@ -265,6 +379,4 @@ contains
 
 !=========================================================================================
 
-
-end module plantVar
-
+end module addSection

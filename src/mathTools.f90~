@@ -49,6 +49,18 @@ interface
     end function interpolation
 end interface
 
+
+interface
+    function scalarInterp(xIn,yIn,n,x,warn) 
+        use shared 
+        implicit none
+        integer                       , intent(in)  :: n
+        real(kind = prec), dimension(n), intent(in)  :: xIn, yIn
+        integer         , dimension(2), intent(in), optional :: warn
+        real(kind = prec)              :: scalarInterp
+    end function scalarInterp
+end interface
+
 contains
 
    integer function locateRow(row,mat,n,m,error)
@@ -58,14 +70,14 @@ contains
 
      implicit none
 
-     real(kind = prec ), dimension(n), intent(in)   :: row
+     real(kind = prec ), dimension(n), intent(in)  :: row
      real(kind = prec), dimension(m,n), intent(in) :: mat
      integer, intent(in) :: n,m
      logical,                         intent(out), optional :: error
      integer :: i,j
      real(kind = prec),dimension(n)              :: test 
      logical                                     :: ok
-     real(kind=prec), parameter                  :: err=0.01, aerr=0.01
+     real(kind=prec), parameter                  :: err=0.001, aerr=0.01
      real(kind=prec), dimension(n)               :: diff, toll
      real(kind=prec)                             :: delta
     

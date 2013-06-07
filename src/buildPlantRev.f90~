@@ -63,13 +63,13 @@ interface
   end function
 end interface
 
-integer                                          :: i,j, maxsp, k, k1, k2
-real(kind = prec)                                :: kJ_kWh, dsp, dtmin, dsoc, dsocEl, dspEl
-real(kind = prec), allocatable, dimension(:,:)   :: upTimeVinc, downTimeVinc
-real(kind = prec), dimension(1)                  :: rdummy1, rdummy2
+integer :: i,j, maxsp, k, k1, k2
+real(kind = prec)      :: kJ_kWh, dsp, dtmin, dsoc, dsocEl, dspEl
+real(kind = prec), allocatable, dimension(:,:) :: upTimeVinc, downTimeVinc
+real(kind = prec), dimension(1) :: rdummy1, rdummy2
 real(kind = prec), dimension(:,:,:), allocatable :: tCorr, pCorr
-real(kind = prec), dimension(:,:), allocatable   :: aCorr
-integer                                          :: nMax
+real(kind = prec), dimension(:,:), allocatable :: aCorr
+integer :: nMax
 
 !--subroutine body-----
 
@@ -78,6 +78,7 @@ call allocateVar(16)
 dt        = timestep()
 upTime0   = upTime0*3.6e3
 downTime0 = downTime0*3.6e3
+
 
 nm0  = nTrig + nBoi + nChi                      !total number of machinery without storage
 nm   = nm0
@@ -99,10 +100,75 @@ call allocateVar(17)
 
 nMax = max(maxval(nSpT), maxval(nSpB), maxval(nSpC), 2*nSpTS + 1,2*nSpES + 1)
 call allocateVar(18,nMax)
-call allocateVar(32)
 
 sp(:,:) = rNan(rVal)
 eSource(:) = -1
+
+!---Estimate environmental condition corrections for each time-step---
+call allocateVar(32)
+
+!allocate(pCorr(nTime,nm,4), tCorr(nTime,nm,4), aCorr(nm,4))
+!pCorr = rNan(rVal)
+!tCorr = rNan(rVal)
+!aCorr = rNan(rVal)
+   
+!   k = 0
+!   do j=is(iB),ie(iB)
+!      k = k + 1
+!      rdummy2= interpolation(tempCorrB(:,1,k), tempCorrB(:,2,k), ntcB(k), tAmb(i),1)
+!      tCorr(i,j,2) = rdummy2(1)
+!      rdummy2= interpolation(tempCorrB(:,1,k), tempCorrB(:,3,k), ntcB(k), tAmb(i),1)
+!      tCorr(i,j,4) = rdummy2(1)
+!
+!      rdummy2= interpolation(presCorrB(:,1,k), presCorrB(:,2,k), npcB(k), pAmb(i),1)
+!      pCorr(i,j,2) = rdummy2(1)
+!      rdummy2= interpolation(presCorrB(:,1,k), presCorrB(:,3,k), npcB(k), pAmb(i),1)
+!      pCorr(i,j,4) = rdummy2(1)
+!   enddo
+!   k = 0
+!   do j=is(iC),ie(iC)
+!      k = k + 1
+!      rdummy2= interpolation(tempCorrC(:,1,k), tempCorrC(:,2,k), ntcC(k), tAmb(i),1)
+!      tCorr(i,j,3) = rdummy2(1)
+!      rdummy2= interpolation(tempCorrC(:,1,k), tempCorrC(:,3,k), ntcC(k), tAmb(i),1)
+!      tCorr(i,j,4) = rdummy2(1)!
+!
+!      rdummy2= interpolation(presCorrC(:,1,k), presCorrC(:,2,k), npcC(k), pAmb(i),1)
+!      pCorr(i,j,3) = rdummy2(1)
+!      rdummy2= interpolation(presCorrC(:,1,k), presCorrC(:,3,k), npcC(k), pAmb(i),1)
+!      pCorr(i,j,4) = rdummy2(1)
+!   enddo
+!enddo
+
+!k = 0
+!do j=is(iT),ie(iT)
+!   k = k + 1
+!   rdummy2= interpolation(altCorrT(:,1,k), altCorrT(:,2,k), nacT(k), altitude,1)
+!   aCorr(j,1) = rdummy2(1)
+!   rdummy2= interpolation(altCorrT(:,1,k), altCorrT(:,3,k), nacT(k), altitude,1)
+!   aCorr(j,2) = rdummy2(1)
+!   rdummy2= interpolation(altCorrT(:,1,k), altCorrT(:,4,k), nacT(k), altitude,1)
+!   aCorr(j,3) = rdummy2(1)
+!   rdummy2= interpolation(altCorrT(:,1,k), altCorrT(:,5,k), nacT(k), altitude,1)
+!   aCorr(j,4) = rdummy2(1)
+!enddo
+!k = 0
+!do j=is(iB),ie(iB)
+!   k = k + 1
+!   rdummy2= interpolation(altCorrB(:,1,k), altCorrB(:,2,k), nacB(k), altitude,1)
+!   aCorr(j,2) = rdummy2(1)
+!   rdummy2= interpolation(altCorrB(:,1,k), altCorrB(:,3,k), nacB(k), altitude,1)
+!   aCorr(j,4) = rdummy2(1)
+!enddo
+!k = 0
+!do j=is(iC),ie(iC)
+!   k = k + 1
+!   rdummy2= interpolation(altCorrC(:,1,k), altCorrC(:,2,k), nacC(k), altitude,1)
+!   aCorr(j,3) = rdummy2(1)
+!   rdummy2= interpolation(altCorrC(:,1,k), altCorrC(:,3,k), nacC(k), altitude,1)
+!   aCorr(j,4) = rdummy2(1)
+!enddo
+
 envCorr = rNaN(rVal)
 
 is(iT) = 1                   !Trigeneration
@@ -122,6 +188,16 @@ endif
 call addThermalStorage
 if(capacityES.gt.zero.and.PmaxES.gt.zero) is(iEs)= is(iTs) + 1
 call addElectricalStorage
+
+!envCorr = rNaN(rVal)
+!do i=1,nTime
+!   do j = 1,nm
+!      do k = 1,4 
+!         envCorr(i,j,k) = tCorr(i,j,k)*pCorr(i,j,k)*aCorr(j,k)
+!      enddo
+!   enddo
+!enddo
+!deallocate(aCorr,pCorr,tCorr)
 
 
 !------renewable stuff--------------------------------

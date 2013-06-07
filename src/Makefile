@@ -30,13 +30,14 @@ MODS = \
 ../obj/cmdVar.o \
 ../obj/energy.o \
 ../obj/economy.o \
+../obj/euristics.o \
 ../obj/graphTools.o \
 ../obj/globalResults.o \
 ../obj/getSetPoint.o \
 ../obj/strategies.o \
-../obj/euristics.o \
 ../obj/sun.o \
 ../obj/windPower.o \
+../obj/addSection.o
 
 ################################################
 #  list of the files to be compiled            #
@@ -58,7 +59,6 @@ OBJS = \
 ../obj/warning.o \
 ../obj/readLoad.o \
 ../obj/interpolation.o \
-../obj/buildPlantRev.o \
 ../obj/checkPlant.o \
 ../obj/commandline.o \
 ../obj/aiuto.o \
@@ -75,7 +75,8 @@ OBJS = \
 ../obj/readSC.o \
 ../obj/readWind.o \
 ../obj/readElStorage.o \
-../obj/timestep.o
+../obj/timestep.o \
+../obj/buildPlantRev.o 
 #../obj/readSteamPlant.o \
 
 ################################################
@@ -86,7 +87,7 @@ $(OBJDIR)%.o : %.f90
 modules : $(MODS)
 compile : $(OBJS)
 rmobj  : 
-	rm -rf $(OBJDIR)*.o $(OBJDIR)*.mod
+	rm -rf $(OBJDIR)*.o $(OBJDIR)*.mod *.mod
 rmmain :
 	if [ -f $(PROGRAM) ] ; then rm $(PROGRAM) ; fi
 mvobj : 
