@@ -120,7 +120,10 @@ else
    is(iTs)= nm0 
 endif
 call addThermalStorage
-if(capacityES.gt.zero.and.PmaxES.gt.zero) is(iEs)= is(iTs) + 1
+if(capacityES.gt.zero.and.PmaxES.gt.zero) then 
+  is(iEs)= is(iTs) + 1
+  elStor = .true.
+endif
 call addElectricalStorage
 
 
@@ -143,9 +146,6 @@ if(nwf.gt.0) then
 else
   windEl = zero
 endif
-
-!--- check that the power plant is able to satisfie the required loads
-call checkPlant
 
 !---time-dependent constraints---
 call allocateVar(21)
@@ -179,6 +179,9 @@ nTv(k) = nSocEl
 do j=1,nSocEL
    timeVinc(j,k) = Esoc(j)
 enddo
+
+!--- check that the power plant is able to satisfie the required loads
+call checkPlant
 
 !--- convert all the prices in €/kJ---
 kJ_kWh = 1.0/3.6e3

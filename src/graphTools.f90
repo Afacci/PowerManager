@@ -280,6 +280,8 @@ contains
             ch   = chRedundant(load,i)
          endif
          if(v.and.(.not.e1).and.(.not.ch)) then
+            !inserire controllo minimo locale in funzione dello stato degli
+            !accumuli.
             n        = n + 1
             time_(n) = i
             timePoint(i,j) = n
@@ -356,7 +358,7 @@ contains
   
    integer                            :: i,j,t,n1,n2,ni,nf,k, iii, nMax
    integer, allocatable, dimension(:) :: cNew, cOld
-   real(kind=prec)                    :: deltaC
+   real(kind=prec)                    :: deltaC, cBatt
   
    !predList(:,:) = -1!inan(1)
    !succList(:,:) = -1!inan(1)
@@ -420,6 +422,11 @@ contains
                     deltaC = pecPenalty(cNew,cOld,pointTime(j))
                   case('Economic')
                     deltaC = fireCost(cNew,cOld)
+                    if(elStor) then 
+                      cBatt  = cycleCost(cNew, cOld)
+                    else 
+                      cBatt = zero
+                    endif
                end select
                succCost(i,j) = pointCost(i) + deltaC
             enddo

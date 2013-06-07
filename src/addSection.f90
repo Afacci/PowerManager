@@ -46,7 +46,7 @@ contains
 
 
       implicit none
-      integer :: i, j, k, l
+      integer :: i, j, k, l, kk
       integer, dimension(2)  :: ext1,ext2,ext3
       character(len=100)     :: word
       real(kind=prec), dimension(4) :: tCorr, pCorr
@@ -95,6 +95,17 @@ contains
             pef(i) = pefT(j)
             pecOn(i) = pecOnT(j)
          endif
+!         !---time constraints
+!         nTv(j) = minUpTime(j)/3.6e3 + 1
+!         do k=1,ntv(j)
+!            timeVinc(k,j) = (k - 1)*3.6e3
+!         enddo
+!         !min non-running time
+!         kk = nm0 + j
+!         nTv(kk) = minDownTime(j)/3.6e3 + 1
+!         do k=1,ntv(kk)
+!            timeVinc(k,kk) = (k - 1)*3.6e3
+!         enddo
       enddo
 
 
@@ -136,7 +147,7 @@ contains
      
       implicit none
 
-      integer :: i, j, k, l
+      integer :: i, j, k, l, kk
       character(len=100)     :: cdummy
       integer, dimension(2)  :: ext
       character(len=100)     :: word
@@ -189,6 +200,17 @@ contains
             pef(i) = pefB(j)
             pecOn(i) = pecOnB(j)
          endif
+ !        !---time constraints
+ !        nTv(j) = minUpTime(j)/3.6e3 + 1
+ !        do k=1,ntv(j)
+ !           timeVinc(k,j) = (k - 1)*3.6e3
+ !        enddo
+ !        !min non-running time
+ !        kk = nm0 + j
+ !        nTv(kk) = minDownTime(j)/3.6e3 + 1
+ !        do k=1,ntv(kk)
+ !           timeVinc(k,kk) = (k - 1)*3.6e3
+ !        enddo
       enddo
 
       k = 0
@@ -208,8 +230,8 @@ contains
             pCorr(1) = scalarInterp(presCorrB(:,1,k), presCorrB(:,2,k), npcB(k), pAmb(i))
             pCorr(2) = scalarInterp(presCorrB(:,1,k), presCorrB(:,3,k), npcB(k), pAmb(i))
 
-            envCorr(i,j,2) = tCorr(l)*pCorr(l)*aCorr(i,1)
-            envCorr(i,j,4) = tCorr(l)*pCorr(l)*aCorr(i,2)
+            envCorr(i,j,2) = tCorr(1)*pCorr(1)*aCorr(i,1)
+            envCorr(i,j,4) = tCorr(2)*pCorr(2)*aCorr(i,2)
          enddo
       enddo
    
@@ -221,7 +243,7 @@ contains
 
       implicit none
 
-      integer :: j, i, k, l
+      integer :: j, i, k, l, kk
       integer, dimension(2)  :: ext
       character(len=100)     :: word
       real(kind=prec), dimension(2) :: tCorr, pCorr
@@ -261,6 +283,17 @@ contains
             if(ChiPriority(j).gt.nChi) call abortExecution(23,j)
             ChiPriority(j) = chiPriority(j) + is(iC) - 1
          endif
+ !        !---time constraints
+ !        nTv(j) = minUpTime(j)/3.6e3 + 1
+ !        do k=1,ntv(j)
+ !           timeVinc(k,j) = (k - 1)*3.6e3
+ !        enddo
+ !        !min non-running time
+ !        kk = nm0 + j
+ !        nTv(kk) = minDownTime(j)/3.6e3 + 1
+ !        do k=1,ntv(kk)
+ !           timeVinc(k,kk) = (k - 1)*3.6e3
+ !        enddo
       enddo
 
 
@@ -281,8 +314,8 @@ contains
             pCorr(1) = scalarInterp(presCorrC(:,1,k), presCorrC(:,2,k), npcC(k), pAmb(i))
             pCorr(2) = scalarInterp(presCorrC(:,1,k), presCorrC(:,3,k), npcC(k), pAmb(i))
 
-            envCorr(i,j,3) = tCorr(l)*pCorr(l)*aCorr(i,1)
-            envCorr(i,j,4) = tCorr(l)*pCorr(l)*aCorr(i,2)
+            envCorr(i,j,3) = tCorr(1)*pCorr(1)*aCorr(i,1)
+            envCorr(i,j,4) = tCorr(2)*pCorr(2)*aCorr(i,2)
          enddo
       enddo
 
@@ -295,7 +328,7 @@ contains
 
      implicit none
      
-     integer :: i, j ,k , nSoc
+     integer :: i, j ,k 
      real(kind=prec) :: dsoc, dsp, dtmin
 
      if(capacityTS.gt.zero) then
@@ -331,6 +364,13 @@ contains
          soc(1) = 0
      endif
 
+!     !Thermal storage capacity constraint
+!     k = 2*nm0 + 1
+!     nTv(k) = nSoc
+!     do j=1,nsoc
+!        timeVinc(j,k) = soc(j)
+!     enddo
+
    end subroutine addThermalStorage
 
 !=========================================================================================
@@ -339,7 +379,7 @@ contains
 
      implicit none
 
-     integer :: i, j ,k , nSocEl
+     integer :: i, j ,k 
      real(kind=prec) :: dsocEl, dspEl, dtmin
 
      if(capacityES.gt.zero.and.pMaxEs.gt.zero) then
@@ -375,6 +415,12 @@ contains
          Esoc(1) = 0
      endif
 
+ !    k = 2*nm0 + 2
+ !    nTv(k) = nSocEl
+ !    do j=1,nSocEL
+ !       timeVinc(j,k) = Esoc(j)
+ !    enddo
+ !
    end subroutine addElectricalStorage
 
 !=========================================================================================

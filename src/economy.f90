@@ -444,5 +444,43 @@ end select
 return
 
 end function gridEconomy
+!==============================================================================================================
+
+!>\brief 
+!> Calculates the cost associated to each battery charge cycle.
+!>\details
+!> Calculates the cost associated to each battery charge cycle.
+!>\f[
+!> C_{l} > 0 \qquad \mbox{if} \qquad sp(t,i) > 0 \;\mbox{and}\; sp(t-1,i) = 0
+!>\f]
+!> this cost will be added to the operative profit to for the arc profit/cost.
+!>\param[in] c index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
+!>\param[in] t time step index. Note t=x meas the x'th time step from the
+!> simulation start.
+!>\author Andrea Facci
+real(kind = prec) function cycleCost(cNew, cOld)
+
+use shared
+use plantVar
+use inputVar
+
+implicit none
+
+integer, intent (in), dimension(nm) :: cNew, cOld
+integer :: i,j,k
+real(kind = prec) :: spNew, spOld
+
+cycleCost = zero
+
+i = is(iEs)
+spNew = sp(cNew(i),i)
+spOld = sp(cOld(i),i)
+if(spNew.gt.0.and.spOld.le.0) cycleCost = cycleCost + swCost
+
+return
+
+end function cycleCost
+
+!================================================================================================
 
 end module economy

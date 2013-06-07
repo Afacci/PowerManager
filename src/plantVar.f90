@@ -51,6 +51,7 @@ integer,                       dimension(5)      :: is,ie
 integer,          allocatable, dimension(:)      :: nSp, nTv, eSource
 character(len=50), allocatable, dimension(:)     :: tec
 real(kind=prec), allocatable, dimension(:)       :: sunEl, sunTh , windEl
+logical                                          :: elStor = .false.
 
 integer, parameter :: iT = 1, iB = 2, iC = 3, iTS = 4, iES = 5
 

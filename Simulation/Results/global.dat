@@ -7,16 +7,16 @@
  #--------------------------------------------------------------------------#
 
  ---------------Revenues---------------------------------
- Electric Revenues:   -609.989380     €
+ Electric Revenues:   -4248.66846     €
  Thermal Revenues :    0.00000000     €
  Chilling Revenues:    0.00000000     €
- Total Revenues   :   -609.989380     €
+ Total Revenues   :   -4248.66846     €
  ---------------Costs---------------------------------
- Fuel Costs       :    917.177979     €
- Maintenace Costs :    66.0000000     €
- On-Off Costs     :    66.0000000     €
- Totat Costs      :    1049.17798     €
+ Fuel Costs       :   -49584292.0     €
+ Maintenace Costs :    88.0000000     €
+ On-Off Costs     :    44.0000000     €
+ Totat Costs      :   -49584160.0     €
  ---------------Profits---------------------------------
- Profits          :   -1659.16736     €
+ Profits          :    49579912.0     €
  --------------Primary ebergy consumption----------------------
- Pec              :    2.85792E+08    kJ
+ Pec              :   -5.15911E+12    kJ
