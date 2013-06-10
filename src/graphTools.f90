@@ -38,7 +38,7 @@ use interfaces
 
 integer                                                :: nComb     !> number of combination of the given set point vectors
 integer,                                       private :: nTvComb   !> number of combination of the time-constraints vectors.
-real(kind = prec), allocatable, dimension(:,:)         :: comb      !> array of all the possible set point indexes combinations (one combination per row)
+integer          , allocatable, dimension(:,:)         :: comb      !> array of all the possible set point indexes combinations (one combination per row)
 real(kind = prec), allocatable, dimension(:,:)         :: spVal     !> array of all the possible set point valiues combinations (one combination per row)
 real(kind = prec), allocatable, dimension(:,:),private :: tState    !> array of all the possible stime-constraints combinations (one combination per row)
 integer         , allocatable, dimension(:,:), private :: pointLoad !> set point of each vertex of the graph
@@ -251,12 +251,12 @@ contains
    !---Declare Local Variables---
    implicit none
   
-   integer, allocatable, dimension(:,:) :: cl_
-   real(kind = prec), allocatable, dimension(:)   :: cost_, time_
-   integer         , allocatable, dimension(:)   :: startLoad 
-   integer :: i,j,n, iStart, iii
-   integer , allocatable, dimension(:) :: load
-   logical :: v, error, e1, ch
+   integer          , allocatable, dimension(:,:):: cl_
+   real(kind = prec), allocatable, dimension(:)  :: cost_, time_
+   integer          , allocatable, dimension(:)  :: startLoad 
+   integer          , allocatable, dimension(:)  :: load
+   integer                                       :: i,j,n, iStart, iii
+   logical                                       :: v, error, e1, ch
 
    ch = .false.
    e1 = .false.
@@ -279,6 +279,7 @@ contains
             e1   = thRedundant(load,i)
             ch   = chRedundant(load,i)
          endif
+!         print*, 'constraints', v, load
          if(v.and.(.not.e1).and.(.not.ch)) then
             !inserire controllo minimo locale in funzione dello stato degli
             !accumuli.

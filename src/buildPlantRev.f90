@@ -69,7 +69,7 @@ real(kind = prec), allocatable, dimension(:,:)   :: upTimeVinc, downTimeVinc
 real(kind = prec), dimension(1)                  :: rdummy1, rdummy2
 real(kind = prec), dimension(:,:,:), allocatable :: tCorr, pCorr
 real(kind = prec), dimension(:,:), allocatable   :: aCorr
-integer                                          :: nMax
+integer                                          :: nMax, n1, n2, n3
 
 !--subroutine body-----
 
@@ -89,21 +89,44 @@ if(capacityES.gt.zero.and.PmaxES.gt.zero) then
 endif
 
 nSpTot = 0
-if(nBoi.gt.0) nSpTot = nSpTot + sum(nSpT)
-if(nBoi.gt.0) nSpTot = nSpTot + sum(nSpB)
-if(nChi.gt.0) nSpTot = nSpTot + sum(nSpC)
-if(capacityTS.gt.zero) nSpTot = nSpTot + 2*nSpTS + 1
-if(capacityES.gt.zero) nSpTot = nSpTot + 2*nSpES + 1
-
+if(nBoi.gt.0) then 
+   nSpTot = nSpTot + sum(nSpT)
+   n1     = maxval(nSpT)
+else
+   n1 = 0
+endif
+if(nBoi.gt.0) then 
+   nSpTot = nSpTot + sum(nSpB)
+   n2     = maxval(nSpB)
+else
+   n2 = 0
+endif
+if(nChi.gt.0) then 
+   nSpTot = nSpTot + sum(nSpC)
+   n3 = maxval(nSpC)
+else
+   n3 = 0
+endif
+if(capacityTS.gt.zero.and.pmaxTs.gt.zero) then 
+   nSpTot = nSpTot + 2*nSpTS + 1
+else
+   nSpTS = 0
+endif
+if(capacityES.gt.zero.and.pmaxTs.gt.zero) then 
+   nSpTot = nSpTot + 2*nSpES + 1
+else
+   nSpES = 0
+endif
 call allocateVar(17)
 
-nMax = max(maxval(nSpT), maxval(nSpB), maxval(nSpC), 2*nSpTS + 1,2*nSpES + 1)
+nMax = max(n1, n2, n3, 2*nSpTS + 1,2*nSpES + 1)
 call allocateVar(18,nMax)
 call allocateVar(32)
 
 sp(:,:) = rNan(rVal)
 eSource(:) = -1
 envCorr = rNaN(rVal)
+cr(:,:) = 0
 
 is(iT) = 1                   !Trigeneration
 ie(iT) = nTrig                             
@@ -192,7 +215,6 @@ cTh(:,:)        = cTh(:,:)*kJ_kWh
 cCh(:,:)        = cCh(:,:)*kJ_kWh
 c_st = c_st*kJ_kWh
 c_tr = c_tr*kJ_kWh
-
 
 call deallocateVar(1)
 

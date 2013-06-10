@@ -86,6 +86,8 @@ p = thProd(c,t)
 u = sum(uTh(t,:)) + thSelfCons(c,t)
 if(p.lt.u) constraints = .false.
 
+!print*, 'constraints', thProd(c,t), c
+
 
 end function constraints
 

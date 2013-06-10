@@ -99,14 +99,13 @@ use shared
 !---Declare Local Variables---
 implicit none
 
-integer                       , intent(in)  :: n
-real(kind = prec), dimension(n), intent(in)  :: xIn, yIn
-real(kind = prec), intent(in)  :: x
-integer         , dimension(2), intent(out), optional :: warn
-real(kind = prec)              :: scalarInterp
-
-real(kind = prec) :: xL, xU, yL, yU
-integer          :: i,j
+integer,                         intent(in)            :: n
+real(kind = prec), dimension(n), intent(in)            :: xIn, yIn
+real(kind = prec),               intent(in)            :: x
+integer          , dimension(2), intent(out), optional :: warn
+real(kind = prec)                                      :: scalarInterp
+real(kind = prec)                                      :: xL, xU, yL, yU
+integer                                                :: i,j
 
 !---procedure body----
 
@@ -129,5 +128,7 @@ xU = xIn(i)
 yL = yIn(i-1)
 yU = yIn(i) 
 ScalarInterp = yL + (x - xL)*(yU - yL)/(xU - xL)
+
+return
 
 end function scalarInterp

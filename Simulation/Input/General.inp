@@ -41,9 +41,9 @@ objective       | Economic |
 GridPEF         | 2.174 |
 Algorithm       | Backward        |
 !---------Initial Conditions------------------------------
-StartPoint      | 0.0   0.0  0.0 0.0 |  
-UpTime          | 0     0    0  |         
-DownTime        | 2     2    2  |
+StartPoint      | 0.0   0.0 |! 0.0|! 0.0 |  
+UpTime          | 0     0   |! 0  |         
+DownTime        | 2     2   |! 2  |
 FirstTimeStep   | 1             |
 ThermalStorageLevel|  0.0 0.0   |
 ElectricalStorageLevel|  0.0 0.0   |

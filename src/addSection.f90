@@ -44,14 +44,12 @@ contains
 
    subroutine addTrigenerative
 
-
       implicit none
-      integer :: i, j, k, l, kk
-      integer, dimension(2)  :: ext1,ext2,ext3
-      character(len=100)     :: word
-      real(kind=prec), dimension(4) :: tCorr, pCorr
-      real(kind=prec), dimension(ntime,4) ::aCorr
-
+      integer                             :: i, j, k, l, kk
+      integer,           dimension(2)     :: ext1,ext2,ext3
+      character(len=100)                  :: word
+      real(kind=prec),   dimension(4)     :: tCorr, pCorr
+      real(kind=prec),   dimension(nm0,4) :: aCorr
 
       if(nTrig.ge.0) then
          do i=1,nTrig
@@ -112,10 +110,10 @@ contains
       k = 0
       do j=is(iT),ie(iT)
          k = k + 1
-         aCorr(i,1) = scalarInterp(altCorrT(:,1,k), altCorrT(:,2,k), nacT(k), altitude(1))
-         aCorr(i,2) = scalarInterp(altCorrT(:,1,k), altCorrT(:,3,k), nacT(k), altitude(1))
-         aCorr(i,3) = scalarInterp(altCorrT(:,1,k), altCorrT(:,4,k), nacT(k), altitude(1))
-         aCorr(i,4) = scalarInterp(altCorrT(:,1,k), altCorrT(:,5,k), nacT(k), altitude(1))
+         aCorr(k,1) = scalarInterp(altCorrT(:,1,k), altCorrT(:,2,k), nacT(k), altitude(1))
+         aCorr(k,2) = scalarInterp(altCorrT(:,1,k), altCorrT(:,3,k), nacT(k), altitude(1))
+         aCorr(k,3) = scalarInterp(altCorrT(:,1,k), altCorrT(:,4,k), nacT(k), altitude(1))
+         aCorr(k,4) = scalarInterp(altCorrT(:,1,k), altCorrT(:,5,k), nacT(k), altitude(1))
       enddo
 
       do i=1,nTime
@@ -133,7 +131,7 @@ contains
             pCorr(4) = scalarInterp(presCorrT(:,1,k), presCorrT(:,5,k), npcT(k), pAmb(i))
 
             do l = 1,4 
-               envCorr(i,j,l) = tCorr(l)*pCorr(l)*aCorr(i,l)
+               envCorr(i,j,l) = tCorr(l)*pCorr(l)*aCorr(k,l)
             enddo
          enddo
 
@@ -152,7 +150,7 @@ contains
       integer, dimension(2)  :: ext
       character(len=100)     :: word
       real(kind=prec), dimension(2) :: tCorr, pCorr
-      real(kind=prec), dimension(ntime,2) ::aCorr
+      real(kind=prec), dimension(nm0,2) ::aCorr
 
 
       if(nBoi.gt.0) then
@@ -216,8 +214,8 @@ contains
       k = 0
       do j=is(iB),ie(iB)
          k = k + 1
-         aCorr(i,1) = scalarInterp(altCorrB(:,1,k), altCorrB(:,2,k), nacB(k), altitude(1))
-         aCorr(i,2) = scalarInterp(altCorrB(:,1,k), altCorrB(:,3,k), nacB(k), altitude(1))
+         aCorr(k,1) = scalarInterp(altCorrB(:,1,k), altCorrB(:,2,k), nacB(k), altitude(1))
+         aCorr(k,2) = scalarInterp(altCorrB(:,1,k), altCorrB(:,3,k), nacB(k), altitude(1))
       enddo
 
       do i=1,nTime
@@ -230,8 +228,8 @@ contains
             pCorr(1) = scalarInterp(presCorrB(:,1,k), presCorrB(:,2,k), npcB(k), pAmb(i))
             pCorr(2) = scalarInterp(presCorrB(:,1,k), presCorrB(:,3,k), npcB(k), pAmb(i))
 
-            envCorr(i,j,2) = tCorr(1)*pCorr(1)*aCorr(i,1)
-            envCorr(i,j,4) = tCorr(2)*pCorr(2)*aCorr(i,2)
+            envCorr(i,j,2) = tCorr(1)*pCorr(1)*aCorr(k,1)
+            envCorr(i,j,4) = tCorr(2)*pCorr(2)*aCorr(k,2)
          enddo
       enddo
    
@@ -300,8 +298,8 @@ contains
       k = 0
       do j=is(iC),ie(iC)
          k = k + 1
-         aCorr(i,1) = scalarInterp(altCorrC(:,1,k), altCorrC(:,2,k), nacC(k), altitude(1))
-         aCorr(i,2) = scalarInterp(altCorrC(:,1,k), altCorrC(:,3,k), nacC(k), altitude(1))
+         aCorr(k,1) = scalarInterp(altCorrC(:,1,k), altCorrC(:,2,k), nacC(k), altitude(1))
+         aCorr(k,2) = scalarInterp(altCorrC(:,1,k), altCorrC(:,3,k), nacC(k), altitude(1))
       enddo
 
       do i=1,nTime
@@ -314,8 +312,8 @@ contains
             pCorr(1) = scalarInterp(presCorrC(:,1,k), presCorrC(:,2,k), npcC(k), pAmb(i))
             pCorr(2) = scalarInterp(presCorrC(:,1,k), presCorrC(:,3,k), npcC(k), pAmb(i))
 
-            envCorr(i,j,3) = tCorr(1)*pCorr(1)*aCorr(i,1)
-            envCorr(i,j,4) = tCorr(2)*pCorr(2)*aCorr(i,2)
+            envCorr(i,j,3) = tCorr(1)*pCorr(1)*aCorr(k,1)
+            envCorr(i,j,4) = tCorr(2)*pCorr(2)*aCorr(k,2)
          enddo
       enddo
 

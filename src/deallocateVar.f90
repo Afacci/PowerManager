@@ -50,20 +50,43 @@ integer :: nMax, maxSize, np, nMax1, nMax2
 select case(what)
     case(1)
         !readTrigenration
-        deallocate(pMaxT, fuelCostT, fuelLHVT, fireCostT,                          &
-                   maintCostT, nSpT, nEtaElT, nEtaThT, nEtaChT, tecT,      &
-                   minUpTimeT, minDownTimeT, ntcT, npcT, nacT, spT,etaElT, &
-                   etaThT,etaChT)
+        if (nTrig.gt.0) then
+           deallocate(pMaxT, fuelCostT, fuelLHVT, fireCostT,                          &
+                      maintCostT, nSpT, nEtaElT, nEtaThT, nEtaChT, tecT,      &
+                      minUpTimeT, minDownTimeT, ntcT, npcT, nacT, spT,etaElT, &
+                      etaThT,etaChT)
+        endif
         !--readBoilers
-        deallocate(pMaxB, fuelCostB, fuelLHVB, fireCostB,                         & 
-                   maintCostB, nSpB, minUpTimeB, minDownTimeB, ntcB, npcB, nacB,  &
-                   nEtaB, tecB, spB, etaB)
+        if (nBoi.gt.0) then
+           deallocate(pMaxB, fuelCostB, fuelLHVB, fireCostB,                         & 
+                      maintCostB, nSpB, minUpTimeB, minDownTimeB, ntcB, npcB, nacB,  &
+                      nEtaB, tecB, spB, etaB)
+        endif
         !---readChillers
-        deallocate(pMaxC, fireCostC, maintCostC, nSpC, minUpTimeC, & 
-                   minDownTimeC,nEtaC, tecC, ntcC, npcC, nacC, spC, etaC)
+        if(nChi.gt.0) then
+          deallocate(pMaxC, fireCostC, maintCostC, nSpC, minUpTimeC, & 
+                     minDownTimeC,nEtaC, tecC, ntcC, npcC, nacC, spC, etaC)
+        endif
    !---buildPlant
-        deallocate(etaElT_, etaThT_, etaChT_, etaB_, etaC_)
-        deallocate(presCorrT,altCorrT,tempCorrB,presCorrB,altCorrB,tempCorrC,presCorrC,altCorrC)
+        if (allocated(etaElT_)) deallocate(etaElT_)
+        if (allocated(etaThT_)) deallocate(etaThT_)
+        if (allocated(etaChT_)) deallocate(etaChT_)
+        if (allocated(etaB_)) deallocate(etaB_)
+        if (allocated(etaC_)) deallocate(etaC_)
+!        deallocate(etaElT_, etaThT_, etaChT_, etaB_, etaC_)
+        if(allocated(presCorrT)) deallocate(presCorrT)
+        if(allocated(altCorrT)) deallocate(altCorrT)
+        if(allocated(tempCorrT)) deallocate(tempCorrT)
+
+        if(allocated(presCorrB)) deallocate(presCorrB)
+        if(allocated(altCorrB)) deallocate(altCorrB)
+        if(allocated(tempCorrB)) deallocate(tempCorrB)
+
+        if(allocated(presCorrC)) deallocate(presCorrC)
+        if(allocated(altCorrC)) deallocate(altCorrC)
+        if(allocated(tempCorrC)) deallocate(tempCorrC)
+        
+        !deallocate(presCorrT,altCorrT,tempCorrB,presCorrB,altCorrB,tempCorrC,presCorrC,altCorrC)
 end select
 
 end subroutine deallocateVar
