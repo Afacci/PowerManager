@@ -398,7 +398,7 @@ contains
 
      implicit none
 
-     integer                                    :: i, j ,k 
+     integer                                    :: i, j ,k, ii
      real(kind=prec)                            :: dsocEl, dspEl, dtmin
      real(kind=prec), allocatable, dimension(:) :: iDiff, eDiff
 
@@ -415,10 +415,18 @@ contains
          enddo
          sp(nSpES + 1,j) = zero
          cr(nSpES + 1,j) = nSpEs + 1
-         do i= nSpTS + 2, nSp(j)
-            sp(i,j) = sp(i-1,j) + dspEl
+!         do i= nSpTS + 2, nSp(j)
+!            sp(i,j) = sp(i-1,j) + dspEl
+!            cr(i,j) = i
+!         enddo  
+         ii = 0
+         do i= nSpES + 2, nSp(j)
+            ii = ii + 1
+            k = nSpTs + 1 - ii
+            sp(i,j) = -sp(k,j) 
             cr(i,j) = i
          enddo
+
          iSocEl = iSocTh*capacityES
          eSocEl = eSocTh*capacityES
          dtmin    = minval(dt)
@@ -432,7 +440,7 @@ contains
          enddo
          do i=1,nSoc
             iDiff(i) = abs(Esoc(i) - iSocEl)
-            eDiff(i) = abs(Esoc(i) - eSocEl )
+            eDiff(i) = abs(Esoc(i) - eSocEl)
          enddo
          i = minloc(iDiff,1)
          iSocEl = Esoc(i)
