@@ -291,7 +291,7 @@ contains
  !        nTv(kk) = minDownTime(j)/3.6e3 + 1
  !        do k=1,ntv(kk)
  !           timeVinc(k,kk) = (k - 1)*3.6e3
- !        enddo
+ !        enddo2
       enddo
 
 
@@ -326,8 +326,9 @@ contains
 
      implicit none
      
-     integer :: i, j ,k 
-     real(kind=prec) :: dsoc, dsp, dtmin
+     integer                                    :: i, j ,k , ii
+     real(kind=prec)                            :: dsoc, dsp, dtmin
+     real(kind=prec), allocatable, dimension(:) :: iDiff, eDiff
 
      if(capacityTS.gt.zero) then
          j = is(iTS) 
@@ -342,8 +343,16 @@ contains
          enddo
          sp(nSpTS + 1,j) = zero
          cr(nSpTS + 1,j) = nSpTs + 1
+!         do i= nSpTS + 2, nSp(j)
+!            sp(i,j) = sp(i-1,j) + dsp
+!            sp(i,j) = min(sp(i,j),1.0)
+!            cr(i,j) = i
+!         enddo
+         ii = 0
          do i= nSpTS + 2, nSp(j)
-            sp(i,j) = sp(i-1,j) + dsp
+            ii = ii + 1
+            k = nSpTs + 1 - ii
+            sp(i,j) = -sp(k,j) 
             cr(i,j) = i
          enddo
          iSocTh = iSocTh*capacityTS
@@ -352,10 +361,22 @@ contains
          dsoc   = dsp*dtmin*pMaxTS
          nsoc   = floor(capacityTs/(dsoc)) + 1
          allocate(soc(nsoc), socTh(0:nTime+1))
+         allocate(iDiff(nSoc), eDiff(nSoc))
          soc(1) = zero
          do i=2,nsoc
             soc(i) = soc(i-1) + dsoc
+            iDiff(i) = abs(soc(i) - iSocTh)
+            eDiff(i) = abs(soc(i) - eSocTh)
          enddo
+         do i=1,nSoc
+            iDiff(i) = abs(soc(i) - iSocTh)
+            eDiff(i) = abs(soc(i) - eSocTh)
+         enddo
+         i      = minloc(iDiff,1)
+         iSocTh = soc(i)
+         i      = minloc(eDiff,1)
+         eSocTh = soc(i)
+         deallocate(iDiff, eDiff)
      else
          nsoc = 1
          allocate(soc(nsoc), socTh(0:nTime+1))
@@ -377,8 +398,9 @@ contains
 
      implicit none
 
-     integer :: i, j ,k 
-     real(kind=prec) :: dsocEl, dspEl, dtmin
+     integer                                    :: i, j ,k 
+     real(kind=prec)                            :: dsocEl, dspEl, dtmin
+     real(kind=prec), allocatable, dimension(:) :: iDiff, eDiff
 
      if(capacityES.gt.zero.and.pMaxEs.gt.zero) then
          j = is(iES) 
@@ -403,10 +425,20 @@ contains
          dsocEL   = dspEl*dtmin*pMaxES
          nsocEl   = floor(capacityEs/(dsocEl)) + 1
          allocate(Esoc(nsocEl), socEl(0:nTime+1))
+         allocate(iDiff(nSocEl), eDiff(nSocEl))
          Esoc(1) = zero
          do i=2,nsocEL
             Esoc(i) = Esoc(i-1) + dsocEl
          enddo
+         do i=1,nSoc
+            iDiff(i) = abs(Esoc(i) - iSocEl)
+            eDiff(i) = abs(Esoc(i) - eSocEl )
+         enddo
+         i = minloc(iDiff,1)
+         iSocEl = Esoc(i)
+         i = minloc(eDiff,1)
+         eSocEl = Esoc(i)
+         deallocate(iDiff, eDiff)
      else
          nsocEl = 1
          allocate(Esoc(nsoc), socEl(0:nTime+1))

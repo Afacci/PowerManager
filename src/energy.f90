@@ -157,9 +157,10 @@ if(nBoi.gt.0) then
 endif
 
 !--production from thermal storage.
-if(pMaxTS.gt.zero.and.capacityTS.gt.zero) then
+if(pMaxTS.gt.zero.and.capacityTS.gt.zero.and.PmaxTs.gt.zero) then
    i    = is(iTS)
    j    = c_(i)
+!   if(t.eq.1.and.j.eq.13) print*, 'debugThProd', ' Pmax= ', pMax(i) , 'sp = ', sp(j,i), 'eta= ', etaTSout
    if(sp(j,i).gt.zero) thProd  =  thProd + pMax(i)*sp(j,i)*etaTSout
 endif
 

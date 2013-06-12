@@ -147,6 +147,8 @@ real(kind=prec)                    :: newLevel
 
 thStorageConstr = .true.
 
+if(capacityTS.le.zero.or.PmaxTS.le.zero) return
+
 newLevel = thStorageLevelUpdate(oldLevel,c,t)
 
 if(newLevel.lt.zero)       thStorageConstr = .false.
@@ -179,12 +181,14 @@ real(kind=prec)                    :: newLevel
 
 elStorageConstr = .true.
 
+if(capacityES.le.zero.or.PmaxES.le.zero) return
+
 newLevel = elStorageLevelUpdate(oldLevel,c,t)
 
 if(newLevel.lt.zero)       elStorageConstr = .false.
 if(newLevel.gt.capacityES) elStorageConstr = .false.
 if(t.eq.nTime) then
-   if(newLevel.ne.eSocTh)  elStorageConstr = .false.
+   if(newLevel.ne.eSocEl)  elStorageConstr = .false.
 endif
 
 return

@@ -242,7 +242,7 @@ select case(i)
     case(28)
         print*,'Could not find "', trim(ThStorage(j)) ,'" in ThermalStorage.inp'
     case(29)
-        print*,'No feasible paths from time ', j,' to time ', j + 1, '.Entering time-step with plant state', iVec(1:nm)
+        print*,'No feasible paths from time ', j,' to time ', j + 1, '.Entering time-step with plant state', iVec(1:2*(nm-2) + 2)
     case(30)
         print*, 'The Simple model for photovoltaic or solar collectors requires the specification '
         print*, 'of hourly solar direct and diffused irradiance.'

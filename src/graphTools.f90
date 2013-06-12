@@ -279,7 +279,6 @@ contains
             e1   = thRedundant(load,i)
             ch   = chRedundant(load,i)
          endif
-!         print*, 'constraints', v, load
          if(v.and.(.not.e1).and.(.not.ch)) then
             !inserire controllo minimo locale in funzione dello stato degli
             !accumuli.
@@ -289,6 +288,10 @@ contains
             nt(i)    = nt(i) + 1
             cl_(n,:) = load            
             cost_(n) = objFunction(load,i,obj)
+!               if(i.eq.1) then 
+!                  print*, 'debug', 'load = ', load(5) , elProd(load,i), currCost(load,i), fuelCost(load,i) ,& 
+!                    elRev(load,i) , thRev(i) , chRev(i) , maintenanceCost(load,i)
+!               endif
          endif
       enddo
    enddo
@@ -429,7 +432,7 @@ contains
                       cBatt = zero
                     endif
                end select
-               succCost(i,j) = pointCost(i) + deltaC
+               succCost(i,j) = pointCost(i) + deltaC + cBatt
             enddo
          enddo
        end select
@@ -525,7 +528,7 @@ contains
    subroutine minPathTopoBw(ottLoad, minCost,upTime, minPath)
    
    use inputVar, only : nTime, upTime0, downTime0, iSocTh, iSocEl
-   use plantVar, only : nm, minUpTime, minDownTime, nm0, soc, nSoc, socTh, sp, iTs, iEs, is
+   use plantVar, only : nm, minUpTime, minDownTime, nm0, soc, nSoc, socTh, sp, iTs, iEs, is, eSocTh
    use mathTools
    use energy
 
@@ -579,7 +582,7 @@ contains
          endif
       enddo
    enddo
-   
+
    minCost            = pathCost(orig,1)
    minPath(nTime+1)   = dest
    minPath(0)         = orig
@@ -599,12 +602,19 @@ contains
       t = t + 1
       ki = locateRow(upTime(t-1,:),tState,2*nm0 + 2,nTvComb)
       upTime(t,:) = upTimeCalc(upTime(t-1,:),pointLoad(p,:),t-1)
-!     print*, t, p, ki, minsucc(p,1:10)
       p = minSucc(p,ki)
+
       if(p.eq.-1) call abortExecution(29,t, iVec=upTime(t-1,:))
       minPath(t)  = p
       ottLoad(t,:)= pointLoad(p,:)
+      if (t.eq.1) print*, 'ki = ', ki, ' minuscc ',p, 'load = ', ottLoad(t,:) 
+      if (t.eq.1) print*, 'upTime = ', upTime(t,:) 
+      if (t.eq.1) print*, 'uptimeOld = ', uptime(t-1,:)
    enddo
+
+!   do i=1, nTvComb
+!      print*, 'tstate(',i,')= ', tstate(i,:)
+!   enddo
 
    deallocate(minSucc)
    deallocate(succList)

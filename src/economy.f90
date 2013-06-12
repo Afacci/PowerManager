@@ -297,7 +297,7 @@ integer,                intent(in) :: t
 integer                            :: i,j
 
 maintenanceCost = zero
-do j=1,nm
+do j=1,nm0
    i = c(j)
    if(sp(i,j).gt.0) maintenanceCost = maintenanceCost + OeMCost(j)*dt(t)
 enddo
