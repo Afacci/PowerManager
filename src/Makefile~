@@ -28,6 +28,7 @@ MODS = \
 ../obj/mathTools.o \
 ../obj/interfaces.o \
 ../obj/cmdVar.o \
+../obj/constraints.o \
 ../obj/energy.o \
 ../obj/economy.o \
 ../obj/euristics.o \
@@ -36,7 +37,8 @@ MODS = \
 ../obj/getSetPoint.o \
 ../obj/strategies.o \
 ../obj/sun.o \
-../obj/windPower.o
+../obj/windPower.o \
+../obj/addSection.o
 
 ################################################
 #  list of the files to be compiled            #
@@ -62,7 +64,6 @@ OBJS = \
 ../obj/commandline.o \
 ../obj/aiuto.o \
 ../obj/endExecution.o \
-../obj/constraints.o \
 ../obj/openUnit.o \
 ../obj/objFunction.o \
 ../obj/output.o \

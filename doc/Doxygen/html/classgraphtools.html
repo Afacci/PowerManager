@@ -105,6 +105,7 @@ $(document).ready(function(){initNavTree('classgraphtools.html','');});
   <div class="summary">
 <a href="#nested-classes">Data Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="modulegraphtools-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">graphtools Module Reference</div>  </div>
@@ -118,24 +119,35 @@ Collaboration diagram for graphtools:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="nested-classes"></a>
 Data Types</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacegraphtools_1_1constraints.html">constraints</a></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacegraphtools_1_1obj_function.html">objFunction</a></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacegraphtools_1_1time_constr.html">timeConstr</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4607d975b5dd57d2ca7fcdbab2b1ef56"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgraphtools.html#a4607d975b5dd57d2ca7fcdbab2b1ef56">allcombin</a> (icm, dcm, imax, m, targ)</td></tr>
 <tr class="memdesc:a4607d975b5dd57d2ca7fcdbab2b1ef56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates all the combinations of the set points, staring from the set-point vectors that are stored in the columns of "cm".  <a href="#a4607d975b5dd57d2ca7fcdbab2b1ef56"></a><br/></td></tr>
 <tr class="memitem:a94b8e6e5a3d3cc0c3bedbe00d57fc2f9"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgraphtools.html#a94b8e6e5a3d3cc0c3bedbe00d57fc2f9">graphpoints</a></td></tr>
-<tr class="memdesc:a94b8e6e5a3d3cc0c3bedbe00d57fc2f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates the graph veteces, starting from the array of the set-point combinations.  <a href="#a94b8e6e5a3d3cc0c3bedbe00d57fc2f9"></a><br/></td></tr>
+<tr class="memdesc:a94b8e6e5a3d3cc0c3bedbe00d57fc2f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates the graph vetexes, starting from the array of the set-point combinations.  <a href="#a94b8e6e5a3d3cc0c3bedbe00d57fc2f9"></a><br/></td></tr>
 <tr class="memitem:a47c76f30f7f4917536f94c642ffca865"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgraphtools.html#a47c76f30f7f4917536f94c642ffca865">grapharcs</a></td></tr>
 <tr class="memdesc:a47c76f30f7f4917536f94c642ffca865"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates the grapsh arcs.  <a href="#a47c76f30f7f4917536f94c642ffca865"></a><br/></td></tr>
 <tr class="memitem:ade3577b19aec190e8e056f041bc8afdf"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgraphtools.html#ade3577b19aec190e8e056f041bc8afdf">minpathtopofw</a> (ottLoad, minCost)</td></tr>
 <tr class="memdesc:ade3577b19aec190e8e056f041bc8afdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Miniumum path detemination.  <a href="#ade3577b19aec190e8e056f041bc8afdf"></a><br/></td></tr>
 <tr class="memitem:abef4e47145f628bc6d3001d4f6bd9601"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgraphtools.html#abef4e47145f628bc6d3001d4f6bd9601">minpathtopobw</a> (ottLoad, minCost, upTime, minPath)</td></tr>
 <tr class="memdesc:abef4e47145f628bc6d3001d4f6bd9601"><td class="mdescLeft">&#160;</td><td class="mdescRight">Miniumum path detemination.  <a href="#abef4e47145f628bc6d3001d4f6bd9601"></a><br/></td></tr>
-<tr class="memitem:a0a5fc60233fedc07e2a6297bfa1763ba"><td class="memItemLeft" align="right" valign="top">real(kind=prec) function, <br class="typebreak"/>
-dimension(2 *nm)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgraphtools.html#a0a5fc60233fedc07e2a6297bfa1763ba">uptimecalc</a> (upT, c, t)</td></tr>
+<tr class="memitem:a4c6b1425ce7fa1411c4550e4fb5de421"><td class="memItemLeft" align="right" valign="top">real(kind=prec) function, <br class="typebreak"/>
+dimension(2 *nm0+2)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgraphtools.html#a4c6b1425ce7fa1411c4550e4fb5de421">uptimecalc</a> (upT, c, t)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a2b525a855ff204b1f0888367afad341b"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgraphtools.html#a2b525a855ff204b1f0888367afad341b">ncomb</a></td></tr>
+<tr class="memitem:ad9b2084d88501c791d7004540a375e1b"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgraphtools.html#ad9b2084d88501c791d7004540a375e1b">given</a></td></tr>
+<tr class="memitem:a58276cd3a6f06eca01afff94e40135a3"><td class="memItemLeft" align="right" valign="top">integer, dimension(:,:), <br class="typebreak"/>
+allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgraphtools.html#a58276cd3a6f06eca01afff94e40135a3">comb</a></td></tr>
+<tr class="memitem:a06bc686e600e3a5ff5ca5cc86ac94872"><td class="memItemLeft" align="right" valign="top">integer, dimension(:,:), <br class="typebreak"/>
+allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgraphtools.html#a06bc686e600e3a5ff5ca5cc86ac94872">indexes</a></td></tr>
+<tr class="memitem:aa469ea301df7677b90448dfa88f26153"><td class="memItemLeft" align="right" valign="top">real(kind=prec), dimension(:,:), <br class="typebreak"/>
+allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgraphtools.html#aa469ea301df7677b90448dfa88f26153">spval</a></td></tr>
+<tr class="memitem:a637c15ec541e2e87680f381c2a542e27"><td class="memItemLeft" align="right" valign="top">real(kind=prec), dimension(:,:), <br class="typebreak"/>
+allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgraphtools.html#a637c15ec541e2e87680f381c2a542e27">valiues</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock">
@@ -172,7 +184,7 @@ dimension(2 *nm)&#160;</td><td class="memItemRight" valign="bottom"><a class="el
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">character(len=100), intent(in), optional&#160;</td>
+          <td class="paramtype">character(len=*), intent(in), optional&#160;</td>
           <td class="paramname"><em>targ</em>&#160;</td>
         </tr>
         <tr>
@@ -185,7 +197,7 @@ dimension(2 *nm)&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 <p>Generates all the combinations of the set points, staring from the set-point vectors that are stored in the columns of "cm". Each row of the array "comb" represents a set-point of the plant. The total number of states of the plant is also returned in the variable "nComb" </p>
 <dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
 
-<p>Definition at line <a class="el" href="graph_tools_8f90_source.html#l00102">102</a> of file <a class="el" href="graph_tools_8f90_source.html">graphTools.f90</a>.</p>
+<p>Definition at line <a class="el" href="graph_tools_8f90_source.html#l00130">130</a> of file <a class="el" href="graph_tools_8f90_source.html">graphTools.f90</a>.</p>
 
 <p>References <a class="el" href="abort_execution_8f90_source.html#l00042">abortexecution()</a>, and <a class="el" href="my_arithmetic_8f90_source.html#l00047">myarithmetic::rnan()</a>.</p>
 
@@ -211,9 +223,9 @@ dimension(2 *nm)&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 </p>
 <p> The number of predecessors for each vertex is asle stored in the "nPre(i)" array. </p>
 
-<p>Definition at line <a class="el" href="graph_tools_8f90_source.html#l00308">308</a> of file <a class="el" href="graph_tools_8f90_source.html">graphTools.f90</a>.</p>
+<p>Definition at line <a class="el" href="graph_tools_8f90_source.html#l00346">346</a> of file <a class="el" href="graph_tools_8f90_source.html">graphTools.f90</a>.</p>
 
-<p>References <a class="el" href="economy_8f90_source.html#l00355">economy::firecost()</a>.</p>
+<p>References <a class="el" href="economy_8f90_source.html#l00461">economy::cyclecost()</a>, <a class="el" href="economy_8f90_source.html#l00366">economy::firecost()</a>, and <a class="el" href="energy_8f90_source.html#l00697">energy::pecpenalty()</a>.</p>
 
 <p>Referenced by <a class="el" href="main_8f90_source.html#l00037">main()</a>.</p>
 
@@ -234,9 +246,9 @@ dimension(2 *nm)&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 <p>Generates the graph veteces, starting from the array of the set-point combinations. For each time-step determines which plant state respects the energy (staitc) constraints, and associates them to a graph vertex. A weight, that accounts for the costs/revenues of operating the power plant from time-step t to t+1 at the vertex state, is also calculated for each vertex. The time-step relative to each vertex and the number of verteces for each time step are associated to "pointTime" and "nt" vectors respectively. Vertex 0 will be the starting point of the graph and vertex nPoint + 1 the arriving point </p>
 <dl class="section author"><dt>Author</dt><dd>Andrea Facci. </dd></dl>
 
-<p>Definition at line <a class="el" href="graph_tools_8f90_source.html#l00206">206</a> of file <a class="el" href="graph_tools_8f90_source.html">graphTools.f90</a>.</p>
+<p>Definition at line <a class="el" href="graph_tools_8f90_source.html#l00240">240</a> of file <a class="el" href="graph_tools_8f90_source.html">graphTools.f90</a>.</p>
 
-<p>References <a class="el" href="abort_execution_8f90_source.html#l00042">abortexecution()</a>, <a class="el" href="euristics_8f90_source.html#l00138">euristics::chredundant()</a>, <a class="el" href="math_tools_8f90_source.html#l00054">mathtools::locaterow()</a>, <a class="el" href="obj_function_8f90_source.html#l00039">objfunction()</a>, and <a class="el" href="euristics_8f90_source.html#l00070">euristics::thredundant()</a>.</p>
+<p>References <a class="el" href="abort_execution_8f90_source.html#l00042">abortexecution()</a>, <a class="el" href="euristics_8f90_source.html#l00139">euristics::chredundant()</a>, <a class="el" href="math_tools_8f90_source.html#l00067">mathtools::locaterow()</a>, <a class="el" href="obj_function_8f90_source.html#l00039">objfunction()</a>, and <a class="el" href="euristics_8f90_source.html#l00071">euristics::thredundant()</a>.</p>
 
 <p>Referenced by <a class="el" href="main_8f90_source.html#l00037">main()</a>.</p>
 
@@ -261,7 +273,7 @@ dimension(2 *nm)&#160;</td><td class="memItemRight" valign="bottom"><a class="el
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">real(kind = prec), dimension(0:ntime+1,2*nm), intent(out)&#160;</td>
+          <td class="paramtype">real(kind = prec), dimension(0:ntime+1,2*nm0 + 2), intent(out)&#160;</td>
           <td class="paramname"><em>upTime</em>, </td>
         </tr>
         <tr>
@@ -280,9 +292,9 @@ dimension(2 *nm)&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 <p>This function determies the minumum path that connects the start point (0) to the arrival point of the graph (nPoint + 1), using backward dynamic programming. Specifically the oprimizazion the algorithm is tailored to sort acyclic graphs with topolgical ordering. Constraints on the duration of operative intervals (on and off states) are considered. </p>
 <dl class="section author"><dt>Author</dt><dd>Andrea Facci. </dd></dl>
 
-<p>Definition at line <a class="el" href="graph_tools_8f90_source.html#l00472">472</a> of file <a class="el" href="graph_tools_8f90_source.html">graphTools.f90</a>.</p>
+<p>Definition at line <a class="el" href="graph_tools_8f90_source.html#l00525">525</a> of file <a class="el" href="graph_tools_8f90_source.html">graphTools.f90</a>.</p>
 
-<p>References <a class="el" href="math_tools_8f90_source.html#l00054">mathtools::locaterow()</a>, <a class="el" href="constraints_8f90_source.html#l00094">timeconstr()</a>, and <a class="el" href="graph_tools_8f90_source.html#l00549">uptimecalc()</a>.</p>
+<p>References <a class="el" href="abort_execution_8f90_source.html#l00042">abortexecution()</a>, <a class="el" href="constraints_8f90_source.html#l00172">constr::elstorageconstr()</a>, <a class="el" href="math_tools_8f90_source.html#l00067">mathtools::locaterow()</a>, <a class="el" href="constraints_8f90_source.html#l00137">constr::thstorageconstr()</a>, <a class="el" href="constraints_8f90_source.html#l00101">constr::timeconstr()</a>, and <a class="el" href="graph_tools_8f90_source.html#l00618">uptimecalc()</a>.</p>
 
 <p>Referenced by <a class="el" href="main_8f90_source.html#l00037">main()</a>.</p>
 
@@ -314,20 +326,20 @@ dimension(2 *nm)&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 <p>This function determies the minumum path that connects the start point (0) to the arrival point of the graph (nPoint + 1), using dynamic programming. Specifically the oprimizazion the algorithm is tailored to sort acyclic graphs with topolgical ordering. </p>
 <dl class="section author"><dt>Author</dt><dd>Andrea Facci. </dd></dl>
 
-<p>Definition at line <a class="el" href="graph_tools_8f90_source.html#l00413">413</a> of file <a class="el" href="graph_tools_8f90_source.html">graphTools.f90</a>.</p>
+<p>Definition at line <a class="el" href="graph_tools_8f90_source.html#l00466">466</a> of file <a class="el" href="graph_tools_8f90_source.html">graphTools.f90</a>.</p>
 
 <p>Referenced by <a class="el" href="main_8f90_source.html#l00037">main()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a0a5fc60233fedc07e2a6297bfa1763ba"></a>
+<a class="anchor" id="a4c6b1425ce7fa1411c4550e4fb5de421"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">real(kind = prec) function, dimension(2*nm) graphtools::uptimecalc </td>
+          <td class="memname">real(kind = prec) function, dimension(2*nm0 + 2) graphtools::uptimecalc </td>
           <td>(</td>
-          <td class="paramtype">real(kind = prec), dimension(2*nm)&#160;</td>
+          <td class="paramtype">real(kind = prec), dimension(2*nm0 + 2)&#160;</td>
           <td class="paramname"><em>upT</em>, </td>
         </tr>
         <tr>
@@ -350,9 +362,96 @@ dimension(2 *nm)&#160;</td><td class="memItemRight" valign="bottom"><a class="el
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="graph_tools_8f90_source.html#l00549">549</a> of file <a class="el" href="graph_tools_8f90_source.html">graphTools.f90</a>.</p>
+<p>Definition at line <a class="el" href="graph_tools_8f90_source.html#l00618">618</a> of file <a class="el" href="graph_tools_8f90_source.html">graphTools.f90</a>.</p>
 
-<p>Referenced by <a class="el" href="graph_tools_8f90_source.html#l00472">minpathtopobw()</a>.</p>
+<p>References <a class="el" href="energy_8f90_source.html#l00793">energy::elstoragelevelupdate()</a>, and <a class="el" href="energy_8f90_source.html#l00749">energy::thstoragelevelupdate()</a>.</p>
+
+<p>Referenced by <a class="el" href="graph_tools_8f90_source.html#l00525">minpathtopobw()</a>.</p>
+
+</div>
+</div>
+<h2>Member Data Documentation</h2>
+<a class="anchor" id="a58276cd3a6f06eca01afff94e40135a3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, dimension(:,:), allocatable graphtools::comb</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="graph_tools_8f90_source.html#l00042">42</a> of file <a class="el" href="graph_tools_8f90_source.html">graphTools.f90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad9b2084d88501c791d7004540a375e1b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer graphtools::given</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="graph_tools_8f90_source.html#l00040">40</a> of file <a class="el" href="graph_tools_8f90_source.html">graphTools.f90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a06bc686e600e3a5ff5ca5cc86ac94872"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, dimension(:,:), allocatable graphtools::indexes</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="graph_tools_8f90_source.html#l00042">42</a> of file <a class="el" href="graph_tools_8f90_source.html">graphTools.f90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2b525a855ff204b1f0888367afad341b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer graphtools::ncomb</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="graph_tools_8f90_source.html#l00040">40</a> of file <a class="el" href="graph_tools_8f90_source.html">graphTools.f90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa469ea301df7677b90448dfa88f26153"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(kind = prec), dimension(:,:), allocatable graphtools::spval</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="graph_tools_8f90_source.html#l00043">43</a> of file <a class="el" href="graph_tools_8f90_source.html">graphTools.f90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a637c15ec541e2e87680f381c2a542e27"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(kind = prec), dimension(:,:), allocatable graphtools::valiues</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="graph_tools_8f90_source.html#l00043">43</a> of file <a class="el" href="graph_tools_8f90_source.html">graphTools.f90</a>.</p>
 
 </div>
 </div>
@@ -365,7 +464,7 @@ dimension(2 *nm)&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classgraphtools.html">graphtools</a></li>
-    <li class="footer">Generated on Wed Mar 6 2013 15:25:15 for PowerManager by
+    <li class="footer">Generated on Fri Jun 21 2013 12:15:25 for PowerManager by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

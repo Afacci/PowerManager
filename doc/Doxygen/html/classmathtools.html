@@ -122,10 +122,12 @@ Collaboration diagram for mathtools:</div>
 <tr class="heading"><td colspan="2"><h2><a name="nested-classes"></a>
 Data Types</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacemathtools_1_1interpolation.html">interpolation</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacemathtools_1_1scalar_interp.html">scalarInterp</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a64c72087c0180d1e0cfbd7356d8a1a5a"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmathtools.html#a64c72087c0180d1e0cfbd7356d8a1a5a">locaterow</a> (row, mat, n, m, error)</td></tr>
+<tr class="memitem:a58ee6953f2a70383a6026b1cbb377058"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmathtools.html#a58ee6953f2a70383a6026b1cbb377058">locateelement</a> (val, vec, n, error)</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Collection of interfaces for basic mathematical tools. </p>
@@ -133,6 +135,48 @@ Public Member Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="math_tools_8f90_source.html#l00036">36</a> of file <a class="el" href="math_tools_8f90_source.html">mathTools.f90</a>.</p>
 </div><h2>Member Function/Subroutine Documentation</h2>
+<a class="anchor" id="a58ee6953f2a70383a6026b1cbb377058"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer function mathtools::locateelement </td>
+          <td>(</td>
+          <td class="paramtype">real(kind = prec), intent(in)&#160;</td>
+          <td class="paramname"><em>val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind = prec), dimension(n), intent(in)&#160;</td>
+          <td class="paramname"><em>vec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>n</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out), optional&#160;</td>
+          <td class="paramname"><em>error</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="math_tools_8f90_source.html#l00122">122</a> of file <a class="el" href="math_tools_8f90_source.html">mathTools.f90</a>.</p>
+
+<p>References <a class="el" href="test_8f90_source.html#l00001">test()</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a64c72087c0180d1e0cfbd7356d8a1a5a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -175,9 +219,11 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="math_tools_8f90_source.html#l00054">54</a> of file <a class="el" href="math_tools_8f90_source.html">mathTools.f90</a>.</p>
+<p>Definition at line <a class="el" href="math_tools_8f90_source.html#l00067">67</a> of file <a class="el" href="math_tools_8f90_source.html">mathTools.f90</a>.</p>
 
-<p>Referenced by <a class="el" href="graph_tools_8f90_source.html#l00206">graphtools::graphpoints()</a>, and <a class="el" href="graph_tools_8f90_source.html#l00472">graphtools::minpathtopobw()</a>.</p>
+<p>References <a class="el" href="test_8f90_source.html#l00001">test()</a>.</p>
+
+<p>Referenced by <a class="el" href="strategies_8f90_source.html#l00097">strategies::electricaltracking()</a>, <a class="el" href="strategies_8f90_source.html#l00144">strategies::fullload()</a>, <a class="el" href="graph_tools_8f90_source.html#l00240">graphtools::graphpoints()</a>, <a class="el" href="graph_tools_8f90_source.html#l00525">graphtools::minpathtopobw()</a>, and <a class="el" href="strategies_8f90_source.html#l00051">strategies::thermaltracking()</a>.</p>
 
 </div>
 </div>
@@ -190,7 +236,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classmathtools.html">mathtools</a></li>
-    <li class="footer">Generated on Wed Mar 6 2013 15:25:15 for PowerManager by
+    <li class="footer">Generated on Fri Jun 21 2013 12:15:26 for PowerManager by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

@@ -35,6 +35,7 @@ module graphTools
 
 use shared
 use interfaces
+use constr
 
 integer                                                :: nComb     !> number of combination of the given set point vectors
 integer,                                       private :: nTvComb   !> number of combination of the time-constraints vectors.
@@ -67,54 +68,54 @@ interface
     end function objFunction
 end interface
 
-interface
-    logical function constraints(c,t)
-        use shared        
-        use plantVar
-        use interfaces
-        use inputVar
-        implicit none
-        integer, dimension(nm), intent(in) :: c
-        integer,                intent(in) :: t
-    end function constraints
-end interface
+!interface
+!    logical function constraints(c,t)
+!        use shared        
+!        use plantVar
+!        use interfaces
+!        use inputVar
+!        implicit none
+!        integer, dimension(nm), intent(in) :: c
+!        integer,                intent(in) :: t
+!    end function constraints
+!end interface
 
-interface 
-    logical function timeConstr(cindex,tState)
-        use shared        
-        use inputVar
-        use plantVar
-        implicit none
-        integer, dimension(nm), intent(in) :: cindex
-        real(kind = prec), dimension(nm), intent(in) :: tState
-    end function timeConstr
-end interface
+!interface 
+!    logical function timeConstr(cindex,tState)
+!        use shared        
+!        use inputVar
+!        use plantVar
+!        implicit none
+!        integer, dimension(nm), intent(in) :: cindex
+!        real(kind = prec), dimension(nm), intent(in) :: tState
+!    end function timeConstr
+!end interface
 
-interface
-   logical function thStorageConstr(oldLevel,c,t)
-   use shared
-   use plantVar
-   use inputVar
-   use energy
-   implicit none
-   integer, dimension(nm), intent(in) :: c
-   integer,                intent(in) :: t
-   real(kind=prec),        intent(in) :: oldLevel
-   end function thStorageConstr
-end interface
+!interface
+!   logical function thStorageConstr(oldLevel,c,t)
+!   use shared
+!   use plantVar
+!   use inputVar
+!   use energy
+!   implicit none
+!   integer, dimension(nm), intent(in) :: c
+!   integer,                intent(in) :: t
+!   real(kind=prec),        intent(in) :: oldLevel
+!   end function thStorageConstr
+!end interface
 
-interface
-   logical function elStorageConstr(oldLevel,c,t)
-   use shared
-   use plantVar
-   use inputVar
-   use energy
-   implicit none
-   integer, dimension(nm), intent(in) :: c
-   integer,                intent(in) :: t
-   real(kind=prec),        intent(in) :: oldLevel
-   end function elStorageConstr
-end interface
+!interface
+!   logical function elStorageConstr(oldLevel,c,t)
+!   use shared
+!   use plantVar
+!   use inputVar
+!   use energy
+!   implicit none
+!   integer, dimension(nm), intent(in) :: c
+!   integer,                intent(in) :: t
+!   real(kind=prec),        intent(in) :: oldLevel
+!   end function elStorageConstr
+!end interface
 
 contains 
    !>\brief
@@ -288,10 +289,6 @@ contains
             nt(i)    = nt(i) + 1
             cl_(n,:) = load            
             cost_(n) = objFunction(load,i,obj)
-!               if(i.eq.1) then 
-!                  print*, 'debug', 'load = ', load(5) , elProd(load,i), currCost(load,i), fuelCost(load,i) ,& 
-!                    elRev(load,i) , thRev(i) , chRev(i) , maintenanceCost(load,i)
-!               endif
          endif
       enddo
    enddo
@@ -607,14 +604,7 @@ contains
       if(p.eq.-1) call abortExecution(29,t, iVec=upTime(t-1,:))
       minPath(t)  = p
       ottLoad(t,:)= pointLoad(p,:)
-      if (t.eq.1) print*, 'ki = ', ki, ' minuscc ',p, 'load = ', ottLoad(t,:) 
-      if (t.eq.1) print*, 'upTime = ', upTime(t,:) 
-      if (t.eq.1) print*, 'uptimeOld = ', uptime(t-1,:)
    enddo
-
-!   do i=1, nTvComb
-!      print*, 'tstate(',i,')= ', tstate(i,:)
-!   enddo
 
    deallocate(minSucc)
    deallocate(succList)

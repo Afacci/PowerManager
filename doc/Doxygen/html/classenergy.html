@@ -143,6 +143,16 @@ dimension(ntrig+nboi)&#160;</td><td class="memItemRight" valign="bottom"><a clas
 <tr class="memdesc:adee2b0ef7e3ae6a8da4a2357ffa14a28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limit the power of an HRSG.  <a href="#adee2b0ef7e3ae6a8da4a2357ffa14a28"></a><br/></td></tr>
 <tr class="memitem:a6060381a3418f406c8ca108f9c5a7fd5"><td class="memItemLeft" align="right" valign="top">real(kind=prec) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenergy.html#a6060381a3418f406c8ca108f9c5a7fd5">cogthprod</a> (c_, t)</td></tr>
 <tr class="memdesc:a6060381a3418f406c8ca108f9c5a7fd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cogenerative Thermal production.  <a href="#a6060381a3418f406c8ca108f9c5a7fd5"></a><br/></td></tr>
+<tr class="memitem:a082e1efb7fb9b51f62cfe800fefe1585"><td class="memItemLeft" align="right" valign="top">real(kind=prec) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenergy.html#a082e1efb7fb9b51f62cfe800fefe1585">pec</a> (c, t)</td></tr>
+<tr class="memdesc:a082e1efb7fb9b51f62cfe800fefe1585"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primary Energy Consumption.  <a href="#a082e1efb7fb9b51f62cfe800fefe1585"></a><br/></td></tr>
+<tr class="memitem:a85b1719a96ad6c8ccc87e720cb6b0397"><td class="memItemLeft" align="right" valign="top">real(kind=prec) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenergy.html#a85b1719a96ad6c8ccc87e720cb6b0397">pecpenalty</a> (cNew, cOld, t)</td></tr>
+<tr class="memdesc:a85b1719a96ad6c8ccc87e720cb6b0397"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primary Energy Consumption Penalty at startup.  <a href="#a85b1719a96ad6c8ccc87e720cb6b0397"></a><br/></td></tr>
+<tr class="memitem:a59e350e8898c5358a92c3475d3cedb18"><td class="memItemLeft" align="right" valign="top">real(kind=prec) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenergy.html#a59e350e8898c5358a92c3475d3cedb18">thstoragelevelupdate</a> (oldLevel, c, t)</td></tr>
+<tr class="memdesc:a59e350e8898c5358a92c3475d3cedb18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the level of thermal storage.  <a href="#a59e350e8898c5358a92c3475d3cedb18"></a><br/></td></tr>
+<tr class="memitem:aeb92167cd5f2d93d35807c14dbac62d3"><td class="memItemLeft" align="right" valign="top">real(kind=prec) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenergy.html#aeb92167cd5f2d93d35807c14dbac62d3">elstoragelevelupdate</a> (oldLevel, c, t)</td></tr>
+<tr class="memdesc:aeb92167cd5f2d93d35807c14dbac62d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the level of electrical storage.  <a href="#aeb92167cd5f2d93d35807c14dbac62d3"></a><br/></td></tr>
+<tr class="memitem:a3ffd38c81737a9ab7ac3aafc772ee08d"><td class="memItemLeft" align="right" valign="top">real(kind=prec) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenergy.html#a3ffd38c81737a9ab7ac3aafc772ee08d">tespower</a> (c, t)</td></tr>
+<tr class="memdesc:a3ffd38c81737a9ab7ac3aafc772ee08d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the power from or to the thermal storage.  <a href="#a3ffd38c81737a9ab7ac3aafc772ee08d"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This module contains all procedures tu calculate the enrgy fluxes inside the power plant and bertween the power plant and the clients. </p>
@@ -179,9 +189,9 @@ dimension(ntrig+nboi)&#160;</td><td class="memItemRight" valign="bottom"><a clas
 </p>
 <p> where <img class="formulaInl" alt="$sp(i)$" src="form_2.png"/> is the set point of the <img class="formulaInl" alt="$i$" src="form_3.png"/>'th machine, <img class="formulaInl" alt="$\eta_{ch}$" src="form_12.png"/> and <img class="formulaInl" alt="$\eta_{el}$" src="form_10.png"/> are the chilling and electrical efficiencies, respectively, and <img class="formulaInl" alt="$P_{max}(i)$" src="form_4.png"/> is its rated power; f$ k_{env} <img class="formulaInl" alt="$, $" src="form_82.png"/> {env} <img class="formulaInl" alt="$, $" src="form_82.png"/> {env} <img class="formulaInl" alt="$, and $" src="form_83.png"/> {env} <img class="formulaInl" alt="$ are the environmental corrections for electrical power and efficiency, chilling efficiency, and chilling power, respectively. \param[in] c_ index of the given set-point to be given as input. Defines the state of the plant $" src="form_84.png"/>(i) = sp(c_(i)) </p>
 
-<p>Definition at line <a class="el" href="energy_8f90_source.html#l00167">167</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
+<p>Definition at line <a class="el" href="energy_8f90_source.html#l00189">189</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
 
-<p>Referenced by <a class="el" href="constraints_8f90_source.html#l00046">constraints()</a>, and <a class="el" href="output_8f90_source.html#l00031">output()</a>.</p>
+<p>Referenced by <a class="el" href="constraints_8f90_source.html#l00051">constr::constraints()</a>, and <a class="el" href="output_8f90_source.html#l00031">output()</a>.</p>
 
 </div>
 </div>
@@ -222,11 +232,11 @@ dimension(ntrig+nboi)&#160;</td><td class="memItemRight" valign="bottom"><a clas
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
 
-<p>Definition at line <a class="el" href="energy_8f90_source.html#l00551">551</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
+<p>Definition at line <a class="el" href="energy_8f90_source.html#l00592">592</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
 
-<p>References <a class="el" href="energy_8f90_source.html#l00487">limitrecovery()</a>.</p>
+<p>References <a class="el" href="energy_8f90_source.html#l00533">limitrecovery()</a>.</p>
 
-<p>Referenced by <a class="el" href="euristics_8f90_source.html#l00070">euristics::thredundant()</a>.</p>
+<p>Referenced by <a class="el" href="strategies_8f90_source.html#l00097">strategies::electricaltracking()</a>, <a class="el" href="strategies_8f90_source.html#l00144">strategies::fullload()</a>, <a class="el" href="strategies_8f90_source.html#l00051">strategies::thermaltracking()</a>, and <a class="el" href="euristics_8f90_source.html#l00071">euristics::thredundant()</a>.</p>
 
 </div>
 </div>
@@ -269,7 +279,7 @@ dimension(ntrig+nboi)&#160;</td><td class="memItemRight" valign="bottom"><a clas
 
 <p>Definition at line <a class="el" href="energy_8f90_source.html#l00059">59</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
 
-<p>Referenced by <a class="el" href="economy_8f90_source.html#l00080">economy::elrev()</a>, <a class="el" href="economy_8f90_source.html#l00380">economy::grideconomy()</a>, and <a class="el" href="output_8f90_source.html#l00031">output()</a>.</p>
+<p>Referenced by <a class="el" href="economy_8f90_source.html#l00080">economy::elrev()</a>, <a class="el" href="economy_8f90_source.html#l00391">economy::grideconomy()</a>, <a class="el" href="output_8f90_source.html#l00031">output()</a>, and <a class="el" href="energy_8f90_source.html#l00656">pec()</a>.</p>
 
 </div>
 </div>
@@ -310,9 +320,58 @@ dimension(ntrig+nboi)&#160;</td><td class="memItemRight" valign="bottom"><a clas
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
 
-<p>Definition at line <a class="el" href="energy_8f90_source.html#l00268">268</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
+<p>Definition at line <a class="el" href="energy_8f90_source.html#l00300">300</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
 
-<p>Referenced by <a class="el" href="economy_8f90_source.html#l00080">economy::elrev()</a>, and <a class="el" href="economy_8f90_source.html#l00380">economy::grideconomy()</a>.</p>
+<p>Referenced by <a class="el" href="strategies_8f90_source.html#l00097">strategies::electricaltracking()</a>, <a class="el" href="economy_8f90_source.html#l00080">economy::elrev()</a>, <a class="el" href="strategies_8f90_source.html#l00144">strategies::fullload()</a>, <a class="el" href="economy_8f90_source.html#l00391">economy::grideconomy()</a>, <a class="el" href="energy_8f90_source.html#l00656">pec()</a>, and <a class="el" href="strategies_8f90_source.html#l00051">strategies::thermaltracking()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aeb92167cd5f2d93d35807c14dbac62d3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(kind=prec) function energy::elstoragelevelupdate </td>
+          <td>(</td>
+          <td class="paramtype">real(kind=prec), intent(in)&#160;</td>
+          <td class="paramname"><em>oldLevel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, dimension(nm), intent(in)&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Updates the state of charge of vthe thermal storage according to old state of charge and present set point. </p>
+<p class="formulaDsp">
+<img class="formulaDsp" alt="\[ SOC_{th}(t) = SOC_{th}(t-1) sp_{th}\cdot P_{max}\eta \]" src="form_99.png"/>
+</p>
+<p> where <img class="formulaInl" alt="$sp(i)$" src="form_2.png"/> is the set point of the thermal storage <img class="formulaInl" alt="$P_{max}(i)$" src="form_4.png"/> is its rated power and <img class="formulaInl" alt="$\eta = \eta_{in}$" src="form_103.png"/> if <img class="formulaInl" alt="$sp \le 0$" src="form_104.png"/> and <img class="formulaInl" alt="$\eta = \eta_{out}$" src="form_105.png"/> if <img class="formulaInl" alt="$sp \ge 0$" src="form_106.png"/> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">c_</td><td>index of the given set-point to be given as input. Defines the state of the plant <img class="formulaInl" alt="$sp(i) = sp(c\_(i))$" src="form_19.png"/> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>time index </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
+
+<p>Definition at line <a class="el" href="energy_8f90_source.html#l00793">793</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
+
+<p>Referenced by <a class="el" href="constraints_8f90_source.html#l00172">constr::elstorageconstr()</a>, <a class="el" href="output_8f90_source.html#l00031">output()</a>, and <a class="el" href="graph_tools_8f90_source.html#l00618">graphtools::uptimecalc()</a>.</p>
 
 </div>
 </div>
@@ -353,7 +412,7 @@ dimension(ntrig+nboi)&#160;</td><td class="memItemRight" valign="bottom"><a clas
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
 
-<p>Definition at line <a class="el" href="energy_8f90_source.html#l00437">437</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
+<p>Definition at line <a class="el" href="energy_8f90_source.html#l00482">482</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
 
 </div>
 </div>
@@ -394,9 +453,9 @@ dimension(ntrig+nboi)&#160;</td><td class="memItemRight" valign="bottom"><a clas
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
 
-<p>Definition at line <a class="el" href="energy_8f90_source.html#l00374">374</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
+<p>Definition at line <a class="el" href="energy_8f90_source.html#l00417">417</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
 
-<p>Referenced by <a class="el" href="output_8f90_source.html#l00031">output()</a>.</p>
+<p>Referenced by <a class="el" href="output_8f90_source.html#l00031">output()</a>, <a class="el" href="energy_8f90_source.html#l00656">pec()</a>, and <a class="el" href="energy_8f90_source.html#l00697">pecpenalty()</a>.</p>
 
 </div>
 </div>
@@ -437,9 +496,9 @@ dimension(ntrig+nboi)&#160;</td><td class="memItemRight" valign="bottom"><a clas
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
 
-<p>Definition at line <a class="el" href="energy_8f90_source.html#l00317">317</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
+<p>Definition at line <a class="el" href="energy_8f90_source.html#l00359">359</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
 
-<p>Referenced by <a class="el" href="economy_8f90_source.html#l00233">economy::fuelcost()</a>, and <a class="el" href="output_8f90_source.html#l00031">output()</a>.</p>
+<p>Referenced by <a class="el" href="economy_8f90_source.html#l00244">economy::fuelcost()</a>, and <a class="el" href="output_8f90_source.html#l00031">output()</a>.</p>
 
 </div>
 </div>
@@ -483,9 +542,147 @@ dimension(ntrig+nboi)&#160;</td><td class="memItemRight" valign="bottom"><a clas
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
 
-<p>Definition at line <a class="el" href="energy_8f90_source.html#l00487">487</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
+<p>Definition at line <a class="el" href="energy_8f90_source.html#l00533">533</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
 
-<p>Referenced by <a class="el" href="energy_8f90_source.html#l00551">cogthprod()</a>, and <a class="el" href="energy_8f90_source.html#l00104">thprod()</a>.</p>
+<p>Referenced by <a class="el" href="energy_8f90_source.html#l00592">cogthprod()</a>, and <a class="el" href="energy_8f90_source.html#l00112">thprod()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a082e1efb7fb9b51f62cfe800fefe1585"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(kind=prec) function energy::pec </td>
+          <td>(</td>
+          <td class="paramtype">integer, dimension(nm), intent(in)&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function calculates the primary energy consumption of the power plant according to the relation: </p>
+<p class="formulaDsp">
+<img class="formulaDsp" alt="\[ PEC = dt(t)\sum_{Trig+Boi} \frac{sp(i)dd\cdot P_{max}(i)}{\eta(i,sp(i))}pef_{fuel}(i)) + P_{grid}pef_{grid}dt(t) \]" src="form_96.png"/>
+</p>
+<p> where <img class="formulaInl" alt="$sp(i)$" src="form_2.png"/> is the set point of the <img class="formulaInl" alt="$i$" src="form_3.png"/>'th machine, <img class="formulaInl" alt="$\eta = \eta_{th}$" src="form_97.png"/> for boilers and <img class="formulaInl" alt="$\eta = \eta_{el}$" src="form_98.png"/> for trigenerative equipments; pef_{fuel}(i) is the primary energy factor relative to the fuels used by the i'th machine. P_{grid} is the electrical power exchanged with the grid and pef_{grid} is its primary energy factor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">c_</td><td>index of the given set-point to be given as input. Defines the state of the plant <img class="formulaInl" alt="$sp(i) = sp(c\_(i))$" src="form_19.png"/> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>time index </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
+
+<p>Definition at line <a class="el" href="energy_8f90_source.html#l00656">656</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
+
+<p>References <a class="el" href="energy_8f90_source.html#l00059">elprod()</a>, <a class="el" href="energy_8f90_source.html#l00300">elselfcons()</a>, and <a class="el" href="energy_8f90_source.html#l00417">energyinput()</a>.</p>
+
+<p>Referenced by <a class="el" href="global_results_8f90_source.html#l00326">globalresults::globpec()</a>, <a class="el" href="obj_function_8f90_source.html#l00039">objfunction()</a>, and <a class="el" href="output_8f90_source.html#l00031">output()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a85b1719a96ad6c8ccc87e720cb6b0397"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(kind=prec) function energy::pecpenalty </td>
+          <td>(</td>
+          <td class="paramtype">integer, dimension(nm), intent(in)&#160;</td>
+          <td class="paramname"><em>cNew</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, dimension(nm), intent(in)&#160;</td>
+          <td class="paramname"><em>cOld</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function calculates the primary energy consumption penalty at </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">c_</td><td>index of the given set-point to be given as input. Defines the state of the plant <img class="formulaInl" alt="$sp(i) = sp(c\_(i))$" src="form_19.png"/> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>time index </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
+
+<p>Definition at line <a class="el" href="energy_8f90_source.html#l00697">697</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
+
+<p>References <a class="el" href="energy_8f90_source.html#l00417">energyinput()</a>.</p>
+
+<p>Referenced by <a class="el" href="global_results_8f90_source.html#l00326">globalresults::globpec()</a>, <a class="el" href="graph_tools_8f90_source.html#l00346">graphtools::grapharcs()</a>, and <a class="el" href="output_8f90_source.html#l00031">output()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3ffd38c81737a9ab7ac3aafc772ee08d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(kind=prec) function energy::tespower </td>
+          <td>(</td>
+          <td class="paramtype">integer, dimension(nm), intent(in)&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function calculates the power from and to the thermal storage system, given the plant set-point vector and the time-step state of charge and present set point. </p>
+<p class="formulaDsp">
+<img class="formulaDsp" alt="\[ P_{tes}(t) = sp_{tes}\cdot P_{max}\eta_{in}\qquad \mbox{ if } \qquad sp_{tes} \le 0 \]" src="form_115.png"/>
+</p>
+ <p class="formulaDsp">
+<img class="formulaDsp" alt="\[ P_{tes}(t) = sp_{tes}\cdot P_{max}eta_{out} \qquad\mbox{ if } \qquad sp_{tes} > 0 \]" src="form_116.png"/>
+</p>
+<p> where <img class="formulaInl" alt="$sp_{tes}$" src="form_109.png"/> is the set point of the thermal storage <img class="formulaInl" alt="$P_{max}$" src="form_110.png"/> is its rated power and <img class="formulaInl" alt="$\eta_{in}$" src="form_111.png"/> and <img class="formulaInl" alt="$\eta_{out}$" src="form_112.png"/> are the input and output efficiencies, respectively. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">c_</td><td>index of the given set-point to be given as input. Defines the state of the plant <img class="formulaInl" alt="$sp(i) = sp(c\_(i))$" src="form_19.png"/> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>time index </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
+
+<p>Definition at line <a class="el" href="energy_8f90_source.html#l00838">838</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
+
+<p>Referenced by <a class="el" href="strategies_8f90_source.html#l00144">strategies::fullload()</a>.</p>
 
 </div>
 </div>
@@ -526,11 +723,11 @@ dimension(ntrig+nboi)&#160;</td><td class="memItemRight" valign="bottom"><a clas
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
 
-<p>Definition at line <a class="el" href="energy_8f90_source.html#l00104">104</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
+<p>Definition at line <a class="el" href="energy_8f90_source.html#l00112">112</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
 
-<p>References <a class="el" href="energy_8f90_source.html#l00487">limitrecovery()</a>.</p>
+<p>References <a class="el" href="energy_8f90_source.html#l00533">limitrecovery()</a>.</p>
 
-<p>Referenced by <a class="el" href="constraints_8f90_source.html#l00046">constraints()</a>, and <a class="el" href="output_8f90_source.html#l00031">output()</a>.</p>
+<p>Referenced by <a class="el" href="constraints_8f90_source.html#l00051">constr::constraints()</a>, <a class="el" href="strategies_8f90_source.html#l00097">strategies::electricaltracking()</a>, <a class="el" href="output_8f90_source.html#l00031">output()</a>, and <a class="el" href="strategies_8f90_source.html#l00051">strategies::thermaltracking()</a>.</p>
 
 </div>
 </div>
@@ -571,9 +768,58 @@ dimension(ntrig+nboi)&#160;</td><td class="memItemRight" valign="bottom"><a clas
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
 
-<p>Definition at line <a class="el" href="energy_8f90_source.html#l00219">219</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
+<p>Definition at line <a class="el" href="energy_8f90_source.html#l00242">242</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
 
-<p>Referenced by <a class="el" href="constraints_8f90_source.html#l00046">constraints()</a>, and <a class="el" href="euristics_8f90_source.html#l00070">euristics::thredundant()</a>.</p>
+<p>Referenced by <a class="el" href="constraints_8f90_source.html#l00051">constr::constraints()</a>, <a class="el" href="strategies_8f90_source.html#l00097">strategies::electricaltracking()</a>, <a class="el" href="strategies_8f90_source.html#l00144">strategies::fullload()</a>, <a class="el" href="strategies_8f90_source.html#l00051">strategies::thermaltracking()</a>, and <a class="el" href="euristics_8f90_source.html#l00071">euristics::thredundant()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a59e350e8898c5358a92c3475d3cedb18"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(kind=prec) function energy::thstoragelevelupdate </td>
+          <td>(</td>
+          <td class="paramtype">real(kind=prec), intent(in)&#160;</td>
+          <td class="paramname"><em>oldLevel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, dimension(nm), intent(in)&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Updates the state of charge of the thermal storage according to old state of charge and present set point. </p>
+<p class="formulaDsp">
+<img class="formulaDsp" alt="\[ SOC_{th}(t) = SOC_{th}(t-1) sp_{th}\cdot P_{max}\eta \]" src="form_99.png"/>
+</p>
+<p> where <img class="formulaInl" alt="$sp(i)$" src="form_2.png"/> is the set point of the thermal storage <img class="formulaInl" alt="$P_{max}(i)$" src="form_4.png"/> is its rated power and <img class="formulaInl" alt="$\eta = \eta_{in}$" src="form_103.png"/> if <img class="formulaInl" alt="$sp \le 0$" src="form_104.png"/> and <img class="formulaInl" alt="$\eta = \eta_{out}$" src="form_105.png"/> if <img class="formulaInl" alt="$sp \ge 0$" src="form_106.png"/> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">c_</td><td>index of the given set-point to be given as input. Defines the state of the plant <img class="formulaInl" alt="$sp(i) = sp(c\_(i))$" src="form_19.png"/> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>time index </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
+
+<p>Definition at line <a class="el" href="energy_8f90_source.html#l00749">749</a> of file <a class="el" href="energy_8f90_source.html">energy.f90</a>.</p>
+
+<p>Referenced by <a class="el" href="strategies_8f90_source.html#l00144">strategies::fullload()</a>, <a class="el" href="output_8f90_source.html#l00031">output()</a>, <a class="el" href="constraints_8f90_source.html#l00137">constr::thstorageconstr()</a>, and <a class="el" href="graph_tools_8f90_source.html#l00618">graphtools::uptimecalc()</a>.</p>
 
 </div>
 </div>
@@ -586,7 +832,7 @@ dimension(ntrig+nboi)&#160;</td><td class="memItemRight" valign="bottom"><a clas
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classenergy.html">energy</a></li>
-    <li class="footer">Generated on Wed Mar 6 2013 15:25:15 for PowerManager by
+    <li class="footer">Generated on Fri Jun 21 2013 12:15:25 for PowerManager by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

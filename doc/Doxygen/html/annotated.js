@@ -1,10 +1,13 @@
 var annotated =
 [
+    [ "addsection", "classaddsection.html", "classaddsection" ],
     [ "cmdvar", "classcmdvar.html", "classcmdvar" ],
     [ "cmdvarwr", "classcmdvarwr.html", "classcmdvarwr" ],
     [ "command", "classcommand.html", "classcommand" ],
+    [ "constr", "classconstr.html", "classconstr" ],
     [ "economy", "classeconomy.html", "classeconomy" ],
     [ "energy", "classenergy.html", "classenergy" ],
+    [ "eolo", "classeolo.html", "classeolo" ],
     [ "euristics", "classeuristics.html", "classeuristics" ],
     [ "filetools", "classfiletools.html", [
       [ "cFindEntry", "interfacefiletools_1_1c_find_entry.html", "interfacefiletools_1_1c_find_entry" ],
@@ -20,6 +23,7 @@ var annotated =
       [ "rewUnit", "interfacefiletools_1_1rew_unit.html", "interfacefiletools_1_1rew_unit" ],
       [ "vCount", "interfacefiletools_1_1v_count.html", "interfacefiletools_1_1v_count" ]
     ] ],
+    [ "getsetpoint", "classgetsetpoint.html", "classgetsetpoint" ],
     [ "globalresults", "classglobalresults.html", "classglobalresults" ],
     [ "graphtools", "classgraphtools.html", "classgraphtools" ],
     [ "inputvar", "classinputvar.html", "classinputvar" ],
@@ -31,5 +35,7 @@ var annotated =
     [ "mathtools", "classmathtools.html", "classmathtools" ],
     [ "myarithmetic", "classmyarithmetic.html", "classmyarithmetic" ],
     [ "plantvar", "classplantvar.html", "classplantvar" ],
-    [ "shared", "classshared.html", "classshared" ]
+    [ "shared", "classshared.html", "classshared" ],
+    [ "strategies", "classstrategies.html", "classstrategies" ],
+    [ "sun", "classsun.html", "classsun" ]
 ];

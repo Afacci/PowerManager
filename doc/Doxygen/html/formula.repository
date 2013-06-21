@@ -94,3 +94,24 @@
 \form#93:$\alpha_{env}$
 \form#94:\[ E_{in}(i) = \frac{sp(i)\cdot P_{max}(i)\cdot k_{env} }{\eta(i,sp(i))\cdot \alpha_{env}} \]
 \form#95:\[ E_{exh}(i) = sp(i)\cdot P_{max}(i)\cdot k_{env} \left[\frac{1}{\eta(i,sp(i))\cdot \alpha_{env}} - 1 \right] \]
+\form#96:\[ PEC = dt(t)\sum_{Trig+Boi} \frac{sp(i)dd\cdot P_{max}(i)}{\eta(i,sp(i))}pef_{fuel}(i)) + P_{grid}pef_{grid}dt(t) \]
+\form#97:$\eta = \eta_{th}$
+\form#98:$\eta = \eta_{el}$
+\form#99:\[ SOC_{th}(t) = SOC_{th}(t-1) sp_{th}\cdot P_{max}\eta \]
+\form#100:$\eta = \eta_{in}$\f if sp<0 and $
+\form#101:$\eta = \eta_{in}$\f if $
+\form#102:$\eta = \eta_{out}$\f if $
+\form#103:$\eta = \eta_{in}$
+\form#104:$sp \le 0$
+\form#105:$\eta = \eta_{out}$
+\form#106:$sp \ge 0$
+\form#107:\[ P_{tes}(t) = sp_{tes}\cdot P_{max}\eta_{in} \text{ if } sp_{tes} \le 0 \]
+\form#108:\[ P_{tes}(t) = sp_{tes}\cdot P_{max}eta_{out} \text{ if } sp_{tes} > 0 \]
+\form#109:$sp_{tes}$
+\form#110:$P_{max}$
+\form#111:$\eta_{in}$
+\form#112:$\eta_{out}$
+\form#113:\[ P_{tes}(t) = sp_{tes}\cdot P_{max}\eta_{in} \mbox{ if } sp_{tes} \le 0 \]
+\form#114:\[ P_{tes}(t) = sp_{tes}\cdot P_{max}eta_{out} \mbox{ if } sp_{tes} > 0 \]
+\form#115:\[ P_{tes}(t) = sp_{tes}\cdot P_{max}\eta_{in}\qquad \mbox{ if } \qquad sp_{tes} \le 0 \]
+\form#116:\[ P_{tes}(t) = sp_{tes}\cdot P_{max}eta_{out} \qquad\mbox{ if } \qquad sp_{tes} > 0 \]

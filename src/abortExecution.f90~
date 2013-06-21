@@ -69,11 +69,14 @@ character(len=14), dimension(5)        :: PV3
 integer                                :: t
 character(len=18), dimension(4)        :: GSE
 character(len=18), dimension(5)        :: ThStorage
-character(len=16), dimension(6)        :: Iwind
+character(len=19), dimension(10)        :: Iwind
+
+
 
 print*
 print*, '!-----------------------------------FATAL ERROR-----------------------------------------!'
 print*
+print*, ', se vabbè ma dove?', i
 
 general       = (/'GridConnection    ', 'Degradation       ', 'objective         ', 'StartPoint        '  &
                  ,'FirstTimeStep     ', 'UpTime0           ', 'DownTime0         ', 'Algorithm         '  & 
@@ -120,7 +123,9 @@ eLoads        = (/'Electricity', 'Thermal    ', 'Chilling   '/)
 gConn         = (/'NetMetering    ','DedicatadRetire','StandAlone     '/)
 algo          = (/'Backward    ', 'Forward     ', 'ThermalTrack'/)
 
-Iwind         = (/'FieldNumber     ','TurbineNUmber   ','BladeSurface    ','PowerCoefficient','MinWindVelocity ','WindVelocity    ' /)
+Iwind         = (/'FieldNumber        ','TurbineNUmber      ','BladeSurface       ','PowerCoefficient   ', &
+                  'MinWindVelocity    ','WindVelocity       ','MaxVelocity        ','WindMeasureAltitude', &
+                  'HelmannExponent    ','TurbineHeight      '/)
 
 select case(i)
     case(0)
@@ -240,7 +245,7 @@ select case(i)
     case(28)
         print*,'Could not find "', trim(ThStorage(j)) ,'" in ThermalStorage.inp'
     case(29)
-        print*,'No feasible paths from time ', j,' to time ', j + 1, '.Entering time-step with plant state', iVec(1:nm)
+        print*,'No feasible paths from time ', j,' to time ', j + 1, '.Entering time-step with plant state', iVec(1:2*(nm-2) + 2)
     case(30)
         print*, 'The Simple model for photovoltaic or solar collectors requires the specification '
         print*, 'of hourly solar direct and diffused irradiance.'

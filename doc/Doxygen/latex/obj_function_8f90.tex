@@ -30,7 +30,7 @@ Definition in file \hyperlink{obj_function_8f90_source}{obj\-Function.\-f90}.
 \begin{DoxyParamCaption}
 \item[{integer, dimension(nm), intent(in)}]{c, }
 \item[{integer, intent(in)}]{t, }
-\item[{character(len=100), intent(in)}]{obj}
+\item[{character(len=$\ast$), intent(in)}]{obj}
 \end{DoxyParamCaption}
 )}}\label{obj_function_8f90_a8586ea0db25d91bd8ca4ce412f7a397c}
 Returns the value of the objective function for a given plant state, time step and optimization criterion. This procedure accounts only for functions that are local in time, that is, that are function only of the plant state at time t and not at time $>$ t, neither at time $<$ t. 
@@ -48,7 +48,7 @@ Definition at line 39 of file obj\-Function.\-f90.
 
 
 
-References economy\-::currcost().
+References economy\-::currcost(), and energy\-::pec().
 
 
 

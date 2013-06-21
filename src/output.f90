@@ -40,6 +40,7 @@ subroutine output(setPoint,postProcessing,path)
   use energy
   use economy
   use globalResults
+  use constr
 
   implicit none
 !interface
@@ -73,17 +74,17 @@ subroutine output(setPoint,postProcessing,path)
   real(kind=prec)                               :: thSoc, thSoc_, level
 
 
-interface
-    logical function constraints(c,t)
-        use shared        
-        use plantVar
-        use interfaces
-        use inputVar
-        implicit none
-        integer, dimension(nm), intent(in) :: c
-        integer,                intent(in) :: t
-    end function constraints
-end interface
+!interface
+!    logical function constraints(c,t)
+!        use shared        
+!        use plantVar
+!        use interfaces
+!        use inputVar
+!        implicit none
+!        integer, dimension(nm), intent(in) :: c
+!        integer,                intent(in) :: t
+!    end function constraints
+!end interface
 
 !---Function body---
   
@@ -151,7 +152,6 @@ end interface
        write(u,*)
        kk = setPoint(i,:)
        kk(1) = 4
-!    print*, 'debug', currCost(setPoint(i,:),i), currCost(kk,i), objFunction(setPoint(i,:),i,obj), objFunction(kk,i,obj) ! elRev(setPoint(i,:),i), elRev(kk,i)
     enddo
   endif
 
@@ -582,7 +582,6 @@ end interface
         rbuffer(3) = 100*Thsoc/capacityTS
         rbuffer(5) = Thsoc
         write(u,'(3(F5.2,15X),2(ES11.2E2,9X))') (rbuffer(j), j=1,5)
-!        print*, 'debug', c(i,4), thsoc_, thSoc, constraints(kk,i), thSelfCons(kk,i)
      enddo
   endif
 

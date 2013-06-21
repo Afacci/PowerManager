@@ -133,6 +133,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ace504d2735fcf5bab047994e760346a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the lighting cost.  <a href="#ace504d2735fcf5bab047994e760346a9"></a><br/></td></tr>
 <tr class="memitem:a47cc446e4047749cb8b4ae10372ae3c4"><td class="memItemLeft" align="right" valign="top">real(kind=prec) function, <br class="typebreak"/>
 dimension(2)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeconomy.html#a47cc446e4047749cb8b4ae10372ae3c4">grideconomy</a> (c, t)</td></tr>
+<tr class="memitem:a02584f393a8b9ee3cce3c1e06cb6469d"><td class="memItemLeft" align="right" valign="top">real(kind=prec) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeconomy.html#a02584f393a8b9ee3cce3c1e06cb6469d">cyclecost</a> (cNew, cOld)</td></tr>
+<tr class="memdesc:a02584f393a8b9ee3cce3c1e06cb6469d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the cost associated to each battery charge cycle.  <a href="#a02584f393a8b9ee3cce3c1e06cb6469d"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd></dd></dl>
@@ -169,9 +171,9 @@ dimension(2)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
 
-<p>Definition at line <a class="el" href="economy_8f90_source.html#l00187">187</a> of file <a class="el" href="economy_8f90_source.html">economy.f90</a>.</p>
+<p>Definition at line <a class="el" href="economy_8f90_source.html#l00198">198</a> of file <a class="el" href="economy_8f90_source.html">economy.f90</a>.</p>
 
-<p>Referenced by <a class="el" href="economy_8f90_source.html#l00322">currcost()</a>, and <a class="el" href="global_results_8f90_source.html#l00159">globalresults::globchrev()</a>.</p>
+<p>Referenced by <a class="el" href="economy_8f90_source.html#l00333">currcost()</a>, and <a class="el" href="global_results_8f90_source.html#l00159">globalresults::globchrev()</a>.</p>
 
 </div>
 </div>
@@ -222,11 +224,54 @@ dimension(2)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="economy_8f90_source.html#l00322">322</a> of file <a class="el" href="economy_8f90_source.html">economy.f90</a>.</p>
+<p>Definition at line <a class="el" href="economy_8f90_source.html#l00333">333</a> of file <a class="el" href="economy_8f90_source.html">economy.f90</a>.</p>
 
-<p>References <a class="el" href="economy_8f90_source.html#l00187">chrev()</a>, <a class="el" href="economy_8f90_source.html#l00080">elrev()</a>, <a class="el" href="economy_8f90_source.html#l00233">fuelcost()</a>, <a class="el" href="economy_8f90_source.html#l00276">maintenancecost()</a>, and <a class="el" href="economy_8f90_source.html#l00147">threv()</a>.</p>
+<p>References <a class="el" href="economy_8f90_source.html#l00198">chrev()</a>, <a class="el" href="economy_8f90_source.html#l00080">elrev()</a>, <a class="el" href="economy_8f90_source.html#l00244">fuelcost()</a>, <a class="el" href="economy_8f90_source.html#l00287">maintenancecost()</a>, and <a class="el" href="economy_8f90_source.html#l00158">threv()</a>.</p>
 
 <p>Referenced by <a class="el" href="obj_function_8f90_source.html#l00039">objfunction()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a02584f393a8b9ee3cce3c1e06cb6469d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(kind = prec) function economy::cyclecost </td>
+          <td>(</td>
+          <td class="paramtype">integer, dimension(nm), intent(in)&#160;</td>
+          <td class="paramname"><em>cNew</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, dimension(nm), intent(in)&#160;</td>
+          <td class="paramname"><em>cOld</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Calculates the cost associated to each battery charge cycle. </p>
+<p class="formulaDsp">
+<img class="formulaDsp" alt="\[ C_{l} > 0 \qquad \mbox{if} \qquad sp(t,i) > 0 \;\mbox{and}\; sp(t-1,i) = 0 \]" src="form_59.png"/>
+</p>
+<p> this cost will be added to the operative profit to for the arc profit/cost. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td>index of the given set-point to be given as input. Defines the state of the plant <img class="formulaInl" alt="$sp(i) = sp(c\_(i))$" src="form_19.png"/> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>time step index. Note t=x meas the x'th time step from the simulation start. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
+
+<p>Definition at line <a class="el" href="economy_8f90_source.html#l00461">461</a> of file <a class="el" href="economy_8f90_source.html">economy.f90</a>.</p>
+
+<p>Referenced by <a class="el" href="graph_tools_8f90_source.html#l00346">graphtools::grapharcs()</a>.</p>
 
 </div>
 </div>
@@ -282,9 +327,9 @@ dimension(2)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 <p>Definition at line <a class="el" href="economy_8f90_source.html#l00080">80</a> of file <a class="el" href="economy_8f90_source.html">economy.f90</a>.</p>
 
-<p>References <a class="el" href="energy_8f90_source.html#l00059">energy::elprod()</a>, and <a class="el" href="energy_8f90_source.html#l00268">energy::elselfcons()</a>.</p>
+<p>References <a class="el" href="energy_8f90_source.html#l00059">energy::elprod()</a>, and <a class="el" href="energy_8f90_source.html#l00300">energy::elselfcons()</a>.</p>
 
-<p>Referenced by <a class="el" href="economy_8f90_source.html#l00322">currcost()</a>, and <a class="el" href="global_results_8f90_source.html#l00084">globalresults::globelrev()</a>.</p>
+<p>Referenced by <a class="el" href="economy_8f90_source.html#l00333">currcost()</a>, and <a class="el" href="global_results_8f90_source.html#l00084">globalresults::globelrev()</a>.</p>
 
 </div>
 </div>
@@ -325,9 +370,9 @@ dimension(2)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
 
-<p>Definition at line <a class="el" href="economy_8f90_source.html#l00355">355</a> of file <a class="el" href="economy_8f90_source.html">economy.f90</a>.</p>
+<p>Definition at line <a class="el" href="economy_8f90_source.html#l00366">366</a> of file <a class="el" href="economy_8f90_source.html">economy.f90</a>.</p>
 
-<p>Referenced by <a class="el" href="global_results_8f90_source.html#l00270">globalresults::globfirecost()</a>, <a class="el" href="graph_tools_8f90_source.html#l00308">graphtools::grapharcs()</a>, and <a class="el" href="output_8f90_source.html#l00031">output()</a>.</p>
+<p>Referenced by <a class="el" href="global_results_8f90_source.html#l00270">globalresults::globfirecost()</a>, <a class="el" href="graph_tools_8f90_source.html#l00346">graphtools::grapharcs()</a>, and <a class="el" href="output_8f90_source.html#l00031">output()</a>.</p>
 
 </div>
 </div>
@@ -369,11 +414,11 @@ dimension(2)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
 
-<p>Definition at line <a class="el" href="economy_8f90_source.html#l00233">233</a> of file <a class="el" href="economy_8f90_source.html">economy.f90</a>.</p>
+<p>Definition at line <a class="el" href="economy_8f90_source.html#l00244">244</a> of file <a class="el" href="economy_8f90_source.html">economy.f90</a>.</p>
 
-<p>References <a class="el" href="energy_8f90_source.html#l00317">energy::fuelcons()</a>.</p>
+<p>References <a class="el" href="energy_8f90_source.html#l00359">energy::fuelcons()</a>.</p>
 
-<p>Referenced by <a class="el" href="economy_8f90_source.html#l00322">currcost()</a>, <a class="el" href="global_results_8f90_source.html#l00202">globalresults::globfuelcost()</a>, and <a class="el" href="output_8f90_source.html#l00031">output()</a>.</p>
+<p>Referenced by <a class="el" href="economy_8f90_source.html#l00333">currcost()</a>, <a class="el" href="global_results_8f90_source.html#l00202">globalresults::globfuelcost()</a>, and <a class="el" href="output_8f90_source.html#l00031">output()</a>.</p>
 
 </div>
 </div>
@@ -401,9 +446,9 @@ dimension(2)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="economy_8f90_source.html#l00380">380</a> of file <a class="el" href="economy_8f90_source.html">economy.f90</a>.</p>
+<p>Definition at line <a class="el" href="economy_8f90_source.html#l00391">391</a> of file <a class="el" href="economy_8f90_source.html">economy.f90</a>.</p>
 
-<p>References <a class="el" href="energy_8f90_source.html#l00059">energy::elprod()</a>, and <a class="el" href="energy_8f90_source.html#l00268">energy::elselfcons()</a>.</p>
+<p>References <a class="el" href="energy_8f90_source.html#l00059">energy::elprod()</a>, and <a class="el" href="energy_8f90_source.html#l00300">energy::elselfcons()</a>.</p>
 
 <p>Referenced by <a class="el" href="output_8f90_source.html#l00031">output()</a>.</p>
 
@@ -447,9 +492,9 @@ dimension(2)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
 
-<p>Definition at line <a class="el" href="economy_8f90_source.html#l00276">276</a> of file <a class="el" href="economy_8f90_source.html">economy.f90</a>.</p>
+<p>Definition at line <a class="el" href="economy_8f90_source.html#l00287">287</a> of file <a class="el" href="economy_8f90_source.html">economy.f90</a>.</p>
 
-<p>Referenced by <a class="el" href="economy_8f90_source.html#l00322">currcost()</a>, <a class="el" href="global_results_8f90_source.html#l00237">globalresults::globmaintcost()</a>, and <a class="el" href="output_8f90_source.html#l00031">output()</a>.</p>
+<p>Referenced by <a class="el" href="economy_8f90_source.html#l00333">currcost()</a>, <a class="el" href="global_results_8f90_source.html#l00237">globalresults::globmaintcost()</a>, and <a class="el" href="output_8f90_source.html#l00031">output()</a>.</p>
 
 </div>
 </div>
@@ -481,9 +526,9 @@ dimension(2)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Andrea Facci </dd></dl>
 
-<p>Definition at line <a class="el" href="economy_8f90_source.html#l00147">147</a> of file <a class="el" href="economy_8f90_source.html">economy.f90</a>.</p>
+<p>Definition at line <a class="el" href="economy_8f90_source.html#l00158">158</a> of file <a class="el" href="economy_8f90_source.html">economy.f90</a>.</p>
 
-<p>Referenced by <a class="el" href="economy_8f90_source.html#l00322">currcost()</a>, and <a class="el" href="global_results_8f90_source.html#l00121">globalresults::globthrev()</a>.</p>
+<p>Referenced by <a class="el" href="economy_8f90_source.html#l00333">currcost()</a>, and <a class="el" href="global_results_8f90_source.html#l00121">globalresults::globthrev()</a>.</p>
 
 </div>
 </div>
@@ -496,7 +541,7 @@ dimension(2)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classeconomy.html">economy</a></li>
-    <li class="footer">Generated on Wed Mar 6 2013 15:25:15 for PowerManager by
+    <li class="footer">Generated on Fri Jun 21 2013 12:15:25 for PowerManager by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

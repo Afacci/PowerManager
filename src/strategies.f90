@@ -28,6 +28,12 @@
 !>     Andrea Facci.
 !
 !---------------------------------------------------------------------------
+!>\brief Rule-based strategies.
+!>\details This module contains all procedures to define the plant behavior
+!> under rule-based regulation strategies. Thermal tracking, electrical tracking
+!> and full load are considered.
+
+!>\author Andrea Facci
 
 module strategies
 
@@ -67,7 +73,7 @@ contains
       
       do t=1,nTime
          kk    = nSp
-         qmax  = cogThProd(kk, t) - sum(uTh(t,:))
+         qmax  = cogThProd(kk, t) - sum(uTh(t,:))! + pmax Accumuli.
          cold  = sum(uCh(t,:))
          kc    = getSpChi(cold,t=t,hlimit_=qmax)
          kk(:) = 1
@@ -132,5 +138,58 @@ contains
       enddo
 
    end function ElectricalTracking
+
+
+   !============================================================
+   function fullLoad()
+
+      !------------------------------------------------------------- 
+      implicit none
+
+      integer, dimension(0:nTime+1,nm) :: fullLoad
+      integer, dimension(nChi)         :: kc
+      integer, dimension(nBoi)         :: kb
+      integer, dimension(ntrig)        :: kt
+      real(kind=prec)                  :: power, heat, cold, tSelf, eSelf, qmax
+      integer                          :: t, i, j, istart
+      integer, dimension(nm)           :: kk, kk0
+      logical                          :: error
+      real(kind=prec), dimension(0:nTime+1) :: thLevel
+      real(kind=prec), dimension(2) :: maxTes
+      !-------------------------------------------------------------
+
+      iStart = locateRow(startPoint,spVal,nm,nComb,error)
+      if(error) then
+         call abortExecution(14)
+      else
+         fullLoad(0,:)       = comb(istart,:)
+         fullLoad(nTime+1,:) = comb(istart,:)
+      endif
+      thLevel(0) = iSocTh
+
+      kk0 = 1
+      kk0(is(iTs)) = nSpTs + 1
+
+
+      do t=1,nTime
+         kk = kk0
+         kk(is(iT):ie(iT)) = nSp(is(iT):ie(iT))
+         maxTes = thStoragePmax(thLevel(t-1),t)
+         qmax  = cogThProd(kk, t) - sum(uTh(t,:)) + maxTes(1)
+         qmax = max(qmax,zero)
+         cold  = sum(uCh(t,:))
+         kc = getSpChi(cold,t=t,hlimit_=qmax)
+         kk(is(ic):ie(ic)) = kc
+         tSelf = thSelfCons(kk,t)
+         heat  = sum(uTh(t,:)) + tSelf - cogThProd(kk,t)
+         kk(is(iTS)) = getSpTes(heat,t)
+         heat =  heat - tesPower(kk,t)
+         if(heat.gt.zero) kk(is(iB):ie(iB)) = getSpBoi(heat,t)
+         fullLoad(t,:) = kk
+         thLevel(t) = thStorageLevelUpdate(thLevel(t-1),kk,t)
+      enddo
+   end function fullLoad
+
+   !============================================================
 
 end module strategies

@@ -117,6 +117,10 @@ select case(strategy)
       call allCombin(icm=cr,imax=nSp,m=nm,targ='set-point') 
       call allCombin(dcm=sp,imax=nSp,m=nm,targ='state') 
       setPoint = electricalTracking()
+  case('FullPower')
+      call allCombin(icm=cr,imax=nSp,m=nm,targ='set-point') 
+      call allCombin(dcm=sp,imax=nSp,m=nm,targ='state') 
+      setPoint = fullLoad()
   case('Optimized')
       !---Build the graph-----
       print*, ' ---Building the graph---'
@@ -163,7 +167,8 @@ print*, ' ---Elapsed Time: ', tempo, ' sec'
 !----write output files---
 call output(setPoint,.false.,'Results')
 
-deallocate(upTime, minPathBw)
+if (allocated(upTime)) deallocate(upTime)
+if (allocated(minPathBw)) deallocate(minPathBw)
 !---end the execution----
 call endExecution
 

@@ -309,14 +309,36 @@ $(document).ready(function(){initNavTree('global_results_8f90_source.html','');}
 <div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;</div>
 <div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="keyword">end function </span><a class="code" href="classglobalresults.html#afd33ba4d9415e6eba9f99590f55d71a8">globprofit</a></div>
 <div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="keyword">end module </span><a class="code" href="classglobalresults.html">globalresults</a></div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="comment">!================================================================================================</span></div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;</div>
+<div class="line"><a name="l00326"></a><span class="lineno"><a class="code" href="classglobalresults.html#af9b60fbdefb230d88e9fa328232511a6">  326</a></span>&#160;<span class="keyword">real(kind=prec) </span><span class="keyword">function </span><a class="code" href="classglobalresults.html#af9b60fbdefb230d88e9fa328232511a6">globpec</a>(setPoint)</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;  <span class="keywordtype">implicit none</span></div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;  <span class="keywordtype">integer</span>, <span class="keywordtype">intent (in)</span>, <span class="keywordtype">dimension(0:nTime+1,nm)</span> :: setpoint</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;  <span class="keywordtype">integer</span>          ::  t</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;  <span class="keywordtype">integer</span>, <span class="keywordtype">dimension(nm)</span> :: c, cold</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;  <a class="code" href="classglobalresults.html#af9b60fbdefb230d88e9fa328232511a6">globpec</a> = zero</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;  <span class="keywordflow">do</span> t=1,ntime</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;     c       = setpoint(t,:)</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;     cold    = setpoint(t-1,:)</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;     <a class="code" href="classglobalresults.html#af9b60fbdefb230d88e9fa328232511a6">globpec</a> = <a class="code" href="classglobalresults.html#af9b60fbdefb230d88e9fa328232511a6">globpec</a> + <a class="code" href="classenergy.html#a082e1efb7fb9b51f62cfe800fefe1585">pec</a>(c,t) + <a class="code" href="classenergy.html#a85b1719a96ad6c8ccc87e720cb6b0397">pecpenalty</a>(c, cold, t)</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;  <span class="keywordflow">enddo</span></div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;  <span class="keywordflow">return</span></div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="keyword">end function </span><a class="code" href="classglobalresults.html#af9b60fbdefb230d88e9fa328232511a6">globpec</a></div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<span class="keyword">end module </span><a class="code" href="classglobalresults.html">globalresults</a></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="global_results_8f90.html">globalResults.f90</a></li>
-    <li class="footer">Generated on Wed Mar 6 2013 15:25:15 for PowerManager by
+    <li class="footer">Generated on Fri Jun 21 2013 12:15:25 for PowerManager by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

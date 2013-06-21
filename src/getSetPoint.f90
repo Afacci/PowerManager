@@ -108,7 +108,6 @@ contains
          spmax(i) = nSp(j)
       enddo
 
-
       if(present(hlimit_)) then
          hlimit  = hlimit_
          do i=1,nChi
@@ -204,7 +203,7 @@ contains
 
       if(nin.le.0) then
          print*,'***********FATAL ERROR IN getSpTrig CALL********'
-         print*,'          one input energy paramete needed    '
+         print*,'          one input energy parameter needed    '
          print*,'***********FATAL ERROR IN getSpTrig CALL********'
          stop
       endif
@@ -310,5 +309,104 @@ contains
       end select
 
    end function getSpTrig
+
+   !=======================================================================
+
+   function getSpTes(Heat_, t)
+
+      !--------------------------------------------
+      implicit none
+      
+      integer                     :: getSpTes
+      real(kind=prec), intent(in) :: Heat_
+      integer,         intent(in) :: t
+      integer                     :: i, j, k, full, ii
+      real(kind=prec)             :: c, p, maxp, Heat, minp
+
+      !--------------------------------------------
+      
+      Heat = Heat_
+      getSpTes  = 1
+
+      j    = is(iTs)
+      maxp = pMax(j)*etaTSout
+      minp = -1.0*pMax(j)/etaTSin
+      full = nSp(j)
+
+      if(heat.ge.zero) then
+        if(maxp.ge.Heat) then
+            k = nSpTs 
+            do 
+               k = k + 1
+               c = sp(k,j)
+               p = c*maxp
+               if (p.ge.heat) then
+                   getSpTes = k
+                   exit
+               endif
+            enddo
+         else
+            getSpTes = full
+         endif
+      else
+         if(minp.lt.heat) then
+            k = nSpTs 
+            do 
+               k = k - 1
+               c = sp(k,j)
+               p = -1.0*c*minp
+               if (p.lt.heat) then
+                   getSpTes = k + 1
+                   exit
+               endif
+            enddo
+         else
+            getSpTes = 1
+         endif
+      endif
+
+   end function getSpTes
+
+
+!==========================================================================================
+
+  function thStoragePmax(oldLevel,t)
+
+!--Declare Module usage---
+use plantVar
+use inputVar
+use constr
+
+implicit none
+
+!---Declare Local Variables---
+real(kind=prec), dimension(2)     :: thStoragePmax
+real(kind=prec)      , intent(in) :: oldLevel
+integer                           :: i, j
+integer, intent(in)               :: t
+integer, dimension(nm)            :: c
+
+if(capacityTs.le.zero) then
+  thStoragePmax(:) = zero
+  c(:) = 1
+else
+   i = is(iTs)
+   j = nSp(i)
+   do
+     thStoragePmax(1) = sp(j,i)*Pmax(i)*etaTSout
+     c(i) = j
+     if(thStorageConstr(oldLevel,c,t)) exit
+     j = j - 1 
+   enddo
+   j = 1
+   do
+     thStoragePmax(2) = sp(j,i)*Pmax(i)/etaTsIn
+     c(i) = j
+     if(thStorageConstr(oldLevel,c,t)) exit
+     j = j + 1 
+   enddo
+endif
+
+end function thStoragePmax
 
 end module getSetPoint

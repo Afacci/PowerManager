@@ -136,29 +136,36 @@ $(document).ready(function(){initNavTree('plant_var_8f90_source.html','');});
 <div class="line"><a name="l00035"></a><span class="lineno"><a class="code" href="classplantvar.html">   35</a></span>&#160;<span class="keyword">module</span> <a class="code" href="classplantvar.html">plantvar</a>   </div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">use </span><a class="code" href="classshared.html">shared</a></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="code" href="classplantvar.html#a0ecfac9070622328232608ce808ede2b">   39</a></span>&#160;<span class="keywordtype">real(kind = prec)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:,:)</span>   :: etaElT_, etaThT_, etaChT_, etaB_, etaC_, &amp;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                                                   sp,cRef</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="code" href="classplantvar.html#a187eaf8e3b46428daf4b89db350aa0f1">   41</a></span>&#160;<span class="keywordtype">real(kind = prec)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:,:,:)</span> :: envCorr</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="code" href="classplantvar.html#aade5aa28513690acf2cf215b0dc1acd2">   42</a></span>&#160;<span class="keywordtype">real(kind = prec)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:,:)</span>   :: etaEl, etaTh, etaCh, timeVinc</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="code" href="classplantvar.html#a01620e31bb05f1443908f0bff75215a4">   43</a></span>&#160;<span class="keywordtype">integer</span>         , <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:,:)</span>   :: cr</div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="code" href="classplantvar.html#aab06737bb534df1a69fff1f6f601a72a">   44</a></span>&#160;<span class="keywordtype">real(kind = prec)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:)</span>     :: Pmax, dt, cf, lhv, onOffCost, OeMCost, minUpTime, minDownTime</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="code" href="classplantvar.html#a8b75644cc6f0b1728b0fdcd7c575c177">   45</a></span>&#160;<span class="keywordtype">character(len=4)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:)</span>     :: pes</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="code" href="classplantvar.html#a1301bcb36aec6c118be8c084932de099">   46</a></span>&#160;<span class="keywordtype">integer</span>                                         :: nSpTot,nm, iT, iB, iC</div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="code" href="classplantvar.html#add18a489fead102059c74cf8875f94e0">   47</a></span>&#160;<span class="keywordtype">integer</span>,                       <span class="keywordtype">dimension(3)</span>     :: is,ie</div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="code" href="classplantvar.html#a019098844671b06b71ae0b76aa3d4fa8">   48</a></span>&#160;<span class="keywordtype">integer</span>,          <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:)</span>     :: nSp, nTv, eSource</div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="code" href="classplantvar.html#a4de39d7f2e55534eeac1a570bf8d30ff">   49</a></span>&#160;<span class="keywordtype">character(len=50)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:)</span>    :: tec</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">end module </span><a class="code" href="classplantvar.html">plantvar</a></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keywordtype">use </span><a class="code" href="classshared.html">shared</a></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">use </span><a class="code" href="classinputvar.html">inputvar</a></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="code" href="classplantvar.html#a0ecfac9070622328232608ce808ede2b">   41</a></span>&#160;<span class="keywordtype">real(kind = prec)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:,:)</span>   :: etaElT_, etaThT_, etaChT_, etaB_, etaC_, &amp;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                                                   sp,cRef</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="code" href="classplantvar.html#a187eaf8e3b46428daf4b89db350aa0f1">   43</a></span>&#160;<span class="keywordtype">real(kind = prec)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:,:,:)</span> :: envCorr</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="code" href="classplantvar.html#aade5aa28513690acf2cf215b0dc1acd2">   44</a></span>&#160;<span class="keywordtype">real(kind = prec)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:,:)</span>   :: etaEl, etaTh, etaCh, timeVinc</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="code" href="classplantvar.html#a01620e31bb05f1443908f0bff75215a4">   45</a></span>&#160;<span class="keywordtype">integer</span>         , <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:,:)</span>    :: cr</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="code" href="classplantvar.html#a9cdc1767d27c7362b6c33bc24fbe79ed">   46</a></span>&#160;<span class="keywordtype">real(kind = prec)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:)</span>     :: Pmax, dt, cf, lhv, onOffCost, OeMCost, minUpTime, minDownTime, pef, pecOn, &amp;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                                                    soc, socTh, socEl, Esoc</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="code" href="classplantvar.html#a8b75644cc6f0b1728b0fdcd7c575c177">   48</a></span>&#160;<span class="keywordtype">character(len=4)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:)</span>      :: pes</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="code" href="classplantvar.html#a1301bcb36aec6c118be8c084932de099">   49</a></span>&#160;<span class="keywordtype">integer</span>                                          :: nSpTot,nm,  nm0, nsoc, nSocEl</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="code" href="classplantvar.html#ab7276bde0d7595d7ce2ef0470ad21ca9">   50</a></span>&#160;<span class="keywordtype">integer</span>,                       <span class="keywordtype">dimension(5)</span>      :: is,ie</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="code" href="classplantvar.html#a019098844671b06b71ae0b76aa3d4fa8">   51</a></span>&#160;<span class="keywordtype">integer</span>,          <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:)</span>      :: nSp, nTv, eSource</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="code" href="classplantvar.html#a4de39d7f2e55534eeac1a570bf8d30ff">   52</a></span>&#160;<span class="keywordtype">character(len=50)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:)</span>     :: tec</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="code" href="classplantvar.html#a90a77172411c06cf156d494ea2902bfd">   53</a></span>&#160;<span class="keywordtype">real(kind=prec)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:)</span>       :: sunEl, sunTh , windEl</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="code" href="classplantvar.html#a269d2dde89a5632bf0e3d0162c2368c0">   54</a></span>&#160;<span class="keywordtype">logical</span>                                          :: elStor = .false.</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="code" href="classplantvar.html#aaa8d59ae7b5ae7303a9b5bd17499ce56">   56</a></span>&#160;<span class="keywordtype">integer</span>, <span class="keywordtype">parameter</span> :: iT = 1, iB = 2, iC = 3, iTS = 4, iES = 5</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">end module </span><a class="code" href="classplantvar.html">plantvar</a></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="plant_var_8f90.html">plantVar.f90</a></li>
-    <li class="footer">Generated on Wed Mar 6 2013 15:25:15 for PowerManager by
+    <li class="footer">Generated on Fri Jun 21 2013 12:15:25 for PowerManager by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

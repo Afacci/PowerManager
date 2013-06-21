@@ -42,18 +42,19 @@ use energy
 use plantVar
 use inputVar
 use interfaces
+use constr
 
-interface
-    logical function constraints(c,t)
-        use shared        
-        use plantVar
-        use interfaces
-        use inputVar
-        implicit none
-        integer, dimension(nm), intent(in) :: c
-        integer,                intent(in) :: t
-    end function constraints
-end interface
+!interface
+!    logical function constraints(c,t)
+!        use shared        
+!        use plantVar
+!        use interfaces
+!        use inputVar
+!        implicit none
+!        integer, dimension(nm), intent(in) :: c
+!        integer,                intent(in) :: t
+!    end function constraints
+!end interface
 
 
 contains

@@ -29,6 +29,7 @@ MODS = \
 ../obj/interfaces.o \
 ../obj/cmdVar.o \
 ../obj/energy.o \
+../obj/constraints.o \
 ../obj/economy.o \
 ../obj/euristics.o \
 ../obj/graphTools.o \
@@ -63,7 +64,6 @@ OBJS = \
 ../obj/commandline.o \
 ../obj/aiuto.o \
 ../obj/endExecution.o \
-../obj/constraints.o \
 ../obj/openUnit.o \
 ../obj/objFunction.o \
 ../obj/output.o \

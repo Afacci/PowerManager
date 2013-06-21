@@ -13,11 +13,7 @@ Collaboration diagram for graphtools\-:\nopagebreak
 \subsection*{Data Types}
 \begin{DoxyCompactItemize}
 \item 
-interface \hyperlink{interfacegraphtools_1_1constraints}{constraints}
-\item 
 interface \hyperlink{interfacegraphtools_1_1obj_function}{obj\-Function}
-\item 
-interface \hyperlink{interfacegraphtools_1_1time_constr}{time\-Constr}
 \end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -25,7 +21,7 @@ interface \hyperlink{interfacegraphtools_1_1time_constr}{time\-Constr}
 subroutine \hyperlink{classgraphtools_a4607d975b5dd57d2ca7fcdbab2b1ef56}{allcombin} (icm, dcm, imax, m, targ)
 \begin{DoxyCompactList}\small\item\em Generates all the combinations of the set points, staring from the set-\/point vectors that are stored in the columns of \char`\"{}cm\char`\"{}. \end{DoxyCompactList}\item 
 subroutine \hyperlink{classgraphtools_a94b8e6e5a3d3cc0c3bedbe00d57fc2f9}{graphpoints}
-\begin{DoxyCompactList}\small\item\em Generates the graph veteces, starting from the array of the set-\/point combinations. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Generates the graph vetexes, starting from the array of the set-\/point combinations. \end{DoxyCompactList}\item 
 subroutine \hyperlink{classgraphtools_a47c76f30f7f4917536f94c642ffca865}{grapharcs}
 \begin{DoxyCompactList}\small\item\em Generates the grapsh arcs. \end{DoxyCompactList}\item 
 subroutine \hyperlink{classgraphtools_ade3577b19aec190e8e056f041bc8afdf}{minpathtopofw} (ott\-Load, min\-Cost)
@@ -33,7 +29,26 @@ subroutine \hyperlink{classgraphtools_ade3577b19aec190e8e056f041bc8afdf}{minpath
 subroutine \hyperlink{classgraphtools_abef4e47145f628bc6d3001d4f6bd9601}{minpathtopobw} (ott\-Load, min\-Cost, up\-Time, min\-Path)
 \begin{DoxyCompactList}\small\item\em Miniumum path detemination. \end{DoxyCompactList}\item 
 real(kind=prec) function, \\*
-dimension(2 $\ast$nm) \hyperlink{classgraphtools_a0a5fc60233fedc07e2a6297bfa1763ba}{uptimecalc} (up\-T, c, t)
+dimension(2 $\ast$nm0+2) \hyperlink{classgraphtools_a4c6b1425ce7fa1411c4550e4fb5de421}{uptimecalc} (up\-T, c, t)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+integer \hyperlink{classgraphtools_a2b525a855ff204b1f0888367afad341b}{ncomb}
+\item 
+integer \hyperlink{classgraphtools_ad9b2084d88501c791d7004540a375e1b}{given}
+\item 
+integer, dimension(\-:,\-:), \\*
+allocatable \hyperlink{classgraphtools_a58276cd3a6f06eca01afff94e40135a3}{comb}
+\item 
+integer, dimension(\-:,\-:), \\*
+allocatable \hyperlink{classgraphtools_a06bc686e600e3a5ff5ca5cc86ac94872}{indexes}
+\item 
+real(kind=prec), dimension(\-:,\-:), \\*
+allocatable \hyperlink{classgraphtools_aa469ea301df7677b90448dfa88f26153}{spval}
+\item 
+real(kind=prec), dimension(\-:,\-:), \\*
+allocatable \hyperlink{classgraphtools_a637c15ec541e2e87680f381c2a542e27}{valiues}
 \end{DoxyCompactItemize}
 
 
@@ -53,7 +68,7 @@ Definition at line 34 of file graph\-Tools.\-f90.
 \item[{real(kind = prec), dimension(maxval(imax),m), intent(in), optional}]{dcm, }
 \item[{integer, dimension(m), intent(in)}]{imax, }
 \item[{integer, intent(in)}]{m, }
-\item[{character(len=100), intent(in), optional}]{targ}
+\item[{character(len=$\ast$), intent(in), optional}]{targ}
 \end{DoxyParamCaption}
 )}}\label{classgraphtools_a4607d975b5dd57d2ca7fcdbab2b1ef56}
 Generates all the combinations of the set points, staring from the set-\/point vectors that are stored in the columns of \char`\"{}cm\char`\"{}. Each row of the array \char`\"{}comb\char`\"{} represents a set-\/point of the plant. The total number of states of the plant is also returned in the variable \char`\"{}n\-Comb\char`\"{} \begin{DoxyAuthor}{Author}
@@ -61,7 +76,7 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 102 of file graph\-Tools.\-f90.
+Definition at line 130 of file graph\-Tools.\-f90.
 
 
 
@@ -80,11 +95,11 @@ Referenced by main().
 )}}\label{classgraphtools_a47c76f30f7f4917536f94c642ffca865}
 Generates the grapsh arcs. Note that only vertex relative to consecutive time-\/steps are connected and that arcs are oriented in the direction of increasing time. Arcs are stored in the form of a predecessor list \char`\"{}pred\-List\char`\"{}, that associates to each node all its predecessors. A weight is assiciated to each element of the predecessor list, equal to the weight of the predecessor vertex plus a cost connected to the variation of state between the actual and predecessor state. \[ arcCost(i,j) = pointCost(c(i)) + fireCost(i,j) \] The number of predecessors for each vertex is asle stored in the \char`\"{}n\-Pre(i)\char`\"{} array. 
 
-Definition at line 308 of file graph\-Tools.\-f90.
+Definition at line 346 of file graph\-Tools.\-f90.
 
 
 
-References economy\-::firecost().
+References economy\-::cyclecost(), economy\-::firecost(), and energy\-::pecpenalty().
 
 
 
@@ -102,7 +117,7 @@ Andrea Facci.
 \end{DoxyAuthor}
 
 
-Definition at line 206 of file graph\-Tools.\-f90.
+Definition at line 240 of file graph\-Tools.\-f90.
 
 
 
@@ -118,7 +133,7 @@ Referenced by main().
 \begin{DoxyParamCaption}
 \item[{integer, dimension(0\-:ntime+1,nm), intent(out)}]{ott\-Load, }
 \item[{real(kind = prec), intent(out)}]{min\-Cost, }
-\item[{real(kind = prec), dimension(0\-:ntime+1,2$\ast$nm), intent(out)}]{up\-Time, }
+\item[{real(kind = prec), dimension(0\-:ntime+1,2$\ast$nm0 + 2), intent(out)}]{up\-Time, }
 \item[{integer, dimension(0\-:ntime+1)}]{min\-Path}
 \end{DoxyParamCaption}
 )}}\label{classgraphtools_abef4e47145f628bc6d3001d4f6bd9601}
@@ -127,11 +142,11 @@ Andrea Facci.
 \end{DoxyAuthor}
 
 
-Definition at line 472 of file graph\-Tools.\-f90.
+Definition at line 525 of file graph\-Tools.\-f90.
 
 
 
-References mathtools\-::locaterow(), timeconstr(), and uptimecalc().
+References abortexecution(), constr\-::elstorageconstr(), mathtools\-::locaterow(), constr\-::thstorageconstr(), constr\-::timeconstr(), and uptimecalc().
 
 
 
@@ -150,28 +165,77 @@ Andrea Facci.
 \end{DoxyAuthor}
 
 
-Definition at line 413 of file graph\-Tools.\-f90.
+Definition at line 466 of file graph\-Tools.\-f90.
 
 
 
 Referenced by main().
 
-\hypertarget{classgraphtools_a0a5fc60233fedc07e2a6297bfa1763ba}{\index{graphtools@{graphtools}!uptimecalc@{uptimecalc}}
+\hypertarget{classgraphtools_a4c6b1425ce7fa1411c4550e4fb5de421}{\index{graphtools@{graphtools}!uptimecalc@{uptimecalc}}
 \index{uptimecalc@{uptimecalc}!graphtools@{graphtools}}
-\subsubsection[{uptimecalc}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function, dimension(2$\ast$nm) graphtools\-::uptimecalc (
+\subsubsection[{uptimecalc}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function, dimension(2$\ast$nm0 + 2) graphtools\-::uptimecalc (
 \begin{DoxyParamCaption}
-\item[{real(kind = prec), dimension(2$\ast$nm)}]{up\-T, }
+\item[{real(kind = prec), dimension(2$\ast$nm0 + 2)}]{up\-T, }
 \item[{integer, dimension(nm), intent(in)}]{c, }
 \item[{integer, intent(in)}]{t}
 \end{DoxyParamCaption}
-)}}\label{classgraphtools_a0a5fc60233fedc07e2a6297bfa1763ba}
+)}}\label{classgraphtools_a4c6b1425ce7fa1411c4550e4fb5de421}
 
 
-Definition at line 549 of file graph\-Tools.\-f90.
+Definition at line 618 of file graph\-Tools.\-f90.
+
+
+
+References energy\-::elstoragelevelupdate(), and energy\-::thstoragelevelupdate().
 
 
 
 Referenced by minpathtopobw().
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classgraphtools_a58276cd3a6f06eca01afff94e40135a3}{\index{graphtools@{graphtools}!comb@{comb}}
+\index{comb@{comb}!graphtools@{graphtools}}
+\subsubsection[{comb}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:,\-:), allocatable graphtools\-::comb}}\label{classgraphtools_a58276cd3a6f06eca01afff94e40135a3}
+
+
+Definition at line 42 of file graph\-Tools.\-f90.
+
+\hypertarget{classgraphtools_ad9b2084d88501c791d7004540a375e1b}{\index{graphtools@{graphtools}!given@{given}}
+\index{given@{given}!graphtools@{graphtools}}
+\subsubsection[{given}]{\setlength{\rightskip}{0pt plus 5cm}integer graphtools\-::given}}\label{classgraphtools_ad9b2084d88501c791d7004540a375e1b}
+
+
+Definition at line 40 of file graph\-Tools.\-f90.
+
+\hypertarget{classgraphtools_a06bc686e600e3a5ff5ca5cc86ac94872}{\index{graphtools@{graphtools}!indexes@{indexes}}
+\index{indexes@{indexes}!graphtools@{graphtools}}
+\subsubsection[{indexes}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:,\-:), allocatable graphtools\-::indexes}}\label{classgraphtools_a06bc686e600e3a5ff5ca5cc86ac94872}
+
+
+Definition at line 42 of file graph\-Tools.\-f90.
+
+\hypertarget{classgraphtools_a2b525a855ff204b1f0888367afad341b}{\index{graphtools@{graphtools}!ncomb@{ncomb}}
+\index{ncomb@{ncomb}!graphtools@{graphtools}}
+\subsubsection[{ncomb}]{\setlength{\rightskip}{0pt plus 5cm}integer graphtools\-::ncomb}}\label{classgraphtools_a2b525a855ff204b1f0888367afad341b}
+
+
+Definition at line 40 of file graph\-Tools.\-f90.
+
+\hypertarget{classgraphtools_aa469ea301df7677b90448dfa88f26153}{\index{graphtools@{graphtools}!spval@{spval}}
+\index{spval@{spval}!graphtools@{graphtools}}
+\subsubsection[{spval}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec), dimension(\-:,\-:), allocatable graphtools\-::spval}}\label{classgraphtools_aa469ea301df7677b90448dfa88f26153}
+
+
+Definition at line 43 of file graph\-Tools.\-f90.
+
+\hypertarget{classgraphtools_a637c15ec541e2e87680f381c2a542e27}{\index{graphtools@{graphtools}!valiues@{valiues}}
+\index{valiues@{valiues}!graphtools@{graphtools}}
+\subsubsection[{valiues}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec), dimension(\-:,\-:), allocatable graphtools\-::valiues}}\label{classgraphtools_a637c15ec541e2e87680f381c2a542e27}
+
+
+Definition at line 43 of file graph\-Tools.\-f90.
 
 
 

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uptimecalc',['uptimecalc',['../classgraphtools.html#a0a5fc60233fedc07e2a6297bfa1763ba',1,'graphtools']]]
+  ['uptimecalc',['uptimecalc',['../classgraphtools.html#a4c6b1425ce7fa1411c4550e4fb5de421',1,'graphtools']]]
 ];

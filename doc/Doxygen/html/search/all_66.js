@@ -15,5 +15,6 @@ var searchData=
   ['fuelcostb',['fuelcostb',['../classinputvar.html#a7ba5eba73efe4e693920d6af7782e58e',1,'inputvar']]],
   ['fuelcostt',['fuelcostt',['../classinputvar.html#a85ccff6d868e650d2255bb9faa7c31be',1,'inputvar']]],
   ['fuellhvb',['fuellhvb',['../classinputvar.html#a3cd62c9288fded8bd8de8066cbb3ca20',1,'inputvar']]],
-  ['fuellhvt',['fuellhvt',['../classinputvar.html#afe467edd87c4c589d3ad9d5b14825f94',1,'inputvar']]]
+  ['fuellhvt',['fuellhvt',['../classinputvar.html#afe467edd87c4c589d3ad9d5b14825f94',1,'inputvar']]],
+  ['fullload',['fullload',['../classstrategies.html#a3abfa1fd92febbe0e3b58fdc4d646165',1,'strategies']]]
 ];

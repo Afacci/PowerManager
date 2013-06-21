@@ -19,11 +19,15 @@ Collaboration diagram for mathtools\-:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 interface \hyperlink{interfacemathtools_1_1interpolation}{interpolation}
+\item 
+interface \hyperlink{interfacemathtools_1_1scalar_interp}{scalar\-Interp}
 \end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 integer function \hyperlink{classmathtools_a64c72087c0180d1e0cfbd7356d8a1a5a}{locaterow} (row, mat, n, m, error)
+\item 
+integer function \hyperlink{classmathtools_a58ee6953f2a70383a6026b1cbb377058}{locateelement} (val, vec, n, error)
 \end{DoxyCompactItemize}
 
 
@@ -38,6 +42,24 @@ Definition at line 36 of file math\-Tools.\-f90.
 
 
 \subsection{Member Function/\-Subroutine Documentation}
+\hypertarget{classmathtools_a58ee6953f2a70383a6026b1cbb377058}{\index{mathtools@{mathtools}!locateelement@{locateelement}}
+\index{locateelement@{locateelement}!mathtools@{mathtools}}
+\subsubsection[{locateelement}]{\setlength{\rightskip}{0pt plus 5cm}integer function mathtools\-::locateelement (
+\begin{DoxyParamCaption}
+\item[{real(kind = prec), intent(in)}]{val, }
+\item[{real(kind = prec), dimension(n), intent(in)}]{vec, }
+\item[{integer, intent(in)}]{n, }
+\item[{logical, intent(out), optional}]{error}
+\end{DoxyParamCaption}
+)}}\label{classmathtools_a58ee6953f2a70383a6026b1cbb377058}
+
+
+Definition at line 122 of file math\-Tools.\-f90.
+
+
+
+References test().
+
 \hypertarget{classmathtools_a64c72087c0180d1e0cfbd7356d8a1a5a}{\index{mathtools@{mathtools}!locaterow@{locaterow}}
 \index{locaterow@{locaterow}!mathtools@{mathtools}}
 \subsubsection[{locaterow}]{\setlength{\rightskip}{0pt plus 5cm}integer function mathtools\-::locaterow (
@@ -51,11 +73,15 @@ Definition at line 36 of file math\-Tools.\-f90.
 )}}\label{classmathtools_a64c72087c0180d1e0cfbd7356d8a1a5a}
 
 
-Definition at line 54 of file math\-Tools.\-f90.
+Definition at line 67 of file math\-Tools.\-f90.
 
 
 
-Referenced by graphtools\-::graphpoints(), and graphtools\-::minpathtopobw().
+References test().
+
+
+
+Referenced by strategies\-::electricaltracking(), strategies\-::fullload(), graphtools\-::graphpoints(), graphtools\-::minpathtopobw(), and strategies\-::thermaltracking().
 
 
 

@@ -29,7 +29,9 @@ real(kind=prec) function \hyperlink{classeconomy_ace504d2735fcf5bab047994e760346
 \begin{DoxyCompactList}\small\item\em Calculates the lighting cost. \end{DoxyCompactList}\item 
 real(kind=prec) function, \\*
 dimension(2) \hyperlink{classeconomy_a47cc446e4047749cb8b4ae10372ae3c4}{grideconomy} (c, t)
-\end{DoxyCompactItemize}
+\item 
+real(kind=prec) function \hyperlink{classeconomy_a02584f393a8b9ee3cce3c1e06cb6469d}{cyclecost} (c\-New, c\-Old)
+\begin{DoxyCompactList}\small\item\em Calculates the cost associated to each battery charge cycle. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -66,7 +68,7 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 187 of file economy.\-f90.
+Definition at line 198 of file economy.\-f90.
 
 
 
@@ -102,7 +104,7 @@ Andrea Facci
 
 \end{DoxyItemize}
 
-Definition at line 322 of file economy.\-f90.
+Definition at line 333 of file economy.\-f90.
 
 
 
@@ -111,6 +113,32 @@ References chrev(), elrev(), fuelcost(), maintenancecost(), and threv().
 
 
 Referenced by objfunction().
+
+\hypertarget{classeconomy_a02584f393a8b9ee3cce3c1e06cb6469d}{\index{economy@{economy}!cyclecost@{cyclecost}}
+\index{cyclecost@{cyclecost}!economy@{economy}}
+\subsubsection[{cyclecost}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function economy\-::cyclecost (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(nm), intent(in)}]{c\-New, }
+\item[{integer, dimension(nm), intent(in)}]{c\-Old}
+\end{DoxyParamCaption}
+)}}\label{classeconomy_a02584f393a8b9ee3cce3c1e06cb6469d}
+Calculates the cost associated to each battery charge cycle. \[ C_{l} > 0 \qquad \mbox{if} \qquad sp(t,i) > 0 \;\mbox{and}\; sp(t-1,i) = 0 \] this cost will be added to the operative profit to for the arc profit/cost. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time step index. Note t=x meas the x'th time step from the simulation start. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 461 of file economy.\-f90.
+
+
+
+Referenced by graphtools\-::grapharcs().
 
 \hypertarget{classeconomy_a4ab4325ba4da5a36bfc71dad24b101c6}{\index{economy@{economy}!elrev@{elrev}}
 \index{elrev@{elrev}!economy@{economy}}
@@ -170,7 +198,7 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 355 of file economy.\-f90.
+Definition at line 366 of file economy.\-f90.
 
 
 
@@ -197,7 +225,7 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 233 of file economy.\-f90.
+Definition at line 244 of file economy.\-f90.
 
 
 
@@ -217,7 +245,7 @@ Referenced by currcost(), globalresults\-::globfuelcost(), and output().
 )}}\label{classeconomy_a47cc446e4047749cb8b4ae10372ae3c4}
 
 
-Definition at line 380 of file economy.\-f90.
+Definition at line 391 of file economy.\-f90.
 
 
 
@@ -248,7 +276,7 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 276 of file economy.\-f90.
+Definition at line 287 of file economy.\-f90.
 
 
 
@@ -274,7 +302,7 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 147 of file economy.\-f90.
+Definition at line 158 of file economy.\-f90.
 
 
 

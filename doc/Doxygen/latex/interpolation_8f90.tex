@@ -11,7 +11,9 @@ Remaps a discrete scalar field on a given 1d grid.
 \item 
 real(kind=prec) function, \\*
 dimension(m) \hyperlink{interpolation_8f90_af82151c6134b883711c2a1fa732ca69a}{interpolation} (x\-In, y\-In, n, x\-Out, m, warn)
-\begin{DoxyCompactList}\small\item\em Remaps a discrete scalar field on a given 1d grid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Remaps a discrete scalar field on a given 1d grid. \end{DoxyCompactList}\item 
+real(kind=prec) function \hyperlink{interpolation_8f90_aad4c77c5bcdbd72c8d4ab3b3cb23585c}{scalarinterp} (x\-In, y\-In, n, x, warn)
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -56,4 +58,23 @@ Andrea Facci.
 
 
 Definition at line 46 of file interpolation.\-f90.
+
+\hypertarget{interpolation_8f90_aad4c77c5bcdbd72c8d4ab3b3cb23585c}{\index{interpolation.\-f90@{interpolation.\-f90}!scalarinterp@{scalarinterp}}
+\index{scalarinterp@{scalarinterp}!interpolation.f90@{interpolation.\-f90}}
+\subsubsection[{scalarinterp}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function scalarinterp (
+\begin{DoxyParamCaption}
+\item[{real(kind = prec), dimension(n), intent(in)}]{x\-In, }
+\item[{real(kind = prec), dimension(n), intent(in)}]{y\-In, }
+\item[{integer, intent(in)}]{n, }
+\item[{real(kind = prec), intent(in)}]{x, }
+\item[{integer, dimension(2), intent(out), optional}]{warn}
+\end{DoxyParamCaption}
+)}}\label{interpolation_8f90_aad4c77c5bcdbd72c8d4ab3b3cb23585c}
+
+
+Definition at line 94 of file interpolation.\-f90.
+
+
+
+Referenced by addsection\-::addboilers(), addsection\-::addchillers(), and addsection\-::addtrigenerative().
 

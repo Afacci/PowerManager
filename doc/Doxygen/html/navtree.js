@@ -11,7 +11,7 @@ var NAVTREE =
       [ "Data Fields", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions/Subroutines", "functions_func.html", null ],
-        [ "Variables", "functions_vars.html", null ]
+        [ "Variables", "functions_vars.html", "functions_vars" ]
       ] ]
     ] ],
     [ "Files", null, [
@@ -27,7 +27,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_a.html",
-"euristics_8f90.html"
+"classinputvar.html#accdc85c467baf46e33e1237e719ad174",
+"manual_8f90_source.html"
 ];
 
 var navTreeSubIndices = new Array();

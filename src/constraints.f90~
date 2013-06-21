@@ -43,6 +43,11 @@
 !>\param[in] c index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
 !>\param[in] t time step index. Note t=x meas the x'th time step from the
 !>\author Andrea Facci
+
+module constr
+
+contains
+
 logical function constraints(c,t)
 
 !---Declare Module usage---
@@ -85,6 +90,8 @@ endif
 p = thProd(c,t) 
 u = sum(uTh(t,:)) + thSelfCons(c,t)
 if(p.lt.u) constraints = .false.
+
+!print*, 'constraints', thProd(c,t), c
 
 
 end function constraints
@@ -145,7 +152,10 @@ real(kind=prec)                    :: newLevel
 
 thStorageConstr = .true.
 
+if(capacityTS.le.zero.or.PmaxTS.le.zero) return
+
 newLevel = thStorageLevelUpdate(oldLevel,c,t)
+
 if(newLevel.lt.zero)       thStorageConstr = .false.
 if(newLevel.gt.capacityTS) thStorageConstr = .false.
 if(t.eq.nTime) then
@@ -155,3 +165,39 @@ endif
 return
 
 end function thStorageConstr
+
+
+!=============================================================
+
+logical function elStorageConstr(oldLevel,c,t)
+
+!---Declare Module usage---
+
+use shared
+use plantVar
+use inputVar
+use energy
+
+implicit none
+integer, dimension(nm), intent(in) :: c
+integer,                intent(in) :: t
+real(kind=prec),        intent(in) :: oldLevel
+real(kind=prec)                    :: newLevel
+
+elStorageConstr = .true.
+
+if(capacityES.le.zero.or.PmaxES.le.zero) return
+
+newLevel = elStorageLevelUpdate(oldLevel,c,t)
+
+if(newLevel.lt.zero)       elStorageConstr = .false.
+if(newLevel.gt.capacityES) elStorageConstr = .false.
+if(t.eq.nTime) then
+   if(newLevel.ne.eSocEl)  elStorageConstr = .false.
+endif
+
+return
+
+end function elStorageConstr
+
+end module constr

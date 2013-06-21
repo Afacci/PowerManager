@@ -638,6 +638,21 @@ end function cogThProd
 
 !=======================================================================
 
+!>\brief Primary Energy Consumption
+!>\details This function calculates the primary energy consumption of the power
+!> plant according to the relation:
+!>\f[ 
+!> PEC = dt(t)\sum_{Trig+Boi} \frac{sp(i)dd\cdot P_{max}(i)}{\eta(i,sp(i))}pef_{fuel}(i)) + P_{grid}pef_{grid}dt(t)
+!>\f]
+!>where \f$sp(i)\f$ is the set point of the \f$i\f$'th  machine,
+!>\f$\eta = \eta_{th}\f$ for boilers and \f$\eta = \eta_{el}\f$ for trigenerative equipments;  pef_{fuel}(i)
+!> is the primary energy factor relative to the fuels used by the i'th machine.
+!> P_{grid} is the electrical power exchanged with the grid and  pef_{grid} is its primary energy factor. 
+
+!>\param[in] c_  index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
+!>\param[in] t   time index
+!>\author Andrea Facci
+
 real(kind=prec) function pec(c,t)
 
   use plantVar
@@ -669,6 +684,15 @@ real(kind=prec) function pec(c,t)
 
 end function pec
 !=======================================================================
+
+
+!>\brief Primary Energy Consumption Penalty at startup
+!>\details This function calculates the primary energy consumption penalty at
+!startup for each component of the plant.
+
+!>\param[in] c_  index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
+!>\param[in] t   time index
+!>\author Andrea Facci
 
 real(kind=prec) function pecPenalty(cNew,cOld,t)
 
@@ -710,8 +734,6 @@ end function pecPenalty
 
 !==========================================================================================
 
-real(kind=prec) function thStorageLevelUpdate(oldLevel,c,t)
-
 !>\brief Updates the level of thermal storage
 !>\details Updates the state of charge of the thermal storage according to old
 !> state of charge and present set point.
@@ -719,10 +741,13 @@ real(kind=prec) function thStorageLevelUpdate(oldLevel,c,t)
 !> SOC_{th}(t) = SOC_{th}(t-1) sp_{th}\cdot P_{max}\eta
 !>\f]
 !>where \f$sp(i)\f$ is the set point of the thermal storage
-!>\f$P_{max}(i)\f$ is its rated power and \f$\eta = \eta_{in}$\f if sp<0 and \f$\eta = \eta_{out}$\f if sp>0
+!>\f$P_{max}(i)\f$ is its rated power and \f$\eta = \eta_{in}\f$ if \f$sp \le 0\f$ and \f$\eta = \eta_{out}\f$ if \f$sp \ge 0\f$
 !>\param[in] c_  index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
 !>\param[in] t   time index
 !>\author Andrea Facci
+
+real(kind=prec) function thStorageLevelUpdate(oldLevel,c,t)
+
 
 !--Declare Module usage---
 use plantVar
@@ -751,7 +776,6 @@ end function thStorageLevelUpdate
 
 !==========================================================================================
 
-real(kind=prec) function elStorageLevelUpdate(oldLevel,c,t)
 
 !>\brief Updates the level of electrical storage
 !>\details Updates the state of charge of vthe thermal storage according to old
@@ -760,10 +784,13 @@ real(kind=prec) function elStorageLevelUpdate(oldLevel,c,t)
 !> SOC_{th}(t) = SOC_{th}(t-1) sp_{th}\cdot P_{max}\eta
 !>\f]
 !>where \f$sp(i)\f$ is the set point of the thermal storage
-!>\f$P_{max}(i)\f$ is its rated power and \f$\eta = \eta_{in}$\f if sp<0 and \f$\eta = \eta_{out}$\f if sp>0
+!>\f$P_{max}(i)\f$ is its rated power and \f$\eta = \eta_{in}\f$ if \f$sp \le 0\f$ and \f$\eta = \eta_{out}\f$ if \f$sp \ge 0\f$
+
 !>\param[in] c_  index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
 !>\param[in] t   time index
 !>\author Andrea Facci
+
+real(kind=prec) function elStorageLevelUpdate(oldLevel,c,t)
 
 !--Declare Module usage---
 use plantVar
@@ -788,5 +815,49 @@ endif
 return
 
 end function elStorageLevelUpdate
+
+!========================================================================================
+
+!>\brief Calculates the power from or to the thermal storage.
+!>\details This function calculates the power from and to the thermal storage 
+!>system, given the plant set-point vector and the time-step
+!> state of charge and present set point.
+!>\f[ 
+!> P_{tes}(t) =  sp_{tes}\cdot P_{max}\eta_{in}\qquad \mbox{ if } \qquad sp_{tes} \le 0
+!>\f]
+!>\f[ 
+!> P_{tes}(t) =  sp_{tes}\cdot P_{max}eta_{out} \qquad\mbox{ if } \qquad sp_{tes} > 0
+!>\f]
+!>where \f$sp_{tes}\f$ is the set point of the thermal storage
+!>\f$P_{max}\f$ is its rated power and \f$\eta_{in}\f$ and \f$\eta_{out}\f$ are the input and output efficiencies, respectively.
+
+!>\param[in] c_  index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
+!>\param[in] t   time index
+!>\author Andrea Facci
+
+real(kind=prec) function tesPower(c,t)
+
+!--Declare Module usage---
+use plantVar
+use inputVar
+
+implicit none
+
+!---Declare Local Variables---
+integer,dimension(nm), intent(in) :: c
+integer,               intent(in) :: t
+integer                           :: i, j
+
+tesPower = zero
+
+!--production from electrical storage.
+if(pMaxTS.gt.zero.and.capacityTS.gt.zero) then
+   i    = is(iTS)
+   j    = c(i)
+   if(sp(j,i).gt.zero) tesPower  =  pMax(i)*sp(j,i)*etaTSout
+   if(sp(j,i).lt.zero) tesPower  =  pMax(i)*sp(j,i)/etaTsIn
+endif
+
+end function tesPower
 
 end module energy

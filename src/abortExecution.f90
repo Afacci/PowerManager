@@ -71,9 +71,12 @@ character(len=18), dimension(4)        :: GSE
 character(len=18), dimension(5)        :: ThStorage
 character(len=19), dimension(10)        :: Iwind
 
+
+
 print*
 print*, '!-----------------------------------FATAL ERROR-----------------------------------------!'
 print*
+print*, ', se vabbè ma dove?', i
 
 general       = (/'GridConnection    ', 'Degradation       ', 'objective         ', 'StartPoint        '  &
                  ,'FirstTimeStep     ', 'UpTime0           ', 'DownTime0         ', 'Algorithm         '  & 
@@ -224,7 +227,7 @@ select case(i)
     case(20)
         print*, 'Priority list is necessary for all the equipmente in case of thermal tracking'
         print*, 'Cannot find keyword "keyword "Priority" in', trim(files(j+1))
-    case(22)
+    case(21)
         print*, 'The', j,'th element of the trigeneration priority list i > than nTrig'
     case(23)
         print*, 'The', j,'th element of the Boilers priority list i > than nBoi'

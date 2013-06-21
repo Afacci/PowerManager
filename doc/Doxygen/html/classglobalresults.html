@@ -132,6 +132,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0edf7ae83d7b521a5b8f0c4d7b87dddc"><td class="memItemLeft" align="right" valign="top">real(kind=prec) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classglobalresults.html#a0edf7ae83d7b521a5b8f0c4d7b87dddc">globcost</a> (setPoint)</td></tr>
 <tr class="memitem:ad14556fe1ddf08129231242d3716028e"><td class="memItemLeft" align="right" valign="top">real(kind=prec) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classglobalresults.html#ad14556fe1ddf08129231242d3716028e">globrevenues</a> (setPoint)</td></tr>
 <tr class="memitem:afd33ba4d9415e6eba9f99590f55d71a8"><td class="memItemLeft" align="right" valign="top">real(kind=prec) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classglobalresults.html#afd33ba4d9415e6eba9f99590f55d71a8">globprofit</a> (setPoint)</td></tr>
+<tr class="memitem:af9b60fbdefb230d88e9fa328232511a6"><td class="memItemLeft" align="right" valign="top">real(kind=prec) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classglobalresults.html#af9b60fbdefb230d88e9fa328232511a6">globpec</a> (setPoint)</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd></dd></dl>
@@ -170,7 +171,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="global_results_8f90_source.html#l00159">159</a> of file <a class="el" href="global_results_8f90_source.html">globalResults.f90</a>.</p>
 
-<p>References <a class="el" href="economy_8f90_source.html#l00187">economy::chrev()</a>.</p>
+<p>References <a class="el" href="economy_8f90_source.html#l00198">economy::chrev()</a>.</p>
 
 <p>Referenced by <a class="el" href="global_results_8f90_source.html#l00302">globrevenues()</a>, and <a class="el" href="output_8f90_source.html#l00031">output()</a>.</p>
 
@@ -275,7 +276,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="global_results_8f90_source.html#l00270">270</a> of file <a class="el" href="global_results_8f90_source.html">globalResults.f90</a>.</p>
 
-<p>References <a class="el" href="economy_8f90_source.html#l00355">economy::firecost()</a>.</p>
+<p>References <a class="el" href="economy_8f90_source.html#l00366">economy::firecost()</a>.</p>
 
 <p>Referenced by <a class="el" href="global_results_8f90_source.html#l00290">globcost()</a>, and <a class="el" href="output_8f90_source.html#l00031">output()</a>.</p>
 
@@ -311,7 +312,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="global_results_8f90_source.html#l00202">202</a> of file <a class="el" href="global_results_8f90_source.html">globalResults.f90</a>.</p>
 
-<p>References <a class="el" href="economy_8f90_source.html#l00233">economy::fuelcost()</a>.</p>
+<p>References <a class="el" href="economy_8f90_source.html#l00244">economy::fuelcost()</a>.</p>
 
 <p>Referenced by <a class="el" href="global_results_8f90_source.html#l00290">globcost()</a>, and <a class="el" href="output_8f90_source.html#l00031">output()</a>.</p>
 
@@ -347,9 +348,31 @@ Public Member Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="global_results_8f90_source.html#l00237">237</a> of file <a class="el" href="global_results_8f90_source.html">globalResults.f90</a>.</p>
 
-<p>References <a class="el" href="economy_8f90_source.html#l00276">economy::maintenancecost()</a>.</p>
+<p>References <a class="el" href="economy_8f90_source.html#l00287">economy::maintenancecost()</a>.</p>
 
 <p>Referenced by <a class="el" href="global_results_8f90_source.html#l00290">globcost()</a>, and <a class="el" href="output_8f90_source.html#l00031">output()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af9b60fbdefb230d88e9fa328232511a6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(kind=prec) function globalresults::globpec </td>
+          <td>(</td>
+          <td class="paramtype">integer, dimension(0:ntime+1,nm), intent(in)&#160;</td>
+          <td class="paramname"><em>setPoint</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="global_results_8f90_source.html#l00326">326</a> of file <a class="el" href="global_results_8f90_source.html">globalResults.f90</a>.</p>
+
+<p>References <a class="el" href="energy_8f90_source.html#l00656">energy::pec()</a>, and <a class="el" href="energy_8f90_source.html#l00697">energy::pecpenalty()</a>.</p>
+
+<p>Referenced by <a class="el" href="output_8f90_source.html#l00031">output()</a>.</p>
 
 </div>
 </div>
@@ -427,7 +450,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="global_results_8f90_source.html#l00121">121</a> of file <a class="el" href="global_results_8f90_source.html">globalResults.f90</a>.</p>
 
-<p>References <a class="el" href="economy_8f90_source.html#l00147">economy::threv()</a>.</p>
+<p>References <a class="el" href="economy_8f90_source.html#l00158">economy::threv()</a>.</p>
 
 <p>Referenced by <a class="el" href="global_results_8f90_source.html#l00302">globrevenues()</a>, and <a class="el" href="output_8f90_source.html#l00031">output()</a>.</p>
 
@@ -442,7 +465,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classglobalresults.html">globalresults</a></li>
-    <li class="footer">Generated on Wed Mar 6 2013 15:25:15 for PowerManager by
+    <li class="footer">Generated on Fri Jun 21 2013 12:15:25 for PowerManager by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

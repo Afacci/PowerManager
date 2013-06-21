@@ -43,6 +43,11 @@
 !>\param[in] c index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
 !>\param[in] t time step index. Note t=x meas the x'th time step from the
 !>\author Andrea Facci
+
+module constr
+
+contains
+
 logical function constraints(c,t)
 
 !---Declare Module usage---
@@ -153,9 +158,9 @@ newLevel = thStorageLevelUpdate(oldLevel,c,t)
 
 if(newLevel.lt.zero)       thStorageConstr = .false.
 if(newLevel.gt.capacityTS) thStorageConstr = .false.
-if(t.eq.nTime) then
-   if(newLevel.ne.eSocTh)  thStorageConstr = .false.
-endif
+!if(t.eq.nTime) then
+!   if(newLevel.ne.eSocTh)  thStorageConstr = .false.
+!endif
 
 return
 
@@ -194,3 +199,5 @@ endif
 return
 
 end function elStorageConstr
+
+end module constr
