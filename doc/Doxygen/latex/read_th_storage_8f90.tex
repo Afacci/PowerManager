@@ -1,0 +1,49 @@
+\hypertarget{read_th_storage_8f90}{\section{/home/\-Codici/\-Blink/\-Power\-Manager/src/read\-Th\-Storage.f90 File Reference}
+\label{read_th_storage_8f90}\index{/home/\-Codici/\-Blink/\-Power\-Manager/src/read\-Th\-Storage.\-f90@{/home/\-Codici/\-Blink/\-Power\-Manager/src/read\-Th\-Storage.\-f90}}
+}
+\subsection*{Functions/\-Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \hyperlink{read_th_storage_8f90_aa12da0418968e1e7388fbadb2e807303}{readthstorage}
+\begin{DoxyCompactList}\small\item\em Reads Thermal\-Storage.\-inp file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function/\-Subroutine Documentation}
+\hypertarget{read_th_storage_8f90_aa12da0418968e1e7388fbadb2e807303}{\index{read\-Th\-Storage.\-f90@{read\-Th\-Storage.\-f90}!readthstorage@{readthstorage}}
+\index{readthstorage@{readthstorage}!readThStorage.f90@{read\-Th\-Storage.\-f90}}
+\subsubsection[{readthstorage}]{\setlength{\rightskip}{0pt plus 5cm}subroutine readthstorage (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{read_th_storage_8f90_aa12da0418968e1e7388fbadb2e807303}
+This subroutine reads the file \char`\"{}\-Boilers.\-inp\char`\"{}. The procedure looks for each specific entry in the \char`\"{}keyword field\char`\"{}, and associates the value in the \char`\"{}value\char`\"{} field, to the corresponding variable. If the desired entry is not present returns an error message and aborts the execution. The structure of the input file is clarified in the following example along with the meaning of \char`\"{}keyword\char`\"{} and \char`\"{}value\char`\"{} field.\par
+ \begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
+    begin 
+       !Commented line
+       KeywordField  | ValueField | !Comment two
+
+       KeywordField  | ValueField |
+       ScalarValue   | 1          |
+       Vector        | 1 2 n      |
+       VectorSeries  |(a b c ) (d e f)|
+       Matrix        |(11 12 13  |
+                     | 21 22 23  |
+                     | 31 32 33) |
+    end
+ A lof really usless text
+\end{DoxyVerb}
+ Note that only the text between \char`\"{}begin\char`\"{} and \char`\"{}end\char`\"{} is read. Blank lines are automatically discarded, while any unrecognized entry is discarded returning a warning code. Line beginning with \char`\"{}!\char`\"{} are considered comments and discarded. \begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition at line 61 of file read\-Th\-Storage.\-f90.
+
+
+
+References abortexecution(), and readkeyword().
+
+
+
+Referenced by main().
+

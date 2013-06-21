@@ -1,0 +1,122 @@
+\hypertarget{classgetsetpoint}{\section{getsetpoint Module Reference}
+\label{classgetsetpoint}\index{getsetpoint@{getsetpoint}}
+}
+
+
+Collaboration diagram for getsetpoint\-:
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+integer function, dimension(nboi) \hyperlink{classgetsetpoint_a9906ea2ba345b2fd95981a7a897d5269}{getspboi} (Heat\-\_\-, t)
+\item 
+integer function, dimension(nchi) \hyperlink{classgetsetpoint_a4030a3269c952fe830bccaa59bad9cad}{getspchi} (Cold\-\_\-, hlimit\-\_\-, t)
+\item 
+integer function, dimension(ntrig) \hyperlink{classgetsetpoint_ac91c9058ddad4f3b52a502be6d1589ec}{getsptrig} (Power\-\_\-, Heat\-\_\-, Cold\-\_\-, t)
+\item 
+integer function \hyperlink{classgetsetpoint_ad6353e72adbd16ea6a5f870bb905c95f}{getsptes} (Heat\-\_\-, t)
+\item 
+real(kind=prec) function, \\*
+dimension(2) \hyperlink{classgetsetpoint_a52ecd0af9db3f3e0f5eb12a5d7c478a2}{thstoragepmax} (old\-Level, t)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 32 of file get\-Set\-Point.\-f90.
+
+
+
+\subsection{Member Function/\-Subroutine Documentation}
+\hypertarget{classgetsetpoint_a9906ea2ba345b2fd95981a7a897d5269}{\index{getsetpoint@{getsetpoint}!getspboi@{getspboi}}
+\index{getspboi@{getspboi}!getsetpoint@{getsetpoint}}
+\subsubsection[{getspboi}]{\setlength{\rightskip}{0pt plus 5cm}integer function, dimension(nboi) getsetpoint\-::getspboi (
+\begin{DoxyParamCaption}
+\item[{real(kind=prec), intent(in)}]{Heat\-\_\-, }
+\item[{integer, intent(in)}]{t}
+\end{DoxyParamCaption}
+)}}\label{classgetsetpoint_a9906ea2ba345b2fd95981a7a897d5269}
+
+
+Definition at line 42 of file get\-Set\-Point.\-f90.
+
+
+
+Referenced by strategies\-::electricaltracking(), strategies\-::fullload(), and strategies\-::thermaltracking().
+
+\hypertarget{classgetsetpoint_a4030a3269c952fe830bccaa59bad9cad}{\index{getsetpoint@{getsetpoint}!getspchi@{getspchi}}
+\index{getspchi@{getspchi}!getsetpoint@{getsetpoint}}
+\subsubsection[{getspchi}]{\setlength{\rightskip}{0pt plus 5cm}integer function, dimension(nchi) getsetpoint\-::getspchi (
+\begin{DoxyParamCaption}
+\item[{real(kind=prec), intent(in)}]{Cold\-\_\-, }
+\item[{real(kind=prec), intent(in), optional}]{hlimit\-\_\-, }
+\item[{integer, intent(in)}]{t}
+\end{DoxyParamCaption}
+)}}\label{classgetsetpoint_a4030a3269c952fe830bccaa59bad9cad}
+
+
+Definition at line 87 of file get\-Set\-Point.\-f90.
+
+
+
+Referenced by strategies\-::electricaltracking(), strategies\-::fullload(), and strategies\-::thermaltracking().
+
+\hypertarget{classgetsetpoint_ad6353e72adbd16ea6a5f870bb905c95f}{\index{getsetpoint@{getsetpoint}!getsptes@{getsptes}}
+\index{getsptes@{getsptes}!getsetpoint@{getsetpoint}}
+\subsubsection[{getsptes}]{\setlength{\rightskip}{0pt plus 5cm}integer function getsetpoint\-::getsptes (
+\begin{DoxyParamCaption}
+\item[{real(kind=prec), intent(in)}]{Heat\-\_\-, }
+\item[{integer, intent(in)}]{t}
+\end{DoxyParamCaption}
+)}}\label{classgetsetpoint_ad6353e72adbd16ea6a5f870bb905c95f}
+
+
+Definition at line 316 of file get\-Set\-Point.\-f90.
+
+
+
+Referenced by strategies\-::fullload().
+
+\hypertarget{classgetsetpoint_ac91c9058ddad4f3b52a502be6d1589ec}{\index{getsetpoint@{getsetpoint}!getsptrig@{getsptrig}}
+\index{getsptrig@{getsptrig}!getsetpoint@{getsetpoint}}
+\subsubsection[{getsptrig}]{\setlength{\rightskip}{0pt plus 5cm}integer function, dimension(ntrig) getsetpoint\-::getsptrig (
+\begin{DoxyParamCaption}
+\item[{real(kind=prec), intent(in), optional}]{Power\-\_\-, }
+\item[{real(kind=prec), intent(in), optional}]{Heat\-\_\-, }
+\item[{real(kind=prec), intent(in), optional}]{Cold\-\_\-, }
+\item[{integer, intent(in)}]{t}
+\end{DoxyParamCaption}
+)}}\label{classgetsetpoint_ac91c9058ddad4f3b52a502be6d1589ec}
+
+
+Definition at line 172 of file get\-Set\-Point.\-f90.
+
+
+
+Referenced by strategies\-::electricaltracking(), and strategies\-::thermaltracking().
+
+\hypertarget{classgetsetpoint_a52ecd0af9db3f3e0f5eb12a5d7c478a2}{\index{getsetpoint@{getsetpoint}!thstoragepmax@{thstoragepmax}}
+\index{thstoragepmax@{thstoragepmax}!getsetpoint@{getsetpoint}}
+\subsubsection[{thstoragepmax}]{\setlength{\rightskip}{0pt plus 5cm}real(kind=prec) function, dimension(2) getsetpoint\-::thstoragepmax (
+\begin{DoxyParamCaption}
+\item[{real(kind=prec), intent(in)}]{old\-Level, }
+\item[{integer, intent(in)}]{t}
+\end{DoxyParamCaption}
+)}}\label{classgetsetpoint_a52ecd0af9db3f3e0f5eb12a5d7c478a2}
+
+
+Definition at line 374 of file get\-Set\-Point.\-f90.
+
+
+
+References constr\-::thstorageconstr().
+
+
+
+Referenced by strategies\-::fullload().
+
+
+
+The documentation for this module was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+/home/\-Codici/\-Blink/\-Power\-Manager/src/\hyperlink{get_set_point_8f90}{get\-Set\-Point.\-f90}\end{DoxyCompactItemize}

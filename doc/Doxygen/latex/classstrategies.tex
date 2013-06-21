@@ -1,0 +1,98 @@
+\hypertarget{classstrategies}{\section{strategies Module Reference}
+\label{classstrategies}\index{strategies@{strategies}}
+}
+
+
+Rule-\/based strategies.  
+
+
+
+
+Collaboration diagram for strategies\-:
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+integer function, dimension(0\-:ntime+1, \\*
+nm) \hyperlink{classstrategies_a8a41b83f755ed54fbcd9128380451589}{thermaltracking} ()
+\item 
+integer function, dimension(0\-:ntime+1, \\*
+nm) \hyperlink{classstrategies_aac91d9eee08b1644099d67f410f82d58}{electricaltracking} ()
+\item 
+integer function, dimension(0\-:ntime+1, \\*
+nm) \hyperlink{classstrategies_a3abfa1fd92febbe0e3b58fdc4d646165}{fullload} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This module contains all procedures to define the plant behavior under rule-\/based regulation strategies. Thermal tracking, electrical tracking and full load are considered. \begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 38 of file strategies.\-f90.
+
+
+
+\subsection{Member Function/\-Subroutine Documentation}
+\hypertarget{classstrategies_aac91d9eee08b1644099d67f410f82d58}{\index{strategies@{strategies}!electricaltracking@{electricaltracking}}
+\index{electricaltracking@{electricaltracking}!strategies@{strategies}}
+\subsubsection[{electricaltracking}]{\setlength{\rightskip}{0pt plus 5cm}integer function, dimension(0\-:ntime+1,nm) strategies\-::electricaltracking (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classstrategies_aac91d9eee08b1644099d67f410f82d58}
+
+
+Definition at line 97 of file strategies.\-f90.
+
+
+
+References abortexecution(), energy\-::cogthprod(), energy\-::elselfcons(), getsetpoint\-::getspboi(), getsetpoint\-::getspchi(), getsetpoint\-::getsptrig(), mathtools\-::locaterow(), energy\-::thprod(), and energy\-::thselfcons().
+
+
+
+Referenced by main().
+
+\hypertarget{classstrategies_a3abfa1fd92febbe0e3b58fdc4d646165}{\index{strategies@{strategies}!fullload@{fullload}}
+\index{fullload@{fullload}!strategies@{strategies}}
+\subsubsection[{fullload}]{\setlength{\rightskip}{0pt plus 5cm}integer function, dimension(0\-:ntime+1,nm) strategies\-::fullload (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classstrategies_a3abfa1fd92febbe0e3b58fdc4d646165}
+
+
+Definition at line 144 of file strategies.\-f90.
+
+
+
+References abortexecution(), energy\-::cogthprod(), energy\-::elselfcons(), getsetpoint\-::getspboi(), getsetpoint\-::getspchi(), getsetpoint\-::getsptes(), mathtools\-::locaterow(), energy\-::tespower(), energy\-::thselfcons(), energy\-::thstoragelevelupdate(), and getsetpoint\-::thstoragepmax().
+
+
+
+Referenced by main().
+
+\hypertarget{classstrategies_a8a41b83f755ed54fbcd9128380451589}{\index{strategies@{strategies}!thermaltracking@{thermaltracking}}
+\index{thermaltracking@{thermaltracking}!strategies@{strategies}}
+\subsubsection[{thermaltracking}]{\setlength{\rightskip}{0pt plus 5cm}integer function, dimension(0\-:ntime+1,nm) strategies\-::thermaltracking (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classstrategies_a8a41b83f755ed54fbcd9128380451589}
+
+
+Definition at line 51 of file strategies.\-f90.
+
+
+
+References abortexecution(), energy\-::cogthprod(), energy\-::elselfcons(), getsetpoint\-::getspboi(), getsetpoint\-::getspchi(), getsetpoint\-::getsptrig(), mathtools\-::locaterow(), energy\-::thprod(), and energy\-::thselfcons().
+
+
+
+Referenced by main().
+
+
+
+The documentation for this module was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+/home/\-Codici/\-Blink/\-Power\-Manager/src/\hyperlink{strategies_8f90}{strategies.\-f90}\end{DoxyCompactItemize}

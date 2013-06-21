@@ -1,0 +1,49 @@
+\hypertarget{read_wind_8f90}{\section{/home/\-Codici/\-Blink/\-Power\-Manager/src/read\-Wind.f90 File Reference}
+\label{read_wind_8f90}\index{/home/\-Codici/\-Blink/\-Power\-Manager/src/read\-Wind.\-f90@{/home/\-Codici/\-Blink/\-Power\-Manager/src/read\-Wind.\-f90}}
+}
+\subsection*{Functions/\-Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \hyperlink{read_wind_8f90_a56b52d565348f1a4a11f1b82dcc9efb9}{readwind}
+\begin{DoxyCompactList}\small\item\em Reads Boiler.\-inp file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function/\-Subroutine Documentation}
+\hypertarget{read_wind_8f90_a56b52d565348f1a4a11f1b82dcc9efb9}{\index{read\-Wind.\-f90@{read\-Wind.\-f90}!readwind@{readwind}}
+\index{readwind@{readwind}!readWind.f90@{read\-Wind.\-f90}}
+\subsubsection[{readwind}]{\setlength{\rightskip}{0pt plus 5cm}subroutine readwind (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{read_wind_8f90_a56b52d565348f1a4a11f1b82dcc9efb9}
+This subroutine reads the file \char`\"{}\-Boilers.\-inp\char`\"{}. The procedure looks for each specific entry in the \char`\"{}keyword field\char`\"{}, and associates the value in the \char`\"{}value\char`\"{} field, to the corresponding variable. If the desired entry is not present returns an error message and aborts the execution. The structure of the input file is clarified in the following example along with the meaning of \char`\"{}keyword\char`\"{} and \char`\"{}value\char`\"{} field.\par
+ \begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
+    begin 
+       !Commented line
+       KeywordField  | ValueField | !Comment two
+
+       KeywordField  | ValueField |
+       ScalarValue   | 1          |
+       Vector        | 1 2 n      |
+       VectorSeries  |(a b c ) (d e f)|
+       Matrix        |(11 12 13  |
+                     | 21 22 23  |
+                     | 31 32 33) |
+    end
+ A lof really usless text
+\end{DoxyVerb}
+ Note that only the text between \char`\"{}begin\char`\"{} and \char`\"{}end\char`\"{} is read. Blank lines are automatically discarded, while any unrecognized entry is discarded returning a warning code. Line beginning with \char`\"{}!\char`\"{} are considered comments and discarded. \begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition at line 61 of file read\-Wind.\-f90.
+
+
+
+References abortexecution(), allocatevar(), dmatrixread(), ifindentry(), readkeyword(), rewunit(), and vcount().
+
+
+
+Referenced by main().
+
