@@ -260,6 +260,10 @@ do
         case('ElectricalStorageLevel')
 !             isPresent(10) = .true.
              read(val,*) iSocEl, eSocEl
+        case('Preset')
+             call rewUnit(genUnit,1)
+             call allocateVar(38)
+             preset = dmatrixRead(genUnit,nTime,nTrig)
         case(' ')
              if(verb) call warning(4,1,line=line)
         case  default

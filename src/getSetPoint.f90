@@ -395,14 +395,14 @@ else
    do
      thStoragePmax(1) = sp(j,i)*Pmax(i)*etaTSout
      c(i) = j
-     if(thStorageConstr(oldLevel,c,t)) exit
+     if(thStorageConstr(oldLevel,c,t,.false.)) exit
      j = j - 1 
    enddo
    j = 1
    do
      thStoragePmax(2) = sp(j,i)*Pmax(i)/etaTsIn
      c(i) = j
-     if(thStorageConstr(oldLevel,c,t)) exit
+     if(thStorageConstr(oldLevel,c,t,.false.)) exit
      j = j + 1 
    enddo
 endif

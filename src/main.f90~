@@ -168,7 +168,7 @@ print*, ' ---Elapsed Time: ', tempo, ' sec'
 call output(setPoint,.false.,'Results')
 
 if (allocated(upTime)) deallocate(upTime)
-if (allocated(minPathBw) deallocate(minPathBw)
+if (allocated(minPathBw)) deallocate(minPathBw)
 !---end the execution----
 call endExecution
 

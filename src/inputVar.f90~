@@ -1,4 +1,3 @@
-
 !---------------------------------------------------------------------------
 !  
 !   PowerManager.  
@@ -48,7 +47,7 @@ character(len=20)  :: gridConnection
 integer            :: nTimes
 logical            :: iDeg 
 real(kind = prec), allocatable, dimension(:) :: startPoint, upTime0, downTime0
-real(kind = prec)                            :: dt1, k_tr, k_el, c_tr, c_st, pefGrid, iSocTh, eSocTh
+real(kind = prec)                            :: dt1, k_tr, k_el, c_tr, c_st, pefGrid, iSocTh, eSocTh, iSocEl, eSocEl
 character(len=100) :: obj, method, strategy
 logical :: writePower       = .false.
 logical :: writeEnergy      = .false.
@@ -133,9 +132,19 @@ integer                                      :: nEtaSc
 
 !-----------------Wind turbine data----------------------
 
-integer                                      :: nwf, nwind
-integer, allocatable, dimension(:)           :: nwt, ncpw
-real(kind=prec), allocatable, dimension(:)   :: wSurf, minWind
-real(kind=prec), allocatable, dimension(:,:) :: cpw, wind
+integer                                        :: nwf, nwind
+integer, allocatable, dimension(:)             :: nwt, ncpw
+real(kind=prec), allocatable, dimension(:)     :: wSurf, minWind, maxWind, hPale
+real(kind=prec), allocatable, dimension(:,:)   :: wind
+real(kind=prec), allocatable, dimension(:,:,:) :: cpw
+real(kind=prec)                                :: hWind, hellman
+
+!---Electrical storage----
+
+real(kind=prec)                              :: CapacityES, swCost, pmaxES
+!real(kind=prec), dimension(2)                :: PmaxES
+integer                                      :: nSpES , nEtaEsIn, nEtaEsOut
+!real(kind=prec), allocatable, dimension(:,:) :: etaEsOut, etaEsIn
+real(kind=prec)                              :: etaEsOut, etaEsIn
 
 end module inputVar

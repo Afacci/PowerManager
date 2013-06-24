@@ -134,7 +134,7 @@ end function timeConstr
 
 !=============================================================
 
-logical function thStorageConstr(oldLevel,c,t)
+logical function thStorageConstr(oldLevel,c,t, finalSOC)
 
 
 !---Declare Module usage---
@@ -145,12 +145,20 @@ use inputVar
 use energy
 
 implicit none
-integer, dimension(nm), intent(in) :: c
-integer,                intent(in) :: t
-real(kind=prec),        intent(in) :: oldLevel
-real(kind=prec)                    :: newLevel
+integer, dimension(nm), intent(in)           :: c
+integer,                intent(in)           :: t
+real(kind=prec),        intent(in)           :: oldLevel
+real(kind=prec)                              :: newLevel
+logical,                intent(in), optional :: finalSOC
+logical                                      :: finalSOC_
 
 thStorageConstr = .true.
+
+if(present(finalSoc)) then
+    finalSOC_ = finalSOC
+else
+    finalSOC_ = .true.
+endif
 
 if(capacityTS.le.zero.or.PmaxTS.le.zero) return
 
@@ -158,9 +166,11 @@ newLevel = thStorageLevelUpdate(oldLevel,c,t)
 
 if(newLevel.lt.zero)       thStorageConstr = .false.
 if(newLevel.gt.capacityTS) thStorageConstr = .false.
-!if(t.eq.nTime) then
-!   if(newLevel.ne.eSocTh)  thStorageConstr = .false.
-!endif
+if(finalSOC_) then
+   if(t.eq.nTime) then
+      if(newLevel.ne.eSocTh)  thStorageConstr = .false.
+   endif
+endif
 
 return
 

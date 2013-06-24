@@ -333,8 +333,6 @@ contains
       minp = -1.0*pMax(j)/etaTSin
       full = nSp(j)
 
-      print*, 'heat', heat, minp
-
       if(heat.ge.zero) then
         if(maxp.ge.Heat) then
             k = nSpTs 
@@ -351,21 +349,18 @@ contains
             getSpTes = full
          endif
       else
-         print*, 'cazzorne', minp , heat
          if(minp.lt.heat) then
             k = nSpTs 
             do 
                k = k - 1
                c = sp(k,j)
                p = -1.0*c*minp
-               print*, 'romammerda', p, heat
                if (p.lt.heat) then
                    getSpTes = k + 1
                    exit
                endif
             enddo
          else
-            print*, 'facciaDimmerda'
             getSpTes = 1
          endif
       endif
@@ -400,14 +395,14 @@ else
    do
      thStoragePmax(1) = sp(j,i)*Pmax(i)*etaTSout
      c(i) = j
-     if(thStorageConstr(oldLevel,c,t)) exit
+     if(thStorageConstr(oldLevel,c,t),.false.) exit
      j = j - 1 
    enddo
    j = 1
    do
      thStoragePmax(2) = sp(j,i)*Pmax(i)/etaTsIn
      c(i) = j
-     if(thStorageConstr(oldLevel,c,t)) exit
+     if(thStorageConstr(oldLevel,c,t),.false.) exit
      j = j + 1 
    enddo
 endif

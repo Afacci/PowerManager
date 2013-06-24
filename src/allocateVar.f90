@@ -191,6 +191,8 @@ select case(what)
         allocate(cpw(maxval(nCpw),2,nwf))
    case(37)
         allocate(wind(nWind,2))
+   case(38)
+        allocate(preset(nTime,nTrig), cpred(nTime,nTrig))
 end select
 
 end subroutine 

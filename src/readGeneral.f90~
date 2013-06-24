@@ -75,7 +75,7 @@ logical               :: filePresent
 character(len=500)    :: buffer, keyword, val, val_
 integer               :: firstLine, i, nInp, line, n, n_
 logical,dimension(9)  :: isPresent = .false.
-logical,dimension(14) :: optEntry  = .false.
+logical,dimension(15) :: optEntry  = .false.
 integer               :: error, nOpt
 character(len=50)     :: dummy
 logical               :: isGse = .false.
@@ -140,7 +140,9 @@ do
           read(val,*) pefGrid
        case('StartPoint')
           isPresent(4) = .true.
-          n = nTrig + nBoi + nChi
+          n = nTrig + nBoi + nChi 
+          if(capacityTS.gt.zero) n = n + 1
+          if(capacityES.gt.zero) n = n + 1
           call allocateVar(0,n)
           val_ = '('//trim(val)//')'
           n_ = hCount(val_)
@@ -237,6 +239,11 @@ do
              read(val,*), dummy
              if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
              read(val,*), writePec
+        case('writeRenewables')
+             optEntry(15) = .true.
+             read(val,*), dummy
+             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
+             read(val,*), writeRen
         case('global')
              optEntry(13) = .true.
              read(val,*), dummy
@@ -249,6 +256,14 @@ do
              read(val,*), useEuristics
         case('ThermalStorageLevel')
 !             isPresent(10) = .true.
+             read(val,*) iSocTh, eSocTh
+        case('ElectricalStorageLevel')
+!             isPresent(10) = .true.
+             read(val,*) iSocEl, eSocEl
+        case('Preset')
+             call rewUnit(genUnit,1)
+             preset = dmatrixRead(genUnit,nTime,nTrig)
+             call allocateVar(38)
         case(' ')
              if(verb) call warning(4,1,line=line)
         case  default

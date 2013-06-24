@@ -131,7 +131,7 @@ do
           isPresent(2) = .true.
        case('Priority')
           read(value,*) (TrigPriority(i), i=1,nTrig)
-          isPresent(2) = .true.
+          iPrio(1) = .true.
 !       case('DegradationRate')
 !          read(value,*) (degRateT(i), i=1,nTrig)
 !          isPresent(3) = .true.
@@ -336,6 +336,14 @@ do
                altCorrT(:,5,i) = matrix(:,np)
             enddo
             deallocate(matrix)
+       case('PEF')
+           kPEC(2) = .true.
+           read(value,*) (pefT(i),i=1,nTrig)
+       case('onOffPec')
+           kPEC(4) = .true.
+           read(value,*) (pecOnT(i),i=1,nTrig)
+       case('Preset')
+           preset = dmatrixRead(genUnit,nTime,nTrig)
        case default
                if(.not.silent) call warning(1,2,line=line,word=keyword)
     end select

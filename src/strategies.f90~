@@ -170,10 +170,11 @@ contains
       kk0 = 1
       kk0(is(iTs)) = nSpTs + 1
 
-
       do t=1,nTime
          kk = kk0
-         kk(is(iT):ie(iT)) = nSp(is(iT):ie(iT))
+         cPred(t,:) = locateRow(preset,spVal(:,1:nTrig),nTrig,nComb,error)
+         print*, ' romammerda ' , spVal(:,1:nTrig)
+         kk(is(iT):ie(iT)) = cPred(t,:) !nSp(is(iT):ie(iT))
          maxTes = thStoragePmax(thLevel(t-1),t)
          qmax  = cogThProd(kk, t) - sum(uTh(t,:)) + maxTes(1)
          qmax = max(qmax,zero)
@@ -183,14 +184,10 @@ contains
          tSelf = thSelfCons(kk,t)
          heat  = sum(uTh(t,:)) + tSelf - cogThProd(kk,t)
          kk(is(iTS)) = getSpTes(heat,t)
-         print*,t, 'load 0 = ', kk, heat
          heat =  heat - tesPower(kk,t)
-         print*,t, 'load 1 = ', kk, heat
          if(heat.gt.zero) kk(is(iB):ie(iB)) = getSpBoi(heat,t)
          fullLoad(t,:) = kk
-         print*,t, 'load 2 = ', kk
          thLevel(t) = thStorageLevelUpdate(thLevel(t-1),kk,t)
-         print*,t, 'load 3 = ', kk
       enddo
    end function fullLoad
 

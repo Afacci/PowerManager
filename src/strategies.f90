@@ -170,10 +170,9 @@ contains
       kk0 = 1
       kk0(is(iTs)) = nSpTs + 1
 
-
       do t=1,nTime
          kk = kk0
-         kk(is(iT):ie(iT)) = nSp(is(iT):ie(iT))
+         kk(is(iT):ie(iT)) = preset(t,:)! cPred(t,:) !nSp(is(iT):ie(iT))
          maxTes = thStoragePmax(thLevel(t-1),t)
          qmax  = cogThProd(kk, t) - sum(uTh(t,:)) + maxTes(1)
          qmax = max(qmax,zero)
