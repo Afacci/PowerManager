@@ -760,25 +760,21 @@ integer,dimension(nm), intent(in) :: c
 real(kind=prec)      , intent(in) :: oldLevel
 integer,               intent(in) :: t
 integer                           :: i, j, ii, k
-real                              :: thLev, diff
+real                              ::  thLev, diff
 
 if(capacityTS.gt.zero) then
    i = is(iTS)
    j = c(i)
-   thStorageLevelUpdate = oldLevel - sp(j,i)*Pmax(i)*dt(t)
-!  k = 2*nm0 + 1
-!   thLev = oldLevel - sp(j,i)*Pmax(i)*dt(t)
-!   ii = 0
-!   do 
-!      ii = ii + 1
-!      diff = abs(thLev - timeVinc(ii,k))
-!      diff = diff/thLev
-!      if(t.eq.7) print* ,'ufff', thLev, timeVinc(ii,k), diff
-!      if(diff.le.0.01) then 
-!         thStorageLevelUpdate = timeVinc(ii,k)
-!         exit
-!      endif
-!   enddo
+   k = 2*nm0 + 1
+   thLev = oldLevel - sp(j,i)*Pmax(i)*dt(t)
+   do 
+      diff = abs(thLev - timeVinc(ii,k))
+      diff = diff/thLev
+      if(diff.le.0.01) then 
+         thStorageLevelUpdate = timeVinc(ii,k)
+         exit
+      enddo
+   enddo
 else
    thStorageLevelUpdate = zero
 endif

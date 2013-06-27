@@ -108,6 +108,7 @@ contains
          spmax(i) = nSp(j)
       enddo
 
+
       if(present(hlimit_)) then
          hlimit  = hlimit_
          do i=1,nChi
@@ -129,7 +130,7 @@ contains
                      ech  = etaCh(k,j)*envCorr(t,j,3)
                      ech  = max(ech,vsmall)
                      pin  = c*pMax(j)*envCorr(t,j,4)/ech
-                     if (pin.ge.hlimit) then
+                     if (pin.gt.hlimit) then
                          spmax(ii) = k - 1
                          exit
                      endif
@@ -139,13 +140,13 @@ contains
          enddo
       endif
 
+
       do i=1,nChi
          j    = ChiPriority(i)
          ii   = j - is(iC) + 1
          full = spmax(ii)
          cmax = sp(full,j)
          maxp = cmax*pMax(j)*envCorr(t,j,4)
-!         full = maxval(sp(:,j))
          if(maxp.gt.Cold) then
             k = 0
             do 
@@ -370,7 +371,7 @@ contains
 
 !==========================================================================================
 
-  function thStoragePmax(oldLevel,t)
+  function thStoragePmax(oldLevel,t,fcon)
 
 !--Declare Module usage---
 use plantVar
@@ -382,6 +383,7 @@ implicit none
 !---Declare Local Variables---
 real(kind=prec), dimension(2)     :: thStoragePmax
 real(kind=prec)      , intent(in) :: oldLevel
+logical,               intent(in) :: fcon
 integer                           :: i, j
 integer, intent(in)               :: t
 integer, dimension(nm)            :: c
@@ -393,16 +395,24 @@ else
    i = is(iTs)
    j = nSp(i)
    do
-     thStoragePmax(1) = sp(j,i)*Pmax(i)*etaTSout
+     if(sp(j,i).ge.zero) then
+        thStoragePmax(1) = sp(j,i)*Pmax(i)*etaTSout
+     else
+        thStoragePmax(1) = sp(j,i)*Pmax(i)/etaTsIn
+     endif
      c(i) = j
-     if(thStorageConstr(oldLevel,c,t,.false.)) exit
+     if(thStorageConstr(oldLevel,c,t,fcon)) exit
      j = j - 1 
    enddo
    j = 1
    do
-     thStoragePmax(2) = sp(j,i)*Pmax(i)/etaTsIn
+     if(sp(j,i).le.zero) then
+        thStoragePmax(2) = sp(j,i)*Pmax(i)/etaTsIn
+     else
+        thStoragePmax(2) = sp(j,i)*Pmax(i)*etaTSout
+     endif
      c(i) = j
-     if(thStorageConstr(oldLevel,c,t,.false.)) exit
+     if(thStorageConstr(oldLevel,c,t,fcon)) exit
      j = j + 1 
    enddo
 endif

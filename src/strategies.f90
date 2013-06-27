@@ -150,7 +150,7 @@ contains
       integer, dimension(nChi)         :: kc
       integer, dimension(nBoi)         :: kb
       integer, dimension(ntrig)        :: kt
-      real(kind=prec)                  :: power, heat, cold, tSelf, eSelf, qmax
+      real(kind=prec)                  :: power, heat, cold, tSelf, eSelf, qmax, heatSto
       integer                          :: t, i, j, istart
       integer, dimension(nm)           :: kk, kk0
       logical                          :: error
@@ -173,7 +173,7 @@ contains
       do t=1,nTime
          kk = kk0
          kk(is(iT):ie(iT)) = preset(t,:)! cPred(t,:) !nSp(is(iT):ie(iT))
-         maxTes = thStoragePmax(thLevel(t-1),t)
+         maxTes = thStoragePmax(thLevel(t-1),t,.true.)
          qmax  = cogThProd(kk, t) - sum(uTh(t,:)) + maxTes(1)
          qmax = max(qmax,zero)
          cold  = sum(uCh(t,:))
@@ -181,7 +181,9 @@ contains
          kk(is(ic):ie(ic)) = kc
          tSelf = thSelfCons(kk,t)
          heat  = sum(uTh(t,:)) + tSelf - cogThProd(kk,t)
-         kk(is(iTS)) = getSpTes(heat,t)
+         heatSto = min(heat, maxTes(1))
+         heatSto = max(heatSto, maxTes(2))
+         kk(is(iTS)) = getSpTes(heatSto,t)
          heat =  heat - tesPower(kk,t)
          if(heat.gt.zero) kk(is(iB):ie(iB)) = getSpBoi(heat,t)
          fullLoad(t,:) = kk

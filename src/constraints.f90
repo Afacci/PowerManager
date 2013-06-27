@@ -148,7 +148,8 @@ implicit none
 integer, dimension(nm), intent(in)           :: c
 integer,                intent(in)           :: t
 real(kind=prec),        intent(in)           :: oldLevel
-real(kind=prec)                              :: newLevel
+real(kind=prec)                              :: newLevel, err
+real(kind=prec), parameter                   :: toll = 1.0e-3
 logical,                intent(in), optional :: finalSOC
 logical                                      :: finalSOC_
 
@@ -168,7 +169,8 @@ if(newLevel.lt.zero)       thStorageConstr = .false.
 if(newLevel.gt.capacityTS) thStorageConstr = .false.
 if(finalSOC_) then
    if(t.eq.nTime) then
-      if(newLevel.ne.eSocTh)  thStorageConstr = .false.
+      err = abs(newLevel - eSocTh)/eSocTh
+      if(err.gt.toll)  thStorageConstr = .false.
    endif
 endif
 

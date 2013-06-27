@@ -78,27 +78,27 @@ call commandLine
 !----Read Input Files----
 print*, ' ---Reading Input Files---'
 call readTrigen
-print*,'     --> Trigeneration.inp read'
+print*,'     --> Reading Trigeneration.inp     ... OK '
 call readBoiler
-print*,'     --> Boiler.inp read'
+print*,'     --> Reading Boiler.inp            ... OK '
 call readChillers
-print*,'     --> Chillers.inp read'
+print*,'     --> Reading Chillers.inp          ... OK '
 call readThStorage
-print*,'     --> ThermalStorage.inp read'
+print*,'     --> Reading ThermalStorage.inp    ... OK '
 call readElStorage
-print*,'     --> ElectricalStorage.inp read'
+print*,'     --> Reading ElectricalStorage.inp ... OK '
 call readLoads
-print*,'     --> Loads.inp read'
+print*,'     --> Reading Loads.inp             ... OK '
 call readGeneral
-print*,'     --> General.inp read'
+print*,'     --> Reading General.inp           ... OK '
 call readPV
-print*,'     --> Photovoltaic.inp read'
+print*,'     --> Reading Photovoltaic.inp      ... OK '
 call readSC
-print*,'     --> Photovoltaic.inp read'
+print*,'     --> Reading Photovoltaic.inp      ... OK '
 call readEnv
-print*,'     --> Enivronment.inp read'
+print*,'     --> Reading Enivronment.inp       ... OK '
 call readWind
-print*,'     --> WindTurbines.inp read'
+print*,'     --> Reading WindTurbines.inp      ... OK '
 
 
 !---build the energy coonection inside the plant---
