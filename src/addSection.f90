@@ -381,6 +381,9 @@ contains
          nsoc = 1
          allocate(soc(nsoc), socTh(0:nTime+1))
          soc(1) = 0
+         nSp(is(iTS)) = 1
+         sp(1,is(iTS)) = 1
+         cr(1,is(iTS)) = zero
      endif
 
 !     !Thermal storage capacity constraint
@@ -451,6 +454,9 @@ contains
          nsocEl = 1
          allocate(Esoc(nsoc), socEl(0:nTime+1))
          Esoc(1) = 0
+         nSp(is(iES)) = 1
+         sp(1,is(iES)) = 1
+         cr(1,is(iES)) = zero
      endif
 
  !    k = 2*nm0 + 2

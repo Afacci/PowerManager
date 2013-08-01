@@ -54,6 +54,11 @@ integer,          allocatable, dimension(:)  , private :: nPre      !> number of
 integer,          allocatable, dimension(:)  , private :: nSuc      !> number of successors for each graph vertex
 integer                                      , private :: nPoint    !> vertex number
 integer,          allocatable, dimension(:,:), private :: timePoint !> vertexes list for each time step
+integer,          allocatable, dimension(:,:), private :: spStor
+integer,          allocatable, dimension(:,:), private :: spProd
+real(kind=prec),  allocatable, dimension(:,:), private :: storState
+real(kind=prec),  allocatable, dimension(:,:), private :: prodState
+integer                                      , private :: nssp, npsp
 
 !===================================================================================================================
 
@@ -170,6 +175,8 @@ contains
 !                   ! set points.
    k = product(imax) !number of combinations. The actual number
 
+   print*, 'cazzoner',targ,imax
+
    if(present(icm)) then 
       tipo = 'integer'
       allocate(icomb_(k,m))   
@@ -217,6 +224,24 @@ contains
          allocate(spVal(i,m))
          spVal(:,:) = dComb_(1:i,:)
          deallocate(dComb_)
+      case('storageSp')
+         nssp = i
+         allocate(spStor(nssp,2))
+         spStor(:,:)  = iComb_(1:nssp,:)
+         deallocate(iComb_)
+!      case('StorageState')
+!         allocate(storState(i,2))
+!         storState(:,:) = dComb_(1:i,:)
+!         deallocate(dComb_)
+      case('prodSp')
+         npSp = i
+         allocate(spProd(npSp,m))
+         spProd(:,:)  = iComb_(1:npSp,:)
+         deallocate(iComb_)
+!      case('prodState')
+!         allocate(prodState(i,m))
+!         prodState(:,:) = dComb_(1:i,:)
+!         deallocate(dComb_)
    end select
 
    end subroutine allCombin
@@ -325,6 +350,141 @@ contains
    return
   
    end subroutine graphPoints
+
+
+!================================================================================
+   
+   !>\brief
+   !> Generates the graph vetexes, starting from the array of the set-point
+   !> combinations.
+   !>\details
+   !> Generates the graph veteces, starting from the array of the set-point
+   !> combinations. For each time-step determines which plant state respects the
+   !> energy (staitc) constraints, and associates them to a graph vertex. A
+   !> weight, that accounts for the costs/revenues of operating the power plant
+   !> from time-step t to t+1 at the vertex state, is also calculated for each vertex.
+   !> The time-step relative to each vertex and the number of verteces for each
+   !> time step are associated to "pointTime" and "nt" vectors respectively.
+   !> Vertex 0 will be the starting point of the graph and vertex nPoint + 1 the
+   !> arriving point
+   !> \author Andrea Facci.
+   subroutine graphPointsLocalMin
+  
+   !---Declare Module usage---
+  
+   use interfaces
+   use inputVar
+   use plantVar
+   use mathTools
+   use euristics
+
+   use economy
+  
+   !---Declare Local Variables---
+   implicit none
+  
+   integer          , allocatable, dimension(:,:):: cl_
+   real(kind = prec), allocatable, dimension(:)  :: cost_, time_
+   integer          , allocatable, dimension(:)  :: startLoad 
+   integer          , allocatable, dimension(:)  :: load, minLoad
+   integer                                       :: i,j,n, iStart, iii
+   logical                                       :: v, error, e1, ch, isOff
+   real(kind=prec)                               :: locMin, locCost
+   integer                                       :: k, kMin, c, l
+
+   ch = .false.
+   e1 = .false.
+  
+   allocate(load(nm),nt(0:nTime+1), minLoad(nm))
+   n = nComb*nTime
+   allocate(cost_(n),cl_(n,nm),time_(n))
+   allocate(timePoint(0:nTime+1,nComb))
+   timePoint(:,:) = 0
+  
+   nt(0)   = 1
+   n = 0
+   timePoint(0,1) = 0
+   do i=1,nTime
+      nt(i) = 0
+      do j=1,nssp
+        load(nm0+1:nm) = spStor(j,:)
+         locMin = huge(1.0)
+         do k=1,npsp
+            isOff = .false.
+            load(1:nm0) = spProd(k,:)
+            v = constraints(load,i)
+            if(v) then
+               do l=1,nm0
+                  c = load(l)
+                  if(sp(c,l).le.zero) then
+                     if(onOffCost(l).gt.zero.or.minUpTime(l) & 
+                        .gt.0.or.minDownTime(l).gt.0) then
+                        isOff = .true.
+                        exit
+                     endif
+                  endif
+               enddo
+!               if(any(spProd(k,:).eq.1)) then
+               if(isOff) then
+                  n        = n + 1
+                  time_(n) = i
+                  timePoint(i,j) = n
+                  nt(i)    = nt(i) + 1
+                  cl_(n,:) = load            
+                  cost_(n) = objFunction(load,i,obj)
+               else
+                  locCost = objFunction(load,i,obj)
+                  if(locCost.lt.locMin) then
+                      locMin  = locCost
+                      kMin    = k
+                      minLoad = load
+                  endif
+               endif
+            endif
+         enddo
+         n        = n + 1
+         time_(n) = i
+         timePoint(i,j) = n
+         nt(i)    = nt(i) + 1
+         cl_(n,:) = minLoad            
+         cost_(n) = locMin
+      enddo
+   enddo
+
+   nt(nTime+1) = 1
+   timePoint(nTime+1,1) = nPoint + 1 
+   do i=1,nTime
+      if(nt(i).eq.0) call abortExecution(18,i)
+   enddo
+
+   allocate(pointCost(0:n+1),pointLoad(0:n+1,nm),pointTime(0:n+1))
+   allocate(startLoad(nm))
+  
+   iStart = locateRow(startPoint,spVal,nm,nComb,error)
+   if(error) then
+      call abortExecution(14)
+   else
+     startLoad = comb(iStart,:)
+   endif
+   nPoint           = n
+   pointCost(0)     = zero
+   pointCost(1:n)   = cost_(1:n)
+   pointCost(n+1)   = zero 
+   pointLoad(0,:)   = startLoad(:)
+   pointLoad(1:n,:) = cl_(1:n,:)
+   pointLoad(n+1,:) = startLoad(:)
+   pointTime(0)     = zero
+   pointTime(1:n)   = time_(1:n)
+   pointTime(n+1)   = nTime + 1
+
+   deallocate(load)
+   deallocate(cost_,cl_,time_)
+   deallocate(startLoad)
+
+   return
+  
+   end subroutine graphPointsLocalMin
+
   
 !==============================================================================
    

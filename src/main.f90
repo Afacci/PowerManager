@@ -124,14 +124,20 @@ select case(strategy)
   case('Optimized')
       !---Build the graph-----
       print*, ' ---Building the graph---'
-      cDummy = 'set-point'
-      call allCombin(icm=cr,imax=nSp,m=nm,targ=cDummy) 
-      cDummy = 'state'
-      call allCombin(dcm=sp,imax=nSp,m=nm,targ=cDummy) 
-      print*, '    --> Vertices'
-      call graphPoints
-      print*, '    --> Arcs'
-      call graphArcs
+      call allCombin(icm=cr,imax=nSp,m=nm,targ='set-point') 
+      call allCombin(dcm=sp,imax=nSp,m=nm,targ='state') 
+      if(method.eq.'Reduced-Backward') then
+         call allCombin(icm=cr(:,nm0+1:nm),imax=nSp(nm0+1:nm),m=2,targ='storageSp') 
+         call allCombin(icm=cr(:,1:nm0),imax=nSp(nm0+1:nm),m=2,targ='prodSp') 
+         call graphPointsLocalMin
+         print*, '    --> Arcs'
+         call graphArcs
+      else
+          print*, '    --> Vertices'
+          call graphPoints
+          print*, '    --> Arcs'
+          call graphArcs
+      endif
       call etime(tVEc,tempo)
       print*, ' ---Elapsed Time: ', tempo, ' sec'
       print*
@@ -141,7 +147,7 @@ select case(strategy)
       select case(method)
          case('Forward')
             call minPathTopoFw(setPoint, cost)
-         case('Backward')
+         case('Backward', 'Reduced-Backward')
             cDummy = 'time-constraints' 
             call allCombin(dcm=timeVinc,imax=nTv,m=2*nm0 + 2,targ=cDummy) 
             allocate(upTime(0:nTime+1,2*nm0 + 2))

@@ -168,7 +168,7 @@ do
         case('Algorithm')
              isPresent(8) = .true.
              read(val,*) method
-             if(method.ne.'Forward'.and.method.ne.'Backward') then
+             if(method.ne.'Forward'.and.method.ne.'Backward'.and.method.ne.'Reduced-Backward') then
                 call abortExecution(2,2,line,method)
              endif
         case('Strategy')

@@ -63,7 +63,7 @@ character(len=19), dimension(7)        :: SC
 character(len=24), dimension(10)        :: files
 character(len=11), dimension(3)        :: eLoads 
 character(len=16), dimension(3)        :: gConn
-character(len=12), dimension(3)        :: algo
+character(len=16), dimension(4)        :: algo
 character(len=9) , dimension(1)        :: PV2
 character(len=14), dimension(5)        :: PV3
 integer                                :: t
@@ -121,7 +121,7 @@ files         = (/'./Input/General.inp      ',  &
 
 eLoads        = (/'Electricity', 'Thermal    ', 'Chilling   '/)
 gConn         = (/'NetMetering    ','DedicatadRetire','StandAlone     '/)
-algo          = (/'Backward    ', 'Forward     ', 'ThermalTrack'/)
+algo          = (/'Backward        ', 'Forward         ', 'ThermalTrack    ', 'Reduced-Backward'/)
 
 Iwind         = (/'FieldNumber        ','TurbineNUmber      ','BladeSurface       ','PowerCoefficient   ', &
                   'MinWindVelocity    ','WindVelocity       ','MaxVelocity        ','WindMeasureAltitude', &
