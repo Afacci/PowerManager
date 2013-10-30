@@ -90,7 +90,7 @@ contains
   ii = 0
   do i=is(iB),ie(iB)
      ii = ii + 1
-     if(minUpTime(i).gt.zero.or.minDownTime(i).gt.zero) then
+     if(minUpTime(i).gt.zero.or.minDownTime(i).gt.zero.or.OnOffCost(i).gt.zero) then
         minSetPoint(ii) = 2
      else
         minSetPoint(ii) = 1
@@ -146,24 +146,31 @@ contains
   integer,dimension(nm), intent(in) :: c
   integer              , intent(in) :: t
   integer                           :: i, j, ii
-  real(kind = prec)                 :: uChilling
+  real(kind = prec)                 :: uChilling, totCh
   integer, dimension(nChi)          :: minSetPoint 
   logical                           :: v
   integer,dimension(nm)             :: cStar
 
   chRedundant = .false.
   
-  uChilling = sum(uCh(t,:))
+  uChilling = sum(uCh(t,:)) + chSelfCons(c,t)
+
+  totCh = zero
+  do i = 1,nTime
+     totCh = totCh + sum(uCh(i,:))
+  enddo
   
   ii = 0
   do i=is(iC),ie(iC)
      ii = ii + 1
-     if(minUpTime(i).gt.zero.or.minDownTime(i).gt.zero) then
+     if(minUpTime(i).gt.zero.or.minDownTime(i).gt.zero .or.OnOffCost(i).gt.zero) then
         minSetPoint(ii) = 2
      else
         minSetPoint(ii) = 1
      endif
   enddo
+
+  if(totCh.le.zero) minSetPoint(:) = 1
 
   ii = 0
   cStar = c

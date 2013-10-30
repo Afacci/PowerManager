@@ -80,6 +80,7 @@ integer               :: error, nOpt
 character(len=50)     :: dummy
 logical               :: isGse = .false.
 logical, dimension(4) :: kGSE  = .false.
+integer, dimension(3) :: num
 
 
 !---Check File Presence---
@@ -143,6 +144,7 @@ do
           n = nTrig + nBoi + nChi 
           if(capacityTS.gt.zero) n = n + 1
           if(capacityES.gt.zero) n = n + 1
+          if(capacityIS.gt.zero) n = n + 1
           call allocateVar(0,n)
           val_ = '('//trim(val)//')'
           n_ = hCount(val_)
@@ -260,10 +262,15 @@ do
         case('ElectricalStorageLevel')
 !             isPresent(10) = .true.
              read(val,*) iSocEl, eSocEl
+        case('ChillingStorageLevel')
+!             isPresent(10) = .true.
+             read(val,*) iSocIce, eSocIce
         case('Preset')
              call rewUnit(genUnit,1)
              call allocateVar(38)
              preset = dmatrixRead(genUnit,nTime,nTrig)
+        case('DebugGraph')
+             read(val,*), DebugGraph
         case(' ')
              if(verb) call warning(4,1,line=line)
         case  default
@@ -291,11 +298,13 @@ endif
 if(obj.eq.'PEC'.or.writePec) then
   iPec = .true.
   if(.not.kPEC(1)) call abortExecution(25)
+  num(2) = nTrig
+  num(3) = nBoi
   do i=2,3
-     if(.not.kPEC(i)) call abortExecution(26,i)
+     if(.not.kPEC(i).and.num(i).gt.0) call abortExecution(26,i)
   enddo
   do i=4,5
-     if(.not.kPEC(i)) call abortExecution(27,i-2)
+     if(.not.kPEC(i).and.num(i-2).gt.0) call abortExecution(27,i-2)
   enddo
 endif
 

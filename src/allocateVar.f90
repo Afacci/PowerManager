@@ -141,8 +141,8 @@ select case(what)
         nMax = num
         allocate(sp(nMax,nm),cr(nMax,nm))
         allocate(minUpTime(nm0), minDownTime(nm0), eSource(nm))
-        np   = nMax**nm 
-        allocate(cRef(np,nm))
+        !np   = nMax**nm 
+        !allocate(cRef(np,nm))
         allocate(etaEl(nMax,nm), etaCh(nMax,nm), etaTh(nMax,nm))
         allocate(Pmax(nm),pes(nm),lhv(nm),cf(nm), onOffCost(nm), OeMCost(nm),tec(nm))
         if(iPEC) then 
@@ -156,9 +156,9 @@ select case(what)
    case(21)
         nMax1 = maxval(minUpTime  )/3.6e3 + 1
         nMax2 = maxval(minDownTime)/3.6e3 + 1
-        nMax  = max(nMax1,nMax2,nSoc, nSocEl)
-        allocate(timeVinc(nMax,2*nm0 + 2))
-        allocate(nTv(2*nm0 + 2))
+        nMax  = max(nMax1,nMax2,nSoc, nSocEl, nSocIce)
+        allocate(timeVinc(nMax,2*nm0 + 3))
+        allocate(nTv(2*nm0 + 3))
    case(22)
         allocate(tAmb(nTime), pAmb(nTime))
    case(23)

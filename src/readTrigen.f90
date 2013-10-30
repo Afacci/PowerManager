@@ -105,6 +105,7 @@ enddo
 buffer = 'Number'
 call iFindEntry(buffer,1,genUnit,.true.,dummy(1),isPresent(1))
 nTrig = dummy(1)
+if (nTrig.le.0) return
 if(.not.isPresent(1)) call abortExecution(3,5)
 call allocateVar(1)
 

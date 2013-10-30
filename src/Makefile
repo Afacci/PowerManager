@@ -71,6 +71,7 @@ OBJS = \
 ../obj/performances.o \
 ../obj/deallocateVar.o \
 ../obj/readThStorage.o \
+../obj/readIceStorage.o \
 ../obj/readPV.o \
 ../obj/readSC.o \
 ../obj/readWind.o \

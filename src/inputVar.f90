@@ -47,7 +47,8 @@ character(len=20)  :: gridConnection
 integer            :: nTimes
 logical            :: iDeg 
 real(kind = prec), allocatable, dimension(:) :: startPoint, upTime0, downTime0
-real(kind = prec)                            :: dt1, k_tr, k_el, c_tr, c_st, pefGrid, iSocTh, eSocTh, iSocEl, eSocEl
+real(kind = prec)                            :: dt1, k_tr, k_el, c_tr, c_st, pefGrid, iSocTh, eSocTh, iSocEl, eSocEl, & 
+                                                eSocIce, iSocIce
 real(kind = prec) , allocatable, dimension(:,:) :: preset
 character(len=100) :: obj, method, strategy
 logical :: writePower       = .false.
@@ -68,6 +69,7 @@ logical :: global           = .false.
 logical :: useEuristics     = .false.
 logical , dimension(5) :: kPEC = .false.
 logical :: iPec = .false.
+logical :: DebugGraph = .false.
 
 !---Trigeneration.inp variables
 integer                                         :: nTrig
@@ -112,6 +114,13 @@ real(kind=prec)                              :: PmaxTS, CapacityTS
 integer                                      :: nSpTS , nEtaTsIn, nEtaTsOut
 !real(kind=prec), allocatable, dimension(:,:) :: etaTsOut, etaTsIn
 real(kind=prec)                              :: etaTsOut, etaTsIn
+
+!---Thermal storage----
+
+real(kind=prec)                              :: PmaxIS, CapacityIS
+integer                                      :: nSpIS , nEtaIsIn, nEtaIsOut
+!real(kind=prec), allocatable, dimension(:,:) :: etaTsOut, etaTsIn
+real(kind=prec)                              :: etaIsOut, etaIsIn
 
 !---Photovoltaic field ---------------
 

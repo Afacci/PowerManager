@@ -160,7 +160,6 @@ endif
 if(pMaxTS.gt.zero.and.capacityTS.gt.zero.and.PmaxTs.gt.zero) then
    i    = is(iTS)
    j    = c_(i)
-!   if(t.eq.1.and.j.eq.13) print*, 'debugThProd', ' Pmax= ', pMax(i) , 'sp = ', sp(j,i), 'eta= ', etaTSout
    if(sp(j,i).gt.zero) thProd  =  thProd + pMax(i)*sp(j,i)*etaTSout
 endif
 
@@ -219,6 +218,14 @@ if(nChi.gt.0) then
       chProd = chProd + sp(j,i)*Pmax(i)*envCorr(t,i,4)
    enddo
 endif
+
+!--production from chilling storage.
+if(pMaxIS.gt.zero.and.capacityIS.gt.zero) then
+   i    = is(iIS)
+   j    = c_(i)
+   if(sp(j,i).gt.zero) chProd  =  chProd + pMax(i)*sp(j,i)*etaISout
+endif
+
 return
 
 end function chProd
@@ -279,6 +286,53 @@ endif
 return
 
 end function thSelfCons
+
+
+!=======================================================================================================
+
+!>\brief Internal chilling consumption of the power plant.
+!>\details Calculates the thermal self-consumption of the trigeneration plant,
+!>that is, hte thermal power needed by the absorbtion chillers.
+!>\f[ 
+!> U_{ch}^{self} = \sum_{AbsChi} \frac{sp(i)\cdot P_{max}(i)\cdot \vartheta_{env}}{\eta_{ch}(i,sp(i))\cdot \beta_{env}}
+!>\f]
+!>where \f$sp(i)\f$ is the set point of the \f$i\f$'th  machine,
+!>\f$\eta_{ch}\f$ is  the chilling efficiency, and \f$P_{max}(i)\f$ is its rated power; \f$\beta_{env}\f$ and \f$\vartheta_{env}\f$ are the environmental corrections for 
+!> chilling efficiency, and chilling power, respectively.
+
+!>\param[in] c_  index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
+!>\param[in] t   time index
+!>\author Andrea Facci
+
+real(kind = prec) function chSelfCons(c_,t)
+
+!--Declare Module usage---
+use plantVar
+use inputVar
+
+implicit none
+
+!---Declare Local Variables---
+integer,dimension(nm), intent(in) :: c_
+integer,               intent(in) :: t
+integer                           :: i,j 
+real(kind = prec)                  :: pow, cEff
+
+!---Function Body
+
+!--note that only absorption refigerators are heat consumer so far.
+chSelfCons = 0
+
+!--Consumption of ice storage.
+if(pMaxIS.gt.zero.and.capacityIS.gt.zero) then
+   i    = is(iIS)
+   j    = c_(i)
+   if(sp(j,i).lt.zero) chSelfCons  =  chSelfCons - pMax(i)*sp(j,i)/etaISin
+endif
+
+return
+
+end function chSelfCons
 
 !==============================================================================
 
@@ -830,6 +884,47 @@ return
 
 end function elStorageLevelUpdate
 
+!=======================================================================================================
+
+!>\brief Updates the level of electrical storage
+!>\details Updates the state of charge of vthe chilling storage according to old
+!> state of charge and present set point.
+!>\f[ 
+!> SOC_{th}(t) = SOC_{th}(t-1) sp_{th}\cdot P_{max}\eta
+!>\f]
+!>where \f$sp(i)\f$ is the set point of the thermal storage
+!>\f$P_{max}(i)\f$ is its rated power and \f$\eta = \eta_{in}\f$ if \f$sp \le 0\f$ and \f$\eta = \eta_{out}\f$ if \f$sp \ge 0\f$
+
+!>\param[in] c_  index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
+!>\param[in] t   time index
+!>\author Andrea Facci
+
+real(kind=prec) function iceStorageLevelUpdate(oldLevel,c,t)
+
+!--Declare Module usage---
+use plantVar
+use inputVar
+
+implicit none
+
+!---Declare Local Variables---
+integer,dimension(nm), intent(in) :: c
+real(kind=prec)      , intent(in) :: oldLevel
+integer,               intent(in) :: t
+integer                           :: i, j
+
+if(capacityIS.gt.zero.and.pMaxIS.gt.zero) then
+   i = is(iIS)
+   j = c(i)
+   iceStorageLevelUpdate = oldLevel - sp(j,i)*Pmax(i)*dt(t)
+else
+   iceStorageLevelUpdate = zero
+endif
+
+return
+
+end function iceStorageLevelUpdate
+
 !========================================================================================
 
 !>\brief Calculates the power from or to the thermal storage.
@@ -873,5 +968,50 @@ if(pMaxTS.gt.zero.and.capacityTS.gt.zero) then
 endif
 
 end function tesPower
+
+!========================================================================================
+
+!>\brief Calculates the power from or to the thermal storage.
+!>\details This function calculates the power from and to the thermal storage 
+!>system, given the plant set-point vector and the time-step
+!> state of charge and present set point.
+!>\f[ 
+!> P_{tes}(t) =  sp_{tes}\cdot P_{max}\eta_{in}\qquad \mbox{ if } \qquad sp_{tes} \le 0
+!>\f]
+!>\f[ 
+!> P_{tes}(t) =  sp_{tes}\cdot P_{max}eta_{out} \qquad\mbox{ if } \qquad sp_{tes} > 0
+!>\f]
+!>where \f$sp_{tes}\f$ is the set point of the thermal storage
+!>\f$P_{max}\f$ is its rated power and \f$\eta_{in}\f$ and \f$\eta_{out}\f$ are the input and output efficiencies, respectively.
+
+!>\param[in] c_  index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
+!>\param[in] t   time index
+!>\author Andrea Facci
+
+real(kind=prec) function icePower(c,t)
+
+!--Declare Module usage---
+use plantVar
+use inputVar
+
+implicit none
+
+!---Declare Local Variables---
+integer,dimension(nm), intent(in) :: c
+integer,               intent(in) :: t
+integer                           :: i, j
+
+icePower = zero
+
+!--production from electrical storage.
+if(pMaxIS.gt.zero.and.capacityIS.gt.zero) then
+   i    = is(iIS)
+   j    = c(i)
+   if(sp(j,i).gt.zero) icePower  =  pMax(i)*sp(j,i)*etaISout
+   if(sp(j,i).lt.zero) icePower  =  pMax(i)*sp(j,i)/etaIsIn
+endif
+
+end function icePower
+
 
 end module energy

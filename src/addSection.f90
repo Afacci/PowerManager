@@ -382,8 +382,10 @@ contains
          allocate(soc(nsoc), socTh(0:nTime+1))
          soc(1) = 0
          nSp(is(iTS)) = 1
-         sp(1,is(iTS)) = 1
-         cr(1,is(iTS)) = zero
+         sp(1,is(iTS)) = zero
+         cr(1,is(iTS)) = 1
+         iSocTh = zero
+         eSocTh = zero
      endif
 
 !     !Thermal storage capacity constraint
@@ -441,7 +443,7 @@ contains
          do i=2,nsocEL
             Esoc(i) = Esoc(i-1) + dsocEl
          enddo
-         do i=1,nSoc
+         do i=1,nSocEl
             iDiff(i) = abs(Esoc(i) - iSocEl)
             eDiff(i) = abs(Esoc(i) - eSocEl)
          enddo
@@ -455,8 +457,10 @@ contains
          allocate(Esoc(nsoc), socEl(0:nTime+1))
          Esoc(1) = 0
          nSp(is(iES)) = 1
-         sp(1,is(iES)) = 1
-         cr(1,is(iES)) = zero
+         sp(1,is(iES)) = zero
+         cr(1,is(iES)) = 1
+         iSocEl = zero
+         eSocEl = zero
      endif
 
  !    k = 2*nm0 + 2
@@ -468,5 +472,76 @@ contains
    end subroutine addElectricalStorage
 
 !=========================================================================================
+
+
+!=========================================================================================
+
+   subroutine addIceStorage
+
+     implicit none
+     
+     integer                                    :: i, j ,k , ii
+     real(kind=prec)                            :: dsoc, dsp, dtmin
+     real(kind=prec), allocatable, dimension(:) :: iDiff, eDiff
+
+     if(capacityIS.gt.zero) then
+         j = is(iIS) 
+         nSp(is(iIS)) = 2*nSpIS + 1
+         Pmax(j) = PmaxIs
+         sp(1,j) = -1
+         cr(1,j) = 1
+         dsp = 1.0/nSpIs
+         do i=2,nSpIS
+            sp(i,j) = sp(i-1,j) + dsp
+            cr(i,j) = i
+         enddo
+         sp(nSpIS + 1,j) = zero
+         cr(nSpIS + 1,j) = nSpIs + 1
+!         do i= nSpTS + 2, nSp(j)
+!            sp(i,j) = sp(i-1,j) + dsp
+!            sp(i,j) = min(sp(i,j),1.0)
+!            cr(i,j) = i
+!         enddo2*nSpES + 1
+         ii = 0
+         do i= nSpIS + 2, nSp(j)
+            ii = ii + 1
+            k = nSpIs + 1 - ii
+            sp(i,j) = -sp(k,j) 
+            cr(i,j) = i
+         enddo
+         iSocIce = iSocIce*capacityIS
+         eSocIce = eSocIce*capacityIS
+         dtmin  = minval(dt)
+         dsoc   = dsp*dtmin*pMaxIS
+         nsocIce   = floor(capacityIS/(dsoc)) + 1
+         allocate(IceSoc(nsocIce), socIS(0:nTime+1))
+         allocate(iDiff(nSocIce), eDiff(nSocIce))
+         IceSoc(1) = zero
+         do i=2,nSocIce
+            iCeSoc(i) = IceSoc(i-1) + dsoc
+            iDiff(i) = abs(iceSoc(i) - iSocIce)
+            eDiff(i) = abs(iceSoc(i) - eSocIce)
+         enddo
+         do i=1,nSocIce
+            iDiff(i) = abs(iceSoc(i) - iSocIce)
+            eDiff(i) = abs(iceSoc(i) - eSocIce)
+         enddo
+         i       = minloc(iDiff,1)
+         iSocIce = iceSoc(i)
+         i       = minloc(eDiff,1)
+         eSocIce  = iceSoc(i)
+         deallocate(iDiff, eDiff)
+     else
+         nsocIce = 1
+         allocate(iceSoc(nsoc), socIS(0:nTime+1))
+         iceSoc(1) = 0
+         nSp(is(iIS)) = 1
+         sp(1,is(iIS)) = zero
+         cr(1,is(iIS)) = 1
+         iSocIce = zero
+         eSocIce = zero
+     endif
+
+   end subroutine addIceStorage
 
 end module addSection

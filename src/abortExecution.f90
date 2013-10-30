@@ -44,7 +44,7 @@ subroutine abortExecution(i,j,line,word,r1,r2,iVec)
 !---Declare Unit usage---
 use shared
 use inputVar
-use plantVar, only : sp, nSp, nm
+use plantVar, only : sp, nSp, nm, nm0
 
 implicit none
 
@@ -76,7 +76,6 @@ character(len=19), dimension(10)        :: Iwind
 print*
 print*, '!-----------------------------------FATAL ERROR-----------------------------------------!'
 print*
-print*, ', se vabbè ma dove?', i
 
 general       = (/'GridConnection    ', 'Degradation       ', 'objective         ', 'StartPoint        '  &
                  ,'FirstTimeStep     ', 'UpTime0           ', 'DownTime0         ', 'Algorithm         '  & 
@@ -245,7 +244,7 @@ select case(i)
     case(28)
         print*,'Could not find "', trim(ThStorage(j)) ,'" in ThermalStorage.inp'
     case(29)
-        print*,'No feasible paths from time ', j,' to time ', j + 1, '.Entering time-step with plant state', iVec(1:2*(nm-2) + 2)
+        print*,'No feasible paths from time ', j,' to time ', j + 1, '.Entering time-step with plant state', iVec(1:2*(nm0) + 3)
     case(30)
         print*, 'The Simple model for photovoltaic or solar collectors requires the specification '
         print*, 'of hourly solar direct and diffused irradiance.'

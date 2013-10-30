@@ -60,18 +60,18 @@ subroutine output(setPoint,postProcessing,path)
   logical                         , intent(in) :: postProcessing
   character(len=*)                , intent(in) :: path
   integer                                      :: i, u,j,k,n,l, nO
-  real(kind = prec ), dimension(nTime,nm)        :: c
+  real(kind = prec ), dimension(nTime,nm)      :: c
   integer,          dimension(nm)              :: kk, kko, kkk
   logical                                      :: ex, oldRes
   character(len=100)                           :: folder, filename
-  real(kind = prec ), dimension(0:nTime)         :: t
-  real(kind = prec), dimension(nm)              :: gg
-  real(kind = prec)                             :: g
-  real(kind = prec),dimension(2)                :: gGrid
+  real(kind = prec ), dimension(0:nTime)       :: t
+  real(kind = prec), dimension(nm)             :: gg
+  real(kind = prec)                            :: g
+  real(kind = prec),dimension(2)               :: gGrid
   character(len=20), dimension(100)            :: buffer20
-  real(kind = prec), dimension(100)             :: rbuffer
-  integer                                       :: stat
-  real(kind=prec)                               :: thSoc, thSoc_, level
+  real(kind = prec), dimension(100)            :: rbuffer
+  integer                                      :: stat
+  real(kind=prec)                              :: thSoc, thSoc_, level, iceLev
 
 
 !interface
@@ -141,14 +141,19 @@ subroutine output(setPoint,postProcessing,path)
        write(u,'(A,1X,A,2X)', advance='no') trim(tec(j)),'Chiller'
     enddo
     if(capacityTS.gt.zero) write(u,'(A)', advance='no') 'Thermal Storage'
+    if(capacityES.gt.zero) write(u,'(A)', advance='no') 'Electrical Storage'
+    if(capacityIs.gt.zero) write(u,'(A)', advance='no') 'Cold Storage'
     write(u,*)
     write(u,*)
     t(0) = 0.d0
     do i=1,nTime
        write(u,'(ES8.2E2,5X)', advance='no') t(i)
-       do j=1,nm
+       do j=1,nm0
           write(u,'(F5.2,5X)', advance='no') c(i,j)
        enddo
+       if(capacityTS.gt.zero) write(u,'(F5.2,5X)', advance='no') c(i,nm0+1)
+       if(capacityES.gt.zero) write(u,'(F5.2,5X)', advance='no') c(i,nm0+2)
+       if(capacityIs.gt.zero) write(u,'(F5.2,5X)', advance='no') c(i,nm0+3)
        write(u,*)
        kk = setPoint(i,:)
        kk(1) = 4
@@ -581,6 +586,33 @@ subroutine output(setPoint,postProcessing,path)
         thsoc = thStorageLevelUpdate(thsoc,kk,i)
         rbuffer(3) = 100*Thsoc/capacityTS
         rbuffer(5) = Thsoc
+        write(u,'(3(F5.2,15X),2(ES11.2E2,9X))') (rbuffer(j), j=1,5)
+     enddo
+  endif
+
+  if(capacityIS.gt.zero) then
+     u = u + 1
+     call prepareFile(u,'ChillingStorageSOC',path)
+     write(u,*) '#--------------------------------------------------------------------------#'
+     write(u,*) '#  file ChillingStorageSOC.dat; contains the state of charge of the chilling storage.  '
+     write(u,*) '#--------------------------------------------------------------------------#'
+     write(u,*)
+     buffer20(1) = 'Time [h]            '
+     buffer20(2) = 'SOC in [%]          '
+     buffer20(3) = 'SOC out [%]         '
+     buffer20(4) = 'SOC in [kJ]         '
+     buffer20(5) = 'SOC out [kJ]        '
+     write(u,'(5A)') (buffer20(i), i=1,5)
+     write(u,*)
+     iceLev = iSocIce
+     do i=1,nTime
+        rbuffer(1) = t(i)
+        kk         = setPoint(i,:)
+        rbuffer(2) = 100*iceLev/capacityIS
+        rbuffer(4) = iceLev
+        iceLev     = iceStorageLevelUpdate(iceLev,kk,i)
+        rbuffer(3) = 100*iceLev/capacityIS
+        rbuffer(5) = iceLev
         write(u,'(3(F5.2,15X),2(ES11.2E2,9X))') (rbuffer(j), j=1,5)
      enddo
   endif

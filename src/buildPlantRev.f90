@@ -80,13 +80,11 @@ upTime0   = upTime0*3.6e3
 downTime0 = downTime0*3.6e3
 
 nm0  = nTrig + nBoi + nChi                      !total number of machinery without storage
-nm   = nm0
-if(capacityTS.gt.zero.and.PmaxTS.gt.zero) then
-   nm  = nm + 1                                 !total number of machinery with thermal storage
-endif
-if(capacityES.gt.zero.and.PmaxES.gt.zero) then
-   nm  = nm + 1                                 !total number of machinery with electrical storage
-endif
+nm   = nm0 + 3
+nx = nm0
+if(capacityTS.gt.zero.and.PmaxTS.gt.zero) nx  = nx + 1                                 
+if(capacityES.gt.zero.and.PmaxES.gt.zero) nx  = nx + 1                                 
+if(capacityIS.gt.zero.and.PmaxIS.gt.zero) nx  = nx  + 1
 
 nSpTot = 0
 if(nBoi.gt.0) then 
@@ -110,16 +108,24 @@ endif
 if(capacityTS.gt.zero.and.pmaxTs.gt.zero) then 
    nSpTot = nSpTot + 2*nSpTS + 1
 else
-   nSpTS = 0
+   nSpTS = 1
+   nSpTot = nSpTot + 1
 endif
 if(capacityES.gt.zero.and.pmaxTs.gt.zero) then 
    nSpTot = nSpTot + 2*nSpES + 1
 else
-   nSpES = 0
+   nSpES = 1
+   nSpTot = nSpTot + 1
+endif
+if(capacityIS.gt.zero.and.pmaxIs.gt.zero) then 
+   nSpTot = nSpTot + 2*nSpIS + 1
+else
+   nSpIS = 1
+   nSpTot = nSpTot + 1
 endif
 call allocateVar(17)
 
-nMax = max(n1, n2, n3, 2*nSpTS + 1,2*nSpES + 1)
+nMax = max(n1, n2, n3, 2*nSpTS + 1,2*nSpES + 1,2*nSpIS + 1)
 call allocateVar(18,nMax)
 call allocateVar(32)
 
@@ -137,18 +143,21 @@ call addBoilers
 is(iC) = is(iB) + nBoi       !Chillers
 ie(iC) = ie(iB) + nChi
 call addChillers
-if(capacityTS.gt.zero.and.PmaxTS.gt.zero) then
+!if(capacityTS.gt.zero.and.PmaxTS.gt.zero) then
    is(iTs)= nm0 + 1
-else
-   is(iTs)= nm0 
-endif
+!else
+!   is(iTs)= nm0 
+!endif
 call addThermalStorage
-if(capacityES.gt.zero.and.PmaxES.gt.zero) then 
+!if(capacityES.gt.zero.and.PmaxES.gt.zero) then 
   is(iEs)= is(iTs) + 1
+if(capacityES.gt.zero.and.PmaxES.gt.zero) then 
   elStor = .true.
 endif
 call addElectricalStorage
-
+is(iIs)= is(iEs) + 1
+iceStor = .true.
+call addIceStorage
 
 !------renewable stuff--------------------------------
 allocate(sunEl(nTime), sunTh(nTime), windEl(nTime))
@@ -201,6 +210,11 @@ k = 2*nm0 + 2
 nTv(k) = nSocEl
 do j=1,nSocEL
    timeVinc(j,k) = Esoc(j)
+enddo
+k = 2*nm0 + 3
+nTv(k) = nSocIce
+do j=1,nSocIce
+   timeVinc(j,k) = IceSoc(j)
 enddo
 
 !--- check that the power plant is able to satisfie the required loads

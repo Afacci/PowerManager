@@ -39,22 +39,22 @@ use shared
 use inputVar
 
 real(kind = prec), allocatable, dimension(:,:)   :: etaElT_, etaThT_, etaChT_, etaB_, etaC_, &
-                                                   sp,cRef
+                                                   sp!,cRef
 real(kind = prec), allocatable, dimension(:,:,:) :: envCorr
 real(kind = prec), allocatable, dimension(:,:)   :: etaEl, etaTh, etaCh, timeVinc
 integer         , allocatable, dimension(:,:)    :: cr
 real(kind = prec), allocatable, dimension(:)     :: Pmax, dt, cf, lhv, onOffCost, OeMCost, minUpTime, minDownTime, pef, pecOn, &
-                                                    soc, socTh, socEl, Esoc
+                                                    soc, socTh, socEl, Esoc, socIS, iceSoc
 character(len=4), allocatable, dimension(:)      :: pes
-integer                                          :: nSpTot,nm,  nm0, nsoc, nSocEl
-integer,                       dimension(5)      :: is,ie
+integer                                          :: nSpTot,nm,  nm0, nsoc, nSocEl, nSocIce, nx
+integer,                       dimension(6)      :: is,ie
 integer,          allocatable, dimension(:)      :: nSp, nTv, eSource
 character(len=50), allocatable, dimension(:)     :: tec
 real(kind=prec), allocatable, dimension(:)       :: sunEl, sunTh , windEl
-logical                                          :: elStor = .false.
+logical                                          :: elStor = .false., iceStor = .false.
 integer, allocatable,dimension(:,:)              :: cPred
 
-integer, parameter :: iT = 1, iB = 2, iC = 3, iTS = 4, iES = 5
+integer, parameter :: iT = 1, iB = 2, iC = 3, iTS = 4, iES = 5, iIs = 6
 
 
 end module plantVar

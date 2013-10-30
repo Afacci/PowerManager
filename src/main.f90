@@ -56,7 +56,7 @@ implicit none
 
 real(kind = prec)                             :: rdummy
 character(len=100)                            :: cDummy
-integer                                       :: i, dummy(2),k,j, kBw, idummy(3)
+integer                                       :: i, dummy(2),k,j, kBw, idummy(3), nr
 real(kind = prec)                             :: cost
 real(kind = prec)                             :: tempo, t2
 real, dimension(2)                            :: tVec
@@ -85,6 +85,8 @@ call readChillers
 print*,'     --> Reading Chillers.inp          ... OK '
 call readThStorage
 print*,'     --> Reading ThermalStorage.inp    ... OK '
+call readIceStorage
+print*,'     --> Reading IceStorage.inp        ... OK '
 call readElStorage
 print*,'     --> Reading ElectricalStorage.inp ... OK '
 call readLoads
@@ -127,8 +129,10 @@ select case(strategy)
       call allCombin(icm=cr,imax=nSp,m=nm,targ='set-point') 
       call allCombin(dcm=sp,imax=nSp,m=nm,targ='state') 
       if(method.eq.'Reduced-Backward') then
-         call allCombin(icm=cr(:,nm0+1:nm),imax=nSp(nm0+1:nm),m=2,targ='storageSp') 
-         call allCombin(icm=cr(:,1:nm0),imax=nSp(nm0+1:nm),m=2,targ='prodSp') 
+         nr = maxval(nSp(nm0+1:nm))
+         call allCombin(icm=cr(1:nr,nm0+1:nm),imax=nSp(nm0+1:nm),m=2,targ='storageSp') 
+         nr = maxval(nSp(1:nm0))
+         call allCombin(icm=cr(1:nr,1:nm0),imax=nSp(1:nm0),m=nm0,targ='prodSp') 
          call graphPointsLocalMin
          print*, '    --> Arcs'
          call graphArcs
@@ -148,9 +152,9 @@ select case(strategy)
          case('Forward')
             call minPathTopoFw(setPoint, cost)
          case('Backward', 'Reduced-Backward')
-            cDummy = 'time-constraints' 
-            call allCombin(dcm=timeVinc,imax=nTv,m=2*nm0 + 2,targ=cDummy) 
-            allocate(upTime(0:nTime+1,2*nm0 + 2))
+!            cDummy = 'time-constraints' 
+            call allCombin(dcm=timeVinc,imax=nTv,m=2*nm0 + 3,targ='time-constraints') 
+            allocate(upTime(0:nTime+1,2*nm0 + 3))
             allocate(minPathBw(0:nTime+1))
             call minPathTopoBw(setPoint, cost, upTime, minPathBw)
       end select
@@ -160,7 +164,7 @@ select case(strategy)
             select case(method)
                case('Forward')
                  print*, i,'pointFW = ', setPoint(i,:)
-               case('Backward')
+               case('Backward', 'Reduced-Backward')
                  print*, i,'pointBW = ', setPoint(i,:), 'vertex = ', minPathBw(i)
             end select
          enddo

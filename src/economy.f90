@@ -377,6 +377,7 @@ real(kind = prec), allocatable, dimension(:) :: spNew, spOld
 
 allocate(spNew(nm), spOld(nm))
 fireCost = zero
+
 do i=1,nm
    spNew = sp(cNew(i),i)
    spOld = sp(cOld(i),i)

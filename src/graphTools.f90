@@ -175,8 +175,6 @@ contains
 !                   ! set points.
    k = product(imax) !number of combinations. The actual number
 
-   print*, 'cazzoner',targ,imax
-
    if(present(icm)) then 
       tipo = 'integer'
       allocate(icomb_(k,m))   
@@ -306,8 +304,6 @@ contains
             ch   = chRedundant(load,i)
          endif
          if(v.and.(.not.e1).and.(.not.ch)) then
-            !inserire controllo minimo locale in funzione dello stato degli
-            !accumuli.
             n        = n + 1
             time_(n) = i
             timePoint(i,j) = n
@@ -342,6 +338,14 @@ contains
    pointTime(0)     = zero
    pointTime(1:n)   = time_(1:n)
    pointTime(n+1)   = nTime + 1
+   
+   if(DebugGraph) then
+      open(unit=999, file='NodeWeight.dat')
+      do i =0,nPoint+1
+         write(999,*),'Node n', i, ' Weight = ', pointCost(i)
+      enddo
+      close(999)
+   endif
 
    deallocate(load)
    deallocate(cost_,cl_,time_)
@@ -388,7 +392,7 @@ contains
    integer          , allocatable, dimension(:)  :: startLoad 
    integer          , allocatable, dimension(:)  :: load, minLoad
    integer                                       :: i,j,n, iStart, iii
-   logical                                       :: v, error, e1, ch, isOff
+   logical                                       :: v, error, e1, ch, isOff, nonZero
    real(kind=prec)                               :: locMin, locCost
    integer                                       :: k, kMin, c, l
 
@@ -407,13 +411,18 @@ contains
    do i=1,nTime
       nt(i) = 0
       do j=1,nssp
-        load(nm0+1:nm) = spStor(j,:)
+         load(nm0+1:nm) = spStor(j,:)
          locMin = huge(1.0)
+         nonZero = .false.
          do k=1,npsp
             isOff = .false.
             load(1:nm0) = spProd(k,:)
             v = constraints(load,i)
-            if(v) then
+            if(useEuristics) then
+               e1   = thRedundant(load,i)
+               ch   = chRedundant(load,i)
+            endif
+            if(v.and.(.not.e1).and.(.not.ch)) then
                do l=1,nm0
                   c = load(l)
                   if(sp(c,l).le.zero) then
@@ -424,7 +433,6 @@ contains
                      endif
                   endif
                enddo
-!               if(any(spProd(k,:).eq.1)) then
                if(isOff) then
                   n        = n + 1
                   time_(n) = i
@@ -433,6 +441,7 @@ contains
                   cl_(n,:) = load            
                   cost_(n) = objFunction(load,i,obj)
                else
+                  nonZero = .true.
                   locCost = objFunction(load,i,obj)
                   if(locCost.lt.locMin) then
                       locMin  = locCost
@@ -442,14 +451,17 @@ contains
                endif
             endif
          enddo
-         n        = n + 1
-         time_(n) = i
-         timePoint(i,j) = n
-         nt(i)    = nt(i) + 1
-         cl_(n,:) = minLoad            
-         cost_(n) = locMin
+         if(nonZero) then
+             n        = n + 1
+             time_(n) = i
+             timePoint(i,j) = n
+             nt(i)    = nt(i) + 1
+             cl_(n,:) = minLoad            
+             cost_(n) = locMin
+         endif
       enddo
    enddo
+
 
    nt(nTime+1) = 1
    timePoint(nTime+1,1) = nPoint + 1 
@@ -525,6 +537,11 @@ contains
    !succList(:,:) = -1!inan(1)
    !predCost(:,:) = -1000! rnan(rVal)
    !succCost(:,:) = -1000! rnan(rVal)
+   
+   if(DebugGraph) then
+      open(unit=999, file='SuccessorWeightMatrix.dat')
+      open(unit=998, file='SuccessorList.dat')
+   endif
 
    nMax = maxval(nt)
    
@@ -556,7 +573,7 @@ contains
             enddo
          enddo
 
-      case('Backward')
+      case('Backward', 'Reduced-Backward')
          allocate(nSuc(0:nPoint), succCost(0:nPoint,nMax))
          allocate(succList(0:nPoint+1,nMax))
          !---detect the successors for each node---
@@ -591,8 +608,17 @@ contains
                end select
                succCost(i,j) = pointCost(i) + deltaC + cBatt
             enddo
+            if(DebugGraph) then
+               write(999,*) 'Node = ', i, 'Successor Weight = ' , succCost(i,:)
+               write(998,*) 'Node = ', i, 'Suuccessor List = ' , succList(i,:)
+            endif
          enddo
        end select
+
+       if(DebugGraph) then
+         close(999)
+         close(998)
+       endif
   
    deallocate(cNew,cOld)
 
@@ -603,7 +629,7 @@ contains
       print*, '              | Time-steps        : ', nTime,   '|'
       print*, '              | Verteces number   : ', nPoint,  '|'
       if(method.eq.'Forward') print*, '              | Arcs number       : ', sum(nPre(:)), '|'
-      if(method.eq.'Backward') print*, '              | Arcs number       : ', sum(nSuc(:)), '|'
+      if(method.eq.'Backward'.or.method.eq.'Reduced-Backward') print*, '              | Arcs number       : ', sum(nSuc(:)), '|'
       print*, '              ------------------------------------'
       print*
    endif
@@ -684,24 +710,24 @@ contains
 
    subroutine minPathTopoBw(ottLoad, minCost,upTime, minPath)
    
-   use inputVar, only : nTime, upTime0, downTime0, iSocTh, iSocEl
+   use inputVar, only : nTime, upTime0, downTime0, iSocTh, iSocEl, iSocIce
    use plantVar, only : nm, minUpTime, minDownTime, nm0, soc, nSoc, socTh, sp, iTs, iEs, is, eSocTh
    use mathTools
    use energy
 
    implicit none
     
-   integer, dimension(0:nTime+1,nm), intent(out):: ottLoad
-   real(kind = prec),              intent(out)   :: minCost
-   integer                                      :: orig, dest, i, j, p, suc,t,k,ki, l , li
-   real(kind = prec)                             :: ci, newSoc, qOld, eOld
-   real(kind = prec), allocatable, dimension(:,:)  :: pathCost
-   integer          , allocatable, dimension(:,:)  :: minSucc
-   integer, dimension(0:nTime+1)                :: minPath
-   logical                                      :: tv,thv, error, ts, es
-   integer, dimension(nm)                       :: cn, co
-   real(kind = prec), dimension(0:nTime+1,2*nm0 + 2), intent(out)       :: upTime 
-   real(kind = prec), dimension(2*nm0 + 2)              :: upTimeIn, upTimeOut
+   integer, dimension(0:nTime+1,nm), intent(out)                  :: ottLoad
+   real(kind = prec),              intent(out)                    :: minCost
+   integer                                                        :: orig, dest, i, j, p, suc,t,k,ki, l , li
+   real(kind = prec)                                              :: ci, newSoc, qOld, eOld, fOld
+   real(kind = prec), allocatable, dimension(:,:)                 :: pathCost
+   integer          , allocatable, dimension(:,:)                 :: minSucc
+   integer, dimension(0:nTime+1)                                  :: minPath
+   logical                                                        :: tv,thv, error, ts, es, fs
+   integer, dimension(nm)                                         :: cn, co
+   real(kind = prec), dimension(0:nTime+1,2*nm0 + 3), intent(out) :: upTime 
+   real(kind = prec), dimension(2*nm0 + 3)                        :: upTimeIn, upTimeOut
 
    !----------function body-----------------------------------------------------
 
@@ -721,13 +747,15 @@ contains
          tv = timeConstr(co,upTimeIn(1:2*nm0))
          qOld = tState(k,2*nm0 + 1)
          eOld = tState(k,2*nm0 + 2)
+         fOld = tState(k,2*nm0 + 3)
 !         qOld = tState(k,is(iTS))
 !         eOld = tState(k,is(iES))
          ts = thStorageConstr(qOld,co,t)
          es = elStorageConstr(eOld,co,t)
-         if(tv.and.ts.and.es) then
+         fs = iceStorageConstr(fOld,co,t)
+         if(tv.and.ts.and.es.and.fs) then
             upTimeOut = upTimeCalc(upTimeIn,co,t)
-            ki = locateRow(upTimeOut,tState,2*nm0 + 2,nTvComb)
+            ki = locateRow(upTimeOut,tState,2*nm0 + 3,nTvComb)
             do j=1,nSuc(i)
                suc = succList(i,j)
                ci  = pathCost(suc,ki) + succCost(i,j)
@@ -754,13 +782,13 @@ contains
    enddo
    upTime(0,2*nm0+1) = iSocTh
    upTime(0,2*nm0+2) = iSocEl
+   upTime(0,2*nm0+3) = iSocIce
 
    do while (p < dest)
       t = t + 1
-      ki = locateRow(upTime(t-1,:),tState,2*nm0 + 2,nTvComb)
+      ki = locateRow(upTime(t-1,:),tState,2*nm0 + 3,nTvComb)
       upTime(t,:) = upTimeCalc(upTime(t-1,:),pointLoad(p,:),t-1)
       p = minSucc(p,ki)
-
       if(p.eq.-1) call abortExecution(29,t, iVec=upTime(t-1,:))
       minPath(t)  = p
       ottLoad(t,:)= pointLoad(p,:)
@@ -782,8 +810,8 @@ contains
 
      implicit none
 
-     real(kind = prec), dimension(2*nm0 + 2) :: upTimeCalc
-     real(kind = prec), dimension(2*nm0 + 2) :: upT
+     real(kind = prec), dimension(2*nm0 + 3) :: upTimeCalc
+     real(kind = prec), dimension(2*nm0 + 3) :: upT
      integer,                intent(in) :: t
      integer, dimension(nm), intent(in) :: c
      integer                            :: i,j,k
@@ -808,6 +836,8 @@ contains
      upTimeCalc(i) = thStorageLevelUpdate(upT(i),c,t)
      i = 2*nm0 + 2  
      upTimeCalc(i) = elStorageLevelUpdate(upT(i),c,t)
+     i = 2*nm0 + 3  
+     upTimeCalc(i) = iceStorageLevelUpdate(upT(i),c,t)
    
    return
   

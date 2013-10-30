@@ -81,7 +81,7 @@ do i=is(iB),ie(iB)
 enddo
 
 p = chProd(c,t)
-u = sum(uCh(t,:))
+u = sum(uCh(t,:)) + chSelfCons(c,t)
 if(p.lt.u)  then
    constraints = .false.
    return
@@ -90,8 +90,6 @@ endif
 p = thProd(c,t) 
 u = sum(uTh(t,:)) + thSelfCons(c,t)
 if(p.lt.u) constraints = .false.
-
-!print*, 'constraints', thProd(c,t), c
 
 
 end function constraints
@@ -211,5 +209,50 @@ endif
 return
 
 end function elStorageConstr
+!=============================================================
+
+logical function iceStorageConstr(oldLevel,c,t, finalSOC)
+
+
+!---Declare Module usage---
+
+use shared
+use plantVar
+use inputVar
+use energy
+
+implicit none
+integer, dimension(nm), intent(in)           :: c
+integer,                intent(in)           :: t
+real(kind=prec),        intent(in)           :: oldLevel
+real(kind=prec)                              :: newLevel, err
+real(kind=prec), parameter                   :: toll = 1.0e-3
+logical,                intent(in), optional :: finalSOC
+logical                                      :: finalSOC_
+
+iceStorageConstr = .true.
+
+if(present(finalSoc)) then
+    finalSOC_ = finalSOC
+else
+    finalSOC_ = .true.
+endif
+
+if(capacityIS.le.zero.or.PmaxIS.le.zero) return
+
+newLevel = iceStorageLevelUpdate(oldLevel,c,t)
+
+if(newLevel.lt.zero)       iceStorageConstr = .false.
+if(newLevel.gt.capacityIS) iceStorageConstr = .false.
+if(finalSOC_) then
+   if(t.eq.nTime) then
+      err = abs(newLevel - eSocICE)/eSocICE
+      if(err.gt.toll)  iceStorageConstr = .false.
+   endif
+endif
+
+return
+
+end function iceStorageConstr
 
 end module constr
