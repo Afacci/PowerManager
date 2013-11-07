@@ -741,6 +741,7 @@ contains
 
    do i=nPoint,0,-1
       t         = pointTime(i)
+      if(t.lt.pointTime(i+1)) print*,'+++++++++++++++ t = ', t
       co        = pointLoad(i,:)
       do k=1,nTvComb
          upTimeIn  = tState(k,:)

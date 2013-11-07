@@ -54,6 +54,11 @@ integer,          allocatable, dimension(:)  , private :: nPre      !> number of
 integer,          allocatable, dimension(:)  , private :: nSuc      !> number of successors for each graph vertex
 integer                                      , private :: nPoint    !> vertex number
 integer,          allocatable, dimension(:,:), private :: timePoint !> vertexes list for each time step
+integer,          allocatable, dimension(:,:), private :: spStor
+integer,          allocatable, dimension(:,:), private :: spProd
+real(kind=prec),  allocatable, dimension(:,:), private :: storState
+real(kind=prec),  allocatable, dimension(:,:), private :: prodState
+integer                                      , private :: nssp, npsp
 
 !===================================================================================================================
 
@@ -217,6 +222,24 @@ contains
          allocate(spVal(i,m))
          spVal(:,:) = dComb_(1:i,:)
          deallocate(dComb_)
+      case('storageSp')
+         nssp = i
+         allocate(spStor(nssp,2))
+         spStor(:,:)  = iComb_(1:nssp,:)
+         deallocate(iComb_)
+!      case('StorageState')
+!         allocate(storState(i,2))
+!         storState(:,:) = dComb_(1:i,:)
+!         deallocate(dComb_)
+      case('prodSp')
+         npSp = i
+         allocate(spProd(npSp,m))
+         spProd(:,:)  = iComb_(1:npSp,:)
+         deallocate(iComb_)
+!      case('prodState')
+!         allocate(prodState(i,m))
+!         prodState(:,:) = dComb_(1:i,:)
+!         deallocate(dComb_)
    end select
 
    end subroutine allCombin
@@ -281,21 +304,165 @@ contains
             ch   = chRedundant(load,i)
          endif
          if(v.and.(.not.e1).and.(.not.ch)) then
-            !inserire controllo minimo locale in funzione dello stato degli
-            !accumuli.
             n        = n + 1
             time_(n) = i
             timePoint(i,j) = n
             nt(i)    = nt(i) + 1
             cl_(n,:) = load            
             cost_(n) = objFunction(load,i,obj)
-!               if(i.eq.1) then 
-!                  print*, 'debug', 'load = ', load(5) , elProd(load,i), currCost(load,i), fuelCost(load,i) ,& 
-!                    elRev(load,i) , thRev(i) , chRev(i) , maintenanceCost(load,i)
-!               endif
          endif
       enddo
    enddo
+   nt(nTime+1) = 1
+   timePoint(nTime+1,1) = nPoint + 1 
+   do i=1,nTime
+      if(nt(i).eq.0) call abortExecution(18,i)
+   enddo
+
+   allocate(pointCost(0:n+1),pointLoad(0:n+1,nm),pointTime(0:n+1))
+   allocate(startLoad(nm))
+  
+   iStart = locateRow(startPoint,spVal,nm,nComb,error)
+   if(error) then
+      call abortExecution(14)
+   else
+     startLoad = comb(iStart,:)
+   endif
+   nPoint           = n
+   pointCost(0)     = zero
+   pointCost(1:n)   = cost_(1:n)
+   pointCost(n+1)   = zero 
+   pointLoad(0,:)   = startLoad(:)
+   pointLoad(1:n,:) = cl_(1:n,:)
+   pointLoad(n+1,:) = startLoad(:)
+   pointTime(0)     = zero
+   pointTime(1:n)   = time_(1:n)
+   pointTime(n+1)   = nTime + 1
+   
+   if(DebugGraph) then
+      open(unit=999, file='NodeWeight.dat')
+      do i =0,nPoint+1
+         write(999,*),'Node n', i, ' Weight = ', pointCost(i)
+      enddo
+      close(999)
+   endif
+
+   deallocate(load)
+   deallocate(cost_,cl_,time_)
+   deallocate(startLoad)
+
+   return
+  
+   end subroutine graphPoints
+
+
+!================================================================================
+   
+   !>\brief
+   !> Generates the graph vetexes, starting from the array of the set-point
+   !> combinations.
+   !>\details
+   !> Generates the graph veteces, starting from the array of the set-point
+   !> combinations. For each time-step determines which plant state respects the
+   !> energy (staitc) constraints, and associates them to a graph vertex. A
+   !> weight, that accounts for the costs/revenues of operating the power plant
+   !> from time-step t to t+1 at the vertex state, is also calculated for each vertex.
+   !> The time-step relative to each vertex and the number of verteces for each
+   !> time step are associated to "pointTime" and "nt" vectors respectively.
+   !> Vertex 0 will be the starting point of the graph and vertex nPoint + 1 the
+   !> arriving point
+   !> \author Andrea Facci.
+   subroutine graphPointsLocalMin
+  
+   !---Declare Module usage---
+  
+   use interfaces
+   use inputVar
+   use plantVar
+   use mathTools
+   use euristics
+
+   use economy
+  
+   !---Declare Local Variables---
+   implicit none
+  
+   integer          , allocatable, dimension(:,:):: cl_
+   real(kind = prec), allocatable, dimension(:)  :: cost_, time_
+   integer          , allocatable, dimension(:)  :: startLoad 
+   integer          , allocatable, dimension(:)  :: load, minLoad
+   integer                                       :: i,j,n, iStart, iii
+   logical                                       :: v, error, e1, ch, isOff, nonZero
+   real(kind=prec)                               :: locMin, locCost
+   integer                                       :: k, kMin, c, l
+
+   ch = .false.
+   e1 = .false.
+  
+   allocate(load(nm),nt(0:nTime+1), minLoad(nm))
+   n = nComb*nTime
+   allocate(cost_(n),cl_(n,nm),time_(n))
+   allocate(timePoint(0:nTime+1,nComb))
+   timePoint(:,:) = 0
+  
+   nt(0)   = 1
+   n = 0
+   timePoint(0,1) = 0
+   do i=1,nTime
+      nt(i) = 0
+      do j=1,nssp
+         load(nm0+1:nm) = spStor(j,:)
+         locMin = huge(1.0)
+         nonZero = .false.
+         do k=1,npsp
+            isOff = .false.
+            load(1:nm0) = spProd(k,:)
+            v = constraints(load,i)
+            if(useEuristics) then
+               e1   = thRedundant(load,i)
+               ch   = chRedundant(load,i)
+            endif
+            if(v.and.(.not.e1).and.(.not.ch)) then
+               do l=1,nm0
+                  c = load(l)
+                  if(sp(c,l).le.zero) then
+                     if(onOffCost(l).gt.zero.or.minUpTime(l) & 
+                        .gt.0.or.minDownTime(l).gt.0) then
+                        isOff = .true.
+                        exit
+                     endif
+                  endif
+               enddo
+               if(isOff) then
+                  n        = n + 1
+                  time_(n) = i
+                  timePoint(i,j) = n
+                  nt(i)    = nt(i) + 1
+                  cl_(n,:) = load            
+                  cost_(n) = objFunction(load,i,obj)
+               else
+                  nonZero = .true.
+                  locCost = objFunction(load,i,obj)
+                  if(locCost.lt.locMin) then
+                      locMin  = locCost
+                      kMin    = k
+                      minLoad = load
+                  endif
+               endif
+            endif
+         enddo
+         if(nonZero) then
+             n        = n + 1
+             time_(n) = i
+             timePoint(i,j) = n
+             nt(i)    = nt(i) + 1
+             cl_(n,:) = minLoad            
+             cost_(n) = locMin
+         endif
+      enddo
+   enddo
+
+
    nt(nTime+1) = 1
    timePoint(nTime+1,1) = nPoint + 1 
    do i=1,nTime
@@ -328,7 +495,8 @@ contains
 
    return
   
-   end subroutine graphPoints
+   end subroutine graphPointsLocalMin
+
   
 !==============================================================================
    
@@ -369,6 +537,11 @@ contains
    !succList(:,:) = -1!inan(1)
    !predCost(:,:) = -1000! rnan(rVal)
    !succCost(:,:) = -1000! rnan(rVal)
+   
+   if(DebugGraph) then
+      open(unit=999, file='SuccessorWeightMatrix.dat')
+      open(unit=998, file='SuccessorList.dat')
+   endif
 
    nMax = maxval(nt)
    
@@ -400,7 +573,7 @@ contains
             enddo
          enddo
 
-      case('Backward')
+      case('Backward', 'Reduced-Backward')
          allocate(nSuc(0:nPoint), succCost(0:nPoint,nMax))
          allocate(succList(0:nPoint+1,nMax))
          !---detect the successors for each node---
@@ -435,8 +608,17 @@ contains
                end select
                succCost(i,j) = pointCost(i) + deltaC + cBatt
             enddo
+            if(DebugGraph) then
+               write(999,*) 'Node = ', i, 'Successor Weight = ' , succCost(i,:)
+               write(998,*) 'Node = ', i, 'Suuccessor List = ' , succList(i,:)
+            endif
          enddo
        end select
+
+       if(DebugGraph) then
+         close(999)
+         close(998)
+       endif
   
    deallocate(cNew,cOld)
 
@@ -447,7 +629,7 @@ contains
       print*, '              | Time-steps        : ', nTime,   '|'
       print*, '              | Verteces number   : ', nPoint,  '|'
       if(method.eq.'Forward') print*, '              | Arcs number       : ', sum(nPre(:)), '|'
-      if(method.eq.'Backward') print*, '              | Arcs number       : ', sum(nSuc(:)), '|'
+      if(method.eq.'Backward'.or.method.eq.'Reduced-Backward') print*, '              | Arcs number       : ', sum(nSuc(:)), '|'
       print*, '              ------------------------------------'
       print*
    endif
@@ -528,24 +710,24 @@ contains
 
    subroutine minPathTopoBw(ottLoad, minCost,upTime, minPath)
    
-   use inputVar, only : nTime, upTime0, downTime0, iSocTh, iSocEl
+   use inputVar, only : nTime, upTime0, downTime0, iSocTh, iSocEl, iSocIce
    use plantVar, only : nm, minUpTime, minDownTime, nm0, soc, nSoc, socTh, sp, iTs, iEs, is, eSocTh
    use mathTools
    use energy
 
    implicit none
     
-   integer, dimension(0:nTime+1,nm), intent(out):: ottLoad
-   real(kind = prec),              intent(out)   :: minCost
-   integer                                      :: orig, dest, i, j, p, suc,t,k,ki, l , li
-   real(kind = prec)                             :: ci, newSoc, qOld, eOld
-   real(kind = prec), allocatable, dimension(:,:)  :: pathCost
-   integer          , allocatable, dimension(:,:)  :: minSucc
-   integer, dimension(0:nTime+1)                :: minPath
-   logical                                      :: tv,thv, error, ts, es
-   integer, dimension(nm)                       :: cn, co
-   real(kind = prec), dimension(0:nTime+1,2*nm0 + 2), intent(out)       :: upTime 
-   real(kind = prec), dimension(2*nm0 + 2)              :: upTimeIn, upTimeOut
+   integer, dimension(0:nTime+1,nm), intent(out)                  :: ottLoad
+   real(kind = prec),              intent(out)                    :: minCost
+   integer                                                        :: orig, dest, i, j, p, suc,t,k,ki, l , li
+   real(kind = prec)                                              :: ci, newSoc, qOld, eOld, fOld
+   real(kind = prec), allocatable, dimension(:,:)                 :: pathCost
+   integer          , allocatable, dimension(:,:)                 :: minSucc
+   integer, dimension(0:nTime+1)                                  :: minPath
+   logical                                                        :: tv,thv, error, ts, es, fs
+   integer, dimension(nm)                                         :: cn, co
+   real(kind = prec), dimension(0:nTime+1,2*nm0 + 3), intent(out) :: upTime 
+   real(kind = prec), dimension(2*nm0 + 3)                        :: upTimeIn, upTimeOut
 
    !----------function body-----------------------------------------------------
 
@@ -565,13 +747,15 @@ contains
          tv = timeConstr(co,upTimeIn(1:2*nm0))
          qOld = tState(k,2*nm0 + 1)
          eOld = tState(k,2*nm0 + 2)
+         fOld = tState(k,2*nm0 + 3)
 !         qOld = tState(k,is(iTS))
 !         eOld = tState(k,is(iES))
          ts = thStorageConstr(qOld,co,t)
          es = elStorageConstr(eOld,co,t)
-         if(tv.and.ts.and.es) then
+         fs = iceStorageConstr(fOld,co,t)
+         if(tv.and.ts.and.es.and.fs) then
             upTimeOut = upTimeCalc(upTimeIn,co,t)
-            ki = locateRow(upTimeOut,tState,2*nm0 + 2,nTvComb)
+            ki = locateRow(upTimeOut,tState,2*nm0 + 3,nTvComb)
             do j=1,nSuc(i)
                suc = succList(i,j)
                ci  = pathCost(suc,ki) + succCost(i,j)
@@ -598,24 +782,17 @@ contains
    enddo
    upTime(0,2*nm0+1) = iSocTh
    upTime(0,2*nm0+2) = iSocEl
+   upTime(0,2*nm0+3) = iSocIce
 
    do while (p < dest)
       t = t + 1
-      ki = locateRow(upTime(t-1,:),tState,2*nm0 + 2,nTvComb)
+      ki = locateRow(upTime(t-1,:),tState,2*nm0 + 3,nTvComb)
       upTime(t,:) = upTimeCalc(upTime(t-1,:),pointLoad(p,:),t-1)
       p = minSucc(p,ki)
-
       if(p.eq.-1) call abortExecution(29,t, iVec=upTime(t-1,:))
       minPath(t)  = p
       ottLoad(t,:)= pointLoad(p,:)
-      if (t.eq.1) print*, 'ki = ', ki, ' minuscc ',p, 'load = ', ottLoad(t,:) 
-      if (t.eq.1) print*, 'upTime = ', upTime(t,:) 
-      if (t.eq.1) print*, 'uptimeOld = ', uptime(t-1,:)
    enddo
-
-!   do i=1, nTvComb
-!      print*, 'tstate(',i,')= ', tstate(i,:)
-!   enddo
 
    deallocate(minSucc)
    deallocate(succList)
@@ -633,8 +810,8 @@ contains
 
      implicit none
 
-     real(kind = prec), dimension(2*nm0 + 2) :: upTimeCalc
-     real(kind = prec), dimension(2*nm0 + 2) :: upT
+     real(kind = prec), dimension(2*nm0 + 3) :: upTimeCalc
+     real(kind = prec), dimension(2*nm0 + 3) :: upT
      integer,                intent(in) :: t
      integer, dimension(nm), intent(in) :: c
      integer                            :: i,j,k
@@ -659,6 +836,8 @@ contains
      upTimeCalc(i) = thStorageLevelUpdate(upT(i),c,t)
      i = 2*nm0 + 2  
      upTimeCalc(i) = elStorageLevelUpdate(upT(i),c,t)
+     i = 2*nm0 + 3  
+     upTimeCalc(i) = iceStorageLevelUpdate(upT(i),c,t)
    
    return
   
