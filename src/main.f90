@@ -130,9 +130,10 @@ select case(strategy)
       call allCombin(dcm=sp,imax=nSp,m=nm,targ='state') 
       if(method.eq.'Reduced-Backward') then
          nr = maxval(nSp(nm0+1:nm))
-         call allCombin(icm=cr(1:nr,nm0+1:nm),imax=nSp(nm0+1:nm),m=2,targ='storageSp') 
+         call allCombin(icm=cr(1:nr,nm0+1:nm),imax=nSp(nm0+1:nm),m=3,targ='storageSp') 
          nr = maxval(nSp(1:nm0))
          call allCombin(icm=cr(1:nr,1:nm0),imax=nSp(1:nm0),m=nm0,targ='prodSp') 
+         print*, '    --> Vertices'
          call graphPointsLocalMin
          print*, '    --> Arcs'
          call graphArcs

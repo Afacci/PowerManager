@@ -77,7 +77,7 @@ contains
 
   integer,dimension(nm), intent(in) :: c
   integer              , intent(in) :: t
-  integer                           :: i, j, ii
+  integer                           :: i, j, ii, minStor
   real(kind = prec)                 :: uTermal 
   integer, dimension(nBoi)          :: minSetPoint 
   logical                           :: v
@@ -124,6 +124,25 @@ contains
         endif
      endif
   enddo
+  
+  !--Chilling Storage reduction
+  ii = is(iTS)
+  cStar = c
+  do i=1,nSp(ii)
+     if(sp(i,ii).gt.zero) then
+        minStor = i - 1
+        exit
+     endif
+  enddo
+  
+  if(cStar(ii).gt.minStor) then
+     cStar(ii) = c(ii) - 1
+     v = constraints(cStar,t)
+     if(v) then 
+        thRedundant = .true.
+        return
+     endif
+  endif
 
   end function thRedundant
 
@@ -145,7 +164,7 @@ contains
 
   integer,dimension(nm), intent(in) :: c
   integer              , intent(in) :: t
-  integer                           :: i, j, ii
+  integer                           :: i, j, ii, minStor
   real(kind = prec)                 :: uChilling, totCh
   integer, dimension(nChi)          :: minSetPoint 
   logical                           :: v
@@ -185,6 +204,25 @@ contains
         endif
      endif
   enddo
+  
+  !--Chilling Storage reduction
+  ii = is(iIS)
+  cStar = c
+  do i=1,nSp(ii)
+     if(sp(i,ii).gt.zero) then
+        minStor = i - 1
+        exit
+     endif
+  enddo
+  
+  if(cStar(ii).gt.minStor) then
+     cStar(ii) = c(ii) - 1
+     v = constraints(cStar,t)
+     if(v) then 
+        chRedundant = .true.
+        return
+     endif
+  endif
 
   end function chRedundant
 

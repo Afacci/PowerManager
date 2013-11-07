@@ -224,7 +224,7 @@ contains
          deallocate(dComb_)
       case('storageSp')
          nssp = i
-         allocate(spStor(nssp,2))
+         allocate(spStor(nssp,3))
          spStor(:,:)  = iComb_(1:nssp,:)
          deallocate(iComb_)
 !      case('StorageState')
