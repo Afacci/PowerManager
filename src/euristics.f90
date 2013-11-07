@@ -90,7 +90,7 @@ contains
   ii = 0
   do i=is(iB),ie(iB)
      ii = ii + 1
-     if(minUpTime(i).gt.zero.or.minDownTime(i).gt.zero.or.OnOffCost(i).gt.zero) then
+     if(minUpTime(i).gt.zero.or.minDownTime(i).gt.zero) then !.or.OnOffCost(i).gt.zero) then
         minSetPoint(ii) = 2
      else
         minSetPoint(ii) = 1
@@ -163,7 +163,7 @@ contains
   ii = 0
   do i=is(iC),ie(iC)
      ii = ii + 1
-     if(minUpTime(i).gt.zero.or.minDownTime(i).gt.zero .or.OnOffCost(i).gt.zero) then
+     if(minUpTime(i).gt.zero.or.minDownTime(i).gt.zero) then ! .or.OnOffCost(i).gt.zero) then
         minSetPoint(ii) = 2
      else
         minSetPoint(ii) = 1
