@@ -215,6 +215,7 @@ contains
          deallocate(iComb_)
       case('time-constraints')
          nTvComb = i
+         print*, 'ntvComb', nTvComb
          allocate(tState(nTvComb,m))
          tState(:,:) = dComb_(1:nTvComb,:)
          deallocate(dComb_)
@@ -739,6 +740,8 @@ contains
    pathCost(dest,:)        = zero
    minSucc(orig:dest,:)    = -1
 
+   print*,'ntvcomb', ntvComb
+
    do i=nPoint,0,-1
       t         = pointTime(i)
       if(t.lt.pointTime(i+1)) print*,'+++++++++++++++ t = ', t
@@ -749,8 +752,6 @@ contains
          qOld = tState(k,2*nm0 + 1)
          eOld = tState(k,2*nm0 + 2)
          fOld = tState(k,2*nm0 + 3)
-!         qOld = tState(k,is(iTS))
-!         eOld = tState(k,is(iES))
          ts = thStorageConstr(qOld,co,t)
          es = elStorageConstr(eOld,co,t)
          fs = iceStorageConstr(fOld,co,t)

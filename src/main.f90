@@ -153,7 +153,6 @@ select case(strategy)
          case('Forward')
             call minPathTopoFw(setPoint, cost)
          case('Backward', 'Reduced-Backward')
-!            cDummy = 'time-constraints' 
             call allCombin(dcm=timeVinc,imax=nTv,m=2*nm0 + 3,targ='time-constraints') 
             allocate(upTime(0:nTime+1,2*nm0 + 3))
             allocate(minPathBw(0:nTime+1))

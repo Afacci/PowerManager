@@ -125,7 +125,9 @@ contains
      endif
   enddo
   
-  !--Chilling Storage reduction
+  !--Thermal Storage reduction
+  if(capacityTs.le.zero) return
+
   ii = is(iTS)
   cStar = c
   do i=1,nSp(ii)
@@ -134,6 +136,7 @@ contains
         exit
      endif
   enddo
+  minStor = max(minStor,1)
   
   if(cStar(ii).gt.minStor) then
      cStar(ii) = c(ii) - 1
@@ -206,6 +209,7 @@ contains
   enddo
   
   !--Chilling Storage reduction
+  if(capacityIS.le.zero) return
   ii = is(iIS)
   cStar = c
   do i=1,nSp(ii)
@@ -214,7 +218,13 @@ contains
         exit
      endif
   enddo
+  minStor = max(minStor,1)
   
+  if(totCh.le.zero.and.cStar(ii).ne.minStor) then
+     chRedundant = .true.
+     return
+  endif
+
   if(cStar(ii).gt.minStor) then
      cStar(ii) = c(ii) - 1
      v = constraints(cStar,t)
