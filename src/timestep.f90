@@ -1,20 +1,19 @@
-real(kind=prec) function timestep()
+!real(kind=prec) function timestep()
+function timestep()
 
   use shared 
-  use plantvar
-  use inputvar
+  use inputvar, only : nTime, time, dt1
 
   implicit none
 
   integer  :: i
+  real(kind=prec), dimension(0:nTime) :: timestep
 
   !---time step in seconds---
-  dt(0) = dt1*3.6e3
+  timestep(0) = dt1*3.6e3
   do i=1,nTime - 1
-     dt(i) = 3.6e3*(time(i+1) - time(i))      
+     timestep(i) = 3.6e3*(time(i+1) - time(i))      
   enddo
-  dt(nTime) = dt1*3.6e3
-
-  return
+  timestep(nTime) = dt1*3.6e3
 
 end function timestep

@@ -193,6 +193,10 @@ select case(what)
         allocate(wind(nWind,2))
    case(38)
         allocate(preset(nTime,nTrig), cpred(nTime,nTrig))
+   case(39)
+        allocate(etaEsIn(nEtaEsIn,2))
+   case(40)
+        allocate(etaEsOut(nEtaEsOut,2))
 end select
 
 end subroutine 

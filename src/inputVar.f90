@@ -154,7 +154,7 @@ real(kind=prec)                                :: hWind, hellman
 real(kind=prec)                              :: CapacityES, swCost, pmaxES
 !real(kind=prec), dimension(2)                :: PmaxES
 integer                                      :: nSpES , nEtaEsIn, nEtaEsOut
-!real(kind=prec), allocatable, dimension(:,:) :: etaEsOut, etaEsIn
-real(kind=prec)                              :: etaEsOut, etaEsIn
+real(kind=prec), allocatable, dimension(:,:) :: etaEsOut, etaEsIn
+!real(kind=prec)                              :: etaEsOut, etaEsIn
 
 end module inputVar

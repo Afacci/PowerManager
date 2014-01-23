@@ -85,7 +85,7 @@ endif
 if(pMaxES.gt.zero.and.capacityES.gt.zero) then
    i    = is(iES)
    j    = c_(i)
-   if(sp(j,i).gt.zero) elProd  =  elProd + pMax(i)*sp(j,i)*etaESout
+   if(sp(j,i).gt.zero) elProd  =  elProd + pMax(i)*sp(j,i)*etaESout_(j)
 endif
 
 return
@@ -386,7 +386,7 @@ endif
 if(pMaxES.gt.zero.and.capacityES.gt.zero) then
    i    = is(iES)
    j    = c_(i)
-   if(sp(j,i).lt.zero) elSelfCons  =  elSelfCons - pMax(i)*sp(j,i)/etaESin
+   if(sp(j,i).lt.zero) elSelfCons  =  elSelfCons - pMax(i)*sp(j,i)/etaESin_(j)
 endif
 
 return

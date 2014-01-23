@@ -35,8 +35,23 @@ begin
 Power              |0.0 |! | !rated power0.0 3500 
 Capacity           |0.0|!|   |          0.0 126e5
 SetPoint           | 12   | 
-InputEfficiency    | 0.9 |
-OutputEfficiency   | 0.9 |
+InputEfficiency    | (0.000  0     | 
+                   |  0.386  0.390 | 
+                   |  0.487  0.414 | 
+                   |  0.584  0.434 | 
+                   |  0.758  0.446 | 
+                   |  0.895  0.454 | 
+                   |  1.000  0.459)| 
+
+
+OutputEfficiency   | (0.000  0     | 
+                   |  0.386  0.390 | 
+                   |  0.487  0.414 | 
+                   |  0.584  0.434 | 
+                   |  0.758  0.446 | 
+                   |  0.895  0.454 | 
+                   |  1.000  0.459)| 
+
 SwitchCost         | 0.0 |
 
 

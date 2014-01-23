@@ -102,6 +102,7 @@ do
     call readKeyword(genUnit,.false., keyword,value,error, nl)
     if (error.eq.1) call abortExecution(0,7)
     line = line + nl
+    print*, 'key', keyword
     select case(keyword)
        case('end')
           exit
@@ -117,24 +118,24 @@ do
           isPresent(3) = .true.
        case('InputEfficiency')
               isPresent(4) = .true.
-!              backspace(genUnit)
-!              line         = line - 1
-!              nEtaTsIn     = vCount(genUnit,.false.)
-              nEtaTsIn = 1
-!              call allocateVar(33)
-!              call rewUnit(genUnit,nEtaTsIn)
-!              etaTsIn(:,:) =  dmatrixRead(genUnit,nEtaTsIn,2)
-              read(value,*) etaEsIn
+              backspace(genUnit)
+              line         = line - 1
+              nEtaEsIn     = vCount(genUnit,.false.)
+!              nEtaTsIn = 1
+              call allocateVar(39)
+              call rewUnit(genUnit,nEtaEsIn)
+              etaEsIn(:,:) =  dmatrixRead(genUnit,nEtaEsIn,2)
+!              read(value,*) etaEsIn
        case('OutputEfficiency')
               isPresent(5)  = .true.
-!              backspace(genUnit)
-!              line          = line - 1
-!              nEtaTsOut     = vCount(genUnit,.false.)
-              nEtaTsOut     = 1
-!              call allocateVar(34)
-!              call rewUnit(genUnit,nEtaTsOut)
-!              etaTsOut(:,:) =  dmatrixRead(genUnit,nEtaTsOut,2)
-              read(value,*) etaEsOut
+              backspace(genUnit)
+              line          = line - 1
+              nEtaEsOut     = vCount(genUnit,.false.)
+!              nEtaTsOut     = 1
+              call allocateVar(40)
+              call rewUnit(genUnit,nEtaEsOut)
+              etaEsOut(:,:) =  dmatrixRead(genUnit,nEtaEsOut,2)
+!              read(value,*) etaEsOut
        case('SwitchCost')
           read(value,*) swCost
           isPresent(6) = .true.

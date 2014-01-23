@@ -55,11 +55,11 @@ use addSection
 implicit none
 
 interface
-  real(kind=prec) function timestep()
+  function timestep()
     use shared 
-    use plantvar
-    use inputvar
+    use inputvar, only : nTime, time, dt1
     implicit none
+    real(kind=prec), dimension(0:nTime) :: timestep
   end function
 end interface
 

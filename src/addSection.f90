@@ -403,7 +403,7 @@ contains
 
      implicit none
 
-     integer                                    :: i, j ,k, ii
+     integer                                    :: i, j ,k, ii, nn, nnn
      real(kind=prec)                            :: dsocEl, dspEl, dtmin
      real(kind=prec), allocatable, dimension(:) :: iDiff, eDiff
 
@@ -431,6 +431,13 @@ contains
             sp(i,j) = -sp(k,j) 
             cr(i,j) = i
          enddo
+
+         nn  =  nSpES + 2
+         nnn =  2*nSpES + 1
+         allocate(etaEsIn_(nSpEs))
+         allocate(etaEsOut_(nSpEs))
+         etaEsIn_(:)  = interpolation(etaEsIn(:,1), etaEsIn(:,2), nEtaEsIn, abs(sp(1:nSpEs,j)),nSpEs)     
+         etaEsOut_(:) = interpolation(etaEsOut(:,1), etaEsOut(:,2), nEtaEsOut, abs(sp(nn:nnn,j)),nSpEs)     
 
          iSocEl = iSocTh*capacityES
          eSocEl = eSocTh*capacityES

@@ -53,6 +53,7 @@ character(len=50), allocatable, dimension(:)     :: tec
 real(kind=prec), allocatable, dimension(:)       :: sunEl, sunTh , windEl
 logical                                          :: elStor = .false., iceStor = .false.
 integer, allocatable,dimension(:,:)              :: cPred
+real(kind=prec), allocatable, dimension(:)       :: etaEsIn_, etaEsOut_
 
 integer, parameter :: iT = 1, iB = 2, iC = 3, iTS = 4, iES = 5, iIs = 6
 
