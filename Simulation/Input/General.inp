@@ -37,7 +37,7 @@ TransportCost   | 3.56e-3  |
 TrasmissionCost | 2.56e-4  |
 Degradation     | False    | !True/False
 Strategy        | Optimized |
-objective       | Economic |
+objective       | PEC|
 GridPEF         | 2.174 |
 Algorithm       | Backward        |
 !---------Initial Conditions------------------------------

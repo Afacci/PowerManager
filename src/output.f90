@@ -586,7 +586,7 @@ subroutine output(setPoint,postProcessing,path)
         thsoc = thStorageLevelUpdate(thsoc,kk,i)
         rbuffer(3) = 100*Thsoc/capacityTS
         rbuffer(5) = Thsoc
-        write(u,'(3(F5.2,15X),2(ES11.2E2,9X))') (rbuffer(j), j=1,5)
+        write(u,'(3(F6.2,14X),2(ES11.2E2,9X))') (rbuffer(j), j=1,5)
      enddo
   endif
 
