@@ -3,7 +3,7 @@
 
 PROGRAM     = PowerManager
 DEST        = ~/bin/
-VERSION     = -1.0
+VERSION     = -SIAT
 OBJDIR      = ../obj/
 #----------ifort compiler options-------------------------------------------------
 #FC          = ifort
@@ -28,17 +28,17 @@ MODS = \
 ../obj/mathTools.o \
 ../obj/interfaces.o \
 ../obj/cmdVar.o \
-../obj/constraints.o \
 ../obj/energy.o \
+../obj/constraints.o \
 ../obj/economy.o \
 ../obj/euristics.o \
 ../obj/graphTools.o \
 ../obj/globalResults.o \
 ../obj/getSetPoint.o \
-../obj/strategies.o \
-../obj/sun.o \
-../obj/windPower.o \
 ../obj/addSection.o
+#../obj/sun.o \
+#../obj/windPower.o \
+#../obj/strategies.o \
 
 ################################################
 #  list of the files to be compiled            #
@@ -71,13 +71,14 @@ OBJS = \
 ../obj/performances.o \
 ../obj/deallocateVar.o \
 ../obj/readThStorage.o \
-../obj/readPV.o \
-../obj/readSC.o \
-../obj/readWind.o \
-../obj/readElStorage.o \
 ../obj/timestep.o \
 ../obj/buildPlantRev.o 
 #../obj/readSteamPlant.o \
+#../obj/readIceStorage.o \
+#../obj/readPV.o \
+#../obj/readSC.o \
+#../obj/readWind.o \
+#../obj/readElStorage.o \
 
 ################################################
 #rule that creates the dependency of objects from modules

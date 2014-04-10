@@ -47,8 +47,8 @@ use plantVar
 use mathTools
 use interfaces
 use myArithmetic
-use sun
-use eolo
+!use sun
+!use eolo
 use addSection
 
 !---Declare Local Variables---
@@ -80,14 +80,15 @@ upTime0   = upTime0*3.6e3
 downTime0 = downTime0*3.6e3
 
 nm0  = nTrig + nBoi + nChi                      !total number of machinery without storage
-nm   = nm0 + 3
+nm   = nm0 + 1
 nx = nm0
 if(capacityTS.gt.zero.and.PmaxTS.gt.zero) nx  = nx + 1                                 
-if(capacityES.gt.zero.and.PmaxES.gt.zero) nx  = nx + 1                                 
-if(capacityIS.gt.zero.and.PmaxIS.gt.zero) nx  = nx  + 1
+!if(capacityES.gt.zero.and.PmaxES.gt.zero) nx  = nx + 1                                 
+!if(capacityIS.gt.zero.and.PmaxIS.gt.zero) nx  = nx  + 1
+print*, 'romammerda'
 
 nSpTot = 0
-if(nBoi.gt.0) then 
+if(nTrig.gt.0) then 
    nSpTot = nSpTot + sum(nSpT)
    n1     = maxval(nSpT)
 else
@@ -111,21 +112,32 @@ else
    nSpTS = 1
    nSpTot = nSpTot + 1
 endif
-if(capacityES.gt.zero.and.pmaxTs.gt.zero) then 
-   nSpTot = nSpTot + 2*nSpES + 1
-else
-   nSpES = 1
-   nSpTot = nSpTot + 1
-endif
-if(capacityIS.gt.zero.and.pmaxIs.gt.zero) then 
-   nSpTot = nSpTot + 2*nSpIS + 1
-else
-   nSpIS = 1
-   nSpTot = nSpTot + 1
-endif
-call allocateVar(17)
+!if(capacityES.gt.zero.and.pmaxEs.gt.zero) then 
+!   nSpTot = nSpTot + 2*nSpES + 1
+!else
+!   nSpES = 1
+!   nSpTot = nSpTot + 1
+!endif
+!if(capacityIS.gt.zero.and.pmaxIs.gt.zero) then 
+!   nSpTot = nSpTot + 2*nSpIS + 1
+!else
+!   nSpIS = 1
+!   nSpTot = nSpTot + 1
 
-nMax = max(n1, n2, n3, 2*nSpTS + 1,2*nSpES + 1,2*nSpIS + 1)
+print*, 'romammerda'
+
+!endif
+call allocateVar(17)
+capacityEs = zero
+pmaxEs = zero
+capacityIS = zero
+pMaxIS = zero
+nSpIS = 0
+nSpEs = 0
+
+
+!nMax = max(n1, n2, n3, 2*nSpTS + 1,2*nSpES + 1,2*nSpIS + 1)
+nMax = max(n1, n2, n3, 2*nSpTS + 1)
 call allocateVar(18,nMax)
 call allocateVar(32)
 
@@ -143,41 +155,37 @@ call addBoilers
 is(iC) = is(iB) + nBoi       !Chillers
 ie(iC) = ie(iB) + nChi
 call addChillers
-!if(capacityTS.gt.zero.and.PmaxTS.gt.zero) then
-   is(iTs)= nm0 + 1
-!else
-!   is(iTs)= nm0 
-!endif
+is(iTs)= nm0 + 1
 call addThermalStorage
 !if(capacityES.gt.zero.and.PmaxES.gt.zero) then 
-  is(iEs)= is(iTs) + 1
-if(capacityES.gt.zero.and.PmaxES.gt.zero) then 
-  elStor = .true.
-endif
-call addElectricalStorage
-is(iIs)= is(iEs) + 1
-iceStor = .true.
-call addIceStorage
+!  is(iEs)= is(iTs) + 1
+!if(capacityES.gt.zero.and.PmaxES.gt.zero) then 
+!  elStor = .true.
+!endif
+!call addElectricalStorage
+!is(iIs)= is(iEs) + 1
+!iceStor = .true.
+!call addIceStorage
 
 !------renewable stuff--------------------------------
 allocate(sunEl(nTime), sunTh(nTime), windEl(nTime))
-if(surfPV.gt.zero) then
-  sunEl = photo()
-else
+!if(surfPV.gt.zero) then
+!  sunEl = photo()
+!else
   sunEl = zero
-endif
+!endif
 
-if(surfSC.gt.zero) then
-  sunTh = thermalCollector()
-else
+!if(surfSC.gt.zero) then
+!  sunTh = thermalCollector()
+!else
   sunTh = zero
-endif
+!endif
 
-if(nwf.gt.0) then
-  windEl = windPower()
-else
+!if(nwf.gt.0) then
+!  windEl = windPower()
+!else
   windEl = zero
-endif
+!endif
 
 !---time-dependent constraints---
 call allocateVar(21)
@@ -206,16 +214,16 @@ nTv(k) = nSoc
 do j=1,nsoc
    timeVinc(j,k) = soc(j)
 enddo
-k = 2*nm0 + 2
-nTv(k) = nSocEl
-do j=1,nSocEL
-   timeVinc(j,k) = Esoc(j)
-enddo
-k = 2*nm0 + 3
-nTv(k) = nSocIce
-do j=1,nSocIce
-   timeVinc(j,k) = IceSoc(j)
-enddo
+!k = 2*nm0 + 2
+!nTv(k) = nSocEl
+!do j=1,nSocEL
+!   timeVinc(j,k) = Esoc(j)
+!enddo
+!k = 2*nm0 + 3
+!nTv(k) = nSocIce
+!do j=1,nSocIce
+!   timeVinc(j,k) = IceSoc(j)
+!enddo
 
 !--- check that the power plant is able to satisfie the required loads
 call checkPlant

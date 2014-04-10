@@ -136,7 +136,7 @@ select case(i)
 !           case(1)
 !               print*,'    Missing ./Input/General.inp' 
 !           case(2)  
-!               print*,'    Missing ./Input/Trigeneration.inp '
+!               print*,'    Missing ./Input/Cogen.inp '
 !           case(3) 
 !               print*,'    Missing ./Input/Boilers.inp ' 
 !           case(4)
@@ -165,7 +165,7 @@ select case(i)
             case(3)
                 print*,'Could not find "', trim(general(j)) ,'" in General.inp'
             case(4)
-                print*,'Could not find "', trim(trigeneration(j)) ,'" in Trigeneration.inp'
+                print*,'Could not find "', trim(trigeneration(j)) ,'" in Cogen.inp'
             case(5)
                 print*,'Could not find "', trim(boilers(j)) ,'" in Boilers.inp'
             case(6)

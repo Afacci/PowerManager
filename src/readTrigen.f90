@@ -73,7 +73,7 @@ implicit none
 
 !---Declare Local Variables---
 integer              :: genUnit = 106
-character(len=50)    :: inputFile = './Input/Trigeneration.inp'
+character(len=50)    :: inputFile = './Input/Cogen.inp'
 logical              :: filePresent
 character(len=500)   :: buffer,keyword, value,vector,elements,value_
 integer              :: firstLine, i, nInp, line, nRow, n1, n2, x, j, il, nl

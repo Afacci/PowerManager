@@ -58,39 +58,4 @@ Climate     | (Time  Temperature  Pressure)| !(h,°C,bar)
 
 Altitude    | 200  |!mslm
 
-
-Radiation   | Diffused  Beam  | !(kW/m2)
-            |( 39e-3   144e-3 |
-            |  39e-3  144e-3  |
-            |  39e-3   144e-3 |
-            |  39e-3   144e-3 |
-            |  39e-3   144e-3 |
-            |  90e-3   378e-3 |
-            |  129e-3  524e-3 |
-            |  155e-3  616e-3 |
-            |  169e-3  676e-3 |
-            |  175e-3  713e-3 |
-            |  177e-3  732e-3 |
-            |  177e-3  737e-3 |
-            |  177e-3  729e-3 |
-            |  174e-3  705e-3 |
-            |  166e-3  663e-3 |
-            |  149e-3  597e-3 |
-            |  120e-3  494e-3 |
-            |  78e-3   329e-3 |
-            |  25e-3   83e-3  |
-            |  39e-3   144e-3 |
-            |  39e-3   144e-3 |
-            |  39e-3   144e-3 |
-            |  39e-3   144e-3 |
-            |  39e-3   144e-3)|
-
-!-----Liu Jordan Model Parameters----
-Latitude    | 35     |
-Day         | 1      |
-SummerTime  |.false. |
-Cloudiness  | 0.8    |
-RadiationModel| LiuJordan|
-!------------------------------------
-
 end

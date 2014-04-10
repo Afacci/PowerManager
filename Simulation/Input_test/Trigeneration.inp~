@@ -1,0 +1,104 @@
+!--------------------------------------------------------------------------
+!  
+!   PowerManager.  
+!
+!---------------------------------------------------------------------------
+!License
+!    This file is part of PowerManager.
+!
+!    PowerManager is free software; you can redistribute it and/or modify it
+!    under the terms of the GNU General Public License as published by the
+!    Free Software Foundation; either version 2 of the License, or (at your
+!    option) any later version.
+!
+!    PowerManager is distributed in the hope that it will be useful, but WITHOUT
+!    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+!    FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+!    for more details.
+!
+!    You should have received a copy of the GNU General Public License
+!    if not, write to the Free Software Foundation,
+!    Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+!
+!Application
+!    Trigeneration.inp
+!
+!Description
+!    Input file for the trigeneration equipments.
+!
+!---------------------------------------------------------------------------
+
+!Everything written before begin or after end is ignored as well as every line after a !
+
+begin
+
+Number             | 1       | !total number of trigenerative equipments
+Technology         | ICE     | !GT ICE CP
+Power              | 4343.0  | !rated power
+FuelCost           | 0.37    | !euro/Sm3
+FuelLHV            | 35.0e3  | !kJ/Sm3
+OnOffCost          | 22.0    | !cost to turn on the power plant
+OeMCost            | 22.0    | !euro/h maintenance cost
+PEF                | 1.1     |
+onOffPec           | 0.1     |
+
+SetPoint           | (0 0.25 0.5 0.6 0.7 0.8 0.9 1.0) | !Possible set points
+
+!---efficiencies tables. 
+ElettrEfficiency   | (0.000  0     |  
+                   |  0.386  0.390 |  
+                   |  0.487  0.414 |  
+                   |  0.584  0.434 |  
+                   |  0.758  0.446 |  
+                   |  0.895  0.454 |  
+                   |  1.000  0.459)|                    
+                   
+                   
+ThermalEfficiency  | ( 0.0 0.40   |
+                   |   1.0 0.40 ) | 
+                   
+ChillingEfficiency | (0.0 0.00      |
+                   |  1.0 0.00)     |
+
+MinUpTime          | 2 2 2           |                   
+MinDownTime        | 2 2 2           |   
+
+!---Correction parameters----
+
+PresCorrection     | pres  etaEl etaTh etaCh pmax |
+                   | (0.99   1.0  1.0   1.0  1.0  |
+                   |  1.01   1.0  1.0   1.0  1.0  |
+                   |  1.02   1.0  1.0   1.0  1.0) |
+                   | ( 0.99  1.0  1.0   1.0  1.0  |
+                   |   1.01  1.0  1.0   1.0  1.0  |
+                   |   1.02  1.0  1.0   1.0  1.0) |
+                   | ( 0.99  1.0  1.0   1.0  1.0  |
+                   |   1.01  1.0  1.0   1.0  1.0  |
+                   |   1.02  1.0  1.0   1.0  1.0) |
+TempCorrection     | temp  etaEl etaTh etaCh  pmax|
+                   | (0.0    1.0  1.0   1.0  1.0  |
+                   |  15.0   1.0  1.0   1.0  1.0  |
+                   |  35.0   1.0  1.0   1.0  1.0  |
+                   |  45.0   0.91 1.0   1.0  0.91)|
+                   | (0.0    1.0  1.0   1.0  1.0  |
+                   |  15.0   1.0  1.0   1.0  1.0  |
+                   |  35.0   1.0  1.0   1.0  1.0  |
+                   |  45.0   0.91 1.0   1.0  0.91)|
+                   | (0.0    1.0  1.0   1.0  1.0  |
+                   |  15.0   1.0  1.0   1.0  1.0  |
+                   |  35.0   1.0  1.0   1.0  1.0  |
+                   |  45.0   0.91 1.0   1.0  0.91)|
+
+AltCorrection      |  alt  etaEl etaTh etaCh pmax | 
+                   | (50.0   1.0  1.0   1.0  1.0  |
+                   |  100.0  1.0  1.0   1.0  1.0  |
+                   |  250.0  1.0  1.0   1.0  1.0 )|
+                   | (50.0   1.0  1.0   1.0  1.0  |
+                   |  100.0  1.0  1.0   1.0  1.0  |
+                   |  250.0  1.0  1.0   1.0  1.0 )|
+                   | (50.0   1.0  1.0   1.0  1.0  |
+                   |  100.0  1.0  1.0   1.0  1.0  |
+                   |  250.0  1.0  1.0   1.0  1.0 )|
+
+end
+    

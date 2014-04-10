@@ -33,12 +33,12 @@ Everything written before begin or after end is ignore as well as every line aft
 begin
 
 Number             | 1        | !total number of trigenerative equipments
-Power              | 3.5e3  | !rated power
+Power              | 24  | !rated power
 HeatSource         | Fuel   |
-FuelCost           | 0.37   | !euro/Sm3
+FuelCost           | 0.86   | !euro/Sm3
 FuelLHV            | 35.0e3   | !kJ/Sm3
-OnOffCost          | 1.d0     | !cost to turn on the power plant
-OeMCost            | 1.d0     | !euro/h maintenance cost 
+OnOffCost          | 0.d0     | !cost to turn on the power plant
+OeMCost            | 0.d0     | !euro/h maintenance cost 
 PEF                | 1.1      |
 onOffPec           | 0.1      |
 

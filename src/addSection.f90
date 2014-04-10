@@ -82,10 +82,10 @@ contains
          minUpTime(i)   = minUpTimeT(j)*3.6e3
          minDownTime(i) = minDownTimeT(j)*3.6e3
          tec(i) = tecT(j)
-         if(strategy.ne.'Optimized') then
-            if(trigPriority(j).gt.nTrig) call abortExecution(21,j)
-            TrigPriority(j) = TrigPriority(j) + is(iT) - 1
-         endif
+!         if(strategy.ne.'Optimized') then
+!            if(trigPriority(j).gt.nTrig) call abortExecution(21,j)
+!            TrigPriority(j) = TrigPriority(j) + is(iT) - 1
+!         endif
          do k=1,nSpT(j)
             cr(k,i) = k
          enddo

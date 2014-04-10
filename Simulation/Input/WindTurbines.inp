@@ -33,7 +33,7 @@ Everything written before begin or after end is ignore as well as every line aft
 begin
 
 FieldNumber         | 0   |
-TurbinesNumber      | 10  |
+TurbinesNumber      | 0  |
 BladeSurface        | 133 |
 MinWindVelocity     | 4   |
 MaxWindVelocity     | 20  |

@@ -124,6 +124,9 @@ do
        case('Power')
           read(value,*) (pMaxB(i), i=1,nBoi)
           isPresent(2) = .true.
+       case('Priority')
+          read(value,*) (BoiPriority(i), i=1,nBoi)
+          iPrio(2) = .true.
 !       case('DegradationRate')
 !          read(value,*) (degRateB(i), i=1,nBoi)
 !          isPresent(3) = .true.
@@ -283,6 +286,12 @@ do
                altCorrB(:,3,i) = matrix(:,np)
             enddo
             deallocate(matrix)
+       case('PEF')
+           kPEC(3) = .true.
+           read(value,*) (pefB(i), i=1,nBoi)
+       case('onOffPec')
+           kPEC(5) = .true.
+           read(value,*) (pecOnB(i),i=1,nBoi)
        case(' ') 
             if(verb) call warning(4,3,line=line)
        case default

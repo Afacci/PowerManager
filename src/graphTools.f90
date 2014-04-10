@@ -727,8 +727,8 @@ contains
    integer, dimension(0:nTime+1)                                  :: minPath
    logical                                                        :: tv,thv, error, ts, es, fs
    integer, dimension(nm)                                         :: cn, co
-   real(kind = prec), dimension(0:nTime+1,2*nm0 + 3), intent(out) :: upTime 
-   real(kind = prec), dimension(2*nm0 + 3)                        :: upTimeIn, upTimeOut
+   real(kind = prec), dimension(0:nTime+1,2*nm0 + 1), intent(out) :: upTime 
+   real(kind = prec), dimension(2*nm0 + 1)                        :: upTimeIn, upTimeOut
 
    !----------function body-----------------------------------------------------
 
@@ -750,14 +750,16 @@ contains
          upTimeIn  = tState(k,:)
          tv = timeConstr(co,upTimeIn(1:2*nm0))
          qOld = tState(k,2*nm0 + 1)
-         eOld = tState(k,2*nm0 + 2)
-         fOld = tState(k,2*nm0 + 3)
+!         eOld = tState(k,2*nm0 + 2)
+!         fOld = tState(k,2*nm0 + 3)
          ts = thStorageConstr(qOld,co,t)
-         es = elStorageConstr(eOld,co,t)
-         fs = iceStorageConstr(fOld,co,t)
+!         es = elStorageConstr(eOld,co,t)
+         es =.true.
+         fs =.true.
+!         fs = iceStorageConstr(fOld,co,t)
          if(tv.and.ts.and.es.and.fs) then
             upTimeOut = upTimeCalc(upTimeIn,co,t)
-            ki = locateRow(upTimeOut,tState,2*nm0 + 3,nTvComb)
+            ki = locateRow(upTimeOut,tState,2*nm0 + 1,nTvComb)
             do j=1,nSuc(i)
                suc = succList(i,j)
                ci  = pathCost(suc,ki) + succCost(i,j)
@@ -783,12 +785,12 @@ contains
       upTime(0,j) = min(downTime0(i), minDownTime(i))
    enddo
    upTime(0,2*nm0+1) = iSocTh
-   upTime(0,2*nm0+2) = iSocEl
-   upTime(0,2*nm0+3) = iSocIce
+!   upTime(0,2*nm0+2) = iSocEl
+!   upTime(0,2*nm0+3) = iSocIce
 
    do while (p < dest)
       t = t + 1
-      ki = locateRow(upTime(t-1,:),tState,2*nm0 + 3,nTvComb)
+      ki = locateRow(upTime(t-1,:),tState,2*nm0 + 1,nTvComb)
       upTime(t,:) = upTimeCalc(upTime(t-1,:),pointLoad(p,:),t-1)
       p = minSucc(p,ki)
       if(p.eq.-1) call abortExecution(29,t, iVec=upTime(t-1,:))
@@ -812,8 +814,8 @@ contains
 
      implicit none
 
-     real(kind = prec), dimension(2*nm0 + 3) :: upTimeCalc
-     real(kind = prec), dimension(2*nm0 + 3) :: upT
+     real(kind = prec), dimension(2*nm0 + 1) :: upTimeCalc
+     real(kind = prec), dimension(2*nm0 + 1) :: upT
      integer,                intent(in) :: t
      integer, dimension(nm), intent(in) :: c
      integer                            :: i,j,k
@@ -836,10 +838,10 @@ contains
      enddo
      i = 2*nm0 + 1  
      upTimeCalc(i) = thStorageLevelUpdate(upT(i),c,t)
-     i = 2*nm0 + 2  
-     upTimeCalc(i) = elStorageLevelUpdate(upT(i),c,t)
-     i = 2*nm0 + 3  
-     upTimeCalc(i) = iceStorageLevelUpdate(upT(i),c,t)
+!     i = 2*nm0 + 2  
+!     upTimeCalc(i) = elStorageLevelUpdate(upT(i),c,t)
+!     i = 2*nm0 + 3  
+!     upTimeCalc(i) = iceStorageLevelUpdate(upT(i),c,t)
    
    return
   

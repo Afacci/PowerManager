@@ -50,7 +50,7 @@ use myArithmetic
 
 use economy
 
-use strategies
+!use strategies
 
 implicit none
 
@@ -58,7 +58,7 @@ real(kind = prec)                             :: rdummy
 character(len=100)                            :: cDummy
 integer                                       :: i, dummy(2),k,j, kBw, idummy(3), nr
 real(kind = prec)                             :: cost
-real(kind = prec)                             :: tempo, t2
+real(kind(1.0))                             :: tempo, t2
 real, dimension(2)                            :: tVec
 integer,          allocatable, dimension(:,:) :: setPoint,setPointBw
 real(kind = prec),allocatable, dimension(:,:) :: load, loadBw, upTime
@@ -85,22 +85,22 @@ call readChillers
 print*,'     --> Reading Chillers.inp          ... OK '
 call readThStorage
 print*,'     --> Reading ThermalStorage.inp    ... OK '
-call readIceStorage
-print*,'     --> Reading IceStorage.inp        ... OK '
-call readElStorage
-print*,'     --> Reading ElectricalStorage.inp ... OK '
+!call readIceStorage
+!print*,'     --> Reading IceStorage.inp        ... OK '
+!call readElStorage
+!print*,'     --> Reading ElectricalStorage.inp ... OK '
 call readLoads
 print*,'     --> Reading Loads.inp             ... OK '
 call readGeneral
 print*,'     --> Reading General.inp           ... OK '
-call readPV
-print*,'     --> Reading Photovoltaic.inp      ... OK '
-call readSC
-print*,'     --> Reading Photovoltaic.inp      ... OK '
+!call readPV
+!print*,'     --> Reading Photovoltaic.inp      ... OK '
+!call readSC
+!print*,'     --> Reading Photovoltaic.inp      ... OK '
 call readEnv
 print*,'     --> Reading Enivronment.inp       ... OK '
-call readWind
-print*,'     --> Reading WindTurbines.inp      ... OK '
+!call readWind
+!print*,'     --> Reading WindTurbines.inp      ... OK '
 
 
 !---build the energy coonection inside the plant---
@@ -111,18 +111,18 @@ allocate(setPoint(0:nTime+1,nm), load(0:nTime+1,nm))
 print*, ' ---Elapsed Time: ', tempo, ' sec'
 
 select case(strategy)
-  case('ThermalTrack') 
-      call allCombin(icm=cr,imax=nSp,m=nm,targ='set-point') 
-      call allCombin(dcm=sp,imax=nSp,m=nm,targ='state') 
-      setPoint = thermalTracking()
-  case('ElectricalTrack')
-      call allCombin(icm=cr,imax=nSp,m=nm,targ='set-point') 
-      call allCombin(dcm=sp,imax=nSp,m=nm,targ='state') 
-      setPoint = electricalTracking()
-  case('FullPower')
-      call allCombin(icm=cr,imax=nSp,m=nm,targ='set-point') 
-      call allCombin(dcm=sp,imax=nSp,m=nm,targ='state') 
-      setPoint = fullLoad()
+!  case('ThermalTrack') 
+!      call allCombin(icm=cr,imax=nSp,m=nm,targ='set-point') 
+!      call allCombin(dcm=sp,imax=nSp,m=nm,targ='state') 
+!      setPoint = thermalTracking()
+!  case('ElectricalTrack')
+!      call allCombin(icm=cr,imax=nSp,m=nm,targ='set-point') 
+!      call allCombin(dcm=sp,imax=nSp,m=nm,targ='state') 
+!      setPoint = electricalTracking()
+!  case('FullPower')
+!      call allCombin(icm=cr,imax=nSp,m=nm,targ='set-point') 
+!      call allCombin(dcm=sp,imax=nSp,m=nm,targ='state') 
+!      setPoint = fullLoad()
   case('Optimized')
       !---Build the graph-----
       print*, ' ---Building the graph---'
@@ -130,7 +130,7 @@ select case(strategy)
       call allCombin(dcm=sp,imax=nSp,m=nm,targ='state') 
       if(method.eq.'Reduced-Backward') then
          nr = maxval(nSp(nm0+1:nm))
-         call allCombin(icm=cr(1:nr,nm0+1:nm),imax=nSp(nm0+1:nm),m=3,targ='storageSp') 
+         call allCombin(icm=cr(1:nr,nm0+1:nm),imax=nSp(nm0+1:nm),m=1,targ='storageSp') 
          nr = maxval(nSp(1:nm0))
          call allCombin(icm=cr(1:nr,1:nm0),imax=nSp(1:nm0),m=nm0,targ='prodSp') 
          print*, '    --> Vertices'
@@ -153,8 +153,8 @@ select case(strategy)
          case('Forward')
             call minPathTopoFw(setPoint, cost)
          case('Backward', 'Reduced-Backward')
-            call allCombin(dcm=timeVinc,imax=nTv,m=2*nm0 + 3,targ='time-constraints') 
-            allocate(upTime(0:nTime+1,2*nm0 + 3))
+            call allCombin(dcm=timeVinc,imax=nTv,m=2*nm0 + 1,targ='time-constraints') 
+            allocate(upTime(0:nTime+1,2*nm0 + 1))
             allocate(minPathBw(0:nTime+1))
             call minPathTopoBw(setPoint, cost, upTime, minPathBw)
       end select

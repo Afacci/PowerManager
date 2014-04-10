@@ -84,7 +84,7 @@ select case(what)
         nSpB(1:nBoi) = 0
 !        allocate(nSizeB(nBoi))
 !        nSizeB(1:nBoi) = 0
-        allocate(nEtaB(nBoi), tecB(nTrig), BoiPriority(nBoi))
+        allocate(nEtaB(nBoi), tecB(nBoi), BoiPriority(nBoi))
    case(8)
         nMax = maxval(nSpB)
         allocate(spB(nMax,nBoi))
@@ -156,9 +156,9 @@ select case(what)
    case(21)
         nMax1 = maxval(minUpTime  )/3.6e3 + 1
         nMax2 = maxval(minDownTime)/3.6e3 + 1
-        nMax  = max(nMax1,nMax2,nSoc, nSocEl, nSocIce)
-        allocate(timeVinc(nMax,2*nm0 + 3))
-        allocate(nTv(2*nm0 + 3))
+        nMax  = max(nMax1,nMax2,nSoc)
+        allocate(timeVinc(nMax,2*nm0 + 1))
+        allocate(nTv(2*nm0 + 1))
    case(22)
         allocate(tAmb(nTime), pAmb(nTime))
    case(23)
