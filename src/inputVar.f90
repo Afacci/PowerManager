@@ -92,11 +92,22 @@ character(len=50), allocatable, dimension(:)    :: tecB
 
 !---Chillers.inp variables
 integer                                         :: nChi
-integer, allocatable, dimension(:)              :: nSpC, nSizeC, nEtaC, ntcC, npcC, nacC, ChiPriority
-real(kind= prec),allocatable, dimension(:)      :: pMaxC , fireCostC, maintCostC, minUpTimeC, minDownTimeC  
-real(kind= prec),allocatable, dimension(:,:)    :: spC
-real(kind= prec), allocatable, dimension(:,:,:) :: etaC, tempCorrC, presCorrC, altCorrC
+integer, allocatable, dimension(:)              :: nSpC, nSizeC, nEtaC, ntcC, npcC, nacC, ChiPriority, nOutTc, &
+                                                   nTenvC
+real(kind= prec),allocatable, dimension(:)      :: pMaxC , fireCostC, maintCostC, minUpTimeC, minDownTimeC, TutileChi
+real(kind= prec),allocatable, dimension(:,:)    :: spC, outTempChi, envTempChi
+real(kind= prec), allocatable, dimension(:,:,:) :: etaC, tempCorrC, presCorrC, altCorrC, chiCorrection
 character(len=50), allocatable, dimension(:)    :: tecC
+
+
+!---HeatPump.inp variables
+integer                                         :: nHP
+integer, allocatable, dimension(:)              :: nSpHP, nSizeHP, nEtaHP, ntcHP, npcHP, nacHP, nOutTHP, &
+                                                   nTenvHP
+real(kind= prec),allocatable, dimension(:)      :: pMaxHP , fireCostHP, maintCostHP, minUpTimeHP, minDownTimeHP, TutileHP  
+real(kind= prec),allocatable, dimension(:,:)    :: spHP, outTempHP, envTempHP
+real(kind= prec), allocatable, dimension(:,:,:) :: etaHP, tempCorrHP, presCorrHP, altCorrHP, hpCorrection
+character(len=50), allocatable, dimension(:)    :: tecHP
 
 !---Load.inp variables
 integer                                       :: nTime, nLoad, iTime, iEl, iTh, iCh, iElp, iThp, iChp

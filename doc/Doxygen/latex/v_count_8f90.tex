@@ -1,5 +1,5 @@
-\hypertarget{v_count_8f90}{\section{/home/\-Codici/\-Blink/\-Power\-Manager/src/v\-Count.f90 File Reference}
-\label{v_count_8f90}\index{/home/\-Codici/\-Blink/\-Power\-Manager/src/v\-Count.\-f90@{/home/\-Codici/\-Blink/\-Power\-Manager/src/v\-Count.\-f90}}
+\hypertarget{v_count_8f90}{\section{/home/\-Progetti/\-Siat/\-Ottimizzatore/src/v\-Count.f90 File Reference}
+\label{v_count_8f90}\index{/home/\-Progetti/\-Siat/\-Ottimizzatore/src/v\-Count.\-f90@{/home/\-Progetti/\-Siat/\-Ottimizzatore/src/v\-Count.\-f90}}
 }
 
 
@@ -34,7 +34,7 @@ Definition in file \hyperlink{v_count_8f90_source}{v\-Count.\-f90}.
 \item[{character(len=1), intent(in), optional}]{last\-\_\-}
 \end{DoxyParamCaption}
 )}}\label{v_count_8f90_a64dfa04178ad3ed3519dbac3c8540a81}
-This subroutine determines the number of lines between the two array delimiters. The unit must be already opened and associated to the desired file. All the values to read must be written in \char`\"{}value\char`\"{} field of the text file that is between the two \char`\"{}$|$\char`\"{} (see the following box for an example of input text) and delimited by appropriate opening and closure delimiters. \begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
+This subroutine determines the number of lines between the two array delimiters. The unit must be already opened and associated to the desired file. All the values to read must be written in \char`\"{}value\char`\"{} field of the text file that is between the two \char`\"{}$\vert$\char`\"{} (see the following box for an example of input text) and delimited by appropriate opening and closure delimiters. \begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
     begin 
        !Commented line
        KeywordField  | ValueField | !Comment two
@@ -42,14 +42,14 @@ This subroutine determines the number of lines between the two array delimiters.
 \end{DoxyVerb}
  Moreover the cursor needs to be before the first line of the array to be read. The procedure atomatically skeeps all the lines until the opening character. Opening and closing character may be specified as single character input, or left to the defult values that are \char`\"{}(\char`\"{} ande \char`\"{})\char`\"{}, respectively. Avoid blank or commented lines inside the text array.\par
  The correct file syntax to read the 2x2 array \char`\"{}ex\-Arr\char`\"{}\-: \[ exArr = \left[ \begin{array}{c c} 1.1 & 1.2 \\ 2.1 & 2.2 \end{array} \right] \] is\-:\par
- \begin{DoxyVerb}    begin
+\begin{DoxyVerb}    begin
        !Comment one
        exArr  | (1.1 1.2 | !Comment two
               |  2.1 2.2)|
     end
 \end{DoxyVerb}
  or equivalently\-: \par
- \begin{DoxyVerb}    begin
+\begin{DoxyVerb}    begin
        !Comment one
        exArr  |        | !Comment two
               | (1.1 1.2 |
@@ -78,5 +78,5 @@ References rewunit().
 
 
 
-Referenced by readboiler(), readchillers(), readenv(), readloads(), readpv(), readsc(), readtrigen(), and readwind().
+Referenced by readboiler(), readchillers(), readelstorage(), readenv(), readloads(), readpv(), readsc(), readtrigen(), and readwind().
 

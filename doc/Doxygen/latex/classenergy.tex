@@ -8,7 +8,8 @@ module for energy calculations.
 
 
 
-Collaboration diagram for energy\-:\nopagebreak
+Collaboration diagram for energy\-:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -26,6 +27,8 @@ real(kind=prec) function \hyperlink{classenergy_a78e3e5b7396e41d13b3c9aa8f4edca4
 \begin{DoxyCompactList}\small\item\em Chilling production. \end{DoxyCompactList}\item 
 real(kind=prec) function \hyperlink{classenergy_af385040819d802e1a3c9e0c9a692ff0a}{thselfcons} (c\-\_\-, t)
 \begin{DoxyCompactList}\small\item\em Internal thermal consumption of the power plant. \end{DoxyCompactList}\item 
+real(kind=prec) function \hyperlink{classenergy_ad0d7a76ef1e071f3332e04573b6973a3}{chselfcons} (c\-\_\-, t)
+\begin{DoxyCompactList}\small\item\em Internal chilling consumption of the power plant. \end{DoxyCompactList}\item 
 real(kind=prec) function \hyperlink{classenergy_af5299e75015a3803765a6b49efa22049}{elselfcons} (c\-\_\-, t)
 \begin{DoxyCompactList}\small\item\em Internal electrical consumption of the power plant. \end{DoxyCompactList}\item 
 real(kind=prec) function, \\*
@@ -49,7 +52,11 @@ real(kind=prec) function \hyperlink{classenergy_a59e350e8898c5358a92c3475d3cedb1
 \begin{DoxyCompactList}\small\item\em Updates the level of thermal storage. \end{DoxyCompactList}\item 
 real(kind=prec) function \hyperlink{classenergy_aeb92167cd5f2d93d35807c14dbac62d3}{elstoragelevelupdate} (old\-Level, c, t)
 \begin{DoxyCompactList}\small\item\em Updates the level of electrical storage. \end{DoxyCompactList}\item 
+real(kind=prec) function \hyperlink{classenergy_ab4f365b315b8896a61c233c51db31696}{icestoragelevelupdate} (old\-Level, c, t)
+\begin{DoxyCompactList}\small\item\em Updates the level of electrical storage. \end{DoxyCompactList}\item 
 real(kind=prec) function \hyperlink{classenergy_a3ffd38c81737a9ab7ac3aafc772ee08d}{tespower} (c, t)
+\begin{DoxyCompactList}\small\item\em Calculates the power from or to the thermal storage. \end{DoxyCompactList}\item 
+real(kind=prec) function \hyperlink{classenergy_a0f259e2e3c19a27638c30ac9300e0e26}{icepower} (c, t)
 \begin{DoxyCompactList}\small\item\em Calculates the power from or to the thermal storage. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -74,11 +81,37 @@ Definition at line 38 of file energy.\-f90.
 )}}\label{classenergy_a78e3e5b7396e41d13b3c9aa8f4edca48}
 Calculates the chilling production in k\-W of the whole power plant, for a given set-\/point Note that only trigeneration machines and Chillers produce chilling power so far. Thus chilling power is\-: \[ P_{ch} = \sum_{Trig} \frac{sp(i)\cdot P_{max}(i)\cdot k_{env}}{\eta_{el}(i,sp(i))\cdot\alpha_{env}}\eta_{ch}(i,sp(i))\cdot\beta_{env} + \sum_{Chi} sp(i)\cdot P_{max}(i)\cdot\vartheta_{env} \] where $sp(i)$ is the set point of the $i$'th machine, $\eta_{ch}$ and $\eta_{el}$ are the chilling and electrical efficiencies, respectively, and $P_{max}(i)$ is its rated power; f\$ k\-\_\-\{env\} $, $ \{env\} $, $ \{env\} $, and $ \{env\} $ are the environmental corrections for electrical power and efficiency, chilling efficiency, and chilling power, respectively. \param[in] c_ index of the given set-point to be given as input. Defines the state of the plant $(i) = sp(c\-\_\-(i)) 
 
-Definition at line 189 of file energy.\-f90.
+Definition at line 188 of file energy.\-f90.
 
 
 
 Referenced by constr\-::constraints(), and output().
+
+\hypertarget{classenergy_ad0d7a76ef1e071f3332e04573b6973a3}{\index{energy@{energy}!chselfcons@{chselfcons}}
+\index{chselfcons@{chselfcons}!energy@{energy}}
+\subsubsection[{chselfcons}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function energy\-::chselfcons (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(nm), intent(in)}]{c\-\_\-, }
+\item[{integer, intent(in)}]{t}
+\end{DoxyParamCaption}
+)}}\label{classenergy_ad0d7a76ef1e071f3332e04573b6973a3}
+Calculates the thermal self-\/consumption of the trigeneration plant, that is, hte thermal power needed by the absorbtion chillers. \[ U_{ch}^{self} = \sum_{AbsChi} \frac{sp(i)\cdot P_{max}(i)\cdot \vartheta_{env}}{\eta_{ch}(i,sp(i))\cdot \beta_{env}} \] where $sp(i)$ is the set point of the $i$'th machine, $\eta_{ch}$ is the chilling efficiency, and $P_{max}(i)$ is its rated power; $\beta_{env}$ and $\vartheta_{env}$ are the environmental corrections for chilling efficiency, and chilling power, respectively. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c\-\_\-} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 307 of file energy.\-f90.
+
+
+
+Referenced by euristics\-::chredundant(), and constr\-::constraints().
 
 \hypertarget{classenergy_a6060381a3418f406c8ca108f9c5a7fd5}{\index{energy@{energy}!cogthprod@{cogthprod}}
 \index{cogthprod@{cogthprod}!energy@{energy}}
@@ -100,7 +133,7 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 592 of file energy.\-f90.
+Definition at line 646 of file energy.\-f90.
 
 
 
@@ -156,11 +189,11 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 300 of file energy.\-f90.
+Definition at line 354 of file energy.\-f90.
 
 
 
-Referenced by strategies\-::electricaltracking(), economy\-::elrev(), strategies\-::fullload(), economy\-::grideconomy(), pec(), and strategies\-::thermaltracking().
+Referenced by strategies\-::electricaltracking(), economy\-::elrev(), economy\-::grideconomy(), pec(), and strategies\-::thermaltracking().
 
 \hypertarget{classenergy_aeb92167cd5f2d93d35807c14dbac62d3}{\index{energy@{energy}!elstoragelevelupdate@{elstoragelevelupdate}}
 \index{elstoragelevelupdate@{elstoragelevelupdate}!energy@{energy}}
@@ -183,11 +216,11 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 793 of file energy.\-f90.
+Definition at line 861 of file energy.\-f90.
 
 
 
-Referenced by constr\-::elstorageconstr(), output(), and graphtools\-::uptimecalc().
+Referenced by constr\-::elstorageconstr(), and output().
 
 \hypertarget{classenergy_aa9595768898cb233d53596e9ce19744f}{\index{energy@{energy}!energyexhaust@{energyexhaust}}
 \index{energyexhaust@{energyexhaust}!energy@{energy}}
@@ -209,7 +242,7 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 482 of file energy.\-f90.
+Definition at line 536 of file energy.\-f90.
 
 \hypertarget{classenergy_aebd116fdbb931db63a6450c7ba3197df}{\index{energy@{energy}!energyinput@{energyinput}}
 \index{energyinput@{energyinput}!energy@{energy}}
@@ -231,7 +264,7 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 417 of file energy.\-f90.
+Definition at line 471 of file energy.\-f90.
 
 
 
@@ -257,11 +290,60 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 359 of file energy.\-f90.
+Definition at line 413 of file energy.\-f90.
 
 
 
 Referenced by economy\-::fuelcost(), and output().
+
+\hypertarget{classenergy_a0f259e2e3c19a27638c30ac9300e0e26}{\index{energy@{energy}!icepower@{icepower}}
+\index{icepower@{icepower}!energy@{energy}}
+\subsubsection[{icepower}]{\setlength{\rightskip}{0pt plus 5cm}real(kind=prec) function energy\-::icepower (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(nm), intent(in)}]{c, }
+\item[{integer, intent(in)}]{t}
+\end{DoxyParamCaption}
+)}}\label{classenergy_a0f259e2e3c19a27638c30ac9300e0e26}
+This function calculates the power from and to the thermal storage system, given the plant set-\/point vector and the time-\/step state of charge and present set point. \[ P_{tes}(t) = sp_{tes}\cdot P_{max}\eta_{in}\qquad \mbox{ if } \qquad sp_{tes} \le 0 \] \[ P_{tes}(t) = sp_{tes}\cdot P_{max}eta_{out} \qquad\mbox{ if } \qquad sp_{tes} > 0 \] where $sp_{tes}$ is the set point of the thermal storage $P_{max}$ is its rated power and $\eta_{in}$ and $\eta_{out}$ are the input and output efficiencies, respectively. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c\-\_\-} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 991 of file energy.\-f90.
+
+\hypertarget{classenergy_ab4f365b315b8896a61c233c51db31696}{\index{energy@{energy}!icestoragelevelupdate@{icestoragelevelupdate}}
+\index{icestoragelevelupdate@{icestoragelevelupdate}!energy@{energy}}
+\subsubsection[{icestoragelevelupdate}]{\setlength{\rightskip}{0pt plus 5cm}real(kind=prec) function energy\-::icestoragelevelupdate (
+\begin{DoxyParamCaption}
+\item[{real(kind=prec), intent(in)}]{old\-Level, }
+\item[{integer, dimension(nm), intent(in)}]{c, }
+\item[{integer, intent(in)}]{t}
+\end{DoxyParamCaption}
+)}}\label{classenergy_ab4f365b315b8896a61c233c51db31696}
+Updates the state of charge of vthe chilling storage according to old state of charge and present set point. \[ SOC_{th}(t) = SOC_{th}(t-1) sp_{th}\cdot P_{max}\eta \] where $sp(i)$ is the set point of the thermal storage $P_{max}(i)$ is its rated power and $\eta = \eta_{in}$ if $sp \le 0$ and $\eta = \eta_{out}$ if $sp \ge 0$ 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c\-\_\-} & index of the given set-\/point to be given as input. Defines the state of the plant $sp(i) = sp(c\_(i))$ \\
+\hline
+\mbox{\tt in}  & {\em t} & time index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrea Facci 
+\end{DoxyAuthor}
+
+
+Definition at line 902 of file energy.\-f90.
+
+
+
+Referenced by constr\-::icestorageconstr(), and output().
 
 \hypertarget{classenergy_adee2b0ef7e3ae6a8da4a2357ffa14a28}{\index{energy@{energy}!limitrecovery@{limitrecovery}}
 \index{limitrecovery@{limitrecovery}!energy@{energy}}
@@ -286,7 +368,7 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 533 of file energy.\-f90.
+Definition at line 587 of file energy.\-f90.
 
 
 
@@ -312,7 +394,7 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 656 of file energy.\-f90.
+Definition at line 710 of file energy.\-f90.
 
 
 
@@ -343,7 +425,7 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 697 of file energy.\-f90.
+Definition at line 751 of file energy.\-f90.
 
 
 
@@ -373,7 +455,7 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 838 of file energy.\-f90.
+Definition at line 947 of file energy.\-f90.
 
 
 
@@ -429,7 +511,7 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 242 of file energy.\-f90.
+Definition at line 249 of file energy.\-f90.
 
 
 
@@ -456,7 +538,7 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 749 of file energy.\-f90.
+Definition at line 803 of file energy.\-f90.
 
 
 
@@ -466,4 +548,4 @@ Referenced by strategies\-::fullload(), output(), constr\-::thstorageconstr(), a
 
 The documentation for this module was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-/home/\-Codici/\-Blink/\-Power\-Manager/src/\hyperlink{energy_8f90}{energy.\-f90}\end{DoxyCompactItemize}
+/home/\-Progetti/\-Siat/\-Ottimizzatore/src/\hyperlink{energy_8f90}{energy.\-f90}\end{DoxyCompactItemize}

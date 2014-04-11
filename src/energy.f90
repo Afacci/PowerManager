@@ -156,6 +156,15 @@ if(nBoi.gt.0) then
    enddo
 endif
 
+!--- heat pump thermal production.
+if (nHP.gt.0) then
+   do i=is(iHP),ie(iHP)
+      j      = c_(i)
+      pow    = sp(j,i)*Pmax(i)*envCorr(t,i,4)
+      thProd = thProd + pow
+   enddo
+endif
+
 !--production from thermal storage.
 if(pMaxTS.gt.zero.and.capacityTS.gt.zero.and.PmaxTs.gt.zero) then
    i    = is(iTS)
@@ -367,10 +376,22 @@ real(kind = prec)                  :: pow, cEff
 
 !---Function Body
 
-!--note that only electrical refigerators are electrcity consumer so far.
+!--note electrical refigerators .
 elSelfCons = 0
 if(nChi.gt.0) then
    do i=is(3),ie(3)
+      if(pes(i).eq.'elec') then
+         j = c_(i)
+         pow  = sp(j,i)*Pmax(i)*envCorr(t,i,4)
+         cEff = etaCh(j,i)*envCorr(t,i,3)
+         cEff = max(cEff,vSmall)
+         elSelfCons = elSelfCons + pow/cEff
+      endif
+   enddo
+endif
+
+if(nHP.gt.0) then
+   do i=is(iHP),ie(iHP)
       if(pes(i).eq.'elec') then
          j = c_(i)
          pow  = sp(j,i)*Pmax(i)*envCorr(t,i,4)

@@ -83,6 +83,8 @@ call readBoiler
 print*,'     --> Reading Boiler.inp            ... OK '
 call readChillers
 print*,'     --> Reading Chillers.inp          ... OK '
+call readHeatPump
+print*,'     --> Reading HeatPump.inp          ... OK '
 call readThStorage
 print*,'     --> Reading ThermalStorage.inp    ... OK '
 !call readIceStorage

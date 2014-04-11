@@ -132,3 +132,33 @@ ScalarInterp = yL + (x - xL)*(yU - yL)/(xU - xL)
 return
 
 end function scalarInterp
+
+!=====================================================================
+
+function interp2D(matrix,nrow,ncol,xin,yin,xout,yout)
+
+  !---Declare Module usage---
+use shared
+use mathTools
+
+!---Declare Local Variables---
+implicit none
+
+real(kind=prec) :: interp2D
+integer,                         intent(in)            :: nrow, ncol
+real(kind = prec), dimension(nrow,ncol), intent(in)    :: matrix
+real(kind = prec), dimension(ncol), intent(in)         :: xin
+real(kind = prec), dimension(nrow), intent(in)         :: yin
+real(kind=prec)                                        :: xout,yout
+real(kind = prec),dimension(nrow)                      :: z_
+integer                                                :: i,j
+
+!--- function body
+
+do i=1,nrow
+   z_(i) = scalarInterp(xin,matrix(i,:),ncol,xout)
+enddo
+
+interp2D =  scalarInterp(yin,z_,nrow,yout)
+
+end function interp2D

@@ -20,16 +20,16 @@
 !    ; if not, write to the Free Software Foundation,
 !    Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 !
-!>\file readChiller.f90
-!>\brief Reads Chiller.inp file
+!>\file readHeatPump.f90
+!>\brief Reads HeatPump.inp file
 !>\author 
 !>     Andrea Facci.
 !
 !---------------------------------------------------------------------------
 
-!>\brief Reads Chiller.inp file
+!>\brief Reads HeatPump.inp file
 !>\details 
-!> This subroutine reads the file "Chiller.inp". The procedure looks for each specific entry
+!> This subroutine reads the file "HeatPump.inp". The procedure looks for each specific entry
 !> in the "keyword field", and associates the value in the "value" field, to the
 !> corresponding variable. If the desired entry is not present returns an error
 !> message and aborts the execution. The structure of the input file is
@@ -58,11 +58,14 @@
 !>\author 
 !>     Andrea Facci.
 
-subroutine readChillers
+subroutine readHeatPump
 
 !---Declare Unit usage---
 use shared
-use inputVar
+use inputVar, only: nHP, nSpHP, nSizeHP, nEtaHP, ntcHP, npcHP, nacHP, &
+                    pMaxHP , fireCostHP, maintCostHP, minUpTimeHP, minDownTimeHP, &
+                    spHP, etaHP, tempCorrHP, presCorrHP, altCorrHP, tecHP, hpCorrection & 
+                    ,envTempHP, outTempHP, nOutTHP, nTenvHP, TutileHP
 use fileTools
 use interfaces
 use cmdVar
@@ -71,7 +74,7 @@ use myArithmetic
 implicit none
 
 !---Declare Local Variables---
-integer              :: genUnit = 108, dinte
+integer              :: genUnit = 208, dinte
 character(len=50)    :: inputFile = './Input/HeatPump.inp'
 logical              :: filePresent
 character(len=500)   :: buffer, keyword, value,vector,elements,value_
@@ -87,7 +90,7 @@ real(kind = prec), allocatable, dimension(:,:) :: matrix
 !---Check File Presence---
 inquire(file = inputFile, exist = filePresent)
 if(.not.filePresent) then
-   call abortExecution(1,4)
+   call abortExecution(1,11)
 else
    open(unit = genUnit, file = inputFile)
 endif
@@ -112,13 +115,13 @@ call iFindEntry(buffer,1,genUnit,.true.,dummy(1),isPresent(1))
 nHP = dummy(1)
 if(nHP.eq.0) return
 if(.not.isPresent(1)) call abortExecution(6,1)
-call allocateVar(11)
+call allocateVar(41)
 
 !---read the input list---
 line = firstLine
 do 
     call readKeyword(genUnit,.false., keyword,value,error,nl)
-    if(error.eq.1) call abortExecution(0,4)
+    if(error.eq.1) call abortExecution(0,11)
     line = line + nl
     select case(keyword)
        case('end')
@@ -152,7 +155,7 @@ do
               n2 = index(value_,')') + 1
               value_ =  value_(n2 + 1:)
           enddo
-          call allocateVar(12)
+          call allocateVar(42)
           do i = 1, nHP
              n1 = index(value,'(') + 1
              n2 = index(value,')') - 1
@@ -184,7 +187,7 @@ do
                   nEtaHP(i) = vCount(genUnit,.false.)
               enddo
               j = sum(nEtaHP)
-              call allocateVar(14)
+              call allocateVar(43)
               call rewUnit(genUnit,j)
               do i = 1, nHP
                  etaHP(:,:,i) =  dmatrixRead(genUnit,nEtaHP(i),2)
@@ -193,94 +196,138 @@ do
        case('Number')
              continue
        case('Technology')
-             read(value,*) (tecC(i),i=1,nHP)
+             isPresent(2) = .true.
+             read(value,*) (tecHP(i),i=1,nHP)
        case('MinUpTime')
              isPresent(12) = .true.
              read(value,*) (minUpTimeHP(i), i=1,nHP)
        case('MinDownTime')
              isPresent(13) = .true.
              read(value,*) (minDownTimeHP(i), i=1,nHP)
-       case('TempCorrection')
-            read(value,*) (param(i), i=1,3)
-            do i=1,3
-               select case(param(i))
-                  case('temp')
-                     nt = i
-                  case('eta')
-                     net = i
-                  case('pmax')
-                     np = i
-               end select
-            enddo
-            do i=1,nCHi
-               ntcHP(i) = vCount(genUnit,.false.)
-            enddo
-            call allocateVar(29,maxval(ntcC))
-            allocate(matrix(maxval(ntcC),3))
-            n = sum(ntcHP)
-            call rewUnit(genUnit,n)
+       case('OutletTemp')
+          allocate(nOutTHP(nHP))
+          value_ = value
+          do i=1,nHP
+              nOutTHP(i) = hCount(value_)
+              n2 = index(value_,')') + 1
+              value_ =  value_(n2 + 1:)
+          enddo
+          allocate(outTempHP(maxval(nOutTHP), nHP))
+          do i = 1, nHP
+             n1 = index(value,'(') + 1
+             n2 = index(value,')') - 1
+             vector = trim(value(n1:n2))
+             read(vector,*) (outTempHP(j,i), j=1,nOutTHP(i))
+             value =  value(n2 + 2:)
+          enddo
+       case('EnvTemp')
+          allocate(nTenvHP(nHP))
+          value_ = value
+          do i=1,nHP
+              nTenvHP(i) = hCount(value_)
+              n2 = index(value_,')') + 1
+              value_ =  value_(n2 + 1:)
+          enddo
+          allocate(envTempHP(maxval(nTenvHP), nHP))
+          do i = 1, nHP
+             n1 = index(value,'(') + 1
+             n2 = index(value,')') - 1
+             vector = trim(value(n1:n2))
+             read(vector,*) (envTempHP(j,i), j=1,nTenvHP(i))
+             value =  value(n2 + 2:)
+          enddo
+      case('Correction')
             do i=1,nHP
-               matrix = rNaN(rVal)
-               matrix = dmatrixRead(genUnit,ntcHP(i),3)
-               tempCorrHP(:,1,i) = matrix(:,nt)
-               tempCorrHP(:,2,i) = matrix(:,net)
-               tempCorrHP(:,3,i) = matrix(:,np)
+               n1 = maxval(nOutTHP)
+               n2 = maxval(nTenvHP)
+               allocate(hpCorrection(n1,n2,nHP))
+               call rewUnit(genUnit,1)
+               hpCorrection(:,:,i) = dmatrixRead(genUnit,nOutThp(i),nTenvHP(i))
             enddo
-            deallocate(matrix)
-       case('PresCorrection')
-            read(value,*) (param(i), i=1,3)
-            do i=1,3
-               select case(param(i))
-                  case('pres')
-                     nt = i
-                  case('eta')
-                     net = i
-                  case('pmax')
-                     np = i
-               end select
-            enddo
-            do i=1,nCHi
-               npcHP(i) = vCount(genUnit,.false.)
-            enddo
-            call allocateVar(30,maxval(npcHP))
-            allocate(matrix(maxval(npcHP),3))
-            n = sum(npcHP)
-            call rewUnit(genUnit,n)
-            do i=1,nCHi
-               matrix = rNaN(rVal)
-               matrix = dmatrixRead(genUnit,npcHP(i),3)
-               presCorrHP(:,1,i) = matrix(:,nt)
-               presCorrHP(:,2,i) = matrix(:,net)
-               presCorrHP(:,3,i) = matrix(:,np)
-            enddo
-            deallocate(matrix)
-       case('AltCorrection')
-            read(value,*) (param(i), i=1,3)
-            do i=1,3
-               select case(param(i))
-                  case('alt')
-                     nt = i
-                  case('eta')
-                     net = i
-                  case('pmax')
-                     np = i
-               end select
-            enddo
-            do i=1,nCHi
-               nacHP(i) = vCount(genUnit,.false.)
-            enddo
-            call allocateVar(31,maxval(nacHP))
-            allocate(matrix(maxval(nacHP),3))
-            n = sum(nacHP)
-            call rewUnit(genUnit,n)
-            do i=1,nCHP
-               matrix = rNaN(rVal)
-               matrix = dmatrixRead(genUnit,nacHP(i),3)
-               altCorrHP(:,1,i) = matrix(:,nt)
-               altCorrHP(:,2,i) = matrix(:,net)
-               altCorrHP(:,3,i) = matrix(:,np)
-            enddo
-            deallocate(matrix)
+
+!       case('TempCorrection')
+!            read(value,*) (param(i), i=1,3)
+!            do i=1,3
+!               select case(param(i))
+!                  case('temp')
+!                     nt = i
+!                  case('eta')
+!                     net = i
+!                  case('pmax')
+!                     np = i
+!               end select
+!            enddo
+!            do i=1,nHP
+!               ntcHP(i) = vCount(genUnit,.false.)
+!            enddo
+!            call allocateVar(44,maxval(ntcHP))
+!            allocate(matrix(maxval(ntcHP),3))
+!            n = sum(ntcHP)
+!            call rewUnit(genUnit,n)
+!            do i=1,nHP
+!               matrix = rNaN(rVal)
+!               matrix = dmatrixRead(genUnit,ntcHP(i),3)
+!               tempCorrHP(:,1,i) = matrix(:,nt)
+!               tempCorrHP(:,2,i) = matrix(:,net)
+!               tempCorrHP(:,3,i) = matrix(:,np)
+!            enddo
+!            deallocate(matrix)
+!       case('PresCorrection')
+!            read(value,*) (param(i), i=1,3)
+!!            do i=1,3
+!               select case(param(i))
+!                  case('pres')
+!                     nt = i
+!                  case('eta')
+!                     net = i
+!                  case('pmax')
+!                     np = i
+!               end select
+!            enddo
+!            do i=1,nHP
+!               npcHP(i) = vCount(genUnit,.false.)
+!            enddo
+!            call allocateVar(45,maxval(npcHP))
+!            allocate(matrix(maxval(npcHP),3))
+!            n = sum(npcHP)
+!            call rewUnit(genUnit,n)
+!            do i=1,nHP
+!               matrix = rNaN(rVal)
+!               matrix = dmatrixRead(genUnit,npcHP(i),3)
+!               presCorrHP(:,1,i) = matrix(:,nt)
+!               presCorrHP(:,2,i) = matrix(:,net)
+!               presCorrHP(:,3,i) = matrix(:,np)
+!            enddo
+!            deallocate(matrix)
+!       case('AltCorrection')
+!            read(value,*) (param(i), i=1,3)
+!            do i=1,3
+!               select case(param(i))
+!                  case('alt')
+!                     nt = i
+!                  case('eta')
+!                     net = i
+!                  case('pmax')
+!                     np = i
+!               end select
+!            enddo
+!            do i=1,nHP
+!               nacHP(i) = vCount(genUnit,.false.)
+!            enddo
+!            call allocateVar(46,maxval(nacHP))
+!            allocate(matrix(maxval(nacHP),3))
+!            n = sum(nacHP)
+!            call rewUnit(genUnit,n)
+!            do i=1,nHP
+!               matrix = rNaN(rVal)
+!               matrix = dmatrixRead(genUnit,nacHP(i),3)
+!               altCorrHP(:,1,i) = matrix(:,nt)
+!               altCorrHP(:,2,i) = matrix(:,net)
+!               altCorrHP(:,3,i) = matrix(:,np)
+!            enddo
+!            deallocate(matrix)
+     case('Tmandata')
+            read(value,*) (TutileHP(i),i=1,nHP)
        case(' ')
             if(verb) call warning(4,4,line=line)
        case default
@@ -297,4 +344,4 @@ enddo
 close(genUnit)
 100 format(A500)
 
-end subroutine readChillers
+end subroutine readHeatPump

@@ -4,6 +4,13 @@
 
 
 Collaboration diagram for getsetpoint\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{classgetsetpoint__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -16,7 +23,7 @@ integer function, dimension(ntrig) \hyperlink{classgetsetpoint_ac91c9058ddad4f3b
 integer function \hyperlink{classgetsetpoint_ad6353e72adbd16ea6a5f870bb905c95f}{getsptes} (Heat\-\_\-, t)
 \item 
 real(kind=prec) function, \\*
-dimension(2) \hyperlink{classgetsetpoint_a52ecd0af9db3f3e0f5eb12a5d7c478a2}{thstoragepmax} (old\-Level, t)
+dimension(2) \hyperlink{classgetsetpoint_a08d663082882daf5f3ad66670325b0c8}{thstoragepmax} (old\-Level, t, fcon)
 \end{DoxyCompactItemize}
 
 
@@ -95,14 +102,15 @@ Definition at line 172 of file get\-Set\-Point.\-f90.
 
 Referenced by strategies\-::electricaltracking(), and strategies\-::thermaltracking().
 
-\hypertarget{classgetsetpoint_a52ecd0af9db3f3e0f5eb12a5d7c478a2}{\index{getsetpoint@{getsetpoint}!thstoragepmax@{thstoragepmax}}
+\hypertarget{classgetsetpoint_a08d663082882daf5f3ad66670325b0c8}{\index{getsetpoint@{getsetpoint}!thstoragepmax@{thstoragepmax}}
 \index{thstoragepmax@{thstoragepmax}!getsetpoint@{getsetpoint}}
 \subsubsection[{thstoragepmax}]{\setlength{\rightskip}{0pt plus 5cm}real(kind=prec) function, dimension(2) getsetpoint\-::thstoragepmax (
 \begin{DoxyParamCaption}
 \item[{real(kind=prec), intent(in)}]{old\-Level, }
-\item[{integer, intent(in)}]{t}
+\item[{integer, intent(in)}]{t, }
+\item[{logical, intent(in)}]{fcon}
 \end{DoxyParamCaption}
-)}}\label{classgetsetpoint_a52ecd0af9db3f3e0f5eb12a5d7c478a2}
+)}}\label{classgetsetpoint_a08d663082882daf5f3ad66670325b0c8}
 
 
 Definition at line 374 of file get\-Set\-Point.\-f90.
@@ -119,4 +127,4 @@ Referenced by strategies\-::fullload().
 
 The documentation for this module was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-/home/\-Codici/\-Blink/\-Power\-Manager/src/\hyperlink{get_set_point_8f90}{get\-Set\-Point.\-f90}\end{DoxyCompactItemize}
+/home/\-Progetti/\-Siat/\-Ottimizzatore/src/\hyperlink{get_set_point_8f90}{get\-Set\-Point.\-f90}\end{DoxyCompactItemize}

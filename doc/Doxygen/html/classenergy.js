@@ -1,6 +1,7 @@
 var classenergy =
 [
     [ "chprod", "classenergy.html#a78e3e5b7396e41d13b3c9aa8f4edca48", null ],
+    [ "chselfcons", "classenergy.html#ad0d7a76ef1e071f3332e04573b6973a3", null ],
     [ "cogthprod", "classenergy.html#a6060381a3418f406c8ca108f9c5a7fd5", null ],
     [ "elprod", "classenergy.html#a5ce8ae58805b4f7abe840bedaea30a00", null ],
     [ "elselfcons", "classenergy.html#af5299e75015a3803765a6b49efa22049", null ],
@@ -8,6 +9,8 @@ var classenergy =
     [ "energyexhaust", "classenergy.html#aa9595768898cb233d53596e9ce19744f", null ],
     [ "energyinput", "classenergy.html#aebd116fdbb931db63a6450c7ba3197df", null ],
     [ "fuelcons", "classenergy.html#a07a977e68ea1d19da65ba06a4e4007a2", null ],
+    [ "icepower", "classenergy.html#a0f259e2e3c19a27638c30ac9300e0e26", null ],
+    [ "icestoragelevelupdate", "classenergy.html#ab4f365b315b8896a61c233c51db31696", null ],
     [ "limitrecovery", "classenergy.html#adee2b0ef7e3ae6a8da4a2357ffa14a28", null ],
     [ "pec", "classenergy.html#a082e1efb7fb9b51f62cfe800fefe1585", null ],
     [ "pecpenalty", "classenergy.html#a85b1719a96ad6c8ccc87e720cb6b0397", null ],

@@ -55,6 +55,7 @@ OBJS = \
 ../obj/hCount.o \
 ../obj/readBoiler.o \
 ../obj/readChiller.o \
+../obj/readHeatPump.o \
 ../obj/findEntry2.o \
 ../obj/readKeyword.o \
 ../obj/warning.o \

@@ -1,5 +1,5 @@
-\hypertarget{matrix_read2_8f90}{\section{/home/\-Codici/\-Blink/\-Power\-Manager/src/matrix\-Read2.f90 File Reference}
-\label{matrix_read2_8f90}\index{/home/\-Codici/\-Blink/\-Power\-Manager/src/matrix\-Read2.\-f90@{/home/\-Codici/\-Blink/\-Power\-Manager/src/matrix\-Read2.\-f90}}
+\hypertarget{matrix_read2_8f90}{\section{/home/\-Progetti/\-Siat/\-Ottimizzatore/src/matrix\-Read2.f90 File Reference}
+\label{matrix_read2_8f90}\index{/home/\-Progetti/\-Siat/\-Ottimizzatore/src/matrix\-Read2.\-f90@{/home/\-Progetti/\-Siat/\-Ottimizzatore/src/matrix\-Read2.\-f90}}
 }
 
 
@@ -45,7 +45,7 @@ Definition in file \hyperlink{matrix_read2_8f90_source}{matrix\-Read2.\-f90}.
 \item[{character(len=1), optional}]{last\-\_\-}
 \end{DoxyParamCaption}
 )}}\label{matrix_read2_8f90_abf64de424b7c068365381697e8ec0207}
-This subroutine reads a 2\-D array of character values directly from a specified unit. The unit must be already opened and associated to the desired file. All the values to read must be written in \char`\"{}value\char`\"{} field of the text file that is between the two \char`\"{}$|$\char`\"{} (see the following box for an example of input text) and delimited by appropriate opening and closure delimiters. \begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
+This subroutine reads a 2\-D array of character values directly from a specified unit. The unit must be already opened and associated to the desired file. All the values to read must be written in \char`\"{}value\char`\"{} field of the text file that is between the two \char`\"{}$\vert$\char`\"{} (see the following box for an example of input text) and delimited by appropriate opening and closure delimiters. \begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
     begin 
        !Commented line
        KeywordField  | ValueField | !Comment two
@@ -53,14 +53,14 @@ This subroutine reads a 2\-D array of character values directly from a specified
 \end{DoxyVerb}
  Moreover the cursor needs to be before the first line of the array to be read. The procedure atomatically skeeps all the lines until the opening character. Opening and closing character may be specified as single character input, or left to the defult values that are \char`\"{}(\char`\"{} ande \char`\"{})\char`\"{}, respectively. Avoid blank or commented lines inside the text array.\par
  The correct file syntax to read the 2x2 array \char`\"{}ex\-Arr\char`\"{}\-: \[ exArr = \left[ \begin{array}{c c} Scrudge & DonaldDuck \\ Goofy & MickeyMouse \end{array} \right] \] is\-:\par
- \begin{DoxyVerb}    begin
+\begin{DoxyVerb}    begin
        !Comment one
        exArr  | (Scrudge DonadDuck | !Comment two
               |  Goofy MikeyMouse) |
     end
 \end{DoxyVerb}
  or equivalently\-: \par
- \begin{DoxyVerb}    begin
+\begin{DoxyVerb}    begin
        !Comment one
        exArr  |        | !Comment two
               | (Scrudge DonaldDuck |
@@ -106,7 +106,7 @@ Referenced by readenv(), and readloads().
 \item[{character(len=1), optional}]{last\-\_\-}
 \end{DoxyParamCaption}
 )}}\label{matrix_read2_8f90_ae4323e4e0e0e6ecb1e6bc40ccb4bec64}
-This subroutine reads a 2\-D array of double precision values directly from a specified unit. The unit must be already opened and associated to the desired file. All the values to read must be written in \char`\"{}value\char`\"{} field of the text file that is between the two \char`\"{}$|$\char`\"{} (see the following box for an example of input text) and delimited by appropriate opening and closure delimiters. \begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
+This subroutine reads a 2\-D array of double precision values directly from a specified unit. The unit must be already opened and associated to the desired file. All the values to read must be written in \char`\"{}value\char`\"{} field of the text file that is between the two \char`\"{}$\vert$\char`\"{} (see the following box for an example of input text) and delimited by appropriate opening and closure delimiters. \begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
     begin 
        !Commented line
        KeywordField  | ValueField | !Comment two
@@ -114,14 +114,14 @@ This subroutine reads a 2\-D array of double precision values directly from a sp
 \end{DoxyVerb}
  Moreover the cursor needs to be before the first line of the array to be read. The procedure atomatically skeeps all the lines until the opening character. Opening and closing character may be specified as single character input, or left to the defult values that are \char`\"{}(\char`\"{} ande \char`\"{})\char`\"{}, respectively. Avoid blank or commented lines inside the text array.\par
  The correct file syntax to read the 2x2 array \char`\"{}ex\-Arr\char`\"{}\-: \[ exArr = \left[ \begin{array}{c c} 1.1 & 1.2 \\ 2.1 & 2.2 \end{array} \right] \] is\-:\par
- \begin{DoxyVerb}    begin
+\begin{DoxyVerb}    begin
        !Comment one
        exArr  | (1.1 1.2 | !Comment two
               |  2.1 2.2)|
     end
 \end{DoxyVerb}
  or equivalently\-: \par
- \begin{DoxyVerb}    begin
+\begin{DoxyVerb}    begin
        !Comment one
        exArr  |        | !Comment two
               | (1.1 1.2 |
@@ -154,7 +154,7 @@ References matrixread().
 
 
 
-Referenced by readboiler(), readchillers(), readenv(), readloads(), readpv(), readsc(), readtrigen(), and readwind().
+Referenced by readboiler(), readchillers(), readelstorage(), readenv(), readgeneral(), readloads(), readpv(), readsc(), readtrigen(), and readwind().
 
 \hypertarget{matrix_read2_8f90_a9bbb90a3f70ad54afe3a0c51af1396d7}{\index{matrix\-Read2.\-f90@{matrix\-Read2.\-f90}!imatrixread@{imatrixread}}
 \index{imatrixread@{imatrixread}!matrixRead2.f90@{matrix\-Read2.\-f90}}
@@ -167,7 +167,7 @@ Referenced by readboiler(), readchillers(), readenv(), readloads(), readpv(), re
 \item[{character(len=1), optional}]{last\-\_\-}
 \end{DoxyParamCaption}
 )}}\label{matrix_read2_8f90_a9bbb90a3f70ad54afe3a0c51af1396d7}
-This subroutine reads a 2\-D array of integer values directly from a specified unit. The unit must be already opened and associated to the desired file. All the values to read must be written in \char`\"{}value\char`\"{} field of the text file that is between the two \char`\"{}$|$\char`\"{} (see the following box for an example of input text) and delimited by appropriate opening and closure delimiters. \begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
+This subroutine reads a 2\-D array of integer values directly from a specified unit. The unit must be already opened and associated to the desired file. All the values to read must be written in \char`\"{}value\char`\"{} field of the text file that is between the two \char`\"{}$\vert$\char`\"{} (see the following box for an example of input text) and delimited by appropriate opening and closure delimiters. \begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
     begin 
        !Commented line
        KeywordField  | ValueField | !Comment two
@@ -175,14 +175,14 @@ This subroutine reads a 2\-D array of integer values directly from a specified u
 \end{DoxyVerb}
  Moreover the cursor needs to be before the first line of the array to be read. The procedure atomatically skeeps all the lines until the opening character. Opening and closing character may be specified as single character input, or left to the defult values that are \char`\"{}(\char`\"{} ande \char`\"{})\char`\"{}, respectively. Avoid blank or commented lines inside the text array.\par
  The correct file syntax to read the 2x2 array \char`\"{}ex\-Arr\char`\"{}\-: \[ exArr = \left[ \begin{array}{c c} 11 & 12 \\ 21 & 22 \end{array} \right] \] is\-:\par
- \begin{DoxyVerb}    begin
+\begin{DoxyVerb}    begin
        !Comment one
        exArr  | (11 12 | !Comment two
               |  21 22)|
     end
 \end{DoxyVerb}
  or equivalently\-: \par
- \begin{DoxyVerb}    begin
+\begin{DoxyVerb}    begin
        !Comment one
        exArr  |        | !Comment two
               | (11 12 |
@@ -223,7 +223,7 @@ References matrixread().
 \item[{character(len=1), optional}]{last\-\_\-}
 \end{DoxyParamCaption}
 )}}\label{matrix_read2_8f90_ab6e07303536c022a24a5c1d0caffc9e4}
-This subroutine reads a 2\-D array of directly from a specified unit. This procedure does not associate the elements of the text array to any data type. On the contrary each line in the text array is associated to a row of a character type row vector, as it is. All the values to read must be written in \char`\"{}value\char`\"{} field of the text file that is between the two \char`\"{}$|$\char`\"{} (see the following box for an example of input text) and delimited by appropriate opening and closure delimiters. \begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
+This subroutine reads a 2\-D array of directly from a specified unit. This procedure does not associate the elements of the text array to any data type. On the contrary each line in the text array is associated to a row of a character type row vector, as it is. All the values to read must be written in \char`\"{}value\char`\"{} field of the text file that is between the two \char`\"{}$\vert$\char`\"{} (see the following box for an example of input text) and delimited by appropriate opening and closure delimiters. \begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
     begin 
        !Commented line
        KeywordField  | ValueField | !Comment two

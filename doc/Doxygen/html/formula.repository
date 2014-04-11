@@ -115,3 +115,4 @@
 \form#114:\[ P_{tes}(t) = sp_{tes}\cdot P_{max}eta_{out} \mbox{ if } sp_{tes} > 0 \]
 \form#115:\[ P_{tes}(t) = sp_{tes}\cdot P_{max}\eta_{in}\qquad \mbox{ if } \qquad sp_{tes} \le 0 \]
 \form#116:\[ P_{tes}(t) = sp_{tes}\cdot P_{max}eta_{out} \qquad\mbox{ if } \qquad sp_{tes} > 0 \]
+\form#117:\[ U_{ch}^{self} = \sum_{AbsChi} \frac{sp(i)\cdot P_{max}(i)\cdot \vartheta_{env}}{\eta_{ch}(i,sp(i))\cdot \beta_{env}} \]

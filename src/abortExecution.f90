@@ -60,7 +60,7 @@ character(len=18), dimension(15)       :: boilers
 character(len=18), dimension(13)       :: Chiller
 character(len=19), dimension(7)        :: PV
 character(len=19), dimension(7)        :: SC
-character(len=24), dimension(10)        :: files
+character(len=24), dimension(11)       :: files
 character(len=11), dimension(3)        :: eLoads 
 character(len=16), dimension(3)        :: gConn
 character(len=16), dimension(4)        :: algo
@@ -90,7 +90,7 @@ boilers       = (/'Number            ', 'Power             ', 'DegradationRate  
                  ,'FuelLHV           ', 'Investment        ', 'Lifetime          ', 'OnLifetime        '  &
                  ,'OeMCost           ', 'SetPoint          ', 'Size              ', 'ThermalEfficiency '  &
                  ,'Technology        ', 'MinUpTime         ', 'MinDownTime       '/)
-
+ 
 Chiller       = (/'Number            ', 'Technology        ', 'Power             ', 'DegradationRate   '  &
                  ,'Investment        ', 'Lifetime          ', 'OnLifetime        '                        &
                  ,'OeMCost           ', 'SetPoint          ', 'Size              ', 'Efficiency        '  &
@@ -116,7 +116,8 @@ files         = (/'./Input/General.inp      ',  &
                   './ThermalStorage.inp     ',  &
                   './Photovoltaic.inp       ',  &
                   './SolarCollectors.inp    ',  &
-                  './WindTurbines.inp       '/)
+                  './WindTurbines.inp       ',  &
+                  './HeatPump.inp           '/) 
 
 eLoads        = (/'Electricity', 'Thermal    ', 'Chilling   '/)
 gConn         = (/'NetMetering    ','DedicatadRetire','StandAlone     '/)

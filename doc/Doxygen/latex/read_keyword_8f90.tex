@@ -1,5 +1,5 @@
-\hypertarget{read_keyword_8f90}{\section{/home/\-Codici/\-Blink/\-Power\-Manager/src/read\-Keyword.f90 File Reference}
-\label{read_keyword_8f90}\index{/home/\-Codici/\-Blink/\-Power\-Manager/src/read\-Keyword.\-f90@{/home/\-Codici/\-Blink/\-Power\-Manager/src/read\-Keyword.\-f90}}
+\hypertarget{read_keyword_8f90}{\section{/home/\-Progetti/\-Siat/\-Ottimizzatore/src/read\-Keyword.f90 File Reference}
+\label{read_keyword_8f90}\index{/home/\-Progetti/\-Siat/\-Ottimizzatore/src/read\-Keyword.\-f90@{/home/\-Progetti/\-Siat/\-Ottimizzatore/src/read\-Keyword.\-f90}}
 }
 
 
@@ -37,7 +37,7 @@ Definition in file \hyperlink{read_keyword_8f90_source}{read\-Keyword.\-f90}.
 \end{DoxyParamCaption}
 )}}\label{read_keyword_8f90_a25147e00369196a9059879141682718f}
 This procedure reads a line of a unit and returns the \char`\"{}keyword\char`\"{} and \char`\"{}value\char`\"{} fileds as single value charaters of maximum lenght = 100. The Unit needs to be already opened and associated to the desired file. This subroutine reads the line corresponding to the actual position of te cursor. The structure expected for the input text file is clarified in the following example along with the meaning of \char`\"{}keyword\char`\"{} and \char`\"{}value\char`\"{} field.\par
- \begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
+\begin{DoxyVerb} A Lot of usless stuff because only text between begin and end is read.
     begin 
        !Commented line
        KeywordField  | ValueField | !Comment two
@@ -52,7 +52,7 @@ This procedure reads a line of a unit and returns the \char`\"{}keyword\char`\"{
     end
  A lof really usless text
 \end{DoxyVerb}
- Note that only the text between \char`\"{}begin\char`\"{} and \char`\"{}end\char`\"{} is read. Blank lines are automatically discarded, as well as lines beginning with \char`\"{}!\char`\"{} that are considered comments. If only one delimiter \char`\"{}$|$\char`\"{} is present the line is considered mispelled, no value are is associated to keyword nor to value, and an optional error code is returned. The number of lines that were read before the first valid line can be returned with the optional argument \char`\"{}n\-Row\char`\"{}. If the optional argument \char`\"{}rew\char`\"{} is set to true the unit is rewinded exactly of n\-Row lines at the end of the procedure. 
+ Note that only the text between \char`\"{}begin\char`\"{} and \char`\"{}end\char`\"{} is read. Blank lines are automatically discarded, as well as lines beginning with \char`\"{}!\char`\"{} that are considered comments. If only one delimiter \char`\"{}$\vert$\char`\"{} is present the line is considered mispelled, no value are is associated to keyword nor to value, and an optional error code is returned. The number of lines that were read before the first valid line can be returned with the optional argument \char`\"{}n\-Row\char`\"{}. If the optional argument \char`\"{}rew\char`\"{} is set to true the unit is rewinded exactly of n\-Row lines at the end of the procedure. 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt out}  & {\em Keyword,value} & keyword and value fields \\
 \hline
@@ -78,5 +78,5 @@ References rewunit().
 
 
 
-Referenced by readboiler(), readchillers(), readelstorage(), readenv(), readgeneral(), readpv(), readsc(), readthstorage(), readtrigen(), and readwind().
+Referenced by readboiler(), readchillers(), readelstorage(), readenv(), readgeneral(), readicestorage(), readpv(), readsc(), readthstorage(), readtrigen(), and readwind().
 

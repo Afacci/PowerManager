@@ -3,11 +3,12 @@
 }
 
 
-Collaboration diagram for graphtools\-:\nopagebreak
+Collaboration diagram for graphtools\-:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=178pt]{classgraphtools__coll__graph}
+\includegraphics[width=198pt]{classgraphtools__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Data Types}
@@ -22,6 +23,8 @@ subroutine \hyperlink{classgraphtools_a4607d975b5dd57d2ca7fcdbab2b1ef56}{allcomb
 \begin{DoxyCompactList}\small\item\em Generates all the combinations of the set points, staring from the set-\/point vectors that are stored in the columns of \char`\"{}cm\char`\"{}. \end{DoxyCompactList}\item 
 subroutine \hyperlink{classgraphtools_a94b8e6e5a3d3cc0c3bedbe00d57fc2f9}{graphpoints}
 \begin{DoxyCompactList}\small\item\em Generates the graph vetexes, starting from the array of the set-\/point combinations. \end{DoxyCompactList}\item 
+subroutine \hyperlink{classgraphtools_a38a6d91f7f573b0f49db0a4d52868773}{graphpointslocalmin}
+\begin{DoxyCompactList}\small\item\em Generates the graph vetexes, starting from the array of the set-\/point combinations. \end{DoxyCompactList}\item 
 subroutine \hyperlink{classgraphtools_a47c76f30f7f4917536f94c642ffca865}{grapharcs}
 \begin{DoxyCompactList}\small\item\em Generates the grapsh arcs. \end{DoxyCompactList}\item 
 subroutine \hyperlink{classgraphtools_ade3577b19aec190e8e056f041bc8afdf}{minpathtopofw} (ott\-Load, min\-Cost)
@@ -29,7 +32,7 @@ subroutine \hyperlink{classgraphtools_ade3577b19aec190e8e056f041bc8afdf}{minpath
 subroutine \hyperlink{classgraphtools_abef4e47145f628bc6d3001d4f6bd9601}{minpathtopobw} (ott\-Load, min\-Cost, up\-Time, min\-Path)
 \begin{DoxyCompactList}\small\item\em Miniumum path detemination. \end{DoxyCompactList}\item 
 real(kind=prec) function, \\*
-dimension(2 $\ast$nm0+2) \hyperlink{classgraphtools_a4c6b1425ce7fa1411c4550e4fb5de421}{uptimecalc} (up\-T, c, t)
+dimension(2 $\ast$nm0+1) \hyperlink{classgraphtools_a19fd91ddf4b7d068a7bcb93f47becc9f}{uptimecalc} (up\-T, c, t)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -76,7 +79,7 @@ Andrea Facci
 \end{DoxyAuthor}
 
 
-Definition at line 130 of file graph\-Tools.\-f90.
+Definition at line 135 of file graph\-Tools.\-f90.
 
 
 
@@ -95,7 +98,7 @@ Referenced by main().
 )}}\label{classgraphtools_a47c76f30f7f4917536f94c642ffca865}
 Generates the grapsh arcs. Note that only vertex relative to consecutive time-\/steps are connected and that arcs are oriented in the direction of increasing time. Arcs are stored in the form of a predecessor list \char`\"{}pred\-List\char`\"{}, that associates to each node all its predecessors. A weight is assiciated to each element of the predecessor list, equal to the weight of the predecessor vertex plus a cost connected to the variation of state between the actual and predecessor state. \[ arcCost(i,j) = pointCost(c(i)) + fireCost(i,j) \] The number of predecessors for each vertex is asle stored in the \char`\"{}n\-Pre(i)\char`\"{} array. 
 
-Definition at line 346 of file graph\-Tools.\-f90.
+Definition at line 519 of file graph\-Tools.\-f90.
 
 
 
@@ -117,7 +120,29 @@ Andrea Facci.
 \end{DoxyAuthor}
 
 
-Definition at line 240 of file graph\-Tools.\-f90.
+Definition at line 264 of file graph\-Tools.\-f90.
+
+
+
+References abortexecution(), euristics\-::chredundant(), mathtools\-::locaterow(), objfunction(), and euristics\-::thredundant().
+
+
+
+Referenced by main().
+
+\hypertarget{classgraphtools_a38a6d91f7f573b0f49db0a4d52868773}{\index{graphtools@{graphtools}!graphpointslocalmin@{graphpointslocalmin}}
+\index{graphpointslocalmin@{graphpointslocalmin}!graphtools@{graphtools}}
+\subsubsection[{graphpointslocalmin}]{\setlength{\rightskip}{0pt plus 5cm}subroutine graphtools\-::graphpointslocalmin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgraphtools_a38a6d91f7f573b0f49db0a4d52868773}
+Generates the graph veteces, starting from the array of the set-\/point combinations. For each time-\/step determines which plant state respects the energy (staitc) constraints, and associates them to a graph vertex. A weight, that accounts for the costs/revenues of operating the power plant from time-\/step t to t+1 at the vertex state, is also calculated for each vertex. The time-\/step relative to each vertex and the number of verteces for each time step are associated to \char`\"{}point\-Time\char`\"{} and \char`\"{}nt\char`\"{} vectors respectively. Vertex 0 will be the starting point of the graph and vertex n\-Point + 1 the arriving point \begin{DoxyAuthor}{Author}
+Andrea Facci. 
+\end{DoxyAuthor}
+
+
+Definition at line 376 of file graph\-Tools.\-f90.
 
 
 
@@ -133,7 +158,7 @@ Referenced by main().
 \begin{DoxyParamCaption}
 \item[{integer, dimension(0\-:ntime+1,nm), intent(out)}]{ott\-Load, }
 \item[{real(kind = prec), intent(out)}]{min\-Cost, }
-\item[{real(kind = prec), dimension(0\-:ntime+1,2$\ast$nm0 + 2), intent(out)}]{up\-Time, }
+\item[{real(kind = prec), dimension(0\-:ntime+1,2$\ast$nm0 + 1), intent(out)}]{up\-Time, }
 \item[{integer, dimension(0\-:ntime+1)}]{min\-Path}
 \end{DoxyParamCaption}
 )}}\label{classgraphtools_abef4e47145f628bc6d3001d4f6bd9601}
@@ -142,11 +167,11 @@ Andrea Facci.
 \end{DoxyAuthor}
 
 
-Definition at line 525 of file graph\-Tools.\-f90.
+Definition at line 712 of file graph\-Tools.\-f90.
 
 
 
-References abortexecution(), constr\-::elstorageconstr(), mathtools\-::locaterow(), constr\-::thstorageconstr(), constr\-::timeconstr(), and uptimecalc().
+References abortexecution(), mathtools\-::locaterow(), constr\-::thstorageconstr(), constr\-::timeconstr(), and uptimecalc().
 
 
 
@@ -165,28 +190,28 @@ Andrea Facci.
 \end{DoxyAuthor}
 
 
-Definition at line 466 of file graph\-Tools.\-f90.
+Definition at line 653 of file graph\-Tools.\-f90.
 
 
 
 Referenced by main().
 
-\hypertarget{classgraphtools_a4c6b1425ce7fa1411c4550e4fb5de421}{\index{graphtools@{graphtools}!uptimecalc@{uptimecalc}}
+\hypertarget{classgraphtools_a19fd91ddf4b7d068a7bcb93f47becc9f}{\index{graphtools@{graphtools}!uptimecalc@{uptimecalc}}
 \index{uptimecalc@{uptimecalc}!graphtools@{graphtools}}
-\subsubsection[{uptimecalc}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function, dimension(2$\ast$nm0 + 2) graphtools\-::uptimecalc (
+\subsubsection[{uptimecalc}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec) function, dimension(2$\ast$nm0 + 1) graphtools\-::uptimecalc (
 \begin{DoxyParamCaption}
-\item[{real(kind = prec), dimension(2$\ast$nm0 + 2)}]{up\-T, }
+\item[{real(kind = prec), dimension(2$\ast$nm0 + 1)}]{up\-T, }
 \item[{integer, dimension(nm), intent(in)}]{c, }
 \item[{integer, intent(in)}]{t}
 \end{DoxyParamCaption}
-)}}\label{classgraphtools_a4c6b1425ce7fa1411c4550e4fb5de421}
+)}}\label{classgraphtools_a19fd91ddf4b7d068a7bcb93f47becc9f}
 
 
-Definition at line 618 of file graph\-Tools.\-f90.
+Definition at line 810 of file graph\-Tools.\-f90.
 
 
 
-References energy\-::elstoragelevelupdate(), and energy\-::thstoragelevelupdate().
+References energy\-::thstoragelevelupdate().
 
 
 
@@ -241,4 +266,4 @@ Definition at line 43 of file graph\-Tools.\-f90.
 
 The documentation for this module was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-/home/\-Codici/\-Blink/\-Power\-Manager/src/\hyperlink{graph_tools_8f90}{graph\-Tools.\-f90}\end{DoxyCompactItemize}
+/home/\-Progetti/\-Siat/\-Ottimizzatore/src/\hyperlink{graph_tools_8f90}{graph\-Tools.\-f90}\end{DoxyCompactItemize}

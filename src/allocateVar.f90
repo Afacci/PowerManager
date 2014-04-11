@@ -103,7 +103,7 @@ select case(what)
 !        allocate(nSizeC(nChi))
 !        nSizeC(1:nChi) = 0
         allocate(nEtaC(nChi), tecC(nChi))        
-        allocate(ntcC(nChi), npcC(nChi), nacC(nChi), ChiPriority(nChi))
+        allocate(ntcC(nChi), npcC(nChi), nacC(nChi), ChiPriority(nChi),TutileChi(nChi))
    case(12)
         nMax = maxval(nSpC)
         allocate(spC(nMax,nChi))
@@ -197,6 +197,24 @@ select case(what)
         allocate(etaEsIn(nEtaEsIn,2))
    case(40)
         allocate(etaEsOut(nEtaEsOut,2))
+   case(41)
+        allocate(pMaxHP(nHP), fireCostHP(nHP), maintCostHP(nHP), nSpHP(nHP), minUpTimeHP(nHP),minDownTimeHP(nHP))
+        nSpHP(1:nHP) = 0
+        allocate(nEtaHP(nHP), tecHP(nHP))        
+        allocate(ntcHP(nHP), npcHP(nHP), nacHP(nHP), TutileHP(nHP))
+   case(42)
+        nMax = maxval(nSpHP)
+        allocate(spHP(nMax,nHP))
+        spHP(1:nMax,1:nHP) = -1
+   case(43) 
+        nMax = maxval(nEtaHP)
+        allocate(etaHP(nMax,2,nHP))
+   case(44)
+        allocate(tempCorrHP(num,3,nHP))
+   case(45)
+        allocate(presCorrHP(num,3,nHP))
+   case(46)
+        allocate(altCorrHP(num,3,nHP))
 end select
 
 end subroutine 

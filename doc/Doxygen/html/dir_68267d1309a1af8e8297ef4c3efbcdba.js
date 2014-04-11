@@ -104,13 +104,14 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "plantVar.f90", "plant_var_8f90.html", [
       [ "plantvar", "classplantvar.html", "classplantvar" ]
     ] ],
-    [ "predStrategies.f90", "pred_strategies_8f90.html", null ],
     [ "prototipo.f90", "prototipo_8f90.html", "prototipo_8f90" ],
     [ "readBoiler.f90", "read_boiler_8f90.html", "read_boiler_8f90" ],
     [ "readChiller.f90", "read_chiller_8f90.html", "read_chiller_8f90" ],
     [ "readElStorage.f90", "read_el_storage_8f90.html", "read_el_storage_8f90" ],
     [ "readEnv.f90", "read_env_8f90.html", "read_env_8f90" ],
     [ "readGeneral.f90", "read_general_8f90.html", "read_general_8f90" ],
+    [ "readHeatPump.f90", "read_heat_pump_8f90.html", "read_heat_pump_8f90" ],
+    [ "readIceStorage.f90", "read_ice_storage_8f90.html", "read_ice_storage_8f90" ],
     [ "readKeyword.f90", "read_keyword_8f90.html", "read_keyword_8f90" ],
     [ "readLoad.f90", "read_load_8f90.html", "read_load_8f90" ],
     [ "readPV.f90", "read_p_v_8f90.html", "read_p_v_8f90" ],

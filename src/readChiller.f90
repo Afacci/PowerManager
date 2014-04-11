@@ -205,87 +205,134 @@ do
        case('MinDownTime')
              isPresent(13) = .true.
              read(value,*) (minDownTimeC(i), i=1,nChi)
-       case('TempCorrection')
-            read(value,*) (param(i), i=1,3)
-            do i=1,3
-               select case(param(i))
-                  case('temp')
-                     nt = i
-                  case('eta')
-                     net = i
-                  case('pmax')
-                     np = i
-               end select
-            enddo
-            do i=1,nCHi
-               ntcC(i) = vCount(genUnit,.false.)
-            enddo
-            call allocateVar(29,maxval(ntcC))
-            allocate(matrix(maxval(ntcC),3))
-            n = sum(ntcC)
-            call rewUnit(genUnit,n)
+       case('OutletTemp')
+!          isPresent(9) = .true.
+          allocate(nOutTc(nChi))
+          value_ = value
+          do i=1,nChi
+              nOutTc(i) = hCount(value_)
+              n2 = index(value_,')') + 1
+              value_ =  value_(n2 + 1:)
+          enddo
+!          call allocateVar(12)
+          allocate(outTempChi(maxval(nOutTc), nChi))
+          do i = 1, nChi
+             n1 = index(value,'(') + 1
+             n2 = index(value,')') - 1
+             vector = trim(value(n1:n2))
+             read(vector,*) (outTempChi(j,i), j=1,nOutTc(i))
+             value =  value(n2 + 2:)
+          enddo
+       case('EnvTemp')
+          allocate(nTenvC(nChi))
+!          isPresent(9) = .true.
+          value_ = value
+          do i=1,nChi
+              nTenvC(i) = hCount(value_)
+              n2 = index(value_,')') + 1
+              value_ =  value_(n2 + 1:)
+          enddo
+!          call allocateVar(12)
+          allocate(envTempChi(maxval(nTenvC), nChi))
+          do i = 1, nChi
+             n1 = index(value,'(') + 1
+             n2 = index(value,')') - 1
+             vector = trim(value(n1:n2))
+             read(vector,*) (envTempChi(j,i), j=1,nTenvC(i))
+             value =  value(n2 + 2:)
+          enddo
+      case('Correction')
             do i=1,nChi
-               matrix = rNaN(rVal)
-               matrix = dmatrixRead(genUnit,ntcC(i),3)
-               tempCorrC(:,1,i) = matrix(:,nt)
-               tempCorrC(:,2,i) = matrix(:,net)
-               tempCorrC(:,3,i) = matrix(:,np)
+               n1 = maxval(nOutTc)
+               n2 = maxval(nTenvC)
+               allocate(ChiCorrection(n1,n2,nChi))
+               call rewUnit(genUnit,1)
+               chiCorrection(:,:,i) = dmatrixRead(genUnit,nOutTc(i),nTenvC(i))
             enddo
-            deallocate(matrix)
-       case('PresCorrection')
-            read(value,*) (param(i), i=1,3)
-            do i=1,3
-               select case(param(i))
-                  case('pres')
-                     nt = i
-                  case('eta')
-                     net = i
-                  case('pmax')
-                     np = i
-               end select
-            enddo
-            do i=1,nCHi
-               npcC(i) = vCount(genUnit,.false.)
-            enddo
-            call allocateVar(30,maxval(npcC))
-            allocate(matrix(maxval(npcC),3))
-            n = sum(npcC)
-            call rewUnit(genUnit,n)
-            do i=1,nCHi
-               matrix = rNaN(rVal)
-               matrix = dmatrixRead(genUnit,npcC(i),3)
-               presCorrC(:,1,i) = matrix(:,nt)
-               presCorrC(:,2,i) = matrix(:,net)
-               presCorrC(:,3,i) = matrix(:,np)
-            enddo
-            deallocate(matrix)
-       case('AltCorrection')
-            read(value,*) (param(i), i=1,3)
-            do i=1,3
-               select case(param(i))
-                  case('alt')
-                     nt = i
-                  case('eta')
-                     net = i
-                  case('pmax')
-                     np = i
-               end select
-            enddo
-            do i=1,nCHi
-               nacC(i) = vCount(genUnit,.false.)
-            enddo
-            call allocateVar(31,maxval(nacC))
-            allocate(matrix(maxval(nacC),3))
-            n = sum(nacC)
-            call rewUnit(genUnit,n)
-            do i=1,nCHi
-               matrix = rNaN(rVal)
-               matrix = dmatrixRead(genUnit,nacC(i),3)
-               altCorrC(:,1,i) = matrix(:,nt)
-               altCorrC(:,2,i) = matrix(:,net)
-               altCorrC(:,3,i) = matrix(:,np)
-            enddo
-            deallocate(matrix)
+     case('Tmandata')
+            read(value,*) (TutileChi (i),i=1,nChi)
+!       case('TempCorrection')
+!            read(value,*) (param(i), i=1,3)
+!            do i=1,3
+!               select case(param(i))
+!                  case('temp')
+!                     nt = i
+!                  case('eta')
+!                     net = i
+!                  case('pmax')
+!                     np = i
+!               end select
+!            enddo
+!            do i=1,nCHi
+!               ntcC(i) = vCount(genUnit,.false.)
+!            enddo
+!            call allocateVar(29,maxval(ntcC))
+!            allocate(matrix(maxval(ntcC),3))
+!            n = sum(ntcC)
+!            call rewUnit(genUnit,n)
+!            do i=1,nChi
+!               matrix = rNaN(rVal)
+!               matrix = dmatrixRead(genUnit,ntcC(i),3)
+!               tempCorrC(:,1,i) = matrix(:,nt)
+!               tempCorrC(:,2,i) = matrix(:,net)
+!               tempCorrC(:,3,i) = matrix(:,np)
+!            enddo
+!            deallocate(matrix)
+!       case('PresCorrection')
+!            read(value,*) (param(i), i=1,3)
+!            do i=1,3
+!               select case(param(i))
+!                  case('pres')
+!                     nt = i
+!                  case('eta')
+!                     net = i
+!                  case('pmax')
+!                     np = i
+!               end select
+!            enddo
+!            do i=1,nCHi
+!               npcC(i) = vCount(genUnit,.false.)
+!            enddo
+!            call allocateVar(30,maxval(npcC))
+!            allocate(matrix(maxval(npcC),3))
+!            n = sum(npcC)
+!            call rewUnit(genUnit,n)
+!            do i=1,nCHi
+!               matrix = rNaN(rVal)
+!               matrix = dmatrixRead(genUnit,npcC(i),3)
+!               presCorrC(:,1,i) = matrix(:,nt)
+!               presCorrC(:,2,i) = matrix(:,net)
+!               presCorrC(:,3,i) = matrix(:,np)
+!            enddo
+!            deallocate(matrix)
+!       case('AltCorrection')
+             
+!            read(value,*) (param(i), i=1,3)
+!            do i=1,3
+!               select case(param(i))
+!                  case('alt')
+!                     nt = i
+!                  case('eta')
+!                     net = i
+!                  case('pmax')
+!                     np = i
+!               end select
+!            enddo
+!            do i=1,nCHi
+!               nacC(i) = vCount(genUnit,.false.)
+!            enddo
+!            call allocateVar(31,maxval(nacC))
+!            allocate(matrix(maxval(nacC),3))
+!            n = sum(nacC)
+!            call rewUnit(genUnit,n)
+!            do i=1,nCHi
+!               matrix = rNaN(rVal)
+!               matrix = dmatrixRead(genUnit,nacC(i),3)
+!               altCorrC(:,1,i) = matrix(:,nt)
+!               altCorrC(:,2,i) = matrix(:,net)
+!               altCorrC(:,3,i) = matrix(:,np)
+!            enddo
+!            deallocate(matrix)
        case(' ')
             if(verb) call warning(4,4,line=line)
        case default

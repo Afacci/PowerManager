@@ -322,6 +322,95 @@ contains
 
 !=========================================================================================
 
+
+!=========================================================================================
+  
+   subroutine addHeatPump
+
+      implicit none
+
+      integer :: j, i, k, l, kk
+      integer, dimension(2)  :: ext
+      character(len=100)     :: word
+      real(kind=prec), dimension(2) :: tCorr, pCorr
+      real(kind=prec), dimension(ntime,2) ::aCorr
+
+
+      if(nHP.gt.0) then
+         do i=1,nHP
+            etaHP_(:,i) = interpolation(etaHP(:,1,i), etaHP(:,2,i), nEtaHP(i), spHP(:,i),nSpHP(i), ext) 
+            if(ext(1).eq.1.and.(.not.silent)) call warning(2,3,i, word='HeatPump')
+            if(ext(2).eq.1.and.(.not.silent)) call warning(3,3,i, word='HeatPump')
+         enddo
+      endif
+
+      j=0
+      do i=is(iHP),ie(iHP)
+         j = j + 1 
+         nSp(i)  = nSpHP(j)
+         sp(1:nSp(i),i) = spHP(1:nSp(i),j)
+         Pmax(i) = PmaxHP(j)
+         lhv(i)  = -1
+         cf(i)   = -1
+         etaEl(1:nSp(i),i) = -1
+         etaTh(1:nSp(i),i) = -1
+         onOffCost(i)      = fireCostHP(j)
+         OeMCost(i)        = maintCostHP(j)/3.6e3
+         minUpTime(i)      = minUpTimeHP(j)*3.6e3
+         minDownTime(i)    = minDownTimeHP(j)*3.6e3
+         etaCh(1:nSp(i),i) = etaHP_(1:nSp(i),j)
+!         if(tecC(j).eq.'Absorption') pes(i) = 'heat'
+!         if(tecC(j).eq.'Mechanical') pes(i) = 'elec'
+         do k=1,nSpHP(j)
+            cr(k,i) = k
+         enddo
+!         tec(i) = tecC(j)
+ !        if(strategy.ne.'Optimized') then
+ !           if(ChiPriority(j).gt.nChi) call abortExecution(23,j)
+ !           ChiPriority(j) = chiPriority(j) + is(iC) - 1
+ !        endif
+ !        !---time constraints
+ !        nTv(j) = minUpTime(j)/3.6e3 + 1
+ !        do k=1,ntv(j)
+ !           timeVinc(k,j) = (k - 1)*3.6e3
+ !        enddo
+ !        !min non-running time
+ !        kk = nm0 + j
+ !        nTv(kk) = minDownTime(j)/3.6e3 + 1
+ !        do k=1,ntv(kk)
+ !           timeVinc(k,kk) = (k - 1)*3.6e3
+ !        enddo2
+      enddo
+
+
+      k = 0
+      do j=is(iHP),ie(iHP)
+         k = k + 1
+         aCorr(k,1) = scalarInterp(altCorrHP(:,1,k), altCorrHP(:,2,k), nacHP(k), altitude(1))
+         aCorr(k,2) = scalarInterp(altCorrHP(:,1,k), altCorrHP(:,3,k), nacHP(k), altitude(1))
+      enddo
+
+      do i=1,nTime
+         k = 0
+         do j=is(iC),ie(iC)
+            k = k + 1
+            tCorr(1) = scalarInterp(tempCorrHP(:,1,k), tempCorrHP(:,2,k), ntcHP(k), tAmb(i))
+            tCorr(2) = scalarInterp(tempCorrHP(:,1,k), tempCorrHP(:,3,k), ntcHP(k), tAmb(i))
+  
+            pCorr(1) = scalarInterp(presCorrHP(:,1,k), presCorrHP(:,2,k), npcHP(k), pAmb(i))
+            pCorr(2) = scalarInterp(presCorrHP(:,1,k), presCorrHP(:,3,k), npcHP(k), pAmb(i))
+
+            envCorr(i,j,3) = tCorr(1)*pCorr(1)*aCorr(k,1)
+            envCorr(i,j,4) = tCorr(2)*pCorr(2)*aCorr(k,2)
+         enddo
+      enddo
+
+
+   end subroutine addHeatPump
+
+!=========================================================================================
+
+
    subroutine addThermalStorage
 
      implicit none

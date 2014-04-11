@@ -9,6 +9,13 @@ static constraints
 
 
 Collaboration diagram for constr\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{classconstr__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -16,9 +23,11 @@ logical function \hyperlink{classconstr_a2e4697c7ad9fa86cef6903a66f9b2a5a}{const
 \item 
 logical function \hyperlink{classconstr_a09f37706c4e72fa0b97fe46ffa42443f}{timeconstr} (cindex, t\-State)
 \item 
-logical function \hyperlink{classconstr_afb13926311e9a3b5dcaeb0c764791b12}{thstorageconstr} (old\-Level, c, t)
+logical function \hyperlink{classconstr_a0f906039ff5e7e6c348520d7f3dd8686}{thstorageconstr} (old\-Level, c, t, final\-S\-O\-C)
 \item 
 logical function \hyperlink{classconstr_ab630a36bd00e0335024da62e048db721}{elstorageconstr} (old\-Level, c, t)
+\item 
+logical function \hyperlink{classconstr_ac2cf2f1c67f8c3e78de9a69e7b62703b}{icestorageconstr} (old\-Level, c, t, final\-S\-O\-C)
 \end{DoxyCompactItemize}
 
 
@@ -60,7 +69,7 @@ Definition at line 51 of file constraints.\-f90.
 
 
 
-References energy\-::chprod(), energy\-::thprod(), and energy\-::thselfcons().
+References energy\-::chprod(), energy\-::chselfcons(), energy\-::thprod(), and energy\-::thselfcons().
 
 
 
@@ -77,28 +86,43 @@ Referenced by euristics\-::chredundant(), and euristics\-::thredundant().
 )}}\label{classconstr_ab630a36bd00e0335024da62e048db721}
 
 
-Definition at line 172 of file constraints.\-f90.
+Definition at line 182 of file constraints.\-f90.
 
 
 
 References energy\-::elstoragelevelupdate().
 
+\hypertarget{classconstr_ac2cf2f1c67f8c3e78de9a69e7b62703b}{\index{constr@{constr}!icestorageconstr@{icestorageconstr}}
+\index{icestorageconstr@{icestorageconstr}!constr@{constr}}
+\subsubsection[{icestorageconstr}]{\setlength{\rightskip}{0pt plus 5cm}logical function constr\-::icestorageconstr (
+\begin{DoxyParamCaption}
+\item[{real(kind=prec), intent(in)}]{old\-Level, }
+\item[{integer, dimension(nm), intent(in)}]{c, }
+\item[{integer, intent(in)}]{t, }
+\item[{logical, intent(in), optional}]{final\-S\-O\-C}
+\end{DoxyParamCaption}
+)}}\label{classconstr_ac2cf2f1c67f8c3e78de9a69e7b62703b}
 
 
-Referenced by graphtools\-::minpathtopobw().
+Definition at line 214 of file constraints.\-f90.
 
-\hypertarget{classconstr_afb13926311e9a3b5dcaeb0c764791b12}{\index{constr@{constr}!thstorageconstr@{thstorageconstr}}
+
+
+References energy\-::icestoragelevelupdate().
+
+\hypertarget{classconstr_a0f906039ff5e7e6c348520d7f3dd8686}{\index{constr@{constr}!thstorageconstr@{thstorageconstr}}
 \index{thstorageconstr@{thstorageconstr}!constr@{constr}}
 \subsubsection[{thstorageconstr}]{\setlength{\rightskip}{0pt plus 5cm}logical function constr\-::thstorageconstr (
 \begin{DoxyParamCaption}
 \item[{real(kind=prec), intent(in)}]{old\-Level, }
 \item[{integer, dimension(nm), intent(in)}]{c, }
-\item[{integer, intent(in)}]{t}
+\item[{integer, intent(in)}]{t, }
+\item[{logical, intent(in), optional}]{final\-S\-O\-C}
 \end{DoxyParamCaption}
-)}}\label{classconstr_afb13926311e9a3b5dcaeb0c764791b12}
+)}}\label{classconstr_a0f906039ff5e7e6c348520d7f3dd8686}
 
 
-Definition at line 137 of file constraints.\-f90.
+Definition at line 135 of file constraints.\-f90.
 
 
 
@@ -118,7 +142,7 @@ Referenced by graphtools\-::minpathtopobw(), and getsetpoint\-::thstoragepmax().
 )}}\label{classconstr_a09f37706c4e72fa0b97fe46ffa42443f}
 
 
-Definition at line 101 of file constraints.\-f90.
+Definition at line 99 of file constraints.\-f90.
 
 
 
@@ -128,4 +152,4 @@ Referenced by graphtools\-::minpathtopobw().
 
 The documentation for this module was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-/home/\-Codici/\-Blink/\-Power\-Manager/src/\hyperlink{constraints_8f90}{constraints.\-f90}\end{DoxyCompactItemize}
+/home/\-Progetti/\-Siat/\-Ottimizzatore/src/\hyperlink{constraints_8f90}{constraints.\-f90}\end{DoxyCompactItemize}

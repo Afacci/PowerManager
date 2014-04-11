@@ -8,7 +8,8 @@ collection of variables relative to the power plant structure.
 
 
 
-Collaboration diagram for plantvar\-:\nopagebreak
+Collaboration diagram for plantvar\-:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -35,9 +36,6 @@ allocatable \hyperlink{classplantvar_ab3e228857f49d79572bc7071e650ae33}{etac\-\_
 \item 
 real(kind=prec), dimension(\-:,\-:), \\*
 allocatable \hyperlink{classplantvar_a0ecfac9070622328232608ce808ede2b}{sp}
-\item 
-real(kind=prec), dimension(\-:,\-:), \\*
-allocatable \hyperlink{classplantvar_a5ddb9d753dc518aed9d34c9e1f5335e0}{cref}
 \item 
 real(kind=prec), dimension(\-:,\-:,\-:), \\*
 allocatable \hyperlink{classplantvar_a187eaf8e3b46428daf4b89db350aa0f1}{envcorr}
@@ -99,6 +97,12 @@ allocatable \hyperlink{classplantvar_a325e0974aedb888a4814e7d9479c67d3}{socel}
 real(kind=prec), dimension(\-:), \\*
 allocatable \hyperlink{classplantvar_a52a6a33ef0efbd1e6b19c59c683db54a}{esoc}
 \item 
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classplantvar_ab4064b573be9c1b9c4d96298feb717d5}{socis}
+\item 
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classplantvar_a297631a7e3453200fc05d202522c19b6}{icesoc}
+\item 
 character(len=4), dimension(\-:), \\*
 allocatable \hyperlink{classplantvar_a8b75644cc6f0b1728b0fdcd7c575c177}{pes}
 \item 
@@ -112,9 +116,13 @@ integer \hyperlink{classplantvar_ac56a3422e256b7cdcc55623af8ba6c7b}{nsoc}
 \item 
 integer \hyperlink{classplantvar_a56078fb4f499089dd81db61a9e8dfc0f}{nsocel}
 \item 
-integer, dimension(5) \hyperlink{classplantvar_ab7276bde0d7595d7ce2ef0470ad21ca9}{is}
+integer \hyperlink{classplantvar_a6b3064a5fca6688fa44ea9bbec34ec97}{nsocice}
 \item 
-integer, dimension(5) \hyperlink{classplantvar_afa98042e93464d6b9c62a51103cd299f}{ie}
+integer \hyperlink{classplantvar_ac08eaef488f61f2e228ce9b823a3d1ab}{nx}
+\item 
+integer, dimension(6) \hyperlink{classplantvar_ac25b76f99d2e9c0b602a81c59e5bdc03}{is}
+\item 
+integer, dimension(6) \hyperlink{classplantvar_ab30c259c0074e9d5499732c8d7090c66}{ie}
 \item 
 integer, dimension(\-:), allocatable \hyperlink{classplantvar_a16e98f1a836d4de3e5436365e77441b0}{nsp}
 \item 
@@ -136,6 +144,17 @@ allocatable \hyperlink{classplantvar_a90a77172411c06cf156d494ea2902bfd}{windel}
 \item 
 logical \hyperlink{classplantvar_a269d2dde89a5632bf0e3d0162c2368c0}{elstor} = .false.
 \item 
+logical \hyperlink{classplantvar_ab17684a49bca5bfae1d492eb71df86a9}{icestor} = .false.
+\item 
+integer, dimension(\-:,\-:), \\*
+allocatable \hyperlink{classplantvar_ae294a125343fb4fbe36e5a830ec9be5d}{cpred}
+\item 
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classplantvar_a3d6924ccf970f712f654dc0ca561b07e}{etaesin\-\_\-}
+\item 
+real(kind=prec), dimension(\-:), \\*
+allocatable \hyperlink{classplantvar_a3d1c9aec11569f63ac581bd4176c69f1}{etaesout\-\_\-}
+\item 
 integer, parameter \hyperlink{classplantvar_ae20b71682087261a45478790df439eb9}{it} = 1
 \item 
 integer, parameter \hyperlink{classplantvar_a234a52fa723b1234d3725b82c81dad0f}{ib} = 2
@@ -145,6 +164,8 @@ integer, parameter \hyperlink{classplantvar_a395505b74fbf30b4c496601cbd47a64b}{i
 integer, parameter \hyperlink{classplantvar_aaa8d59ae7b5ae7303a9b5bd17499ce56}{its} = 4
 \item 
 integer, parameter \hyperlink{classplantvar_afd5b160dbbf007015da33b4011f36c83}{ies} = 5
+\item 
+integer, parameter \hyperlink{classplantvar_a1c564e79e51182f3e016679d50615c49}{iis} = 6
 \end{DoxyCompactItemize}
 
 
@@ -166,19 +187,19 @@ Definition at line 35 of file plant\-Var.\-f90.
 
 Definition at line 46 of file plant\-Var.\-f90.
 
+\hypertarget{classplantvar_ae294a125343fb4fbe36e5a830ec9be5d}{\index{plantvar@{plantvar}!cpred@{cpred}}
+\index{cpred@{cpred}!plantvar@{plantvar}}
+\subsubsection[{cpred}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:,\-:), allocatable plantvar\-::cpred}}\label{classplantvar_ae294a125343fb4fbe36e5a830ec9be5d}
+
+
+Definition at line 55 of file plant\-Var.\-f90.
+
 \hypertarget{classplantvar_a01620e31bb05f1443908f0bff75215a4}{\index{plantvar@{plantvar}!cr@{cr}}
 \index{cr@{cr}!plantvar@{plantvar}}
 \subsubsection[{cr}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:,\-:), allocatable plantvar\-::cr}}\label{classplantvar_a01620e31bb05f1443908f0bff75215a4}
 
 
 Definition at line 45 of file plant\-Var.\-f90.
-
-\hypertarget{classplantvar_a5ddb9d753dc518aed9d34c9e1f5335e0}{\index{plantvar@{plantvar}!cref@{cref}}
-\index{cref@{cref}!plantvar@{plantvar}}
-\subsubsection[{cref}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec), dimension(\-:,\-:), allocatable plantvar\-::cref}}\label{classplantvar_a5ddb9d753dc518aed9d34c9e1f5335e0}
-
-
-Definition at line 41 of file plant\-Var.\-f90.
 
 \hypertarget{classplantvar_ae10871bcf2f4379bd15a518a314038de}{\index{plantvar@{plantvar}!dt@{dt}}
 \index{dt@{dt}!plantvar@{plantvar}}
@@ -257,6 +278,20 @@ Definition at line 44 of file plant\-Var.\-f90.
 
 Definition at line 41 of file plant\-Var.\-f90.
 
+\hypertarget{classplantvar_a3d6924ccf970f712f654dc0ca561b07e}{\index{plantvar@{plantvar}!etaesin\-\_\-@{etaesin\-\_\-}}
+\index{etaesin\-\_\-@{etaesin\-\_\-}!plantvar@{plantvar}}
+\subsubsection[{etaesin\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}real(kind=prec), dimension(\-:), allocatable plantvar\-::etaesin\-\_\-}}\label{classplantvar_a3d6924ccf970f712f654dc0ca561b07e}
+
+
+Definition at line 56 of file plant\-Var.\-f90.
+
+\hypertarget{classplantvar_a3d1c9aec11569f63ac581bd4176c69f1}{\index{plantvar@{plantvar}!etaesout\-\_\-@{etaesout\-\_\-}}
+\index{etaesout\-\_\-@{etaesout\-\_\-}!plantvar@{plantvar}}
+\subsubsection[{etaesout\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}real(kind=prec), dimension(\-:), allocatable plantvar\-::etaesout\-\_\-}}\label{classplantvar_a3d1c9aec11569f63ac581bd4176c69f1}
+
+
+Definition at line 56 of file plant\-Var.\-f90.
+
 \hypertarget{classplantvar_a226f4150db308d7f4c46da8f297127af}{\index{plantvar@{plantvar}!etath@{etath}}
 \index{etath@{etath}!plantvar@{plantvar}}
 \subsubsection[{etath}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec), dimension(\-:,\-:), allocatable plantvar\-::etath}}\label{classplantvar_a226f4150db308d7f4c46da8f297127af}
@@ -276,18 +311,32 @@ Definition at line 41 of file plant\-Var.\-f90.
 \subsubsection[{ib}]{\setlength{\rightskip}{0pt plus 5cm}integer, parameter plantvar\-::ib = 2}}\label{classplantvar_a234a52fa723b1234d3725b82c81dad0f}
 
 
-Definition at line 56 of file plant\-Var.\-f90.
+Definition at line 58 of file plant\-Var.\-f90.
 
 \hypertarget{classplantvar_a395505b74fbf30b4c496601cbd47a64b}{\index{plantvar@{plantvar}!ic@{ic}}
 \index{ic@{ic}!plantvar@{plantvar}}
 \subsubsection[{ic}]{\setlength{\rightskip}{0pt plus 5cm}integer, parameter plantvar\-::ic = 3}}\label{classplantvar_a395505b74fbf30b4c496601cbd47a64b}
 
 
-Definition at line 56 of file plant\-Var.\-f90.
+Definition at line 58 of file plant\-Var.\-f90.
 
-\hypertarget{classplantvar_afa98042e93464d6b9c62a51103cd299f}{\index{plantvar@{plantvar}!ie@{ie}}
+\hypertarget{classplantvar_a297631a7e3453200fc05d202522c19b6}{\index{plantvar@{plantvar}!icesoc@{icesoc}}
+\index{icesoc@{icesoc}!plantvar@{plantvar}}
+\subsubsection[{icesoc}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec), dimension(\-:), allocatable plantvar\-::icesoc}}\label{classplantvar_a297631a7e3453200fc05d202522c19b6}
+
+
+Definition at line 46 of file plant\-Var.\-f90.
+
+\hypertarget{classplantvar_ab17684a49bca5bfae1d492eb71df86a9}{\index{plantvar@{plantvar}!icestor@{icestor}}
+\index{icestor@{icestor}!plantvar@{plantvar}}
+\subsubsection[{icestor}]{\setlength{\rightskip}{0pt plus 5cm}logical plantvar\-::icestor = .false.}}\label{classplantvar_ab17684a49bca5bfae1d492eb71df86a9}
+
+
+Definition at line 54 of file plant\-Var.\-f90.
+
+\hypertarget{classplantvar_ab30c259c0074e9d5499732c8d7090c66}{\index{plantvar@{plantvar}!ie@{ie}}
 \index{ie@{ie}!plantvar@{plantvar}}
-\subsubsection[{ie}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(5) plantvar\-::ie}}\label{classplantvar_afa98042e93464d6b9c62a51103cd299f}
+\subsubsection[{ie}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(6) plantvar\-::ie}}\label{classplantvar_ab30c259c0074e9d5499732c8d7090c66}
 
 
 Definition at line 50 of file plant\-Var.\-f90.
@@ -297,11 +346,18 @@ Definition at line 50 of file plant\-Var.\-f90.
 \subsubsection[{ies}]{\setlength{\rightskip}{0pt plus 5cm}integer, parameter plantvar\-::ies = 5}}\label{classplantvar_afd5b160dbbf007015da33b4011f36c83}
 
 
-Definition at line 56 of file plant\-Var.\-f90.
+Definition at line 58 of file plant\-Var.\-f90.
 
-\hypertarget{classplantvar_ab7276bde0d7595d7ce2ef0470ad21ca9}{\index{plantvar@{plantvar}!is@{is}}
+\hypertarget{classplantvar_a1c564e79e51182f3e016679d50615c49}{\index{plantvar@{plantvar}!iis@{iis}}
+\index{iis@{iis}!plantvar@{plantvar}}
+\subsubsection[{iis}]{\setlength{\rightskip}{0pt plus 5cm}integer, parameter plantvar\-::iis = 6}}\label{classplantvar_a1c564e79e51182f3e016679d50615c49}
+
+
+Definition at line 58 of file plant\-Var.\-f90.
+
+\hypertarget{classplantvar_ac25b76f99d2e9c0b602a81c59e5bdc03}{\index{plantvar@{plantvar}!is@{is}}
 \index{is@{is}!plantvar@{plantvar}}
-\subsubsection[{is}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(5) plantvar\-::is}}\label{classplantvar_ab7276bde0d7595d7ce2ef0470ad21ca9}
+\subsubsection[{is}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(6) plantvar\-::is}}\label{classplantvar_ac25b76f99d2e9c0b602a81c59e5bdc03}
 
 
 Definition at line 50 of file plant\-Var.\-f90.
@@ -311,14 +367,14 @@ Definition at line 50 of file plant\-Var.\-f90.
 \subsubsection[{it}]{\setlength{\rightskip}{0pt plus 5cm}integer, parameter plantvar\-::it = 1}}\label{classplantvar_ae20b71682087261a45478790df439eb9}
 
 
-Definition at line 56 of file plant\-Var.\-f90.
+Definition at line 58 of file plant\-Var.\-f90.
 
 \hypertarget{classplantvar_aaa8d59ae7b5ae7303a9b5bd17499ce56}{\index{plantvar@{plantvar}!its@{its}}
 \index{its@{its}!plantvar@{plantvar}}
 \subsubsection[{its}]{\setlength{\rightskip}{0pt plus 5cm}integer, parameter plantvar\-::its = 4}}\label{classplantvar_aaa8d59ae7b5ae7303a9b5bd17499ce56}
 
 
-Definition at line 56 of file plant\-Var.\-f90.
+Definition at line 58 of file plant\-Var.\-f90.
 
 \hypertarget{classplantvar_a8c41db489c4d6b494849ab3c82833e29}{\index{plantvar@{plantvar}!lhv@{lhv}}
 \index{lhv@{lhv}!plantvar@{plantvar}}
@@ -369,6 +425,13 @@ Definition at line 49 of file plant\-Var.\-f90.
 
 Definition at line 49 of file plant\-Var.\-f90.
 
+\hypertarget{classplantvar_a6b3064a5fca6688fa44ea9bbec34ec97}{\index{plantvar@{plantvar}!nsocice@{nsocice}}
+\index{nsocice@{nsocice}!plantvar@{plantvar}}
+\subsubsection[{nsocice}]{\setlength{\rightskip}{0pt plus 5cm}integer plantvar\-::nsocice}}\label{classplantvar_a6b3064a5fca6688fa44ea9bbec34ec97}
+
+
+Definition at line 49 of file plant\-Var.\-f90.
+
 \hypertarget{classplantvar_a16e98f1a836d4de3e5436365e77441b0}{\index{plantvar@{plantvar}!nsp@{nsp}}
 \index{nsp@{nsp}!plantvar@{plantvar}}
 \subsubsection[{nsp}]{\setlength{\rightskip}{0pt plus 5cm}integer, dimension(\-:), allocatable plantvar\-::nsp}}\label{classplantvar_a16e98f1a836d4de3e5436365e77441b0}
@@ -389,6 +452,13 @@ Definition at line 49 of file plant\-Var.\-f90.
 
 
 Definition at line 51 of file plant\-Var.\-f90.
+
+\hypertarget{classplantvar_ac08eaef488f61f2e228ce9b823a3d1ab}{\index{plantvar@{plantvar}!nx@{nx}}
+\index{nx@{nx}!plantvar@{plantvar}}
+\subsubsection[{nx}]{\setlength{\rightskip}{0pt plus 5cm}integer plantvar\-::nx}}\label{classplantvar_ac08eaef488f61f2e228ce9b823a3d1ab}
+
+
+Definition at line 49 of file plant\-Var.\-f90.
 
 \hypertarget{classplantvar_a70a5a58ce085d08a2b8fb1434ab5862c}{\index{plantvar@{plantvar}!oemcost@{oemcost}}
 \index{oemcost@{oemcost}!plantvar@{plantvar}}
@@ -446,6 +516,13 @@ Definition at line 46 of file plant\-Var.\-f90.
 
 Definition at line 46 of file plant\-Var.\-f90.
 
+\hypertarget{classplantvar_ab4064b573be9c1b9c4d96298feb717d5}{\index{plantvar@{plantvar}!socis@{socis}}
+\index{socis@{socis}!plantvar@{plantvar}}
+\subsubsection[{socis}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec), dimension(\-:), allocatable plantvar\-::socis}}\label{classplantvar_ab4064b573be9c1b9c4d96298feb717d5}
+
+
+Definition at line 46 of file plant\-Var.\-f90.
+
 \hypertarget{classplantvar_a9cdc1767d27c7362b6c33bc24fbe79ed}{\index{plantvar@{plantvar}!socth@{socth}}
 \index{socth@{socth}!plantvar@{plantvar}}
 \subsubsection[{socth}]{\setlength{\rightskip}{0pt plus 5cm}real(kind = prec), dimension(\-:), allocatable plantvar\-::socth}}\label{classplantvar_a9cdc1767d27c7362b6c33bc24fbe79ed}
@@ -499,4 +576,4 @@ Definition at line 53 of file plant\-Var.\-f90.
 
 The documentation for this module was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-/home/\-Codici/\-Blink/\-Power\-Manager/src/\hyperlink{plant_var_8f90}{plant\-Var.\-f90}\end{DoxyCompactItemize}
+/home/\-Progetti/\-Siat/\-Ottimizzatore/src/\hyperlink{plant_var_8f90}{plant\-Var.\-f90}\end{DoxyCompactItemize}

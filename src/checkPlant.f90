@@ -89,6 +89,12 @@ if(nBoi.gt.0) then
       pTh = pTh + PmaxB(i)*cMax 
    enddo
 endif
+if(nHP.gt.0) then
+   do i=1,nHP
+      cMax = maxval(spHP(:,i))
+      pTh = pTh + PmaxHP(i)*cMax 
+   enddo
+endif
 pTh = pTh + pThT
 
 !-evaluation of maximum load for each vector.
