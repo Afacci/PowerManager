@@ -76,7 +76,7 @@ character(len=50)    :: inputFile = './Input/Chillers.inp'
 logical              :: filePresent
 character(len=500)   :: buffer, keyword, value,vector,elements,value_
 integer              :: firstLine, line, nl, i, nInp, nRow, n1, n2, x, j, il
-logical,dimension(13):: isPresent = .false.
+logical,dimension(18):: isPresent = .false.
 character(len=100)   :: chKind(2)
 integer, dimension(10) :: dummy
 integer              :: error
@@ -124,7 +124,7 @@ do
     call readKeyword(genUnit,.false., keyword,value,error,nl)
     if(error.eq.1) call abortExecution(0,4)
     line = line + nl
-    if(debug) print*,'file: Trigeneration.int; Keyword: ', trim(keyword)
+    if(debug) print*,'file: Chillers.inp; Keyword: ', trim(keyword)
     select case(keyword)
        case('end')
           exit
@@ -134,15 +134,6 @@ do
        case('Priority')
           read(value,*) (ChiPriority(i), i=1,nChi)
           iPrio(3) = .true.
-!       case('DegradationRate')
-!          read(value,*) (degRateC(i), i=1,nChi)
-!          isPresent(4) = .true.
-!       case('Investment')
-!          read(value,*) (invC(i), i=1,nChi)
-!          isPresent(5) = .true.
-!       case('Lifetime')
-!          read(value,*) (lifeC(i), i=1,nChi)
-!          isPresent(6) = .true.
        case('OnOffCost')
           read(value,*) (fireCostC(i), i=1,nChi)
           isPresent(7) = .true.
@@ -165,22 +156,6 @@ do
              read(vector,*) (spC(j,i), j=1,nSpC(i))
              value =  value(n2 + 2:)
           enddo
-!       case('Size')
-!           value_ = value
-!           isPresent(10) = .true.
-!           do i=1,nChi
-!               nSizeC(i) = hCount(value_)
-!               n2 = index(value_,')') + 1
-!               value_ =  value_(n2 + 1:)
-!           enddo
-!           call allocateVar(13)
-!          do i = 1, nChi
-!             n1 = index(value,'(') + 1
-!             n2 = index(value,')') - 1
-!             vector = trim(value(n1:n2))
-!             read(vector,*) (kSizeC(i,j), j=1,nSizeC(i))
-!             value =  value(n2 + 2:)
-!           enddo
        case('Efficiency')
               isPresent(11) = .true.
               backspace(genUnit)
@@ -195,8 +170,6 @@ do
                  etaC(:,:,i) =  dmatrixRead(genUnit,nEtaC(i),2)
               enddo
               line = line + j
-       case('Number')
-             continue
        case('Technology')
              read(value,*) (tecC(i),i=1,nChi)
        case('MinUpTime')
@@ -205,8 +178,82 @@ do
        case('MinDownTime')
              isPresent(13) = .true.
              read(value,*) (minDownTimeC(i), i=1,nChi)
+!       case('OutletTemp')
+!          isPresent(14) = .true.
+!          allocate(nOutTc(nChi))
+!          value_ = value
+!          do i=1,nChi
+!              nOutTc(i) = hCount(value_)
+!              n2 = index(value_,')') + 1
+!              value_ =  value_(n2 + 1:)
+!          enddo
+!          allocate(outTempChi(maxval(nOutTc), nChi))
+!          do i = 1, nChi
+!             n1 = index(value,'(') + 1
+!             n2 = index(value,')') - 1
+!             vector = trim(value(n1:n2))
+!             read(vector,*) (outTempChi(j,i), j=1,nOutTc(i))
+!             value =  value(n2 + 2:)
+!          enddo
+!       case('EnvTemp')
+!          allocate(nTenvC(nChi))
+!          isPresent(15) = .true.
+!          value_ = value
+!          do i=1,nChi
+!              nTenvC(i) = hCount(value_)
+!              n2 = index(value_,')') + 1
+!              value_ =  value_(n2 + 1:)
+!          enddo
+!          allocate(envTempChi(maxval(nTenvC), nChi))
+!          do i = 1, nChi
+!             n1 = index(value,'(') + 1
+!             n2 = index(value,')') - 1
+!             vector = trim(value(n1:n2))
+!             read(vector,*) (envTempChi(j,i), j=1,nTenvC(i))
+!             value =  value(n2 + 2:)
+!          enddo
+!      case('PowerCorrection')
+!            isPresent(16) = .true.
+!            do i=1,nChi
+!               n1 = maxval(nOutTc)
+!               n2 = maxval(nTenvC)
+!               allocate(ChiCorrectionP(n1,n2,nChi))
+!               call rewUnit(genUnit,1)
+!               chiCorrectionP(:,:,i) = dmatrixRead(genUnit,nOutTc(i),nTenvC(i))
+!            enddo
+!      case('CopCorrection')
+!            isPresent(17) = .true.
+!            do i=1,nChi
+!               n1 = maxval(nOutTc)
+!               n2 = maxval(nTenvC)
+!               allocate(ChiCorrectionE(n1,n2,nChi))
+!               call rewUnit(genUnit,1)
+!               chiCorrectionE(:,:,i) = dmatrixRead(genUnit,nOutTc(i),nTenvC(i))
+!            enddo
+!      case('Tmandata')
+!            isPresent(18) = .true.
+!            read(value,*) (TutileChi (i),i=1,nChi)
+       case('Number','EnvTemp', 'OutletTemp','PowerCorrection','CopCorrection','Tmandata')
+             continue
+       case(' ')
+            if(verb) call warning(4,4,line=line)
+       case default
+            if(.not.silent)  call warning(1,4,line=line,word=keyword)
+    end select
+enddo
+
+call rewUnit(genUnit,line-firstLine)
+line = firstLine
+do 
+    call readKeyword(genUnit,.false., keyword,value,error,nl)
+    if(error.eq.1) call abortExecution(0,11)
+    line = line + nl
+    if(debug) print*,'file: Chillers.inp; Keyword: ', trim(keyword)
+    select case(keyword)
+       case('end')
+          exit
        case('OutletTemp')
-!          isPresent(9) = .true.
+          isPresent(14) = .true.
           allocate(nOutTc(nChi))
           value_ = value
           do i=1,nChi
@@ -214,7 +261,6 @@ do
               n2 = index(value_,')') + 1
               value_ =  value_(n2 + 1:)
           enddo
-!          call allocateVar(12)
           allocate(outTempChi(maxval(nOutTc), nChi))
           do i = 1, nChi
              n1 = index(value,'(') + 1
@@ -225,14 +271,13 @@ do
           enddo
        case('EnvTemp')
           allocate(nTenvC(nChi))
-!          isPresent(9) = .true.
+          isPresent(15) = .true.
           value_ = value
           do i=1,nChi
               nTenvC(i) = hCount(value_)
               n2 = index(value_,')') + 1
               value_ =  value_(n2 + 1:)
           enddo
-!          call allocateVar(12)
           allocate(envTempChi(maxval(nTenvC), nChi))
           do i = 1, nChi
              n1 = index(value,'(') + 1
@@ -241,7 +286,24 @@ do
              read(vector,*) (envTempChi(j,i), j=1,nTenvC(i))
              value =  value(n2 + 2:)
           enddo
+      case(' ')
+            if(verb) call warning(4,4,line=line)
+    end select
+enddo
+
+call rewUnit(genUnit,line-firstLine)
+line = firstLine
+if(.not.isPresent(14)) call abortExecution(6,14)
+if(.not.isPresent(15)) call abortExecution(6,15)
+do 
+    call readKeyword(genUnit,.false., keyword,value,error,nl)
+    if(error.eq.1) call abortExecution(0,11)
+    line = line + nl
+    select case(keyword)
+      case('end')
+          exit
       case('PowerCorrection')
+            isPresent(16) = .true.
             do i=1,nChi
                n1 = maxval(nOutTc)
                n2 = maxval(nTenvC)
@@ -250,6 +312,7 @@ do
                chiCorrectionP(:,:,i) = dmatrixRead(genUnit,nOutTc(i),nTenvC(i))
             enddo
       case('CopCorrection')
+            isPresent(17) = .true.
             do i=1,nChi
                n1 = maxval(nOutTc)
                n2 = maxval(nTenvC)
@@ -257,94 +320,11 @@ do
                call rewUnit(genUnit,1)
                chiCorrectionE(:,:,i) = dmatrixRead(genUnit,nOutTc(i),nTenvC(i))
             enddo
-     case('Tmandata')
+      case('Tmandata')
+            isPresent(18) = .true.
             read(value,*) (TutileChi (i),i=1,nChi)
-!       case('TempCorrection')
-!            read(value,*) (param(i), i=1,3)
-!            do i=1,3
-!               select case(param(i))
-!                  case('temp')
-!                     nt = i
-!                  case('eta')
-!                     net = i
-!                  case('pmax')
-!                     np = i
-!               end select
-!            enddo
-!            do i=1,nCHi
-!               ntcC(i) = vCount(genUnit,.false.)
-!            enddo
-!            call allocateVar(29,maxval(ntcC))
-!            allocate(matrix(maxval(ntcC),3))
-!            n = sum(ntcC)
-!            call rewUnit(genUnit,n)
-!            do i=1,nChi
-!               matrix = rNaN(rVal)
-!               matrix = dmatrixRead(genUnit,ntcC(i),3)
-!               tempCorrC(:,1,i) = matrix(:,nt)
-!               tempCorrC(:,2,i) = matrix(:,net)
-!               tempCorrC(:,3,i) = matrix(:,np)
-!            enddo
-!            deallocate(matrix)
-!       case('PresCorrection')
-!            read(value,*) (param(i), i=1,3)
-!            do i=1,3
-!               select case(param(i))
-!                  case('pres')
-!                     nt = i
-!                  case('eta')
-!                     net = i
-!                  case('pmax')
-!                     np = i
-!               end select
-!            enddo
-!            do i=1,nCHi
-!               npcC(i) = vCount(genUnit,.false.)
-!            enddo
-!            call allocateVar(30,maxval(npcC))
-!            allocate(matrix(maxval(npcC),3))
-!            n = sum(npcC)
-!            call rewUnit(genUnit,n)
-!            do i=1,nCHi
-!               matrix = rNaN(rVal)
-!               matrix = dmatrixRead(genUnit,npcC(i),3)
-!               presCorrC(:,1,i) = matrix(:,nt)
-!               presCorrC(:,2,i) = matrix(:,net)
-!               presCorrC(:,3,i) = matrix(:,np)
-!            enddo
-!            deallocate(matrix)
-!       case('AltCorrection')
-             
-!            read(value,*) (param(i), i=1,3)
-!            do i=1,3
-!               select case(param(i))
-!                  case('alt')
-!                     nt = i
-!                  case('eta')
-!                     net = i
-!                  case('pmax')
-!                     np = i
-!               end select
-!            enddo
-!            do i=1,nCHi
-!               nacC(i) = vCount(genUnit,.false.)
-!            enddo
-!            call allocateVar(31,maxval(nacC))
-!            allocate(matrix(maxval(nacC),3))
-!            n = sum(nacC)
-!            call rewUnit(genUnit,n)
-!            do i=1,nCHi
-!               matrix = rNaN(rVal)
-!               matrix = dmatrixRead(genUnit,nacC(i),3)
-!               altCorrC(:,1,i) = matrix(:,nt)
-!               altCorrC(:,2,i) = matrix(:,net)
-!               altCorrC(:,3,i) = matrix(:,np)
-!            enddo
-!            deallocate(matrix)
-       case(' ')
+      case(' ')
             if(verb) call warning(4,4,line=line)
-       case default
-            if(.not.silent)  call warning(1,4,line=line,word=keyword)
     end select
 enddo
 

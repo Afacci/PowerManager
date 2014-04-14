@@ -76,7 +76,7 @@ character(len=50)    :: inputFile = './Input/Boilers.inp'
 logical              :: filePresent
 character(len=500)   :: buffer, keyword, value,vector,elements,value_
 integer              :: firstLine, line, i, nInp, nRow, n1, n2, x, j, il, nl
-logical,dimension(15)  :: isPresent = .false.
+logical,dimension(18)  :: isPresent = .false.
 integer,dimension(100) :: dummy
 integer              :: error
 character(len=20), dimension(3) :: param
@@ -95,6 +95,7 @@ isPresent(3) = .true.
 isPresent(6) = .true.
 isPresent(7) = .true.
 isPresent(11) = .true.
+isPresent(13) = .true.
 !---Skip all the lines befor the keyword "begin".
 firstLine = 0;
 do 
@@ -196,9 +197,9 @@ do
               line = line + j
        case('Number')
              continue
-       case('HeatSource')
-             isPresent(13) = .true.
-             read(value,*) (tecB(i), i=1,nBoi)
+!       case('HeatSource')
+!             isPresent(13) = .true.
+!             read(value,*) (tecB(i), i=1,nBoi)
        case('MinUpTime')
              isPresent(14) = .true.
              read(value,*) (minUpTimeB(i), i=1,nBoi)
@@ -206,86 +207,86 @@ do
              isPresent(15) = .true.
              read(value,*) (minDownTimeB(i), i=1,nBoi)
        case('TempCorrection')
-            read(value,*) (param(i), i=1,3)
-            do i=1,3
+            read(value,*) (param(i), i=1,2)
+            do i=1,2
                select case(param(i))
                   case('temp')
                      nt = i
                   case('eta')
                      net = i
-                  case('pmax')
-                     np = i
+                  !case('pmax')
+                  !   np = i
                end select
             enddo
             do i=1,nBoi
                ntcB(i) = vCount(genUnit,.false.)
             enddo
             call allocateVar(26,maxval(ntcB))
-            allocate(matrix(maxval(ntcB),3))
+            allocate(matrix(maxval(ntcB),2))
             n = sum(ntcB)
             call rewUnit(genUnit,n)
             do i=1,nBoi
                matrix = rNaN(rVal)
-               matrix = dmatrixRead(genUnit,ntcB(i),3)
+               matrix = dmatrixRead(genUnit,ntcB(i),2)
                tempCorrB(:,1,i) = matrix(:,nt)
                tempCorrB(:,2,i) = matrix(:,net)
-               tempCorrB(:,3,i) = matrix(:,np)
+               tempCorrB(:,3,i) = 1.0! matrix(:,np)
             enddo
             deallocate(matrix)
-       case('PresCorrection')
-            read(value,*) (param(i), i=1,3)
-            do i=1,3
-               select case(param(i))
-                  case('pres')
-                     nt = i
-                  case('eta')
-                     net = i
-                  case('pmax')
-                     np = i
-               end select
-            enddo
-            do i=1,nBoi
-               npcB(i) = vCount(genUnit,.false.)
-            enddo
-            call allocateVar(27,maxval(npcB))
-            allocate(matrix(maxval(npcB),3))
-            n = sum(npcB)
-            call rewUnit(genUnit,n)
-            do i=1,nBoi
-               matrix = rNaN(rVal)
-               matrix = dmatrixRead(genUnit,npcB(i),3)
-               presCorrB(:,1,i) = matrix(:,nt)
-               presCorrB(:,2,i) = matrix(:,net)
-               presCorrB(:,3,i) = matrix(:,np)
-            enddo
-            deallocate(matrix)
-       case('AltCorrection')
-            read(value,*) (param(i), i=1,3)
-            do i=1,3
-               select case(param(i))
-                  case('alt')
-                     nt = i
-                  case('eta')
-                     net = i
-                  case('pmax')
-                     np = i
-               end select
-            enddo
-            do i=1,nBoi
-               nacB(i) = vCount(genUnit,.false.)
-            enddo
-            call allocateVar(28,maxval(nacB))
-            allocate(matrix(maxval(nacB),3))
-            n = sum(nacB)
-            call rewUnit(genUnit,n)
-            do i=1,nBoi
-               matrix = rNaN(rVal)
-               matrix = dmatrixRead(genUnit,nacB(i),3)
-               altCorrB(:,1,i) = matrix(:,nt)
-               altCorrB(:,2,i) = matrix(:,net)
-               altCorrB(:,3,i) = matrix(:,np)
-            enddo
-            deallocate(matrix)
+!       case('PresCorrection')
+!            read(value,*) (param(i), i=1,3)
+!            do i=1,3
+!               select case(param(i))
+!                  case('pres')
+!                     nt = i
+!                  case('eta')
+!                     net = i
+!                  case('pmax')
+!                     np = i
+!               end select
+!            enddo
+!            do i=1,nBoi
+!               npcB(i) = vCount(genUnit,.false.)
+!            enddo
+!            call allocateVar(27,maxval(npcB))
+!            allocate(matrix(maxval(npcB),3))
+!            n = sum(npcB)
+!            call rewUnit(genUnit,n)
+!            do i=1,nBoi
+!               matrix = rNaN(rVal)
+!               matrix = dmatrixRead(genUnit,npcB(i),3)
+!               presCorrB(:,1,i) = matrix(:,nt)
+!               presCorrB(:,2,i) = matrix(:,net)
+!               presCorrB(:,3,i) = matrix(:,np)
+!            enddo
+!            deallocate(matrix)
+!       case('AltCorrection')
+!            read(value,*) (param(i), i=1,3)
+!            do i=1,3
+!               select case(param(i))
+!                  case('alt')
+!                     nt = i
+!                  case('eta')
+!                     net = i
+!                  case('pmax')
+!                     np = i
+!               end select
+!            enddo
+!            do i=1,nBoi
+!               nacB(i) = vCount(genUnit,.false.)
+!            enddo
+!            call allocateVar(28,maxval(nacB))
+!            allocate(matrix(maxval(nacB),3))
+!            n = sum(nacB)
+!            call rewUnit(genUnit,n)
+!            do i=1,nBoi
+!               matrix = rNaN(rVal)
+!               matrix = dmatrixRead(genUnit,nacB(i),3)
+!               altCorrB(:,1,i) = matrix(:,nt)
+!               altCorrB(:,2,i) = matrix(:,net)
+!               altCorrB(:,3,i) = matrix(:,np)
+!            enddo
+!            deallocate(matrix)
        case('PEF')
            kPEC(3) = .true.
            read(value,*) (pefB(i), i=1,nBoi)
@@ -295,15 +296,19 @@ do
        case(' ') 
             if(verb) call warning(4,3,line=line)
        case('Tin')
+             isPresent(16) = .true.
              read(value,*) (TinBoi(i), i=1,nBoi)
        case('Tout')
+             isPresent(17) = .true.
              read(value,*) (ToutBoi(i), i=1,nBoi)
        case('Condensation')
+             isPresent(18) = .true.
              read(value,*) (isCondensation(i), i=1,nBoi)
        case default
             if(.not.silent) call warning(1,3,line=line,word=keyword)
     end select
 enddo
+tecB(1:nBoi) = 'Fuel'
 
 !---check if all the variablea were read---
 nInp = size(isPresent)

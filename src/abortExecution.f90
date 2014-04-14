@@ -56,8 +56,9 @@ character(len=*), intent(in), optional :: word
 real(kind = prec), intent(in), optional :: r1, r2
 character(len=18), dimension(9)        :: general
 character(len=18), dimension(17)       :: trigeneration
-character(len=18), dimension(15)       :: boilers
-character(len=18), dimension(13)       :: Chiller
+character(len=18), dimension(18)       :: boilers
+character(len=18), dimension(18)       :: Chiller
+character(len=18), dimension(18)       :: HeatPump
 character(len=19), dimension(7)        :: PV
 character(len=19), dimension(7)        :: SC
 character(len=24), dimension(11)       :: files
@@ -89,12 +90,20 @@ trigeneration = (/'Number            ', 'Power             ', 'DegradationRate  
 boilers       = (/'Number            ', 'Power             ', 'DegradationRate   ', 'FuelCost          '  &
                  ,'FuelLHV           ', 'Investment        ', 'Lifetime          ', 'OnLifetime        '  &
                  ,'OeMCost           ', 'SetPoint          ', 'Size              ', 'ThermalEfficiency '  &
-                 ,'Technology        ', 'MinUpTime         ', 'MinDownTime       '/)
+                 ,'Technology        ', 'MinUpTime         ', 'MinDownTime       ', 'Tin               '  &
+                 ,'Tou               ', 'Condensation      '/)
  
 Chiller       = (/'Number            ', 'Technology        ', 'Power             ', 'DegradationRate   '  &
                  ,'Investment        ', 'Lifetime          ', 'OnLifetime        '                        &
                  ,'OeMCost           ', 'SetPoint          ', 'Size              ', 'Efficiency        '  &
-                 ,'MinUpTime         ', 'MinDownTime       '/)
+                 ,'MinUpTime         ', 'MinDownTime       ', 'OutletTemp        ', 'EnvTemp           '  &
+                 ,'PowerCorrection   ', 'CopCorrection     ', 'Tmandata          ' /)
+
+HeatPump      = (/'Number            ', 'Technology        ', 'Power             ', 'DegradationRate   '  &
+                 ,'Investment        ', 'Lifetime          ', 'OnLifetime        '                        &
+                 ,'OeMCost           ', 'SetPoint          ', 'Size              ', 'Efficiency        '  &
+                 ,'MinUpTime         ', 'MinDownTime       ', 'OutletTemp        ', 'EnvTemp           '  &
+                 ,'PowerCorrection   ', 'CopCorrection     ', 'Tmandata          ' /)
 
 PV            = (/'Surface            ', 'Efficiency         ', 'Slope              ', 'Orientation        ', &
                   'CutOff             ', 'TemperatureDerating', 'AuxEfficiency      '/)                 
@@ -160,7 +169,7 @@ select case(i)
                print*,' Expected one of ".true." or ".false.", found ',  trim(word)
        end select
            print*,' in line', line, ' of file General.inp'
-         case(3:6,32:34)
+         case(3:6,32:34,36)
         write(*,'(A)',advance='no'),'  Missing input entry: '
         select case(i)
             case(3)
@@ -177,6 +186,8 @@ select case(i)
                 print*,'Could not find "', trim(SC(j)) ,'" in SolarCollectors.inp'
             case(34)
                 print*,'Could not find "', trim(Iwind(j)) ,'" in WindTurbines.inp'
+            case(36)
+                print*,'Could not find "', trim(HeatPump(j)) ,'" in HeatPump.inp'
         end select
     case(7)
         print*, ' The power plant is not able to satisfie the load'

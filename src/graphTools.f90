@@ -215,7 +215,6 @@ contains
          deallocate(iComb_)
       case('time-constraints')
          nTvComb = i
-         print*, 'ntvComb', nTvComb
          allocate(tState(nTvComb,m))
          tState(:,:) = dComb_(1:nTvComb,:)
          deallocate(dComb_)
