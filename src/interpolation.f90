@@ -139,10 +139,22 @@ function interp2D(matrix,nrow,ncol,xin,yin,xout,yout)
 
   !---Declare Module usage---
 use shared
-use mathTools
+!use mathTools
+implicit none
+
+interface
+    function scalarInterp(xIn,yIn,n,x,warn) 
+        use shared 
+        implicit none
+        integer                       , intent(in)  :: n
+        real(kind = prec), dimension(n), intent(in)  :: xIn, yIn
+        real(kind = prec), intent(in)  :: x
+        integer         , dimension(2), intent(in), optional :: warn
+        real(kind = prec)              :: scalarInterp
+    end function scalarInterp
+end interface
 
 !---Declare Local Variables---
-implicit none
 
 real(kind=prec) :: interp2D
 integer,                         intent(in)            :: nrow, ncol

@@ -81,6 +81,7 @@ select case(what)
         allocate(pMaxB(nBoi), fuelCostB(nBoi), fuelLHVB(nBoi), fireCostB(nBoi), maintCostB(nBoi), &
                  nSpB(nBoi), minUpTimeB(nBoi), minDownTimeB(nBoi))
         allocate(ntcB(nBoi), npcB(nBoi), nacB(nBoi), pefB(nBoi), pecOnB(nBoi))
+        allocate(TinBoi(nBoi), ToutBoi(nBoi), isCondensation(nBoi))
         nSpB(1:nBoi) = 0
 !        allocate(nSizeB(nBoi))
 !        nSizeB(1:nBoi) = 0
@@ -132,6 +133,10 @@ select case(what)
         if(nChi.gt.0) then
             nMax = maxval(nSpC)
             allocate(etaC_(nMax,nChi))
+        endif
+        if(nHP.gt.0) then
+            nMax = maxval(nSpHP)
+            allocate(etaHP_(nMax,nHP))
         endif
         allocate(dt(0:nTime))
    case(17)

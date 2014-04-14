@@ -33,7 +33,7 @@ Everything written before begin or after end is ignore as well as every line aft
 begin
 
 Number             | 1        | !total number of trigenerative equipments
-Power              | 22  | !rated power
+Power              | 24  | !rated power
 HeatSource         | Fuel   |
 FuelCost           | 0.86   | !euro/Sm3
 FuelLHV            | 35.0e3   | !kJ/Sm3

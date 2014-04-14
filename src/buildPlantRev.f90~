@@ -79,16 +79,15 @@ dt        = timestep()
 upTime0   = upTime0*3.6e3
 downTime0 = downTime0*3.6e3
 
-nm0  = nTrig + nBoi + nChi                      !total number of machinery without storage
+nm0  = nTrig + nBoi + nChi + nHP                     !total number of machinery without storage
 nm   = nm0 + 1
 nx = nm0
 if(capacityTS.gt.zero.and.PmaxTS.gt.zero) nx  = nx + 1                                 
 !if(capacityES.gt.zero.and.PmaxES.gt.zero) nx  = nx + 1                                 
 !if(capacityIS.gt.zero.and.PmaxIS.gt.zero) nx  = nx  + 1
-print*, 'romammerda'
 
 nSpTot = 0
-if(nBoi.gt.0) then 
+if(nTrig.gt.0) then 
    nSpTot = nSpTot + sum(nSpT)
    n1     = maxval(nSpT)
 else
@@ -124,8 +123,6 @@ endif
 !   nSpIS = 1
 !   nSpTot = nSpTot + 1
 
-print*, 'romammerda'
-
 !endif
 call allocateVar(17)
 capacityEs = zero
@@ -155,6 +152,10 @@ call addBoilers
 is(iC) = is(iB) + nBoi       !Chillers
 ie(iC) = ie(iB) + nChi
 call addChillers
+is(iHP) = is(iC) + nChi
+ie(iHP) = ie(iC) + nHP
+call addHeatPump
+
 is(iTs)= nm0 + 1
 call addThermalStorage
 !if(capacityES.gt.zero.and.PmaxES.gt.zero) then 

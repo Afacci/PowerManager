@@ -740,8 +740,6 @@ contains
    pathCost(dest,:)        = zero
    minSucc(orig:dest,:)    = -1
 
-   print*,'ntvcomb', ntvComb
-
    do i=nPoint,0,-1
       t         = pointTime(i)
       if(t.lt.pointTime(i+1)) print*,'+++++++++++++++ t = ', t

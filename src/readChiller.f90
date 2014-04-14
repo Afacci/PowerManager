@@ -241,13 +241,21 @@ do
              read(vector,*) (envTempChi(j,i), j=1,nTenvC(i))
              value =  value(n2 + 2:)
           enddo
-      case('Correction')
+      case('PowerCorrection')
             do i=1,nChi
                n1 = maxval(nOutTc)
                n2 = maxval(nTenvC)
-               allocate(ChiCorrection(n1,n2,nChi))
+               allocate(ChiCorrectionP(n1,n2,nChi))
                call rewUnit(genUnit,1)
-               chiCorrection(:,:,i) = dmatrixRead(genUnit,nOutTc(i),nTenvC(i))
+               chiCorrectionP(:,:,i) = dmatrixRead(genUnit,nOutTc(i),nTenvC(i))
+            enddo
+      case('CopCorrection')
+            do i=1,nChi
+               n1 = maxval(nOutTc)
+               n2 = maxval(nTenvC)
+               allocate(ChiCorrectionE(n1,n2,nChi))
+               call rewUnit(genUnit,1)
+               chiCorrectionE(:,:,i) = dmatrixRead(genUnit,nOutTc(i),nTenvC(i))
             enddo
      case('Tmandata')
             read(value,*) (TutileChi (i),i=1,nChi)

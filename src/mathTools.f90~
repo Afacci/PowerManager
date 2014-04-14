@@ -56,9 +56,23 @@ interface
         implicit none
         integer                       , intent(in)  :: n
         real(kind = prec), dimension(n), intent(in)  :: xIn, yIn
+        real(kind = prec), intent(in)  :: x
         integer         , dimension(2), intent(in), optional :: warn
         real(kind = prec)              :: scalarInterp
     end function scalarInterp
+end interface
+
+interface 
+   function interp2D(matrix,nrow,ncol,xin,yin,xout,yout)
+   use shared
+   implicit none
+    real(kind=prec) :: interp2D
+    integer,                         intent(in)            :: nrow, ncol
+    real(kind = prec), dimension(nrow,ncol), intent(in)    :: matrix
+    real(kind = prec), dimension(ncol), intent(in)         :: xin
+    real(kind = prec), dimension(nrow), intent(in)         :: yin
+    real(kind=precs)                                        :: xout,yout
+    end function interp2D
 end interface
 
 contains

@@ -62,6 +62,19 @@ interface
     end function scalarInterp
 end interface
 
+interface 
+   function interp2D(matrix,nrow,ncol,xin,yin,xout,yout)
+   use shared
+   implicit none
+    real(kind=prec) :: interp2D
+    integer,                         intent(in)            :: nrow, ncol
+    real(kind = prec), dimension(nrow,ncol), intent(in)    :: matrix
+    real(kind = prec), dimension(ncol), intent(in)         :: xin
+    real(kind = prec), dimension(nrow), intent(in)         :: yin
+    real(kind=prec)                                        :: xout,yout
+    end function interp2D
+end interface
+
 contains
 
    integer function locateRow(row,mat,n,m,error)

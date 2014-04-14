@@ -34,7 +34,7 @@ begin
 
 Number             | 1          | !total number of trigenerative equipments
 Technology         | Mechanical Absorption | !Mechanical or absorption chiller?
-Power              | 4.2e3 4.2e3     | !rated power
+Power              | 25  4.2e3     | !rated power
 OnOffCost          | 10.d0    6.d0  | !cost to turn on the power plant
 OeMCost            | 10.0d0   6.0d0 | !euro/h maintenance cost 
 
@@ -67,17 +67,17 @@ MinUpTime          |0    0          |
 MinDownTime        |0    0          |           
 
 !---Correction parameters----
+!La temperatura di mandata e temperatura ambiente relative alla matrice di correzione.
+OutletTemp         |(20  40 )   |
+EnvTemp            |(10  20 30 ) |
+!Correzione della potenza. Le colonne per la temperatura ambiente. Le righe per la 
+!temperatura di mandata.
+PowerCorrection         | ( 0.5 0.6 0.7   |
+                        |   0.8 0.9 1.0 ) | 
+CopCorrection           | ( 0.5 0.6 0.7   |
+                        |   0.8 0.9 1.0 ) | 
 
-OutletTemp         |(1 2 3 4 )  (1 2 3 4 )              |
-EnvTemp            |(1 2 3 4 5 ) (1 2 3 4 5 )              |
-
-Correction         | ( 1 1 1 1 1  |
-                   |   2 2 2 2 2   |
-                   |   3 3 3 3 3   |
-                   |   4 4 4 4 4)   |
-                   | (0.99  0.0   0.0  |
-                   |  1.01  1.0   1.0  |
-                   |  1.02  1.0   1.0) |                   
+Tmandata           | 30 |! teperatur di mandata effettiva del chiller.
 
 !PresCorrection     | pres  eta    pmax |
 !                   | (0.99  0.0   0.0  |

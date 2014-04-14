@@ -32,8 +32,8 @@ Everything written before begin or after end is ignore as well as every line aft
 
 begin
 
-Power              | 4000    |!  !rated power3500  0.0 
-Capacity           | 8.68e7  |!|             126e5 0.0 
+Power              | 0.0   |!  !rated power3500  0.0 
+Capacity           | 0.0  |!|             126e5 0.0 
 SetPoint           | 10   | 
 InputEfficiency    | 0.95 |
 OutputEfficiency   | 0.95 |

@@ -142,7 +142,7 @@ do
          select case(keyword)
            case('end')
               exit
-           case('Climate','Altitude','Radiation')
+           case('Climate','Altitude', 'Radiation')
               continue
            case('Latitude')
               read(value,*) latitude
@@ -159,45 +159,57 @@ do
            case('RadiationModel') 
               read(value,*) radMod
               ljModel(5) = .true.
+              print*, 'radMod', radMod
            case(' ') 
               if(verb) call warning(4,3,line=line)
            case default
               if(.not.silent) call warning(1,7,line=line,word=keyword)
-        end select
-      if(radMod.eq.'Simple') then
-         if(keyword.eq.'Radiation') then
-            simpleModel = .true.
-            read(value,*) (param(i), i=1,2)
-            do i=1,2
-               select case(param(i))
-                  case('Beam')
-                     nb = i
-                  case('Diffused')
-                     nd = i
-               end select
-            enddo
-            allocate(matrix(24,2))
-            matrix  = rNaN(rVal)
-            matrix  = dmatrixRead(genUnit,24,2)
-            BeamRad = matrix(:,nb)
-            DiffRad = matrix(:,nd)
-            deallocate(matrix)
-         endif
+          end select
       endif
-    endif
 enddo
+
+if(radMod.eq.'Simple') then
+  call rewUnit(genUnit,line-firstLine)
+  line = firstLine
+  do 
+    call readKeyword(genUnit,.false., keyword,value,error, nl)
+    if (error.eq.1) call abortExecution(0,6,line)
+    line = line + nl
+    select case(keyword)
+       case('end')
+          exit
+       case('Radiation')
+         simpleModel = .true.
+         read(value,*) (param(i), i=1,2)
+         do i=1,2
+             select case(param(i))
+                case('Beam')
+                   nb = i
+                case('Diffused')
+                   nd = i
+             end select
+         enddo
+         allocate(matrix(24,2))
+         matrix  = rNaN(rVal)
+         matrix  = dmatrixRead(genUnit,24,2)
+         BeamRad = matrix(:,nb)
+         DiffRad = matrix(:,nd)
+         deallocate(matrix)
+       case default
+         continue
+    end select
+  enddo
+endif
 
 
 if(surfSC.gt.zero.or.surfPV.gt.zero) then
    if(radMod.eq.'Simple') then
       if(.not.simpleModel) call abortExecution(30,1)
    endif
-   if(radMod.eq.'LiuJordan') then
-      nInp = size(ljModel)
-      do i=1,nInp
-         if(.not.ljModel(i)) call abortExecution(31,i)
-      enddo
-  endif
+   nInp = size(ljModel)
+   do i=1,nInp
+      if(.not.ljModel(i)) call abortExecution(31,i)
+   enddo
 endif
 
 close(genUnit)

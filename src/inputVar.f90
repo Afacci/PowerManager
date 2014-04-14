@@ -85,7 +85,9 @@ character(len=50), allocatable, dimension(:)    :: tecT
 integer                                         :: nBoi
 integer, allocatable, dimension(:)              :: nSpB, nEtaB, ntcB, npcB, nacB, BoiPriority
 real(kind= prec),allocatable, dimension(:)      :: pMaxB ,fuelCostB, fuelLHVB, pefB,  pecOnB,          & 
-                                                   lifeB, fireCostB, maintCostB , minUpTimeB, minDownTimeB 
+                                                   lifeB, fireCostB, maintCostB , minUpTimeB, minDownTimeB &
+                                                   ,TinBoi, ToutBoi
+logical,allocatable, dimension(:)               :: isCondensation                            
 real(kind= prec),allocatable, dimension(:,:)    :: spB
 real(kind= prec), allocatable, dimension(:,:,:) :: etaB, tempCorrB,  presCorrB, altCorrB
 character(len=50), allocatable, dimension(:)    :: tecB
@@ -96,7 +98,7 @@ integer, allocatable, dimension(:)              :: nSpC, nSizeC, nEtaC, ntcC, np
                                                    nTenvC
 real(kind= prec),allocatable, dimension(:)      :: pMaxC , fireCostC, maintCostC, minUpTimeC, minDownTimeC, TutileChi
 real(kind= prec),allocatable, dimension(:,:)    :: spC, outTempChi, envTempChi
-real(kind= prec), allocatable, dimension(:,:,:) :: etaC, tempCorrC, presCorrC, altCorrC, chiCorrection
+real(kind= prec), allocatable, dimension(:,:,:) :: etaC, tempCorrC, presCorrC, altCorrC, chiCorrectionE, chiCorrectionP
 character(len=50), allocatable, dimension(:)    :: tecC
 
 
@@ -106,7 +108,7 @@ integer, allocatable, dimension(:)              :: nSpHP, nSizeHP, nEtaHP, ntcHP
                                                    nTenvHP
 real(kind= prec),allocatable, dimension(:)      :: pMaxHP , fireCostHP, maintCostHP, minUpTimeHP, minDownTimeHP, TutileHP  
 real(kind= prec),allocatable, dimension(:,:)    :: spHP, outTempHP, envTempHP
-real(kind= prec), allocatable, dimension(:,:,:) :: etaHP, tempCorrHP, presCorrHP, altCorrHP, hpCorrection
+real(kind= prec), allocatable, dimension(:,:,:) :: etaHP, tempCorrHP, presCorrHP, altCorrHP, hpCorrectionE, hpCorrectionP
 character(len=50), allocatable, dimension(:)    :: tecHP
 
 !---Load.inp variables

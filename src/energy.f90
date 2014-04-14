@@ -392,13 +392,13 @@ endif
 
 if(nHP.gt.0) then
    do i=is(iHP),ie(iHP)
-      if(pes(i).eq.'elec') then
+!      if(pes(i).eq.'elec') then
          j = c_(i)
          pow  = sp(j,i)*Pmax(i)*envCorr(t,i,4)
-         cEff = etaCh(j,i)*envCorr(t,i,3)
+         cEff = etaCh(j,i)*envCorr(t,i,2)
          cEff = max(cEff,vSmall)
          elSelfCons = elSelfCons + pow/cEff
-      endif
+!      endif
    enddo
 endif
 

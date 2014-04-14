@@ -47,7 +47,9 @@ character(len=20)  :: gridConnection
 integer            :: nTimes
 logical            :: iDeg 
 real(kind = prec), allocatable, dimension(:) :: startPoint, upTime0, downTime0
-real(kind = prec)                            :: dt1, k_tr, k_el, c_tr, c_st, pefGrid, iSocTh, eSocTh, iSocEl, eSocEl
+real(kind = prec)                            :: dt1, k_tr, k_el, c_tr, c_st, pefGrid, iSocTh, eSocTh, iSocEl, eSocEl, & 
+                                                eSocIce, iSocIce
+real(kind = prec) , allocatable, dimension(:,:) :: preset
 character(len=100) :: obj, method, strategy
 logical :: writePower       = .false.
 logical :: writeEnergy      = .false.
@@ -67,6 +69,7 @@ logical :: global           = .false.
 logical :: useEuristics     = .false.
 logical , dimension(5) :: kPEC = .false.
 logical :: iPec = .false.
+logical :: DebugGraph = .false.
 
 !---Trigeneration.inp variables
 integer                                         :: nTrig
@@ -89,11 +92,22 @@ character(len=50), allocatable, dimension(:)    :: tecB
 
 !---Chillers.inp variables
 integer                                         :: nChi
-integer, allocatable, dimension(:)              :: nSpC, nSizeC, nEtaC, ntcC, npcC, nacC, ChiPriority
-real(kind= prec),allocatable, dimension(:)      :: pMaxC , fireCostC, maintCostC, minUpTimeC, minDownTimeC  
-real(kind= prec),allocatable, dimension(:,:)    :: spC
-real(kind= prec), allocatable, dimension(:,:,:) :: etaC, tempCorrC, presCorrC, altCorrC
+integer, allocatable, dimension(:)              :: nSpC, nSizeC, nEtaC, ntcC, npcC, nacC, ChiPriority, nOutTc, &
+                                                   nTenvC
+real(kind= prec),allocatable, dimension(:)      :: pMaxC , fireCostC, maintCostC, minUpTimeC, minDownTimeC, TutileChi
+real(kind= prec),allocatable, dimension(:,:)    :: spC, outTempChi, envTempChi
+real(kind= prec), allocatable, dimension(:,:,:) :: etaC, tempCorrC, presCorrC, altCorrC, chiCorrectionE, chiCorrectionP
 character(len=50), allocatable, dimension(:)    :: tecC
+
+
+!---HeatPump.inp variables
+integer                                         :: nHP
+integer, allocatable, dimension(:)              :: nSpHP, nSizeHP, nEtaHP, ntcHP, npcHP, nacHP, nOutTHP, &
+                                                   nTenvHP
+real(kind= prec),allocatable, dimension(:)      :: pMaxHP , fireCostHP, maintCostHP, minUpTimeHP, minDownTimeHP, TutileHP  
+real(kind= prec),allocatable, dimension(:,:)    :: spHP, outTempHP, envTempHP
+real(kind= prec), allocatable, dimension(:,:,:) :: etaHP, tempCorrHP, presCorrHP, altCorrHP, hpCorrectionE, hpCorrectionP
+character(len=50), allocatable, dimension(:)    :: tecHP
 
 !---Load.inp variables
 integer                                       :: nTime, nLoad, iTime, iEl, iTh, iCh, iElp, iThp, iChp
@@ -111,6 +125,13 @@ real(kind=prec)                              :: PmaxTS, CapacityTS
 integer                                      :: nSpTS , nEtaTsIn, nEtaTsOut
 !real(kind=prec), allocatable, dimension(:,:) :: etaTsOut, etaTsIn
 real(kind=prec)                              :: etaTsOut, etaTsIn
+
+!---Thermal storage----
+
+real(kind=prec)                              :: PmaxIS, CapacityIS
+integer                                      :: nSpIS , nEtaIsIn, nEtaIsOut
+!real(kind=prec), allocatable, dimension(:,:) :: etaTsOut, etaTsIn
+real(kind=prec)                              :: etaIsOut, etaIsIn
 
 !---Photovoltaic field ---------------
 
@@ -144,7 +165,7 @@ real(kind=prec)                                :: hWind, hellman
 real(kind=prec)                              :: CapacityES, swCost, pmaxES
 !real(kind=prec), dimension(2)                :: PmaxES
 integer                                      :: nSpES , nEtaEsIn, nEtaEsOut
-!real(kind=prec), allocatable, dimension(:,:) :: etaEsOut, etaEsIn
-real(kind=prec)                              :: etaEsOut, etaEsIn
+real(kind=prec), allocatable, dimension(:,:) :: etaEsOut, etaEsIn
+!real(kind=prec)                              :: etaEsOut, etaEsIn
 
 end module inputVar

@@ -141,10 +141,10 @@ do
           read(val,*) pefGrid
        case('StartPoint')
           isPresent(4) = .true.
-          n = nTrig + nBoi + nChi 
+          n = nTrig + nBoi + nChi + nHP
           if(capacityTS.gt.zero) n = n + 1
-          if(capacityES.gt.zero) n = n + 1
-          if(capacityIS.gt.zero) n = n + 1
+!          if(capacityES.gt.zero) n = n + 1
+!          if(capacityIS.gt.zero) n = n + 1
           call allocateVar(0,n)
           val_ = '('//trim(val)//')'
           n_ = hCount(val_)
@@ -155,14 +155,14 @@ do
           read(val,*) dt1
        case('UpTime')
           isPresent(6) = .true.
-          n = nTrig + nBoi + nChi
+          n = nTrig + nBoi + nChi + nHP
           val_ = '('//trim(val)//')'
           n_ = hCount(val_)
           if(n_.ne.n) call abortExecution(13,n_,n,'UpTime')
           read(val,*) (upTime0(i) , i=1,n)
         case('DownTime')
           isPresent(7) = .true.
-          n = nTrig + nBoi + nChi
+          n = nTrig + nBoi + nChi + nHP
           val_ = '('//trim(val)//')'
           n_ = hCount(val_)
           if(n_.ne.n) call abortExecution(13,n_,n,'DownTime')

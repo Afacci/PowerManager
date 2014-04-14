@@ -294,6 +294,12 @@ do
            read(value,*) (pecOnB(i),i=1,nBoi)
        case(' ') 
             if(verb) call warning(4,3,line=line)
+       case('Tin')
+             read(value,*) (TinBoi(i), i=1,nBoi)
+       case('Tout')
+             read(value,*) (ToutBoi(i), i=1,nBoi)
+       case('Condensation')
+             read(value,*) (isCondensation(i), i=1,nBoi)
        case default
             if(.not.silent) call warning(1,3,line=line,word=keyword)
     end select

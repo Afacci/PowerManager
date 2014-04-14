@@ -151,6 +151,7 @@ contains
       character(len=100)     :: word
       real(kind=prec), dimension(2) :: tCorr, pCorr
       real(kind=prec), dimension(nm0,2) ::aCorr
+      real(kind=prec)  :: tvalue
 
 
       if(nBoi.gt.0) then
@@ -214,22 +215,28 @@ contains
       k = 0
       do j=is(iB),ie(iB)
          k = k + 1
-         aCorr(k,1) = scalarInterp(altCorrB(:,1,k), altCorrB(:,2,k), nacB(k), altitude(1))
-         aCorr(k,2) = scalarInterp(altCorrB(:,1,k), altCorrB(:,3,k), nacB(k), altitude(1))
+         aCorr(k,1) = 1.0 ! scalarInterp(altCorrB(:,1,k), altCorrB(:,2,k), nacB(k), altitude(1))
+         aCorr(k,2) = 1.0 ! scalarInterp(altCorrB(:,1,k), altCorrB(:,3,k), nacB(k), altitude(1))
       enddo
+
 
       do i=1,nTime
          k = 0
          do j=is(iB),ie(iB)
             k = k + 1
-            tCorr(1) = scalarInterp(tempCorrB(:,1,k), tempCorrB(:,2,k), ntcB(k), tAmb(i))
-            tCorr(2) = scalarInterp(tempCorrB(:,1,k), tempCorrB(:,3,k), ntcB(k), tAmb(i))
+            tCorr(1) = 1.0! scalarInterp(tempCorrB(:,1,k), tempCorrB(:,2,k), ntcB(k), tAmb(i))
+            if(isCondensation(k)) then
+                tvalue = TinBoi(k)
+            else
+                tvalue = ToutBoi(k) - TinBoi(k)
+            endif
+            tCorr(2) = scalarInterp(tempCorrB(:,1,k), tempCorrB(:,3,k), ntcB(k), tvalue)
   
-            pCorr(1) = scalarInterp(presCorrB(:,1,k), presCorrB(:,2,k), npcB(k), pAmb(i))
-            pCorr(2) = scalarInterp(presCorrB(:,1,k), presCorrB(:,3,k), npcB(k), pAmb(i))
+!            pCorr(1) = scalarInterp(presCorrB(:,1,k), presCorrB(:,2,k), npcB(k), pAmb(i))
+!            pCorr(2) = scalarInterp(presCorrB(:,1,k), presCorrB(:,3,k), npcB(k), pAmb(i))
 
-            envCorr(i,j,2) = tCorr(1)*pCorr(1)*aCorr(k,1)
-            envCorr(i,j,4) = tCorr(2)*pCorr(2)*aCorr(k,2)
+            envCorr(i,j,2) = tCorr(1)!*pCorr(1)*aCorr(k,1)
+            envCorr(i,j,4) = tCorr(2)!*pCorr(2)*aCorr(k,2)
          enddo
       enddo
    
@@ -295,27 +302,38 @@ contains
       enddo
 
 
-      k = 0
-      do j=is(iC),ie(iC)
-         k = k + 1
-         aCorr(k,1) = scalarInterp(altCorrC(:,1,k), altCorrC(:,2,k), nacC(k), altitude(1))
-         aCorr(k,2) = scalarInterp(altCorrC(:,1,k), altCorrC(:,3,k), nacC(k), altitude(1))
-      enddo
+!      k = 0
+!      do j=is(iC),ie(iC)
+!         k = k + 1
+!         aCorr(k,1) = scalarInterp(altCorrC(:,1,k), altCorrC(:,2,k), nacC(k), altitude(1))
+!         aCorr(k,2) = scalarInterp(altCorrC(:,1,k), altCorrC(:,3,k), nacC(k), altitude(1))
+!      enddo
+!
+!      do i=1,nTime
+!         k = 0
+!         do j=is(iC),ie(iC)
+!            k = k + 1
+!            tCorr(1) = scalarInterp(tempCorrC(:,1,k), tempCorrC(:,2,k), ntcC(k), tAmb(i))
+!            tCorr(2) = scalarInterp(tempCorrC(:,1,k), tempCorrC(:,3,k), ntcC(k), tAmb(i))
+!  
+!            pCorr(1) = scalarInterp(presCorrC(:,1,k), presCorrC(:,2,k), npcC(k), pAmb(i))
+!            pCorr(2) = scalarInterp(presCorrC(:,1,k), presCorrC(:,3,k), npcC(k), pAmb(i))
+!
+!            envCorr(i,j,3) = tCorr(1)*pCorr(1)*aCorr(k,1)
+!            envCorr(i,j,4) = tCorr(2)*pCorr(2)*aCorr(k,2)
+!         enddo
+!      enddo
 
-      do i=1,nTime
-         k = 0
-         do j=is(iC),ie(iC)
-            k = k + 1
-            tCorr(1) = scalarInterp(tempCorrC(:,1,k), tempCorrC(:,2,k), ntcC(k), tAmb(i))
-            tCorr(2) = scalarInterp(tempCorrC(:,1,k), tempCorrC(:,3,k), ntcC(k), tAmb(i))
-  
-            pCorr(1) = scalarInterp(presCorrC(:,1,k), presCorrC(:,2,k), npcC(k), pAmb(i))
-            pCorr(2) = scalarInterp(presCorrC(:,1,k), presCorrC(:,3,k), npcC(k), pAmb(i))
-
-            envCorr(i,j,3) = tCorr(1)*pCorr(1)*aCorr(k,1)
-            envCorr(i,j,4) = tCorr(2)*pCorr(2)*aCorr(k,2)
-         enddo
-      enddo
+       do i=1,nTime
+          k = 0
+          do j=is(iC),ie(iC)
+             k = k + 1
+             envCorr(i,j,3) = interp2D(chiCorrectionE(:,:,k),nOutTc(k),nTenvC(k), envTempChi(:,k), &
+                              outTempChi(:,k),Tamb(i),TutileChi(k))
+             envCorr(i,j,4) = interp2D(chiCorrectionP(:,:,k),nOutTc(k),nTenvC(k), envTempChi(:,k), &
+                              outTempChi(:,k),Tamb(i),TutileChi(k))
+          enddo
+       enddo
 
 
    end subroutine addChillers
@@ -335,7 +353,8 @@ contains
       real(kind=prec), dimension(2) :: tCorr, pCorr
       real(kind=prec), dimension(ntime,2) ::aCorr
 
-
+      
+      print*, 'testadicazzo', nHP
       if(nHP.gt.0) then
          do i=1,nHP
             etaHP_(:,i) = interpolation(etaHP(:,1,i), etaHP(:,2,i), nEtaHP(i), spHP(:,i),nSpHP(i), ext) 
@@ -383,27 +402,40 @@ contains
       enddo
 
 
-      k = 0
-      do j=is(iHP),ie(iHP)
-         k = k + 1
-         aCorr(k,1) = scalarInterp(altCorrHP(:,1,k), altCorrHP(:,2,k), nacHP(k), altitude(1))
-         aCorr(k,2) = scalarInterp(altCorrHP(:,1,k), altCorrHP(:,3,k), nacHP(k), altitude(1))
-      enddo
+!      k = 0
+!      do j=is(iHP),ie(iHP)
+!         k = k + 1
+!         aCorr(k,1) = scalarInterp(altCorrHP(:,1,k), altCorrHP(:,2,k), nacHP(k), altitude(1))
+!         aCorr(k,2) = scalarInterp(altCorrHP(:,1,k), altCorrHP(:,3,k), nacHP(k), altitude(1))
+!      enddo
+!
+!      do i=1,nTime
+!         k = 0
+!         do j=is(iC),ie(iC)
+!            k = k + 1
+!            tCorr(1) = scalarInterp(tempCorrHP(:,1,k), tempCorrHP(:,2,k), ntcHP(k), tAmb(i))
+!            tCorr(2) = scalarInterp(tempCorrHP(:,1,k), tempCorrHP(:,3,k), ntcHP(k), tAmb(i))
+!  
+!            pCorr(1) = scalarInterp(presCorrHP(:,1,k), presCorrHP(:,2,k), npcHP(k), pAmb(i))
+!            pCorr(2) = scalarInterp(presCorrHP(:,1,k), presCorrHP(:,3,k), npcHP(k), pAmb(i))
+!
+!            envCorr(i,j,3) = tCorr(1)*pCorr(1)*aCorr(k,1)
+!            envCorr(i,j,4) = tCorr(2)*pCorr(2)*aCorr(k,2)
+!         enddo
+!      enddo
 
-      do i=1,nTime
-         k = 0
-         do j=is(iC),ie(iC)
-            k = k + 1
-            tCorr(1) = scalarInterp(tempCorrHP(:,1,k), tempCorrHP(:,2,k), ntcHP(k), tAmb(i))
-            tCorr(2) = scalarInterp(tempCorrHP(:,1,k), tempCorrHP(:,3,k), ntcHP(k), tAmb(i))
-  
-            pCorr(1) = scalarInterp(presCorrHP(:,1,k), presCorrHP(:,2,k), npcHP(k), pAmb(i))
-            pCorr(2) = scalarInterp(presCorrHP(:,1,k), presCorrHP(:,3,k), npcHP(k), pAmb(i))
 
-            envCorr(i,j,3) = tCorr(1)*pCorr(1)*aCorr(k,1)
-            envCorr(i,j,4) = tCorr(2)*pCorr(2)*aCorr(k,2)
-         enddo
-      enddo
+       do i=1,nTime
+          k = 0
+          do j=is(iHP),ie(iHP)
+             k = k + 1
+             envCorr(i,j,2) = interp2D(HpCorrectionE(:,:,k),nOutTHP(k),nTenvHP(k), envTempHP(:,k), &
+                              outTempHP(:,k),Tamb(i),TutileHP(k))
+             envCorr(i,j,4) = interp2D(HpCorrectionP(:,:,k),nOutTHP(k),nTenvHP(k), envTempHP(:,k), &
+                              outTempHP(:,k),Tamb(i),TutileHP(k))
+          enddo
+       enddo
+
 
 
    end subroutine addHeatPump

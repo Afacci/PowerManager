@@ -64,8 +64,8 @@ subroutine readHeatPump
 use shared
 use inputVar, only: nHP, nSpHP, nSizeHP, nEtaHP, ntcHP, npcHP, nacHP, &
                     pMaxHP , fireCostHP, maintCostHP, minUpTimeHP, minDownTimeHP, &
-                    spHP, etaHP, tempCorrHP, presCorrHP, altCorrHP, tecHP, hpCorrection & 
-                    ,envTempHP, outTempHP, nOutTHP, nTenvHP, TutileHP
+                    spHP, etaHP, tempCorrHP, presCorrHP, altCorrHP, tecHP, hpCorrectionP & 
+                    ,envTempHP, outTempHP, nOutTHP, nTenvHP, TutileHP, hpCorrectionE
 use fileTools
 use interfaces
 use cmdVar
@@ -236,13 +236,21 @@ do
              read(vector,*) (envTempHP(j,i), j=1,nTenvHP(i))
              value =  value(n2 + 2:)
           enddo
-      case('Correction')
+      case('PowerCorrection')
             do i=1,nHP
                n1 = maxval(nOutTHP)
                n2 = maxval(nTenvHP)
-               allocate(hpCorrection(n1,n2,nHP))
+               allocate(hpCorrectionP(n1,n2,nHP))
                call rewUnit(genUnit,1)
-               hpCorrection(:,:,i) = dmatrixRead(genUnit,nOutThp(i),nTenvHP(i))
+               hpCorrectionP(:,:,i) = dmatrixRead(genUnit,nOutThp(i),nTenvHP(i))
+            enddo
+      case('CopCorrection')
+            do i=1,nHP
+               n1 = maxval(nOutTHP)
+               n2 = maxval(nTenvHP)
+               allocate(hpCorrectionE(n1,n2,nHP))
+               call rewUnit(genUnit,1)
+               hpCorrectionE(:,:,i) = dmatrixRead(genUnit,nOutThp(i),nTenvHP(i))
             enddo
 
 !       case('TempCorrection')
