@@ -111,7 +111,7 @@ else
    nSpTS = 1
    nSpTot = nSpTot + 1
 endif
-if(capacityES.gt.zero.and.pmaxTs.gt.zero) then 
+if(capacityES.gt.zero.and.pmaxEs.gt.zero) then 
    nSpTot = nSpTot + 2*nSpES + 1
 else
    nSpES = 1

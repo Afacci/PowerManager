@@ -131,7 +131,7 @@ select case(i)
             print*,'Mispelled entry in file ', trim(files(j)), ' in line ', line 
             print*,'Missing one of "|" delimiters'
     case(1)
-       print*,'    Missing file ./Input/', trim(files(j))
+       print*,'    Missing file ', trim(files(j))
 !      select case(j)
 !           case(1)
 !               print*,'    Missing ./Input/General.inp' 

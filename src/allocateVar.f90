@@ -84,7 +84,7 @@ select case(what)
         nSpB(1:nBoi) = 0
 !        allocate(nSizeB(nBoi))
 !        nSizeB(1:nBoi) = 0
-        allocate(nEtaB(nBoi), tecB(nTrig), BoiPriority(nBoi))
+        allocate(nEtaB(nBoi), tecB(nBoi), BoiPriority(nBoi))
    case(8)
         nMax = maxval(nSpB)
         allocate(spB(nMax,nBoi))

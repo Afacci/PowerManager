@@ -85,7 +85,7 @@ endif
 if(pMaxES.gt.zero.and.capacityES.gt.zero) then
    i    = is(iES)
    j    = c_(i)
-   if(sp(j,i).gt.zero) elProd  =  elProd + pMax(i)*sp(j,i)*etaESout_(j)
+   if(sp(j,i).gt.zero) elProd  =  elProd + pMax(i)*sp(j,i)*etaESout_(j-nSpEs -1)
 endif
 
 return

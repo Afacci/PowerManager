@@ -427,7 +427,7 @@ contains
          ii = 0
          do i= nSpES + 2, nSp(j)
             ii = ii + 1
-            k = nSpTs + 1 - ii
+            k = nSpEs + 1 - ii
             sp(i,j) = -sp(k,j) 
             cr(i,j) = i
          enddo

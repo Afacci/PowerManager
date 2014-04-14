@@ -58,7 +58,7 @@ real(kind = prec)                             :: rdummy
 character(len=100)                            :: cDummy
 integer                                       :: i, dummy(2),k,j, kBw, idummy(3), nr
 real(kind = prec)                             :: cost
-real(kind = prec)                             :: tempo, t2
+real(kind(1.0))                             :: tempo
 real, dimension(2)                            :: tVec
 integer,          allocatable, dimension(:,:) :: setPoint,setPointBw
 real(kind = prec),allocatable, dimension(:,:) :: load, loadBw, upTime

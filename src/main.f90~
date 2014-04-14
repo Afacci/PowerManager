@@ -56,7 +56,7 @@ implicit none
 
 real(kind = prec)                             :: rdummy
 character(len=100)                            :: cDummy
-integer                                       :: i, dummy(2),k,j, kBw, idummy(3)
+integer                                       :: i, dummy(2),k,j, kBw, idummy(3), nr
 real(kind = prec)                             :: cost
 real(kind = prec)                             :: tempo, t2
 real, dimension(2)                            :: tVec
@@ -78,27 +78,29 @@ call commandLine
 !----Read Input Files----
 print*, ' ---Reading Input Files---'
 call readTrigen
-print*,'     --> Trigeneration.inp read'
+print*,'     --> Reading Trigeneration.inp     ... OK '
 call readBoiler
-print*,'     --> Boiler.inp read'
+print*,'     --> Reading Boiler.inp            ... OK '
 call readChillers
-print*,'     --> Chillers.inp read'
+print*,'     --> Reading Chillers.inp          ... OK '
 call readThStorage
-print*,'     --> ThermalStorage.inp read'
+print*,'     --> Reading ThermalStorage.inp    ... OK '
+call readIceStorage
+print*,'     --> Reading IceStorage.inp        ... OK '
 call readElStorage
-print*,'     --> ElectricalStorage.inp read'
+print*,'     --> Reading ElectricalStorage.inp ... OK '
 call readLoads
-print*,'     --> Loads.inp read'
+print*,'     --> Reading Loads.inp             ... OK '
 call readGeneral
-print*,'     --> General.inp read'
+print*,'     --> Reading General.inp           ... OK '
 call readPV
-print*,'     --> Photovoltaic.inp read'
+print*,'     --> Reading Photovoltaic.inp      ... OK '
 call readSC
-print*,'     --> Photovoltaic.inp read'
+print*,'     --> Reading Photovoltaic.inp      ... OK '
 call readEnv
-print*,'     --> Enivronment.inp read'
+print*,'     --> Reading Enivronment.inp       ... OK '
 call readWind
-print*,'     --> WindTurbines.inp read'
+print*,'     --> Reading WindTurbines.inp      ... OK '
 
 
 !---build the energy coonection inside the plant---
@@ -124,14 +126,23 @@ select case(strategy)
   case('Optimized')
       !---Build the graph-----
       print*, ' ---Building the graph---'
-      cDummy = 'set-point'
-      call allCombin(icm=cr,imax=nSp,m=nm,targ=cDummy) 
-      cDummy = 'state'
-      call allCombin(dcm=sp,imax=nSp,m=nm,targ=cDummy) 
-      print*, '    --> Vertices'
-      call graphPoints
-      print*, '    --> Arcs'
-      call graphArcs
+      call allCombin(icm=cr,imax=nSp,m=nm,targ='set-point') 
+      call allCombin(dcm=sp,imax=nSp,m=nm,targ='state') 
+      if(method.eq.'Reduced-Backward') then
+         nr = maxval(nSp(nm0+1:nm))
+         call allCombin(icm=cr(1:nr,nm0+1:nm),imax=nSp(nm0+1:nm),m=3,targ='storageSp') 
+         nr = maxval(nSp(1:nm0))
+         call allCombin(icm=cr(1:nr,1:nm0),imax=nSp(1:nm0),m=nm0,targ='prodSp') 
+         print*, '    --> Vertices'
+         call graphPointsLocalMin
+         print*, '    --> Arcs'
+         call graphArcs
+      else
+          print*, '    --> Vertices'
+          call graphPoints
+          print*, '    --> Arcs'
+          call graphArcs
+      endif
       call etime(tVEc,tempo)
       print*, ' ---Elapsed Time: ', tempo, ' sec'
       print*
@@ -141,10 +152,9 @@ select case(strategy)
       select case(method)
          case('Forward')
             call minPathTopoFw(setPoint, cost)
-         case('Backward')
-            cDummy = 'time-constraints' 
-            call allCombin(dcm=timeVinc,imax=nTv,m=2*nm0 + 2,targ=cDummy) 
-            allocate(upTime(0:nTime+1,2*nm0 + 2))
+         case('Backward', 'Reduced-Backward')
+            call allCombin(dcm=timeVinc,imax=nTv,m=2*nm0 + 3,targ='time-constraints') 
+            allocate(upTime(0:nTime+1,2*nm0 + 3))
             allocate(minPathBw(0:nTime+1))
             call minPathTopoBw(setPoint, cost, upTime, minPathBw)
       end select
@@ -154,7 +164,7 @@ select case(strategy)
             select case(method)
                case('Forward')
                  print*, i,'pointFW = ', setPoint(i,:)
-               case('Backward')
+               case('Backward', 'Reduced-Backward')
                  print*, i,'pointBW = ', setPoint(i,:), 'vertex = ', minPathBw(i)
             end select
          enddo

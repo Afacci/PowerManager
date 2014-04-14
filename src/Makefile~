@@ -28,8 +28,8 @@ MODS = \
 ../obj/mathTools.o \
 ../obj/interfaces.o \
 ../obj/cmdVar.o \
-../obj/constraints.o \
 ../obj/energy.o \
+../obj/constraints.o \
 ../obj/economy.o \
 ../obj/euristics.o \
 ../obj/graphTools.o \
@@ -71,6 +71,7 @@ OBJS = \
 ../obj/performances.o \
 ../obj/deallocateVar.o \
 ../obj/readThStorage.o \
+../obj/readIceStorage.o \
 ../obj/readPV.o \
 ../obj/readSC.o \
 ../obj/readWind.o \

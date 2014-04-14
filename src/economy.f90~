@@ -82,7 +82,8 @@ real(kind = prec) function elRev(c,t)
 !---Declare Module usage---
 
 use shared
-use inputVar, only : uEl, cEl, gridBuyCost, gridSellCost, gridConnection
+use inputVar, only : uEl, cEl, gridBuyCost, gridSellCost, gridConnection, k_tr, &
+                     k_el, c_tr, c_st
 use plantVar, only : nm, dt
 use energy
 
@@ -91,7 +92,7 @@ implicit none
 integer, dimension(nm), intent(in) :: c !> Vector of set-point indexes
 integer,                intent(in) :: t !> Current time-step index
 integer          :: n, i
-real(kind = prec) :: p, u, rVend
+real(kind = prec) :: p, u, rVend, eNet, rTr, rSt, rGrid
 
 n = size(uEl,2)
 
@@ -112,14 +113,24 @@ elRev = zero
 select case(gridConnection)
     case('StandAlone')
          elRev = rVend
-    case('NetMetering')
+    case('Stock')
          if(p.gt.u) then
             elRev = rVend + (p - u)*gridSellCost(t)*dt(t)
          else
             elRev = rVend + (p - u)*gridBuyCost(t)*dt(t)
          endif
-    case('DedicatedRetire')
+    case('Sell+Buy')
          elRev = rVend + (p*gridSellCost(t) - u*gridBuyCost(t))*dt(t)
+    case('GSE')
+         eNet = (p - u)*dt(t)
+         if(p.gt.u) then
+            rGrid = eNet*gridSellCost(t)*k_el
+            rTr   = eNet*k_tr*c_tr
+            rSt   = eNet*c_st
+            elRev = rVend + rGrid + rTr - rSt
+         else
+            elRev = rVend + eNet*gridBuyCost(t)
+         endif
 end select
 
 return
@@ -286,7 +297,7 @@ integer,                intent(in) :: t
 integer                            :: i,j
 
 maintenanceCost = zero
-do j=1,nm
+do j=1,nm0
    i = c(j)
    if(sp(i,j).gt.0) maintenanceCost = maintenanceCost + OeMCost(j)*dt(t)
 enddo
@@ -366,6 +377,7 @@ real(kind = prec), allocatable, dimension(:) :: spNew, spOld
 
 allocate(spNew(nm), spOld(nm))
 fireCost = zero
+
 do i=1,nm
    spNew = sp(cNew(i),i)
    spOld = sp(cOld(i),i)
@@ -380,7 +392,8 @@ end function fireCost
 function gridEconomy(c,t)
 
 use shared
-use inputVar, only : uEl, cEl, gridBuyCost, gridSellCost, gridConnection
+use inputVar, only : uEl, cEl, gridBuyCost, gridSellCost, gridConnection, k_tr, &
+                     k_el, c_tr, c_st
 use plantVar, only : nm, dt
 use energy
 
@@ -390,7 +403,7 @@ real(kind = prec), dimension(2) :: gridEconomy
 integer, dimension(nm), intent(in) :: c !> Vector of set-point indexes
 integer,                intent(in) :: t !> Current time-step index
 integer          :: n, i
-real(kind = prec) :: p, u
+real(kind = prec) :: p, u, rGrid, rTr, eNet, rSt
 
 gridEconomy(:) = zero
 
@@ -408,19 +421,67 @@ select case(gridConnection)
     case('StandAlone')
          gridEconomy(1) = zero        
          gridEconomy(2) = zero
-    case('NetMetering')
+    case('Stock')
          if(p.gt.u) then
-            gridEconomy(1) = (p - u)*gridSellCost(t)
+            gridEconomy(1) = (p - u)*gridSellCost(t)*dt(t)
          else
-            gridEconomy(2) = (p - u)*gridBuyCost(t)
+            gridEconomy(2) = (p - u)*gridBuyCost(t)*dt(t)
          endif
-    case('DedicatedRetire')
-         gridEconomy(1) = p*gridSellCost(t) 
-         gridEconomy(2) = u*gridBuyCost(t)
+    case('Sell+Buy')
+         gridEconomy(1) = p*gridSellCost(t)*dt(t)
+         gridEconomy(2) = u*gridBuyCost(t)*dt(t)
+    case('GSE')
+         eNet = (p - u)*dt(t)
+         if(p.gt.u) then
+            rGrid = eNet*gridSellCost(t)*k_el
+            rTr   = eNet*k_tr*c_tr
+            rSt   = eNet*c_st
+            gridEconomy(1) = rGrid + rTr - rSt
+         else
+            gridEconomy(2) = eNet*gridBuyCost(t)
+         endif
 end select
 
 return
 
 end function gridEconomy
+!==============================================================================================================
+
+!>\brief 
+!> Calculates the cost associated to each battery charge cycle.
+!>\details
+!> Calculates the cost associated to each battery charge cycle.
+!>\f[
+!> C_{l} > 0 \qquad \mbox{if} \qquad sp(t,i) > 0 \;\mbox{and}\; sp(t-1,i) = 0
+!>\f]
+!> this cost will be added to the operative profit to for the arc profit/cost.
+!>\param[in] c index of the given set-point to be given as input. Defines the state of the plant \f$sp(i) = sp(c\_(i))\f$
+!>\param[in] t time step index. Note t=x meas the x'th time step from the
+!> simulation start.
+!>\author Andrea Facci
+real(kind = prec) function cycleCost(cNew, cOld)
+
+use shared
+use plantVar
+use inputVar
+
+implicit none
+
+integer, intent (in), dimension(nm) :: cNew, cOld
+integer :: i,j,k
+real(kind = prec) :: spNew, spOld
+
+cycleCost = zero
+
+i = is(iEs)
+spNew = sp(cNew(i),i)
+spOld = sp(cOld(i),i)
+if(spNew.gt.0.and.spOld.le.0) cycleCost = cycleCost + swCost
+
+return
+
+end function cycleCost
+
+!================================================================================================
 
 end module economy
