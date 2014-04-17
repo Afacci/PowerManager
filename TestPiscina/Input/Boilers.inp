@@ -1,0 +1,93 @@
+!---------------------------------------------------------------------------
+!  
+!   PowerManager.  
+!
+---------------------------------------------------------------------------
+!License
+!    This file is part of PowerManager.
+!
+!    PowerManager is free software; you can redistribute it and/or modify it
+!    under the terms of the GNU General Public License as published by the
+!    Free Software Foundation; either version 2 of the License, or (at your
+!    option) any later version.
+!
+!    PowerManager is distributed in the hope that it will be useful, but WITHOUT
+!    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+!    FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+!    for more details.
+!
+!    You should have received a copy of the GNU General Public License
+!    if not, write to the Free Software Foundation,
+!    Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+!
+!Application
+!    Trigeneration.inp
+!
+!Description
+!    Input file for the trigeneration equipments.
+!
+!---------------------------------------------------------------------------
+
+Everything written before begin or after end is ignore as well as every line after a !
+
+begin
+
+Number             | 1    | !total number of trigenerative equipments
+Power              | 294  | !rated power
+!HeatSource        | Fuel |
+FuelCost           | 1.0    | !euro/Sm3
+FuelLHV            | 35.0e3 | !kJ/Sm3
+OnOffCost          | 0.d0   | !cost to turn on the power plant
+OeMCost            | 0.d0   | !euro/h maintenance cost 
+PEF                | 1.1    |
+onOffPec           | 0.0    |
+
+SetPoint           | (0 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1)| !Possible set points
+
+ThermalEfficiency  | ( 0.0     0.0 |
+                   |  0.102    1.125 |
+                   |  0.141    1.129 |
+                   |  0.175    1.122 |
+                   |  0.215    1.122 |
+                   |  0.268    1.111 |
+                   |  0.323    1.102 |
+                   |  0.384    1.082 |
+                   |  0.432    1.07  |
+                   |  0.476    1.06  |
+                   |  0.514    1.051 |
+                   |  0.554    1.038 |
+                   |  0.597    1.032 |
+                   |  0.648    1.019 |
+                   |  0.699    1.014 |
+                   |  0.749    1.007 |
+                   |  0.801    1.007 |
+                   |  0.843    1.002 |
+                   |  0.888    1.002 |
+                   |  0.934    0.999 |
+                   |  0.981    0.999 |
+                   |  1.000    1.00 )|
+                                
+   
+
+MinUpTime          |0      0    |                   
+MinDownTime        |0      0    |                   
+
+
+!---Correction parameters----
+
+TempCorrection     | temp     eta  | 
+                   | ( 0.0   1.0   | 
+                   | 30.039  1.0   | 
+                   | 35.013  0.989 | 
+                   | 39.987  0.951 |
+                   | 50.04   0.912 |
+                   | 59.988  0.892 |
+                   | 75.015  0.887)|
+                   
+                  
+Tin                | 25 |
+Tout               | 50 |
+Condensation       |.true.|
+
+end
+    

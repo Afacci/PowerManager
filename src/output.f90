@@ -220,6 +220,10 @@ subroutine output(setPoint,postProcessing,path)
         j = is(iC) + i - 1
         write(u,'(A,1X,A,5X)', advance='no') trim(tec(j)),'Chiller'
      enddo
+     do i=1,nHP
+        j = is(iHP) + i - 1
+        write(u,'(A,1X,A,5X)', advance='no') 'HeatPump'
+     enddo
      write(u,*)
      write(u,'(5X)',advance='no')
      do i=1,nTrig
@@ -237,6 +241,10 @@ subroutine output(setPoint,postProcessing,path)
            write(u,'(F4.2,10X)', advance='no') etaTh(k,j)
         enddo
         do j=is(iC),ie(iC)
+           k = setPoint(i,j)
+           write(u,'(F4.2,10X)', advance='no') etaCh(k,j)
+        enddo
+        do j=is(iHP),ie(iHP)
            k = setPoint(i,j)
            write(u,'(F4.2,10X)', advance='no') etaCh(k,j)
         enddo
@@ -551,15 +559,15 @@ subroutine output(setPoint,postProcessing,path)
      buffer20(1) = 'Time [h]            '
      buffer20(2) = 'Photovoltaic  [kW]  '
      buffer20(3) = 'Thermal  [kW]       '
-     buffer20(4) = 'Wind Power  [kW]    '
-     write(u,'(4A)') (buffer20(i), i=1,4)
+!     buffer20(4) = 'Wind Power  [kW]    '
+     write(u,'(4A)') (buffer20(i), i=1,3)
      rbuffer = zero
      do i=1,nTime
         rbuffer(1) = t(i)
         rbuffer(2) = sunEl(i)
         rbuffer(3) = sunTh(i)
-        rbuffer(4) = windEl(i)
-        write(u,'(4(ES11.2E2,11X))') (rbuffer(j), j=1,4)
+!        rbuffer(4) = windEl(i)
+        write(u,'(4(ES11.2E2,11X))') (rbuffer(j), j=1,3)
      enddo
   endif
 

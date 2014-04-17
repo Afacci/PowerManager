@@ -73,11 +73,11 @@ OBJS = \
 ../obj/deallocateVar.o \
 ../obj/readThStorage.o \
 ../obj/timestep.o \
-../obj/buildPlantRev.o 
+../obj/buildPlantRev.o \
+../obj/readPV.o \
+../obj/readSC.o 
 #../obj/readSteamPlant.o \
 #../obj/readIceStorage.o \
-#../obj/readPV.o \
-#../obj/readSC.o \
 #../obj/readWind.o \
 #../obj/readElStorage.o \
 

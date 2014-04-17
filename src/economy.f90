@@ -446,6 +446,13 @@ select case(gridConnection)
          else
             gridEconomy(2) = eNet*gridBuyCost(t)
          endif
+    case('BuyOnly')
+         gridEconomy(1) = zero
+         if(p.gt.u) then
+            gridEconomy(2) = zero
+         else
+            gridEconomy(2) = (p -u)*gridBuyCost(t)*dt(t)
+         endif
 end select
 
 return

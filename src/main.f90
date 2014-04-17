@@ -95,10 +95,10 @@ call readLoads
 print*,'     --> Reading Loads.inp             ... OK '
 call readGeneral
 print*,'     --> Reading General.inp           ... OK '
-!call readPV
-!print*,'     --> Reading Photovoltaic.inp      ... OK '
-!call readSC
-!print*,'     --> Reading Photovoltaic.inp      ... OK '
+call readPV
+print*,'     --> Reading Photovoltaic.inp      ... OK '
+call readSC
+print*,'     --> Reading SolarCollectors.inp      ... OK '
 call readEnv
 print*,'     --> Reading Enivronment.inp       ... OK '
 !call readWind
