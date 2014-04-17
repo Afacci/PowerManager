@@ -106,8 +106,8 @@ do
     select case(keyword)
        case('end')
           exit
-       case('Latitude','Day','SummerTime','Cloudiness','Radiation','RadiationModel')
-          continue
+!       case('Latitude','Day','SummerTime','Cloudiness','Radiation','RadiationModel')
+!          continue
        case('Climate')
           isPresent(1) = .true.
           call rewUnit(genUnit,1)
@@ -133,83 +133,97 @@ do
        case('Altitude')
           isPresent(2) = .true.
           read(value,*) altitude
+!    if(surfSC.gt.zero.or.surfPV.gt.zero) then
+!        select case(keyword)
+!          case('end')
+!             exit
+!          case('Climate','Altitude', 'Radiation')
+!             continue
+       case('Latitude')
+          read(value,*) latitude
+          ljModel(1) = .true.
+       case('Day')
+          read(value,*) Day
+          ljModel(2) = .true.
+       case('SummerTime')
+          read(value,*) summerTime
+          ljModel(3) = .true.
+!       case('Cloudiness')
+!          read(value,*) clouds
+!          ljModel(4) = .true.
+!       case('RadiationModel') 
+!          read(value,*) radMod
+!          ljModel(5) = .true.
+!          print*, 'radMod', radMod
+       case('Radiation')
+           ljModel(5) = .true.
+!       simpleModel = .true.
+       read(value,*) (param(i), i=1,2)
+       do i=1,2
+           select case(param(i))
+              case('Beam')
+                 nb = i
+              case('Diffused')
+                 nd = i
+           end select
+       enddo
+       allocate(matrix(24,2))
+       matrix  = rNaN(rVal)
+       matrix  = dmatrixRead(genUnit,24,2)
+       BeamRad = matrix(:,nb)
+       DiffRad = matrix(:,nd)
+       deallocate(matrix)
        case(' ') 
           if(verb) call warning(4,3,line=line)
        case default
-          if(.not.silent) call warning(1,3,line=line,word=keyword)
+          if(.not.silent) call warning(1,7,line=line,word=keyword)
     end select
-    if(surfSC.gt.zero.or.surfPV.gt.zero) then
-         select case(keyword)
-           case('end')
-              exit
-           case('Climate','Altitude', 'Radiation')
-              continue
-           case('Latitude')
-              read(value,*) latitude
-              ljModel(1) = .true.
-           case('Day')
-              read(value,*) Day
-              ljModel(2) = .true.
-           case('SummerTime')
-              read(value,*) summerTime
-              ljModel(3) = .true.
-           case('Cloudiness')
-              read(value,*) clouds
-              ljModel(4) = .true.
-           case('RadiationModel') 
-              read(value,*) radMod
-              ljModel(5) = .true.
-              print*, 'radMod', radMod
-           case(' ') 
-              if(verb) call warning(4,3,line=line)
-           case default
-              if(.not.silent) call warning(1,7,line=line,word=keyword)
-          end select
-      endif
+!      endif
 enddo
 
-if(radMod.eq.'Simple') then
-  call rewUnit(genUnit,line-firstLine)
-  line = firstLine
-  do 
-    call readKeyword(genUnit,.false., keyword,value,error, nl)
-    if (error.eq.1) call abortExecution(0,6,line)
-    line = line + nl
-    select case(keyword)
-       case('end')
-          exit
-       case('Radiation')
-         simpleModel = .true.
-         read(value,*) (param(i), i=1,2)
-         do i=1,2
-             select case(param(i))
-                case('Beam')
-                   nb = i
-                case('Diffused')
-                   nd = i
-             end select
-         enddo
-         allocate(matrix(24,2))
-         matrix  = rNaN(rVal)
-         matrix  = dmatrixRead(genUnit,24,2)
-         BeamRad = matrix(:,nb)
-         DiffRad = matrix(:,nd)
-         deallocate(matrix)
-       case default
-         continue
-    end select
-  enddo
-endif
+!if(radMod.eq.'Simple') then
+!  call rewUnit(genUnit,line-firstLine)
+!  line = firstLine
+!  do 
+!    call readKeyword(genUnit,.false., keyword,value,error, nl)
+!    if (error.eq.1) call abortExecution(0,6,line)
+!    line = line + nl
+!    select case(keyword)
+!       case('end')
+!          exit
+!       case('Radiation')
+!         simpleModel = .true.
+!         read(value,*) (param(i), i=1,2)
+!         do i=1,2
+!             select case(param(i))
+!                case('Beam')
+!                   nb = i
+!                case('Diffused')
+!                   nd = i
+!             end select
+!         enddo
+!         allocate(matrix(24,2))
+!         matrix  = rNaN(rVal)
+!         matrix  = dmatrixRead(genUnit,24,2)
+!         BeamRad = matrix(:,nb)
+!         DiffRad = matrix(:,nd)
+!         deallocate(matrix)
+!       case default
+!         continue
+!    end select
+!  enddo
+!endif
 
 
 if(surfSC.gt.zero.or.surfPV.gt.zero) then
-   if(radMod.eq.'Simple') then
-      if(.not.simpleModel) call abortExecution(30,1)
-   endif
-   nInp = size(ljModel)
-   do i=1,nInp
+!   if(radMod.eq.'Simple') then
+!      if(.not.simpleModel) call abortExecution(30,1)
+!   endif
+!   nInp = size(ljModel)
+   do i=1,nInp-1
       if(.not.ljModel(i)) call abortExecution(31,i)
    enddo
+   if(.not.ljModel(5)) call abortExecution(30,1)
 endif
 
 close(genUnit)

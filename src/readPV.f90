@@ -136,7 +136,7 @@ do
        case('AuxEfficiency')
           read(value,*) etaAuxPV
           isPresent(7) = .true.
-        case('TemperatureDerating')
+       case('TemperatureDerating')
           isPresent(6) = .true.
           backspace(genUnit)
           line = line - 1
@@ -145,7 +145,7 @@ do
           call rewUnit(genUnit,nTPV)
           pvCorr(:,:) =  dmatrixRead(genUnit,nTPV,2)
           line = line + nTPV  
-        case('Reflection')
+       case('Reflection')
           read(value,*) rhoPV
           isPresent(8) = .true.
        case(' ') 

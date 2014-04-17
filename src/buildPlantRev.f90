@@ -47,7 +47,7 @@ use plantVar
 use mathTools
 use interfaces
 use myArithmetic
-!use sun
+use sun
 !use eolo
 use addSection
 
@@ -69,7 +69,7 @@ real(kind = prec), allocatable, dimension(:,:)   :: upTimeVinc, downTimeVinc
 real(kind = prec), dimension(1)                  :: rdummy1, rdummy2
 real(kind = prec), dimension(:,:,:), allocatable :: tCorr, pCorr
 real(kind = prec), dimension(:,:), allocatable   :: aCorr
-integer                                          :: nMax, n1, n2, n3
+integer                                          :: nMax, n1, n2, n3,n4
 
 !--subroutine body-----
 
@@ -105,6 +105,12 @@ if(nChi.gt.0) then
 else
    n3 = 0
 endif
+if(nHP.gt.0) then 
+   nSpTot = nSpTot + sum(nSpHP)
+   n4 = maxval(nSpHP)
+else
+   n4 = 0
+endif
 if(capacityTS.gt.zero.and.pmaxTs.gt.zero) then 
    nSpTot = nSpTot + 2*nSpTS + 1
 else
@@ -134,7 +140,7 @@ nSpEs = 0
 
 
 !nMax = max(n1, n2, n3, 2*nSpTS + 1,2*nSpES + 1,2*nSpIS + 1)
-nMax = max(n1, n2, n3, 2*nSpTS + 1)
+nMax = max(n1, n2, n3,n4, 2*nSpTS + 1)
 call allocateVar(18,nMax)
 call allocateVar(32)
 
@@ -170,17 +176,17 @@ call addThermalStorage
 
 !------renewable stuff--------------------------------
 allocate(sunEl(nTime), sunTh(nTime), windEl(nTime))
-!if(surfPV.gt.zero) then
-!  sunEl = photo()
-!else
+if(surfPV.gt.zero) then
+  sunEl = photo()
+else
   sunEl = zero
-!endif
+endif
 
-!if(surfSC.gt.zero) then
-!  sunTh = thermalCollector()
-!else
+if(surfSC.gt.zero) then
+  sunTh = thermalCollector()
+else
   sunTh = zero
-!endif
+endif
 
 !if(nwf.gt.0) then
 !  windEl = windPower()

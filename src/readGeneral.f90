@@ -100,6 +100,9 @@ do
     if(buffer(1:5).eq.'begin') exit
 enddo
 
+
+isPresent(2) = .true.
+
 !---read the input list---
 line = firstLine
 do 
@@ -114,7 +117,8 @@ do
           gridConnection = trim(gridConnection)
           isPresent(1) = .true.
           if(gridConnection.ne.'Stock'.and.gridConnection               &
-             .ne.'GSE'.and.gridConnection.ne.'StandAlone'.and.gridConnection.ne.'Sell+Buy')  then
+             .ne.'GSE'.and.gridConnection.ne.'StandAlone'.and.gridConnection.ne.'Sell+Buy' &
+             .and.gridConnection.ne.'BuyOnly')  then
               call abortExecution(2,1,line,gridConnection)
           endif
           if(gridConnection.eq.'GSE') isGSE = .true.
@@ -130,9 +134,9 @@ do
        case('TrasmissionCost')
           kGSE(4) = .true.
           read(val,*) c_st
-       case('Degradation')
-          read(val,*) iDeg
-          isPresent(2) = .true.
+!       case('Degradation')
+!          read(val,*) iDeg
+!          isPresent(2) = .true.
        case('objective')
           read(val,*) obj
           isPresent(3) = .true.
@@ -259,16 +263,16 @@ do
         case('ThermalStorageLevel')
 !             isPresent(10) = .true.
              read(val,*) iSocTh, eSocTh
-        case('ElectricalStorageLevel')
+!        case('ElectricalStorageLevel')
 !             isPresent(10) = .true.
-             read(val,*) iSocEl, eSocEl
-        case('ChillingStorageLevel')
+!             read(val,*) iSocEl, eSocEl
+!        case('ChillingStorageLevel')
 !             isPresent(10) = .true.
-             read(val,*) iSocIce, eSocIce
-        case('Preset')
-             call rewUnit(genUnit,1)
-             call allocateVar(38)
-             preset = dmatrixRead(genUnit,nTime,nTrig)
+!             read(val,*) iSocIce, eSocIce
+!        case('Preset')
+!             call rewUnit(genUnit,1)
+!             call allocateVar(38)
+!             preset = dmatrixRead(genUnit,nTime,nTrig)
         case('DebugGraph')
              read(val,*), DebugGraph
         case(' ')
@@ -290,6 +294,9 @@ enddo
 do i=1,size(kGSE)
    if(.not.kGSE(i)) call abortExecution(19,i)
 enddo
+if(strategy.ne.'Optimized') then
+   call abortExecution(37)
+endif
 if(strategy.eq.'ThermalTrack'.or.strategy.eq.'electricalTrack') then
    do i=1,3
       if(.not.iPrio(i)) call abortExecution(20,i)

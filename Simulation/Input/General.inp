@@ -35,18 +35,16 @@ GridLoss        | 1.051    |
 TransportCoeff  | 1.042    |
 TransportCost   | 3.56e-3  |
 TrasmissionCost | 2.56e-4  |
-Degradation     | False    | !True/False
-Strategy        | Optimized|
+Strategy        | Optimized |!Optimized|
 objective       | Economic |
 Algorithm       | Backward |
-GridPEF         | 2.174 |
+GridPEF         | 2.174    |
 !---------Initial Conditions------------------------------
 StartPoint      | 0.0 0.0 0.0 0.0  |         
 UpTime          | 0  0  0  |         
 DownTime        | 2  2  2 |         
 FirstTimeStep   | 1               |
 ThermalStorageLevel|  0.0 0.0  |
-ElectricalStorageLevel|  0.0 0.0   |
 !-----submodels-------------
 writeEnergy     | .true.          |
 writeEfficiency | .true.          |
@@ -64,31 +62,7 @@ global          | .true.          |
 Euristics       | .true.          |
 writePec        | .true.          |
 writeRenewables | .false.          |
-Preset          |(1 |
-                |1 |
-                |1 |
-                |1 |
-                |1 |
-                |1 |
-                |1 |
-                |1 |
-                |8 |
-                |8 |
-                |8 |
-                |8 |
-                |8 |
-                |8 |
-                |8 |
-                |8 |
-                |8 |
-                |8 |
-                |8 |
-                |8 |
-                |8 |
-                |1 |
-                |1 |
-                |1) |
-DebugGraph      | .true.|
+DebugGraph      | .false.|
 
 
 end

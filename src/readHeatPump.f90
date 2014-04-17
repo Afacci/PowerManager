@@ -245,19 +245,19 @@ do
           exit
       case('PowerCorrection')
             isPresent(16) = .true.
+            n1 = maxval(nOutTHP)
+            n2 = maxval(nTenvHP)
+            allocate(hpCorrectionP(n1,n2,nHP))
             do i=1,nHP
-               n1 = maxval(nOutTHP)
-               n2 = maxval(nTenvHP)
-               allocate(hpCorrectionP(n1,n2,nHP))
                call rewUnit(genUnit,1)
                hpCorrectionP(:,:,i) = dmatrixRead(genUnit,nOutThp(i),nTenvHP(i))
             enddo
       case('CopCorrection')
             isPresent(17) = .true.
+            n1 = maxval(nOutTHP)
+            n2 = maxval(nTenvHP)
+            allocate(hpCorrectionE(n1,n2,nHP))
             do i=1,nHP
-               n1 = maxval(nOutTHP)
-               n2 = maxval(nTenvHP)
-               allocate(hpCorrectionE(n1,n2,nHP))
                call rewUnit(genUnit,1)
                hpCorrectionE(:,:,i) = dmatrixRead(genUnit,nOutThp(i),nTenvHP(i))
             enddo

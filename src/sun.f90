@@ -36,7 +36,7 @@ use inputVar
 real(kind=prec), parameter, private                 :: pi  = 3.1415927
 real(kind=prec), parameter, private                 :: deg = pi/180.0!1.7453293e-02
 real(kind=prec), allocatable, dimension(:), private :: hrad, cosZ, Z, cosTh, totRad
-real(kind=prec), private                            :: orientation, slope , decl, lat  
+real(kind=prec), private                            :: orientation, slope , decl, lat
 logical , allocatable, dimension(:), private        :: night
 
 contains
@@ -47,7 +47,7 @@ contains
  
     !---Declare Local Variables---
     real(kind=prec),dimension(nTime)  :: photo
-    real(kind=prec)                   :: rd, rb, rr, gt
+    real(kind=prec)                   :: rd, rb, rr, gt, ghO
     integer                           :: i
 
     !---function body-----
@@ -59,18 +59,20 @@ contains
 
     call Astronomy
 
-    if(radMod.eq.'LiuJordan') then
-       call liuJordan
-    endif
+!    if(radMod.eq.'LiuJordan') then
+!       call liuJordan
+!    endif
     
-    TotRad = BeamRad + DiffRad
+!    TotRad = BeamRad + DiffRad
     
     do i=1,nTime
        if(.not.night(i)) then
           rd = 0.5*(1.0 + cos(slope))
           rb = cosTh(i)/cosZ(i)
           rr = rhoPV*0.5*(1.0 - cos(slope))
-          gt = BeamRad(i)*rb + rd*DiffRad(i) + TotRad(i)*rr
+!          gt = BeamRad(i)*rb + rd*DiffRad(i) + TotRad(i)*rr
+          ghO = BeamRad(i)*cosZ(i) + DiffRad(i)
+          gt = BeamRad(i)*cosTh(i) + rd*DiffRad(i) + ghO*rr
           if(gt.gt.cutOffPV) then 
              photo(i) = etaPV*surfPV*etaAuxPV*gt
           else
@@ -167,7 +169,7 @@ contains
  
     !---Declare Local Variables---
     real(kind=prec),dimension(nTime)  :: thermalCollector, kappa, gt, eff
-    real(kind=prec)                   :: rd, rb, rr
+    real(kind=prec) :: rd, rb, rr, ghO
     integer                           :: i
 
     !---function body-----
@@ -178,23 +180,25 @@ contains
 
     call Astronomy
 
-    if(radMod.eq.'LiuJordan') then
-       call liuJordan
-    endif
+!    if(radMod.eq.'LiuJordan') then
+!       call liuJordan
+!    endif
     
     kappa = 1.0
 
     select case(SCkind)
        case('FlatPlate')
-          TotRad = BeamRad + DiffRad
+          !TotRad = BeamRad + DiffRad
           do i=1,nTime
+             ghO = BeamRad(i)*cosZ(i) + DiffRad(i)
              rd = 0.5*(1.0 + cos(slope))
              if(night(i)) then
                 gt(i) = zero
              else
                 rb = cosTh(i)/cosZ(i)
                 rr = rhoSC*0.5*(1.0 - cos(slope))
-                gt(i) = BeamRad(i)*rb + rd*DiffRad(i) + TotRad(i)*rr
+                !gt(i) = BeamRad(i)*rb + rd*DiffRad(i) + TotRad(i)*rr
+                gt(i) = BeamRad(i)*cosZ(i) + rd*DiffRad(i) + ghO*rr
                 kappa(i) = (TinSC - Tamb(i))/(gt(i)*1000.0) 
              endif
           enddo
@@ -203,8 +207,9 @@ contains
              if(night(i)) then
                 gt(i) = zero
              else   
-                rb = cosTh(i)/cosZ(i)
-                gt(i) = BeamRad(i)*rb 
+                !rb = cosTh(i)/cosZ(i)
+                !gt(i) = BeamRad(i)*rb 
+                gt(i) = BeamRad(i)*cosZ(i)
                 kappa(i) = (TinSC - Tamb(i))/(gt(i)*1000.0) 
              endif
           enddo

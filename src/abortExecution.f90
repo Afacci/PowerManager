@@ -262,11 +262,13 @@ select case(i)
         print*, 'of hourly solar direct and diffused irradiance.'
         print*, 'Missing', PV2(j), 'in file Environment.inp'
     case(31)
-        print*, 'The Liu-Jordan model requires the specification of ',  PV3(j), 'in file Environment.inp'
+        print*, 'The solar module requires the specification of ',  PV3(j), 'in file Environment.inp'
     case(35)
         print*, 'The number of time intervals in the wind table must be equal to'
         print*, 'the number of time intervals of energy demand, and all the other'
         print*, 'enviromental conditions'
+    case(37)
+        print*, 'Only "Optimized" strategy allowed so far'
     case default
         continue
 end select

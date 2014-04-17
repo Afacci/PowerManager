@@ -35,8 +35,8 @@ MODS = \
 ../obj/graphTools.o \
 ../obj/globalResults.o \
 ../obj/getSetPoint.o \
-../obj/addSection.o
-#../obj/sun.o \
+../obj/addSection.o \
+../obj/sun.o
 #../obj/windPower.o \
 #../obj/strategies.o \
 

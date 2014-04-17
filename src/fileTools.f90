@@ -93,7 +93,7 @@ interface
          implicit none
          integer, intent(in)        :: theUnit, nline, ncol
          character(len=1), optional :: first_, last_
-         character(len=100)         :: cMatrixRead(nline,ncol)
+         character(len=500)         :: cMatrixRead(nline,ncol)
     end function cMatrixRead
 end interface
 
@@ -103,7 +103,7 @@ interface
          implicit none
          integer, intent(in)        :: theUnit, nline
          character(len=1), optional :: first_, last_
-         character(len=100)         :: matrixRead(nline)
+         character(len=500)         :: matrixRead(nline)
     end function matrixRead
 end interface
 
@@ -166,7 +166,7 @@ interface
     subroutine readKeyword (theUnit,rew,keyword,value,error,nRow)
         use shared
         implicit none
-        character(len=100), intent(out):: Keyword, value
+        character(len=500), intent(out):: Keyword, value
         integer, intent(out), optional :: error
         integer, intent(out), optional :: nRow
         integer, intent(in)            :: theUnit

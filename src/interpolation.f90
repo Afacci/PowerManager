@@ -64,7 +64,7 @@ integer          :: i,j
 
 !-- detect if any value needs to be extrapolated, and return a warnign
 !-- warn(1) = 1 --> Need to extrapolate higher valuers
-!-- warn(1) = 1 --> Need to extrapolate lower values
+!-- warn(2) = 1 --> Need to extrapolate lower values
 if(present(warn)) then
     warn(1) = 0
     warn(2) = 0

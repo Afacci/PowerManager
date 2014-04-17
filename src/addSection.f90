@@ -353,8 +353,6 @@ contains
       real(kind=prec), dimension(2) :: tCorr, pCorr
       real(kind=prec), dimension(ntime,2) ::aCorr
 
-      
-      print*, 'testadicazzo', nHP
       if(nHP.gt.0) then
          do i=1,nHP
             etaHP_(:,i) = interpolation(etaHP(:,1,i), etaHP(:,2,i), nEtaHP(i), spHP(:,i),nSpHP(i), ext) 

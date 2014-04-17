@@ -114,6 +114,8 @@ isPresent(3) = .true.
 isPresent(6) = .true.
 isPresent(7) = .true.
 isPresent(11) = .true.
+isPresent(14) = .true.
+iPrio(1) = .false.
 
 !---read the input list---
 line = firstLine
@@ -130,9 +132,9 @@ do
        case('Power')
           read(value,*) (pMaxT(i), i=1,nTrig)
           isPresent(2) = .true.
-       case('Priority')
-          read(value,*) (TrigPriority(i), i=1,nTrig)
-          iPrio(1) = .true.
+!       case('Priority')
+!          read(value,*) (TrigPriority(i), i=1,nTrig)
+!          iPrio(1) = .true.
 !       case('DegradationRate')
 !          read(value,*) (degRateT(i), i=1,nTrig)
 !          isPresent(3) = .true.
@@ -214,20 +216,20 @@ do
                  etaThT(:,:,i) =  dmatrixRead(genUnit,nEtaThT(i),2)
               enddo
               line = line + j
-       case('ChillingEfficiency')
-              isPresent(14) = .true.
-              backspace(genUnit)
-              line = line - 1 
-              do i = 1,nTrig
-                  nEtaChT(i) = vCount(genUnit,.false.)
-              enddo
-              j = sum(nEtaChT)
-              call allocateVar(6)
-              call rewUnit(genUnit,j)
-              do i = 1, nTrig
-                 etaChT(:,:,i) =  dmatrixRead(genUnit,nEtaChT(i),2)
-              enddo
-              line = line + j
+!       case('ChillingEfficiency')
+!              isPresent(14) = .true.
+!              backspace(genUnit)
+!              line = line - 1 
+!              do i = 1,nTrig
+!                  nEtaChT(i) = vCount(genUnit,.false.)
+!              enddo
+!              j = sum(nEtaChT)
+!              call allocateVar(6)
+!              call rewUnit(genUnit,j)
+!              do i = 1, nTrig
+!                 etaChT(:,:,i) =  dmatrixRead(genUnit,nEtaChT(i),2)
+!              enddo
+!             line = line + j
        case('MinUpTime')
               read(value,*) (minUpTimeT(i), i=1,nTrig)
               isPresent(16) = .true.
@@ -347,7 +349,9 @@ do
                if(.not.silent) call warning(1,2,line=line,word=keyword)
     end select
 enddo
-
+do i = 1, nTrig
+   etaChT(:,:,i) =  zero
+enddo
 !---check if all the variablea were read---
 nInp = size(isPresent)
 do i = 1,nInp

@@ -131,6 +131,12 @@ select case(gridConnection)
          else
             elRev = rVend + eNet*gridBuyCost(t)
          endif
+    case('BuyOnly')
+         if(p.gt.u) then
+            elRev = zero
+        else
+            elRev = (p -u)*gridBuyCost(t)*dt(t)
+        endif
 end select
 
 return

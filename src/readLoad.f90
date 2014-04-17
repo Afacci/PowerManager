@@ -76,10 +76,10 @@ character(len=500)   :: buffer, keyword, value
 integer              :: firstLine, i, n2, j, ntest, k, nmax, n3, n4, nPrice &
                         , iBuy, iSell
 logical,dimension(4) :: isPresent = .false.
-character(len=100)   :: line
-character(len=100), allocatable, dimension(:)     :: matrix
-character(len=100), allocatable, dimension(:,:)   :: theLoads, thePrices
-character(len=100),              dimension(1,3)   :: grids
+character(len=500)   :: line
+character(len=500), allocatable, dimension(:)     :: matrix
+character(len=500), allocatable, dimension(:,:)   :: theLoads, thePrices
+character(len=500),              dimension(1,3)   :: grids
 real(kind = prec),   allocatable, dimension(:,:,:) :: loads_, prices_
 real(kind = prec),   allocatable, dimension(:,:) :: gridPrices
 
