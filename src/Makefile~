@@ -35,8 +35,8 @@ MODS = \
 ../obj/graphTools.o \
 ../obj/globalResults.o \
 ../obj/getSetPoint.o \
-../obj/addSection.o
-#../obj/sun.o \
+../obj/addSection.o \
+../obj/sun.o
 #../obj/windPower.o \
 #../obj/strategies.o \
 
@@ -55,6 +55,7 @@ OBJS = \
 ../obj/hCount.o \
 ../obj/readBoiler.o \
 ../obj/readChiller.o \
+../obj/readHeatPump.o \
 ../obj/findEntry2.o \
 ../obj/readKeyword.o \
 ../obj/warning.o \
@@ -72,11 +73,11 @@ OBJS = \
 ../obj/deallocateVar.o \
 ../obj/readThStorage.o \
 ../obj/timestep.o \
-../obj/buildPlantRev.o 
+../obj/buildPlantRev.o \
+../obj/readPV.o \
+../obj/readSC.o 
 #../obj/readSteamPlant.o \
 #../obj/readIceStorage.o \
-#../obj/readPV.o \
-#../obj/readSC.o \
 #../obj/readWind.o \
 #../obj/readElStorage.o \
 

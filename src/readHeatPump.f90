@@ -74,17 +74,17 @@ use myArithmetic
 implicit none
 
 !---Declare Local Variables---
-integer              :: genUnit = 208, dinte
-character(len=50)    :: inputFile = './Input/HeatPump.inp'
-logical              :: filePresent
-character(len=500)   :: buffer, keyword, value,vector,elements,value_
-integer              :: firstLine, line, nl, i, nInp, nRow, n1, n2, x, j, il
-logical,dimension(18):: isPresent = .false.
-character(len=100)   :: chKind(2)
+integer                :: genUnit = 208, dinte
+character(len=50)      :: inputFile = './Input/HeatPump.inp'
+logical                :: filePresent
+character(len=lword)   :: buffer, keyword, value,vector,elements,value_
+integer                :: firstLine, line, nl, i, nInp, nRow, n1, n2, x, j, il
+logical,dimension(18)  :: isPresent = .false.
+character(len=100)     :: chKind(2)
 integer, dimension(10) :: dummy
-integer              :: error
-character(len=20), dimension(3) :: param
-integer :: n, nt, nee, net, nec, np
+integer                :: error
+integer                :: n, nt, nee, net, nec, np
+character(len=20), dimension(3)                :: param
 real(kind = prec), allocatable, dimension(:,:) :: matrix
 
 !---Check File Presence---

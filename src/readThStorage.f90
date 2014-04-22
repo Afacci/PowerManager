@@ -74,7 +74,7 @@ implicit none
 integer              :: genUnit = 111
 character(len=50)    :: inputFile = './Input/ThermalStorage.inp'
 logical              :: filePresent
-character(len=500)   :: buffer, keyword, value
+character(len=lword) :: buffer, keyword, value
 integer              :: firstLine, line, i, nInp, nl
 logical,dimension(5) :: isPresent = .false.
 integer              :: error

@@ -7,7 +7,7 @@
  # equipment and time-step
  #--------------------------------------------------------------------------#
 
-Time [h]   Fuel  Boiler [kW]  
+Time [h]   Fuel  Boiler [kW]  Heat Pump [kW] 
 
 1.00E+00  0.00E+00          0.00E+00          0.00E+00          
 2.00E+00  0.00E+00          0.00E+00          0.00E+00          

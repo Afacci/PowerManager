@@ -1,0 +1,59 @@
+!---------------------------------------------------------------------------
+!  
+!   PowerManager.  
+!
+!---------------------------------------------------------------------------
+!License
+!    This file is part of PowerManager.
+!
+!    PowerManager is free software; you can redistribute it and/or modify it
+!    under the terms of the GNU General Public License as published by the
+!    Free Software Foundation; either version 2 of the License, or (at your
+!    option) any later version.
+!
+!    PowerManager is distributed in the hope that it will be useful, but WITHOUT
+!    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+!    FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+!    for more details.
+!
+!    You should have received a copy of the GNU General Public License
+!    if not, write to the Free Software Foundation,
+!    Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+!
+!Application
+!    Trigeneration.inp
+!
+!Description
+!    Input file for the trigeneration equipments.
+!
+!---------------------------------------------------------------------------
+
+Everything written before begin or after end is ignore as well as every line after a !
+
+begin
+
+Power              |0.0 |! | !rated power0.0 3500 
+Capacity           |0.0|!|   |          0.0 126e5
+SetPoint           | 12   | 
+InputEfficiency    | (0.000  0     | 
+                   |  0.386  0.390 | 
+                   |  0.487  0.414 | 
+                   |  0.584  0.434 | 
+                   |  0.758  0.446 | 
+                   |  0.895  0.454 | 
+                   |  1.000  0.459)| 
+
+
+OutputEfficiency   | (0.000  0     | 
+                   |  0.386  0.390 | 
+                   |  0.487  0.414 | 
+                   |  0.584  0.434 | 
+                   |  0.758  0.446 | 
+                   |  0.895  0.454 | 
+                   |  1.000  0.459)| 
+
+SwitchCost         | 0.0 |
+
+
+end
+    

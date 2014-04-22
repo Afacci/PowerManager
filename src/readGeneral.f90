@@ -72,16 +72,15 @@ implicit none
 integer               :: genUnit = 105
 character(len=20)     :: inputFile = './Input/General.inp'
 logical               :: filePresent
-character(len=500)    :: buffer, keyword, val, val_
+character(len=lword)  :: buffer, keyword, val, val_
 integer               :: firstLine, i, nInp, line, n, n_
 logical,dimension(9)  :: isPresent = .false.
-logical,dimension(15) :: optEntry  = .false.
+logical,dimension(16) :: optEntry  = .false.
 integer               :: error, nOpt
 character(len=50)     :: dummy
 logical               :: isGse = .false.
 logical, dimension(4) :: kGSE  = .false.
 integer, dimension(3) :: num
-
 
 !---Check File Presence---
 inquire(file = inputFile, exist = filePresent)
@@ -99,7 +98,6 @@ do
     firstLine = firstLine + 1
     if(buffer(1:5).eq.'begin') exit
 enddo
-
 
 isPresent(2) = .true.
 
@@ -250,6 +248,11 @@ do
              read(val,*), dummy
              if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
              read(val,*), writeRen
+        case('writeHeatPumps')
+             optEntry(16) = .true.
+             read(val,*), dummy
+             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
+             read(val,*), writeHP
         case('global')
              optEntry(13) = .true.
              read(val,*), dummy

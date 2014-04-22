@@ -71,17 +71,17 @@ use myArithmetic
 implicit none
 
 !---Declare Local Variables---
-integer              :: genUnit = 108, dinte
-character(len=50)    :: inputFile = './Input/Chillers.inp'
-logical              :: filePresent
-character(len=500)   :: buffer, keyword, value,vector,elements,value_
-integer              :: firstLine, line, nl, i, nInp, nRow, n1, n2, x, j, il
-logical,dimension(18):: isPresent = .false.
-character(len=100)   :: chKind(2)
+integer                :: genUnit = 108, dinte
+character(len=50)      :: inputFile = './Input/Chillers.inp'
+logical                :: filePresent
+character(len=lword)   :: buffer, keyword, value,vector,elements,value_
+integer                :: firstLine, line, nl, i, nInp, nRow, n1, n2, x, j, il
+logical,dimension(18)  :: isPresent = .false.
+character(len=sword)   :: chKind(2)
 integer, dimension(10) :: dummy
-integer              :: error
-character(len=20), dimension(3) :: param
-integer :: n, nt, nee, net, nec, np
+integer                :: error
+integer                :: n, nt, nee, net, nec, np
+character(len=20), dimension(3)                :: param
 real(kind = prec), allocatable, dimension(:,:) :: matrix
 
 !---Check File Presence---
@@ -178,61 +178,6 @@ do
        case('MinDownTime')
              isPresent(13) = .true.
              read(value,*) (minDownTimeC(i), i=1,nChi)
-!       case('OutletTemp')
-!          isPresent(14) = .true.
-!          allocate(nOutTc(nChi))
-!          value_ = value
-!          do i=1,nChi
-!              nOutTc(i) = hCount(value_)
-!              n2 = index(value_,')') + 1
-!              value_ =  value_(n2 + 1:)
-!          enddo
-!          allocate(outTempChi(maxval(nOutTc), nChi))
-!          do i = 1, nChi
-!             n1 = index(value,'(') + 1
-!             n2 = index(value,')') - 1
-!             vector = trim(value(n1:n2))
-!             read(vector,*) (outTempChi(j,i), j=1,nOutTc(i))
-!             value =  value(n2 + 2:)
-!          enddo
-!       case('EnvTemp')
-!          allocate(nTenvC(nChi))
-!          isPresent(15) = .true.
-!          value_ = value
-!          do i=1,nChi
-!              nTenvC(i) = hCount(value_)
-!              n2 = index(value_,')') + 1
-!              value_ =  value_(n2 + 1:)
-!          enddo
-!          allocate(envTempChi(maxval(nTenvC), nChi))
-!          do i = 1, nChi
-!             n1 = index(value,'(') + 1
-!             n2 = index(value,')') - 1
-!             vector = trim(value(n1:n2))
-!             read(vector,*) (envTempChi(j,i), j=1,nTenvC(i))
-!             value =  value(n2 + 2:)
-!          enddo
-!      case('PowerCorrection')
-!            isPresent(16) = .true.
-!            do i=1,nChi
-!               n1 = maxval(nOutTc)
-!               n2 = maxval(nTenvC)
-!               allocate(ChiCorrectionP(n1,n2,nChi))
-!               call rewUnit(genUnit,1)
-!               chiCorrectionP(:,:,i) = dmatrixRead(genUnit,nOutTc(i),nTenvC(i))
-!            enddo
-!      case('CopCorrection')
-!            isPresent(17) = .true.
-!            do i=1,nChi
-!               n1 = maxval(nOutTc)
-!               n2 = maxval(nTenvC)
-!               allocate(ChiCorrectionE(n1,n2,nChi))
-!               call rewUnit(genUnit,1)
-!               chiCorrectionE(:,:,i) = dmatrixRead(genUnit,nOutTc(i),nTenvC(i))
-!            enddo
-!      case('Tmandata')
-!            isPresent(18) = .true.
-!            read(value,*) (TutileChi (i),i=1,nChi)
        case('Number','EnvTemp', 'OutletTemp','PowerCorrection','CopCorrection','Tmandata')
              continue
        case(' ')
@@ -304,19 +249,19 @@ do
           exit
       case('PowerCorrection')
             isPresent(16) = .true.
+            n1 = maxval(nOutTc)
+            n2 = maxval(nTenvC)
+            allocate(ChiCorrectionP(n1,n2,nChi))
             do i=1,nChi
-               n1 = maxval(nOutTc)
-               n2 = maxval(nTenvC)
-               allocate(ChiCorrectionP(n1,n2,nChi))
                call rewUnit(genUnit,1)
                chiCorrectionP(:,:,i) = dmatrixRead(genUnit,nOutTc(i),nTenvC(i))
             enddo
       case('CopCorrection')
             isPresent(17) = .true.
+            n1 = maxval(nOutTc)
+            n2 = maxval(nTenvC)
+            allocate(ChiCorrectionE(n1,n2,nChi))
             do i=1,nChi
-               n1 = maxval(nOutTc)
-               n2 = maxval(nTenvC)
-               allocate(ChiCorrectionE(n1,n2,nChi))
                call rewUnit(genUnit,1)
                chiCorrectionE(:,:,i) = dmatrixRead(genUnit,nOutTc(i),nTenvC(i))
             enddo

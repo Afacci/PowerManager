@@ -72,16 +72,15 @@ implicit none
 integer               :: genUnit = 105
 character(len=20)     :: inputFile = './Input/General.inp'
 logical               :: filePresent
-character(len=500)    :: buffer, keyword, val, val_
+character(len=lword)  :: buffer, keyword, val, val_
 integer               :: firstLine, i, nInp, line, n, n_
 logical,dimension(9)  :: isPresent = .false.
-logical,dimension(15) :: optEntry  = .false.
+logical,dimension(16) :: optEntry  = .false.
 integer               :: error, nOpt
 character(len=50)     :: dummy
 logical               :: isGse = .false.
 logical, dimension(4) :: kGSE  = .false.
 integer, dimension(3) :: num
-
 
 !---Check File Presence---
 inquire(file = inputFile, exist = filePresent)
@@ -100,6 +99,9 @@ do
     if(buffer(1:5).eq.'begin') exit
 enddo
 
+
+isPresent(2) = .true.
+
 !---read the input list---
 line = firstLine
 do 
@@ -114,7 +116,8 @@ do
           gridConnection = trim(gridConnection)
           isPresent(1) = .true.
           if(gridConnection.ne.'Stock'.and.gridConnection               &
-             .ne.'GSE'.and.gridConnection.ne.'StandAlone'.and.gridConnection.ne.'Sell+Buy')  then
+             .ne.'GSE'.and.gridConnection.ne.'StandAlone'.and.gridConnection.ne.'Sell+Buy' &
+             .and.gridConnection.ne.'BuyOnly')  then
               call abortExecution(2,1,line,gridConnection)
           endif
           if(gridConnection.eq.'GSE') isGSE = .true.
@@ -130,9 +133,9 @@ do
        case('TrasmissionCost')
           kGSE(4) = .true.
           read(val,*) c_st
-       case('Degradation')
-          read(val,*) iDeg
-          isPresent(2) = .true.
+!       case('Degradation')
+!          read(val,*) iDeg
+!          isPresent(2) = .true.
        case('objective')
           read(val,*) obj
           isPresent(3) = .true.
@@ -141,10 +144,10 @@ do
           read(val,*) pefGrid
        case('StartPoint')
           isPresent(4) = .true.
-          n = nTrig + nBoi + nChi 
+          n = nTrig + nBoi + nChi + nHP
           if(capacityTS.gt.zero) n = n + 1
-          if(capacityES.gt.zero) n = n + 1
-          if(capacityIS.gt.zero) n = n + 1
+!          if(capacityES.gt.zero) n = n + 1
+!          if(capacityIS.gt.zero) n = n + 1
           call allocateVar(0,n)
           val_ = '('//trim(val)//')'
           n_ = hCount(val_)
@@ -246,6 +249,11 @@ do
              read(val,*), dummy
              if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
              read(val,*), writeRen
+        case('writeHeatPumps')
+             optEntry(16) = .true.
+             read(val,*), dummy
+             if(dummy.ne.'.true.'.and.dummy.ne.'.false.') call abortExecution(2,3, line=line,word=val)
+             read(val,*), writeHP
         case('global')
              optEntry(13) = .true.
              read(val,*), dummy
@@ -259,16 +267,16 @@ do
         case('ThermalStorageLevel')
 !             isPresent(10) = .true.
              read(val,*) iSocTh, eSocTh
-        case('ElectricalStorageLevel')
+!        case('ElectricalStorageLevel')
 !             isPresent(10) = .true.
-             read(val,*) iSocEl, eSocEl
-        case('ChillingStorageLevel')
+!             read(val,*) iSocEl, eSocEl
+!        case('ChillingStorageLevel')
 !             isPresent(10) = .true.
-             read(val,*) iSocIce, eSocIce
-        case('Preset')
-             call rewUnit(genUnit,1)
-             call allocateVar(38)
-             preset = dmatrixRead(genUnit,nTime,nTrig)
+!             read(val,*) iSocIce, eSocIce
+!        case('Preset')
+!             call rewUnit(genUnit,1)
+!             call allocateVar(38)
+!             preset = dmatrixRead(genUnit,nTime,nTrig)
         case('DebugGraph')
              read(val,*), DebugGraph
         case(' ')
@@ -290,6 +298,9 @@ enddo
 do i=1,size(kGSE)
    if(.not.kGSE(i)) call abortExecution(19,i)
 enddo
+if(strategy.ne.'Optimized') then
+   call abortExecution(37)
+endif
 if(strategy.eq.'ThermalTrack'.or.strategy.eq.'electricalTrack') then
    do i=1,3
       if(.not.iPrio(i)) call abortExecution(20,i)

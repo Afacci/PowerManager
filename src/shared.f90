@@ -36,6 +36,8 @@ module shared
 implicit none
 
 integer, parameter :: prec = kind(1.d0)
+integer, parameter :: lword = 500
+integer, parameter :: sword = 100
 real(kind = prec), parameter :: rVal = 1.0
 real(kind = prec), parameter :: zero = 0.0
 real(kind = prec), parameter :: vsmall = 1.0e-5

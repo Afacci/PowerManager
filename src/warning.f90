@@ -48,15 +48,15 @@ integer, intent(in) ,optional           :: i,j,k
 integer, intent(in), optional           :: line
 character(len=*), intent(in), optional  :: word
 real(kind = prec), intent(in), optional :: r1,r2
-character(len=18), dimension(22)        :: general
+character(len=18), dimension(24)        :: general
 character(len=18), dimension(17)        :: trigeneration
 character(len=18), dimension(15)        :: boilers
 character(len=18), dimension(13)        :: Chiller
 character(len=24), dimension(7)         :: files
 character(len=13), dimension(3)         :: equip
-character(len=17), dimension(14)        :: output
+character(len=17), dimension(16)        :: output
 character(len=18), dimension(5)         :: ThStorage
-character(len=19), dimension(10)         :: iWind
+character(len=19), dimension(10)        :: iWind
 integer                                 :: l
 character(len=19), dimension(14)        :: PV
 
@@ -95,11 +95,11 @@ equip         = (/'Trigenerator ', 'Boiler       ', 'Chiller      '/)
 output        = (/'writePower      ','writeEnergy     ','writeEfficiency ','writeElectricRev', &
                   'writeThermalRev ','writeChillingRev','writeDemand     ','writeInput      ', &   
                   'writeCosts      ','writeTrig       ','writeChiller    ','writeBoiler     ', &
-                  'global          ','WriteRenewables '/)
+                  'global          ','WriteRenewables ','DebugGraph      ','WriteHeatPumps  ' /)
 
 thStorage     = (/'Power             ', 'Capacity          ', 'SetPoint          ', 'InputEfficiency   ', 'OutputEfficiency  '/)
 
-general(9:22) = output
+general(9:24) = output
 
 PV            = (/'Surface            ', 'Efficiency         ', 'Slope              ', 'Orientation        ', &
                   'CutOff             ', 'Model              ', 'TemperatureDerating', 'Radiation          ', &

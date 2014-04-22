@@ -76,7 +76,7 @@ implicit none
 integer                :: genUnit = 114
 character(len=50)      :: inputFile = './Input/WindTurbines.inp'
 logical                :: filePresent
-character(len=500)     :: buffer, keyword, value
+character(len=lword)     :: buffer, keyword, value
 integer                :: firstLine, line, i, nInp  
 logical,dimension(10)   :: isPresent = .false.
 integer,dimension(100) :: dummy

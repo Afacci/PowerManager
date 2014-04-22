@@ -60,18 +60,18 @@ subroutine output(setPoint,postProcessing,path)
   logical                         , intent(in) :: postProcessing
   character(len=*)                , intent(in) :: path
   integer                                      :: i, u,j,k,n,l, nO
-  real(kind = prec ), dimension(nTime,nm)        :: c
+  real(kind = prec ), dimension(nTime,nm)      :: c
   integer,          dimension(nm)              :: kk, kko, kkk
   logical                                      :: ex, oldRes
   character(len=100)                           :: folder, filename
-  real(kind = prec ), dimension(0:nTime)         :: t
-  real(kind = prec), dimension(nm)              :: gg
-  real(kind = prec)                             :: g
-  real(kind = prec),dimension(2)                :: gGrid
+  real(kind = prec ), dimension(0:nTime)       :: t
+  real(kind = prec), dimension(nm)             :: gg
+  real(kind = prec)                            :: g
+  real(kind = prec),dimension(2)               :: gGrid
   character(len=20), dimension(100)            :: buffer20
-  real(kind = prec), dimension(100)             :: rbuffer
-  integer                                       :: stat
-  real(kind=prec)                               :: thSoc, thSoc_, level
+  real(kind = prec), dimension(100)            :: rbuffer
+  integer                                      :: stat
+  real(kind=prec)                              :: thSoc, thSoc_, level, iceLev
 
 
 !interface
@@ -127,7 +127,6 @@ subroutine output(setPoint,postProcessing,path)
     write(u,*) '#--------------------------------------------------------------------------#'
     write(u,*)
     write(u,'(A8,2X)', advance='no') 'Time [h]'
-!    write(u,'(A)', advance = 'no') 'Time [h]            '
     do i=1,nTrig
        j = is(iT) + i - 1
        write(u,'(A5,2X)', advance='no') trim(tec(j))
@@ -140,19 +139,27 @@ subroutine output(setPoint,postProcessing,path)
        j = is(iC) + i - 1
        write(u,'(A,1X,A,2X)', advance='no') trim(tec(j)),'Chiller'
     enddo
+    do i=1,nHP
+       j = is(iHP) + i - 1
+       write(u,'(A,1X,A,2X)', advance='no') 'Heat Pump'
+    enddo
     if(capacityTS.gt.zero) write(u,'(A)', advance='no') 'Thermal Storage'
+    if(capacityES.gt.zero) write(u,'(A)', advance='no') 'Electrical Storage'
+    if(capacityIs.gt.zero) write(u,'(A)', advance='no') 'Cold Storage'
     write(u,*)
     write(u,*)
     t(0) = 0.d0
     do i=1,nTime
        write(u,'(ES8.2E2,5X)', advance='no') t(i)
-       do j=1,nm
+       do j=1,nm0
           write(u,'(F5.2,5X)', advance='no') c(i,j)
        enddo
+       if(capacityTS.gt.zero) write(u,'(F5.2,5X)', advance='no') c(i,nm0+1)
+       if(capacityES.gt.zero) write(u,'(F5.2,5X)', advance='no') c(i,nm0+2)
+       if(capacityIs.gt.zero) write(u,'(F5.2,5X)', advance='no') c(i,nm0+3)
        write(u,*)
        kk = setPoint(i,:)
        kk(1) = 4
-!    print*, 'debug', currCost(setPoint(i,:),i), currCost(kk,i), objFunction(setPoint(i,:),i,obj), objFunction(kk,i,obj) ! elRev(setPoint(i,:),i), elRev(kk,i)
     enddo
   endif
 
@@ -216,6 +223,10 @@ subroutine output(setPoint,postProcessing,path)
         j = is(iC) + i - 1
         write(u,'(A,1X,A,5X)', advance='no') trim(tec(j)),'Chiller'
      enddo
+     do i=1,nHP
+        j = is(iHP) + i - 1
+        write(u,'(A,1X,A,5X)', advance='no') 'HeatPump'
+     enddo
      write(u,*)
      write(u,'(5X)',advance='no')
      do i=1,nTrig
@@ -233,6 +244,10 @@ subroutine output(setPoint,postProcessing,path)
            write(u,'(F4.2,10X)', advance='no') etaTh(k,j)
         enddo
         do j=is(iC),ie(iC)
+           k = setPoint(i,j)
+           write(u,'(F4.2,10X)', advance='no') etaCh(k,j)
+        enddo
+        do j=is(iHP),ie(iHP)
            k = setPoint(i,j)
            write(u,'(F4.2,10X)', advance='no') etaCh(k,j)
         enddo
@@ -350,6 +365,10 @@ subroutine output(setPoint,postProcessing,path)
         j = is(iC) + i - 1
         write(u,'(A,1X,A,2X)', advance='no') trim(tec(j)),'Chiller [kW]'
      enddo
+     do i=1,nHP
+        j = is(iHP) + i - 1
+        write(u,'(A,1X,A,2X)', advance='no') 'Heat Pump [kW]'
+     enddo
      write(u,*)
      write(u,*)
      do i=1,nTime
@@ -447,7 +466,7 @@ subroutine output(setPoint,postProcessing,path)
            nO = setPoint(i-1,k) 
            rbuffer(1) = (t(i))
            rbuffer(2) = sp(n,k)
-           call performances(n, nO,'Boilers', j,i, pTh = rbuffer(3), eIn = rbuffer(5), mf = rbuffer(6), & 
+           call performances(n, nO,'Boiler', j,i, pTh = rbuffer(3), eIn = rbuffer(5), mf = rbuffer(6), & 
                              cfu = rbuffer(7),cm = rbuffer(8), cOn = rbuffer(9))
            rbuffer(4) = etaTh(n,k)
            write(u,'(13(ES9.2E2,11X))') (rbuffer(l), l=1,9)
@@ -459,11 +478,11 @@ subroutine output(setPoint,postProcessing,path)
   if(writeChi) then
      call system("mkdir "//trim(path)//"/Chillers")
      k = is(iC)
-     do j=1,nBoi
+     do j=1,nChi
         u = u + 1
         write(filename, '(A,I3.3)'),'Chiller',j
         call prepareFile(u,filename,'Results/Chillers')
-        write(u,*) '# ', trim(filename),'.dat, contains detailed informations about Boilers'
+        write(u,*) '# ', trim(filename),'.dat, contains detailed informations about chillers'
         write(u,*) '#--------------------------------------------------------------------------#'
         write(u,*)
         buffer20(1) = 'Time [h]            '
@@ -482,7 +501,39 @@ subroutine output(setPoint,postProcessing,path)
            rbuffer(2) = sp(n,k)
            call performances(n, nO,'Chiller', j,i, pCh = rbuffer(3), eIn = rbuffer(5), cm = rbuffer(6), cOn = rbuffer(6))
            rbuffer(4) = etaCh(n,k)
-           write(u,'(13(ES9.2E2,11X))') (rbuffer(l), l=1,9)
+           write(u,'(13(ES11.2E3,11X))') (rbuffer(l), l=1,9)
+        enddo
+     enddo
+     k = k + 1
+  endif
+  
+  if(writeHP) then
+     call system("mkdir "//trim(path)//"/HeatPump")
+     k = is(iHP)
+     do j=1,nHP
+        u = u + 1
+        write(filename, '(A,I3.3)'),'HeatPumps',j
+        call prepareFile(u,filename,'Results/HeatPump/')
+        write(u,*) '# ', trim(filename),'.dat, contains detailed informations about Heat pumps'
+        write(u,*) '#--------------------------------------------------------------------------#'
+        write(u,*)
+        buffer20(1) = 'Time [h]            '
+        buffer20(2) = 'Set-point           '
+        buffer20(3) = 'Power. [kW]         '
+        buffer20(4) = 'COP                 '
+        buffer20(5) = 'input Energy[kW]    '
+        buffer20(6) = 'maint. cost [€]     '
+        buffer20(7) = 'on-off cost [€]     '
+        write(u,'(7A)') (buffer20(i), i=1,9)
+        write(u,*)
+        do i=1,nTime
+           n  = setPoint(i,k)
+           nO = setPoint(i-1,k) 
+           rbuffer(1) = (t(i))
+           rbuffer(2) = sp(n,k)
+           call performances(n, nO,'HeatPump', j,i, pTh = rbuffer(3), eIn = rbuffer(5), cm = rbuffer(6), cOn = rbuffer(6))
+           rbuffer(4) = etaCh(n,k)
+           write(u,'(13(ES9.2E2,11X))') (rbuffer(l), l=1,6)
         enddo
      enddo
      k = k + 1
@@ -547,15 +598,15 @@ subroutine output(setPoint,postProcessing,path)
      buffer20(1) = 'Time [h]            '
      buffer20(2) = 'Photovoltaic  [kW]  '
      buffer20(3) = 'Thermal  [kW]       '
-     buffer20(4) = 'Wind Power  [kW]    '
-     write(u,'(4A)') (buffer20(i), i=1,4)
+!     buffer20(4) = 'Wind Power  [kW]    '
+     write(u,'(4A)') (buffer20(i), i=1,3)
      rbuffer = zero
      do i=1,nTime
         rbuffer(1) = t(i)
         rbuffer(2) = sunEl(i)
         rbuffer(3) = sunTh(i)
-        rbuffer(4) = windEl(i)
-        write(u,'(4(ES11.2E2,11X))') (rbuffer(j), j=1,4)
+!        rbuffer(4) = windEl(i)
+        write(u,'(4(ES11.2E2,11X))') (rbuffer(j), j=1,3)
      enddo
   endif
 
@@ -582,8 +633,34 @@ subroutine output(setPoint,postProcessing,path)
         thsoc = thStorageLevelUpdate(thsoc,kk,i)
         rbuffer(3) = 100*Thsoc/capacityTS
         rbuffer(5) = Thsoc
+        write(u,'(3(F6.2,14X),2(ES11.2E2,9X))') (rbuffer(j), j=1,5)
+     enddo
+  endif
+
+  if(capacityIS.gt.zero) then
+     u = u + 1
+     call prepareFile(u,'ChillingStorageSOC',path)
+     write(u,*) '#--------------------------------------------------------------------------#'
+     write(u,*) '#  file ChillingStorageSOC.dat; contains the state of charge of the chilling storage.  '
+     write(u,*) '#--------------------------------------------------------------------------#'
+     write(u,*)
+     buffer20(1) = 'Time [h]            '
+     buffer20(2) = 'SOC in [%]          '
+     buffer20(3) = 'SOC out [%]         '
+     buffer20(4) = 'SOC in [kJ]         '
+     buffer20(5) = 'SOC out [kJ]        '
+     write(u,'(5A)') (buffer20(i), i=1,5)
+     write(u,*)
+     iceLev = iSocIce
+     do i=1,nTime
+        rbuffer(1) = t(i)
+        kk         = setPoint(i,:)
+        rbuffer(2) = 100*iceLev/capacityIS
+        rbuffer(4) = iceLev
+        iceLev     = iceStorageLevelUpdate(iceLev,kk,i)
+        rbuffer(3) = 100*iceLev/capacityIS
+        rbuffer(5) = iceLev
         write(u,'(3(F5.2,15X),2(ES11.2E2,9X))') (rbuffer(j), j=1,5)
-!        print*, 'debug', c(i,4), thsoc_, thSoc, constraints(kk,i), thSelfCons(kk,i)
      enddo
   endif
 

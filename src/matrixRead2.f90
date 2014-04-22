@@ -94,19 +94,19 @@ interface
     function matrixRead(theUnit,nline, first_, last_)
         use shared
         implicit none
-        integer, intent(in) :: theUnit, nline
-        character(len=1), optional:: first_, last_
-        character(len=500)  :: matrixRead(nline)
+        integer, intent(in)        :: theUnit, nline
+        character(len=1), optional :: first_, last_
+        character(len=lword)       :: matrixRead(nline)
     end function matrixRead
 end interface
 
-integer, intent(in) :: theUnit, nline, ncol
-real(kind = prec )    :: dMatrixRead(nline,ncol)
+integer, intent(in)        :: theUnit, nline, ncol
+real(kind = prec )         :: dMatrixRead(nline,ncol)
 character(len=1), optional :: first_,last_
-character(len=1)    :: first,last
-character(len=500)  :: buffer,value, lastChar, firstChar
-integer :: ifirst, ilast,n2, i, j
-character(len=500), dimension(nline) :: matrix
+character(len=1)           :: first,last
+character(len=lword)       :: buffer,value, lastChar, firstChar
+integer                    :: ifirst, ilast,n2, i, j
+character(len=lword), dimension(nline) :: matrix
 
 if(.not.present(first_)) then 
      first = '('
@@ -195,21 +195,21 @@ interface
     function matrixRead(theUnit,nline, first_, last_)
         use shared
         implicit none
-        integer, intent(in) :: theUnit, nline
-        character(len=1), optional:: first_, last_
-        character(len=500)  :: matrixRead(nline)
+        integer, intent(in)        :: theUnit, nline
+        character(len=1), optional :: first_, last_
+        character(len=lword)       :: matrixRead(nline)
     end function matrixRead
 end interface
 
 
 !---Declare Local Variables---
-integer, intent(in) :: theUnit, nline, ncol
+integer, intent(in)        :: theUnit, nline, ncol
 character(len=1), optional :: first_, last_
-character(len=1)   :: first, last
-integer             :: iMatrixRead(nline,ncol)
-character(len=500)  :: buffer,value, lastChar, firstChar
-integer :: ifirst, ilast,n2, i, j
-character(len=500), dimension(nline) :: matrix
+character(len=1)           :: first, last
+integer                    :: iMatrixRead(nline,ncol)
+character(len=lword)       :: buffer,value, lastChar, firstChar
+integer                    :: ifirst, ilast,n2, i, j
+character(len=lword), dimension(nline) :: matrix
 
 if(.not.present(first_)) then 
      first = '('
@@ -296,19 +296,19 @@ interface
     function matrixRead(theUnit,nline, first_, last_)
         use shared
         implicit none
-        integer, intent(in) :: theUnit, nline
-        character(len=1), optional:: first_, last_
-        character(len=500)  :: matrixRead(nline)
+        integer, intent(in)        :: theUnit, nline
+        character(len=1), optional :: first_, last_
+        character(len=lword)       :: matrixRead(nline)
     end function matrixRead
 end interface
 
 !---Declare Local Variables---
-integer, intent(in) :: theUnit, nline, ncol
-character(len=1), optional:: first_, last_
-character(len=1)    :: first,last
-character(len=500)  :: cMatrixRead(nline,ncol)
-character(len=500)  :: buffer,value, lastChar, firstChar
-character(len=500), dimension(nline) :: matrix
+integer, intent(in)        :: theUnit, nline, ncol
+character(len=1), optional :: first_, last_
+character(len=1)           :: first,last
+character(len=lword)       :: cMatrixRead(nline,ncol)
+character(len=lword)       :: buffer,value, lastChar, firstChar
+character(len=lword), dimension(nline) :: matrix
 integer :: ifirst, ilast,n2, i, j
 
 !---function body
@@ -368,12 +368,12 @@ use shared
 
 !---Declare Local Variables---
 implicit none
-integer, intent(in) :: theUnit, nline
-character(len=1), optional:: first_, last_
-character(len=1)    :: first,last
-character(len=500)  :: matrixRead(nline)
-character(len=500)  :: buffer,value, lastChar, firstChar
-integer :: ifirst, ilast,n2, i, j
+integer, intent(in)        :: theUnit, nline
+character(len=1), optional :: first_, last_
+character(len=1)           :: first,last
+character(len=lword)       :: matrixRead(nline)
+character(len=lword)       :: buffer,value, lastChar, firstChar
+integer                    :: ifirst, ilast,n2, i, j
 
 !---function body
 lastChar  = ' '

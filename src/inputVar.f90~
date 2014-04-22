@@ -85,7 +85,9 @@ character(len=50), allocatable, dimension(:)    :: tecT
 integer                                         :: nBoi
 integer, allocatable, dimension(:)              :: nSpB, nEtaB, ntcB, npcB, nacB, BoiPriority
 real(kind= prec),allocatable, dimension(:)      :: pMaxB ,fuelCostB, fuelLHVB, pefB,  pecOnB,          & 
-                                                   lifeB, fireCostB, maintCostB , minUpTimeB, minDownTimeB 
+                                                   lifeB, fireCostB, maintCostB , minUpTimeB, minDownTimeB &
+                                                   ,TinBoi, ToutBoi
+logical,allocatable, dimension(:)               :: isCondensation                            
 real(kind= prec),allocatable, dimension(:,:)    :: spB
 real(kind= prec), allocatable, dimension(:,:,:) :: etaB, tempCorrB,  presCorrB, altCorrB
 character(len=50), allocatable, dimension(:)    :: tecB

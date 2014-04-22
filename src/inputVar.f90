@@ -65,6 +65,7 @@ logical :: writeBoi         = .false.
 logical :: writeChi         = .false.
 logical :: writePec         = .false.
 logical :: writeRen         = .false.
+logical :: writeHP          = .false.
 logical :: global           = .false.
 logical :: useEuristics     = .false.
 logical , dimension(5) :: kPEC = .false.

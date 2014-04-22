@@ -72,16 +72,16 @@ use myArithmetic
 implicit none
 
 !---Declare Local Variables---
-integer              :: genUnit = 106
-character(len=50)    :: inputFile = './Input/Cogen.inp'
-logical              :: filePresent
-character(len=500)   :: buffer,keyword, value,vector,elements,value_
-integer              :: firstLine, i, nInp, line, nRow, n1, n2, x, j, il, nl
-logical,dimension(17) :: isPresent = .false.
+integer                 :: genUnit = 106
+character(len=50)       :: inputFile = './Input/Cogen.inp'
+logical                 :: filePresent
+character(len=lword)    :: buffer,keyword, value,vector,elements,value_
+integer                 :: firstLine, i, nInp, line, nRow, n1, n2, x, j, il, nl
+logical,dimension(17)   :: isPresent = .false.
 integer, dimension(100) :: dummy
-integer              :: error
-character(len=20), dimension(5) :: param
-integer :: n, nt, nee, net, nec, np
+integer                 :: error
+integer                 :: n, nt, nee, net, nec, np
+character(len=20), dimension(5)                :: param
 real(kind = prec), allocatable, dimension(:,:) :: matrix
 
 !---Check File Presence---

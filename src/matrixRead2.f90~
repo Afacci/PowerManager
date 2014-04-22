@@ -96,7 +96,7 @@ interface
         implicit none
         integer, intent(in) :: theUnit, nline
         character(len=1), optional:: first_, last_
-        character(len=100)  :: matrixRead(nline)
+        character(len=500)  :: matrixRead(nline)
     end function matrixRead
 end interface
 
@@ -104,9 +104,9 @@ integer, intent(in) :: theUnit, nline, ncol
 real(kind = prec )    :: dMatrixRead(nline,ncol)
 character(len=1), optional :: first_,last_
 character(len=1)    :: first,last
-character(len=100)  :: buffer,value, lastChar, firstChar
+character(len=500)  :: buffer,value, lastChar, firstChar
 integer :: ifirst, ilast,n2, i, j
-character(len=100), dimension(nline) :: matrix
+character(len=500), dimension(nline) :: matrix
 
 if(.not.present(first_)) then 
      first = '('
@@ -197,7 +197,7 @@ interface
         implicit none
         integer, intent(in) :: theUnit, nline
         character(len=1), optional:: first_, last_
-        character(len=100)  :: matrixRead(nline)
+        character(len=500)  :: matrixRead(nline)
     end function matrixRead
 end interface
 
@@ -207,9 +207,9 @@ integer, intent(in) :: theUnit, nline, ncol
 character(len=1), optional :: first_, last_
 character(len=1)   :: first, last
 integer             :: iMatrixRead(nline,ncol)
-character(len=100)  :: buffer,value, lastChar, firstChar
+character(len=500)  :: buffer,value, lastChar, firstChar
 integer :: ifirst, ilast,n2, i, j
-character(len=100), dimension(nline) :: matrix
+character(len=500), dimension(nline) :: matrix
 
 if(.not.present(first_)) then 
      first = '('
@@ -298,7 +298,7 @@ interface
         implicit none
         integer, intent(in) :: theUnit, nline
         character(len=1), optional:: first_, last_
-        character(len=100)  :: matrixRead(nline)
+        character(len=500)  :: matrixRead(nline)
     end function matrixRead
 end interface
 
@@ -306,9 +306,9 @@ end interface
 integer, intent(in) :: theUnit, nline, ncol
 character(len=1), optional:: first_, last_
 character(len=1)    :: first,last
-character(len=100)  :: cMatrixRead(nline,ncol)
-character(len=100)  :: buffer,value, lastChar, firstChar
-character(len=100), dimension(nline) :: matrix
+character(len=500)  :: cMatrixRead(nline,ncol)
+character(len=500)  :: buffer,value, lastChar, firstChar
+character(len=500), dimension(nline) :: matrix
 integer :: ifirst, ilast,n2, i, j
 
 !---function body
@@ -371,8 +371,8 @@ implicit none
 integer, intent(in) :: theUnit, nline
 character(len=1), optional:: first_, last_
 character(len=1)    :: first,last
-character(len=100)  :: matrixRead(nline)
-character(len=100)  :: buffer,value, lastChar, firstChar
+character(len=500)  :: matrixRead(nline)
+character(len=500)  :: buffer,value, lastChar, firstChar
 integer :: ifirst, ilast,n2, i, j
 
 !---function body
@@ -393,7 +393,6 @@ endif
 !---skip blank lines
 do while (firstChar.ne.first)
     read(theUnit,100) buffer
-    print*,'buffer', buffer
     buffer    = adjustl(buffer)
     ifirst    = index(buffer,'|')
     ilast     = index(buffer(ifirst+1:),'|') + ifirst
@@ -418,6 +417,6 @@ do j = 1,nline
     matrixRead(j) = value
 enddo
 
-100 format(A100)
+100 format(A500)
 
 end function matrixRead

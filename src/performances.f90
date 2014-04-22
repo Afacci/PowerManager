@@ -63,6 +63,7 @@ select case(equip)
      pEl_ = pMax(i)*cc*envCorr(t,i,4)
      if(present(pTh).or.present(pCh).or.present(eIn).or.present(mf).or.present(cfu)) then
         pIn_ = pEl_/(etaEl(c,i)*envCorr(t,i,1))
+        if(c.eq.1) pIn_ = zero
      endif
      if(present(pEl)) pEl = pEl_
      if(present(pTh)) pTh = pIn_*etaTh(c,i)*envCorr(t,i,2)
@@ -103,6 +104,7 @@ select case(equip)
      pTh_ = pMax(i)*cc*envCorr(t,i,4)
      if(present(eIn).or.present(mf).or.present(cfu)) then
         pIn_ = pTh_/(etaTh(c,i)*envCorr(t,i,2))
+        if(c.eq.1) pIn_ = zero
      endif
      if(present(mf).or.present(cfu))  then 
         if(pes(i).eq.'fuel') then
@@ -111,7 +113,7 @@ select case(equip)
            mf_ = zero
         endif
      endif
-     if(present(pTh)) pTh = pTh
+     if(present(pTh)) pTh = pTh_
      if(present(eIn)) eIn = Pin_
      if(present(mf))  mf  = mf_
      if(present(cfu)) cfu = mf_*cf(i)*dt(i)
@@ -148,9 +150,54 @@ select case(equip)
         print*, 'Fatal Error in performaces call. Chillers does not support fuel mass flow'
         stop
      endif
+     cc = sp(c, i)
      pCh_ = pMax(i)*cc*envCorr(t,i,4)
      if(present(pCh)) pCh = pCh_
-     if(present(eIn)) eIn = pCh_/(etaCh(c,i)*envCorr(t,i,3))
+     if(present(eIn)) then 
+          eIn = pCh_/(etaCh(c,i)*envCorr(t,i,3))
+          if(c.eq.1) eIn = zero
+     endif
+     if(present(cm)) then
+        if(cc.gt.zero) then
+           cm = OeMcost(i)*dt(t)
+        else
+           cm = zero
+        endif
+      endif
+      if(present(cOn)) then
+         ccO = sp(cOld,i)
+         if(cc.gt.zero.and.ccO.eq.zero) then
+           cOn = onOffCost(i)
+         else
+           cOn = zero
+         endif
+      endif
+
+   case('HeatPump')
+     i = num + is(iHP) - 1
+     if(present(pEl)) then 
+        print*, 'Fatal Error in performaces call. Chillers do not support Electrical Power'
+        stop
+     endif
+     if(present(pCh)) then 
+        print*, 'Fatal Error in performaces call. Chillers do not support chilling Power'   
+        stop
+     endif
+!     if(present(pTh)) then 
+!        print*, 'Fatal Error in performaces call. Chillers do not support Thermal efficiency'
+!        stop
+!     endif
+!     if(present(mf))  then
+!        print*, 'Fatal Error in performaces call. Chillers does not support fuel mass flow'
+!        stop
+!     endif
+     cc = sp(c, i)
+     pTh_ = pMax(i)*cc*envCorr(t,i,4)
+     if(present(pTh)) pTh = pTh_
+     if(present(eIn)) then 
+           eIn = pTh_/(etaCh(c,i)*envCorr(t,i,2))
+           if(c.eq.1) eIn = zero
+     endif
      if(present(cm)) then
         if(cc.gt.zero) then
            cm = OeMcost(i)*dt(t)

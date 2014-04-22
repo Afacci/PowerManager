@@ -127,7 +127,6 @@ subroutine output(setPoint,postProcessing,path)
     write(u,*) '#--------------------------------------------------------------------------#'
     write(u,*)
     write(u,'(A8,2X)', advance='no') 'Time [h]'
-!    write(u,'(A)', advance = 'no') 'Time [h]            '
     do i=1,nTrig
        j = is(iT) + i - 1
        write(u,'(A5,2X)', advance='no') trim(tec(j))
@@ -139,6 +138,10 @@ subroutine output(setPoint,postProcessing,path)
     do i=1,nChi
        j = is(iC) + i - 1
        write(u,'(A,1X,A,2X)', advance='no') trim(tec(j)),'Chiller'
+    enddo
+    do i=1,nHP
+       j = is(iHP) + i - 1
+       write(u,'(A,1X,A,2X)', advance='no') 'Heat Pump'
     enddo
     if(capacityTS.gt.zero) write(u,'(A)', advance='no') 'Thermal Storage'
     if(capacityES.gt.zero) write(u,'(A)', advance='no') 'Electrical Storage'
@@ -362,6 +365,10 @@ subroutine output(setPoint,postProcessing,path)
         j = is(iC) + i - 1
         write(u,'(A,1X,A,2X)', advance='no') trim(tec(j)),'Chiller [kW]'
      enddo
+     do i=1,nHP
+        j = is(iHP) + i - 1
+        write(u,'(A,1X,A,2X)', advance='no') 'Heat Pump [kW]'
+     enddo
      write(u,*)
      write(u,*)
      do i=1,nTime
@@ -459,7 +466,7 @@ subroutine output(setPoint,postProcessing,path)
            nO = setPoint(i-1,k) 
            rbuffer(1) = (t(i))
            rbuffer(2) = sp(n,k)
-           call performances(n, nO,'Boilers', j,i, pTh = rbuffer(3), eIn = rbuffer(5), mf = rbuffer(6), & 
+           call performances(n, nO,'Boiler', j,i, pTh = rbuffer(3), eIn = rbuffer(5), mf = rbuffer(6), & 
                              cfu = rbuffer(7),cm = rbuffer(8), cOn = rbuffer(9))
            rbuffer(4) = etaTh(n,k)
            write(u,'(13(ES9.2E2,11X))') (rbuffer(l), l=1,9)
@@ -471,11 +478,11 @@ subroutine output(setPoint,postProcessing,path)
   if(writeChi) then
      call system("mkdir "//trim(path)//"/Chillers")
      k = is(iC)
-     do j=1,nBoi
+     do j=1,nChi
         u = u + 1
         write(filename, '(A,I3.3)'),'Chiller',j
         call prepareFile(u,filename,'Results/Chillers')
-        write(u,*) '# ', trim(filename),'.dat, contains detailed informations about Boilers'
+        write(u,*) '# ', trim(filename),'.dat, contains detailed informations about chillers'
         write(u,*) '#--------------------------------------------------------------------------#'
         write(u,*)
         buffer20(1) = 'Time [h]            '
@@ -494,7 +501,39 @@ subroutine output(setPoint,postProcessing,path)
            rbuffer(2) = sp(n,k)
            call performances(n, nO,'Chiller', j,i, pCh = rbuffer(3), eIn = rbuffer(5), cm = rbuffer(6), cOn = rbuffer(6))
            rbuffer(4) = etaCh(n,k)
-           write(u,'(13(ES9.2E2,11X))') (rbuffer(l), l=1,9)
+           write(u,'(13(ES11.2E3,11X))') (rbuffer(l), l=1,9)
+        enddo
+     enddo
+     k = k + 1
+  endif
+  
+  if(writeHP) then
+     call system("mkdir "//trim(path)//"/HeatPump")
+     k = is(iHP)
+     do j=1,nHP
+        u = u + 1
+        write(filename, '(A,I3.3)'),'HeatPumps',j
+        call prepareFile(u,filename,'Results/HeatPump/')
+        write(u,*) '# ', trim(filename),'.dat, contains detailed informations about Heat pumps'
+        write(u,*) '#--------------------------------------------------------------------------#'
+        write(u,*)
+        buffer20(1) = 'Time [h]            '
+        buffer20(2) = 'Set-point           '
+        buffer20(3) = 'Power. [kW]         '
+        buffer20(4) = 'COP                 '
+        buffer20(5) = 'input Energy[kW]    '
+        buffer20(6) = 'maint. cost [€]     '
+        buffer20(7) = 'on-off cost [€]     '
+        write(u,'(7A)') (buffer20(i), i=1,9)
+        write(u,*)
+        do i=1,nTime
+           n  = setPoint(i,k)
+           nO = setPoint(i-1,k) 
+           rbuffer(1) = (t(i))
+           rbuffer(2) = sp(n,k)
+           call performances(n, nO,'HeatPump', j,i, pTh = rbuffer(3), eIn = rbuffer(5), cm = rbuffer(6), cOn = rbuffer(6))
+           rbuffer(4) = etaCh(n,k)
+           write(u,'(13(ES9.2E2,11X))') (rbuffer(l), l=1,7)
         enddo
      enddo
      k = k + 1

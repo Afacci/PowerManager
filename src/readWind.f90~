@@ -78,7 +78,7 @@ character(len=50)      :: inputFile = './Input/WindTurbines.inp'
 logical                :: filePresent
 character(len=500)     :: buffer, keyword, value
 integer                :: firstLine, line, i, nInp  
-logical,dimension(6)   :: isPresent = .false.
+logical,dimension(10)   :: isPresent = .false.
 integer,dimension(100) :: dummy
 integer                :: error, j, nl
 
@@ -127,6 +127,9 @@ do
        case('MinWindVelocity')
           read(value,*) (minWind(i), i=1,nwf)
           isPresent(4) = .true.
+       case('MaxWindVelocity')
+          read(value,*) (maxWind(i), i=1,nwf)
+          isPresent(7) = .true.
        case('PowerCoefficient')
           isPresent(5) = .true.
           backspace(genUnit)
@@ -151,6 +154,15 @@ do
           call rewUnit(genUnit,nWind)
           wind(:,:) =  dmatrixRead(genUnit,nWind,2)
           line = line + nWind
+       case('WindMeasureAltitude')
+          read(value,*) hWind
+          isPresent(8) = .true.
+       case('HellmanExponent')
+          read(value,*) hellman
+          isPresent(9) = .true.
+       case('TurbineHeight')
+          read(value,*) (hPale(i), i=1,nwf)
+          isPresent(10) = .true.
        case('FieldNumber')
              continue
        case(' ') 

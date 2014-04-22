@@ -91,5 +91,5 @@ end subroutine commandline
 !
 !-silent: non stampa riepilogo sottomodelli la solo riepilogo generale.
 !-verysilent: non stampa nulla a schermo
-!-help: stampa un help devo ancora scrivere.
+!-help: stampa un help che devo ancora scrivere.
 !==============================================================================

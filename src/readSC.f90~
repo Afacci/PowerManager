@@ -74,7 +74,7 @@ implicit none
 integer                :: genUnit = 113
 character(len=50)      :: inputFile = './Input/SolarCollectors.inp'
 logical                :: filePresent
-character(len=500)     :: buffer, keyword, value 
+character(len=lword)   :: buffer, keyword, value 
 integer                :: firstLine, line, i, nInp, nl
 logical,dimension(7)   :: isPresent = .false.
 integer                :: error
@@ -87,7 +87,7 @@ character(len=20), dimension(3)                :: param
 !---Check File Presence---
 inquire(file = inputFile, exist = filePresent)
 if(.not.filePresent) then
-   call abortExecution(1,8)
+   call abortExecution(1,9)
 else
    open(unit = genUnit, file = inputFile)
 endif
