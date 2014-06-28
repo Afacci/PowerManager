@@ -58,7 +58,7 @@ contains
       integer, dimension(nBoi)         :: kb
       integer, dimension(ntrig)        :: kt
       real(kind=prec)                  :: power, heat, cold, tSelf, eSelf, qmax
-      integer                          :: t, i, j, istart
+      integer                          :: t, i, j, istart, kTS
       integer, dimension(nm)           :: kk
       logical                          :: error
       !-------------------------------------------------------------
@@ -76,8 +76,10 @@ contains
          qmax  = cogThProd(kk, t) - sum(uTh(t,:))! + pmax Accumuli.
          cold  = sum(uCh(t,:))
          kc    = getSpChi(cold,t=t,hlimit_=qmax)
+         kTS   =  getSpTes(zero,t)
          kk(:) = 1
          kk(is(ic):ie(ic)) = kc
+         kk(is(iTs)) = kTS
          tSelf = thSelfCons(kk,t)
          eSelf = elSelfCons(kk,t)
          heat  = sum(uTh(t,:)) + tSelf
@@ -89,6 +91,9 @@ contains
          thermalTracking(t,is(iT):ie(iT)) = kt(:)
          thermalTracking(t,is(iB):ie(iB)) = kb(:)
          thermalTracking(t,is(iC):ie(iC)) = kc(:)
+         thermalTracking(t,is(iTs)) = kTS
+         thermalTracking(t,is(iIs)) = 1
+         thermalTracking(t,is(iEs)) = 1
       enddo
    end function thermalTracking
 

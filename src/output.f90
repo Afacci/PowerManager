@@ -116,6 +116,7 @@ subroutine output(setPoint,postProcessing,path)
      do j=1,nm
         k = setPoint(i,j)
         c(i,j) = sp(k,j)
+        print*, 'cazzone', j
      enddo
   enddo
 

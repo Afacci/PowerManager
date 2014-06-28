@@ -58,7 +58,7 @@ contains
       integer, dimension(nBoi)         :: kb
       integer, dimension(ntrig)        :: kt
       real(kind=prec)                  :: power, heat, cold, tSelf, eSelf, qmax
-      integer                          :: t, i, j, istart
+      integer                          :: t, i, j, istart, kTS
       integer, dimension(nm)           :: kk
       logical                          :: error
       !-------------------------------------------------------------
@@ -76,8 +76,10 @@ contains
          qmax  = cogThProd(kk, t) - sum(uTh(t,:))! + pmax Accumuli.
          cold  = sum(uCh(t,:))
          kc    = getSpChi(cold,t=t,hlimit_=qmax)
+         kTS   =  getSpTes(zero,t)
          kk(:) = 1
          kk(is(ic):ie(ic)) = kc
+         kk(is(iTs)) = kTS
          tSelf = thSelfCons(kk,t)
          eSelf = elSelfCons(kk,t)
          heat  = sum(uTh(t,:)) + tSelf
@@ -89,6 +91,9 @@ contains
          thermalTracking(t,is(iT):ie(iT)) = kt(:)
          thermalTracking(t,is(iB):ie(iB)) = kb(:)
          thermalTracking(t,is(iC):ie(iC)) = kc(:)
+         thermalTracking(t,is(iTs)) = kTS
+         thermalTracking(t,is(iIs)) = 1
+         thermalTracking(t,is(iEs)) = 1
       enddo
    end function thermalTracking
 
@@ -150,7 +155,7 @@ contains
       integer, dimension(nChi)         :: kc
       integer, dimension(nBoi)         :: kb
       integer, dimension(ntrig)        :: kt
-      real(kind=prec)                  :: power, heat, cold, tSelf, eSelf, qmax
+      real(kind=prec)                  :: power, heat, cold, tSelf, eSelf, qmax, heatSto
       integer                          :: t, i, j, istart
       integer, dimension(nm)           :: kk, kk0
       logical                          :: error
@@ -172,10 +177,8 @@ contains
 
       do t=1,nTime
          kk = kk0
-         cPred(t,:) = locateRow(preset,spVal(:,1:nTrig),nTrig,nComb,error)
-         print*, ' romammerda ' , spVal(:,1:nTrig)
-         kk(is(iT):ie(iT)) = cPred(t,:) !nSp(is(iT):ie(iT))
-         maxTes = thStoragePmax(thLevel(t-1),t)
+         kk(is(iT):ie(iT)) = preset(t,:)! cPred(t,:) !nSp(is(iT):ie(iT))
+         maxTes = thStoragePmax(thLevel(t-1),t,.true.)
          qmax  = cogThProd(kk, t) - sum(uTh(t,:)) + maxTes(1)
          qmax = max(qmax,zero)
          cold  = sum(uCh(t,:))
@@ -183,7 +186,10 @@ contains
          kk(is(ic):ie(ic)) = kc
          tSelf = thSelfCons(kk,t)
          heat  = sum(uTh(t,:)) + tSelf - cogThProd(kk,t)
-         kk(is(iTS)) = getSpTes(heat,t)
+         heatSto = min(heat, maxTes(1))
+         heatSto = max(heatSto, maxTes(2))
+         kk(is(iTS)) = getSpTes(heatSto,t)
+         print*, 'time', t, nTime
          heat =  heat - tesPower(kk,t)
          if(heat.gt.zero) kk(is(iB):ie(iB)) = getSpBoi(heat,t)
          fullLoad(t,:) = kk

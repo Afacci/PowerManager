@@ -333,6 +333,10 @@ contains
       maxp = pMax(j)*etaTSout
       minp = -1.0*pMax(j)/etaTSin
       full = nSp(j)
+      if(pMax(j).le.zero.or.capacityTS.le. zero) then
+         getSpTes = 1
+         return
+      endif
 
       if(heat.ge.zero) then
         if(maxp.ge.Heat) then
@@ -401,7 +405,8 @@ else
         thStoragePmax(1) = sp(j,i)*Pmax(i)/etaTsIn
      endif
      c(i) = j
-     if(thStorageConstr(oldLevel,c,t,fcon)) exit
+     !if(thStorageConstr(oldLevel,c,t,fcon)) exit
+     if(thStorageConstr(oldLevel,c,t,.false.)) exit
      j = j - 1 
    enddo
    j = 1
@@ -412,7 +417,8 @@ else
         thStoragePmax(2) = sp(j,i)*Pmax(i)*etaTSout
      endif
      c(i) = j
-     if(thStorageConstr(oldLevel,c,t,fcon)) exit
+     !if(thStorageConstr(oldLevel,c,t,fcon)) exit
+     if(thStorageConstr(oldLevel,c,t,.false.)) exit
      j = j + 1 
    enddo
 endif

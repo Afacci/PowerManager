@@ -123,6 +123,7 @@ select case(strategy)
       call allCombin(icm=cr,imax=nSp,m=nm,targ='set-point') 
       call allCombin(dcm=sp,imax=nSp,m=nm,targ='state') 
       setPoint = fullLoad()
+      print*, 'romammerda'
   case('Optimized')
       !---Build the graph-----
       print*, ' ---Building the graph---'
