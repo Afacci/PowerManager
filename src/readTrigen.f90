@@ -349,8 +349,13 @@ do
                if(.not.silent) call warning(1,2,line=line,word=keyword)
     end select
 enddo
+
+
+allocate(etaChT(2,2,nTrig))
 do i = 1, nTrig
-   etaChT(:,:,i) =  zero
+   netaChT(i) = 2
+   etaChT(:,1,i) =  zero
+   etaChT(:,2,i) = (/1.d0 ,zero/)
 enddo
 !---check if all the variablea were read---
 nInp = size(isPresent)

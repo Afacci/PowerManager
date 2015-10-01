@@ -59,9 +59,9 @@ contains
             etaThT_(:,i) = interpolation(etaThT(:,1,i), etaThT(:,2,i), nEtaThT(i), spT(:,i),nSpT(i), ext2) 
             if(ext2(1).eq.1.and.(.not.silent)) call warning(2,1,i, word='Thermal')
             if(ext2(2).eq.1.and.(.not.silent)) call warning(3,1,i, word='Thermal')
-            etaChT_(:,i) = interpolation(etaChT(:,1,i), etaChT(:,2,i), nEtaChT(i), spT(:,i),nSpT(i), ext3)
-            if(ext3(1).eq.1.and.(.not.silent)) call warning(2,1,i, word='Chilling')
-            if(ext3(2).eq.1.and.(.not.silent)) call warning(3,1,i, word='Chilling')
+            etaChT_(:,i) = zero ! interpolation(etaChT(:,1,i), etaChT(:,2,i), nEtaChT(i), spT(:,i),nSpT(i), ext3)
+            !if(ext3(1).eq.1.and.(.not.silent)) call warning(2,1,i, word='Chilling')
+            !if(ext3(2).eq.1.and.(.not.silent)) call warning(3,1,i, word='Chilling')
          enddo
       endif
       
